@@ -1,0 +1,8 @@
+*.apk
+*.exe
+*.app
+*.zip
+.vscode
+.DS_Store
+output
+build
