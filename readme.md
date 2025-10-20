@@ -3,5 +3,4 @@
 ## Contributors
 
 - qiming cao
-
-* Tianlai Gu
+- Tianlai Gu
