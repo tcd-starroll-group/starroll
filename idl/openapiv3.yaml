@@ -1,0 +1,258 @@
+openapi: "3.0.0"
+info:
+  version: "1.0.0"
+  title: "StarRoll API"
+
+paths:
+  # GUI
+
+  # Data collection module
+  /api/getLocation:
+    post:
+      summary: Get current location
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GPS"
+  /api/getAttitude:
+    post:
+      summary: Get attitude of the mobile device
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/attitude"
+  /api/getCameraData:
+    post:
+      summary: Get camera data
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  cameraMeta:
+                    $ref: "#/components/schemas/cameraMeta"
+                  image:
+                    description: image read from camera
+                    type: string
+  # Astronomy Engine
+  /api/getStarCatalog:
+    post:
+      summary: Get star catalog
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  starsNumber:
+                    description: stars number
+                    type: integer
+                  starMetaList:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/starMeta"
+  /api/calculateStarCoordinates:
+    post:
+      summary: calculate star coordinates
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                timeStamp:
+                  description: UTC time stamp
+                  type: integer
+                cameraMeta:
+                  $ref: "#/components/schemas/cameraMeta"
+                attitude:
+                  $ref: "#/components/schemas/attitude"
+                starMetaList:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/starMeta"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  starCoordinates:
+                    type: array
+                    items:
+                      properties:
+                        HIP:
+                          type: integer
+                        viewCoordinate:
+                          $ref: "#/components/schemas/viewCoordinate"
+  # Error Elimination Module
+  /api/elimilateErrors:
+    post:
+      summary: Eliminating the errors between the stars' positions that we calculated and the stars' positions captured by the camera. These errors are generally caused by the limited accuracy of the sensor.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                cameraMeta:
+                  $ref: "#/components/schemas/cameraMeta"
+                image:
+                  description: image read from camera
+                  type: string
+                starCoordinates:
+                  type: array
+                  items:
+                    properties:
+                      HIP:
+                        type: integer
+                      viewCoordinate:
+                        $ref: "#/components/schemas/viewCoordinate"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  starCoordinates:
+                    type: array
+                    items:
+                      properties:
+                        HIP:
+                          type: integer
+                        correctedViewCoordinate:
+                          $ref: "#/components/schemas/viewCoordinate"
+  # Render Engine
+
+  # User System
+
+  # Social System
+  /api/getStarDetails:
+    post:
+      summary: calculate star details
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                HIP:
+                  type: integer
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/starDetails"
+
+# Reused schemas
+components:
+  schemas:
+    userCredentials:
+      type: object
+      properties:
+        userID:
+          type: string
+        token:
+          type: string
+    GPS:
+      description: GPS location
+      type: object
+      properties:
+        longitude:
+          type: number
+        latitude:
+          type: number
+    attitude:
+      description: attitude of the mobile device
+      type: object
+      properties:
+        roll:
+          type: number
+        pitch:
+          type: number
+        yaw:
+          type: number
+    cameraMeta:
+      type: object
+      properties:
+        focalLength:
+          description: 35mm equivalent focal length
+          type: number
+        length:
+          description: image length, pixels
+          type: integer
+        hight:
+          description: image hight, pixels
+          type: integer
+    starMeta:
+      type: object
+      properties:
+        HIP:
+          description: unique HIP index
+          type: integer
+        equatorialCoordinate:
+          $ref: "#/components/schemas/equatorialCoordinate"
+        magnitude:
+          description: magnitude
+          type: number
+        pmRA:
+          description: Proper motion mu_alpha.cos(delta), The proper motion of a star along its right ascension, radian per year
+          type: number
+        pmDE:
+          description: Proper motion mu_delta, The proper motion of a star in the direction of declination, the radian per year
+          type: number
+        bvColor:
+          description: A measure of its surface temperature, determined by the difference between its measured blue (B) magnitude and its visual (V) magnitude.
+          type: number
+    equatorialCoordinate:
+      type: object
+      properties:
+        rightAscension:
+          description: right ascension, degree
+          type: number
+        declination:
+          description: Declination, degree
+          type: number
+    horizontalCoordinate:
+      type: object
+      properties:
+        altitude:
+          type: number
+        azimuth:
+          type: number
+    viewCoordinate:
+      type: object
+      properties:
+        x:
+          type: number
+        y:
+          type: number
+    starDetails:
+      type: object
+      properties:
+        HIP:
+          type: integer
+        alias:
+          description: alternative names
+          type: array
+          items:
+            type: string
+        diatance:
+          description: Distance, light-year
+          type: number
+        constellation:
+          description: The constellation that the star belongs to.
+          type: string
+        details:
+          description: Detailed introduction of stars
+          type: string
