@@ -5,7 +5,74 @@ info:
 
 paths:
   # GUI
-
+  /api/displayChatRoom:
+    get:
+      summary: Display chat room entry button in GUI
+      description: Returns data to render chat room entry button in the graphical interface
+      responses:
+        '200':
+          description: Button configuration retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  roomID:
+                    type: string
+                  roomName:
+                    type: string
+                  buttonText:
+                    type: string
+                  isVisible:
+                    type: boolean
+                  style:
+                    type: object
+                    description: GUI styling properties
+                    properties:
+                      color:
+                        type: string
+                      size:
+                        type: string
+  
+  /api/exitChatRoom:
+    post:
+      summary: Exit chat room
+      description: Updates user's participation status and triggers related notifications
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - roomId  
+                - userId  
+              properties:
+                roomId:
+                  type: string
+                  description: ID of the chat room to exit
+                userId:
+                  type: string
+                  description: ID of the user exiting the chat room
+                sendNotification:
+                  type: boolean
+                  default: true
+      responses:
+        '200':
+          description: Successfully exited chat room
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  roomId:
+                    type: string
+                  userId:
+                    type: string
+                  status:
+                    type: string
+                  notificationSent:
+                    type: boolean
   # Data collection module
   /api/getLocation:
     post:
@@ -136,6 +203,171 @@ paths:
   # User System
 
   # Social System
+  /api/getChatRoom:
+    post:
+      summary: Join the chat room
+      description: Join the chat room
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - roomId
+                - userStatus  
+                - userId
+                - roomStatus  
+              properties:
+                roomId:
+                  type: string
+                  description: Unique ID of the target chat room in the social system
+                userId:
+                  type: string
+                  description: ID of the user attempting to access the chat room
+                userStatus:
+                  type: boolean
+                  description: Check user status
+                roomStatus:
+                  type: boolean
+                  description: Check room status
+      responses:
+        '200':
+          description: Successfully entered the chat room
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  message:
+                    type: string
+  /api/getChatRoomInfo:
+    post:
+      summary: Retrieve chat room from social system
+      description: Gets specified chat room information from the social system
+      requestBody:
+        content:
+          application/json:  
+            schema:
+              type: object
+              required:
+                - roomId  
+              properties:
+                roomID:
+                  type: string             
+      responses:
+        '200':
+          description: Chat room information retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  roomID:
+                    type: string
+                  name:
+                    type: string
+                  description:
+                    type: string
+                  creationTime:
+                    type: string
+                  OnlineUsers:
+                    type: integer
+                  members:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        userID:
+                          type: string
+                        username:
+                          type: string
+                        isOnline:
+                          type: boolean
+
+  /api/getMessage:
+    post:
+      summary: Retrieve chat room messages
+      description: Gets historical and real-time messages from the chat room
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - roomID 
+              properties:
+                roomID:
+                  type: string
+                  description: ID of the chat room to retrieve messages from
+                limit:
+                  type: integer
+                  description: Maximum number of messages to retrieve
+                  default: 300
+                timestamp:
+                  type: string
+                  description: Retrieve messages sent before this timestamp
+      responses:
+        '200':
+          description: Messages retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  roomId:
+                    type: string
+                  messages:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        messageId:
+                          type: string
+                        userId:
+                          type: string
+                        content:
+                          type: string
+                        timestamp:
+                          type: string
+
+  /api/sendMessage:
+    post:
+      summary: Send message to chat room
+      description: Sends a message to the specified chat room for real-time communication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object  
+              properties:
+                roomId:
+                  type: string
+                  description: ID of the target chat room
+                userId:
+                  type: string
+                  description: ID of the user sending the message
+                content:
+                  type: string
+                  description: Content of the message to send
+      responses:
+        '200':
+          description: Message sent successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messageId:
+                    type: string
+                  timestamp:
+                    type: string
+                  status:
+                    type: string
   /api/getStarDetails:
     post:
       summary: calculate star details
@@ -153,6 +385,37 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/starDetails"
+  /api/checkRoomStatus:
+    post:
+      summary: Check chat room status
+      description: Determines if a user can join the specified chat room
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - roomID 
+              properties:
+                roomId:
+                  type: string
+                  description: ID of the chat room to check
+      responses:
+        '200':
+          description: Room status retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  roomID:
+                    type: string
+                  isJoinable:
+                    type: boolean
+                  status:
+                    type: string
+                  message:
+                    type: string
 
 # Reused schemas
 components:
