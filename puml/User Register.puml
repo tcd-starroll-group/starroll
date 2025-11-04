@@ -1,0 +1,30 @@
+@startuml
+title User Register
+
+actor User
+participant "User System" as US
+participant "Data Access Layer" as db
+
+User -> US: userRegister(username, password)
+activate US
+
+US -> db: checkUserExists(username)
+activate db
+
+alt Valid is username
+    db --> US: Not Found
+    deactivate db
+    US -> US: hashPassword(password)
+    US -> db: createUser(username, hashedPassword)
+    activate db
+    db --> US: newUserData (userID, username)
+    deactivate db
+    US --> User: 201 Created (UserResponse)
+else Username is exist
+    db --> US: User Found
+    deactivate db
+    US --> User: 409 Conflict (ErrorResponse)
+end
+deactivate US
+hide footbox
+@enduml
