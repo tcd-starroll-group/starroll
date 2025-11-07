@@ -416,6 +416,156 @@ paths:
                     type: string
                   message:
                     type: string
+  /api/setUser:
+    post:
+      summary: "Set/modify username and password"
+      description: "Modify the username and password by the username, current password(password0)and new password(password1) user provided."
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ChangePasswordRequest"
+      responses:
+        "200":
+          description: "Modify password successful."
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                    example: "Password updated successfully"
+        "400":
+          description: "Invalid request: For example, the new password does not meet the security requirements, or the new and old passwords are the same."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "401":
+          description: "Unauthorized: Current password (password0) is incorrect"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "404":
+          description: "Not Found: The username does not exist."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /api/userLogin:
+    post:
+      summary: "User login"
+      description: "Use username and password to authentication, return a token if success."
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserAuth"
+      responses:
+        "200":
+          description: "Login successful."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TokenResponse"
+        "401":
+          description: "Unauthorized: Incorrect username or password."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /api/userReg:
+    post:
+      summary: "User register"
+      description: "Create an account with a new username and password."
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserAuth"
+      responses:
+        "201":
+          description: "Create user successful."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserResponse"
+        "400":
+          description: "Invalid request: For example, the password does not meet the requirements."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "409":
+          description: "Conflict: The username is already in use."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /api/usernameVerify:
+    post:
+      summary: "Verify the username"
+      description: "Check whether the username is available."
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                username:
+                  type: string
+                  description: "The username to be checked"
+                  example: "new_user_123"
+      responses:
+        "200":
+          description: "Username available"
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                    example: "Username is available"
+        "409":
+          description: "The username is already in use."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /api/verifyUserToken:
+    post:
+      summary: "Verify the user's Token"
+      description: "Check whether the provided Token is valid. If it is valid, return the corresponding user information."
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                token:
+                  type: string
+                  description: "The verified access token."
+      responses:
+        "200":
+          description: "Token is valid."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserResponse"
+        "401":
+          description: "Invalid or expired Token."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
 
 # Reused schemas
 components:
@@ -519,3 +669,84 @@ components:
         details:
           description: Detailed introduction of stars
           type: string
+
+    # input/output model
+    UserAuth:
+      description: "User credentials for login or registration."
+      type: object
+      properties:
+        username:
+          type: string
+          description: "Username"
+          example: "user123"
+        password:
+          type: string
+          description: "Password"
+          format: "password"
+          example: "Str0ngPa$$w0rd!"
+      required:
+        - username
+        - password
+
+    TokenResponse:
+      description: "The access token returned after successful login"
+      type: object
+      properties:
+        token:
+          type: string
+          description: "JWT or other access token."
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+        expiresIn:
+          type: integer
+          description: "Token expiration time (seconds)"
+          example: 3600
+
+    UserResponse:
+      description: "The basic user information returned after the operation is successful."
+      type: object
+      properties:
+        userID:
+          type: string
+          description: "The unique ID of the user"
+          format: "uuid"
+          example: "a1b2c3d4-e5f6-7890-1234-567890abcdef"
+        username:
+          type: string
+          description: "Username"
+          example: "user123"
+
+    ErrorResponse:
+      description: "General error response"
+      type: object
+      properties:
+        code:
+          type: string
+          description: "Internal error code"
+          example: "AUTH_001"
+        message:
+          type: string
+          description: "Detailed error message"
+          example: "Invalid username or password"
+
+    ChangePasswordRequest:
+          description: "Request for password modification"
+          type: object
+          properties:
+            username:
+              type: string
+              description: "Target username"
+              example: "user123"
+            password0:
+              type: string
+              description: "Current password (old password)"
+              format: "password"
+              example: "OldPa$$w0rd"
+            password1:
+              type: string
+              description: "New password (new password)"
+              format: "password"
+              example: "NewStr0ngPa$$w0rd!"
+          required:
+            - username
+            - password0
+            - password1
