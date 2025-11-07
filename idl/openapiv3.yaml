@@ -161,6 +161,249 @@ paths:
                           type: integer
                         viewCoordinate:
                           $ref: "#/components/schemas/viewCoordinate"
+#huhu
+  /api/triggerStarfieldRender:
+    post:
+      summary: Trigger starfield rendering
+      description: Initiate starfield rendering process using corrected star coordinates and camera parameters
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                cameraMeta:
+                  $ref: "#/components/schemas/cameraMeta"
+                correctedStarCoordinates:
+                  type: array
+                  items:
+                    properties:
+                      HIP:
+                        type: integer
+                      correctedViewCoordinate:
+                        $ref: "#/components/schemas/viewCoordinate"
+                renderParams:
+                  type: object
+                  properties:
+                    brightness:
+                      type: number
+                      default: 1.0
+                      description: Starfield brightness (0.0-2.0)
+                    contrast:
+                      type: number
+                      default: 1.0
+                      description: Starfield contrast (0.0-2.0)
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  renderTaskId:
+                    type: string
+                    description: Unique ID of the rendering task
+                  renderStatus:
+                    type: string
+                    description: Current status of rendering (pending/processing/completed)
+
+  /api/requestStargazingTime:
+    post:
+      summary: Request optimal stargazing time
+      description: Get recommended stargazing time range based on GPS location
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                gps:
+                  $ref: "#/components/schemas/GPS"
+                targetDate:
+                  type: string
+                  format: date
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  optimalTimeRange:
+                    type: object
+                    properties:
+                      startTime:
+                        type: string
+                        format: date-time
+                        description: Start time of optimal stargazing
+                      endTime:
+                        type: string
+                        format: date-time
+                        description: End time of optimal stargazing
+                  skyCondition:
+                    type: string
+                    description: Forecasted sky condition (clear/partly-cloudy/cloudy)
+
+  /api/requestAccuracyAdjust:
+    post:
+      summary: Request accuracy adjustment
+      description: Adjust calculation accuracy for star coordinates based on sensor precision
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                accuracyLevel:
+                  type: integer
+                  minimum: 1
+                  maximum: 5
+                  default: 3
+                  description: Accuracy level (1=lowest, 5=highest)
+                errorTolerance:
+                  type: number
+                  default: 0.5
+                  description: Acceptable error tolerance (pixels)
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  adjustStatus:
+                    type: string
+                    description: Accuracy adjustment status (success/failed)
+                  currentAccuracyParams:
+                    type: object
+                    properties:
+                      accuracyLevel:
+                        type: integer
+                      errorTolerance:
+                        type: number
+
+  /api/displayStarfield:
+    post:
+      summary: Display starfield
+      description: Retrieve rendered starfield data for GUI display
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                renderTaskId:
+                  type: string
+                  description: Unique ID of the completed rendering task
+                displayMode:
+                  type: string
+                  enum: [preview, fullscreen, enhanced]
+                  default: preview
+                  description: Starfield display mode
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  starfieldData:
+                    type: string
+                    description: Base64-encoded starfield image data
+                  resolution:
+                    type: object
+                    properties:
+                      width:
+                        type: integer
+                        description: Image width (pixels)
+                      height:
+                        type: integer
+                        description: Image height (pixels)
+
+  /api/displayStarDetails:
+    post:
+      summary: Display star details
+      description: Retrieve detailed astronomical information of a specific star
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                HIP:
+                  type: integer
+                  description: Unique HIP index of the target star
+                detailLevel:
+                  type: string
+                  enum: [basic, detailed, complete]
+                  default: basic
+                  description: Level of star details to display
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/starDetails"
+
+  /api/requestSaveType:
+    post:
+      summary: Request save type options
+      description: Get available save types for rendered starfield
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  saveTypeList:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        typeId:
+                          type: string
+                          description: Unique ID of the save type
+                        typeName:
+                          type: string
+                          description: Name of the save type (e.g., PNG, JPG, SVG)
+                        fileExtension:
+                          type: string
+                          description: Corresponding file extension (e.g., .png, .jpg)
+
+  /api/displaySaveSuccess:
+    post:
+      summary: Display save success confirmation
+      description: Return save result and metadata after starfield is saved
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                saveTaskId:
+                  type: string
+                  description: Unique ID of the save task
+                saveType:
+                  type: string
+                  description: Save type used (matches typeId from requestSaveType)
+                fileName:
+                  type: string
+                  description: Name of the saved file
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  saveStatus:
+                    type: string
+                    description: Save status (success/failed)
+                  filePath:
+                    type: string
+                    description: Local path or cloud URL of the saved file
+                  saveTime:
+                    type: string
+                    format: date-time
+                    description: Timestamp when the file was saved
+
+
   # Error Elimination Module
   /api/elimilateErrors:
     post:
