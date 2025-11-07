@@ -161,6 +161,249 @@ paths:
                           type: integer
                         viewCoordinate:
                           $ref: "#/components/schemas/viewCoordinate"
+#huhu
+  /api/triggerStarfieldRender:
+    post:
+      summary: Trigger starfield rendering
+      description: Initiate starfield rendering process using corrected star coordinates and camera parameters
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                cameraMeta:
+                  $ref: "#/components/schemas/cameraMeta"
+                correctedStarCoordinates:
+                  type: array
+                  items:
+                    properties:
+                      HIP:
+                        type: integer
+                      correctedViewCoordinate:
+                        $ref: "#/components/schemas/viewCoordinate"
+                renderParams:
+                  type: object
+                  properties:
+                    brightness:
+                      type: number
+                      default: 1.0
+                      description: Starfield brightness (0.0-2.0)
+                    contrast:
+                      type: number
+                      default: 1.0
+                      description: Starfield contrast (0.0-2.0)
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  renderTaskId:
+                    type: string
+                    description: Unique ID of the rendering task
+                  renderStatus:
+                    type: string
+                    description: Current status of rendering (pending/processing/completed)
+
+  /api/requestStargazingTime:
+    post:
+      summary: Request optimal stargazing time
+      description: Get recommended stargazing time range based on GPS location
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                gps:
+                  $ref: "#/components/schemas/GPS"
+                targetDate:
+                  type: string
+                  format: date
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  optimalTimeRange:
+                    type: object
+                    properties:
+                      startTime:
+                        type: string
+                        format: date-time
+                        description: Start time of optimal stargazing
+                      endTime:
+                        type: string
+                        format: date-time
+                        description: End time of optimal stargazing
+                  skyCondition:
+                    type: string
+                    description: Forecasted sky condition (clear/partly-cloudy/cloudy)
+
+  /api/requestAccuracyAdjust:
+    post:
+      summary: Request accuracy adjustment
+      description: Adjust calculation accuracy for star coordinates based on sensor precision
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                accuracyLevel:
+                  type: integer
+                  minimum: 1
+                  maximum: 5
+                  default: 3
+                  description: Accuracy level (1=lowest, 5=highest)
+                errorTolerance:
+                  type: number
+                  default: 0.5
+                  description: Acceptable error tolerance (pixels)
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  adjustStatus:
+                    type: string
+                    description: Accuracy adjustment status (success/failed)
+                  currentAccuracyParams:
+                    type: object
+                    properties:
+                      accuracyLevel:
+                        type: integer
+                      errorTolerance:
+                        type: number
+
+  /api/displayStarfield:
+    post:
+      summary: Display starfield
+      description: Retrieve rendered starfield data for GUI display
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                renderTaskId:
+                  type: string
+                  description: Unique ID of the completed rendering task
+                displayMode:
+                  type: string
+                  enum: [preview, fullscreen, enhanced]
+                  default: preview
+                  description: Starfield display mode
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  starfieldData:
+                    type: string
+                    description: Base64-encoded starfield image data
+                  resolution:
+                    type: object
+                    properties:
+                      width:
+                        type: integer
+                        description: Image width (pixels)
+                      height:
+                        type: integer
+                        description: Image height (pixels)
+
+  /api/displayStarDetails:
+    post:
+      summary: Display star details
+      description: Retrieve detailed astronomical information of a specific star
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                HIP:
+                  type: integer
+                  description: Unique HIP index of the target star
+                detailLevel:
+                  type: string
+                  enum: [basic, detailed, complete]
+                  default: basic
+                  description: Level of star details to display
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/starDetails"
+
+  /api/requestSaveType:
+    post:
+      summary: Request save type options
+      description: Get available save types for rendered starfield
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  saveTypeList:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        typeId:
+                          type: string
+                          description: Unique ID of the save type
+                        typeName:
+                          type: string
+                          description: Name of the save type (e.g., PNG, JPG, SVG)
+                        fileExtension:
+                          type: string
+                          description: Corresponding file extension (e.g., .png, .jpg)
+
+  /api/displaySaveSuccess:
+    post:
+      summary: Display save success confirmation
+      description: Return save result and metadata after starfield is saved
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                saveTaskId:
+                  type: string
+                  description: Unique ID of the save task
+                saveType:
+                  type: string
+                  description: Save type used (matches typeId from requestSaveType)
+                fileName:
+                  type: string
+                  description: Name of the saved file
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  saveStatus:
+                    type: string
+                    description: Save status (success/failed)
+                  filePath:
+                    type: string
+                    description: Local path or cloud URL of the saved file
+                  saveTime:
+                    type: string
+                    format: date-time
+                    description: Timestamp when the file was saved
+
+
   # Error Elimination Module
   /api/elimilateErrors:
     post:
@@ -416,8 +659,159 @@ paths:
                     type: string
                   message:
                     type: string
-   
-  /api/getGeneralRecommendations:
+  /api/setUser:
+    post:
+      summary: "Set/modify username and password"
+      description: "Modify the username and password by the username, current password(password0)and new password(password1) user provided."
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ChangePasswordRequest"
+      responses:
+        "200":
+          description: "Modify password successful."
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                    example: "Password updated successfully"
+        "400":
+          description: "Invalid request: For example, the new password does not meet the security requirements, or the new and old passwords are the same."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "401":
+          description: "Unauthorized: Current password (password0) is incorrect"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "404":
+          description: "Not Found: The username does not exist."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /api/userLogin:
+    post:
+      summary: "User login"
+      description: "Use username and password to authentication, return a token if success."
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserAuth"
+      responses:
+        "200":
+          description: "Login successful."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TokenResponse"
+        "401":
+          description: "Unauthorized: Incorrect username or password."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /api/userReg:
+    post:
+      summary: "User register"
+      description: "Create an account with a new username and password."
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserAuth"
+      responses:
+        "201":
+          description: "Create user successful."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserResponse"
+        "400":
+          description: "Invalid request: For example, the password does not meet the requirements."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "409":
+          description: "Conflict: The username is already in use."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /api/usernameVerify:
+    post:
+      summary: "Verify the username"
+      description: "Check whether the username is available."
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                username:
+                  type: string
+                  description: "The username to be checked"
+                  example: "new_user_123"
+      responses:
+        "200":
+          description: "Username available"
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                    example: "Username is available"
+        "409":
+          description: "The username is already in use."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /api/verifyUserToken:
+    post:
+      summary: "Verify the user's Token"
+      description: "Check whether the provided Token is valid. If it is valid, return the corresponding user information."
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                token:
+                  type: string
+                  description: "The verified access token."
+      responses:
+        "200":
+          description: "Token is valid."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserResponse"
+        "401":
+          description: "Invalid or expired Token."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+#Recommendation System
+  
+  /GetGeneralRecommendations:
     get:
       summary: Retrieve general and trending recommendations
       description: Fetches general location, constellation, or trending recommendations from Social System/DAL
@@ -431,7 +825,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/RecommendationItem'
 
-  /api/getSocialRecommendations:
+  /GetSocialRecommendations:
     get:
       summary: Retrieve personalized social recommendations
       description: Fetches recommendations based on user social connections
@@ -453,7 +847,7 @@ paths:
                   $ref: '#/components/schemas/RecommendationItem'
 
 
-  /api/getRecommendationDetails:
+  /GetRecommendationDetails:
     get:
       summary: Retrieve detailed info about a recommendation
       description: Fetches detailed information for a specific recommendation item from Social System/DAL
@@ -472,7 +866,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/RecommendationDetail'
 
-  /api/saveOrSkipRecommendation:
+  /SaveOrSkipRecommendation:
     post:
       summary: Save or skip a recommendation item
       description: Routes save or skip action based on user type for recommendations in Social System
@@ -497,7 +891,9 @@ paths:
                   description: User type for action routing
       responses:
         '200':
-          description: Action processed successfully              
+          description: Action processed successfully
+
+  
 
 # Reused schemas
 components:
@@ -601,6 +997,87 @@ components:
         details:
           description: Detailed introduction of stars
           type: string
+
+    # input/output model
+    UserAuth:
+      description: "User credentials for login or registration."
+      type: object
+      properties:
+        username:
+          type: string
+          description: "Username"
+          example: "user123"
+        password:
+          type: string
+          description: "Password"
+          format: "password"
+          example: "Str0ngPa$$w0rd!"
+      required:
+        - username
+        - password
+
+    TokenResponse:
+      description: "The access token returned after successful login"
+      type: object
+      properties:
+        token:
+          type: string
+          description: "JWT or other access token."
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+        expiresIn:
+          type: integer
+          description: "Token expiration time (seconds)"
+          example: 3600
+
+    UserResponse:
+      description: "The basic user information returned after the operation is successful."
+      type: object
+      properties:
+        userID:
+          type: string
+          description: "The unique ID of the user"
+          format: "uuid"
+          example: "a1b2c3d4-e5f6-7890-1234-567890abcdef"
+        username:
+          type: string
+          description: "Username"
+          example: "user123"
+
+    ErrorResponse:
+      description: "General error response"
+      type: object
+      properties:
+        code:
+          type: string
+          description: "Internal error code"
+          example: "AUTH_001"
+        message:
+          type: string
+          description: "Detailed error message"
+          example: "Invalid username or password"
+
+    ChangePasswordRequest:
+          description: "Request for password modification"
+          type: object
+          properties:
+            username:
+              type: string
+              description: "Target username"
+              example: "user123"
+            password0:
+              type: string
+              description: "Current password (old password)"
+              format: "password"
+              example: "OldPa$$w0rd"
+            password1:
+              type: string
+              description: "New password (new password)"
+              format: "password"
+              example: "NewStr0ngPa$$w0rd!"
+          required:
+            - username
+            - password0
+            - password1
     RecommendationItem:
       type: object
       properties:
@@ -623,4 +1100,4 @@ components:
         description:
           type: string
         metadata:
-          type: object
+          type: object        
