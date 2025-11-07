@@ -416,6 +416,88 @@ paths:
                     type: string
                   message:
                     type: string
+   
+  /api/getGeneralRecommendations:
+    get:
+      summary: Retrieve general and trending recommendations
+      description: Fetches general location, constellation, or trending recommendations from Social System/DAL
+      responses:
+        '200':
+          description: List of general recommendation items
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RecommendationItem'
+
+  /api/getSocialRecommendations:
+    get:
+      summary: Retrieve personalized social recommendations
+      description: Fetches recommendations based on user social connections
+      parameters:
+        - name: userId
+          in: query
+          required: true
+          schema:
+            type: string
+          description: User ID for personalized recommendations
+      responses:
+        '200':
+          description: List of personalized recommendation items
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RecommendationItem'
+
+
+  /api/getRecommendationDetails:
+    get:
+      summary: Retrieve detailed info about a recommendation
+      description: Fetches detailed information for a specific recommendation item from Social System/DAL
+      parameters:
+        - name: itemId
+          in: query
+          required: true
+          schema:
+            type: string
+          description: ID of the recommendation item
+      responses:
+        '200':
+          description: Recommendation item details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecommendationDetail'
+
+  /api/saveOrSkipRecommendation:
+    post:
+      summary: Save or skip a recommendation item
+      description: Routes save or skip action based on user type for recommendations in Social System
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - itemId
+                - action
+                - userType
+              properties:
+                itemId:
+                  type: string
+                action:
+                  type: string
+                  enum: [save, skip]
+                userType:
+                  type: string
+                  description: User type for action routing
+      responses:
+        '200':
+          description: Action processed successfully              
 
 # Reused schemas
 components:
@@ -519,3 +601,26 @@ components:
         details:
           description: Detailed introduction of stars
           type: string
+    RecommendationItem:
+      type: object
+      properties:
+        itemId:
+          type: string
+        title:
+          type: string
+        source:
+          type: string
+        type:
+          type: string
+
+    RecommendationDetail:
+      type: object
+      properties:
+        itemId:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        metadata:
+          type: object
