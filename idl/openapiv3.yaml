@@ -73,6 +73,109 @@ paths:
                     type: string
                   notificationSent:
                     type: boolean
+  /api/listBlogs:
+    post:
+      summary: "List all blogs under the certain star"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                HIP: 
+                  type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  blogsList:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/blogPreview"
+
+  /api/viewBlog:
+    post:
+      summary: "Details of one blog"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                HIP: 
+                  type: string
+                userCredentials:
+                  $ref: "#/components/schemas/userCredentials"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/blog"
+
+  /api/createBlog:
+    post:
+      summary: "Create a new blog"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                userCredentials:
+                  $ref: "#/components/schemas/userCredentials"
+                HIP: 
+                  type: string
+                title:
+                  type: string
+                imageURLList:
+                  type: array
+                  items:
+                    type: string
+                content:
+                  type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  messages:
+                    description: "Post Successful"
+                    type: string 
+                  blogID: 
+                    type: string
+
+  /api/getSavedBlogs:
+    post:
+      summary: "List the blogs user saved"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                userCredentials:
+                  $ref: "#/components/schemas/userCredentials"
+                blogID:
+                  type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  blogsList:
+                    type: array
+                    items:
+                      properties:
+                        allOf:
+                          $ref: "#/components/schemas/blogPreview"
+                          HIP:
+                            type: string
+
   # Data collection module
   /api/getLocation:
     post:
@@ -810,6 +913,145 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
 
+  # Social blog
+  /api/deleteBlog:
+    post:
+      summary: "Delete a blog"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                userCredentials:
+                  $ref: "#/components/schemas/userCredentials"
+                blogID:
+                  type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  blogID:
+                    type: string
+
+  /api/likeBlog:
+    post:
+      summary: "Like a blog"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                userCredentials:
+                  $ref: "#/components/schemas/userCredentials"
+                blogID:
+                  type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  blogID:
+                    type: string
+                  likeNumber:
+                    type: integer
+
+  /api/commentBlog:
+    post:
+      summary: "Comment a blog"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                userCredentials:
+                  $ref: "#/components/schemas/userCredentials"
+                blogID:
+                  type: string
+                commentText:
+                  type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  commentID:
+                    type: string
+
+  /api/deleteComment:
+    post:
+      summary: "Delete a comment"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                userCredentials:
+                  $ref: "#/components/schemas/userCredentials"
+                blogID:
+                  type: string
+                commentID:
+                  type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  commentID:
+                    type: string
+
+  /api/saveBlog:
+    post:
+      summary: "Save a blog"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                userCredentials:
+                  $ref: "#/components/schemas/userCredentials"
+                blogID:
+                  type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  blogID:
+                    type: string
+
+  /api/reportBlog:
+    post:
+      summary: "Report a blog"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                userCredentials:
+                  $ref: "#/components/schemas/userCredentials"
+                blogID:
+                  type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  blogID:
+                    type: string
+
 # Reused schemas
 components:
   schemas:
@@ -993,3 +1235,48 @@ components:
             - username
             - password0
             - password1
+
+    # Blog items
+    blogPreview:
+        description: "Preview of a blog on the blogs page, before user clicks into one blog"
+        properties:
+          blogID:
+            type: string
+          title:
+            type: string
+          imageURL:
+            description: "Preview compressed image"
+            type: string        
+
+    blog:
+      description: "Details of one blog"
+      properties:
+        blogID:
+          type: string
+        title:
+          type: string
+        imageURLList:
+          type: array
+          items:
+            type: string
+        content:
+          type: string
+        commentList:
+          type: array
+          items:
+              $ref: "#/components/schemas/commentItem"
+        commentNumber:
+          type: integer
+        likeNumber:
+          type: integer
+
+    commentItem:
+      properties:
+        commentID:
+          type: string
+        commentText:
+          type: string
+        userID:
+          type: string
+        time:
+          type: string
