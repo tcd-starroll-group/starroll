@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Hello World</title>
+		<style>
+			:root {
+				font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+				color: #1a1a1a;
+				background: #f5f5f5;
+			}
+
+			body {
+				margin: 0;
+				min-height: 100vh;
+				display: grid;
+				place-items: center;
+			}
+
+			.card {
+				padding: 2rem 3rem;
+				border-radius: 1rem;
+				background: white;
+				box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.08);
+				text-align: center;
+			}
+
+			h1 {
+				margin: 0 0 1rem;
+				font-size: 2.5rem;
+			}
+
+			p {
+				margin: 0;
+				font-size: 1.1rem;
+				color: #575757;
+			}
+		</style>
+	</head>
+	<body>
+		<main class="card">
+			<h1>Hello World</h1>
+			<p id="message">Loading greeting from FastAPI…</p>
+		</main>
+		<script>
+			async function loadGreeting() {
+				try {
+					const response = await fetch("/api/hello");
+					if (!response.ok) throw new Error("Request failed");
+					const data = await response.json();
+					document.getElementById("message").textContent = data.message;
+				} catch (error) {
+					document.getElementById("message").textContent =
+						"Could not reach FastAPI backend.";
+				}
+			}
+
+			loadGreeting();
+		</script>
+	</body>
+</html>
