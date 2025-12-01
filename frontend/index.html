@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>MinIO + MySQL Gallery</title>
+    <style>
+        /* Keep original styles... */
+        body { font-family: sans-serif; background: #f0f2f5; padding: 20px; text-align: center; margin: 0;}
+        .video-box { width: 100%; max-width: 600px; height: 50vh; background: #000; margin: 0 auto; border-radius: 12px; overflow: hidden; }
+        video { width: 100%; height: 100%; object-fit: cover; }
+        .btn { background: #007aff; color: white; border: none; padding: 12px 24px; font-size: 16px; border-radius: 50px; margin: 10px 5px; }
+        .btn.green { background: #34c759; }
+        .btn.purple { background: #9c27b0; } /* added purple button */
+
+        /* Gallery styles */
+        #gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* two columns */
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .gallery-item {
+            background: white;
+            padding: 5px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        .gallery-info { font-size: 10px; color: #666; margin-top: 5px; text-align: left; }
+    </style>
+</head>
+<body>
+
+    <div class="video-box">
+        <video id="video" autoplay playsinline muted></video>
+        <canvas id="canvas" style="display:none;"></canvas>
+    </div>
+
+    <div style="margin-top:15px;">
+        <button id="snap-btn" class="btn">📸 Capture</button>
+        <button id="upload-btn" class="btn green" disabled>☁️ Upload</button>
+        <button id="gallery-btn" class="btn purple">🖼️ Refresh Gallery</button>
+    </div>
+
+    <div id="status" style="margin:10px; color:#666;">Ready</div>
+
+    <h3>Cloud Gallery (MySQL + MinIO)</h3>
+    <div id="gallery"></div>
+
+    <script>
+        // Auto adapt relative API path
+        const API_URL = "";
+
+        const video = document.getElementById('video');
+        const canvas = document.getElementById('canvas');
+        const statusEl = document.getElementById('status');
+        const galleryDiv = document.getElementById('gallery');
+
+        let currentPhotoBlob = null;
+        let currentPose = { roll:0, pitch:0, yaw:0 }; // simplified demo
+
+        function log(msg) { statusEl.innerText = msg; }
+
+        // 1. Initialize camera
+        navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
+            .then(stream => video.srcObject = stream)
+            .catch(e => log("Camera error: " + e));
+
+        // 2. Capture photo
+        document.getElementById('snap-btn').onclick = () => {
+            const ctx = canvas.getContext('2d');
+            canvas.width = video.videoWidth; canvas.height = video.videoHeight;
+            ctx.drawImage(video, 0, 0);
+            canvas.toBlob(blob => {
+                currentPhotoBlob = blob;
+                document.getElementById('upload-btn').disabled = false;
+                log("Photo taken");
+            }, 'image/jpeg');
+        };
+
+        // 3. Upload (write to MySQL)
+        document.getElementById('upload-btn').onclick = async () => {
+            if (!currentPhotoBlob) return;
+            const fd = new FormData();
+            fd.append('photo', currentPhotoBlob, 'capture.jpg');
+            fd.append('sensorData', JSON.stringify(currentPose)); // send fake data for demo
+
+            log("Uploading...");
+            try {
+                const res = await fetch(API_URL + '/upload', { method: 'POST', body: fd });
+                if (res.ok) {
+                    log("✅ Upload successful");
+                    loadGallery(); // refresh gallery after upload
+                } else throw new Error("Server Error");
+            } catch (e) { log("❌ " + e.message); }
+        };
+
+        // 4. Load gallery (read from MySQL)
+        async function loadGallery() {
+            log("Loading gallery...");
+            try {
+                const res = await fetch(API_URL + '/images');
+                const images = await res.json();
+
+                galleryDiv.innerHTML = ""; // clear old data
+
+                images.forEach(img => {
+                    const div = document.createElement('div');
+                    div.className = 'gallery-item';
+
+                    // Note: img.url is a MinIO link.
+                    // If the mobile device cannot access localhost, images may fail to load.
+                    // See deployment notes for solutions.
+                    div.innerHTML = `
+                        <img src="${img.url}" onerror="this.src='https://via.placeholder.com/150?text=Load+Error'">
+                        <div class="gallery-info">
+                            ID: ${img.id}<br>
+                            Time: ${new Date(img.time).toLocaleTimeString()}
+                        </div>
+                    `;
+                    galleryDiv.appendChild(div);
+                });
+                log("Gallery updated");
+            } catch (e) {
+                log("Unable to load gallery: " + e.message);
+            }
+        }
+
+        // Fetch once on page load
+        loadGallery();
+
+    </script>
+</body>
+</html>
