@@ -1,16 +1,3 @@
-"""Consume messages from a Kafka topic.
-
-Examples:
-  # Consume 10 messages from the default topic on localhost
-  python consume.py --max 10
-
-  # Consume continuously from the beginning with a specific group id
-  python consume.py --group my-group --from-beginning
-
-  # Consume from a remote cluster
-  python consume.py --bootstrap broker1:9092 --topic my-topic
-"""
-
 import sys
 from typing import Optional
 import minio

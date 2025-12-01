@@ -1,11 +1,9 @@
 from fastapi import FastAPI, File, UploadFile, Form, HTTPException
-from fastapi.responses import StreamingResponse
 from minio import Minio
 import mysql.connector
 import io
 from datetime import datetime
 import sys
-import time
 from typing import Optional, Iterable
 
 
