@@ -5,6 +5,7 @@ import os
 from datetime import timedelta
 import time
 import mysql.connector
+from metrics import *
 
 DB_CONFIG = {
     'host': 'localhost',

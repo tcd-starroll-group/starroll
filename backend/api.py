@@ -4,8 +4,8 @@ import mysql.connector
 import io
 from datetime import datetime
 import sys
-from typing import Optional, Iterable
-
+from typing import Optional
+from metrics import *
 
 app = FastAPI()
 
@@ -96,36 +96,42 @@ def produce_messages(bootstrap: str, topic: str, messages: str,
 @app.post("/upload")
 async def upload_file(photo: UploadFile = File(...), sensorData: str = Form(...)):
     try:
-        # 1. 存入 MinIO
-        file_content = await photo.read()
-        file_data = io.BytesIO(file_content)
-        timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
-        filename = f"{timestamp}_{photo.filename}"
+        with tracer.start_as_current_span("api/upload") as parent_span:
+            # 1. 存入 MinIO
+            file_content = await photo.read()
+            file_data = io.BytesIO(file_content)
+            timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+            filename = f"{timestamp}_{photo.filename}"
+            parent_span.set_attribute("filename", filename)
 
-        minio_client.put_object(
-            bucket_name=MINIO_CONF["bucket"],
-            object_name=filename,
-            data=file_data,
-            length=len(file_content),
-            content_type=photo.content_type
-        )
+            with tracer.start_as_current_span("minio/put_object") as put_object_span:
+                minio_client.put_object(
+                    bucket_name=MINIO_CONF["bucket"],
+                    object_name=filename,
+                    data=file_data,
+                    length=len(file_content),
+                    content_type=photo.content_type
+                )
 
-        # 2. 存入 MySQL
-        conn = get_db_conn()
-        cursor = conn.cursor()
-        sql = "INSERT INTO photos (filename, sensor_data) VALUES (%s, %s)"
-        cursor.execute(sql, (filename, sensorData))
-        conn.commit()
-        cursor.close()
-        conn.close()
-        ok = produce_messages(
-            "localhost:9092",
-            "post-image",
-            str(filename),
-        )
-        print(f"produce message {ok}")
-        print(f"✅ 图片上传成功: {filename}")
-        return {"status": "success", "filename": filename}
+            # 2. 存入 MySQL
+            with tracer.start_as_current_span("mysql/insert") as mysql_span:
+                conn = get_db_conn()
+                cursor = conn.cursor()
+                sql = "INSERT INTO photos (filename, sensor_data) VALUES (%s, %s)"
+                cursor.execute(sql, (filename, sensorData))
+                conn.commit()
+                cursor.close()
+                conn.close()
+
+            with tracer.start_as_current_span("kafka/produce") as produce_messages_span:
+                ok = produce_messages(
+                    "localhost:9092",
+                    "post-image",
+                    str(filename),
+                )
+            print(f"produce message {ok}")
+            print(f"✅ 图片上传成功: {filename}")
+            return {"status": "success", "filename": filename}
 
     except Exception as e:
         print(f"❌ 上传失败: {e}")
