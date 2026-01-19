@@ -1,0 +1,39 @@
+
+# ChangePasswordRequest
+
+Request for password modification
+
+## Properties
+
+Name | Type
+------------ | -------------
+`username` | string
+`password0` | string
+`password1` | string
+
+## Example
+
+```typescript
+import type { ChangePasswordRequest } from ''
+
+// TODO: Update the object below with actual values
+const example = {
+  "username": user123,
+  "password0": OldPa$$w0rd,
+  "password1": NewStr0ngPa$$w0rd!,
+} satisfies ChangePasswordRequest
+
+console.log(example)
+
+// Convert the instance to a JSON string
+const exampleJSON: string = JSON.stringify(example)
+console.log(exampleJSON)
+
+// Parse the JSON string back to an object
+const exampleParsed = JSON.parse(exampleJSON) as ChangePasswordRequest
+console.log(exampleParsed)
+```
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+

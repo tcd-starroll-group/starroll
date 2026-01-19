@@ -10,7 +10,7 @@ paths:
       summary: Display chat room entry button in GUI
       description: Returns data to render chat room entry button in the graphical interface
       responses:
-        '200':
+        "200":
           description: Button configuration retrieved successfully
           content:
             application/json:
@@ -33,7 +33,7 @@ paths:
                         type: string
                       size:
                         type: string
-  
+
   /api/exitChatRoom:
     post:
       summary: Exit chat room
@@ -45,8 +45,8 @@ paths:
             schema:
               type: object
               required:
-                - roomId  
-                - userId  
+                - roomId
+                - userId
               properties:
                 roomId:
                   type: string
@@ -58,7 +58,7 @@ paths:
                   type: boolean
                   default: true
       responses:
-        '200':
+        "200":
           description: Successfully exited chat room
           content:
             application/json:
@@ -81,7 +81,7 @@ paths:
           application/json:
             schema:
               properties:
-                HIP: 
+                HIP:
                   type: string
       responses:
         "200":
@@ -103,7 +103,7 @@ paths:
           application/json:
             schema:
               properties:
-                HIP: 
+                HIP:
                   type: string
                 userCredentials:
                   $ref: "#/components/schemas/userCredentials"
@@ -125,7 +125,7 @@ paths:
               properties:
                 userCredentials:
                   $ref: "#/components/schemas/userCredentials"
-                HIP: 
+                HIP:
                   type: string
                 title:
                   type: string
@@ -144,8 +144,8 @@ paths:
                 properties:
                   messages:
                     description: "Post Successful"
-                    type: string 
-                  blogID: 
+                    type: string
+                  blogID:
                     type: string
 
   /api/getSavedBlogs:
@@ -264,7 +264,7 @@ paths:
                           type: integer
                         viewCoordinate:
                           $ref: "#/components/schemas/viewCoordinate"
-#huhu
+  #huhu
   /api/triggerStarfieldRender:
     post:
       summary: Trigger starfield rendering
@@ -506,7 +506,6 @@ paths:
                     format: date-time
                     description: Timestamp when the file was saved
 
-
   # Error Elimination Module
   /api/elimilateErrors:
     post:
@@ -561,9 +560,9 @@ paths:
               type: object
               required:
                 - roomId
-                - userStatus  
+                - userStatus
                 - userId
-                - roomStatus  
+                - roomStatus
               properties:
                 roomId:
                   type: string
@@ -578,7 +577,7 @@ paths:
                   type: boolean
                   description: Check room status
       responses:
-        '200':
+        "200":
           description: Successfully entered the chat room
           content:
             application/json:
@@ -595,16 +594,16 @@ paths:
       description: Gets specified chat room information from the social system
       requestBody:
         content:
-          application/json:  
+          application/json:
             schema:
               type: object
               required:
-                - roomId  
+                - roomId
               properties:
                 roomID:
-                  type: string             
+                  type: string
       responses:
-        '200':
+        "200":
           description: Chat room information retrieved successfully
           content:
             application/json:
@@ -644,7 +643,7 @@ paths:
             schema:
               type: object
               required:
-                - roomID 
+                - roomID
               properties:
                 roomID:
                   type: string
@@ -657,7 +656,7 @@ paths:
                   type: string
                   description: Retrieve messages sent before this timestamp
       responses:
-        '200':
+        "200":
           description: Messages retrieved successfully
           content:
             application/json:
@@ -689,7 +688,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object  
+              type: object
               properties:
                 roomId:
                   type: string
@@ -701,7 +700,7 @@ paths:
                   type: string
                   description: Content of the message to send
       responses:
-        '200':
+        "200":
           description: Message sent successfully
           content:
             application/json:
@@ -741,13 +740,13 @@ paths:
             schema:
               type: object
               required:
-                - roomID 
+                - roomID
               properties:
                 roomId:
                   type: string
                   description: ID of the chat room to check
       responses:
-        '200':
+        "200":
           description: Room status retrieved successfully
           content:
             application/json:
@@ -1065,6 +1064,9 @@ components:
     GPS:
       description: GPS location
       type: object
+      required:
+        - longitude
+        - latitude
       properties:
         longitude:
           type: number
@@ -1114,6 +1116,9 @@ components:
           type: number
     equatorialCoordinate:
       type: object
+      required:
+        - rightAscension
+        - declination
       properties:
         rightAscension:
           description: right ascension, degree
@@ -1123,6 +1128,9 @@ components:
           type: number
     horizontalCoordinate:
       type: object
+      required:
+        - altitude
+        - azimuth
       properties:
         altitude:
           type: number
@@ -1214,39 +1222,39 @@ components:
           example: "Invalid username or password"
 
     ChangePasswordRequest:
-          description: "Request for password modification"
-          type: object
-          properties:
-            username:
-              type: string
-              description: "Target username"
-              example: "user123"
-            password0:
-              type: string
-              description: "Current password (old password)"
-              format: "password"
-              example: "OldPa$$w0rd"
-            password1:
-              type: string
-              description: "New password (new password)"
-              format: "password"
-              example: "NewStr0ngPa$$w0rd!"
-          required:
-            - username
-            - password0
-            - password1
+      description: "Request for password modification"
+      type: object
+      properties:
+        username:
+          type: string
+          description: "Target username"
+          example: "user123"
+        password0:
+          type: string
+          description: "Current password (old password)"
+          format: "password"
+          example: "OldPa$$w0rd"
+        password1:
+          type: string
+          description: "New password (new password)"
+          format: "password"
+          example: "NewStr0ngPa$$w0rd!"
+      required:
+        - username
+        - password0
+        - password1
 
     # Blog items
     blogPreview:
-        description: "Preview of a blog on the blogs page, before user clicks into one blog"
-        properties:
-          blogID:
-            type: string
-          title:
-            type: string
-          imageURL:
-            description: "Preview compressed image"
-            type: string        
+      description: "Preview of a blog on the blogs page, before user clicks into one blog"
+      properties:
+        blogID:
+          type: string
+        title:
+          type: string
+        imageURL:
+          description: "Preview compressed image"
+          type: string
 
     blog:
       description: "Details of one blog"
@@ -1264,7 +1272,7 @@ components:
         commentList:
           type: array
           items:
-              $ref: "#/components/schemas/commentItem"
+            $ref: "#/components/schemas/commentItem"
         commentNumber:
           type: integer
         likeNumber:
