@@ -63,6 +63,12 @@ export interface StarMeta {
      * @memberof StarMeta
      */
     bvColor?: number;
+    /**
+     * Distance from earth, light-year
+     * @type {number}
+     * @memberof StarMeta
+     */
+    distance?: number;
 }
 
 /**
@@ -88,6 +94,7 @@ export function StarMetaFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'pmRA': json['pmRA'] == null ? undefined : json['pmRA'],
         'pmDE': json['pmDE'] == null ? undefined : json['pmDE'],
         'bvColor': json['bvColor'] == null ? undefined : json['bvColor'],
+        'distance': json['distance'] == null ? undefined : json['distance'],
     };
 }
 
@@ -108,6 +115,7 @@ export function StarMetaToJSONTyped(value?: StarMeta | null, ignoreDiscriminator
         'pmRA': value['pmRA'],
         'pmDE': value['pmDE'],
         'bvColor': value['bvColor'],
+        'distance': value['distance'],
     };
 }
 

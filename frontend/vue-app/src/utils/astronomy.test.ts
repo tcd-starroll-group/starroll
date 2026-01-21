@@ -42,14 +42,14 @@ describe('convertHorizontalCoordinateToEquatorialCoordinate', () => {
         timestamp,
         location,
       )
-      console.log(`[${name}] my result:`, result1)
+      // console.log(`[${name}] my result:`, result1)
 
       const result2 = astronomy.convertHorizontalCoordinateToEquatorialCoordinatePro(
         hc,
         timestamp,
         location,
       )
-      console.log(`[${name}] pro result:`, result2)
+      // console.log(`[${name}] pro result:`, result2)
 
       expect(Math.abs(result1.rightAscension - result2.rightAscension)).toBeLessThan(1)
       expect(Math.abs(result1.declination - result2.declination)).toBeLessThan(1)

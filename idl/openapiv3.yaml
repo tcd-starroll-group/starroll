@@ -1114,6 +1114,9 @@ components:
         bvColor:
           description: A measure of its surface temperature, determined by the difference between its measured blue (B) magnitude and its visual (V) magnitude.
           type: number
+        distance:
+          description: Distance from earth, light-year
+          type: number
     equatorialCoordinate:
       type: object
       required:

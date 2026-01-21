@@ -12,6 +12,7 @@ Name | Type
 `pmRA` | number
 `pmDE` | number
 `bvColor` | number
+`distance` | number
 
 ## Example
 
@@ -26,6 +27,7 @@ const example = {
   "pmRA": null,
   "pmDE": null,
   "bvColor": null,
+  "distance": null,
 } satisfies StarMeta
 
 console.log(example)
