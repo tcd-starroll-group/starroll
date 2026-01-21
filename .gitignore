@@ -9,3 +9,4 @@ build
 # Prettier 缓存
 node_modules/.cache/
 .prettier-cache/
+node_modules
