@@ -38,3 +38,9 @@ docker run --rm \
 ```bash
 npm run test:unit
 ```
+
+### 新增后端api接口
+
+1. 编写 openapiv3.yaml，生成python代码
+2. 在 `backend/console/handler` 新建文件，编写handler
+3. 在 `gen/py/src/openapi_server/impl/starroll_impl.py`注册新的handler

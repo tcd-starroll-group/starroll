@@ -1,0 +1,1869 @@
+openapi: 3.0.0
+info:
+  title: StarRoll API
+  version: 1.0.0
+servers:
+- url: /
+paths:
+  /api/displayChatRoom:
+    get:
+      description: Returns data to render chat room entry button in the graphical
+        interface
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/_api_displayChatRoom_get_200_response"
+          description: Button configuration retrieved successfully
+      summary: Display chat room entry button in GUI
+  /api/exitChatRoom:
+    post:
+      description: Updates user's participation status and triggers related notifications
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/_api_exitChatRoom_post_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/_api_exitChatRoom_post_200_response"
+          description: Successfully exited chat room
+      summary: Exit chat room
+  /api/listBlogs:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/_api_listBlogs_post_request"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/_api_listBlogs_post_200_response"
+          description: OK
+      summary: List all blogs under the certain star
+  /api/viewBlog:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/_api_viewBlog_post_request"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/blog"
+          description: OK
+      summary: Details of one blog
+  /api/createBlog:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/_api_createBlog_post_request"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/_api_createBlog_post_200_response"
+          description: OK
+      summary: Create a new blog
+  /api/getSavedBlogs:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/_api_getSavedBlogs_post_request"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/_api_getSavedBlogs_post_200_response"
+          description: OK
+      summary: List the blogs user saved
+  /api/getLocation:
+    post:
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GPS"
+          description: OK
+      summary: Get current location
+  /api/getAttitude:
+    post:
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/attitude"
+          description: OK
+      summary: Get attitude of the mobile device
+  /api/getCameraData:
+    post:
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/_api_getCameraData_post_200_response"
+          description: OK
+      summary: Get camera data
+  /api/getStarCatalog:
+    post:
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/_api_getStarCatalog_post_200_response"
+          description: OK
+      summary: Get star catalog
+  /api/calculateStarCoordinates:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/_api_calculateStarCoordinates_post_request"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/_api_calculateStarCoordinates_post_200_response"
+          description: OK
+      summary: calculate star coordinates
+  /api/triggerStarfieldRender:
+    post:
+      description: Initiate starfield rendering process using corrected star coordinates
+        and camera parameters
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/_api_triggerStarfieldRender_post_request"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/_api_triggerStarfieldRender_post_200_response"
+          description: OK
+      summary: Trigger starfield rendering
+  /api/requestStargazingTime:
+    post:
+      description: Get recommended stargazing time range based on GPS location
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/_api_requestStargazingTime_post_request"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/_api_requestStargazingTime_post_200_response"
+          description: OK
+      summary: Request optimal stargazing time
+  /api/requestAccuracyAdjust:
+    post:
+      description: Adjust calculation accuracy for star coordinates based on sensor
+        precision
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/_api_requestAccuracyAdjust_post_request"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/_api_requestAccuracyAdjust_post_200_response"
+          description: OK
+      summary: Request accuracy adjustment
+  /api/displayStarfield:
+    post:
+      description: Retrieve rendered starfield data for GUI display
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/_api_displayStarfield_post_request"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/_api_displayStarfield_post_200_response"
+          description: OK
+      summary: Display starfield
+  /api/displayStarDetails:
+    post:
+      description: Retrieve detailed astronomical information of a specific star
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/_api_displayStarDetails_post_request"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/starDetails"
+          description: OK
+      summary: Display star details
+  /api/requestSaveType:
+    post:
+      description: Get available save types for rendered starfield
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/_api_requestSaveType_post_200_response"
+          description: OK
+      summary: Request save type options
+  /api/displaySaveSuccess:
+    post:
+      description: Return save result and metadata after starfield is saved
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/_api_displaySaveSuccess_post_request"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/_api_displaySaveSuccess_post_200_response"
+          description: OK
+      summary: Display save success confirmation
+  /api/elimilateErrors:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/_api_elimilateErrors_post_request"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/_api_elimilateErrors_post_200_response"
+          description: OK
+      summary: Eliminating the errors between the stars' positions that we calculated
+        and the stars' positions captured by the camera. These errors are generally
+        caused by the limited accuracy of the sensor.
+  /api/getChatRoom:
+    post:
+      description: Join the chat room
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/_api_getChatRoom_post_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/_api_getChatRoom_post_200_response"
+          description: Successfully entered the chat room
+      summary: Join the chat room
+  /api/getChatRoomInfo:
+    post:
+      description: Gets specified chat room information from the social system
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/_api_getChatRoomInfo_post_request"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/_api_getChatRoomInfo_post_200_response"
+          description: Chat room information retrieved successfully
+      summary: Retrieve chat room from social system
+  /api/getMessage:
+    post:
+      description: Gets historical and real-time messages from the chat room
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/_api_getMessage_post_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/_api_getMessage_post_200_response"
+          description: Messages retrieved successfully
+      summary: Retrieve chat room messages
+  /api/sendMessage:
+    post:
+      description: Sends a message to the specified chat room for real-time communication
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/_api_sendMessage_post_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/_api_sendMessage_post_200_response"
+          description: Message sent successfully
+      summary: Send message to chat room
+  /api/getStarDetails:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/_api_getStarDetails_post_request"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/starDetails"
+          description: OK
+      summary: calculate star details
+  /api/checkRoomStatus:
+    post:
+      description: Determines if a user can join the specified chat room
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/_api_checkRoomStatus_post_request"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/_api_checkRoomStatus_post_200_response"
+          description: Room status retrieved successfully
+      summary: Check chat room status
+  /api/setUser:
+    post:
+      description: "Modify the username and password by the username, current password(password0)and\
+        \ new password(password1) user provided."
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ChangePasswordRequest"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/_api_setUser_post_200_response"
+          description: Modify password successful.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Invalid request: For example, the new password does not meet\
+            \ the security requirements, or the new and old passwords are the same."
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Unauthorized: Current password (password0) is incorrect"
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Not Found: The username does not exist."
+      summary: Set/modify username and password
+  /api/userLogin:
+    post:
+      description: "Use username and password to authentication, return a token if\
+        \ success."
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserAuth"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TokenResponse"
+          description: Login successful.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Unauthorized: Incorrect username or password."
+      summary: User login
+  /api/userReg:
+    post:
+      description: Create an account with a new username and password.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserAuth"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserResponse"
+          description: Create user successful.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Invalid request: For example, the password does not meet the\
+            \ requirements."
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Conflict: The username is already in use."
+      summary: User register
+  /api/usernameVerify:
+    post:
+      description: Check whether the username is available.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/_api_usernameVerify_post_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/_api_usernameVerify_post_200_response"
+          description: Username available
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: The username is already in use.
+      summary: Verify the username
+  /api/verifyUserToken:
+    post:
+      description: "Check whether the provided Token is valid. If it is valid, return\
+        \ the corresponding user information."
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/_api_verifyUserToken_post_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserResponse"
+          description: Token is valid.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Invalid or expired Token.
+      summary: Verify the user's Token
+  /api/deleteBlog:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/_api_getSavedBlogs_post_request"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/_api_deleteBlog_post_200_response"
+          description: OK
+      summary: Delete a blog
+  /api/likeBlog:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/_api_getSavedBlogs_post_request"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/_api_likeBlog_post_200_response"
+          description: OK
+      summary: Like a blog
+  /api/commentBlog:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/_api_commentBlog_post_request"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/_api_commentBlog_post_200_response"
+          description: OK
+      summary: Comment a blog
+  /api/deleteComment:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/_api_deleteComment_post_request"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/_api_commentBlog_post_200_response"
+          description: OK
+      summary: Delete a comment
+  /api/saveBlog:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/_api_getSavedBlogs_post_request"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/_api_deleteBlog_post_200_response"
+          description: OK
+      summary: Save a blog
+  /api/reportBlog:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/_api_getSavedBlogs_post_request"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/_api_deleteBlog_post_200_response"
+          description: OK
+      summary: Report a blog
+components:
+  schemas:
+    userCredentials:
+      properties:
+        userID:
+          title: userID
+          type: string
+        token:
+          title: token
+          type: string
+      title: userCredentials
+      type: object
+    GPS:
+      description: GPS location
+      example:
+        latitude: 6.027456183070403
+        longitude: 0.8008281904610115
+      properties:
+        longitude:
+          title: longitude
+          type: number
+        latitude:
+          title: latitude
+          type: number
+      required:
+      - latitude
+      - longitude
+      title: GPS
+      type: object
+    attitude:
+      description: attitude of the mobile device
+      example:
+        roll: 0.8008281904610115
+        pitch: 6.027456183070403
+        yaw: 1.4658129805029452
+      properties:
+        roll:
+          title: roll
+          type: number
+        pitch:
+          title: pitch
+          type: number
+        yaw:
+          title: yaw
+          type: number
+      title: attitude
+      type: object
+    cameraMeta:
+      example:
+        length: 6
+        hight: 1
+        focalLength: 0.8008281904610115
+      properties:
+        focalLength:
+          description: 35mm equivalent focal length
+          title: focalLength
+          type: number
+        length:
+          description: "image length, pixels"
+          title: length
+          type: integer
+        hight:
+          description: "image hight, pixels"
+          title: hight
+          type: integer
+      title: cameraMeta
+      type: object
+    starMeta:
+      example:
+        equatorialCoordinate:
+          declination: 5.962133916683182
+          rightAscension: 1.4658129805029452
+        distance: 3.616076749251911
+        pmRA: 2.3021358869347655
+        magnitude: 5.637376656633329
+        pmDE: 7.061401241503109
+        bvColor: 9.301444243932576
+        HIP: 6
+      properties:
+        HIP:
+          description: unique HIP index
+          title: HIP
+          type: integer
+        equatorialCoordinate:
+          $ref: "#/components/schemas/equatorialCoordinate"
+        magnitude:
+          description: magnitude
+          title: magnitude
+          type: number
+        pmRA:
+          description: "Proper motion mu_alpha.cos(delta), The proper motion of a\
+            \ star along its right ascension, radian per year"
+          title: pmRA
+          type: number
+        pmDE:
+          description: "Proper motion mu_delta, The proper motion of a star in the\
+            \ direction of declination, the radian per year"
+          title: pmDE
+          type: number
+        bvColor:
+          description: "A measure of its surface temperature, determined by the difference\
+            \ between its measured blue (B) magnitude and its visual (V) magnitude."
+          title: bvColor
+          type: number
+        distance:
+          description: "Distance from earth, light-year"
+          title: distance
+          type: number
+      title: starMeta
+      type: object
+    equatorialCoordinate:
+      example:
+        declination: 5.962133916683182
+        rightAscension: 1.4658129805029452
+      properties:
+        rightAscension:
+          description: "right ascension, degree"
+          title: rightAscension
+          type: number
+        declination:
+          description: "Declination, degree"
+          title: declination
+          type: number
+      required:
+      - declination
+      - rightAscension
+      title: equatorialCoordinate
+      type: object
+    horizontalCoordinate:
+      properties:
+        altitude:
+          type: number
+        azimuth:
+          type: number
+      required:
+      - altitude
+      - azimuth
+      type: object
+    viewCoordinate:
+      example:
+        x: 6.027456183070403
+        "y": 1.4658129805029452
+      properties:
+        x:
+          title: x
+          type: number
+        "y":
+          title: "y"
+          type: number
+      title: viewCoordinate
+      type: object
+    starDetails:
+      example:
+        constellation: constellation
+        alias:
+        - alias
+        - alias
+        details: details
+        diatance: 6.027456183070403
+        HIP: 0
+      properties:
+        HIP:
+          title: HIP
+          type: integer
+        alias:
+          description: alternative names
+          items:
+            type: string
+          title: alias
+          type: array
+        diatance:
+          description: "Distance, light-year"
+          title: diatance
+          type: number
+        constellation:
+          description: The constellation that the star belongs to.
+          title: constellation
+          type: string
+        details:
+          description: Detailed introduction of stars
+          title: details
+          type: string
+      title: starDetails
+      type: object
+    UserAuth:
+      description: User credentials for login or registration.
+      example:
+        password: Str0ngPa$$w0rd!
+        username: user123
+      properties:
+        username:
+          description: Username
+          example: user123
+          title: username
+          type: string
+        password:
+          description: Password
+          example: Str0ngPa$$w0rd!
+          format: password
+          title: password
+          type: string
+      required:
+      - password
+      - username
+      title: UserAuth
+      type: object
+    TokenResponse:
+      description: The access token returned after successful login
+      example:
+        expiresIn: 3600
+        token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+      properties:
+        token:
+          description: JWT or other access token.
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+          title: token
+          type: string
+        expiresIn:
+          description: Token expiration time (seconds)
+          example: 3600
+          title: expiresIn
+          type: integer
+      title: TokenResponse
+      type: object
+    UserResponse:
+      description: The basic user information returned after the operation is successful.
+      example:
+        userID: a1b2c3d4-e5f6-7890-1234-567890abcdef
+        username: user123
+      properties:
+        userID:
+          description: The unique ID of the user
+          example: a1b2c3d4-e5f6-7890-1234-567890abcdef
+          format: uuid
+          title: userID
+          type: string
+        username:
+          description: Username
+          example: user123
+          title: username
+          type: string
+      title: UserResponse
+      type: object
+    ErrorResponse:
+      description: General error response
+      example:
+        code: AUTH_001
+        message: Invalid username or password
+      properties:
+        code:
+          description: Internal error code
+          example: AUTH_001
+          title: code
+          type: string
+        message:
+          description: Detailed error message
+          example: Invalid username or password
+          title: message
+          type: string
+      title: ErrorResponse
+      type: object
+    ChangePasswordRequest:
+      description: Request for password modification
+      example:
+        password0: OldPa$$w0rd
+        password1: NewStr0ngPa$$w0rd!
+        username: user123
+      properties:
+        username:
+          description: Target username
+          example: user123
+          title: username
+          type: string
+        password0:
+          description: Current password (old password)
+          example: OldPa$$w0rd
+          format: password
+          title: password0
+          type: string
+        password1:
+          description: New password (new password)
+          example: NewStr0ngPa$$w0rd!
+          format: password
+          title: password1
+          type: string
+      required:
+      - password0
+      - password1
+      - username
+      title: ChangePasswordRequest
+      type: object
+    blogPreview:
+      description: "Preview of a blog on the blogs page, before user clicks into one\
+        \ blog"
+      example:
+        imageURL: imageURL
+        title: title
+        blogID: blogID
+      properties:
+        blogID:
+          title: blogID
+          type: string
+        title:
+          title: title
+          type: string
+        imageURL:
+          description: Preview compressed image
+          title: imageURL
+          type: string
+      title: blogPreview
+    blog:
+      description: Details of one blog
+      example:
+        imageURLList:
+        - imageURLList
+        - imageURLList
+        commentList:
+        - commentID: commentID
+          time: time
+          commentText: commentText
+          userID: userID
+        - commentID: commentID
+          time: time
+          commentText: commentText
+          userID: userID
+        commentNumber: 0
+        title: title
+        blogID: blogID
+        content: content
+        likeNumber: 6
+      properties:
+        blogID:
+          title: blogID
+          type: string
+        title:
+          title: title
+          type: string
+        imageURLList:
+          items:
+            type: string
+          title: imageURLList
+          type: array
+        content:
+          title: content
+          type: string
+        commentList:
+          items:
+            $ref: "#/components/schemas/commentItem"
+          title: commentList
+          type: array
+        commentNumber:
+          title: commentNumber
+          type: integer
+        likeNumber:
+          title: likeNumber
+          type: integer
+      title: blog
+    commentItem:
+      example:
+        commentID: commentID
+        time: time
+        commentText: commentText
+        userID: userID
+      properties:
+        commentID:
+          title: commentID
+          type: string
+        commentText:
+          title: commentText
+          type: string
+        userID:
+          title: userID
+          type: string
+        time:
+          title: time
+          type: string
+      title: commentItem
+    _api_displayChatRoom_get_200_response_style:
+      description: GUI styling properties
+      example:
+        color: color
+        size: size
+      properties:
+        color:
+          title: color
+          type: string
+        size:
+          title: size
+          type: string
+      title: _api_displayChatRoom_get_200_response_style
+      type: object
+    _api_displayChatRoom_get_200_response:
+      example:
+        buttonText: buttonText
+        style:
+          color: color
+          size: size
+        isVisible: true
+        roomID: roomID
+        roomName: roomName
+      properties:
+        roomID:
+          title: roomID
+          type: string
+        roomName:
+          title: roomName
+          type: string
+        buttonText:
+          title: buttonText
+          type: string
+        isVisible:
+          title: isVisible
+          type: boolean
+        style:
+          $ref: "#/components/schemas/_api_displayChatRoom_get_200_response_style"
+      title: _api_displayChatRoom_get_200_response
+      type: object
+    _api_exitChatRoom_post_request:
+      properties:
+        roomId:
+          description: ID of the chat room to exit
+          title: roomId
+          type: string
+        userId:
+          description: ID of the user exiting the chat room
+          title: userId
+          type: string
+        sendNotification:
+          default: true
+          title: sendNotification
+          type: boolean
+      required:
+      - roomId
+      - userId
+      title: _api_exitChatRoom_post_request
+      type: object
+    _api_exitChatRoom_post_200_response:
+      example:
+        userId: userId
+        roomId: roomId
+        notificationSent: true
+        status: status
+      properties:
+        roomId:
+          title: roomId
+          type: string
+        userId:
+          title: userId
+          type: string
+        status:
+          title: status
+          type: string
+        notificationSent:
+          title: notificationSent
+          type: boolean
+      title: _api_exitChatRoom_post_200_response
+      type: object
+    _api_listBlogs_post_request:
+      properties:
+        HIP:
+          title: HIP
+          type: string
+      title: _api_listBlogs_post_request
+    _api_listBlogs_post_200_response:
+      example:
+        blogsList:
+        - imageURL: imageURL
+          title: title
+          blogID: blogID
+        - imageURL: imageURL
+          title: title
+          blogID: blogID
+      properties:
+        blogsList:
+          items:
+            $ref: "#/components/schemas/blogPreview"
+          title: blogsList
+          type: array
+      title: _api_listBlogs_post_200_response
+    _api_viewBlog_post_request:
+      properties:
+        HIP:
+          title: HIP
+          type: string
+        userCredentials:
+          $ref: "#/components/schemas/userCredentials"
+      title: _api_viewBlog_post_request
+    _api_createBlog_post_request:
+      properties:
+        userCredentials:
+          $ref: "#/components/schemas/userCredentials"
+        HIP:
+          title: HIP
+          type: string
+        title:
+          title: title
+          type: string
+        imageURLList:
+          items:
+            type: string
+          title: imageURLList
+          type: array
+        content:
+          title: content
+          type: string
+      title: _api_createBlog_post_request
+    _api_createBlog_post_200_response:
+      example:
+        messages: messages
+        blogID: blogID
+      properties:
+        messages:
+          description: Post Successful
+          title: messages
+          type: string
+        blogID:
+          title: blogID
+          type: string
+      title: _api_createBlog_post_200_response
+    _api_getSavedBlogs_post_request:
+      properties:
+        userCredentials:
+          $ref: "#/components/schemas/userCredentials"
+        blogID:
+          title: blogID
+          type: string
+      title: _api_getSavedBlogs_post_request
+    _api_getSavedBlogs_post_200_response_blogsList_inner:
+      example:
+        allOf:
+          imageURL: imageURL
+          title: title
+          blogID: blogID
+      properties:
+        allOf:
+          $ref: "#/components/schemas/blogPreview"
+      title: _api_getSavedBlogs_post_200_response_blogsList_inner
+    _api_getSavedBlogs_post_200_response:
+      example:
+        blogsList:
+        - allOf:
+            imageURL: imageURL
+            title: title
+            blogID: blogID
+        - allOf:
+            imageURL: imageURL
+            title: title
+            blogID: blogID
+      properties:
+        blogsList:
+          items:
+            $ref: "#/components/schemas/_api_getSavedBlogs_post_200_response_blogsList_inner"
+          title: blogsList
+          type: array
+      title: _api_getSavedBlogs_post_200_response
+    _api_getCameraData_post_200_response:
+      example:
+        image: image
+        cameraMeta:
+          length: 6
+          hight: 1
+          focalLength: 0.8008281904610115
+      properties:
+        cameraMeta:
+          $ref: "#/components/schemas/cameraMeta"
+        image:
+          description: image read from camera
+          title: image
+          type: string
+      title: _api_getCameraData_post_200_response
+    _api_getStarCatalog_post_200_response:
+      example:
+        starsNumber: 0
+        starMetaList:
+        - equatorialCoordinate:
+            declination: 5.962133916683182
+            rightAscension: 1.4658129805029452
+          distance: 3.616076749251911
+          pmRA: 2.3021358869347655
+          magnitude: 5.637376656633329
+          pmDE: 7.061401241503109
+          bvColor: 9.301444243932576
+          HIP: 6
+        - equatorialCoordinate:
+            declination: 5.962133916683182
+            rightAscension: 1.4658129805029452
+          distance: 3.616076749251911
+          pmRA: 2.3021358869347655
+          magnitude: 5.637376656633329
+          pmDE: 7.061401241503109
+          bvColor: 9.301444243932576
+          HIP: 6
+      properties:
+        starsNumber:
+          description: stars number
+          title: starsNumber
+          type: integer
+        starMetaList:
+          items:
+            $ref: "#/components/schemas/starMeta"
+          title: starMetaList
+          type: array
+      title: _api_getStarCatalog_post_200_response
+    _api_calculateStarCoordinates_post_request:
+      properties:
+        timeStamp:
+          description: UTC time stamp
+          title: timeStamp
+          type: integer
+        cameraMeta:
+          $ref: "#/components/schemas/cameraMeta"
+        attitude:
+          $ref: "#/components/schemas/attitude"
+        starMetaList:
+          items:
+            $ref: "#/components/schemas/starMeta"
+          title: starMetaList
+          type: array
+      title: _api_calculateStarCoordinates_post_request
+    _api_calculateStarCoordinates_post_200_response_starCoordinates_inner:
+      example:
+        viewCoordinate:
+          x: 6.027456183070403
+          "y": 1.4658129805029452
+        HIP: 0
+      properties:
+        HIP:
+          title: HIP
+          type: integer
+        viewCoordinate:
+          $ref: "#/components/schemas/viewCoordinate"
+      title: _api_calculateStarCoordinates_post_200_response_starCoordinates_inner
+    _api_calculateStarCoordinates_post_200_response:
+      example:
+        starCoordinates:
+        - viewCoordinate:
+            x: 6.027456183070403
+            "y": 1.4658129805029452
+          HIP: 0
+        - viewCoordinate:
+            x: 6.027456183070403
+            "y": 1.4658129805029452
+          HIP: 0
+      properties:
+        starCoordinates:
+          items:
+            $ref: "#/components/schemas/_api_calculateStarCoordinates_post_200_response_starCoordinates_inner"
+          title: starCoordinates
+          type: array
+      title: _api_calculateStarCoordinates_post_200_response
+    _api_triggerStarfieldRender_post_request_correctedStarCoordinates_inner:
+      example:
+        HIP: 0
+        correctedViewCoordinate:
+          x: 6.027456183070403
+          "y": 1.4658129805029452
+      properties:
+        HIP:
+          title: HIP
+          type: integer
+        correctedViewCoordinate:
+          $ref: "#/components/schemas/viewCoordinate"
+      title: _api_triggerStarfieldRender_post_request_correctedStarCoordinates_inner
+    _api_triggerStarfieldRender_post_request_renderParams:
+      properties:
+        brightness:
+          default: 1.0
+          description: Starfield brightness (0.0-2.0)
+          title: brightness
+          type: number
+        contrast:
+          default: 1.0
+          description: Starfield contrast (0.0-2.0)
+          title: contrast
+          type: number
+      title: _api_triggerStarfieldRender_post_request_renderParams
+      type: object
+    _api_triggerStarfieldRender_post_request:
+      properties:
+        cameraMeta:
+          $ref: "#/components/schemas/cameraMeta"
+        correctedStarCoordinates:
+          items:
+            $ref: "#/components/schemas/_api_triggerStarfieldRender_post_request_correctedStarCoordinates_inner"
+          title: correctedStarCoordinates
+          type: array
+        renderParams:
+          $ref: "#/components/schemas/_api_triggerStarfieldRender_post_request_renderParams"
+      title: _api_triggerStarfieldRender_post_request
+    _api_triggerStarfieldRender_post_200_response:
+      example:
+        renderTaskId: renderTaskId
+        renderStatus: renderStatus
+      properties:
+        renderTaskId:
+          description: Unique ID of the rendering task
+          title: renderTaskId
+          type: string
+        renderStatus:
+          description: Current status of rendering (pending/processing/completed)
+          title: renderStatus
+          type: string
+      title: _api_triggerStarfieldRender_post_200_response
+    _api_requestStargazingTime_post_request:
+      properties:
+        gps:
+          $ref: "#/components/schemas/GPS"
+        targetDate:
+          format: date
+          title: targetDate
+          type: string
+      title: _api_requestStargazingTime_post_request
+    _api_requestStargazingTime_post_200_response_optimalTimeRange:
+      example:
+        startTime: 2000-01-23T04:56:07.000+00:00
+        endTime: 2000-01-23T04:56:07.000+00:00
+      properties:
+        startTime:
+          description: Start time of optimal stargazing
+          format: date-time
+          title: startTime
+          type: string
+        endTime:
+          description: End time of optimal stargazing
+          format: date-time
+          title: endTime
+          type: string
+      title: _api_requestStargazingTime_post_200_response_optimalTimeRange
+      type: object
+    _api_requestStargazingTime_post_200_response:
+      example:
+        skyCondition: skyCondition
+        optimalTimeRange:
+          startTime: 2000-01-23T04:56:07.000+00:00
+          endTime: 2000-01-23T04:56:07.000+00:00
+      properties:
+        optimalTimeRange:
+          $ref: "#/components/schemas/_api_requestStargazingTime_post_200_response_optimalTimeRange"
+        skyCondition:
+          description: Forecasted sky condition (clear/partly-cloudy/cloudy)
+          title: skyCondition
+          type: string
+      title: _api_requestStargazingTime_post_200_response
+    _api_requestAccuracyAdjust_post_request:
+      properties:
+        accuracyLevel:
+          default: 3
+          description: "Accuracy level (1=lowest, 5=highest)"
+          maximum: 5
+          minimum: 1
+          title: accuracyLevel
+          type: integer
+        errorTolerance:
+          default: 0.5
+          description: Acceptable error tolerance (pixels)
+          title: errorTolerance
+          type: number
+      title: _api_requestAccuracyAdjust_post_request
+    _api_requestAccuracyAdjust_post_200_response_currentAccuracyParams:
+      example:
+        accuracyLevel: 0
+        errorTolerance: 6.027456183070403
+      properties:
+        accuracyLevel:
+          title: accuracyLevel
+          type: integer
+        errorTolerance:
+          title: errorTolerance
+          type: number
+      title: _api_requestAccuracyAdjust_post_200_response_currentAccuracyParams
+      type: object
+    _api_requestAccuracyAdjust_post_200_response:
+      example:
+        adjustStatus: adjustStatus
+        currentAccuracyParams:
+          accuracyLevel: 0
+          errorTolerance: 6.027456183070403
+      properties:
+        adjustStatus:
+          description: Accuracy adjustment status (success/failed)
+          title: adjustStatus
+          type: string
+        currentAccuracyParams:
+          $ref: "#/components/schemas/_api_requestAccuracyAdjust_post_200_response_currentAccuracyParams"
+      title: _api_requestAccuracyAdjust_post_200_response
+    _api_displayStarfield_post_request:
+      properties:
+        renderTaskId:
+          description: Unique ID of the completed rendering task
+          title: renderTaskId
+          type: string
+        displayMode:
+          default: preview
+          description: Starfield display mode
+          enum:
+          - preview
+          - fullscreen
+          - enhanced
+          title: displayMode
+          type: string
+      title: _api_displayStarfield_post_request
+    _api_displayStarfield_post_200_response_resolution:
+      example:
+        width: 0
+        height: 6
+      properties:
+        width:
+          description: Image width (pixels)
+          title: width
+          type: integer
+        height:
+          description: Image height (pixels)
+          title: height
+          type: integer
+      title: _api_displayStarfield_post_200_response_resolution
+      type: object
+    _api_displayStarfield_post_200_response:
+      example:
+        starfieldData: starfieldData
+        resolution:
+          width: 0
+          height: 6
+      properties:
+        starfieldData:
+          description: Base64-encoded starfield image data
+          title: starfieldData
+          type: string
+        resolution:
+          $ref: "#/components/schemas/_api_displayStarfield_post_200_response_resolution"
+      title: _api_displayStarfield_post_200_response
+    _api_displayStarDetails_post_request:
+      properties:
+        HIP:
+          description: Unique HIP index of the target star
+          title: HIP
+          type: integer
+        detailLevel:
+          default: basic
+          description: Level of star details to display
+          enum:
+          - basic
+          - detailed
+          - complete
+          title: detailLevel
+          type: string
+      title: _api_displayStarDetails_post_request
+    _api_requestSaveType_post_200_response_saveTypeList_inner:
+      example:
+        fileExtension: fileExtension
+        typeName: typeName
+        typeId: typeId
+      properties:
+        typeId:
+          description: Unique ID of the save type
+          title: typeId
+          type: string
+        typeName:
+          description: "Name of the save type (e.g., PNG, JPG, SVG)"
+          title: typeName
+          type: string
+        fileExtension:
+          description: "Corresponding file extension (e.g., .png, .jpg)"
+          title: fileExtension
+          type: string
+      title: _api_requestSaveType_post_200_response_saveTypeList_inner
+      type: object
+    _api_requestSaveType_post_200_response:
+      example:
+        saveTypeList:
+        - fileExtension: fileExtension
+          typeName: typeName
+          typeId: typeId
+        - fileExtension: fileExtension
+          typeName: typeName
+          typeId: typeId
+      properties:
+        saveTypeList:
+          items:
+            $ref: "#/components/schemas/_api_requestSaveType_post_200_response_saveTypeList_inner"
+          title: saveTypeList
+          type: array
+      title: _api_requestSaveType_post_200_response
+    _api_displaySaveSuccess_post_request:
+      properties:
+        saveTaskId:
+          description: Unique ID of the save task
+          title: saveTaskId
+          type: string
+        saveType:
+          description: Save type used (matches typeId from requestSaveType)
+          title: saveType
+          type: string
+        fileName:
+          description: Name of the saved file
+          title: fileName
+          type: string
+      title: _api_displaySaveSuccess_post_request
+    _api_displaySaveSuccess_post_200_response:
+      example:
+        saveStatus: saveStatus
+        filePath: filePath
+        saveTime: 2000-01-23T04:56:07.000+00:00
+      properties:
+        saveStatus:
+          description: Save status (success/failed)
+          title: saveStatus
+          type: string
+        filePath:
+          description: Local path or cloud URL of the saved file
+          title: filePath
+          type: string
+        saveTime:
+          description: Timestamp when the file was saved
+          format: date-time
+          title: saveTime
+          type: string
+      title: _api_displaySaveSuccess_post_200_response
+    _api_elimilateErrors_post_request:
+      properties:
+        cameraMeta:
+          $ref: "#/components/schemas/cameraMeta"
+        image:
+          description: image read from camera
+          title: image
+          type: string
+        starCoordinates:
+          items:
+            $ref: "#/components/schemas/_api_calculateStarCoordinates_post_200_response_starCoordinates_inner"
+          title: starCoordinates
+          type: array
+      title: _api_elimilateErrors_post_request
+    _api_elimilateErrors_post_200_response:
+      example:
+        starCoordinates:
+        - HIP: 0
+          correctedViewCoordinate:
+            x: 6.027456183070403
+            "y": 1.4658129805029452
+        - HIP: 0
+          correctedViewCoordinate:
+            x: 6.027456183070403
+            "y": 1.4658129805029452
+      properties:
+        starCoordinates:
+          items:
+            $ref: "#/components/schemas/_api_triggerStarfieldRender_post_request_correctedStarCoordinates_inner"
+          title: starCoordinates
+          type: array
+      title: _api_elimilateErrors_post_200_response
+    _api_getChatRoom_post_request:
+      properties:
+        roomId:
+          description: Unique ID of the target chat room in the social system
+          title: roomId
+          type: string
+        userId:
+          description: ID of the user attempting to access the chat room
+          title: userId
+          type: string
+        userStatus:
+          description: Check user status
+          title: userStatus
+          type: boolean
+        roomStatus:
+          description: Check room status
+          title: roomStatus
+          type: boolean
+      required:
+      - roomId
+      - roomStatus
+      - userId
+      - userStatus
+      title: _api_getChatRoom_post_request
+      type: object
+    _api_getChatRoom_post_200_response:
+      example:
+        message: message
+        status: true
+      properties:
+        status:
+          title: status
+          type: boolean
+        message:
+          title: message
+          type: string
+      title: _api_getChatRoom_post_200_response
+      type: object
+    _api_getChatRoomInfo_post_request:
+      properties:
+        roomID:
+          title: roomID
+          type: string
+      required:
+      - roomId
+      title: _api_getChatRoomInfo_post_request
+      type: object
+    _api_getChatRoomInfo_post_200_response_members_inner:
+      example:
+        isOnline: true
+        userID: userID
+        username: username
+      properties:
+        userID:
+          title: userID
+          type: string
+        username:
+          title: username
+          type: string
+        isOnline:
+          title: isOnline
+          type: boolean
+      title: _api_getChatRoomInfo_post_200_response_members_inner
+      type: object
+    _api_getChatRoomInfo_post_200_response:
+      example:
+        OnlineUsers: 0
+        creationTime: creationTime
+        members:
+        - isOnline: true
+          userID: userID
+          username: username
+        - isOnline: true
+          userID: userID
+          username: username
+        name: name
+        description: description
+        roomID: roomID
+      properties:
+        roomID:
+          title: roomID
+          type: string
+        name:
+          title: name
+          type: string
+        description:
+          title: description
+          type: string
+        creationTime:
+          title: creationTime
+          type: string
+        OnlineUsers:
+          title: OnlineUsers
+          type: integer
+        members:
+          items:
+            $ref: "#/components/schemas/_api_getChatRoomInfo_post_200_response_members_inner"
+          title: members
+          type: array
+      title: _api_getChatRoomInfo_post_200_response
+      type: object
+    _api_getMessage_post_request:
+      properties:
+        roomID:
+          description: ID of the chat room to retrieve messages from
+          title: roomID
+          type: string
+        limit:
+          default: 300
+          description: Maximum number of messages to retrieve
+          title: limit
+          type: integer
+        timestamp:
+          description: Retrieve messages sent before this timestamp
+          title: timestamp
+          type: string
+      required:
+      - roomID
+      title: _api_getMessage_post_request
+      type: object
+    _api_getMessage_post_200_response_messages_inner:
+      example:
+        messageId: messageId
+        userId: userId
+        content: content
+        timestamp: timestamp
+      properties:
+        messageId:
+          title: messageId
+          type: string
+        userId:
+          title: userId
+          type: string
+        content:
+          title: content
+          type: string
+        timestamp:
+          title: timestamp
+          type: string
+      title: _api_getMessage_post_200_response_messages_inner
+      type: object
+    _api_getMessage_post_200_response:
+      example:
+        messages:
+        - messageId: messageId
+          userId: userId
+          content: content
+          timestamp: timestamp
+        - messageId: messageId
+          userId: userId
+          content: content
+          timestamp: timestamp
+        roomId: roomId
+      properties:
+        roomId:
+          title: roomId
+          type: string
+        messages:
+          items:
+            $ref: "#/components/schemas/_api_getMessage_post_200_response_messages_inner"
+          title: messages
+          type: array
+      title: _api_getMessage_post_200_response
+      type: object
+    _api_sendMessage_post_request:
+      properties:
+        roomId:
+          description: ID of the target chat room
+          title: roomId
+          type: string
+        userId:
+          description: ID of the user sending the message
+          title: userId
+          type: string
+        content:
+          description: Content of the message to send
+          title: content
+          type: string
+      title: _api_sendMessage_post_request
+      type: object
+    _api_sendMessage_post_200_response:
+      example:
+        messageId: messageId
+        timestamp: timestamp
+        status: status
+      properties:
+        messageId:
+          title: messageId
+          type: string
+        timestamp:
+          title: timestamp
+          type: string
+        status:
+          title: status
+          type: string
+      title: _api_sendMessage_post_200_response
+      type: object
+    _api_getStarDetails_post_request:
+      properties:
+        HIP:
+          title: HIP
+          type: integer
+      title: _api_getStarDetails_post_request
+    _api_checkRoomStatus_post_request:
+      properties:
+        roomId:
+          description: ID of the chat room to check
+          title: roomId
+          type: string
+      required:
+      - roomID
+      title: _api_checkRoomStatus_post_request
+      type: object
+    _api_checkRoomStatus_post_200_response:
+      example:
+        message: message
+        roomID: roomID
+        isJoinable: true
+        status: status
+      properties:
+        roomID:
+          title: roomID
+          type: string
+        isJoinable:
+          title: isJoinable
+          type: boolean
+        status:
+          title: status
+          type: string
+        message:
+          title: message
+          type: string
+      title: _api_checkRoomStatus_post_200_response
+      type: object
+    _api_setUser_post_200_response:
+      example:
+        message: Password updated successfully
+      properties:
+        message:
+          example: Password updated successfully
+          title: message
+          type: string
+      title: _api_setUser_post_200_response
+    _api_usernameVerify_post_request:
+      properties:
+        username:
+          description: The username to be checked
+          example: new_user_123
+          title: username
+          type: string
+      title: _api_usernameVerify_post_request
+    _api_usernameVerify_post_200_response:
+      example:
+        message: Username is available
+      properties:
+        message:
+          example: Username is available
+          title: message
+          type: string
+      title: _api_usernameVerify_post_200_response
+    _api_verifyUserToken_post_request:
+      properties:
+        token:
+          description: The verified access token.
+          title: token
+          type: string
+      title: _api_verifyUserToken_post_request
+    _api_deleteBlog_post_200_response:
+      example:
+        blogID: blogID
+      properties:
+        blogID:
+          title: blogID
+          type: string
+      title: _api_deleteBlog_post_200_response
+    _api_likeBlog_post_200_response:
+      example:
+        blogID: blogID
+        likeNumber: 0
+      properties:
+        blogID:
+          title: blogID
+          type: string
+        likeNumber:
+          title: likeNumber
+          type: integer
+      title: _api_likeBlog_post_200_response
+    _api_commentBlog_post_request:
+      properties:
+        userCredentials:
+          $ref: "#/components/schemas/userCredentials"
+        blogID:
+          title: blogID
+          type: string
+        commentText:
+          title: commentText
+          type: string
+      title: _api_commentBlog_post_request
+    _api_commentBlog_post_200_response:
+      example:
+        commentID: commentID
+      properties:
+        commentID:
+          title: commentID
+          type: string
+      title: _api_commentBlog_post_200_response
+    _api_deleteComment_post_request:
+      properties:
+        userCredentials:
+          $ref: "#/components/schemas/userCredentials"
+        blogID:
+          title: blogID
+          type: string
+        commentID:
+          title: commentID
+          type: string
+      title: _api_deleteComment_post_request
