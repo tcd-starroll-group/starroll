@@ -1278,6 +1278,23 @@ components:
         likeNumber:
           type: integer
 
+    cartesianCoordinate:
+      type: object
+      required:
+        - x
+        - y
+        - z
+      properties:
+        x:
+          description: x axis
+          type: number
+        y :
+          description: y axis
+          type: number   
+        z :
+          description: z axis
+          type: number     
+
     commentItem:
       properties:
         commentID:

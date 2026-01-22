@@ -63,6 +63,7 @@ docs/Attitude.md
 docs/Blog.md
 docs/BlogPreview.md
 docs/CameraMeta.md
+docs/CartesianCoordinate.md
 docs/ChangePasswordRequest.md
 docs/CommentItem.md
 docs/DefaultApi.md
@@ -141,6 +142,7 @@ models/Attitude.ts
 models/Blog.ts
 models/BlogPreview.ts
 models/CameraMeta.ts
+models/CartesianCoordinate.ts
 models/ChangePasswordRequest.ts
 models/CommentItem.ts
 models/EquatorialCoordinate.ts

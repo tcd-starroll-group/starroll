@@ -63,6 +63,7 @@ export * from './Attitude';
 export * from './Blog';
 export * from './BlogPreview';
 export * from './CameraMeta';
+export * from './CartesianCoordinate';
 export * from './ChangePasswordRequest';
 export * from './CommentItem';
 export * from './EquatorialCoordinate';
