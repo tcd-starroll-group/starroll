@@ -36,7 +36,7 @@ describe('convertHorizontalCoordinateToEquatorialCoordinate', () => {
       },
     ]
 
-    cases.forEach(({ name, hc, timestamp, location }) => {
+    cases.forEach(({ hc, timestamp, location }) => {
       const result1 = astronomy.convertHorizontalCoordinateToEquatorialCoordinate(
         hc,
         timestamp,
