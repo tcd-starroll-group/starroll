@@ -1359,6 +1359,14 @@ components:
           type: integer
     starMeta:
       type: object
+      required:
+        - HIP
+        - equatorialCoordinate
+        - magnitude
+        - pmRA
+        - pmDE
+        - bvColor
+        - distance
       properties:
         HIP:
           description: unique HIP index

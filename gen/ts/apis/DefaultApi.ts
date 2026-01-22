@@ -25,6 +25,7 @@ import type {
   ApiCreateBlogPost200Response,
   ApiCreateBlogPostRequest,
   ApiCreateIdentifyStarsJobPost200Response,
+  ApiCreateIdentifyStarsJobPostRequest,
   ApiDeleteBlogPost200Response,
   ApiDeleteCommentPostRequest,
   ApiDisplayChatRoomGet200Response,
@@ -75,10 +76,12 @@ import type {
   ChangePasswordRequest,
   ErrorResponse,
   GPS,
+  ProfileAndToken,
+  ResetPasswordRequest,
+  ResetPasswordSendCodeRequest,
   StarDetails,
   TokenResponse,
   UserAuth,
-  UserCredentials,
   UserResponse,
 } from '../models/index';
 import {
@@ -102,6 +105,8 @@ import {
     ApiCreateBlogPostRequestToJSON,
     ApiCreateIdentifyStarsJobPost200ResponseFromJSON,
     ApiCreateIdentifyStarsJobPost200ResponseToJSON,
+    ApiCreateIdentifyStarsJobPostRequestFromJSON,
+    ApiCreateIdentifyStarsJobPostRequestToJSON,
     ApiDeleteBlogPost200ResponseFromJSON,
     ApiDeleteBlogPost200ResponseToJSON,
     ApiDeleteCommentPostRequestFromJSON,
@@ -202,14 +207,18 @@ import {
     ErrorResponseToJSON,
     GPSFromJSON,
     GPSToJSON,
+    ProfileAndTokenFromJSON,
+    ProfileAndTokenToJSON,
+    ResetPasswordRequestFromJSON,
+    ResetPasswordRequestToJSON,
+    ResetPasswordSendCodeRequestFromJSON,
+    ResetPasswordSendCodeRequestToJSON,
     StarDetailsFromJSON,
     StarDetailsToJSON,
     TokenResponseFromJSON,
     TokenResponseToJSON,
     UserAuthFromJSON,
     UserAuthToJSON,
-    UserCredentialsFromJSON,
-    UserCredentialsToJSON,
     UserResponseFromJSON,
     UserResponseToJSON,
 } from '../models/index';
@@ -234,9 +243,8 @@ export interface ApiCreateBlogPostOperationRequest {
     apiCreateBlogPostRequest?: ApiCreateBlogPostRequest;
 }
 
-export interface ApiCreateIdentifyStarsJobPostRequest {
-    image: Blob;
-    userCredentials?: UserCredentials;
+export interface ApiCreateIdentifyStarsJobPostOperationRequest {
+    apiCreateIdentifyStarsJobPostRequest: ApiCreateIdentifyStarsJobPostRequest;
 }
 
 export interface ApiDeleteBlogPostRequest {
@@ -261,6 +269,10 @@ export interface ApiDisplayStarDetailsPostOperationRequest {
 
 export interface ApiDisplayStarfieldPostOperationRequest {
     apiDisplayStarfieldPostRequest?: ApiDisplayStarfieldPostRequest;
+}
+
+export interface ApiEditProfilePostRequest {
+    profileAndToken: ProfileAndToken;
 }
 
 export interface ApiElimilateErrorsPostOperationRequest {
@@ -304,7 +316,7 @@ export interface ApiListBlogsPostOperationRequest {
 }
 
 export interface ApiListIdentifyStarsJobsPostOperationRequest {
-    apiListIdentifyStarsJobsPostRequest?: ApiListIdentifyStarsJobsPostRequest;
+    apiListIdentifyStarsJobsPostRequest: ApiListIdentifyStarsJobsPostRequest;
 }
 
 export interface ApiReportBlogPostRequest {
@@ -317,6 +329,14 @@ export interface ApiRequestAccuracyAdjustPostOperationRequest {
 
 export interface ApiRequestStargazingTimePostOperationRequest {
     apiRequestStargazingTimePostRequest?: ApiRequestStargazingTimePostRequest;
+}
+
+export interface ApiResetPasswordPostRequest {
+    resetPasswordRequest: ResetPasswordRequest;
+}
+
+export interface ApiResetPasswordSendCodePostRequest {
+    resetPasswordSendCodeRequest: ResetPasswordSendCodeRequest;
 }
 
 export interface ApiSaveBlogPostRequest {
@@ -530,11 +550,11 @@ export class DefaultApi extends runtime.BaseAPI {
     /**
      * Create a job to identify the stars in the image.
      */
-    async apiCreateIdentifyStarsJobPostRaw(requestParameters: ApiCreateIdentifyStarsJobPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiCreateIdentifyStarsJobPost200Response>> {
-        if (requestParameters['image'] == null) {
+    async apiCreateIdentifyStarsJobPostRaw(requestParameters: ApiCreateIdentifyStarsJobPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiCreateIdentifyStarsJobPost200Response>> {
+        if (requestParameters['apiCreateIdentifyStarsJobPostRequest'] == null) {
             throw new runtime.RequiredError(
-                'image',
-                'Required parameter "image" was null or undefined when calling apiCreateIdentifyStarsJobPost().'
+                'apiCreateIdentifyStarsJobPostRequest',
+                'Required parameter "apiCreateIdentifyStarsJobPostRequest" was null or undefined when calling apiCreateIdentifyStarsJobPost().'
             );
         }
 
@@ -542,29 +562,7 @@ export class DefaultApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        const consumes: runtime.Consume[] = [
-            { contentType: 'multipart/form-data' },
-        ];
-        // @ts-ignore: canConsumeForm may be unused
-        const canConsumeForm = runtime.canConsumeForm(consumes);
-
-        let formParams: { append(param: string, value: any): any };
-        let useForm = false;
-        // use FormData to transmit files using content-type "multipart/form-data"
-        useForm = canConsumeForm;
-        if (useForm) {
-            formParams = new FormData();
-        } else {
-            formParams = new URLSearchParams();
-        }
-
-        if (requestParameters['image'] != null) {
-            formParams.append('image', requestParameters['image'] as any);
-        }
-
-        if (requestParameters['userCredentials'] != null) {
-            formParams.append('userCredentials', new Blob([JSON.stringify(UserCredentialsToJSON(requestParameters['userCredentials']))], { type: "application/json", }));
-                    }
+        headerParameters['Content-Type'] = 'application/json';
 
 
         let urlPath = `/api/createIdentifyStarsJob`;
@@ -574,7 +572,7 @@ export class DefaultApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: formParams,
+            body: ApiCreateIdentifyStarsJobPostRequestToJSON(requestParameters['apiCreateIdentifyStarsJobPostRequest']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ApiCreateIdentifyStarsJobPost200ResponseFromJSON(jsonValue));
@@ -583,7 +581,7 @@ export class DefaultApi extends runtime.BaseAPI {
     /**
      * Create a job to identify the stars in the image.
      */
-    async apiCreateIdentifyStarsJobPost(requestParameters: ApiCreateIdentifyStarsJobPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiCreateIdentifyStarsJobPost200Response> {
+    async apiCreateIdentifyStarsJobPost(requestParameters: ApiCreateIdentifyStarsJobPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiCreateIdentifyStarsJobPost200Response> {
         const response = await this.apiCreateIdentifyStarsJobPostRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -821,6 +819,47 @@ export class DefaultApi extends runtime.BaseAPI {
      */
     async apiDisplayStarfieldPost(requestParameters: ApiDisplayStarfieldPostOperationRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiDisplayStarfieldPost200Response> {
         const response = await this.apiDisplayStarfieldPostRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * update the user\'s profile information stored as JSON.
+     *  update user profile
+     */
+    async apiEditProfilePostRaw(requestParameters: ApiEditProfilePostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserResponse>> {
+        if (requestParameters['profileAndToken'] == null) {
+            throw new runtime.RequiredError(
+                'profileAndToken',
+                'Required parameter "profileAndToken" was null or undefined when calling apiEditProfilePost().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/editProfile`;
+
+        const response = await this.request({
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ProfileAndTokenToJSON(requestParameters['profileAndToken']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => UserResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * update the user\'s profile information stored as JSON.
+     *  update user profile
+     */
+    async apiEditProfilePost(requestParameters: ApiEditProfilePostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserResponse> {
+        const response = await this.apiEditProfilePostRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -1300,6 +1339,13 @@ export class DefaultApi extends runtime.BaseAPI {
      * List identify stars jobs.
      */
     async apiListIdentifyStarsJobsPostRaw(requestParameters: ApiListIdentifyStarsJobsPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiListIdentifyStarsJobsPost200Response>> {
+        if (requestParameters['apiListIdentifyStarsJobsPostRequest'] == null) {
+            throw new runtime.RequiredError(
+                'apiListIdentifyStarsJobsPostRequest',
+                'Required parameter "apiListIdentifyStarsJobsPostRequest" was null or undefined when calling apiListIdentifyStarsJobsPost().'
+            );
+        }
+
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -1323,7 +1369,7 @@ export class DefaultApi extends runtime.BaseAPI {
     /**
      * List identify stars jobs.
      */
-    async apiListIdentifyStarsJobsPost(requestParameters: ApiListIdentifyStarsJobsPostOperationRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiListIdentifyStarsJobsPost200Response> {
+    async apiListIdentifyStarsJobsPost(requestParameters: ApiListIdentifyStarsJobsPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiListIdentifyStarsJobsPost200Response> {
         const response = await this.apiListIdentifyStarsJobsPostRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1456,6 +1502,84 @@ export class DefaultApi extends runtime.BaseAPI {
      */
     async apiRequestStargazingTimePost(requestParameters: ApiRequestStargazingTimePostOperationRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiRequestStargazingTimePost200Response> {
         const response = await this.apiRequestStargazingTimePostRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Use code to reset password
+     */
+    async apiResetPasswordPostRaw(requestParameters: ApiResetPasswordPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiChangePasswordPost200Response>> {
+        if (requestParameters['resetPasswordRequest'] == null) {
+            throw new runtime.RequiredError(
+                'resetPasswordRequest',
+                'Required parameter "resetPasswordRequest" was null or undefined when calling apiResetPasswordPost().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/resetPassword`;
+
+        const response = await this.request({
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ResetPasswordRequestToJSON(requestParameters['resetPasswordRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ApiChangePasswordPost200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Use code to reset password
+     */
+    async apiResetPasswordPost(requestParameters: ApiResetPasswordPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiChangePasswordPost200Response> {
+        const response = await this.apiResetPasswordPostRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * send code to email
+     */
+    async apiResetPasswordSendCodePostRaw(requestParameters: ApiResetPasswordSendCodePostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiChangePasswordPost200Response>> {
+        if (requestParameters['resetPasswordSendCodeRequest'] == null) {
+            throw new runtime.RequiredError(
+                'resetPasswordSendCodeRequest',
+                'Required parameter "resetPasswordSendCodeRequest" was null or undefined when calling apiResetPasswordSendCodePost().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/resetPasswordSendCode`;
+
+        const response = await this.request({
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ResetPasswordSendCodeRequestToJSON(requestParameters['resetPasswordSendCodeRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ApiChangePasswordPost200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * send code to email
+     */
+    async apiResetPasswordSendCodePost(requestParameters: ApiResetPasswordSendCodePostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiChangePasswordPost200Response> {
+        const response = await this.apiResetPasswordSendCodePostRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

@@ -11,6 +11,7 @@ docs/ApiCommentBlogPostRequest.md
 docs/ApiCreateBlogPost200Response.md
 docs/ApiCreateBlogPostRequest.md
 docs/ApiCreateIdentifyStarsJobPost200Response.md
+docs/ApiCreateIdentifyStarsJobPostRequest.md
 docs/ApiDeleteBlogPost200Response.md
 docs/ApiDeleteCommentPostRequest.md
 docs/ApiDisplayChatRoomGet200Response.md
@@ -81,6 +82,9 @@ docs/IdentifyStarsJob.md
 docs/IdentifyStarsJobResult.md
 docs/IdentifyStarsJobResultIdentifiedStarsInner.md
 docs/PaginationQuery.md
+docs/ProfileAndToken.md
+docs/ResetPasswordRequest.md
+docs/ResetPasswordSendCodeRequest.md
 docs/StarDetails.md
 docs/StarMeta.md
 docs/TokenResponse.md
@@ -100,6 +104,7 @@ models/ApiCommentBlogPostRequest.ts
 models/ApiCreateBlogPost200Response.ts
 models/ApiCreateBlogPostRequest.ts
 models/ApiCreateIdentifyStarsJobPost200Response.ts
+models/ApiCreateIdentifyStarsJobPostRequest.ts
 models/ApiDeleteBlogPost200Response.ts
 models/ApiDeleteCommentPostRequest.ts
 models/ApiDisplayChatRoomGet200Response.ts
@@ -169,6 +174,9 @@ models/IdentifyStarsJob.ts
 models/IdentifyStarsJobResult.ts
 models/IdentifyStarsJobResultIdentifiedStarsInner.ts
 models/PaginationQuery.ts
+models/ProfileAndToken.ts
+models/ResetPasswordRequest.ts
+models/ResetPasswordSendCodeRequest.ts
 models/StarDetails.ts
 models/StarMeta.ts
 models/TokenResponse.ts
