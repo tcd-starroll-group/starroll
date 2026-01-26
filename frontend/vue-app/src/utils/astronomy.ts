@@ -131,9 +131,9 @@ function convertEquatorialCoordinateToCartesianCoordinatePro(
    }
 
   const time = new astronomy.AstroTime(new Date(timestamp))
-  const raHours = ec.rightAscension / 15
-  const equator = new astronomy.EquatorEpoch(raHours, ec.declination, 1, time)
-  const vector = astronomy.VectorFromEquator(equator, time)
+  // 使用 Spherical 类：lat = 赤纬，lon = 赤经，dist = 距离
+  const sphere = new astronomy.Spherical(ec.declination, ec.rightAscension, 1)
+  const vector = astronomy.VectorFromSphere(sphere, time)
 
   ans.x = vector.x * radius
   ans.y = vector.y * radius
