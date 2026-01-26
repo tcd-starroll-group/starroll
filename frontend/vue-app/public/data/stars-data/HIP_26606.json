@@ -1,0 +1,13 @@
+{
+    "hip": 26606,
+    "name": "V433 Aurigae",
+    "description": "V433 Aurigae is a variable star in the constellation Auriga. It is a slowly pulsating B star (SPB) that varies by a few hundredths of a magnitude over 4.6 days. It is faintly visible to the naked eye under very good observing conditions.",
+    "url": "https://en.wikipedia.org/wiki/V433_Aurigae",
+    "alpha": 85.38063501605521,
+    "delta": 29.231703639673086,
+    "mag": 5.98,
+    "pmRA": -7.175242480421133e-09,
+    "pmDE": -3.5148991880441356e-08,
+    "bvColor": 0.144,
+    "distance": 1177.6173285198556
+}

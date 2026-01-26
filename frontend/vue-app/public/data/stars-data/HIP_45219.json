@@ -1,0 +1,13 @@
+{
+    "hip": 45219,
+    "name": "HD 79698 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+45219",
+    "alpha": 138.4594068513211,
+    "delta": -59.55870392059758,
+    "mag": 5.54,
+    "pmRA": 2.690715930157925e-08,
+    "pmDE": 7.587334109364239e-08,
+    "bvColor": 0.846,
+    "distance": 474.8180494905386
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 64022,
+    "name": "* 41 Com -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+64022",
+    "alpha": 197.21166583276158,
+    "delta": 27.43882345690377,
+    "mag": 4.8,
+    "pmRA": 1.612975117051426e-07,
+    "pmDE": -3.3069141188481447e-07,
+    "bvColor": 1.482,
+    "distance": 303.44186046511624
+}

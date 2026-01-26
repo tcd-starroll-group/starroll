@@ -1,0 +1,13 @@
+{
+    "hip": 2611,
+    "name": "HD 2952 -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+2611",
+    "alpha": 8.78105233623306,
+    "delta": 55.08646332385395,
+    "mag": 5.93,
+    "pmRA": 3.3975742772156286e-07,
+    "pmDE": -1.9082266488471335e-07,
+    "bvColor": 1.037,
+    "distance": 375.80645161290323
+}

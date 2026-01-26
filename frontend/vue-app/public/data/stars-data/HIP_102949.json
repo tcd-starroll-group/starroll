@@ -1,0 +1,13 @@
+{
+    "hip": 102949,
+    "name": "V* T Vul -- Classical Cepheid Variable",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+102949",
+    "alpha": 313.23763361200207,
+    "delta": 28.38285104832213,
+    "mag": 5.66,
+    "pmRA": 1.900469629949381e-08,
+    "pmDE": -2.6567789724802575e-08,
+    "bvColor": 0.616,
+    "distance": 1672.8205128205127
+}

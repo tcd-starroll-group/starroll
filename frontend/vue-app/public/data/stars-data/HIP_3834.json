@@ -1,0 +1,13 @@
+{
+    "hip": 3834,
+    "name": "HD 4732",
+    "description": "HD 4732 is a red giant star of magnitude 5.9 located in the constellation Cetus. It is 180 light-years from the Solar System.\nThe star is classified by some sources as a K-type giant and by others as a subgiant.",
+    "url": "https://en.wikipedia.org/wiki/HD_4732",
+    "alpha": 12.73618679466249,
+    "delta": -23.94780801492178,
+    "mag": 5.9,
+    "pmRA": 3.7558515875555757e-07,
+    "pmDE": -2.8904591667750536e-07,
+    "bvColor": 0.944,
+    "distance": 184.29378531073448
+}

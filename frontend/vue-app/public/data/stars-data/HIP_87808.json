@@ -1,0 +1,13 @@
+{
+    "hip": 87808,
+    "name": "Theta Herculis",
+    "description": "Theta Herculis is a single, variable star in the northern constellation of Hercules.",
+    "url": "https://en.wikipedia.org/wiki/Theta_Herculis",
+    "alpha": 269.3621190538373,
+    "delta": 37.24793334603339,
+    "mag": 3.86,
+    "pmRA": 1.3283894862401287e-08,
+    "pmDE": 3.510051051233041e-08,
+    "bvColor": 1.35,
+    "distance": 669.8151950718686
+}

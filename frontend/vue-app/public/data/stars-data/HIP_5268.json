@@ -1,0 +1,13 @@
+{
+    "hip": 5268,
+    "name": "* iot Tuc -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+5268",
+    "alpha": 17.169159075026432,
+    "delta": -61.58992076360368,
+    "mag": 5.36,
+    "pmRA": 3.577440152907267e-07,
+    "pmDE": -5.4493057756711844e-08,
+    "bvColor": 0.884,
+    "distance": 279.2808219178082
+}

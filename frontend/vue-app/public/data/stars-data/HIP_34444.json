@@ -1,0 +1,13 @@
+{
+    "hip": 34444,
+    "name": "Delta Canis Majoris",
+    "description": "Delta Canis Majoris is a supergiant star in the constellation of Canis Major. It is formally named Wezen (); Delta Canis Majoris is its Bayer designation. At an apparent magnitude of +1.83, it is the third-brightest star in the constellation.",
+    "url": "https://en.wikipedia.org/wiki/Delta_Canis_Majoris",
+    "alpha": 107.45212152896468,
+    "delta": -26.450745210769856,
+    "mag": 1.83,
+    "pmRA": -1.3332376230512238e-08,
+    "pmDE": 1.614429558094755e-08,
+    "bvColor": 0.671,
+    "distance": 1792.3076923076924
+}

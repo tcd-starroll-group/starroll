@@ -1,0 +1,13 @@
+{
+    "hip": 25488,
+    "name": "HD 36060 -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+25488",
+    "alpha": 82.05200557121941,
+    "delta": -40.91544660565264,
+    "mag": 5.86,
+    "pmRA": 1.5853407372281827e-08,
+    "pmDE": 5.259258812676247e-07,
+    "bvColor": 0.239,
+    "distance": 310.07604562737646
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 9007,
+    "name": "* chi Eri -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+9007",
+    "alpha": 29.32079543433851,
+    "delta": -51.43749462689713,
+    "mag": 3.69,
+    "pmRA": 3.302744721190603e-06,
+    "pmDE": 1.3779859258176342e-06,
+    "bvColor": 0.844,
+    "distance": 57.037943696450434
+}

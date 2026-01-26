@@ -1,0 +1,13 @@
+{
+    "hip": 53394,
+    "name": "* T Car -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+53394",
+    "alpha": 164.17293527116837,
+    "delta": -60.702774055498836,
+    "mag": 5.93,
+    "pmRA": -1.7496925751243155e-07,
+    "pmDE": 4.086979331753388e-07,
+    "bvColor": 1.065,
+    "distance": 306.0037523452158
+}

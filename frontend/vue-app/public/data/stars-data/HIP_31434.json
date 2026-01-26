@@ -1,0 +1,13 @@
+{
+    "hip": 31434,
+    "name": "49 Aurigae",
+    "description": "49 Aurigae is a single star located 680 light years away from the Sun in the northern constellation of Auriga.",
+    "url": "https://en.wikipedia.org/wiki/49_Aurigae",
+    "alpha": 99.34836596263695,
+    "delta": 27.99163031170976,
+    "mag": 5.26,
+    "pmRA": -1.9877360925490974e-09,
+    "pmDE": -6.040778466624818e-08,
+    "bvColor": -0.008,
+    "distance": 446.8493150684931
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 25583,
+    "name": "* 117 Tau -- Variable Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+25583",
+    "alpha": 82.51277243978434,
+    "delta": 17.264919576807745,
+    "mag": 5.77,
+    "pmRA": 8.013970148740632e-08,
+    "pmDE": -2.2374151383205081e-07,
+    "bvColor": 1.634,
+    "distance": 704.535637149028
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 64692,
+    "name": "* 19 CVn -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+64692",
+    "alpha": 199.27401638819362,
+    "delta": 40.67201526640497,
+    "mag": 5.77,
+    "pmRA": -5.83036932902328e-07,
+    "pmDE": 5.3765837235047544e-08,
+    "bvColor": 0.198,
+    "distance": 244.8948948948949
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 5132,
+    "name": "* 74 Psc B -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+5132",
+    "alpha": 16.892426982076863,
+    "delta": 21.65112137507769,
+    "mag": 5.55,
+    "pmRA": 2.6146001822237275e-07,
+    "pmDE": -6.123196792413439e-08,
+    "bvColor": -0.048,
+    "distance": 222.35855487389233
+}

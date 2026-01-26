@@ -1,0 +1,13 @@
+{
+    "hip": 55084,
+    "name": "* phi Leo -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+55084",
+    "alpha": 169.60855827277558,
+    "delta": -3.842465838209867,
+    "mag": 4.45,
+    "pmRA": -5.243259961199632e-07,
+    "pmDE": -1.7336937236477008e-07,
+    "bvColor": 0.21,
+    "distance": 195.44637507489512
+}

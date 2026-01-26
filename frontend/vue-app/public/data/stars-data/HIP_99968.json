@@ -1,0 +1,13 @@
+{
+    "hip": 99968,
+    "name": "HD 193092 -- Variable Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+99968",
+    "alpha": 304.54034194644,
+    "delta": 40.47457667086339,
+    "mag": 5.27,
+    "pmRA": 9.744754990301672e-09,
+    "pmDE": -9.16297857297023e-09,
+    "bvColor": 1.65,
+    "distance": 1000.6134969325154
+}

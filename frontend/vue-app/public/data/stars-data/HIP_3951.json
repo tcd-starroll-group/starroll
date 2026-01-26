@@ -1,0 +1,13 @@
+{
+    "hip": 3951,
+    "name": "HD 4775 -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+3951",
+    "alpha": 13.21856715117895,
+    "delta": 64.43643648160844,
+    "mag": 5.35,
+    "pmRA": 1.4248674087809262e-07,
+    "pmDE": -6.229855802257538e-08,
+    "bvColor": 0.528,
+    "distance": 813.4663341645885
+}

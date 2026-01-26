@@ -1,0 +1,13 @@
+{
+    "hip": 90289,
+    "name": "* 21 Sgr -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+90289",
+    "alpha": 276.85616129513886,
+    "delta": -20.519611839327123,
+    "mag": 4.81,
+    "pmRA": 4.004561005964767e-08,
+    "pmDE": -1.392384892146587e-07,
+    "bvColor": 1.31,
+    "distance": 597.4358974358975
+}

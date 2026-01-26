@@ -1,0 +1,13 @@
+{
+    "hip": 78990,
+    "name": "* ome02 Sco -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+78990",
+    "alpha": 242.36344387448298,
+    "delta": -20.959818465393575,
+    "mag": 4.31,
+    "pmRA": 2.1176661590864533e-07,
+    "pmDE": -2.1962059754261981e-07,
+    "bvColor": 0.831,
+    "distance": 264.77272727272725
+}

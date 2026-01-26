@@ -1,0 +1,13 @@
+{
+    "hip": 85385,
+    "name": "HD 158148 -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+85385",
+    "alpha": 262.08085899425635,
+    "delta": 20.053753978677495,
+    "mag": 5.52,
+    "pmRA": 7.757018897752577e-10,
+    "pmDE": 7.810348402674623e-08,
+    "bvColor": -0.119,
+    "distance": 470.028818443804
+}

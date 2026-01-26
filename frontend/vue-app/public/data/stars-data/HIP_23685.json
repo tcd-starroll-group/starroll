@@ -1,0 +1,13 @@
+{
+    "hip": 23685,
+    "name": "* eps Lep -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+23685",
+    "alpha": 76.73413643717741,
+    "delta": -22.3264575317095,
+    "mag": 3.19,
+    "pmRA": 9.342359634980758e-08,
+    "pmDE": -3.507626982827493e-07,
+    "bvColor": 1.46,
+    "distance": 226.6851980542043
+}

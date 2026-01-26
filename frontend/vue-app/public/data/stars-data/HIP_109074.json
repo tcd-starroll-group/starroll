@@ -1,0 +1,13 @@
+{
+    "hip": 109074,
+    "name": "Alpha Aquarii",
+    "description": "Alpha Aquarii is a yellow supergiant star in the constellation of Aquarius. Its identifier is a Bayer designation that is Latinized from α Aquarii, and is abbreviated Alf Aqr or α Aqr, respectively. This star has the official name Sadalmelik, pronounced .",
+    "url": "https://en.wikipedia.org/wiki/Alpha_Aquarii",
+    "alpha": 331.89175795107195,
+    "delta": 0.4904202896606016,
+    "mag": 2.95,
+    "pmRA": 8.678164891860695e-08,
+    "pmDE": -4.8141998534176916e-08,
+    "bvColor": 0.969,
+    "distance": 758.6046511627908
+}

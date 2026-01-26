@@ -1,0 +1,13 @@
+{
+    "hip": 48519,
+    "name": "HD 85709 -- Variable Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+48519",
+    "alpha": 148.88550391705743,
+    "delta": 5.792959889462705,
+    "mag": 5.9,
+    "pmRA": -1.4156559488398449e-08,
+    "pmDE": 8.33879531508402e-09,
+    "bvColor": 1.662,
+    "distance": 1400
+}

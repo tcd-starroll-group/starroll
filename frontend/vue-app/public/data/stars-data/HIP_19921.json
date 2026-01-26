@@ -1,0 +1,13 @@
+{
+    "hip": 19921,
+    "name": "* eps Ret -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+19921",
+    "alpha": 64.27341276873426,
+    "delta": -59.218968796484894,
+    "mag": 4.44,
+    "pmRA": -2.3266208556446632e-07,
+    "pmDE": -8.135658382699124e-07,
+    "bvColor": 1.078,
+    "distance": 59.48212983223924
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 94005,
+    "name": "* del CrA -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+94005",
+    "alpha": 287.69181609232345,
+    "delta": -40.43894479291393,
+    "mag": 4.57,
+    "pmRA": 2.3295297377313199e-07,
+    "pmDE": -1.3012399200979946e-07,
+    "bvColor": 1.07,
+    "distance": 174.71880021424744
+}

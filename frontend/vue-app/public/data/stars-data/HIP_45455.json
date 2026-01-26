@@ -1,0 +1,13 @@
+{
+    "hip": 45455,
+    "name": "* 17 UMa -- Variable Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+45455",
+    "alpha": 139.59593273497745,
+    "delta": 56.594232174132465,
+    "mag": 5.28,
+    "pmRA": -1.2028227428327588e-07,
+    "pmDE": -1.4132318804342973e-07,
+    "bvColor": 1.568,
+    "distance": 681.0020876826723
+}

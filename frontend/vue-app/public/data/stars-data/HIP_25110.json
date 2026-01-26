@@ -1,0 +1,13 @@
+{
+    "hip": 25110,
+    "name": "HD 33564",
+    "description": "HD 33564 is a single star with an exoplanetary companion in the northern constellation of Camelopardalis. It has an apparent visual magnitude of 5.08, which means it is a 5th magnitude star that is faintly visible to the naked eye.",
+    "url": "https://en.wikipedia.org/wiki/HD_33564",
+    "alpha": 82.09575976210405,
+    "delta": 79.26141394467403,
+    "mag": 5.08,
+    "pmRA": -3.810635533520952e-07,
+    "pmDE": 7.811802843717954e-07,
+    "bvColor": 0.506,
+    "distance": 68.44313890054553
+}

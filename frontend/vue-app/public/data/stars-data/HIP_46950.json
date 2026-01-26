@@ -1,0 +1,13 @@
+{
+    "hip": 46950,
+    "name": "HD 83058",
+    "description": "HD 83058 is a subgiant star in the constellation Vela and a spectroscopic binary. It is visible to the naked eye with an apparent visual magnitude of 5.0. Based upon an annual parallax shift of 3.4254 mas, it is located 950 light-years from the Sun.",
+    "url": "https://en.wikipedia.org/wiki/HD_83058",
+    "alpha": 143.83935924001983,
+    "delta": -51.411469097962986,
+    "mag": 5.01,
+    "pmRA": -4.120916289431056e-08,
+    "pmDE": 3.097959422289935e-08,
+    "bvColor": -0.18,
+    "distance": 932
+}

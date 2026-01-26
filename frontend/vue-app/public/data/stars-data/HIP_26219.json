@@ -1,0 +1,13 @@
+{
+    "hip": 26219,
+    "name": "HD 37192 -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+26219",
+    "alpha": 84.1353699626532,
+    "delta": -33.05851323986894,
+    "mag": 5.76,
+    "pmRA": 1.391415264784368e-07,
+    "pmDE": 5.680077087879323e-07,
+    "bvColor": 1.12,
+    "distance": 317.3151750972763
+}

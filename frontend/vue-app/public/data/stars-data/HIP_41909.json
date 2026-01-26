@@ -1,0 +1,13 @@
+{
+    "hip": 41909,
+    "name": "* eta Cnc -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+41909",
+    "alpha": 128.67944671674576,
+    "delta": 20.32032425282845,
+    "mag": 5.33,
+    "pmRA": -2.1646930861540783e-07,
+    "pmDE": -2.167601968240735e-07,
+    "bvColor": 1.252,
+    "distance": 311.85468451242826
+}

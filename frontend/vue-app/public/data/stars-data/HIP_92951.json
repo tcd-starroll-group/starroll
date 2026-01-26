@@ -1,0 +1,13 @@
+{
+    "hip": 92951,
+    "name": "* tet02 Ser -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+92951",
+    "alpha": 284.49377258702305,
+    "delta": 4.250179025262938,
+    "mag": 4.98,
+    "pmRA": 2.5413933163761875e-07,
+    "pmDE": 1.511164244018424e-07,
+    "bvColor": 0.204,
+    "distance": 142.8196147110333
+}

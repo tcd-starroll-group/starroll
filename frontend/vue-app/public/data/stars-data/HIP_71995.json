@@ -1,0 +1,13 @@
+{
+    "hip": 71995,
+    "name": "34 Boötis",
+    "description": "34 Boötis is a single variable star in the northern constellation Boötes, located around 700 light years away from the Sun. At that distance, the visual magnitude of the star is diminished by an extinction of 0.49±0.02 due to interstellar dust.",
+    "url": "https://en.wikipedia.org/wiki/34_Bo%C3%B6tis",
+    "alpha": 221.2384952047821,
+    "delta": 26.38148657741196,
+    "mag": 4.8,
+    "pmRA": -6.443173821945734e-08,
+    "pmDE": -8.086692200907061e-08,
+    "bvColor": 1.672,
+    "distance": 888.8283378746595
+}

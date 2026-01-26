@@ -1,0 +1,13 @@
+{
+    "hip": 56802,
+    "name": "* iot Crt -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+56802",
+    "alpha": 175.1096577429723,
+    "delta": -13.394167618211988,
+    "mag": 5.48,
+    "pmRA": 4.829713891213197e-07,
+    "pmDE": 6.116894214559016e-07,
+    "bvColor": 0.52,
+    "distance": 88.0194279546681
+}

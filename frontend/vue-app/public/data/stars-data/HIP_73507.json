@@ -1,0 +1,13 @@
+{
+    "hip": 73507,
+    "name": "HD 133388 -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+73507",
+    "alpha": 225.5683742254488,
+    "delta": 60.068535862323145,
+    "mag": 5.91,
+    "pmRA": -6.32197040166835e-08,
+    "pmDE": 5.788675352447859e-08,
+    "bvColor": 0.107,
+    "distance": 326.85370741482967
+}

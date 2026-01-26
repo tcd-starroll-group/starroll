@@ -1,0 +1,13 @@
+{
+    "hip": 39527,
+    "name": "HD 67249 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+39527",
+    "alpha": 121.42089499054724,
+    "delta": -50.69110870139206,
+    "mag": 5.96,
+    "pmRA": -4.1742457943531044e-08,
+    "pmDE": 8.24183257886211e-09,
+    "bvColor": 1.213,
+    "distance": 1359.1666666666667
+}

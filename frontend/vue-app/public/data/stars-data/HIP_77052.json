@@ -1,0 +1,13 @@
+{
+    "hip": 77052,
+    "name": "* psi Ser -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+77052",
+    "alpha": 236.4466249236957,
+    "delta": 2.406332239677241,
+    "mag": 5.86,
+    "pmRA": -2.1797223102684738e-07,
+    "pmDE": -7.016708406698314e-07,
+    "bvColor": 0.684,
+    "distance": 47.85798122065728
+}

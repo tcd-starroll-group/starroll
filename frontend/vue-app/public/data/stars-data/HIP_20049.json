@@ -1,0 +1,13 @@
+{
+    "hip": 20049,
+    "name": "* del Men -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+20049",
+    "alpha": 63.9352674967782,
+    "delta": -80.12925423527408,
+    "mag": 5.67,
+    "pmRA": 1.370083462815549e-07,
+    "pmDE": 2.958333082130389e-07,
+    "bvColor": 0.836,
+    "distance": 407.75
+}

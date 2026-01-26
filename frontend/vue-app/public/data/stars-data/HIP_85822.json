@@ -1,0 +1,13 @@
+{
+    "hip": 85822,
+    "name": "* del UMi -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+85822",
+    "alpha": 260.2959148262131,
+    "delta": 86.55876830250138,
+    "mag": 4.35,
+    "pmRA": 5.1099361988945085e-08,
+    "pmDE": 2.6165394369481655e-07,
+    "bvColor": 0.021,
+    "distance": 182.74509803921566
+}

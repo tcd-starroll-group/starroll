@@ -1,0 +1,13 @@
+{
+    "hip": 74380,
+    "name": "* kap02 Lup -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+74380",
+    "alpha": 228.6014538410354,
+    "delta": -48.87302826495517,
+    "mag": 5.7,
+    "pmRA": -4.7662032989878477e-07,
+    "pmDE": -2.2005692985561834e-07,
+    "bvColor": 0.144,
+    "distance": 193.1320307874482
+}

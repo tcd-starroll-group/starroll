@@ -1,0 +1,13 @@
+{
+    "hip": 2377,
+    "name": "HD 2626 -- Double or Multiple Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+2377",
+    "alpha": 8.075279758923989,
+    "delta": 60.169619379756995,
+    "mag": 5.94,
+    "pmRA": 7.883070454841057e-08,
+    "pmDE": -1.9101659035715715e-08,
+    "bvColor": -0.003,
+    "distance": 718.5022026431718
+}

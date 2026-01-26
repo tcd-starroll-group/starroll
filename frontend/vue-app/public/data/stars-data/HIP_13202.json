@@ -1,0 +1,13 @@
+{
+    "hip": 13202,
+    "name": "* gam02 For -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+13202",
+    "alpha": 42.85285922768744,
+    "delta": -27.799224570922465,
+    "mag": 5.39,
+    "pmRA": 2.2568076855648903e-07,
+    "pmDE": 1.0758015583820604e-07,
+    "bvColor": 0.013,
+    "distance": 554.7619047619048
+}

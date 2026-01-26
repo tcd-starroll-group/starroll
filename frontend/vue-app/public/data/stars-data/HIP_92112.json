@@ -1,0 +1,13 @@
+{
+    "hip": 92112,
+    "name": "* 50 Dra -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+92112",
+    "alpha": 281.3064735218282,
+    "delta": 75.47296223605059,
+    "mag": 5.37,
+    "pmRA": -5.909878772725244e-08,
+    "pmDE": 3.326791479773636e-07,
+    "bvColor": 0.049,
+    "distance": 304.00745573159367
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 40326,
+    "name": "HD 69142",
+    "description": "HD 69142 is a class K1II-III (orange bright giant) star in the constellation Puppis. Its apparent magnitude is 4.44 and it is approximately 298 light years away based on parallax.",
+    "url": "https://en.wikipedia.org/wiki/HD_69142",
+    "alpha": 123.82139202036899,
+    "delta": -40.45585530063177,
+    "mag": 4.42,
+    "pmRA": 2.1739045460951596e-07,
+    "pmDE": -3.1895892080196375e-07,
+    "bvColor": 1.17,
+    "distance": 310.6666666666667
+}

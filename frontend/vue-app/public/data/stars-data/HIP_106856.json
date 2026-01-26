@@ -1,0 +1,13 @@
+{
+    "hip": 106856,
+    "name": "* 4 Peg -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+106856",
+    "alpha": 325.0687183104399,
+    "delta": 5.93049590458468,
+    "mag": 5.66,
+    "pmRA": 5.460941304017813e-07,
+    "pmDE": 1.3885063826977114e-07,
+    "bvColor": 0.265,
+    "distance": 174.06616862326575
+}

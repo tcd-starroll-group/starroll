@@ -1,0 +1,13 @@
+{
+    "hip": 75312,
+    "name": "* eta CrB -- Double or Multiple Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+75312",
+    "alpha": 231.16067822980796,
+    "delta": 30.164462408949735,
+    "mag": 4.99,
+    "pmRA": 6.097501667314633e-07,
+    "pmDE": -8.555991844221091e-07,
+    "bvColor": 0.577,
+    "distance": 60.74487895716946
+}

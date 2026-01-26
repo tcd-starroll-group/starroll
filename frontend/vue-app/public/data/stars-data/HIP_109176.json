@@ -1,0 +1,13 @@
+{
+    "hip": 109176,
+    "name": "* iot Peg -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+109176",
+    "alpha": 332.1577573530465,
+    "delta": 25.51645850605281,
+    "mag": 3.77,
+    "pmRA": 1.4385876359563263e-06,
+    "pmDE": 1.3056032432279802e-07,
+    "bvColor": 0.435,
+    "distance": 38.349400423230655
+}

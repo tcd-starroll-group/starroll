@@ -1,0 +1,13 @@
+{
+    "hip": 60710,
+    "name": "* G Cen -- Pulsating Variable",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+60710",
+    "alpha": 187.1076436750473,
+    "delta": -51.64322345776141,
+    "mag": 4.82,
+    "pmRA": -1.5048616661639994e-07,
+    "pmDE": -4.765718485306739e-08,
+    "bvColor": -0.141,
+    "distance": 399.7549019607843
+}

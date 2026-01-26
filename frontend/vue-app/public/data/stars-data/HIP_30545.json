@@ -1,0 +1,13 @@
+{
+    "hip": 30545,
+    "name": "HD 45067 -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+30545",
+    "alpha": 96.7700922093951,
+    "delta": 0.9211478174384107,
+    "mag": 5.88,
+    "pmRA": 1.1553110020840243e-06,
+    "pmDE": -1.0570877502912322e-06,
+    "bvColor": 0.564,
+    "distance": 107.94176042356055
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 115537,
+    "name": "HD 220440 -- Variable Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+115537",
+    "alpha": 351.53894704738525,
+    "delta": -51.699764749003045,
+    "mag": 5.75,
+    "pmRA": 1.1233132991307951e-07,
+    "pmDE": -1.7952650611486119e-07,
+    "bvColor": 1.611,
+    "distance": 551.9458544839255
+}

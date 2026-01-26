@@ -1,0 +1,13 @@
+{
+    "hip": 145,
+    "name": "* 29 Psc -- Variable Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+145",
+    "alpha": 0.9023422186224175,
+    "delta": -2.8336755816967076,
+    "mag": 5.13,
+    "pmRA": 9.16297857297023e-08,
+    "pmDE": -4.969340231372744e-08,
+    "bvColor": -0.128,
+    "distance": 408.77192982456137
+}

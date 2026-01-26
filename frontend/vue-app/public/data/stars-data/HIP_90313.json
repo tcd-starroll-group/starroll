@@ -1,0 +1,13 @@
+{
+    "hip": 90313,
+    "name": "HR 6902",
+    "description": "HR 6902 (also designated V2291 Oph) is a binary system located 880 light years away from the Sun in the Ophiuchus constellation. The system includes an orange bright giant star and a B-type main sequence star, forming an eclipsing binary of Zeta Aurigae type.",
+    "url": "https://en.wikipedia.org/wiki/HR_6902",
+    "alpha": 276.83068434017133,
+    "delta": 8.054314774344293,
+    "mag": 5.64,
+    "pmRA": -2.0556100079044328e-08,
+    "pmDE": -3.5827731033994706e-08,
+    "bvColor": 0.884,
+    "distance": 807.4257425742574
+}

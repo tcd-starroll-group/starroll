@@ -1,0 +1,13 @@
+{
+    "hip": 107315,
+    "name": "Epsilon Pegasi",
+    "description": "Epsilon Pegasi (Latinised from ε Pegasi, abbreviated Epsilon Peg, ε Peg), formally named Enif , is the brightest star in the northern constellation of Pegasus.",
+    "url": "https://en.wikipedia.org/wiki/Epsilon_Pegasi",
+    "alpha": 326.4740794958653,
+    "delta": 10.03626271857405,
+    "mag": 2.38,
+    "pmRA": 1.4554106706908268e-07,
+    "pmDE": 6.690428799311596e-09,
+    "bvColor": 1.52,
+    "distance": 672.5773195876288
+}

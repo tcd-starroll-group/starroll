@@ -1,0 +1,13 @@
+{
+    "hip": 65477,
+    "name": "Alcor (star)",
+    "description": "Alcor () is a binary star system in the constellation of Ursa Major. It is the fainter companion of Mizar, the two stars forming a naked eye double in the handle of the Big Dipper (or Plough) asterism in Ursa Major.",
+    "url": "https://en.wikipedia.org/wiki/Alcor_(star)",
+    "alpha": 201.65233829899526,
+    "delta": 54.80739409411261,
+    "mag": 3.99,
+    "pmRA": 5.834732652153266e-07,
+    "pmDE": -8.21274375799554e-08,
+    "bvColor": 0.169,
+    "distance": 81.1644687733267
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 33977,
+    "name": "Omicron2 Canis Majoris",
+    "description": "Omicron2 Canis Majoris is a massive variable star in the constellation Canis Major. Its name is a Bayer designation that is Latinized from ο2 Canis Majoris, and abbreviated Omicron2 CMa or ο2 CMa.",
+    "url": "https://en.wikipedia.org/wiki/Omicron2_Canis_Majoris",
+    "alpha": 106.11991730800182,
+    "delta": -23.88651115923052,
+    "mag": 3.02,
+    "pmRA": -7.563093425308762e-09,
+    "pmDE": 2.0750025551488142e-08,
+    "bvColor": -0.077,
+    "distance": 2568.503937007874
+}

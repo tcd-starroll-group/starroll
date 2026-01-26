@@ -1,0 +1,13 @@
+{
+    "hip": 26727,
+    "name": "Alnitak",
+    "description": "Alnitak is a triple star system in the constellation of Orion. It has the designations ζ Orionis, which is Latinised to Zeta Orionis and abbreviated Zeta Ori or ζ Ori, and 50 Orionis, abbreviated 50 Ori.",
+    "url": "https://en.wikipedia.org/wiki/Alnitak",
+    "alpha": 85.62945277631007,
+    "delta": -1.9270396855164258,
+    "mag": 1.74,
+    "pmRA": 1.9344065876270488e-08,
+    "pmDE": 1.2314267500182213e-08,
+    "bvColor": -0.199,
+    "distance": 817.5438596491227
+}

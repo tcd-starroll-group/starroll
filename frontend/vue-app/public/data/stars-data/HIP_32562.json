@@ -1,0 +1,13 @@
+{
+    "hip": 32562,
+    "name": "Psi6 Aurigae",
+    "description": "Psi6 Aurigae is a spectroscopic binary star system in the northern constellation of Auriga. Its name is a Bayer designation that is Latinized from ψ6 Aurigae, and abbreviated Psi6 Aur or ψ6 Aur.",
+    "url": "https://en.wikipedia.org/wiki/Psi6_Aurigae",
+    "alpha": 102.57736767910696,
+    "delta": 48.7484036661341,
+    "mag": 5.22,
+    "pmRA": -2.545271825825064e-08,
+    "pmDE": 3.102807559101031e-08,
+    "bvColor": 1.131,
+    "distance": 424.18725617685305
+}

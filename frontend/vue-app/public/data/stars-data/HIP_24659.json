@@ -1,0 +1,13 @@
+{
+    "hip": 24659,
+    "name": "* omi Col -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+24659",
+    "alpha": 79.68517883313432,
+    "delta": -34.862402375072875,
+    "mag": 4.81,
+    "pmRA": 4.543189005677461e-07,
+    "pmDE": -1.6315434810379215e-06,
+    "bvColor": 0.987,
+    "distance": 110.09112386095174
+}

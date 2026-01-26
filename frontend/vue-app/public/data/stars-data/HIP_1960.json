@@ -1,0 +1,13 @@
+{
+    "hip": 1960,
+    "name": "* 12 Cas -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+1960",
+    "alpha": 6.685073863891864,
+    "delta": 62.02371712578195,
+    "mag": 5.38,
+    "pmRA": 6.627403020767357e-08,
+    "pmDE": -1.1877935187183634e-08,
+    "bvColor": 0.008,
+    "distance": 763.9344262295083
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 27939,
+    "name": "HD 39775 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+27939",
+    "alpha": 89.1330330863829,
+    "delta": 0.9723058974531142,
+    "mag": 5.99,
+    "pmRA": -1.405959675217654e-08,
+    "pmDE": 4.8481368110953605e-11,
+    "bvColor": 1.328,
+    "distance": 827.9187817258884
+}

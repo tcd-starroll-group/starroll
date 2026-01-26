@@ -1,0 +1,13 @@
+{
+    "hip": 81693,
+    "name": "Zeta Herculis",
+    "description": "Zeta Herculis, Latinized from ζ Herculis, is a multiple star system in the constellation Hercules. It has a combined apparent visual magnitude of 2.81, which is readily visible to the naked eye.",
+    "url": "https://en.wikipedia.org/wiki/Zeta_Herculis",
+    "alpha": 250.65231303021395,
+    "delta": 31.540452038078833,
+    "mag": 2.81,
+    "pmRA": -2.2426511260764914e-06,
+    "pmDE": 1.6728496066684539e-06,
+    "bvColor": 0.65,
+    "distance": 35.21537298931232
+}

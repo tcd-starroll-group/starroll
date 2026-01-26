@@ -1,0 +1,13 @@
+{
+    "hip": 4572,
+    "name": "HR 273",
+    "description": "HR 273 is a chemically peculiar spectroscopic binary system in the northern circumpolar constellation of Cassiopeia. It has an apparent visual magnitude of 5.9 making it faintly visible to the naked eye from dark suburban skies.",
+    "url": "https://en.wikipedia.org/wiki/HR_273",
+    "alpha": 15.190311702544351,
+    "delta": 66.53908661602648,
+    "mag": 5.97,
+    "pmRA": 2.1060306307398239e-07,
+    "pmDE": -6.39469245383478e-08,
+    "bvColor": -0.008,
+    "distance": 376.239907727797
+}

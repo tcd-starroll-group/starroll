@@ -1,0 +1,13 @@
+{
+    "hip": 31700,
+    "name": "* nu.03 CMa -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+31700",
+    "alpha": 99.85578721955484,
+    "delta": -18.270078538175365,
+    "mag": 4.42,
+    "pmRA": -3.325821852411417e-08,
+    "pmDE": -4.10637187899777e-08,
+    "bvColor": 1.137,
+    "distance": 464.0113798008535
+}

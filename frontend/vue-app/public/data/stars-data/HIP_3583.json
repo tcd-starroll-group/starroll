@@ -1,0 +1,13 @@
+{
+    "hip": 3583,
+    "name": "HD 4391 -- Eclipsing Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+3583",
+    "alpha": 11.844707380183118,
+    "delta": -47.36148886063421,
+    "mag": 5.8,
+    "pmRA": 8.918632477691024e-07,
+    "pmDE": 3.7990000051743237e-07,
+    "bvColor": 0.635,
+    "distance": 48.74476987447699
+}

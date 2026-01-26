@@ -1,0 +1,13 @@
+{
+    "hip": 23179,
+    "name": "Omega Aurigae",
+    "description": "Omega Aurigae is a double star in the northern constellation of Auriga. Its name is a Bayer designation that is Latinized from ω  Aurigae, and abbreviated Omega Aur or ω  Aur.",
+    "url": "https://en.wikipedia.org/wiki/Omega_Aurigae",
+    "alpha": 75.40676988396964,
+    "delta": 37.9393516801412,
+    "mag": 4.93,
+    "pmRA": 2.242748088812713e-07,
+    "pmDE": -4.741962614932372e-07,
+    "bvColor": 0.037,
+    "distance": 159.1219512195122
+}

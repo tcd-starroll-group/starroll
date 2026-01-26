@@ -1,0 +1,13 @@
+{
+    "hip": 2225,
+    "name": "HD 2421",
+    "description": "HD 2421 is a multiple star system in the constellation Andromeda. It is faintly visible to the naked eye with a combined apparent visual magnitude of 5.17. Based on parallax measurements, it is located at a distance of approximately 290 light years from the Sun.",
+    "url": "https://en.wikipedia.org/wiki/HD_2421",
+    "alpha": 7.527896202667366,
+    "delta": 44.58669253834547,
+    "mag": 5.18,
+    "pmRA": 4.077283058131197e-07,
+    "pmDE": -7.432193731409185e-08,
+    "bvColor": 0.043,
+    "distance": 264.77272727272725
+}

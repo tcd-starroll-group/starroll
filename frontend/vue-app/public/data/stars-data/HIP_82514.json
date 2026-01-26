@@ -1,0 +1,13 @@
+{
+    "hip": 82514,
+    "name": "Mu1 Scorpii",
+    "description": "Mu1 Scorpii (μ1 Scorpii, abbreviated Mu1 Sco, μ1 Sco) is a binary star system in the southern zodiac constellation of Scorpius. The combined apparent visual magnitude of the pair is about magnitude 3, making it one of the brighter members of Scorpius.",
+    "url": "https://en.wikipedia.org/wiki/Mu1_Scorpii",
+    "alpha": 253.55933364423808,
+    "delta": -38.10338281239894,
+    "mag": 3,
+    "pmRA": -4.2857529410082985e-08,
+    "pmDE": -1.0471975511965977e-07,
+    "bvColor": -0.2,
+    "distance": 821.6624685138538
+}

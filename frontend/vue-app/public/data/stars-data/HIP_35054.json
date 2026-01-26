@@ -1,0 +1,13 @@
+{
+    "hip": 35054,
+    "name": "HD 56410 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+35054",
+    "alpha": 109.02234964988071,
+    "delta": -41.48907166183024,
+    "mag": 5.95,
+    "pmRA": 1.6435183789613272e-08,
+    "pmDE": 4.6348187914071644e-08,
+    "bvColor": -0.146,
+    "distance": 551.9458544839255
+}

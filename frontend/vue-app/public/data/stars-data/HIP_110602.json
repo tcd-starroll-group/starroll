@@ -1,0 +1,13 @@
+{
+    "hip": 110602,
+    "name": "* 50 Aqr -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+110602",
+    "alpha": 336.57798522122346,
+    "delta": -13.351661358987984,
+    "mag": 5.76,
+    "pmRA": 2.457520549544238e-07,
+    "pmDE": 6.903746818999792e-08,
+    "bvColor": 0.97,
+    "distance": 542.7620632279534
+}

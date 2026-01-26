@@ -1,0 +1,13 @@
+{
+    "hip": 6999,
+    "name": "49 Andromedae",
+    "description": "49 Andromedae is a star in the constellation Andromeda. 49 Andromedae is the Flamsteed designation (abbreviated 49 And), though it also bears the Bayer designation A Andromedae.",
+    "url": "https://en.wikipedia.org/wiki/49_Andromedae",
+    "alpha": 23.05251604096782,
+    "delta": 47.18574992521672,
+    "mag": 5.27,
+    "pmRA": 3.1028075591010307e-09,
+    "pmDE": -2.061912585758857e-07,
+    "bvColor": 0.999,
+    "distance": 289.69804618117234
+}

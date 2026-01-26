@@ -1,0 +1,13 @@
+{
+    "hip": 20087,
+    "name": "* 51 Tau -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+20087",
+    "alpha": 65.1131972920119,
+    "delta": 21.661454155645792,
+    "mag": 5.64,
+    "pmRA": 4.674573513258146e-07,
+    "pmDE": -1.6444880063235463e-07,
+    "bvColor": 0.277,
+    "distance": 178.73972602739727
+}

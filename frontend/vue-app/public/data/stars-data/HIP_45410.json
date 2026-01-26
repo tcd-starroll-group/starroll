@@ -1,0 +1,13 @@
+{
+    "hip": 45410,
+    "name": "* pi.02 Cnc -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+45410",
+    "alpha": 139.2874689333721,
+    "delta": 14.7949578135906,
+    "mag": 5.36,
+    "pmRA": -1.9203469908748718e-07,
+    "pmDE": -5.977752688080579e-08,
+    "bvColor": 1.319,
+    "distance": 701.5053763440859
+}

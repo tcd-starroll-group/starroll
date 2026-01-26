@@ -1,0 +1,13 @@
+{
+    "hip": 52043,
+    "name": "HD 92287 -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+52043",
+    "alpha": 159.85213761655513,
+    "delta": -57.43814249503257,
+    "mag": 5.89,
+    "pmRA": -7.553397151686569e-08,
+    "pmDE": 3.490658503988659e-09,
+    "bvColor": -0.128,
+    "distance": 1279.2156862745098
+}

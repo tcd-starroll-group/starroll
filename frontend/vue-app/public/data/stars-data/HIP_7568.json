@@ -1,0 +1,13 @@
+{
+    "hip": 7568,
+    "name": "HD 11025 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+7568",
+    "alpha": 23.95981549774828,
+    "delta": -84.59248700728313,
+    "mag": 5.66,
+    "pmRA": 1.6818186597689803e-07,
+    "pmDE": 1.1368880822018617e-07,
+    "bvColor": 0.939,
+    "distance": 364.8769574944072
+}

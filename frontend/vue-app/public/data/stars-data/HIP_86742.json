@@ -1,0 +1,13 @@
+{
+    "hip": 86742,
+    "name": "Beta Ophiuchi",
+    "description": "Beta Ophiuchi or β Ophiuchi, also named Cebalrai , is a star in the equatorial constellation of Ophiuchus. The apparent visual magnitude of this star is 2.7, which is readily visible to the naked eye even from urban skies.",
+    "url": "https://en.wikipedia.org/wiki/Beta_Ophiuchi",
+    "alpha": 266.2986981086959,
+    "delta": 4.555207728300984,
+    "mag": 2.76,
+    "pmRA": -1.9717372410724831e-07,
+    "pmDE": 7.698841256019434e-07,
+    "bvColor": 1.168,
+    "distance": 82.00100553041729
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 54182,
+    "name": "* chi Leo -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+54182",
+    "alpha": 166.70383097203492,
+    "delta": 7.147118358355642,
+    "mag": 4.62,
+    "pmRA": -1.6697467991093533e-06,
+    "pmDE": -2.2980168484592e-07,
+    "bvColor": 0.332,
+    "distance": 94.44122756224667
+}

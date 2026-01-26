@@ -1,0 +1,13 @@
+{
+    "hip": 39567,
+    "name": "* 8 Cnc -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+39567",
+    "alpha": 121.75309826406973,
+    "delta": 13.016394736353478,
+    "mag": 5.14,
+    "pmRA": -1.7065441575055667e-07,
+    "pmDE": -3.0960201675654963e-07,
+    "bvColor": 0.018,
+    "distance": 210.5874757908328
+}

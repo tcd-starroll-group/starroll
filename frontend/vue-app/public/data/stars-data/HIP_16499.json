@@ -1,0 +1,13 @@
+{
+    "hip": 16499,
+    "name": "* 36 Per -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+16499",
+    "alpha": 53.717226510471185,
+    "delta": 46.171910566825986,
+    "mag": 5.3,
+    "pmRA": -2.5583617952150215e-07,
+    "pmDE": -3.623497452612672e-07,
+    "bvColor": 0.398,
+    "distance": 118.79096868171887
+}

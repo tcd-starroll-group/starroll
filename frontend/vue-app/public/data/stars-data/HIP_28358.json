@@ -1,0 +1,13 @@
+{
+    "hip": 28358,
+    "name": "Delta Aurigae",
+    "description": "Delta Aurigae, also named Bagu, is an astrometric binary star in the northern constellation of Auriga.",
+    "url": "https://en.wikipedia.org/wiki/Delta_Aurigae",
+    "alpha": 90.59825587479149,
+    "delta": 54.28286215765131,
+    "mag": 3.72,
+    "pmRA": 4.184426881656405e-07,
+    "pmDE": -6.49892739527333e-07,
+    "bvColor": 1.01,
+    "distance": 140.48234280792423
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 92747,
+    "name": "* 33 Sgr -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+92747",
+    "alpha": 284.02024388100955,
+    "delta": -21.313878007652267,
+    "mag": 5.68,
+    "pmRA": 9.793236358412626e-09,
+    "pmDE": -9.817477042468105e-08,
+    "bvColor": 1.206,
+    "distance": 1735.1063829787236
+}

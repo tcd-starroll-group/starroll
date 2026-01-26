@@ -1,0 +1,13 @@
+{
+    "hip": 89042,
+    "name": "* iot Pav -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+89042",
+    "alpha": 273.41905969904667,
+    "delta": -61.990311944959444,
+    "mag": 5.47,
+    "pmRA": -3.762154165409999e-07,
+    "pmDE": 1.137760746827859e-06,
+    "bvColor": 0.592,
+    "distance": 57.919034090909086
+}

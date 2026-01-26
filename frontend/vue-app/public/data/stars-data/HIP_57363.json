@@ -1,0 +1,13 @@
+{
+    "hip": 57363,
+    "name": "* lam Mus -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+57363",
+    "alpha": 176.82090396006384,
+    "delta": -66.92208238641778,
+    "mag": 3.63,
+    "pmRA": -4.86849898570196e-07,
+    "pmDE": 1.6100662349647692e-07,
+    "bvColor": 0.16,
+    "distance": 128.32415420928402
+}

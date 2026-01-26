@@ -1,0 +1,13 @@
+{
+    "hip": 94141,
+    "name": "Pi Sagittarii",
+    "description": "Pi Sagittarii (π Sagittarii, abbreviated Pi Sgr, π Sgr) is a triple star system in the zodiac constellation of Sagittarius. It has an apparent visual magnitude of +2.89, bright enough to be readily seen with the naked eye.",
+    "url": "https://en.wikipedia.org/wiki/Pi_Sagittarii",
+    "alpha": 287.9581148548447,
+    "delta": -20.964930721864672,
+    "mag": 2.88,
+    "pmRA": -5.672320068981571e-09,
+    "pmDE": -1.7855687875264212e-07,
+    "bvColor": 0.377,
+    "distance": 440.2159244264508
+}

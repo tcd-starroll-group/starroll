@@ -1,0 +1,13 @@
+{
+    "hip": 98036,
+    "name": "Beta Aquilae",
+    "description": "Beta Aquilae is a triple star system in the equatorial constellation of Aquila. Its name is a Bayer designation that is Latinized from β Aquilae, and abbreviated Beta Aql or β Aql.",
+    "url": "https://en.wikipedia.org/wiki/Beta_Aquilae",
+    "alpha": 299.25576733335384,
+    "delta": 6.49742178696288,
+    "mag": 3.71,
+    "pmRA": 2.2471114119426996e-07,
+    "pmDE": -2.333505209916419e-06,
+    "bvColor": 0.855,
+    "distance": 44.71555860178204
+}

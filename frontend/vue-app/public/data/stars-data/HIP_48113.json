@@ -1,0 +1,13 @@
+{
+    "hip": 48113,
+    "name": "* 15 LMi -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+48113",
+    "alpha": 147.70288603616905,
+    "delta": 45.85691951840407,
+    "mag": 5.08,
+    "pmRA": 1.0766257416399466e-06,
+    "pmDE": -4.490344314436522e-07,
+    "bvColor": 0.619,
+    "distance": 60.11795060818283
+}

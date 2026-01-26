@@ -1,0 +1,13 @@
+{
+    "hip": 104139,
+    "name": "* tet Cap -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+104139",
+    "alpha": 316.9746787921231,
+    "delta": -17.092124573313082,
+    "mag": 4.08,
+    "pmRA": 3.861056156356345e-07,
+    "pmDE": -2.9883915303591795e-07,
+    "bvColor": -0.01,
+    "distance": 158.27268316351285
+}

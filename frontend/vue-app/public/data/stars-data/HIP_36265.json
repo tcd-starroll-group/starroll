@@ -1,0 +1,13 @@
+{
+    "hip": 36265,
+    "name": "* eta CMi -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+36265",
+    "alpha": 112.47664628532308,
+    "delta": 6.868248904824716,
+    "mag": 5.22,
+    "pmRA": -1.6386702421502316e-08,
+    "pmDE": -2.174389359776269e-07,
+    "bvColor": 0.221,
+    "distance": 351.5086206896552
+}

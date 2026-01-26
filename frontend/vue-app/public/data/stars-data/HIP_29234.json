@@ -1,0 +1,13 @@
+{
+    "hip": 29234,
+    "name": "HD 42443 -- Double or Multiple Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+29234",
+    "alpha": 92.81541014853583,
+    "delta": -22.782819794030978,
+    "mag": 5.71,
+    "pmRA": 4.249876728606192e-07,
+    "pmDE": 2.9457279264215403e-07,
+    "bvColor": 0.454,
+    "distance": 176.51515151515153
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 39095,
+    "name": "HD 65810",
+    "description": "HD 65810 is a class A2V (white main-sequence) star in the constellation Puppis. Its apparent magnitude is 4.61 and it is approximately 241 light years away based on parallax.\n\n\n== References ==",
+    "url": "https://en.wikipedia.org/wiki/HD_65810",
+    "alpha": 120.35719483379982,
+    "delta": -18.496907434987467,
+    "mag": 4.61,
+    "pmRA": -3.534291735288517e-08,
+    "pmDE": -1.700241579651143e-07,
+    "bvColor": 0.087,
+    "distance": 238.27611395178965
+}

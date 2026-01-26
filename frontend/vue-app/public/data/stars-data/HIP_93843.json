@@ -1,0 +1,13 @@
+{
+    "hip": 93843,
+    "name": "HD 178233",
+    "description": "HD 178233 is a single star in the northern constellation of Lyra. It is bright enough to be dimly visible to the naked eye with an apparent visual magnitude of 5.53, making it a sixth magnitude star.",
+    "url": "https://en.wikipedia.org/wiki/HD_178233",
+    "alpha": 287.0025752944214,
+    "delta": 28.68534945962728,
+    "mag": 5.53,
+    "pmRA": 3.676342143853611e-07,
+    "pmDE": 4.0932819096078124e-07,
+    "bvColor": 0.296,
+    "distance": 133.14285714285714
+}

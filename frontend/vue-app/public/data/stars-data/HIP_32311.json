@@ -1,0 +1,13 @@
+{
+    "hip": 32311,
+    "name": "* 28 Gem -- Variable Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+32311",
+    "alpha": 101.74073998122425,
+    "delta": 28.932227817756367,
+    "mag": 5.42,
+    "pmRA": -4.24211970970844e-08,
+    "pmDE": -1.1465843558240525e-07,
+    "bvColor": 1.445,
+    "distance": 570.2797202797203
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 38020,
+    "name": "HD 63578 -- Young Stellar Object",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+38020",
+    "alpha": 117.14451548022726,
+    "delta": -46.69649512028771,
+    "mag": 5.22,
+    "pmRA": -1.7307848415610433e-08,
+    "pmDE": 3.8542687648208115e-08,
+    "bvColor": -0.151,
+    "distance": 1672.8205128205127
+}

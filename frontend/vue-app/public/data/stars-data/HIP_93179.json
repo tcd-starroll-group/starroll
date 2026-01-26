@@ -1,0 +1,13 @@
+{
+    "hip": 93179,
+    "name": "10 Aquilae",
+    "description": "10 Aquilae (abbreviated 10 Aql) is a star in the equatorial constellation of Aquila. 10 Aquilae is the Flamsteed designation. It has an apparent visual magnitude of 5.9 and thus is a faint star that is just visible to the naked eye in dark skies.",
+    "url": "https://en.wikipedia.org/wiki/10_Aquilae",
+    "alpha": 285.09530258397984,
+    "delta": 13.956125743243069,
+    "mag": 5.91,
+    "pmRA": 4.5572486024296384e-09,
+    "pmDE": -2.492911948265234e-07,
+    "bvColor": 0.251,
+    "distance": 242.52788104089223
+}

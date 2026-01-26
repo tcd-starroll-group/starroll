@@ -1,0 +1,13 @@
+{
+    "hip": 83431,
+    "name": "Epsilon2 Arae",
+    "description": "Epsilon2 Arae is a double star in the southern constellation of Ara. Its name is a Bayer designation that is Latinized from ε2 Arae, and abbreviated Epsilon2 Ara or ε2 Ara. Based on parallax measurements, it is 89 light-years (27 parsecs) distant from Earth.",
+    "url": "https://en.wikipedia.org/wiki/Epsilon2_Arae",
+    "alpha": 256.48479630831105,
+    "delta": -53.28470211539089,
+    "mag": 5.27,
+    "pmRA": 5.623838700870617e-09,
+    "pmDE": -8.004273875118438e-07,
+    "bvColor": 0.498,
+    "distance": 85.90992889122991
+}

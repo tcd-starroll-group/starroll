@@ -1,0 +1,13 @@
+{
+    "hip": 11102,
+    "name": "HD 14943 -- Double or Multiple Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+11102",
+    "alpha": 36.033786580100234,
+    "delta": -50.93452623210297,
+    "mag": 5.9,
+    "pmRA": 1.0709534215709652e-07,
+    "pmDE": 3.2002551090040476e-07,
+    "bvColor": 0.213,
+    "distance": 200.12269938650306
+}

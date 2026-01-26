@@ -1,0 +1,13 @@
+{
+    "hip": 11784,
+    "name": "* 14 Tri -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+11784",
+    "alpha": 38.56034470230612,
+    "delta": 36.29957112623951,
+    "mag": 5.15,
+    "pmRA": 2.3183790230658014e-07,
+    "pmDE": 7.965488780629677e-08,
+    "bvColor": 1.472,
+    "distance": 391.5966386554622
+}

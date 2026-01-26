@@ -1,0 +1,13 @@
+{
+    "hip": 73568,
+    "name": "Omega Boötis",
+    "description": "Omega Boötis is a solitary, orange-hued star in the northern  constellation of Boötes. Its name is a Bayer designation that is Latinized from ω Boötis, and abbreviated Omega Boo or ω Boo.",
+    "url": "https://en.wikipedia.org/wiki/Omega_Bo%C3%B6tis",
+    "alpha": 225.90878801136475,
+    "delta": 24.872393792435886,
+    "mag": 4.8,
+    "pmRA": -2.8507044449240718e-08,
+    "pmDE": -2.356194490192345e-07,
+    "bvColor": 1.506,
+    "distance": 359.64718853362734
+}

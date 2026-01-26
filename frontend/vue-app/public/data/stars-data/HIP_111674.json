@@ -1,0 +1,13 @@
+{
+    "hip": 111674,
+    "name": "* 9 Lac -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+111674",
+    "alpha": 339.7037118643517,
+    "delta": 51.7260186713954,
+    "mag": 4.64,
+    "pmRA": -2.4875789977730293e-07,
+    "pmDE": -5.010064580585945e-07,
+    "bvColor": 0.254,
+    "distance": 172.13720316622693
+}

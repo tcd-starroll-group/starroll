@@ -1,0 +1,13 @@
+{
+    "hip": 24450,
+    "name": "HD 34043 -- Variable Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+24450",
+    "alpha": 79.14698464695651,
+    "delta": 5.193504774958458,
+    "mag": 5.5,
+    "pmRA": -3.398543904577847e-08,
+    "pmDE": 4.237271572897345e-08,
+    "bvColor": 1.369,
+    "distance": 598.5321100917431
+}

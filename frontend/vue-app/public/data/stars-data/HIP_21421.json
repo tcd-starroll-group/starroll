@@ -1,0 +1,13 @@
+{
+    "hip": 21421,
+    "name": "Aldebaran",
+    "description": "Aldebaran (Arabic: الدَّبَران, lit. 'The Follower') is a star in the zodiac constellation of Taurus. It has the Bayer designation α Tauri, which is Latinized to Alpha Tauri and abbreviated Alpha Tau or α Tau.",
+    "url": "https://en.wikipedia.org/wiki/Aldebaran",
+    "alpha": 69.48073609794314,
+    "delta": 16.576679591201145,
+    "mag": 0.87,
+    "pmRA": 3.0436602900056673e-07,
+    "pmDE": -9.180431865490173e-07,
+    "bvColor": 1.538,
+    "distance": 65.12277899780395
+}

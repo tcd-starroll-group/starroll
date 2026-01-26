@@ -1,0 +1,13 @@
+{
+    "hip": 43553,
+    "name": "HD 75523 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+43553",
+    "alpha": 133.63749186078138,
+    "delta": 45.179473281300396,
+    "mag": 5.96,
+    "pmRA": -5.342646765827087e-08,
+    "pmDE": -1.615399185456974e-07,
+    "bvColor": 1.233,
+    "distance": 538.2838283828384
+}

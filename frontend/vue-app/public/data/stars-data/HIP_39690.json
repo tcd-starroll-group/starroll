@@ -1,0 +1,13 @@
+{
+    "hip": 39690,
+    "name": "HD 67582 -- Variable Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+39690",
+    "alpha": 121.94768694979724,
+    "delta": -45.36815357740623,
+    "mag": 5.04,
+    "pmRA": -2.5598162362583498e-08,
+    "pmDE": 5.3329504922048954e-08,
+    "bvColor": 1.488,
+    "distance": 1240.3041825095058
+}

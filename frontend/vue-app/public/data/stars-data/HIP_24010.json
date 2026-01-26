@@ -1,0 +1,13 @@
+{
+    "hip": 24010,
+    "name": "* 15 Ori -- Double or Multiple Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+24010",
+    "alpha": 77.92399761353761,
+    "delta": 15.638515020924709,
+    "mag": 4.81,
+    "pmRA": -3.451873409499896e-08,
+    "pmDE": -7.824892813107912e-08,
+    "bvColor": 0.313,
+    "distance": 318.5546875
+}

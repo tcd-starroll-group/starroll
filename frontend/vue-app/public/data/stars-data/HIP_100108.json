@@ -1,0 +1,13 @@
+{
+    "hip": 100108,
+    "name": "* 36 Cyg -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+100108",
+    "alpha": 304.94570544306765,
+    "delta": 37.110562821040695,
+    "mag": 5.58,
+    "pmRA": 1.9562232032769778e-07,
+    "pmDE": 9.725362443057291e-08,
+    "bvColor": 0.056,
+    "distance": 194.63007159904535
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 115250,
+    "name": "* tau Peg -- delta Sct Variable",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+115250",
+    "alpha": 350.59149886070117,
+    "delta": 23.93145278258805,
+    "mag": 4.58,
+    "pmRA": 1.4777121000218656e-07,
+    "pmDE": -4.431197045341159e-08,
+    "bvColor": 0.18,
+    "distance": 167.2820512820513
+}

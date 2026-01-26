@@ -1,0 +1,13 @@
+{
+    "hip": 111196,
+    "name": "* ups Oct -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+111196",
+    "alpha": 339.33406200291716,
+    "delta": -85.78622366809509,
+    "mag": 5.76,
+    "pmRA": -1.8248386956962935e-07,
+    "pmDE": 2.9694837967959075e-07,
+    "bvColor": 1.02,
+    "distance": 330.16194331983803
+}

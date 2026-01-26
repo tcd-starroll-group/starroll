@@ -1,0 +1,13 @@
+{
+    "hip": 47205,
+    "name": "* 10 Leo -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+47205",
+    "alpha": 144.76188648117403,
+    "delta": 6.677956759581162,
+    "mag": 5,
+    "pmRA": -3.4063009234756003e-07,
+    "pmDE": 5.347494902638182e-08,
+    "bvColor": 1.051,
+    "distance": 225.7439446366782
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 29736,
+    "name": "* 73 Ori -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+29736",
+    "alpha": 94.42665109084903,
+    "delta": 12.536927650965902,
+    "mag": 5.44,
+    "pmRA": -1.5562519163616104e-08,
+    "pmDE": -7.466130689086855e-09,
+    "bvColor": 0.015,
+    "distance": 1400
+}

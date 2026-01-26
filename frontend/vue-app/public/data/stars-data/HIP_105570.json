@@ -1,0 +1,13 @@
+{
+    "hip": 105570,
+    "name": "Beta Equulei",
+    "description": "Beta Equulei, Latinized from β Equulei, is the Bayer designation for a solitary star in the northern constellation of Equuleus.",
+    "url": "https://en.wikipedia.org/wiki/Beta_Equulei",
+    "alpha": 321.1552790816185,
+    "delta": 6.961786053366298,
+    "mag": 5.16,
+    "pmRA": 2.5530288447228164e-07,
+    "pmDE": 5.4056725443713254e-08,
+    "bvColor": 0.064,
+    "distance": 360.04415011037526
+}

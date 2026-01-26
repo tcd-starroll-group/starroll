@@ -1,0 +1,13 @@
+{
+    "hip": 31897,
+    "name": "* zet Men -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+31897",
+    "alpha": 99.27415825857523,
+    "delta": -80.84568949193624,
+    "mag": 5.61,
+    "pmRA": -2.4628535000364425e-08,
+    "pmDE": 2.587450616081593e-07,
+    "bvColor": 0.214,
+    "distance": 404.21313506815363
+}

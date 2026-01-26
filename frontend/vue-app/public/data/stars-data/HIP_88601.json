@@ -1,0 +1,13 @@
+{
+    "hip": 88601,
+    "name": "* 70 Oph -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+88601",
+    "alpha": 271.8024083202136,
+    "delta": 2.4984890981628824,
+    "mag": 4.03,
+    "pmRA": 6.038839211900379e-07,
+    "pmDE": -4.667107382569059e-06,
+    "bvColor": 0.86,
+    "distance": 16.590377377682838
+}

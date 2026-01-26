@@ -1,0 +1,13 @@
+{
+    "hip": 85267,
+    "name": "Gamma Arae",
+    "description": "Gamma Arae is a massive star in the southern constellation of Ara. Its name is a Bayer designation that is Latinized from γ Arae, and abbreviated Gamma Ara or γ Ara.",
+    "url": "https://en.wikipedia.org/wiki/Gamma_Arae",
+    "alpha": 262.0835760279446,
+    "delta": -56.405786144151556,
+    "mag": 3.31,
+    "pmRA": -3.733065344543427e-09,
+    "pmDE": -7.684296845586144e-08,
+    "bvColor": -0.15,
+    "distance": 1136.5853658536585
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 54029,
+    "name": "HD 95808",
+    "description": "HD 95808 is a double star in the constellation of Crater. Its apparent magnitude is 5.50, but interstellar dust makes it appear 0.11 magnitudes dimmer than it should be. It is located some 315 light-years (96.5 parsecs) away, based on parallax.\nHD 95808 is a G-type giant star.",
+    "url": "https://en.wikipedia.org/wiki/HD_95808",
+    "alpha": 166.2482570750218,
+    "delta": -11.49243241212233,
+    "mag": 5.51,
+    "pmRA": -3.9614125883460185e-07,
+    "pmDE": -5.19283933836424e-07,
+    "bvColor": 0.938,
+    "distance": 318.5546875
+}

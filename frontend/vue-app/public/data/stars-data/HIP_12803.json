@@ -1,0 +1,13 @@
+{
+    "hip": 12803,
+    "name": "Omicron Arietis",
+    "description": "Omicron Arietis is a single, blue-white-hued star in the northern constellation of Aries. Its name is a Bayer designation that is Latinised from ο Arietis, and abbreviated Omicron Ari or ο Ari.",
+    "url": "https://en.wikipedia.org/wiki/Omicron_Arietis",
+    "alpha": 41.61896268658459,
+    "delta": 15.457240183863377,
+    "mag": 5.78,
+    "pmRA": 2.0798506919599095e-08,
+    "pmDE": -7.577637835742048e-08,
+    "bvColor": -0.024,
+    "distance": 482.5443786982248
+}

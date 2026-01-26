@@ -1,0 +1,13 @@
+{
+    "hip": 45101,
+    "name": "HD 79447",
+    "description": "HD 79447 is a single star in the southern constellation of Carina. It has the Bayer designation i Carinae, while HD 79447 is the identifier from the Henry Draper catalogue.",
+    "url": "https://en.wikipedia.org/wiki/HD_79447",
+    "alpha": 138.0173189467969,
+    "delta": -62.460791912120854,
+    "mag": 3.96,
+    "pmRA": -1.8442312429406748e-07,
+    "pmDE": 7.723081940074908e-08,
+    "bvColor": -0.18,
+    "distance": 499.5405819295559
+}

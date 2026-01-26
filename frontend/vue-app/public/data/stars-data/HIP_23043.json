@@ -1,0 +1,13 @@
+{
+    "hip": 23043,
+    "name": "HD 31539 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+23043",
+    "alpha": 74.84708867820737,
+    "delta": 17.20508551619597,
+    "mag": 5.51,
+    "pmRA": -5.4105206811824216e-08,
+    "pmDE": -5.963208277647293e-08,
+    "bvColor": 1.304,
+    "distance": 472.0694645441389
+}

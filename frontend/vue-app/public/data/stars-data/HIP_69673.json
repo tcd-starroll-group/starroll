@@ -1,0 +1,13 @@
+{
+    "hip": 69673,
+    "name": "Arcturus",
+    "description": "Arcturus is a red giant star in the northern constellation of Boötes, and the brightest star in the constellation. It has the Bayer designation α Boötis, which is Latinized to Alpha Boötis and abbreviated Alf Boo or α Boo.",
+    "url": "https://en.wikipedia.org/wiki/Arcturus",
+    "alpha": 214.31619228292112,
+    "delta": 19.007387312382054,
+    "mag": -0.05,
+    "pmRA": -5.301195196092222e-06,
+    "pmDE": -9.693364740104063e-06,
+    "bvColor": 1.239,
+    "distance": 36.71356218345526
+}

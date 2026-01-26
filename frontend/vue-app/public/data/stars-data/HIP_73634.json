@@ -1,0 +1,13 @@
+{
+    "hip": 73634,
+    "name": "HD 133392 -- Variable Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+73634",
+    "alpha": 226.1231352598336,
+    "delta": 35.07104278794745,
+    "mag": 5.52,
+    "pmRA": -1.9368306560325967e-07,
+    "pmDE": 4.5087672343186855e-08,
+    "bvColor": 1.023,
+    "distance": 275.2742616033755
+}

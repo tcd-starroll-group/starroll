@@ -1,0 +1,13 @@
+{
+    "hip": 94160,
+    "name": "Beta Coronae Australis",
+    "description": "Beta Coronae Australis (β CrA), Latinized from β Coronae Australis, is a solitary star located in the southern constellation Corona Australis.",
+    "url": "https://en.wikipedia.org/wiki/Beta_Coronae_Australis",
+    "alpha": 288.10479745902734,
+    "delta": -39.281753457900834,
+    "mag": 4.1,
+    "pmRA": 2.8555525817351667e-08,
+    "pmDE": -1.7831447191208733e-07,
+    "bvColor": 1.163,
+    "distance": 508.0996884735203
+}

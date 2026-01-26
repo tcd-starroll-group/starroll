@@ -1,0 +1,13 @@
+{
+    "hip": 9001,
+    "name": "HD 11727 -- Asymptotic Giant Branch Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+9001",
+    "alpha": 29.495637681256536,
+    "delta": 37.4469527742253,
+    "mag": 5.89,
+    "pmRA": 4.5669448760518287e-08,
+    "pmDE": -3.039781780556791e-08,
+    "bvColor": 1.599,
+    "distance": 991.4893617021277
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 83081,
+    "name": "Zeta Arae",
+    "description": "Zeta Arae is the third-brightest star in the southern constellation Ara. Its name is a Bayer designation that is Latinized from ζ Arae, and abbreviated Zeta Ara or ζ Ara.",
+    "url": "https://en.wikipedia.org/wiki/Zeta_Arae",
+    "alpha": 255.37909607056676,
+    "delta": -56.04052902929104,
+    "mag": 3.12,
+    "pmRA": -8.876938501115603e-08,
+    "pmDE": -1.7109074806355526e-07,
+    "bvColor": 1.552,
+    "distance": 574.2957746478874
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 20873,
+    "name": "* 76 Tau -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+20873",
+    "alpha": 67.59179568710186,
+    "delta": 14.81551223264959,
+    "mag": 5.9,
+    "pmRA": 5.319375709133828e-07,
+    "pmDE": -1.0311986997199829e-07,
+    "bvColor": 0.325,
+    "distance": 177.0901194353963
+}

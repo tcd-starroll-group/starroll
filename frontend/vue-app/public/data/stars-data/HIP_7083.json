@@ -1,0 +1,13 @@
+{
+    "hip": 7083,
+    "name": "* del Phe -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+7083",
+    "alpha": 23.172949662207014,
+    "delta": -48.8930879864113,
+    "mag": 3.93,
+    "pmRA": 6.701094700296006e-07,
+    "pmDE": 7.475826962709045e-07,
+    "bvColor": 0.972,
+    "distance": 147.2686230248307
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 98416,
+    "name": "HD 189340 -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+98416",
+    "alpha": 300.4210564167791,
+    "delta": -9.8635824466066,
+    "mag": 5.87,
+    "pmRA": -1.1961807954015582e-06,
+    "pmDE": -1.9022149592013752e-06,
+    "bvColor": 0.598,
+    "distance": 80.04907975460122
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 22040,
+    "name": "* kap Dor -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+22040",
+    "alpha": 71.2204990690939,
+    "delta": -59.669769003335595,
+    "mag": 5.28,
+    "pmRA": 1.4214737130131596e-07,
+    "pmDE": 2.1423916568230397e-07,
+    "bvColor": 0.206,
+    "distance": 222.51023192360162
+}

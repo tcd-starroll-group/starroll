@@ -1,0 +1,13 @@
+{
+    "hip": 42313,
+    "name": "* del Hya -- Double or Multiple Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+42313",
+    "alpha": 129.87455616513824,
+    "delta": 5.580020552734709,
+    "mag": 4.14,
+    "pmRA": -3.406785737156709e-07,
+    "pmDE": -3.388847630955657e-08,
+    "bvColor": 0.003,
+    "distance": 179.13234486545852
+}

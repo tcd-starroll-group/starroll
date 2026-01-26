@@ -1,0 +1,13 @@
+{
+    "hip": 35611,
+    "name": "V* HQ CMa -- Eclipsing Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+35611",
+    "alpha": 110.58246997227073,
+    "delta": -27.031415937184043,
+    "mag": 6,
+    "pmRA": -2.4095239951143932e-08,
+    "pmDE": 2.729501024646687e-08,
+    "bvColor": -0.172,
+    "distance": 1802.2099447513813
+}

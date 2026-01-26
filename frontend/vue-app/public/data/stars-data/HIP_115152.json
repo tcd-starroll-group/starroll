@@ -1,0 +1,13 @@
+{
+    "hip": 115152,
+    "name": "11 Andromedae",
+    "description": "11 Andromedae, abbreviated 11 And, is a single, orange-hued star in the northern constellation of Andromeda. 11 Andromedae is the Flamsteed designation. It has an apparent visual magnitude of 5.44, which is bright enough to be faintly visible to the naked eye.",
+    "url": "https://en.wikipedia.org/wiki/11_Andromedae",
+    "alpha": 350.2825655222889,
+    "delta": 48.81670612615278,
+    "mag": 5.44,
+    "pmRA": 1.1141018391897137e-07,
+    "pmDE": 2.516667818639601e-07,
+    "bvColor": 1.014,
+    "distance": 327.8391959798995
+}

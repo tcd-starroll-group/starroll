@@ -1,0 +1,13 @@
+{
+    "hip": 21273,
+    "name": "* rho Tau -- delta Sct Variable",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+21273",
+    "alpha": 68.95720176699595,
+    "delta": 14.914655253575502,
+    "mag": 4.65,
+    "pmRA": 5.027033059424779e-07,
+    "pmDE": -1.2576066887981365e-07,
+    "bvColor": 0.255,
+    "distance": 152.5011687704535
+}

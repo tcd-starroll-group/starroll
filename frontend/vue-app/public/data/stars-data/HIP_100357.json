@@ -1,0 +1,13 @@
+{
+    "hip": 100357,
+    "name": "HD 194298 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+100357",
+    "alpha": 305.4195746794246,
+    "delta": 64.09243874470083,
+    "mag": 5.69,
+    "pmRA": 2.9767560020125507e-08,
+    "pmDE": 7.039494649710462e-08,
+    "bvColor": 1.561,
+    "distance": 733.0337078651685
+}

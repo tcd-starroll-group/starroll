@@ -1,0 +1,13 @@
+{
+    "hip": 60965,
+    "name": "Delta Corvi",
+    "description": "Delta Corvi (δ Corvi, abbreviated Delta Crv, δ Crv), also named Algorab , is a third magnitude star at a distance of 86.9 light-years (26.6 parsecs) from the Sun in the southern constellation of Corvus.",
+    "url": "https://en.wikipedia.org/wiki/Delta_Corvi",
+    "alpha": 187.9185719747007,
+    "delta": -16.70859588769241,
+    "mag": 2.94,
+    "pmRA": -1.0179632862256926e-06,
+    "pmDE": -6.753454577855836e-07,
+    "bvColor": -0.012,
+    "distance": 87.90083535435193
+}

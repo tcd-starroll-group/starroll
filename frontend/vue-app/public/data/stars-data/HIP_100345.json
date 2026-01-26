@@ -1,0 +1,13 @@
+{
+    "hip": 100345,
+    "name": "* bet01 Cap -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+100345",
+    "alpha": 305.74094392965475,
+    "delta": -14.66865771434399,
+    "mag": 3.05,
+    "pmRA": 2.3474678439323734e-07,
+    "pmDE": 6.787391535533503e-08,
+    "bvColor": 0.79,
+    "distance": 344.0928270042194
+}

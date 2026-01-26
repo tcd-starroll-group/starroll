@@ -1,0 +1,13 @@
+{
+    "hip": 21727,
+    "name": "* 3 Cam -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+21727",
+    "alpha": 70.66736923608275,
+    "delta": 53.14472324176337,
+    "mag": 5.07,
+    "pmRA": -3.5779249665883764e-08,
+    "pmDE": -7.732778213697098e-08,
+    "bvColor": 1.079,
+    "distance": 495.74468085106383
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 92761,
+    "name": "* nu.01 Sgr -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+92761",
+    "alpha": 284.0675773207148,
+    "delta": -22.69861811384564,
+    "mag": 4.86,
+    "pmRA": 1.4302003592731312e-08,
+    "pmDE": -2.7634379823243553e-08,
+    "bvColor": 1.412,
+    "distance": 1853.4090909090908
+}

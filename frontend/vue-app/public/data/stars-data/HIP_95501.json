@@ -1,0 +1,13 @@
+{
+    "hip": 95501,
+    "name": "Theta Aquilae",
+    "description": "Theta Aquilae, also named Antinous, is a binary star in the equatorial constellation Aquila. Its identifier is a Bayer designation that is Latinized from θ Aquilae, and abbreviated Theta Aql or θ Aql.",
+    "url": "https://en.wikipedia.org/wiki/Theta_Aquilae",
+    "alpha": 291.8127579539166,
+    "delta": 3.186729608805948,
+    "mag": 3.36,
+    "pmRA": 1.2268695014157918e-06,
+    "pmDE": 3.910991965510627e-07,
+    "bvColor": 0.319,
+    "distance": 50.146041506533436
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 31121,
+    "name": "HD 46229 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+31121",
+    "alpha": 98.37724869843127,
+    "delta": -8.185958362927705,
+    "mag": 5.43,
+    "pmRA": -4.465134003018827e-08,
+    "pmDE": -1.0743471173387316e-07,
+    "bvColor": 1.373,
+    "distance": 869.8666666666668
+}

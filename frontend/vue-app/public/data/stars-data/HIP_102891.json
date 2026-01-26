@@ -1,0 +1,13 @@
+{
+    "hip": 102891,
+    "name": "HD 198431 -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+102891",
+    "alpha": 313.1526867323585,
+    "delta": -12.413390065896987,
+    "mag": 5.87,
+    "pmRA": 6.159557818496654e-07,
+    "pmDE": -3.509566237551931e-07,
+    "bvColor": 1.075,
+    "distance": 249.77029096477796
+}

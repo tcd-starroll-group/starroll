@@ -1,0 +1,13 @@
+{
+    "hip": 88122,
+    "name": "HD 164646 -- Variable Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+88122",
+    "alpha": 270.2331485990566,
+    "delta": 45.50151073746451,
+    "mag": 5.69,
+    "pmRA": 1.8859252195160952e-08,
+    "pmDE": -1.649820956815751e-07,
+    "bvColor": 1.562,
+    "distance": 610.8614232209738
+}

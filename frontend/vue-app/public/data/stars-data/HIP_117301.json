@@ -1,0 +1,13 @@
+{
+    "hip": 117301,
+    "name": "* tau Cas -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+117301",
+    "alpha": 357.1941510752413,
+    "delta": 58.84604962084138,
+    "mag": 4.88,
+    "pmRA": 2.9428190443348836e-07,
+    "pmDE": 2.7484087582099594e-07,
+    "bvColor": 1.122,
+    "distance": 172.77542372881356
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 97365,
+    "name": "* del Sge -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+97365",
+    "alpha": 297.2351395178524,
+    "delta": 18.622514164867177,
+    "mag": 3.68,
+    "pmRA": -2.220446659481675e-08,
+    "pmDE": 5.38143186031585e-08,
+    "bvColor": 1.313,
+    "distance": 448.0769230769231
+}

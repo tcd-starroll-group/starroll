@@ -1,0 +1,13 @@
+{
+    "hip": 102431,
+    "name": "HR 7955",
+    "description": "HR 7955 is a binary star system in the northern circumpolar constellation of Cepheus, near the constellation border with Cygnus.",
+    "url": "https://en.wikipedia.org/wiki/HR_7955",
+    "alpha": 311.55459223102326,
+    "delta": 57.706378553006196,
+    "mag": 4.52,
+    "pmRA": -3.051902122584529e-07,
+    "pmDE": -1.142027107221623e-06,
+    "bvColor": 0.535,
+    "distance": 88.47301328993763
+}

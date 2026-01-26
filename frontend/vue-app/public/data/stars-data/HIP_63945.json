@@ -1,0 +1,13 @@
+{
+    "hip": 63945,
+    "name": "HD 113703",
+    "description": "HD 113703, also known by the Bayer designation f Centauri, is a multiple star system in the southern constellation of Centaurus. The combined apparent visual magnitude of this system is +4.71, which is sufficient to make it faintly visible to the naked eye.",
+    "url": "https://en.wikipedia.org/wiki/HD_113703",
+    "alpha": 197.0792609689559,
+    "delta": -48.64900154216906,
+    "mag": 4.71,
+    "pmRA": -1.440866260257541e-07,
+    "pmDE": -7.117064838687989e-08,
+    "bvColor": -0.148,
+    "distance": 413.9593908629442
+}

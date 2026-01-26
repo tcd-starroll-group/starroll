@@ -1,0 +1,13 @@
+{
+    "hip": 13108,
+    "name": "40 Arietis",
+    "description": "40 Arietis is a probable binary star system in the northern constellation of Aries. 40 Arietis is the Flamsteed designation. Their combined apparent magnitude is 5.82, putting the system near the limit of naked eye visibility.",
+    "url": "https://en.wikipedia.org/wiki/40_Arietis",
+    "alpha": 42.62363673648823,
+    "delta": 18.426786150175356,
+    "mag": 5.83,
+    "pmRA": 2.0623973994399657e-07,
+    "pmDE": -1.5877648056337306e-07,
+    "bvColor": 1.216,
+    "distance": 501.8461538461538
+}

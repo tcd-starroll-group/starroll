@@ -1,0 +1,13 @@
+{
+    "hip": 79195,
+    "name": "HD 145206 -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+79195",
+    "alpha": 242.91715565504134,
+    "delta": -3.5556865019161203,
+    "mag": 5.39,
+    "pmRA": -1.1766428040528438e-07,
+    "pmDE": 3.1028075591010307e-09,
+    "bvColor": 1.446,
+    "distance": 494.2424242424243
+}

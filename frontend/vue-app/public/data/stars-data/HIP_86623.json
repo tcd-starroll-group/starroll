@@ -1,0 +1,13 @@
+{
+    "hip": 86623,
+    "name": "HR 6594",
+    "description": "HR 6594 is the Bright Star Catalogue designation for a binary star system in the northern constellation of Hercules.",
+    "url": "https://en.wikipedia.org/wiki/HR_6594",
+    "alpha": 265.8852949377698,
+    "delta": 15.938589655751908,
+    "mag": 5.54,
+    "pmRA": -3.388847630955657e-08,
+    "pmDE": 4.994065729109331e-07,
+    "bvColor": 0.387,
+    "distance": 115.87921847246892
+}

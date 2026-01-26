@@ -1,0 +1,13 @@
+{
+    "hip": 677,
+    "name": "Alpheratz",
+    "description": "Alpheratz is a prominent star system in the constellation of Andromeda. Pronounced , it has the Bayer designation Alpha Andromedae, Latinised from α Andromedae, and abbreviated Alpha And or α And, respectively.",
+    "url": "https://en.wikipedia.org/wiki/Alpheratz",
+    "alpha": 2.548521895879815,
+    "delta": 29.28300685020031,
+    "mag": 2.07,
+    "pmRA": 6.577952025294185e-07,
+    "pmDE": -7.900038933679888e-07,
+    "bvColor": -0.038,
+    "distance": 97.08333333333333
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 21881,
+    "name": "* tau Tau -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+21881",
+    "alpha": 71.085198995373,
+    "delta": 23.020471797562344,
+    "mag": 4.27,
+    "pmRA": -1.3768708543510822e-08,
+    "pmDE": -9.856262136956866e-08,
+    "bvColor": -0.112,
+    "distance": 400.7371007371007
+}

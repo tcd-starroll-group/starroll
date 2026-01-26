@@ -1,0 +1,13 @@
+{
+    "hip": 51362,
+    "name": "* del Sex -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+51362",
+    "alpha": 157.8118607381096,
+    "delta": -2.91844502400791,
+    "mag": 5.19,
+    "pmRA": -2.3649211364523165e-07,
+    "pmDE": -6.18622257095768e-08,
+    "bvColor": -0.05,
+    "distance": 300.0919963201472
+}

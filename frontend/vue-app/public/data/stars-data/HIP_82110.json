@@ -1,0 +1,13 @@
+{
+    "hip": 82110,
+    "name": "HD 150745 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+82110",
+    "alpha": 252.33599154023318,
+    "delta": -58.56370307404482,
+    "mag": 5.74,
+    "pmRA": -1.07628637206317e-08,
+    "pmDE": -5.226291482360798e-08,
+    "bvColor": -0.101,
+    "distance": 838.560411311054
+}

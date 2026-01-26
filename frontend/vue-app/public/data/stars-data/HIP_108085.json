@@ -1,0 +1,13 @@
+{
+    "hip": 108085,
+    "name": "Gamma Gruis",
+    "description": "Gamma Gruis or γ Gruis, formally named Aldhanab (), is a star in the southern constellation of Grus (it once belonged to the Ptolemaic constellation Piscis Austrinus). With an apparent visual magnitude of 3.0, it is the third-brightest star in Grus.",
+    "url": "https://en.wikipedia.org/wiki/Gamma_Gruis",
+    "alpha": 329.0056756131863,
+    "delta": -37.19918498169467,
+    "mag": 3,
+    "pmRA": 4.64839357447823e-07,
+    "pmDE": -5.8662455414253846e-08,
+    "bvColor": -0.084,
+    "distance": 202.9869321717486
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 9884,
+    "name": "Hamal",
+    "description": "Hamal, pronounced , is a star in the northern zodiacal constellation of Aries. It has the Bayer designation Alpha Arietis, which is Latinized from α Arietis and abbreviated Alpha Ari or α Ari.",
+    "url": "https://en.wikipedia.org/wiki/Hamal",
+    "alpha": 32.28582037234772,
+    "delta": 23.62573979844243,
+    "mag": 2.01,
+    "pmRA": 9.24685133980218e-07,
+    "pmDE": -7.067129029533707e-07,
+    "bvColor": 1.151,
+    "distance": 65.92562651576395
+}

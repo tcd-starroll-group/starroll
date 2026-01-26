@@ -1,0 +1,13 @@
+{
+    "hip": 56445,
+    "name": "* 89 Leo -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+56445",
+    "alpha": 174.0375181104344,
+    "delta": 2.866643129076403,
+    "mag": 5.76,
+    "pmRA": -8.805186076311393e-07,
+    "pmDE": -4.977097250270496e-07,
+    "bvColor": 0.48,
+    "distance": 86.64010624169987
+}

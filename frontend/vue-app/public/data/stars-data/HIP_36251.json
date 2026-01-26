@@ -1,0 +1,13 @@
+{
+    "hip": 36251,
+    "name": "BD-11 1951 -- Double or Multiple Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+36251",
+    "alpha": 112.37466659017471,
+    "delta": -11.630056198488083,
+    "mag": 5.79,
+    "pmRA": -1.0326531407633117e-08,
+    "pmDE": -1.1199196033630281e-08,
+    "bvColor": 0.583,
+    "distance": 1009.9071207430342
+}

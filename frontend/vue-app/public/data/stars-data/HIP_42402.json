@@ -1,0 +1,13 @@
+{
+    "hip": 42402,
+    "name": "* sig Hya -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+42402",
+    "alpha": 130.14398891511624,
+    "delta": 3.216888376806613,
+    "mag": 4.45,
+    "pmRA": -9.22600435151447e-08,
+    "pmDE": -7.89761486527434e-08,
+    "bvColor": 1.216,
+    "distance": 352.64864864864865
+}

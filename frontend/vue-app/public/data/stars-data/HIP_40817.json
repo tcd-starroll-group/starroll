@@ -1,0 +1,13 @@
+{
+    "hip": 40817,
+    "name": "* kap01 Vol -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+40817",
+    "alpha": 124.92325144448732,
+    "delta": -71.6256943046135,
+    "mag": 5.33,
+    "pmRA": -8.382428546383877e-08,
+    "pmDE": 1.7957498748297212e-07,
+    "bvColor": -0.063,
+    "distance": 390.65868263473055
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 80894,
+    "name": "* phi Oph -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+80894",
+    "alpha": 248.28458333624818,
+    "delta": -16.685538343599397,
+    "mag": 4.29,
+    "pmRA": -2.160814576705202e-07,
+    "pmDE": -1.8442312429406748e-07,
+    "bvColor": 0.924,
+    "distance": 210.0450740502254
+}
