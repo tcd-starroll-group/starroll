@@ -47,6 +47,7 @@ from openapi_server.models.api_send_message_post_request import ApiSendMessagePo
 from openapi_server.models.api_set_user_post200_response import ApiSetUserPost200Response
 from openapi_server.models.api_trigger_starfield_render_post200_response import ApiTriggerStarfieldRenderPost200Response
 from openapi_server.models.api_trigger_starfield_render_post_request import ApiTriggerStarfieldRenderPostRequest
+from openapi_server.models.api_user_reg_post_request import ApiUserRegPostRequest
 from openapi_server.models.api_username_verify_post200_response import ApiUsernameVerifyPost200Response
 from openapi_server.models.api_username_verify_post_request import ApiUsernameVerifyPostRequest
 from openapi_server.models.api_verify_user_token_post_request import ApiVerifyUserTokenPostRequest
@@ -269,7 +270,7 @@ class BaseDefaultApi:
 
     async def api_user_reg_post(
         self,
-        user_auth: UserAuth,
+        api_user_reg_post_request: ApiUserRegPostRequest,
     ) -> UserResponse:
         """Create an account with a new username and password."""
         ...

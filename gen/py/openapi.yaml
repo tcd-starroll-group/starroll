@@ -441,7 +441,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/UserAuth"
+              $ref: "#/components/schemas/_api_userReg_post_request"
         required: true
       responses:
         "201":
@@ -1793,6 +1793,31 @@ components:
           title: message
           type: string
       title: _api_setUser_post_200_response
+    _api_userReg_post_request:
+      properties:
+        username:
+          description: Username
+          example: user123
+          title: username
+          type: string
+        password:
+          description: Password
+          example: Str0ngPa$$w0rd!
+          format: password
+          title: password
+          type: string
+        email:
+          description: Email address
+          example: user@example.com
+          format: email
+          title: email
+          type: string
+      required:
+      - email
+      - password
+      - username
+      title: _api_userReg_post_request
+      type: object
     _api_usernameVerify_post_request:
       properties:
         username:

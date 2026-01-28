@@ -833,7 +833,26 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/UserAuth"
+              type: object
+              properties:
+                username:
+                  type: string
+                  description: "Username"
+                  example: "user123"
+                password:
+                  type: string
+                  description: "Password"
+                  format: "password"
+                  example: "Str0ngPa$$w0rd!"
+                email:
+                  type: string
+                  description: "Email address"
+                  format: "email"
+                  example: "user@example.com"
+              required:
+                - username
+                - password
+                - email
       responses:
         "201":
           description: "Create user successful."

@@ -10,3 +10,4 @@ build
 node_modules/.cache/
 .prettier-cache/
 node_modules
+__pycache__

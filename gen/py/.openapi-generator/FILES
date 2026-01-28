@@ -1,6 +1,5 @@
 .flake8
 .gitignore
-.openapi-generator-ignore
 Dockerfile
 README.md
 docker-compose.yaml
@@ -69,6 +68,7 @@ src/openapi_server/models/api_trigger_starfield_render_post200_response.py
 src/openapi_server/models/api_trigger_starfield_render_post_request.py
 src/openapi_server/models/api_trigger_starfield_render_post_request_corrected_star_coordinates_inner.py
 src/openapi_server/models/api_trigger_starfield_render_post_request_render_params.py
+src/openapi_server/models/api_user_reg_post_request.py
 src/openapi_server/models/api_username_verify_post200_response.py
 src/openapi_server/models/api_username_verify_post_request.py
 src/openapi_server/models/api_verify_user_token_post_request.py
@@ -93,4 +93,3 @@ src/openapi_server/models/user_response.py
 src/openapi_server/models/view_coordinate.py
 src/openapi_server/security_api.py
 tests/conftest.py
-tests/test_default_api.py
