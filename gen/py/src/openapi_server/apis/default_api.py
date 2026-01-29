@@ -23,9 +23,10 @@ from fastapi import (  # noqa: F401
 )
 
 from openapi_server.models.extra_models import TokenModel  # noqa: F401
-from typing import Optional
+from typing import Any, Optional
 from openapi_server.models.api_calculate_star_coordinates_post200_response import ApiCalculateStarCoordinatesPost200Response
 from openapi_server.models.api_calculate_star_coordinates_post_request import ApiCalculateStarCoordinatesPostRequest
+from openapi_server.models.api_change_password_post200_response import ApiChangePasswordPost200Response
 from openapi_server.models.api_check_room_status_post200_response import ApiCheckRoomStatusPost200Response
 from openapi_server.models.api_check_room_status_post_request import ApiCheckRoomStatusPostRequest
 from openapi_server.models.api_comment_blog_post200_response import ApiCommentBlogPost200Response
@@ -582,6 +583,43 @@ async def api_user_reg_post(
     if not BaseDefaultApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")
     return await BaseDefaultApi.subclasses[0]().api_user_reg_post(api_user_reg_post_request)
+
+
+@router.post(
+    "/api/changePassword",
+    responses={
+        200: {"model": ApiChangePasswordPost200Response, "description": "Password updated successfully"},
+        401: {"description": "Old password incorrect"},
+        404: {"description": "User not found"},
+    },
+    tags=["default"],
+    response_model_by_alias=True,
+)
+async def api_change_password_post(
+    change_password_request: ChangePasswordRequest = Body(None, description=""),
+) -> ApiChangePasswordPost200Response:
+    if not BaseDefaultApi.subclasses:
+        raise HTTPException(status_code=500, detail="Not implemented")
+    return await BaseDefaultApi.subclasses[0]().api_change_password_post(change_password_request)
+
+
+@router.post(
+    "/api/deleteUser",
+    responses={
+        200: {"model": ApiChangePasswordPost200Response, "description": "Deletion successful"},
+        401: {"description": "Password incorrect"},
+        404: {"description": "User not found"},
+    },
+    tags=["default"],
+    summary="注销账号",
+    response_model_by_alias=True,
+)
+async def api_delete_user_post(
+    user_auth: UserAuth = Body(None, description=""),
+) -> ApiChangePasswordPost200Response:
+    if not BaseDefaultApi.subclasses:
+        raise HTTPException(status_code=500, detail="Not implemented")
+    return await BaseDefaultApi.subclasses[0]().api_delete_user_post(user_auth)
 
 
 @router.post(

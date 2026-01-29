@@ -2,9 +2,10 @@
 
 from typing import ClassVar, Dict, List, Tuple  # noqa: F401
 
-from typing import Optional
+from typing import Any, Optional
 from openapi_server.models.api_calculate_star_coordinates_post200_response import ApiCalculateStarCoordinatesPost200Response
 from openapi_server.models.api_calculate_star_coordinates_post_request import ApiCalculateStarCoordinatesPostRequest
+from openapi_server.models.api_change_password_post200_response import ApiChangePasswordPost200Response
 from openapi_server.models.api_check_room_status_post200_response import ApiCheckRoomStatusPost200Response
 from openapi_server.models.api_check_room_status_post_request import ApiCheckRoomStatusPostRequest
 from openapi_server.models.api_comment_blog_post200_response import ApiCommentBlogPost200Response
@@ -273,6 +274,20 @@ class BaseDefaultApi:
         api_user_reg_post_request: ApiUserRegPostRequest,
     ) -> UserResponse:
         """Create an account with a new username and password."""
+        ...
+
+
+    async def api_change_password_post(
+        self,
+        change_password_request: ChangePasswordRequest,
+    ) -> ApiChangePasswordPost200Response:
+        ...
+
+
+    async def api_delete_user_post(
+        self,
+        user_auth: UserAuth,
+    ) -> ApiChangePasswordPost200Response:
         ...
 
 

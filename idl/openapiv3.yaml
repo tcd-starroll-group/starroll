@@ -872,7 +872,55 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
+  
+  /api/changePassword:
+    post:
+      operationId: api_change_password_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChangePasswordRequest'
+        required: true
+      responses:
+        '200':
+          description: Password updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '401':
+          description: Old password incorrect
+        '404':
+          description: User not found
 
+  /api/deleteUser:
+    post:
+      summary: 注销账号
+      operationId: api_delete_user_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserAuth' 
+        required: true
+      responses:
+        '200':
+          description: Deletion successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '401':
+          description: Password incorrect
+        '404':
+          description: User not found
   /api/usernameVerify:
     post:
       summary: "Verify the username"
@@ -1203,6 +1251,22 @@ components:
         - username
         - password
 
+    ChangePasswordRequest:
+      type: object
+      properties:
+        username:
+          type: string
+        oldPassword:
+          type: string
+          format: password
+        newPassword:
+          type: string
+          format: password
+      required:
+        - username
+        - oldPassword
+        - newPassword
+
     TokenResponse:
       description: "The access token returned after successful login"
       type: object
@@ -1223,7 +1287,6 @@ components:
         userID:
           type: string
           description: "The unique ID of the user"
-          format: "uuid"
           example: "a1b2c3d4-e5f6-7890-1234-567890abcdef"
         username:
           type: string
@@ -1243,29 +1306,7 @@ components:
           description: "Detailed error message"
           example: "Invalid username or password"
 
-    ChangePasswordRequest:
-      description: "Request for password modification"
-      type: object
-      properties:
-        username:
-          type: string
-          description: "Target username"
-          example: "user123"
-        password0:
-          type: string
-          description: "Current password (old password)"
-          format: "password"
-          example: "OldPa$$w0rd"
-        password1:
-          type: string
-          description: "New password (new password)"
-          format: "password"
-          example: "NewStr0ngPa$$w0rd!"
-      required:
-        - username
-        - password0
-        - password1
-
+  
     # Blog items
     blogPreview:
       description: "Preview of a blog on the blogs page, before user clicks into one blog"

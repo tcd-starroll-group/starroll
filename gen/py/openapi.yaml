@@ -464,6 +464,47 @@ paths:
                 $ref: "#/components/schemas/ErrorResponse"
           description: "Conflict: The username is already in use."
       summary: User register
+  /api/changePassword:
+    post:
+      operationId: api_change_password_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ChangePasswordRequest"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/api_change_password_post_200_response"
+          description: Password updated successfully
+        "401":
+          description: Old password incorrect
+        "404":
+          description: User not found
+  /api/deleteUser:
+    post:
+      operationId: api_delete_user_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserAuth"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/api_change_password_post_200_response"
+          description: Deletion successful
+        "401":
+          description: Password incorrect
+        "404":
+          description: User not found
+      summary: 注销账号
   /api/usernameVerify:
     post:
       description: Check whether the username is available.
@@ -807,6 +848,29 @@ components:
       - username
       title: UserAuth
       type: object
+    ChangePasswordRequest:
+      example:
+        oldPassword: oldPassword
+        newPassword: newPassword
+        username: username
+      properties:
+        username:
+          title: username
+          type: string
+        oldPassword:
+          format: password
+          title: oldPassword
+          type: string
+        newPassword:
+          format: password
+          title: newPassword
+          type: string
+      required:
+      - newPassword
+      - oldPassword
+      - username
+      title: ChangePasswordRequest
+      type: object
     TokenResponse:
       description: The access token returned after successful login
       example:
@@ -834,7 +898,6 @@ components:
         userID:
           description: The unique ID of the user
           example: a1b2c3d4-e5f6-7890-1234-567890abcdef
-          format: uuid
           title: userID
           type: string
         username:
@@ -861,36 +924,6 @@ components:
           title: message
           type: string
       title: ErrorResponse
-      type: object
-    ChangePasswordRequest:
-      description: Request for password modification
-      example:
-        password0: OldPa$$w0rd
-        password1: NewStr0ngPa$$w0rd!
-        username: user123
-      properties:
-        username:
-          description: Target username
-          example: user123
-          title: username
-          type: string
-        password0:
-          description: Current password (old password)
-          example: OldPa$$w0rd
-          format: password
-          title: password0
-          type: string
-        password1:
-          description: New password (new password)
-          example: NewStr0ngPa$$w0rd!
-          format: password
-          title: password1
-          type: string
-      required:
-      - password0
-      - password1
-      - username
-      title: ChangePasswordRequest
       type: object
     blogPreview:
       description: "Preview of a blog on the blogs page, before user clicks into one\
@@ -1817,6 +1850,15 @@ components:
       - password
       - username
       title: _api_userReg_post_request
+      type: object
+    api_change_password_post_200_response:
+      example:
+        message: message
+      properties:
+        message:
+          title: message
+          type: string
+      title: api_change_password_post_200_response
       type: object
     _api_usernameVerify_post_request:
       properties:

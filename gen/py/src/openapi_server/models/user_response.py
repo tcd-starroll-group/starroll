@@ -22,7 +22,6 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from uuid import UUID
 try:
     from typing import Self
 except ImportError:
@@ -32,7 +31,7 @@ class UserResponse(BaseModel):
     """
     The basic user information returned after the operation is successful.
     """ # noqa: E501
-    user_id: Optional[UUID] = Field(default=None, description="The unique ID of the user", alias="userID")
+    user_id: Optional[StrictStr] = Field(default=None, description="The unique ID of the user", alias="userID")
     username: Optional[StrictStr] = Field(default=None, description="Username")
     __properties: ClassVar[List[str]] = ["userID", "username"]
 

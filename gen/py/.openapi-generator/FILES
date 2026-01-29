@@ -16,6 +16,7 @@ src/openapi_server/models/__init__.py
 src/openapi_server/models/api_calculate_star_coordinates_post200_response.py
 src/openapi_server/models/api_calculate_star_coordinates_post200_response_star_coordinates_inner.py
 src/openapi_server/models/api_calculate_star_coordinates_post_request.py
+src/openapi_server/models/api_change_password_post200_response.py
 src/openapi_server/models/api_check_room_status_post200_response.py
 src/openapi_server/models/api_check_room_status_post_request.py
 src/openapi_server/models/api_comment_blog_post200_response.py

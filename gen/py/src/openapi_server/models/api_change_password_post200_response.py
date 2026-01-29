@@ -20,21 +20,19 @@ import json
 
 
 
-from pydantic import BaseModel, ConfigDict, Field, SecretStr, StrictStr
-from typing import Any, ClassVar, Dict, List
+from pydantic import BaseModel, ConfigDict, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
 try:
     from typing import Self
 except ImportError:
     from typing_extensions import Self
 
-class ChangePasswordRequest(BaseModel):
+class ApiChangePasswordPost200Response(BaseModel):
     """
-    ChangePasswordRequest
+    ApiChangePasswordPost200Response
     """ # noqa: E501
-    username: StrictStr
-    old_password: SecretStr = Field(alias="oldPassword")
-    new_password: SecretStr = Field(alias="newPassword")
-    __properties: ClassVar[List[str]] = ["username", "oldPassword", "newPassword"]
+    message: Optional[StrictStr] = None
+    __properties: ClassVar[List[str]] = ["message"]
 
     model_config = {
         "populate_by_name": True,
@@ -54,7 +52,7 @@ class ChangePasswordRequest(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
-        """Create an instance of ChangePasswordRequest from a JSON string"""
+        """Create an instance of ApiChangePasswordPost200Response from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -77,7 +75,7 @@ class ChangePasswordRequest(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Dict) -> Self:
-        """Create an instance of ChangePasswordRequest from a dict"""
+        """Create an instance of ApiChangePasswordPost200Response from a dict"""
         if obj is None:
             return None
 
@@ -85,9 +83,7 @@ class ChangePasswordRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "username": obj.get("username"),
-            "oldPassword": obj.get("oldPassword"),
-            "newPassword": obj.get("newPassword")
+            "message": obj.get("message")
         })
         return _obj
 
