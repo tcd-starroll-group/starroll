@@ -1,56 +1,42 @@
 import hashlib
-from sqlalchemy import text
 from fastapi import HTTPException
 from openapi_server.models.change_password_request import ChangePasswordRequest
 from backend.console.dal.rds.client import get_db
+from backend.console.dal.rds.user import User
 
-async def api_change_password_post(request: ChangePasswordRequest) -> dict:
-    print(f"🔐 收到修改密码请求: {request.username}")
+async def api_change_password_post(request: ChangePasswordRequest):
+    print(f"Received change password request: {request.username}")
 
-    db_gen = get_db()
-    db = next(db_gen)
-
+    db = next(get_db())
     try:
-        # 1. 查找用户
-        sql_check = text("SELECT password FROM user WHERE username = :username")
-        result = db.execute(sql_check, {"username": request.username}).fetchone()
+        # 1. Query user
+        user = User.get_by_username(db, request.username)
+        if not user:
+            raise HTTPException(status_code=404, detail="User not found")
 
-        if not result:
-            raise HTTPException(status_code=404, detail="用户不存在")
-
-        stored_password_hash = result[0]
-
-        # 2. 验证旧密码 (处理 SecretStr)
-        # 使用 .get_secret_value() 转换
-        old_pwd_raw = request.old_password
-        if hasattr(old_pwd_raw, "get_secret_value"):
-            old_pwd_raw = old_pwd_raw.get_secret_value()
+        # 2. Verify old password
+        old_pwd = request.old_password
+        if hasattr(old_pwd, "get_secret_value"):
+            old_pwd = old_pwd.get_secret_value()
             
-        input_old_hash = hashlib.sha256(old_pwd_raw.encode()).hexdigest()
+        if user.password != hashlib.sha256(old_pwd.encode()).hexdigest():
+            print("Old password incorrect")
+            raise HTTPException(status_code=401, detail="Old password incorrect")
 
-        if stored_password_hash != input_old_hash:
-            raise HTTPException(status_code=401, detail="旧密码错误")
-
-        # 3. 处理新密码并更新
-        new_pwd_raw = request.new_password
-        if hasattr(new_pwd_raw, "get_secret_value"):
-            new_pwd_raw = new_pwd_raw.get_secret_value()
-            
-        new_password_hash = hashlib.sha256(new_pwd_raw.encode()).hexdigest()
-
-        sql_update = text("UPDATE user SET password = :new_password WHERE username = :username")
-        db.execute(sql_update, {
-            "new_password": new_password_hash,
-            "username": request.username
-        })
-        db.commit()
-
-        return {"message": "密码修改成功"}
-
+        # 3. Update new password
+        new_pwd = request.new_password
+        if hasattr(new_pwd, "get_secret_value"):
+            new_pwd = new_pwd.get_secret_value()
+        
+        new_hash = hashlib.sha256(new_pwd.encode()).hexdigest()
+        
+        User.update_password(db, request.username, new_hash)
+        
+        print(f"User {request.username} password changed successfully")
+        return {"message": "Password updated successfully"}
     except Exception as e:
         db.rollback()
-        if isinstance(e, HTTPException): raise e
-        print(f"❌ 错误: {e}")
-        raise HTTPException(status_code=500, detail=str(e))
-    finally:
-        db.close()
+        if isinstance(e, HTTPException):
+            raise e
+        print(f"Change password failed: {e}")
+        raise HTTPException(status_code=500, detail="Internal Server Error")

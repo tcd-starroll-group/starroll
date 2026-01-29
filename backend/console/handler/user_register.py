@@ -1,61 +1,35 @@
 import hashlib
-from sqlalchemy import text
-
-# ✅ 修正导入路径：配合 PYTHONPATH="gen/py/src;." 使用
-# 这样能确保和生成的代码使用同一个类定义，避免类型冲突
-from openapi_server.models.user_auth import UserAuth
+from fastapi import HTTPException
+from openapi_server.models.api_user_reg_post_request import ApiUserRegPostRequest
 from openapi_server.models.user_response import UserResponse
-
-# 引入数据库连接
 from backend.console.dal.rds.client import get_db
+from backend.console.dal.rds.user import User
 
-async def api_user_reg_post(user_auth: UserAuth) -> UserResponse:
-    print(f"📝 收到注册请求: {user_auth.username} / {user_auth.email}")
+async def api_user_reg_post(user_auth: ApiUserRegPostRequest) -> UserResponse:
+    print(f"Received registration request: {user_auth.username}")
     
-    # 1. 简单校验
-    if not user_auth.email:
-        print("❌ 错误: 邮箱不能为空")
-        # 实际项目中建议: raise HTTPException(status_code=400, detail="Email required")
-    
-    # 2. 密码加密 (SHA256)
-    # UserAuth.password 是 SecretStr 类型，必须用 .get_secret_value() 获取明文
-    raw_password = user_auth.password.get_secret_value()
-    hashed_password = hashlib.sha256(raw_password.encode()).hexdigest()
-    
-    # 3. 写入数据库
-    db_gen = get_db()
-    db = next(db_gen)
-    
+    db = next(get_db())
     try:
-        # 编写 SQL (确保字段名与数据库 create_user.sql 一致)
-        sql = text("""
-            INSERT INTO user (username, password, email) 
-            VALUES (:username, :password, :email)
-        """)
-        
-        result = db.execute(sql, {
-            "username": user_auth.username,
-            "password": hashed_password,
-            "email": user_auth.email
-        })
-        db.commit()
-        
-        # 4. 获取新生成的自增 ID
-        new_user_id = result.lastrowid
-        print(f"✅ 用户注册成功，ID: {new_user_id}")
-        
-        # 5. 返回结果 
-        # 注意：API 定义 userID 是 String，数据库是 BigInt，必须 str() 转换
+        # 1. Check if username exists
+        if User.get_by_username(db, user_auth.username):
+            raise HTTPException(status_code=400, detail="Username already exists")
+
+        # 2. Hash password
+        pwd_raw = user_auth.password.get_secret_value()
+        pwd_hash = hashlib.sha256(pwd_raw.encode()).hexdigest()
+
+        # 3. Create user
+        new_user = User.create(db, user_auth.username, pwd_hash, user_auth.email)
+
+        print(f"User registered successfully, ID: {new_user.id}")
         return UserResponse(
-            userID=str(new_user_id), 
-            username=user_auth.username,
-            email=user_auth.email
+            userID=str(new_user.id),
+            username=new_user.username,
+            email=new_user.email
         )
-        
     except Exception as e:
         db.rollback()
-        print(f"❌ 数据库错误: {e}")
-        # 这里抛出异常，FastAPI 会捕获并返回 500 Internal Server Error
-        raise e
-    finally:
-        db.close()
+        if isinstance(e, HTTPException):
+            raise e
+        print(f"Database error: {e}")
+        raise HTTPException(status_code=500, detail="Internal Server Error")

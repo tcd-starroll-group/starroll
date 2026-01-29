@@ -1,32 +1,31 @@
 import os
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, declarative_base
-# 1. 引入 dotenv
+from sqlalchemy.orm import sessionmaker
 from dotenv import load_dotenv
+from .user import Base
 
-# 2. 加载 .env 文件
 load_dotenv()
 
-# 3. 从环境变量读取 (如果没有读到，就使用默认值)
-DB_USER = os.getenv("DB_USER", "root")
-DB_PASSWORD = os.getenv("DB_PASSWORD", "123456")
-DB_HOST = os.getenv("DB_HOST", "localhost")
-DB_PORT = os.getenv("DB_PORT", "3306")
-DB_NAME = os.getenv("DB_NAME", "StarRoll")
+# Database Config
+db_user = os.getenv("DB_USER")
+db_password = os.getenv("DB_PASSWORD")
+db_host = os.getenv("DB_HOST")
+db_port = os.getenv("DB_PORT")
+db_name = os.getenv("DB_NAME")
 
-# 4. 拼接连接字符串
-SQLALCHEMY_DATABASE_URL = f"mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 
-engine = create_engine(
-    SQLALCHEMY_DATABASE_URL,
-    pool_pre_ping=True,
-    echo=False
-)
+# JWT Config
+JWT_SECRET = os.getenv("JWT_SECRET", "default_secret")
+JWT_ALGORITHM = os.getenv("JWT_ALGORITHM", "HS256")
+
+SQLALCHEMY_DATABASE_URL = f"mysql+pymysql://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}"
+
+engine = create_engine(SQLALCHEMY_DATABASE_URL, pool_pre_ping=True)
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-Base = declarative_base()
 
 def get_db():
+    """Get database session generator"""
     db = SessionLocal()
     try:
         yield db
