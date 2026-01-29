@@ -44,7 +44,7 @@ const handleLogin = async () => {
 
 <template>
   <StarBackground>
-  <div class="login-page">
+  
     <div class="stars"></div>
 
     <div class="login-card glass-panel">
@@ -91,7 +91,7 @@ const handleLogin = async () => {
         <a href="/register">Join the Fleet</a>
       </div>
     </div>
-  </div>
+  
   </StarBackground>
 </template>
 
@@ -100,25 +100,29 @@ const handleLogin = async () => {
    inherited from main.css and BaseButton.vue 
 */
 
-.login-page {
+/* .login-page {
   min-height: 70vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  /* Use variable from main.css */
   background: radial-gradient(circle at center, #1b2735 0%, var(--color-bg-deep) 100%);
   overflow: hidden;
   position: relative;
-}
+} */
 
 .login-card {
   padding: 3rem;
   border-radius: 24px;
-  width: 100%;
-  max-width: 400px;
+
+  /* Usage: clamp(minimum, preferred, maximum) */
+  width: clamp(320px, 50vw, 700px); 
+  
+  height: auto;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
   z-index: 10;
-  /* glass-panel properties now come from main.css */
+  
+  /* Centers the card if it has space around it */
+  margin: 2rem auto;
 }
 
 .title {
