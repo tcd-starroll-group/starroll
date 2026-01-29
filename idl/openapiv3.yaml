@@ -264,7 +264,7 @@ paths:
                           type: integer
                         viewCoordinate:
                           $ref: "#/components/schemas/viewCoordinate"
-  #huhu
+
   /api/triggerStarfieldRender:
     post:
       summary: Trigger starfield rendering
@@ -506,6 +506,91 @@ paths:
                     format: date-time
                     description: Timestamp when the file was saved
 
+  /api/createIdentifyStarsJob:
+    post:
+      summary: Create a job to identify the stars in the image.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - image
+              properties:
+                image:
+                  type: string
+                  format: binary
+                  description: Image file to identify stars (JPEG, PNG, etc.)
+                userCredentials:
+                  $ref: "#/components/schemas/userCredentials"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  jobID:
+                    description: job id
+                    type: string
+
+  /api/listIdentifyStarsJobs:
+    post:
+      summary: List identify stars jobs.
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: "#/components/schemas/PaginationQuery"
+                - type: object
+                  properties:
+                    userCredentials:
+                      $ref: "#/components/schemas/userCredentials"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  identifyStarsJobsList:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/identifyStarsJob"
+
+  /api/getIdentifyStarsJobResult:
+    post:
+      summary: get identify stars job result.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - jobID
+                - userCredentials
+              properties:
+                jobID:
+                  type: string
+                  description: Unique ID of the identify stars job
+                userCredentials:
+                  $ref: "#/components/schemas/userCredentials"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  identifyStarsJobsList:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/IdentifyStarsJobResult"
+
   # Error Elimination Module
   /api/elimilateErrors:
     post:
@@ -543,6 +628,7 @@ paths:
                           type: integer
                         correctedViewCoordinate:
                           $ref: "#/components/schemas/viewCoordinate"
+
   # Render Engine
 
   # User System
@@ -1351,3 +1437,73 @@ components:
           type: string
         time:
           type: string
+
+    identifyStarsJob:
+      properties:
+        jobID:
+          type: string
+        status:
+          type: string
+        createTime:
+          type: string
+        updateTime:
+          type: string
+
+    PaginationQuery:
+      description: "Reusable pagination and sorting parameters for list endpoints"
+      type: object
+      properties:
+        limit:
+          type: integer
+          description: "Maximum number of items to return"
+          default: 20
+          minimum: 1
+          maximum: 100
+        offset:
+          type: integer
+          description: "Number of items to skip (for pagination)"
+          default: 0
+          minimum: 0
+        sort:
+          type: string
+          description: "Field name to sort by"
+          example: "createTime"
+        order:
+          type: string
+          enum: [asc, desc]
+          default: desc
+          description: "Sort order (ascending or descending)"
+
+    IdentifyStarsJobResult:
+      description: "result of identify stars job"
+      properties:
+        center:
+          $ref: "#/components/schemas/equatorialCoordinate"
+          description: "Center equatorial coordinate of the image."
+        identifiedStars:
+          type: array
+          description: "List of identified stars in the image"
+          items:
+            type: object
+            properties:
+              names:
+                type: array
+                description: "Alternative names of the star"
+                items:
+                  type: string
+                example: ["108Vir"]
+              pixelX:
+                type: number
+                description: "X coordinate of star in image (pixels)"
+                example: 1676.0093296680352
+              pixelY:
+                type: number
+                description: "Y coordinate of star in image (pixels)"
+                example: 629.9991687682354
+              vmag:
+                type: number
+                description: "Visual magnitude of the star"
+                example: 5.6
+              HIP:
+                type: integer
+                description: "Hipparcos catalog ID"
