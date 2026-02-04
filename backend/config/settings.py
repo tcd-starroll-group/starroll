@@ -1,0 +1,62 @@
+import os
+from dotenv import load_dotenv
+from backend.constant import app_env as app_env_const
+from backend.constant import jwt as jwt_const
+
+load_dotenv()
+
+
+class Settings:
+    """Centralized configuration management for the application."""
+
+    # Application Environment
+    app_env: str = os.getenv("APP_ENV", app_env_const.UT)
+
+    # Database Configuration
+    db_user: str = os.getenv("MYSQL_USER")
+    db_password: str = os.getenv("MYSQL_PASSWORD")
+    db_host: str = os.getenv("MYSQL_HOST")
+    db_port: str = os.getenv("MYSQL_PORT")
+    db_name: str = os.getenv("MYSQL_DB_NAME")
+
+    # JWT Configuration
+    jwt_secret: str = os.getenv("JWT_SECRET", jwt_const.DEFAULT_SECRET)
+    jwt_algorithm: str = os.getenv("JWT_ALGORITHM", "HS256")
+    jwt_expire_hours: int = int(os.getenv("JWT_EXPIRE_HOURS", "24"))
+
+    @property
+    def sqlalchemy_database_url(self) -> str:
+        """Generate SQLAlchemy database URL from config parameters."""
+        return (
+            f"mysql+pymysql://{self.db_user}:{self.db_password}"
+            f"@{self.db_host}:{self.db_port}/{self.db_name}"
+        )
+
+    def __init__(self):
+        """Validate that all required settings are loaded."""
+        # Validate app_env
+        if self.app_env not in app_env_const.ALL:
+            raise ValueError(
+                f"Invalid APP_ENV value '{self.app_env}'. "
+                f"Must be one of: {', '.join(sorted(app_env_const.ALL))}"
+            )
+
+        if self.app_env in [app_env_const.DEV, app_env_const.PROD]:
+            required_fields = [
+                "db_user",
+                "db_password",
+                "db_host",
+                "db_port",
+                "db_name",
+            ]
+            for field in required_fields:
+                if getattr(self, field) is None:
+                    raise ValueError(
+                        f"Missing required environment variable: {field.upper()}"
+                    )
+
+        if self.app_env == app_env_const.PROD:
+            if self.jwt_secret == jwt_const.DEFAULT_SECRET:
+                raise ValueError(
+                    f"defualt jwt secret can not be used in prod environment"
+                )

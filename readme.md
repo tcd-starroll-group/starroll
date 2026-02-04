@@ -2,11 +2,11 @@
 
 ## Contributors
 
-- qiming cao
-- songcheng gao
-- yuhui cao
+- Qiming Cao
+- Songcheng Gao
+- Yuhui Cao
 - Sahil Sabir
-- kehan liu
+- Kehan Liu
 - Tianlai Gu
-- huafu fang
+- Huafu Fang
 - Shuyu He
