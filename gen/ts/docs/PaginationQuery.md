@@ -1,26 +1,29 @@
 
-# ChangePasswordRequest
+# PaginationQuery
 
+Reusable pagination and sorting parameters for list endpoints
 
 ## Properties
 
 Name | Type
 ------------ | -------------
-`username` | string
-`oldPassword` | string
-`newPassword` | string
+`limit` | number
+`offset` | number
+`sort` | string
+`order` | string
 
 ## Example
 
 ```typescript
-import type { ChangePasswordRequest } from ''
+import type { PaginationQuery } from ''
 
 // TODO: Update the object below with actual values
 const example = {
-  "username": null,
-  "oldPassword": null,
-  "newPassword": null,
-} satisfies ChangePasswordRequest
+  "limit": null,
+  "offset": null,
+  "sort": createTime,
+  "order": null,
+} satisfies PaginationQuery
 
 console.log(example)
 
@@ -29,7 +32,7 @@ const exampleJSON: string = JSON.stringify(example)
 console.log(exampleJSON)
 
 // Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as ChangePasswordRequest
+const exampleParsed = JSON.parse(exampleJSON) as PaginationQuery
 console.log(exampleParsed)
 ```
 

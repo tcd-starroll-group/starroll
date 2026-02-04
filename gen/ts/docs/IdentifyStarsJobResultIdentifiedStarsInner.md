@@ -1,26 +1,30 @@
 
-# ChangePasswordRequest
+# IdentifyStarsJobResultIdentifiedStarsInner
 
 
 ## Properties
 
 Name | Type
 ------------ | -------------
-`username` | string
-`oldPassword` | string
-`newPassword` | string
+`names` | Array&lt;string&gt;
+`pixelX` | number
+`pixelY` | number
+`vmag` | number
+`hIP` | number
 
 ## Example
 
 ```typescript
-import type { ChangePasswordRequest } from ''
+import type { IdentifyStarsJobResultIdentifiedStarsInner } from ''
 
 // TODO: Update the object below with actual values
 const example = {
-  "username": null,
-  "oldPassword": null,
-  "newPassword": null,
-} satisfies ChangePasswordRequest
+  "names": ["108Vir"],
+  "pixelX": 1676.0093296680352,
+  "pixelY": 629.9991687682354,
+  "vmag": 5.6,
+  "hIP": null,
+} satisfies IdentifyStarsJobResultIdentifiedStarsInner
 
 console.log(example)
 
@@ -29,7 +33,7 @@ const exampleJSON: string = JSON.stringify(example)
 console.log(exampleJSON)
 
 // Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as ChangePasswordRequest
+const exampleParsed = JSON.parse(exampleJSON) as IdentifyStarsJobResultIdentifiedStarsInner
 console.log(exampleParsed)
 ```
 

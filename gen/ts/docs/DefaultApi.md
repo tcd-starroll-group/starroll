@@ -5,11 +5,14 @@ All URIs are relative to *http://localhost*
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
 | [**apiCalculateStarCoordinatesPost**](DefaultApi.md#apicalculatestarcoordinatespostoperation) | **POST** /api/calculateStarCoordinates | calculate star coordinates |
+| [**apiChangePasswordPost**](DefaultApi.md#apichangepasswordpost) | **POST** /api/changePassword |  |
 | [**apiCheckRoomStatusPost**](DefaultApi.md#apicheckroomstatuspostoperation) | **POST** /api/checkRoomStatus | Check chat room status |
 | [**apiCommentBlogPost**](DefaultApi.md#apicommentblogpostoperation) | **POST** /api/commentBlog | Comment a blog |
 | [**apiCreateBlogPost**](DefaultApi.md#apicreateblogpostoperation) | **POST** /api/createBlog | Create a new blog |
+| [**apiCreateIdentifyStarsJobPost**](DefaultApi.md#apicreateidentifystarsjobpost) | **POST** /api/createIdentifyStarsJob | Create a job to identify the stars in the image. |
 | [**apiDeleteBlogPost**](DefaultApi.md#apideleteblogpost) | **POST** /api/deleteBlog | Delete a blog |
 | [**apiDeleteCommentPost**](DefaultApi.md#apideletecommentpostoperation) | **POST** /api/deleteComment | Delete a comment |
+| [**apiDeleteUserPost**](DefaultApi.md#apideleteuserpost) | **POST** /api/deleteUser | 注销账号 |
 | [**apiDisplayChatRoomGet**](DefaultApi.md#apidisplaychatroomget) | **GET** /api/displayChatRoom | Display chat room entry button in GUI |
 | [**apiDisplaySaveSuccessPost**](DefaultApi.md#apidisplaysavesuccesspostoperation) | **POST** /api/displaySaveSuccess | Display save success confirmation |
 | [**apiDisplayStarDetailsPost**](DefaultApi.md#apidisplaystardetailspostoperation) | **POST** /api/displayStarDetails | Display star details |
@@ -20,6 +23,7 @@ All URIs are relative to *http://localhost*
 | [**apiGetCameraDataPost**](DefaultApi.md#apigetcameradatapost) | **POST** /api/getCameraData | Get camera data |
 | [**apiGetChatRoomInfoPost**](DefaultApi.md#apigetchatroominfopostoperation) | **POST** /api/getChatRoomInfo | Retrieve chat room from social system |
 | [**apiGetChatRoomPost**](DefaultApi.md#apigetchatroompostoperation) | **POST** /api/getChatRoom | Join the chat room |
+| [**apiGetIdentifyStarsJobResultPost**](DefaultApi.md#apigetidentifystarsjobresultpostoperation) | **POST** /api/getIdentifyStarsJobResult | get identify stars job result. |
 | [**apiGetLocationPost**](DefaultApi.md#apigetlocationpost) | **POST** /api/getLocation | Get current location |
 | [**apiGetMessagePost**](DefaultApi.md#apigetmessagepostoperation) | **POST** /api/getMessage | Retrieve chat room messages |
 | [**apiGetSavedBlogsPost**](DefaultApi.md#apigetsavedblogspostoperation) | **POST** /api/getSavedBlogs | List the blogs user saved |
@@ -27,6 +31,7 @@ All URIs are relative to *http://localhost*
 | [**apiGetStarDetailsPost**](DefaultApi.md#apigetstardetailspostoperation) | **POST** /api/getStarDetails | calculate star details |
 | [**apiLikeBlogPost**](DefaultApi.md#apilikeblogpost) | **POST** /api/likeBlog | Like a blog |
 | [**apiListBlogsPost**](DefaultApi.md#apilistblogspostoperation) | **POST** /api/listBlogs | List all blogs under the certain star |
+| [**apiListIdentifyStarsJobsPost**](DefaultApi.md#apilistidentifystarsjobspostoperation) | **POST** /api/listIdentifyStarsJobs | List identify stars jobs. |
 | [**apiReportBlogPost**](DefaultApi.md#apireportblogpost) | **POST** /api/reportBlog | Report a blog |
 | [**apiRequestAccuracyAdjustPost**](DefaultApi.md#apirequestaccuracyadjustpostoperation) | **POST** /api/requestAccuracyAdjust | Request accuracy adjustment |
 | [**apiRequestSaveTypePost**](DefaultApi.md#apirequestsavetypepost) | **POST** /api/requestSaveType | Request save type options |
@@ -36,7 +41,7 @@ All URIs are relative to *http://localhost*
 | [**apiSetUserPost**](DefaultApi.md#apisetuserpost) | **POST** /api/setUser | Set/modify username and password |
 | [**apiTriggerStarfieldRenderPost**](DefaultApi.md#apitriggerstarfieldrenderpostoperation) | **POST** /api/triggerStarfieldRender | Trigger starfield rendering |
 | [**apiUserLoginPost**](DefaultApi.md#apiuserloginpost) | **POST** /api/userLogin | User login |
-| [**apiUserRegPost**](DefaultApi.md#apiuserregpost) | **POST** /api/userReg | User register |
+| [**apiUserRegPost**](DefaultApi.md#apiuserregpostoperation) | **POST** /api/userReg | User register |
 | [**apiUsernameVerifyPost**](DefaultApi.md#apiusernameverifypostoperation) | **POST** /api/usernameVerify | Verify the username |
 | [**apiVerifyUserTokenPost**](DefaultApi.md#apiverifyusertokenpostoperation) | **POST** /api/verifyUserToken | Verify the user\&#39;s Token |
 | [**apiViewBlogPost**](DefaultApi.md#apiviewblogpostoperation) | **POST** /api/viewBlog | Details of one blog |
@@ -104,6 +109,73 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## apiChangePasswordPost
+
+> ApiChangePasswordPost200Response apiChangePasswordPost(changePasswordRequest)
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  DefaultApi,
+} from '';
+import type { ApiChangePasswordPostRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new DefaultApi();
+
+  const body = {
+    // ChangePasswordRequest
+    changePasswordRequest: ...,
+  } satisfies ApiChangePasswordPostRequest;
+
+  try {
+    const data = await api.apiChangePasswordPost(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **changePasswordRequest** | [ChangePasswordRequest](ChangePasswordRequest.md) |  | |
+
+### Return type
+
+[**ApiChangePasswordPost200Response**](ApiChangePasswordPost200Response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Password updated successfully |  -  |
+| **401** | Old password incorrect |  -  |
+| **404** | User not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
@@ -305,6 +377,74 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
+## apiCreateIdentifyStarsJobPost
+
+> ApiCreateIdentifyStarsJobPost200Response apiCreateIdentifyStarsJobPost(image, userCredentials)
+
+Create a job to identify the stars in the image.
+
+### Example
+
+```ts
+import {
+  Configuration,
+  DefaultApi,
+} from '';
+import type { ApiCreateIdentifyStarsJobPostRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new DefaultApi();
+
+  const body = {
+    // Blob | Image file to identify stars (JPEG, PNG, etc.)
+    image: BINARY_DATA_HERE,
+    // UserCredentials (optional)
+    userCredentials: ...,
+  } satisfies ApiCreateIdentifyStarsJobPostRequest;
+
+  try {
+    const data = await api.apiCreateIdentifyStarsJobPost(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **image** | `Blob` | Image file to identify stars (JPEG, PNG, etc.) | [Defaults to `undefined`] |
+| **userCredentials** | [UserCredentials](UserCredentials.md) |  | [Optional] [Defaults to `undefined`] |
+
+### Return type
+
+[**ApiCreateIdentifyStarsJobPost200Response**](ApiCreateIdentifyStarsJobPost200Response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: `multipart/form-data`
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
 ## apiDeleteBlogPost
 
 > ApiDeleteBlogPost200Response apiDeleteBlogPost(apiGetSavedBlogsPostRequest)
@@ -431,6 +571,73 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## apiDeleteUserPost
+
+> ApiChangePasswordPost200Response apiDeleteUserPost(userAuth)
+
+注销账号
+
+### Example
+
+```ts
+import {
+  Configuration,
+  DefaultApi,
+} from '';
+import type { ApiDeleteUserPostRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new DefaultApi();
+
+  const body = {
+    // UserAuth
+    userAuth: ...,
+  } satisfies ApiDeleteUserPostRequest;
+
+  try {
+    const data = await api.apiDeleteUserPost(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **userAuth** | [UserAuth](UserAuth.md) |  | |
+
+### Return type
+
+[**ApiChangePasswordPost200Response**](ApiChangePasswordPost200Response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Deletion successful |  -  |
+| **401** | Password incorrect |  -  |
+| **404** | User not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
@@ -1075,6 +1282,71 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
+## apiGetIdentifyStarsJobResultPost
+
+> ApiGetIdentifyStarsJobResultPost200Response apiGetIdentifyStarsJobResultPost(apiGetIdentifyStarsJobResultPostRequest)
+
+get identify stars job result.
+
+### Example
+
+```ts
+import {
+  Configuration,
+  DefaultApi,
+} from '';
+import type { ApiGetIdentifyStarsJobResultPostOperationRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new DefaultApi();
+
+  const body = {
+    // ApiGetIdentifyStarsJobResultPostRequest
+    apiGetIdentifyStarsJobResultPostRequest: ...,
+  } satisfies ApiGetIdentifyStarsJobResultPostOperationRequest;
+
+  try {
+    const data = await api.apiGetIdentifyStarsJobResultPost(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **apiGetIdentifyStarsJobResultPostRequest** | [ApiGetIdentifyStarsJobResultPostRequest](ApiGetIdentifyStarsJobResultPostRequest.md) |  | |
+
+### Return type
+
+[**ApiGetIdentifyStarsJobResultPost200Response**](ApiGetIdentifyStarsJobResultPost200Response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
 ## apiGetLocationPost
 
 > GPS apiGetLocationPost()
@@ -1497,6 +1769,71 @@ example().catch(console.error);
 ### Return type
 
 [**ApiListBlogsPost200Response**](ApiListBlogsPost200Response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## apiListIdentifyStarsJobsPost
+
+> ApiListIdentifyStarsJobsPost200Response apiListIdentifyStarsJobsPost(apiListIdentifyStarsJobsPostRequest)
+
+List identify stars jobs.
+
+### Example
+
+```ts
+import {
+  Configuration,
+  DefaultApi,
+} from '';
+import type { ApiListIdentifyStarsJobsPostOperationRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new DefaultApi();
+
+  const body = {
+    // ApiListIdentifyStarsJobsPostRequest (optional)
+    apiListIdentifyStarsJobsPostRequest: ...,
+  } satisfies ApiListIdentifyStarsJobsPostOperationRequest;
+
+  try {
+    const data = await api.apiListIdentifyStarsJobsPost(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **apiListIdentifyStarsJobsPostRequest** | [ApiListIdentifyStarsJobsPostRequest](ApiListIdentifyStarsJobsPostRequest.md) |  | [Optional] |
+
+### Return type
+
+[**ApiListIdentifyStarsJobsPost200Response**](ApiListIdentifyStarsJobsPost200Response.md)
 
 ### Authorization
 
@@ -2113,7 +2450,7 @@ No authorization required
 
 ## apiUserRegPost
 
-> UserResponse apiUserRegPost(userAuth)
+> UserResponse apiUserRegPost(apiUserRegPostRequest)
 
 User register
 
@@ -2126,16 +2463,16 @@ import {
   Configuration,
   DefaultApi,
 } from '';
-import type { ApiUserRegPostRequest } from '';
+import type { ApiUserRegPostOperationRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
   const api = new DefaultApi();
 
   const body = {
-    // UserAuth
-    userAuth: ...,
-  } satisfies ApiUserRegPostRequest;
+    // ApiUserRegPostRequest
+    apiUserRegPostRequest: ...,
+  } satisfies ApiUserRegPostOperationRequest;
 
   try {
     const data = await api.apiUserRegPost(body);
@@ -2154,7 +2491,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **userAuth** | [UserAuth](UserAuth.md) |  | |
+| **apiUserRegPostRequest** | [ApiUserRegPostRequest](ApiUserRegPostRequest.md) |  | |
 
 ### Return type
 

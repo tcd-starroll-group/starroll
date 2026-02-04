@@ -1,26 +1,28 @@
 
-# ChangePasswordRequest
+# IdentifyStarsJob
 
 
 ## Properties
 
 Name | Type
 ------------ | -------------
-`username` | string
-`oldPassword` | string
-`newPassword` | string
+`jobID` | string
+`status` | string
+`createTime` | string
+`updateTime` | string
 
 ## Example
 
 ```typescript
-import type { ChangePasswordRequest } from ''
+import type { IdentifyStarsJob } from ''
 
 // TODO: Update the object below with actual values
 const example = {
-  "username": null,
-  "oldPassword": null,
-  "newPassword": null,
-} satisfies ChangePasswordRequest
+  "jobID": null,
+  "status": null,
+  "createTime": null,
+  "updateTime": null,
+} satisfies IdentifyStarsJob
 
 console.log(example)
 
@@ -29,7 +31,7 @@ const exampleJSON: string = JSON.stringify(example)
 console.log(exampleJSON)
 
 // Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as ChangePasswordRequest
+const exampleParsed = JSON.parse(exampleJSON) as IdentifyStarsJob
 console.log(exampleParsed)
 ```
 

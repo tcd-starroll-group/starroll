@@ -1,26 +1,22 @@
 
-# ChangePasswordRequest
+# ApiGetIdentifyStarsJobResultPost200Response
 
 
 ## Properties
 
 Name | Type
 ------------ | -------------
-`username` | string
-`oldPassword` | string
-`newPassword` | string
+`identifyStarsJobsList` | [Array&lt;IdentifyStarsJobResult&gt;](IdentifyStarsJobResult.md)
 
 ## Example
 
 ```typescript
-import type { ChangePasswordRequest } from ''
+import type { ApiGetIdentifyStarsJobResultPost200Response } from ''
 
 // TODO: Update the object below with actual values
 const example = {
-  "username": null,
-  "oldPassword": null,
-  "newPassword": null,
-} satisfies ChangePasswordRequest
+  "identifyStarsJobsList": null,
+} satisfies ApiGetIdentifyStarsJobResultPost200Response
 
 console.log(example)
 
@@ -29,7 +25,7 @@ const exampleJSON: string = JSON.stringify(example)
 console.log(exampleJSON)
 
 // Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as ChangePasswordRequest
+const exampleParsed = JSON.parse(exampleJSON) as ApiGetIdentifyStarsJobResultPost200Response
 console.log(exampleParsed)
 ```
 

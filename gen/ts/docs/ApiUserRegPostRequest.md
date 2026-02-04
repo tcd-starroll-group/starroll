@@ -1,5 +1,5 @@
 
-# ChangePasswordRequest
+# ApiUserRegPostRequest
 
 
 ## Properties
@@ -7,20 +7,20 @@
 Name | Type
 ------------ | -------------
 `username` | string
-`oldPassword` | string
-`newPassword` | string
+`password` | string
+`email` | string
 
 ## Example
 
 ```typescript
-import type { ChangePasswordRequest } from ''
+import type { ApiUserRegPostRequest } from ''
 
 // TODO: Update the object below with actual values
 const example = {
-  "username": null,
-  "oldPassword": null,
-  "newPassword": null,
-} satisfies ChangePasswordRequest
+  "username": user123,
+  "password": Str0ngPa$$w0rd!,
+  "email": user@example.com,
+} satisfies ApiUserRegPostRequest
 
 console.log(example)
 
@@ -29,7 +29,7 @@ const exampleJSON: string = JSON.stringify(example)
 console.log(exampleJSON)
 
 // Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as ChangePasswordRequest
+const exampleParsed = JSON.parse(exampleJSON) as ApiUserRegPostRequest
 console.log(exampleParsed)
 ```
 
