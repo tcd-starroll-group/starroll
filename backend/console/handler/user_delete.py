@@ -1,9 +1,9 @@
 import hashlib
-from sqlalchemy import text
 from fastapi import HTTPException
 
 from gen.py.src.openapi_server.models.user_auth import UserAuth
 from backend.console.dal.rds.client import get_db
+from backend.console.dal.rds.user import User
 
 
 async def api_delete_user_post(user_auth: UserAuth) -> dict:
