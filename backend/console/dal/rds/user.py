@@ -33,7 +33,7 @@ class User(Base):
         db.commit()
         db.refresh(new_user)
         return new_user
-
+    
     @classmethod
     def delete_by_username(cls, db: Session, username: str):
         """Delete user by username"""
