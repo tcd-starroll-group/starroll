@@ -2,8 +2,9 @@ import hashlib
 from sqlalchemy import text
 from fastapi import HTTPException
 
-from openapi_server.models.user_auth import UserAuth
+from gen.py.src.openapi_server.models.user_auth import UserAuth
 from backend.console.dal.rds.client import get_db
+
 
 async def api_delete_user_post(user_auth: UserAuth) -> dict:
     print(f"⚠️ 收到注销请求: {user_auth.username}")
@@ -13,8 +14,10 @@ async def api_delete_user_post(user_auth: UserAuth) -> dict:
 
     try:
         # 1. 验证用户是否存在
-        sql_check = text("SELECT password FROM user WHERE username = :username")
-        result = db.execute(sql_check, {"username": user_auth.username}).fetchone()
+        sql_check = text(
+            "SELECT password FROM user WHERE username = :username")
+        result = db.execute(
+            sql_check, {"username": user_auth.username}).fetchone()
 
         if not result:
             raise HTTPException(status_code=404, detail="用户不存在")
@@ -23,7 +26,8 @@ async def api_delete_user_post(user_auth: UserAuth) -> dict:
         # 数据库里的密码是哈希过的，所以要把输入的密码也哈希一下进行比对
         stored_password = result[0]
         input_password_raw = user_auth.password.get_secret_value()
-        input_password_hash = hashlib.sha256(input_password_raw.encode()).hexdigest()
+        input_password_hash = hashlib.sha256(
+            input_password_raw.encode()).hexdigest()
 
         if stored_password != input_password_hash:
             print(f"❌ 用户 {user_auth.username} 密码验证失败")
