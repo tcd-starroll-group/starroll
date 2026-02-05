@@ -1,66 +1,83 @@
+import asyncio
+import hashlib
+
 import pytest
-from fastapi.testclient import TestClient
+from fastapi import HTTPException
+from sqlalchemy.orm import Session
 
-# Helper function to setup a user
-def create_test_user(client, username="change_pwd_user", password="old_password"):
-    client.post("/api/userReg", json={
-        "username": username,
-        "password": password,
-        "email": f"{username}@example.com"
-    })
+from backend.console.handler import user_change_password as user_change_password_module
+from backend.console.handler.user_change_password import api_change_password_post
+from backend.console.dal.rds.user import User
+from gen.py.src.openapi_server.models.change_password_request import ChangePasswordRequest
 
-def test_change_password_success(client: TestClient):
-    """Test successful password change"""
-    username = "cp_success"
-    old_pass = "old_pass_123"
-    new_pass = "new_pass_456"
+
+def test_api_change_password_post_success(db_session: Session, monkeypatch: pytest.MonkeyPatch):
+
+    username = "cp_user"
+    old_raw_pass = "old_pass_123"
+    new_raw_pass = "new_pass_456"
+    old_hashed = hashlib.sha256(old_raw_pass.encode()).hexdigest()
     
-    create_test_user(client, username, old_pass)
+    User.create(db_session, username, old_hashed, "cp@example.com")
 
-    # Change Password Request
-    payload = {
-        "username": username,
-        "old_password": old_pass,
-        "new_password": new_pass
-    }
-    # Note: If your API requires Token in headers, add headers=... here
-    # Assuming standard flow based on previous docs
-    response = client.post("/api/changePassword", json=payload)
-    
-    assert response.status_code == 200
-    assert response.json()["message"] == "Password updated successfully"
+    def _get_db_override():
+        yield db_session
 
-    # Verify: Login with OLD password should FAIL
-    login_old = client.post("/api/userLogin", json={"username": username, "password": old_pass})
-    assert login_old.status_code == 401
+    monkeypatch.setattr(user_change_password_module, "get_db", _get_db_override)
 
-    # Verify: Login with NEW password should SUCCEED
-    login_new = client.post("/api/userLogin", json={"username": username, "password": new_pass})
-    assert login_new.status_code == 200
+    payload = ChangePasswordRequest(
+        username=username,
+        old_password=old_raw_pass,
+        new_password=new_raw_pass
+    )
 
-def test_change_password_wrong_old_password(client: TestClient):
-    """Test failure when old password is incorrect"""
-    username = "cp_wrong_old"
-    create_test_user(client, username, "correct_password")
+    result = asyncio.run(api_change_password_post(payload))
 
-    payload = {
-        "username": username,
-        "old_password": "wrong_password",
-        "new_password": "new_password"
-    }
-    response = client.post("/api/changePassword", json=payload)
-    
-    assert response.status_code == 401
-    assert "Old password incorrect" in response.json()["detail"]
+    assert result["message"] == "Password updated successfully"
 
-def test_change_password_user_not_found(client: TestClient):
-    """Test changing password for non-existent user"""
-    payload = {
-        "username": "ghost_user",
-        "old_password": "any",
-        "new_password": "any"
-    }
-    response = client.post("/api/changePassword", json=payload)
-    
-    assert response.status_code == 404
-    assert "User not found" in response.json()["detail"]
+    user_in_db = User.get_by_username(db_session, username)
+    new_expected_hash = hashlib.sha256(new_raw_pass.encode()).hexdigest()
+    assert user_in_db.password == new_expected_hash
+
+
+def test_api_change_password_post_wrong_old_password(db_session: Session, monkeypatch: pytest.MonkeyPatch):
+    username = "cp_wrong"
+    real_pass = "correct_one"
+    real_hashed = hashlib.sha256(real_pass.encode()).hexdigest()
+    User.create(db_session, username, real_hashed, "wrong@example.com")
+
+    def _get_db_override():
+        yield db_session
+
+    monkeypatch.setattr(user_change_password_module, "get_db", _get_db_override)
+
+    payload = ChangePasswordRequest(
+        username=username,
+        old_password="wrong_input",
+        new_password="new_pass"
+    )
+
+    with pytest.raises(HTTPException) as exc_info:
+        asyncio.run(api_change_password_post(payload))
+
+    assert exc_info.value.status_code == 401
+    assert exc_info.value.detail == "Old password incorrect"
+
+
+def test_api_change_password_post_user_not_found(db_session: Session, monkeypatch: pytest.MonkeyPatch):
+    def _get_db_override():
+        yield db_session
+
+    monkeypatch.setattr(user_change_password_module, "get_db", _get_db_override)
+
+    payload = ChangePasswordRequest(
+        username="ghost",
+        old_password="any",
+        new_password="any"
+    )
+
+    with pytest.raises(HTTPException) as exc_info:
+        asyncio.run(api_change_password_post(payload))
+
+    assert exc_info.value.status_code == 404
+    assert exc_info.value.detail == "User not found"

@@ -1,83 +1,70 @@
+import asyncio
+import hashlib
+
 import pytest
-from fastapi.testclient import TestClient
+from fastapi import HTTPException
+from sqlalchemy.orm import Session
 
-def setup_user(client: TestClient, username: str, password: str):
-    """
-    Helper function: Register a user first to be used for subsequent deletion tests.
-    """
-    client.post("/api/userReg", json={
-        "username": username,
-        "password": password,
-        "email": f"{username}@example.com"
-    })
+from backend.console.handler import user_delete as user_delete_module
+from backend.console.handler.user_delete import api_delete_user_post
+from backend.console.dal.rds.user import User
+from gen.py.src.openapi_server.models.user_auth import UserAuth
 
-def test_delete_user_success(client: TestClient):
-    """
-    Test: Successfully delete a user using the correct password.
-    """
-    username = "user_to_delete"
-    password = "correct_password"
+
+def test_api_delete_user_post_success(db_session: Session, monkeypatch: pytest.MonkeyPatch):
+    username = "del_user"
+    password = "del_password"
+    hashed = hashlib.sha256(password.encode()).hexdigest()
     
-    # 1. Prepare data: Perform registration first
-    setup_user(client, username, password)
+    User.create(db_session, username, hashed, "del@example.com")
 
-    # 2. Execute the deletion operation
-    payload = {
-        "username": username,
-        "password": password
-    }
-    response = client.post("/api/deleteUser", json=payload)
-    
-    # 3. Verify the deletion endpoint returns success
-    # Note: Depending on your handler implementation, the key might be 'message' or another field
-    assert response.status_code == 200
-    assert "successfully" in str(response.json())
+    def _get_db_override():
+        yield db_session
 
-    # 4. Critical Verification: Attempt to login again; should return 404 (User Not Found)
-    login_response = client.post("/api/userLogin", json={
-        "username": username,
-        "password": password
-    })
-    assert login_response.status_code == 404
+    monkeypatch.setattr(user_delete_module, "get_db", _get_db_override)
 
-def test_delete_user_wrong_password(client: TestClient):
-    """
-    Test: Prohibit user deletion when the password is incorrect.
-    """
+    payload = UserAuth(username=username, password=password)
+
+    result = asyncio.run(api_delete_user_post(payload))
+
+    assert result.message == "Account deleted successfully"
+
+    user_in_db = User.get_by_username(db_session, username)
+    assert user_in_db is None
+
+
+def test_api_delete_user_post_wrong_password(db_session: Session, monkeypatch: pytest.MonkeyPatch):
     username = "safe_user"
-    password = "my_secret_password"
-    
-    # 1. Prepare data
-    setup_user(client, username, password)
+    password = "real_password"
+    hashed = hashlib.sha256(password.encode()).hexdigest()
+    User.create(db_session, username, hashed, "safe@example.com")
 
-    # 2. Attempt to delete with an incorrect password
-    payload = {
-        "username": username,
-        "password": "wrong_password_123"
-    }
-    response = client.post("/api/deleteUser", json=payload)
-    
-    # 3. Verify the request is intercepted (401 Unauthorized)
-    assert response.status_code == 401
-    assert "incorrect" in response.json()["detail"]
+    def _get_db_override():
+        yield db_session
 
-    # 4. Critical Verification: User should still exist (Login should succeed)
-    login_response = client.post("/api/userLogin", json={
-        "username": username,
-        "password": password
-    })
-    assert login_response.status_code == 200
+    monkeypatch.setattr(user_delete_module, "get_db", _get_db_override)
 
-def test_delete_user_not_found(client: TestClient):
-    """
-    Test: Attempt to delete a user that does not exist.
-    """
-    payload = {
-        "username": "ghost_user_999",
-        "password": "any_password"
-    }
-    response = client.post("/api/deleteUser", json=payload)
+    payload = UserAuth(username=username, password="wrong_password")
+
+    with pytest.raises(HTTPException) as exc_info:
+        asyncio.run(api_delete_user_post(payload))
+
+    assert exc_info.value.status_code == 401
+    assert exc_info.value.detail == "Password incorrect"
     
-    # Verify it returns 404 Not Found
-    assert response.status_code == 404
-    assert "User not found" in response.json()["detail"]
+    assert User.get_by_username(db_session, username) is not None
+
+
+def test_api_delete_user_post_not_found(db_session: Session, monkeypatch: pytest.MonkeyPatch):
+    def _get_db_override():
+        yield db_session
+
+    monkeypatch.setattr(user_delete_module, "get_db", _get_db_override)
+
+    payload = UserAuth(username="missing_user", password="any")
+
+    with pytest.raises(HTTPException) as exc_info:
+        asyncio.run(api_delete_user_post(payload))
+
+    assert exc_info.value.status_code == 404
+    assert exc_info.value.detail == "User not found"

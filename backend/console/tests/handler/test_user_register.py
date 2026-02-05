@@ -1,53 +1,61 @@
+import asyncio
+import hashlib
+
 import pytest
-from fastapi.testclient import TestClient
+from fastapi import HTTPException
+from sqlalchemy.orm import Session
 
-def test_register_success(client: TestClient):
-    """Test successful user registration"""
-    payload = {
-        "username": "newuser",
-        "password": "password123",
-        "email": "new@example.com"
-    }
-    response = client.post("/api/userReg", json=payload)
-    
-    assert response.status_code == 200
-    data = response.json()
-    assert data["username"] == "newuser"
-    
-    assert "userID" in data
-    assert isinstance(data["userID"], str) 
-    assert data["userID"].isdigit()
+from backend.console.handler import user_register as user_register_module
+from backend.console.handler.user_register import api_user_reg_post
+from backend.console.dal.rds.user import User
+from gen.py.src.openapi_server.models.api_user_reg_post_request import ApiUserRegPostRequest
 
-def test_register_duplicate_username(client: TestClient):
-    """Test registration with existing username (Should fail)"""
-    # 1. Register first user
-    payload = {
-        "username": "duplicate_user",
-        "password": "password123",
-        "email": "u1@example.com"
-    }
-    client.post("/api/userReg", json=payload)
 
-    # 2. Try to register same username again
-    payload_dup = {
-        "username": "duplicate_user",
-        "password": "password456",
-        "email": "u2@example.com"
-    }
-    response = client.post("/api/userReg", json=payload_dup)
-    
-    # Expecting 400 Bad Request
-    assert response.status_code == 400
-    assert "already exists" in response.json()["detail"]
+def test_api_user_reg_post_success(db_session: Session, monkeypatch: pytest.MonkeyPatch):
+    def _get_db_override():
+        yield db_session
 
-def test_register_missing_fields(client: TestClient):
-    """Test registration with missing required fields"""
-    # Missing password
-    payload = {
-        "username": "incomplete_user",
-        "email": "fail@example.com"
-    }
-    response = client.post("/api/userReg", json=payload)
+    monkeypatch.setattr(user_register_module, "get_db", _get_db_override)
+
+    payload = ApiUserRegPostRequest(
+        username="newuser",
+        password="password123",
+        email="new@example.com"
+    )
     
-    # FastAPIs validation error is usually 422
-    assert response.status_code == 422
+    result = asyncio.run(api_user_reg_post(payload))
+
+    assert result.username == "newuser"
+    
+    assert result.user_id is not None
+    assert result.user_id.isdigit()
+
+    user_in_db = User.get_by_username(db_session, "newuser")
+    assert user_in_db is not None
+    assert user_in_db.email == "new@example.com"
+
+    expected_hash = hashlib.sha256("password123".encode()).hexdigest()
+    assert user_in_db.password == expected_hash
+
+
+def test_api_user_reg_post_duplicate_username(db_session: Session, monkeypatch: pytest.MonkeyPatch):
+
+    existing_password = hashlib.sha256("pwd".encode()).hexdigest()
+    User.create(db_session, "duplicate_user", existing_password, "u1@example.com")
+
+    def _get_db_override():
+        yield db_session
+
+    monkeypatch.setattr(user_register_module, "get_db", _get_db_override)
+
+    payload = ApiUserRegPostRequest(
+        username="duplicate_user",
+        password="password456",
+        email="u2@example.com"
+    )
+
+    with pytest.raises(HTTPException) as exc_info:
+        asyncio.run(api_user_reg_post(payload))
+
+    assert exc_info.value.status_code == 400
+    assert exc_info.value.detail == "Username already exists"
