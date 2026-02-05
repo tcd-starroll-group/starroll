@@ -14,10 +14,8 @@ def test_register_success(client: TestClient):
     data = response.json()
     assert data["username"] == "newuser"
     
-    # 修正：OpenAPI 定义 ID 为 String 类型，所以这里检查 str
     assert "userID" in data
     assert isinstance(data["userID"], str) 
-    # 可选：检查它是否是数字字符串
     assert data["userID"].isdigit()
 
 def test_register_duplicate_username(client: TestClient):
