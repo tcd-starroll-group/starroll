@@ -1,0 +1,13 @@
+{
+    "hip": 103312,
+    "name": "HD 199478 -- Blue Supergiant",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+103312",
+    "alpha": 314.2519162834368,
+    "delta": 47.55258615187979,
+    "mag": 5.68,
+    "pmRA": -1.3671745807288915e-08,
+    "pmDE": -1.8132031673496645e-08,
+    "bvColor": 0.408,
+    "distance": 9320
+}

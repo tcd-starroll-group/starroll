@@ -1,0 +1,13 @@
+{
+    "hip": 79653,
+    "name": "* tet Nor -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+79653",
+    "alpha": 244.44972240967135,
+    "delta": -47.45696416549934,
+    "mag": 5.13,
+    "pmRA": -1.782659905439764e-07,
+    "pmDE": -2.223355541568332e-07,
+    "bvColor": -0.114,
+    "distance": 294.9367088607595
+}

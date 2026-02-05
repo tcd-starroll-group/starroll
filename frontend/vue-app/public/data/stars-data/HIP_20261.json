@@ -1,0 +1,13 @@
+{
+    "hip": 20261,
+    "name": "* 58 Tau -- delta Sct Variable",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+20261",
+    "alpha": 65.64601895205493,
+    "delta": 15.176023870153832,
+    "mag": 5.26,
+    "pmRA": 5.274288036790642e-07,
+    "pmDE": -1.002109878853411e-07,
+    "bvColor": 0.225,
+    "distance": 153.8679245283019
+}

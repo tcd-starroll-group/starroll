@@ -1,0 +1,13 @@
+{
+    "hip": 80331,
+    "name": "Eta Draconis",
+    "description": "Eta Draconis (η Draconis, abbreviated Eta Dra, η Dra) is a binary star in the northern circumpolar constellation of Draco. Despite having an apparent visual magnitude of only +2.73, it is the second-brightest star in this generally faint constellation.",
+    "url": "https://en.wikipedia.org/wiki/Eta_Draconis",
+    "alpha": 246.1179985889769,
+    "delta": 61.43594025888061,
+    "mag": 2.73,
+    "pmRA": -8.232136305239922e-08,
+    "pmDE": 2.7479239445288495e-07,
+    "bvColor": 0.91,
+    "distance": 87.73534158149543
+}

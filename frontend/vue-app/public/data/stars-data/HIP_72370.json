@@ -1,0 +1,13 @@
+{
+    "hip": 72370,
+    "name": "Alpha Apodis",
+    "description": "Alpha Apodis, also named Paradys, is the brightest star in the southern circumpolar constellation of Apus. It had the Greek alpha designation as part of the constellation which Johann Bayer called Apis Indica in his 1603 Uranometria star atlas.",
+    "url": "https://en.wikipedia.org/wiki/Alpha_Apodis",
+    "alpha": 223.09348690505934,
+    "delta": -79.18777481850373,
+    "mag": 3.83,
+    "pmRA": -2.7488935718910685e-08,
+    "pmDE": -7.635815477475191e-08,
+    "bvColor": 1.433,
+    "distance": 411.3493064312737
+}

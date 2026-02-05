@@ -1,0 +1,13 @@
+{
+    "hip": 67545,
+    "name": "HD 120602 -- Red Giant Branch star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+67545",
+    "alpha": 208.0405962760716,
+    "delta": 5.325734770764409,
+    "mag": 6,
+    "pmRA": 5.051758557161365e-08,
+    "pmDE": 3.4421771358777056e-09,
+    "bvColor": 0.899,
+    "distance": 403.2138442521632
+}

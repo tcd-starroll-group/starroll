@@ -1,0 +1,13 @@
+{
+    "hip": 78821,
+    "name": "* bet02 Sco -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+78821",
+    "alpha": 241.86827199062714,
+    "delta": -19.89409104402929,
+    "mag": 4.9,
+    "pmRA": -1.676970522957885e-07,
+    "pmDE": -3.6215581978882334e-08,
+    "bvColor": -0.024,
+    "distance": 1132.638888888889
+}

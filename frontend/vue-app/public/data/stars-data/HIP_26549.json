@@ -1,0 +1,13 @@
+{
+    "hip": 26549,
+    "name": "* sig Ori -- Young Stellar Object",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+26549",
+    "alpha": 85.12412159697448,
+    "delta": -2.5828399692083903,
+    "mag": 3.77,
+    "pmRA": 2.234991069914961e-08,
+    "pmDE": -1.9392547244381443e-09,
+    "bvColor": -0.19,
+    "distance": 1148.5915492957747
+}

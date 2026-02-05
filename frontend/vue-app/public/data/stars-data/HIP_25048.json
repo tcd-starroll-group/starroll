@@ -1,0 +1,13 @@
+{
+    "hip": 25048,
+    "name": "Rho Aurigae",
+    "description": "Rho Aurigae is a binary star system in the northern constellation of Auriga. Its name is a Bayer designation that is Latinized from ρ Aurigae, and abbreviated Rho Aur or ρ Aur.",
+    "url": "https://en.wikipedia.org/wiki/Rho_Aurigae",
+    "alpha": 81.06936061422027,
+    "delta": 41.835439217458834,
+    "mag": 5.22,
+    "pmRA": 6.506199600489973e-08,
+    "pmDE": -1.8122335399874456e-07,
+    "bvColor": -0.129,
+    "distance": 642.1259842519685
+}

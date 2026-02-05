@@ -1,0 +1,13 @@
+{
+    "hip": 27989,
+    "name": "Betelgeuse",
+    "description": "Betelgeuse is a red supergiant star in the equatorial constellation of Orion. It is usually the tenth-brightest star in the night sky and, after Rigel, the second brightest in its constellation.",
+    "url": "https://en.wikipedia.org/wiki/Betelgeuse",
+    "alpha": 89.26462750549378,
+    "delta": 7.410419345462333,
+    "mag": 0.45,
+    "pmRA": 1.3249957904723618e-07,
+    "pmDE": 5.2650765768495596e-08,
+    "bvColor": 1.5,
+    "distance": 427.5229357798166
+}

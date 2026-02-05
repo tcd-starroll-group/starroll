@@ -1,0 +1,13 @@
+{
+    "hip": 40843,
+    "name": "* chi Cnc -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+40843",
+    "alpha": 125.54343442361642,
+    "delta": 27.10297479052327,
+    "mag": 5.13,
+    "pmRA": -8.910875458793272e-08,
+    "pmDE": -1.82415995654274e-06,
+    "bvColor": 0.487,
+    "distance": 59.126336777234
+}

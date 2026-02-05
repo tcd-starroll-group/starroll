@@ -1,0 +1,13 @@
+{
+    "hip": 33104,
+    "name": "* 43 Cam -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+33104",
+    "alpha": 104.35926714290332,
+    "delta": 68.8418174095533,
+    "mag": 5.11,
+    "pmRA": 2.196205975426198e-08,
+    "pmDE": 3.539139872099613e-08,
+    "bvColor": -0.114,
+    "distance": 1000.6134969325154
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 15627,
+    "name": "Tau1 Arietis",
+    "description": "Tau1 Arietis is a triple star system in the northern constellation of Aries. Its name is a Bayer designation that is Latinized from τ1 Arietis, and abbreviated Tau1 Ari or τ1 Ari.",
+    "url": "https://en.wikipedia.org/wiki/Tau1_Arietis",
+    "alpha": 50.811305935944965,
+    "delta": 21.27010932774867,
+    "mag": 5.27,
+    "pmRA": 1.0510760606454741e-07,
+    "pmDE": -1.08646745936647e-07,
+    "bvColor": -0.067,
+    "distance": 462.0396600566572
+}

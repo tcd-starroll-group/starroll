@@ -1,0 +1,13 @@
+{
+    "hip": 94648,
+    "name": "* tau Dra -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+94648",
+    "alpha": 288.71860207550196,
+    "delta": 73.41873201489368,
+    "mag": 4.45,
+    "pmRA": -5.652927521737189e-07,
+    "pmDE": 5.054182625566913e-07,
+    "bvColor": 1.257,
+    "distance": 150.11504832029453
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 116354,
+    "name": "15 Andromedae",
+    "description": "15 Andromedae, abbreviated 15 And, is a single, variable star in the northern constellation of Andromeda. 15 Andromedae is the Flamsteed designation, while its variable star designation is V340 And.",
+    "url": "https://en.wikipedia.org/wiki/15_Andromedae",
+    "alpha": 354.0849851450572,
+    "delta": 40.42891365416409,
+    "mag": 5.55,
+    "pmRA": -8.586050292449883e-08,
+    "pmDE": -2.2189922184383463e-07,
+    "bvColor": 0.096,
+    "distance": 233.5003579098067
+}

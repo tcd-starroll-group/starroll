@@ -1,0 +1,13 @@
+{
+    "hip": 51313,
+    "name": "HD 91056 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+51313",
+    "alpha": 157.5104874373882,
+    "delta": -64.35122386119822,
+    "mag": 5.27,
+    "pmRA": -7.708537529641623e-08,
+    "pmDE": 1.3720227175399866e-08,
+    "bvColor": 1.856,
+    "distance": 3136.5384615384614
+}

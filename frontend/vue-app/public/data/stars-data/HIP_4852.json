@@ -1,0 +1,13 @@
+{
+    "hip": 4852,
+    "name": "* sig Scl -- alpha2 CVn Variable",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+4852",
+    "alpha": 16.024640121000395,
+    "delta": -31.365341122738386,
+    "mag": 5.5,
+    "pmRA": 3.926990816987242e-07,
+    "pmDE": 7.393408636920424e-08,
+    "bvColor": 0.083,
+    "distance": 226.6851980542043
+}

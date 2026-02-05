@@ -1,0 +1,13 @@
+{
+    "hip": 13061,
+    "name": "* 39 Ari -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+13061",
+    "alpha": 42.49774820846318,
+    "delta": 29.389762622827266,
+    "mag": 4.52,
+    "pmRA": 7.195604655027733e-07,
+    "pmDE": -6.097016853633524e-07,
+    "bvColor": 1.112,
+    "distance": 180.6201550387597
+}

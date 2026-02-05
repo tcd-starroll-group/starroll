@@ -1,0 +1,13 @@
+{
+    "hip": 6686,
+    "name": "Delta Cassiopeiae",
+    "description": "Delta Cassiopeiae is an eclipsing binary star system in the northern circumpolar constellation of Cassiopeia. Its name is a Bayer designation that is Latinized from δ Cassiopeiae, and abbreviated Delta Cas or δ Cas.",
+    "url": "https://en.wikipedia.org/wiki/Delta_Cassiopeiae",
+    "alpha": 22.027708543402603,
+    "delta": 60.41505354132303,
+    "mag": 2.66,
+    "pmRA": 1.4410601857299846e-06,
+    "pmDE": -2.399342907811094e-07,
+    "bvColor": 0.16,
+    "distance": 99.42090825967692
+}

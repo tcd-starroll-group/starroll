@@ -1,0 +1,13 @@
+{
+    "hip": 15619,
+    "name": "* kap02 Cet -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+15619",
+    "alpha": 50.73480178229377,
+    "delta": 3.7987749021726698,
+    "mag": 5.7,
+    "pmRA": 2.717380682618949e-07,
+    "pmDE": -1.2202760353527022e-07,
+    "bvColor": 0.964,
+    "distance": 290.47195013357083
+}

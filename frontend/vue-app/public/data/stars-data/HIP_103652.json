@@ -1,0 +1,13 @@
+{
+    "hip": 103652,
+    "name": "HD 199942",
+    "description": "HD 199942 is a binary star system in the northern constellation of Equuleus.",
+    "url": "https://en.wikipedia.org/wiki/HD_199942",
+    "alpha": 315.4450158411773,
+    "delta": 7.6539005287891335,
+    "mag": 5.98,
+    "pmRA": 2.3319538061368683e-07,
+    "pmDE": 3.383999494144562e-08,
+    "bvColor": 0.283,
+    "distance": 235.52346570397114
+}

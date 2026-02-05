@@ -1,0 +1,13 @@
+{
+    "hip": 34081,
+    "name": "* C Pup -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+34081",
+    "alpha": 106.28794941573757,
+    "delta": -42.390688585632695,
+    "mag": 5.2,
+    "pmRA": -8.794520175326983e-08,
+    "pmDE": 3.465448192570963e-07,
+    "bvColor": 0.198,
+    "distance": 315.47388781431334
+}

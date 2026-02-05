@@ -1,0 +1,13 @@
+{
+    "hip": 43325,
+    "name": "* h Vel -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+43325",
+    "alpha": 132.7379262044162,
+    "delta": -40.45136576836057,
+    "mag": 5.47,
+    "pmRA": -4.731781527629071e-08,
+    "pmDE": -3.6845839764324735e-09,
+    "bvColor": 0.066,
+    "distance": 1591.2195121951222
+}

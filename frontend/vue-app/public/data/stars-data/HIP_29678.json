@@ -1,0 +1,13 @@
+{
+    "hip": 29678,
+    "name": "HD 43112 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+29678",
+    "alpha": 94.2794309914846,
+    "delta": 13.83755038618332,
+    "mag": 5.91,
+    "pmRA": 1.1737339219661867e-07,
+    "pmDE": 5.1632657038165574e-08,
+    "bvColor": -0.231,
+    "distance": 1370.5882352941178
+}

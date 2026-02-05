@@ -1,0 +1,13 @@
+{
+    "hip": 93917,
+    "name": "17 Lyrae",
+    "description": "17 Lyrae is a multiple star system in the constellation Lyra, 143 light years away from Earth.",
+    "url": "https://en.wikipedia.org/wiki/17_Lyrae",
+    "alpha": 287.18545842910584,
+    "delta": 32.558740128998046,
+    "mag": 5.2,
+    "pmRA": 5.974358992312812e-07,
+    "pmDE": 1.5552822889993912e-07,
+    "bvColor": 0.367,
+    "distance": 132.38636363636363
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 108772,
+    "name": "* 14 Cep -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+108772",
+    "alpha": 330.8127982056063,
+    "delta": 58.169391886384986,
+    "mag": 5.55,
+    "pmRA": -1.68230347345009e-08,
+    "pmDE": -7.708537529641623e-09,
+    "bvColor": 0.017,
+    "distance": 4660
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 93717,
+    "name": "15 Aquilae",
+    "description": "15 Aquilae (abbreviated 15 Aql) is a star in the equatorial constellation of Aquila. 15 Aquilae is the Flamsteed designation; it also bears the Bayer designation h Aquilae.  The apparent visual magnitude is 5.41, so it is faintly visible to the naked eye.",
+    "url": "https://en.wikipedia.org/wiki/15_Aquilae",
+    "alpha": 286.6997444789737,
+    "delta": -3.9766435036867636,
+    "mag": 5.4,
+    "pmRA": 1.0064732019833967e-07,
+    "pmDE": -1.2959069696057898e-07,
+    "bvColor": 1.12,
+    "distance": 324.9003984063745
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 3330,
+    "name": "* rho Tuc -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+3330",
+    "alpha": 10.985441149150663,
+    "delta": -65.27726745695917,
+    "mag": 5.38,
+    "pmRA": 2.623326828483699e-07,
+    "pmDE": 1.9935538567224118e-07,
+    "bvColor": 0.515,
+    "distance": 132.65555103700692
+}

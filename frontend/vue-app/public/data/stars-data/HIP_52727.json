@@ -1,0 +1,13 @@
+{
+    "hip": 52727,
+    "name": "Mu Velorum",
+    "description": "Mu Velorum (μ Vel, μ Velorum) is a binary star system in the southern constellation Vela. The pair have a combined apparent visual magnitude of 2.69, making the system readily visible to the naked eye.",
+    "url": "https://en.wikipedia.org/wiki/Mu_Velorum",
+    "alpha": 162.06840809885136,
+    "delta": -49.604950766512395,
+    "mag": 2.69,
+    "pmRA": 3.032509575340147e-07,
+    "pmDE": -2.597146889703784e-07,
+    "bvColor": 0.901,
+    "distance": 115.75585521646558
+}

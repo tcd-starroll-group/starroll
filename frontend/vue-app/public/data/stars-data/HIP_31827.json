@@ -1,0 +1,13 @@
+{
+    "hip": 31827,
+    "name": "HD 47667 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+31827",
+    "alpha": 100.21780186868835,
+    "delta": -14.179552247064148,
+    "mag": 4.82,
+    "pmRA": 2.220446659481675e-08,
+    "pmDE": -3.3936957677667516e-08,
+    "bvColor": 1.459,
+    "distance": 1575.8454106280194
+}

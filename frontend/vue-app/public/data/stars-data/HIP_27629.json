@@ -1,0 +1,13 @@
+{
+    "hip": 27629,
+    "name": "HD 39004 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+27629",
+    "alpha": 88.29128958683,
+    "delta": 27.974656113415037,
+    "mag": 5.6,
+    "pmRA": -1.493226137817371e-08,
+    "pmDE": 5.604446153626237e-08,
+    "bvColor": 0.978,
+    "distance": 376.6743648960739
+}

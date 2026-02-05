@@ -1,0 +1,13 @@
+{
+    "hip": 77163,
+    "name": "HD 140775 -- Variable Star Candidate",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+77163",
+    "alpha": 236.77905280375876,
+    "delta": 5.340455996077304,
+    "mag": 5.57,
+    "pmRA": 1.3172387715746094e-07,
+    "pmDE": -1.54655564273942e-08,
+    "bvColor": 0.035,
+    "distance": 384.21672555948174
+}

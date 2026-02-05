@@ -1,0 +1,13 @@
+{
+    "hip": 43783,
+    "name": "HD 76728",
+    "description": "HD 76728 is a suspected astrometric binary star system in the constellation Carina. It has the Bayer designation c Carinae; HD 76728 is the identifier from the Henry Draper catalogue.",
+    "url": "https://en.wikipedia.org/wiki/HD_76728",
+    "alpha": 133.95865577267367,
+    "delta": -60.77867384819109,
+    "mag": 3.84,
+    "pmRA": -1.3662049533666723e-07,
+    "pmDE": 2.0478529890066799e-07,
+    "bvColor": -0.104,
+    "distance": 312.1531100478469
+}

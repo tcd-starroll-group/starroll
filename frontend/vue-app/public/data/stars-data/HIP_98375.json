@@ -1,0 +1,13 @@
+{
+    "hip": 98375,
+    "name": "* 14 Vul -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+98375",
+    "alpha": 300.1678606308047,
+    "delta": 23.198205467977363,
+    "mag": 5.68,
+    "pmRA": -3.431511234893295e-07,
+    "pmDE": 1.4883780010062754e-08,
+    "bvColor": 0.345,
+    "distance": 157.88964181994191
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 61622,
+    "name": "* tau Cen -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+61622",
+    "alpha": 189.90782541789952,
+    "delta": -48.7324966493823,
+    "mag": 3.85,
+    "pmRA": -9.047108103185053e-07,
+    "pmDE": -3.127048243156507e-08,
+    "bvColor": 0.049,
+    "distance": 131.6915623738393
+}

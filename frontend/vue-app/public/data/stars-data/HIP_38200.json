@@ -1,0 +1,13 @@
+{
+    "hip": 38200,
+    "name": "HD 63852 -- Variable Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+38200",
+    "alpha": 117.7304774871816,
+    "delta": -33.378656290228406,
+    "mag": 5.61,
+    "pmRA": -1.8146576083929932e-07,
+    "pmDE": 8.678164891860696e-09,
+    "bvColor": 1.617,
+    "distance": 691.1016949152543
+}

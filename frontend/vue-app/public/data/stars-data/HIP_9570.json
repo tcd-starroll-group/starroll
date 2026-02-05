@@ -1,0 +1,13 @@
+{
+    "hip": 9570,
+    "name": "* eps Tri -- Variable Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+9570",
+    "alpha": 31.253429674209904,
+    "delta": 33.45029102011556,
+    "mag": 5.5,
+    "pmRA": -7.752170760941481e-08,
+    "pmDE": -3.272492347489368e-08,
+    "bvColor": 0.029,
+    "distance": 370.26106696935295
+}

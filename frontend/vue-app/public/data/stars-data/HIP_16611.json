@@ -1,0 +1,13 @@
+{
+    "hip": 16611,
+    "name": "* tau05 Eri -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+16611",
+    "alpha": 53.83183692814344,
+    "delta": -21.518109509032065,
+    "mag": 4.26,
+    "pmRA": 2.1772982418629262e-07,
+    "pmDE": -1.3317831820078952e-07,
+    "bvColor": -0.106,
+    "distance": 296.0072595281307
+}

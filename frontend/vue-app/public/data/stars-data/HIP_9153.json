@@ -1,0 +1,13 @@
+{
+    "hip": 9153,
+    "name": "Lambda Arietis",
+    "description": "Lambda Arietis is a double star in the northern constellation of Aries. Its name is a Bayer designation that is Latinized from λ Arietis, and abbreviated Lambda Ari or λ Ari.",
+    "url": "https://en.wikipedia.org/wiki/Lambda_Arietis",
+    "alpha": 29.969975446796113,
+    "delta": 23.764336249031984,
+    "mag": 4.79,
+    "pmRA": -4.4365299958333646e-07,
+    "pmDE": -7.005557692032794e-08,
+    "bvColor": 0.29,
+    "distance": 133.19722335647202
+}

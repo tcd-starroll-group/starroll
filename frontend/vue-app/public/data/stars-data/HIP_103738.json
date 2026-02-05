@@ -1,0 +1,13 @@
+{
+    "hip": 103738,
+    "name": "Gamma Microscopii",
+    "description": "Gamma Microscopii (γ Microscopii, γ Mic) is the brightest star in the faint southern constellation of Microscopium. It has an apparent visual magnitude of 4.68, which is too dim to be viewed from city skies.",
+    "url": "https://en.wikipedia.org/wiki/Gamma_Microscopii",
+    "alpha": 315.8544231565507,
+    "delta": -32.119263603102844,
+    "mag": 4.67,
+    "pmRA": -1.0132605935189301e-08,
+    "pmDE": -9.211459941081184e-10,
+    "bvColor": 0.89,
+    "distance": 223.57779300891022
+}

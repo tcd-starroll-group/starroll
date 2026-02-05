@@ -1,0 +1,13 @@
+{
+    "hip": 18957,
+    "name": "* 40 Tau -- Double or Multiple Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+18957",
+    "alpha": 61.398426130605024,
+    "delta": 5.529100787447534,
+    "mag": 5.32,
+    "pmRA": 5.963208277647292e-09,
+    "pmDE": -2.6179938779914944e-08,
+    "bvColor": -0.08,
+    "distance": 1045.5128205128206
+}

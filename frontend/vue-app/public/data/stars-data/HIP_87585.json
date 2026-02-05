@@ -1,0 +1,13 @@
+{
+    "hip": 87585,
+    "name": "* ksi Dra -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+87585",
+    "alpha": 268.53195883170883,
+    "delta": 56.86798296099731,
+    "mag": 3.73,
+    "pmRA": 4.540280123590805e-07,
+    "pmDE": 3.8028785146232e-07,
+    "bvColor": 1.177,
+    "distance": 111.48325358851673
+}

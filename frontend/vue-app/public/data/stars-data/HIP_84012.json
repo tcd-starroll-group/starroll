@@ -1,0 +1,13 @@
+{
+    "hip": 84012,
+    "name": "Eta Ophiuchi",
+    "description": "Eta Ophiuchi is a binary star in the constellation of Ophiuchus. Its name is a Bayer designation that is Latinized from η Ophiuchi, and abbreviated Eta Oph or η Oph.",
+    "url": "https://en.wikipedia.org/wiki/Eta_Ophiuchi",
+    "alpha": 258.0945347597169,
+    "delta": -15.765024289581735,
+    "mag": 2.43,
+    "pmRA": 1.9954931114468498e-07,
+    "pmDE": 4.73420559603462e-07,
+    "bvColor": 0.059,
+    "distance": 84.1372194996131
+}

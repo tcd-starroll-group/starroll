@@ -1,0 +1,13 @@
+{
+    "hip": 61621,
+    "name": "HD 109799 -- gamma Dor Variable",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+61621",
+    "alpha": 189.88974932962938,
+    "delta": -27.330738645518004,
+    "mag": 5.41,
+    "pmRA": 3.855238392183029e-07,
+    "pmDE": -4.565005621327391e-07,
+    "bvColor": 0.334,
+    "distance": 112.83292978208232
+}

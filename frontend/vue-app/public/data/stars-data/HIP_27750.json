@@ -1,0 +1,13 @@
+{
+    "hip": 27750,
+    "name": "* 56 Ori -- Variable Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+27750",
+    "alpha": 88.56266242403903,
+    "delta": 1.8607003318843045,
+    "mag": 4.76,
+    "pmRA": -3.43732899906661e-08,
+    "pmDE": -4.804503579795501e-08,
+    "bvColor": 1.382,
+    "distance": 1113.3105802047783
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 38962,
+    "name": "* 14 CMi -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+38962",
+    "alpha": 120.03755949359599,
+    "delta": 2.1290873842483258,
+    "mag": 5.3,
+    "pmRA": -7.880161572754398e-07,
+    "pmDE": 4.813230226055474e-07,
+    "bvColor": 0.933,
+    "distance": 264.5579886455799
+}

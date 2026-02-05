@@ -1,0 +1,13 @@
+{
+    "hip": 22176,
+    "name": "HD 30197 -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+22176",
+    "alpha": 72.07949143729235,
+    "delta": 18.79467011843017,
+    "mag": 5.99,
+    "pmRA": 3.540594313142941e-07,
+    "pmDE": -3.383514680463452e-07,
+    "bvColor": 1.221,
+    "distance": 301.75763182238666
+}

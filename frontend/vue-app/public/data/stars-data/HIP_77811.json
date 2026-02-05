@@ -1,0 +1,13 @@
+{
+    "hip": 77811,
+    "name": "* lam Lib -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+77811",
+    "alpha": 238.8407716710428,
+    "delta": -20.26824972028261,
+    "mag": 5.04,
+    "pmRA": -1.7501773888054247e-08,
+    "pmDE": -9.211459941081184e-08,
+    "bvColor": -0.014,
+    "distance": 356.5027322404372
+}

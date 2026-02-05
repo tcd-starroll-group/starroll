@@ -1,0 +1,13 @@
+{
+    "hip": 29379,
+    "name": "* 5 Gem -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+29379",
+    "alpha": 93.4187992027077,
+    "delta": 24.40922427359319,
+    "mag": 5.83,
+    "pmRA": 4.799655442984407e-09,
+    "pmDE": -2.5229703964940254e-07,
+    "bvColor": 1.11,
+    "distance": 753.3487297921478
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 65535,
+    "name": "HD 116713 -- Chemically Peculiar Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+65535",
+    "alpha": 202.03979874299617,
+    "delta": -39.93559820375547,
+    "mag": 5.11,
+    "pmRA": 8.159899066754601e-07,
+    "pmDE": -2.8410081713018807e-07,
+    "bvColor": 1.181,
+    "distance": 207.3744437380801
+}

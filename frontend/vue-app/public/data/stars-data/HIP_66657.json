@@ -1,0 +1,13 @@
+{
+    "hip": 66657,
+    "name": "Epsilon Centauri",
+    "description": "Epsilon Centauri is a star in the southern constellation of Centaurus. Its name is a Bayer designation that is Latinized from ε Centauri, and abbreviated Epsilon Cen or ε Cen.",
+    "url": "https://en.wikipedia.org/wiki/Epsilon_Centauri",
+    "alpha": 205.5301033630067,
+    "delta": -53.64186598833727,
+    "mag": 2.29,
+    "pmRA": -7.078279744199226e-08,
+    "pmDE": -6.200766981390966e-08,
+    "bvColor": -0.171,
+    "distance": 375.80645161290323
+}

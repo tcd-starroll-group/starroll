@@ -1,0 +1,13 @@
+{
+    "hip": 97649,
+    "name": "Altair",
+    "description": "Altair is the brightest star in the equatorial constellation of Aquila and the twelfth-brightest star in the night sky. It has the Bayer designation Alpha Aquilae, which is Latinised from α Aquilae and abbreviated Alpha Aql or α Aql.",
+    "url": "https://en.wikipedia.org/wiki/Altair",
+    "alpha": 298.11908661123704,
+    "delta": 8.96188310932475,
+    "mag": 0.76,
+    "pmRA": 2.6025768029322116e-06,
+    "pmDE": 1.869150666149705e-06,
+    "bvColor": 0.221,
+    "distance": 16.776383460193376
+}

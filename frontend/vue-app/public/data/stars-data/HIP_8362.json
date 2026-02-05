@@ -1,0 +1,13 @@
+{
+    "hip": 8362,
+    "name": "HR 511",
+    "description": "HR 511 (also designated V987 Cassiopeiae and Gliese 75 among others) is an orange dwarf of spectral type K0V in the constellation Cassiopeia. With an apparent magnitude of 5.63, it is faintly visible to the naked eye.",
+    "url": "https://en.wikipedia.org/wiki/HR_511",
+    "alpha": 27.567041990971077,
+    "delta": 64.0231072665393,
+    "mag": 5.63,
+    "pmRA": 2.821858030898054e-06,
+    "pmDE": -1.1966656090826679e-06,
+    "bvColor": 0.804,
+    "distance": 32.54189944134078
+}

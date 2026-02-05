@@ -1,0 +1,13 @@
+{
+    "hip": 2912,
+    "name": "Pi Andromedae",
+    "description": "Pi Andromedae is a binary star system in the northern constellation of Andromeda. Its Bayer designation is latinized from π Andromedae, and abbreviated Pi And or π And, respectively. With an apparent visual magnitude of 4.4, it is visible to the naked eye.",
+    "url": "https://en.wikipedia.org/wiki/Pi_Andromedae",
+    "alpha": 9.687925574908583,
+    "delta": 33.910602334482924,
+    "mag": 4.34,
+    "pmRA": 7.383712363298233e-08,
+    "pmDE": -1.725936704749948e-08,
+    "bvColor": -0.123,
+    "distance": 656.3380281690141
+}

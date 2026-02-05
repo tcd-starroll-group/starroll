@@ -1,0 +1,13 @@
+{
+    "hip": 73369,
+    "name": "* 40 Boo -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+73369",
+    "alpha": 225.2380586196579,
+    "delta": 39.12868205149679,
+    "mag": 5.64,
+    "pmRA": -1.528617536538367e-07,
+    "pmDE": 2.0289452554434084e-07,
+    "bvColor": 0.336,
+    "distance": 164.49823499747856
+}

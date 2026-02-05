@@ -1,0 +1,13 @@
+{
+    "hip": 92824,
+    "name": "* chi Oct -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+92824",
+    "alpha": 288.55308354880805,
+    "delta": -87.55293886658866,
+    "mag": 5.29,
+    "pmRA": -1.7787813959908872e-07,
+    "pmDE": -6.555650595963145e-07,
+    "bvColor": 1.304,
+    "distance": 249.77029096477796
+}

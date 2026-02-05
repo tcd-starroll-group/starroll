@@ -1,0 +1,13 @@
+{
+    "hip": 25790,
+    "name": "HD 36162 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+25790",
+    "alpha": 83.10808524481888,
+    "delta": 15.384289230186267,
+    "mag": 5.93,
+    "pmRA": -6.535288421356545e-08,
+    "pmDE": -1.8704111817205893e-07,
+    "bvColor": 0.103,
+    "distance": 344.4561774023231
+}

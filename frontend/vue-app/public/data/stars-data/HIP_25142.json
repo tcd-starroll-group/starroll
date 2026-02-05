@@ -1,0 +1,13 @@
+{
+    "hip": 25142,
+    "name": "* 23 Ori -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+25142",
+    "alpha": 81.16650339274535,
+    "delta": 3.575005256771693,
+    "mag": 4.99,
+    "pmRA": -9.696273622190719e-09,
+    "pmDE": 8.726646259971649e-09,
+    "bvColor": -0.096,
+    "distance": 962.2418879056047
+}

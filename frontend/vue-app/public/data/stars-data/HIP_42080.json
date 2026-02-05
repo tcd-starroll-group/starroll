@@ -1,0 +1,13 @@
+{
+    "hip": 42080,
+    "name": "* 2 UMa -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+42080",
+    "alpha": 129.42085738418476,
+    "delta": 65.02274130317598,
+    "mag": 5.47,
+    "pmRA": -2.2815331833014764e-07,
+    "pmDE": -2.0604581447155283e-07,
+    "bvColor": 0.207,
+    "distance": 158.1192438196801
+}

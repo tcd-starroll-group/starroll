@@ -1,0 +1,13 @@
+{
+    "hip": 43671,
+    "name": "HD 76360 -- Double or Multiple Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+43671",
+    "alpha": 133.75335242138289,
+    "delta": -47.65469417374565,
+    "mag": 5.31,
+    "pmRA": -2.8943376762239295e-08,
+    "pmDE": -1.1562806294462435e-07,
+    "bvColor": 0.275,
+    "distance": 261.1689351481185
+}

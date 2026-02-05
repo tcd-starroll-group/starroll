@@ -1,0 +1,13 @@
+{
+    "hip": 93015,
+    "name": "* kap Pav -- Type II Cepheid Variable",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+93015",
+    "alpha": 285.1302872129585,
+    "delta": -67.18421283477318,
+    "mag": 4.4,
+    "pmRA": -3.7960911230876663e-08,
+    "pmDE": 8.072147790473774e-08,
+    "bvColor": 0.53,
+    "distance": 543.6666666666666
+}

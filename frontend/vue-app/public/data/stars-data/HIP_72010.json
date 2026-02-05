@@ -1,0 +1,13 @@
+{
+    "hip": 72010,
+    "name": "HD 129456",
+    "description": "HD 129456, also known by its Bayer designation c1 Centauri (c1 Cen), is a star in the constellation Centaurus.  c¹ Centauri is an orange K-type giant with an apparent magnitude of +4.06.  It is approximately 209 light years from Earth.",
+    "url": "https://en.wikipedia.org/wiki/HD_129456",
+    "alpha": 221.45041639064593,
+    "delta": -35.320873196289455,
+    "mag": 4.06,
+    "pmRA": -2.9539697590004027e-07,
+    "pmDE": -8.572475509378816e-07,
+    "bvColor": 1.356,
+    "distance": 205.2863436123348
+}

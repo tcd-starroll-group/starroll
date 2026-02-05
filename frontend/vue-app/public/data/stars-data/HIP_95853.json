@@ -1,0 +1,13 @@
+{
+    "hip": 95853,
+    "name": "* iot Cyg -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+95853",
+    "alpha": 292.6455598766003,
+    "delta": 51.80503070422212,
+    "mag": 3.76,
+    "pmRA": 1.0142302208811493e-07,
+    "pmDE": 6.211432882375376e-07,
+    "bvColor": 0.148,
+    "distance": 122.49342846413819
+}

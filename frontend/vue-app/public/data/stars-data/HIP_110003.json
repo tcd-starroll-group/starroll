@@ -1,0 +1,13 @@
+{
+    "hip": 110003,
+    "name": "Theta Aquarii",
+    "description": "Theta Aquarii is a star in the equatorial constellation of Aquarius. Its identifier is a Bayer designation that is Latinized from θ Aquarii, and abbreviated Tet Aqr or θ Aqr, respectively. It has the official name Ancha, which is pronounced .",
+    "url": "https://en.wikipedia.org/wiki/Theta_Aquarii",
+    "alpha": 334.66694278097293,
+    "delta": -7.608532380036651,
+    "mag": 4.17,
+    "pmRA": 5.76685873679793e-07,
+    "pmDE": -1.0622267753109931e-07,
+    "bvColor": 0.979,
+    "distance": 191.43192488262912
+}

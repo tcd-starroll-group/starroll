@@ -1,0 +1,13 @@
+{
+    "hip": 92041,
+    "name": "* phi Sgr -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+92041",
+    "alpha": 281.9573637876825,
+    "delta": -26.951497749410287,
+    "mag": 3.17,
+    "pmRA": 2.479821978875277e-07,
+    "pmDE": 2.1816615649929122e-09,
+    "bvColor": -0.107,
+    "distance": 230.69306930693068
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 16245,
+    "name": "* kap Ret -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+16245",
+    "alpha": 52.492452559803795,
+    "delta": -62.81657296915319,
+    "mag": 4.71,
+    "pmRA": 1.8570788054900774e-06,
+    "pmDE": 1.8088883255877895e-06,
+    "bvColor": 0.41,
+    "distance": 69.92497320471597
+}

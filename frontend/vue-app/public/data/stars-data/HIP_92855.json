@@ -1,0 +1,13 @@
+{
+    "hip": 92855,
+    "name": "Sigma Sagittarii",
+    "description": "Sigma Sagittarii, Latinized from σ Sagittarii; formally named Nunki , is the second-brightest star in the constellation of Sagittarius. It is a binary star system, viewed as a single star of combined apparent magnitude +2.05, about the same brightness as Saiph in Orion.",
+    "url": "https://en.wikipedia.org/wiki/Sigma_Sagittarii",
+    "alpha": 284.3555908013757,
+    "delta": -26.249899317844083,
+    "mag": 2.05,
+    "pmRA": 6.724365756989264e-08,
+    "pmDE": -2.552544031041707e-07,
+    "bvColor": -0.134,
+    "distance": 224.34662998624486
+}

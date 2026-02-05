@@ -1,0 +1,13 @@
+{
+    "hip": 90185,
+    "name": "Epsilon Sagittarii",
+    "description": "Epsilon Sagittarii (Latinised from ε Sagittarii, abbreviated Epsilon Sgr, ε Sgr), formally named Kaus Australis , is a binary star system in the southern zodiac constellation of Sagittarius. The apparent visual magnitude of +1.85 makes it the brightest object in Sagittarius.",
+    "url": "https://en.wikipedia.org/wiki/Epsilon_Sagittarii",
+    "alpha": 276.6208572059165,
+    "delta": -34.36412026395162,
+    "mag": 1.79,
+    "pmRA": -1.9203469908748718e-07,
+    "pmDE": -6.014113714163793e-07,
+    "bvColor": -0.031,
+    "distance": 144.65631929046563
+}

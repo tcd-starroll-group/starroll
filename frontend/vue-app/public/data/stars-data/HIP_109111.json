@@ -1,0 +1,13 @@
+{
+    "hip": 109111,
+    "name": "* lam Gru -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+109111",
+    "alpha": 332.0502445886,
+    "delta": -39.3733904549106,
+    "mag": 4.47,
+    "pmRA": -1.171309853560639e-07,
+    "pmDE": -6.068412846448063e-07,
+    "bvColor": 1.349,
+    "distance": 247.12121212121215
+}

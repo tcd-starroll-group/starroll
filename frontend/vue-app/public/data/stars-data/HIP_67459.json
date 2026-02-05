@@ -1,0 +1,13 @@
+{
+    "hip": 67459,
+    "name": "Upsilon Boötis",
+    "description": "Upsilon Boötis is a single, orange-hued star in the northern constellation of Boötes. Its name is a Bayer designation that is Latinized from υ Boötis, and abbreviated Upsilon Boo or υ Boo. This is a fourth magnitude star that is visible to the naked eye.",
+    "url": "https://en.wikipedia.org/wiki/Upsilon_Bo%C3%B6tis",
+    "alpha": 207.7896990370764,
+    "delta": 15.626323991762655,
+    "mag": 4.05,
+    "pmRA": -4.539795309909695e-07,
+    "pmDE": 1.9761005642024682e-07,
+    "bvColor": 1.52,
+    "distance": 245.44770504138452
+}

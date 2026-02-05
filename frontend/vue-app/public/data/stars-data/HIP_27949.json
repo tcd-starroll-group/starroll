@@ -1,0 +1,13 @@
+{
+    "hip": 27949,
+    "name": "Xi Aurigae",
+    "description": "Xi Aurigae is a single, white-hued star in the northern constellation of Auriga. Its name is a Bayer designation that is Latinized from ξ Aurigae, and abbreviated Xi Aur or ξ Ari.",
+    "url": "https://en.wikipedia.org/wiki/Xi_Aurigae",
+    "alpha": 89.44218314337328,
+    "delta": 55.71020714625002,
+    "mag": 4.96,
+    "pmRA": -1.7695699360498065e-08,
+    "pmDE": 8.338795315084018e-08,
+    "bvColor": 0.052,
+    "distance": 240.9158050221566
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 27830,
+    "name": "* 136 Tau -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+27830",
+    "alpha": 88.87955349919037,
+    "delta": 27.616903447343933,
+    "mag": 4.56,
+    "pmRA": 1.8519882618384273e-08,
+    "pmDE": -4.644515065029355e-08,
+    "bvColor": -0.008,
+    "distance": 437.8523489932886
+}

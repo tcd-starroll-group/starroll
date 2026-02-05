@@ -1,0 +1,13 @@
+{
+    "hip": 92391,
+    "name": "HD 174208 -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+92391",
+    "alpha": 282.88647018286724,
+    "delta": -5.870469492451145,
+    "mag": 5.99,
+    "pmRA": 1.1150714665519329e-09,
+    "pmDE": -5.667471932170475e-08,
+    "bvColor": 1.568,
+    "distance": 1489.4977168949772
+}

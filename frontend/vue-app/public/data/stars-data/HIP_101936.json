@@ -1,0 +1,13 @@
+{
+    "hip": 101936,
+    "name": "* 1 Aqr -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+101936",
+    "alpha": 310.29931083242934,
+    "delta": 0.6111537475197755,
+    "mag": 5.15,
+    "pmRA": 4.993580915428221e-07,
+    "pmDE": -9.42477796076938e-08,
+    "bvColor": 1.06,
+    "distance": 244.7111777944486
+}

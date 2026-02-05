@@ -1,0 +1,13 @@
+{
+    "hip": 98823,
+    "name": "Tau Aquilae",
+    "description": "Tau Aquilae is a star in the equatorial constellation of Aquila. Its identifier is a Bayer designation that is Latinized from τ Aquilae, and abbreviated Tau Aql or τ Aql. The star has the proper name Tianfu, after a traditional Chinese constellation.",
+    "url": "https://en.wikipedia.org/wiki/Tau_Aquilae",
+    "alpha": 301.45971942388155,
+    "delta": 7.378657009583763,
+    "mag": 5.51,
+    "pmRA": 6.903746818999792e-08,
+    "pmDE": 6.288033443990682e-08,
+    "bvColor": 1.063,
+    "distance": 526.9789983844911
+}

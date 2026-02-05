@@ -1,0 +1,13 @@
+{
+    "hip": 17797,
+    "name": "F Eridani",
+    "description": "f Eridani is a binary, or possibly a triple, star system in the equatorial constellation of Eridanus, consisting of stars HD 24071 and HD 24072. They share a single Hipparcos catalogue entry, HIP 17797, but have separate Bright Star Catalogue listing...",
+    "url": "https://en.wikipedia.org/wiki/F_Eridani",
+    "alpha": 57.47072856871538,
+    "delta": -37.51551394300674,
+    "mag": 4.3,
+    "pmRA": 3.676342143853611e-07,
+    "pmDE": -5.182658251060939e-08,
+    "bvColor": -0.038,
+    "distance": 161.24567474048442
+}

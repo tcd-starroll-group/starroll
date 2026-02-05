@@ -1,0 +1,13 @@
+{
+    "hip": 78168,
+    "name": "HD 142883 -- Cepheid Variable",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+78168",
+    "alpha": 239.92916286941335,
+    "delta": -21.081153218974098,
+    "mag": 5.84,
+    "pmRA": -4.84813681109536e-08,
+    "pmDE": -1.0835585772798131e-07,
+    "bvColor": 0.012,
+    "distance": 455.58659217877096
+}

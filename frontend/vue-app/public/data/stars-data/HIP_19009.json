@@ -1,0 +1,13 @@
+{
+    "hip": 19009,
+    "name": "* 36 Tau -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+19009",
+    "alpha": 61.612873571155845,
+    "delta": 24.19886090499018,
+    "mag": 5.46,
+    "pmRA": -1.5029224114395614e-09,
+    "pmDE": -6.700125072933788e-08,
+    "bvColor": 0.813,
+    "distance": 953.8011695906433
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 2210,
+    "name": "* eta Scl -- Long-Period Variable",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+2210",
+    "alpha": 7.412480651078178,
+    "delta": -32.815161480888634,
+    "mag": 4.86,
+    "pmRA": -9.928984189123298e-08,
+    "pmDE": -2.442976139110952e-07,
+    "bvColor": 1.634,
+    "distance": 548.2352941176471
+}

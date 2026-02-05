@@ -1,0 +1,13 @@
+{
+    "hip": 14293,
+    "name": "* rho03 Eri -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+14293",
+    "alpha": 46.49704162257777,
+    "delta": -7.4667105556490485,
+    "mag": 5.26,
+    "pmRA": 3.172135915499694e-07,
+    "pmDE": 8.440606188117022e-08,
+    "bvColor": 0.193,
+    "distance": 140.48234280792423
+}

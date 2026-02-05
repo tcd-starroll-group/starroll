@@ -1,0 +1,13 @@
+{
+    "hip": 84626,
+    "name": "* omi Oph A -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+84626",
+    "alpha": 260.03487958630967,
+    "delta": -24.321406188687344,
+    "mag": 5.14,
+    "pmRA": -2.88415658892063e-07,
+    "pmDE": -3.728217207732331e-08,
+    "bvColor": 1.046,
+    "distance": 363.25167037861917
+}

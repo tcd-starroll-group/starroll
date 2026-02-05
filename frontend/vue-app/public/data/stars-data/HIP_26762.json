@@ -1,0 +1,13 @@
+{
+    "hip": 26762,
+    "name": "HD 37788 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+26762",
+    "alpha": 85.7208536672448,
+    "delta": 0.3531867167515557,
+    "mag": 5.93,
+    "pmRA": 5.963208277647293e-08,
+    "pmDE": 1.345842778760072e-07,
+    "bvColor": 0.311,
+    "distance": 167.62589928057554
+}

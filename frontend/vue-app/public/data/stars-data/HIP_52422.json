@@ -1,0 +1,13 @@
+{
+    "hip": 52422,
+    "name": "* 40 LMi -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+52422",
+    "alpha": 161.23455548225616,
+    "delta": 26.14187665970168,
+    "mag": 5.51,
+    "pmRA": -4.82680500912654e-07,
+    "pmDE": -2.392070702594451e-07,
+    "bvColor": 0.16,
+    "distance": 148.27272727272728
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 103200,
+    "name": "32 Vulpeculae",
+    "description": "32 Vulpeculae is a single star located around 610 light years away from the Sun in the northern constellation Vulpecula, a few degrees south of the border with Cygnus.",
+    "url": "https://en.wikipedia.org/wiki/32_Vulpeculae",
+    "alpha": 314.01166996036864,
+    "delta": 28.191874997178715,
+    "mag": 5.03,
+    "pmRA": 5.817764173314432e-10,
+    "pmDE": -2.0216730502267653e-08,
+    "bvColor": 1.481,
+    "distance": 739.6825396825396
+}

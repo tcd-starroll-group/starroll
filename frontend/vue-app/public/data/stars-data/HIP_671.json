@@ -1,0 +1,13 @@
+{
+    "hip": 671,
+    "name": "HD 360 -- Horizontal Branch Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+671",
+    "alpha": 2.517879636916987,
+    "delta": -8.630619029124302,
+    "mag": 5.99,
+    "pmRA": -1.6546690936268465e-07,
+    "pmDE": -1.729330400517715e-07,
+    "bvColor": 1.034,
+    "distance": 333.197139938713
+}

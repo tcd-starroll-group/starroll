@@ -1,0 +1,13 @@
+{
+    "hip": 96808,
+    "name": "* e01 Sgr -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+96808",
+    "alpha": 295.6785842445003,
+    "delta": -16.210358509458285,
+    "mag": 5.3,
+    "pmRA": 3.376727288927918e-07,
+    "pmDE": -2.4337646791698706e-07,
+    "bvColor": 1.109,
+    "distance": 245.07888805409468
+}

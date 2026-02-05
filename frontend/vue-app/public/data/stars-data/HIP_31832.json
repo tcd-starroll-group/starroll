@@ -1,0 +1,13 @@
+{
+    "hip": 31832,
+    "name": "* psi02 Aur -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+31832",
+    "alpha": 100.4536258226865,
+    "delta": 42.45431263183729,
+    "mag": 4.8,
+    "pmRA": -4.702692706762498e-09,
+    "pmDE": -2.697988135374568e-07,
+    "bvColor": 1.236,
+    "distance": 432.62599469496024
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 36345,
+    "name": "CD-31 4590 -- Double or Multiple Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+36345",
+    "alpha": 112.54778912723388,
+    "delta": -31.922206027965164,
+    "mag": 5.95,
+    "pmRA": -5.5995980168151407e-08,
+    "pmDE": 2.1331801968819584e-08,
+    "bvColor": -0.156,
+    "distance": 582.5
+}

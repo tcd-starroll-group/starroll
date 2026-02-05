@@ -1,0 +1,13 @@
+{
+    "hip": 117265,
+    "name": "HD 223128 -- beta Cep Variable Candidate",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+117265",
+    "alpha": 357.07454476955076,
+    "delta": 66.97584232313233,
+    "mag": 5.95,
+    "pmRA": 3.6361026083215196e-08,
+    "pmDE": -1.3380857598623193e-08,
+    "bvColor": -0.049,
+    "distance": 1735.1063829787236
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 28139,
+    "name": "HD 40020 -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+28139",
+    "alpha": 89.69261946194085,
+    "delta": 11.522508144510498,
+    "mag": 5.89,
+    "pmRA": 5.137085765036644e-07,
+    "pmDE": -2.7493783855721786e-07,
+    "bvColor": 1.111,
+    "distance": 307.15630885122414
+}

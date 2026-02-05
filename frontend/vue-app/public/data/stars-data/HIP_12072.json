@@ -1,0 +1,13 @@
+{
+    "hip": 12072,
+    "name": "HD 16028",
+    "description": "HD 16028 is a star in the constellation Andromeda. Its apparent magnitude is 5.71. Located approximately 225 parsecs (730 ly) distant, it is an orange giant of spectral type K3III, a star that has used up its core hydrogen and has expanded.",
+    "url": "https://en.wikipedia.org/wiki/HD_16028",
+    "alpha": 39.451306123598656,
+    "delta": 37.46247673031718,
+    "mag": 5.72,
+    "pmRA": -4.411804498096777e-09,
+    "pmDE": -5.51717969102652e-08,
+    "bvColor": 1.389,
+    "distance": 676.7634854771784
+}

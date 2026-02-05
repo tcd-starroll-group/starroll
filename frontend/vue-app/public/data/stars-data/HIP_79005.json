@@ -1,0 +1,13 @@
+{
+    "hip": 79005,
+    "name": "* 11 Sco -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+79005",
+    "alpha": 242.3866288798793,
+    "delta": -12.836205151086755,
+    "mag": 5.75,
+    "pmRA": -2.0202186091834367e-07,
+    "pmDE": -1.3400250145867575e-07,
+    "bvColor": 0.018,
+    "distance": 425.84856396866843
+}

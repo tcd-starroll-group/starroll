@@ -1,0 +1,13 @@
+{
+    "hip": 19376,
+    "name": "HD 26171 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+19376",
+    "alpha": 62.74403257816341,
+    "delta": 13.48777144036677,
+    "mag": 5.94,
+    "pmRA": 7.155849933176753e-08,
+    "pmDE": -3.539139872099613e-08,
+    "bvColor": 0.052,
+    "distance": 445.6284153005464
+}

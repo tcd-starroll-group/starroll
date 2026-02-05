@@ -1,0 +1,13 @@
+{
+    "hip": 66640,
+    "name": "HD 118889",
+    "description": "HD 118889 is a binary star system in the northern constellation of Boötes.",
+    "url": "https://en.wikipedia.org/wiki/HD_118889",
+    "alpha": 205.3241938178345,
+    "delta": 10.570590351514696,
+    "mag": 5.57,
+    "pmRA": -5.499726398506576e-07,
+    "pmDE": -6.486807053245592e-08,
+    "bvColor": 0.348,
+    "distance": 174.6252676659529
+}

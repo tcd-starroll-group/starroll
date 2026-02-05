@@ -1,0 +1,13 @@
+{
+    "hip": 86620,
+    "name": "* psi01 Dra B -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+86620",
+    "alpha": 265.3383219061232,
+    "delta": 72.13943599103595,
+    "mag": 5.81,
+    "pmRA": 1.6953934428400474e-07,
+    "pmDE": -1.3264987128838013e-06,
+    "bvColor": 0.53,
+    "distance": 72.8125
+}

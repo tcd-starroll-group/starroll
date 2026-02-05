@@ -1,0 +1,13 @@
+{
+    "hip": 15861,
+    "name": "64 Arietis",
+    "description": "64 Arietis is a possible binary star system in the northern constellation of Aries. 64 Arietis is the Flamsteed designation.",
+    "url": "https://en.wikipedia.org/wiki/64_Arietis",
+    "alpha": 51.593255372330816,
+    "delta": 24.844844639999536,
+    "mag": 5.5,
+    "pmRA": 7.621271067041905e-08,
+    "pmDE": -2.492911948265234e-07,
+    "bvColor": 1.19,
+    "distance": 230.0423131170663
+}

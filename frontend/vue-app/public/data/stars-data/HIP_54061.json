@@ -1,0 +1,13 @@
+{
+    "hip": 54061,
+    "name": "Dubhe",
+    "description": "Dubhe is a multiple star system in the northern constellation of Ursa Major. It is formally designated Alpha Ursae Majoris, Latinised from α Ursae Majoris, Despite being designated \"α\" (alpha), it is the second-brightest object in the constellation.",
+    "url": "https://en.wikipedia.org/wiki/Dubhe",
+    "alpha": 166.46338685880363,
+    "delta": 61.5624600412168,
+    "mag": 1.81,
+    "pmRA": -6.615767492420728e-07,
+    "pmDE": -1.7089682259111146e-07,
+    "bvColor": 1.061,
+    "distance": 123.65428354814253
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 26345,
+    "name": "HD 37209A -- beta Cep Variable Candidate",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+26345",
+    "alpha": 84.57451520444232,
+    "delta": -6.0456950102273765,
+    "mag": 5.71,
+    "pmRA": 0,
+    "pmDE": 1.6968478838833758e-09,
+    "bvColor": -0.212,
+    "distance": 1918.8235294117649
+}

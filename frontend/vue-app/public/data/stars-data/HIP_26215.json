@@ -1,0 +1,13 @@
+{
+    "hip": 26215,
+    "name": "HD 36881 -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+26215",
+    "alpha": 84.28633359870457,
+    "delta": 10.260189836622162,
+    "mag": 5.6,
+    "pmRA": 7.02979837608827e-09,
+    "pmDE": -1.8228994409718554e-08,
+    "bvColor": 0.149,
+    "distance": 1462.780269058296
+}

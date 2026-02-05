@@ -1,0 +1,13 @@
+{
+    "hip": 46578,
+    "name": "HD 82205",
+    "description": "HD 82205 (HR 3770) is a solitary star in the southern constellation Antlia. It is faintly visible to the naked eye with an apparent magnitude of 5.48 and is estimated to be 810 light years distant based on parallax measurements.",
+    "url": "https://en.wikipedia.org/wiki/HD_82205",
+    "alpha": 142.86417267365456,
+    "delta": -26.74379390034996,
+    "mag": 5.49,
+    "pmRA": -1.0869522730475798e-07,
+    "pmDE": 3.345214399655798e-09,
+    "bvColor": 1.345,
+    "distance": 763.9344262295083
+}

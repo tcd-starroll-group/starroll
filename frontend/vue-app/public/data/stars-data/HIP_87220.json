@@ -1,0 +1,13 @@
+{
+    "hip": 87220,
+    "name": "HD 161840",
+    "description": "HD 161840 is a single, blue-white hued star in the southern zodiac constellation of Scorpius. It is faintly visible to the naked eye with an apparent visual magnitude of 4.79. With an annual parallax shift of 6.5 mas it is located roughly 500 light years from the Sun.",
+    "url": "https://en.wikipedia.org/wiki/HD_161840",
+    "alpha": 267.8596312411908,
+    "delta": -31.711469881745874,
+    "mag": 4.79,
+    "pmRA": 2.0459137342822416e-08,
+    "pmDE": -3.8251799439542386e-08,
+    "bvColor": -0.028,
+    "distance": 607.4487895716945
+}

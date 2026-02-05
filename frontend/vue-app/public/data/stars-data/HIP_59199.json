@@ -1,0 +1,13 @@
+{
+    "hip": 59199,
+    "name": "* alf Crv -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+59199",
+    "alpha": 182.55401677123686,
+    "delta": -24.92290754765224,
+    "mag": 4.02,
+    "pmRA": 4.856863457355332e-07,
+    "pmDE": -1.906772207803805e-07,
+    "bvColor": 0.334,
+    "distance": 48.17604489735638
+}

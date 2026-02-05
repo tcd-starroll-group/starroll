@@ -1,0 +1,13 @@
+{
+    "hip": 26966,
+    "name": "HD 38206 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+26966",
+    "alpha": 86.22178889101042,
+    "delta": -18.544150684489317,
+    "mag": 5.73,
+    "pmRA": 8.944812416470939e-08,
+    "pmDE": -6.399540590645874e-08,
+    "bvColor": -0.014,
+    "distance": 225.7439446366782
+}

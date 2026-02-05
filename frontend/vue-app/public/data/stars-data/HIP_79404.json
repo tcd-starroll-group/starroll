@@ -1,0 +1,13 @@
+{
+    "hip": 79404,
+    "name": "* c02 Sco -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+79404",
+    "alpha": 243.61408211231304,
+    "delta": -28.013521185340192,
+    "mag": 4.58,
+    "pmRA": -4.998429052239316e-08,
+    "pmDE": -1.1233132991307951e-07,
+    "bvColor": -0.172,
+    "distance": 468.0057388809182
+}

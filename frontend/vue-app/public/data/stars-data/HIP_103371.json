@@ -1,0 +1,13 @@
+{
+    "hip": 103371,
+    "name": "HD 199579 -- Young Stellar Object",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+103371",
+    "alpha": 314.45244524153566,
+    "delta": 45.06012699281036,
+    "mag": 5.96,
+    "pmRA": -1.1635528346628864e-09,
+    "pmDE": -1.07628637206317e-08,
+    "bvColor": 0.02,
+    "distance": 3930.1204819277114
+}

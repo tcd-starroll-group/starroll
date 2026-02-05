@@ -1,0 +1,13 @@
+{
+    "hip": 104459,
+    "name": "Nu Aquarii",
+    "description": "Nu Aquarii is a star in the equatorial constellation of Aquarius. The name is a Bayer designation that is Latinized from ν Aquarii, and abbreviated Nu Aqr or ν Aqr. With an apparent visual magnitude of 4.52, Nu Aquarii is faintly visible to the naked eye.",
+    "url": "https://en.wikipedia.org/wiki/Nu_Aquarii",
+    "alpha": 317.8715717471571,
+    "delta": -11.22854494232721,
+    "mag": 4.5,
+    "pmRA": 4.475315090322127e-07,
+    "pmDE": -7.640663614286286e-08,
+    "bvColor": 0.926,
+    "distance": 163.67285499247367
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 343,
+    "name": "HD 225197 -- Horizontal Branch Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+343",
+    "alpha": 1.5278277879113935,
+    "delta": -16.33561288587673,
+    "mag": 5.78,
+    "pmRA": 2.606843163325975e-07,
+    "pmDE": -2.9219720560471737e-07,
+    "bvColor": 1.084,
+    "distance": 288.9282550930027
+}

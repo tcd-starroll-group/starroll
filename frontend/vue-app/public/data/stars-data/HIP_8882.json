@@ -1,0 +1,13 @@
+{
+    "hip": 8882,
+    "name": "* phi Phe -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+8882",
+    "alpha": 28.95259974988317,
+    "delta": -42.32719335683474,
+    "mag": 5.12,
+    "pmRA": -1.6638805535679276e-07,
+    "pmDE": -1.3739619722644247e-07,
+    "bvColor": -0.06,
+    "distance": 309.19431279620846
+}

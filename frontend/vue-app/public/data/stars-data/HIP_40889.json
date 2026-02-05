@@ -1,0 +1,13 @@
+{
+    "hip": 40889,
+    "name": "HD 68951 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+40889",
+    "alpha": 126.10961155692083,
+    "delta": 72.29407694999252,
+    "mag": 6,
+    "pmRA": 1.2217304763960307e-08,
+    "pmDE": -1.2105797617305115e-07,
+    "bvColor": 1.537,
+    "distance": 948.2558139534884
+}

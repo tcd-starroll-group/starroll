@@ -1,0 +1,13 @@
+{
+    "hip": 106227,
+    "name": "HD 205139 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+106227",
+    "alpha": 322.9860931881463,
+    "delta": 60.61400345423993,
+    "mag": 5.53,
+    "pmRA": -8.144869842640205e-09,
+    "pmDE": -1.604733284472564e-08,
+    "bvColor": 0.102,
+    "distance": 2398.529411764706
+}

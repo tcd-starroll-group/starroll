@@ -1,0 +1,13 @@
+{
+    "hip": 36188,
+    "name": "Beta Canis Minoris",
+    "description": "Beta Canis Minoris is a variable star in the constellation of Canis Minor. It has the proper name Gomeisa, pronounced ; Beta Canis Minoris is its Bayer designation. In the night sky it is notable for its proximity to the prominent star Procyon.",
+    "url": "https://en.wikipedia.org/wiki/Beta_Canis_Minoris",
+    "alpha": 112.2596548365987,
+    "delta": 8.216331217850307,
+    "mag": 2.89,
+    "pmRA": -2.437643188618747e-07,
+    "pmDE": -1.864108603866166e-07,
+    "bvColor": -0.097,
+    "distance": 170.25052192066806
+}

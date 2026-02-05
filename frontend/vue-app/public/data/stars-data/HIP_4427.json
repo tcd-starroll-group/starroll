@@ -1,0 +1,13 @@
+{
+    "hip": 4427,
+    "name": "Gamma Cassiopeiae",
+    "description": "Gamma Cassiopeiae, officially named Tiansi, is a multiple star system at the center of the distinctive \"W\" asterism in the northern circumpolar constellation of Cassiopeia. It was observed in 1866 by Angelo Secchi, the first star ever observed with emission lines.",
+    "url": "https://en.wikipedia.org/wiki/Gamma_Cassiopeiae",
+    "alpha": 14.710188278838281,
+    "delta": 60.904493646017556,
+    "mag": 2.15,
+    "pmRA": 1.2435470920459597e-07,
+    "pmDE": -1.8519882618384273e-08,
+    "bvColor": -0.046,
+    "distance": 613.1578947368421
+}

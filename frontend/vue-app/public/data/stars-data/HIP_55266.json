@@ -1,0 +1,13 @@
+{
+    "hip": 55266,
+    "name": "* 55 UMa -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+55266",
+    "alpha": 170.25515063629706,
+    "delta": 37.99408877454195,
+    "mag": 4.76,
+    "pmRA": -2.770710187540998e-07,
+    "pmDE": -3.3015811683559396e-07,
+    "bvColor": 0.113,
+    "distance": 183.05274971941637
+}

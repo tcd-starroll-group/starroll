@@ -1,0 +1,13 @@
+{
+    "hip": 7818,
+    "name": "Tau Andromedae",
+    "description": "Tau Andromedae is a single star in the northern constellation of Andromeda. Its Bayer designation is Latinized from τ Andromedae, and abbreviated Tau And or τ And, respectively.",
+    "url": "https://en.wikipedia.org/wiki/Tau_Andromedae",
+    "alpha": 25.662900660832538,
+    "delta": 40.752043217481194,
+    "mag": 4.96,
+    "pmRA": 8.081844064095964e-08,
+    "pmDE": -1.1393121506074095e-07,
+    "bvColor": -0.068,
+    "distance": 681.0020876826723
+}

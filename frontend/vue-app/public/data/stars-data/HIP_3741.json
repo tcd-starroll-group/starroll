@@ -1,0 +1,13 @@
+{
+    "hip": 3741,
+    "name": "HD 4622 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+3741",
+    "alpha": 12.434620815826515,
+    "delta": -21.53302603101464,
+    "mag": 5.57,
+    "pmRA": 1.2115493890927302e-07,
+    "pmDE": -3.505202914421945e-08,
+    "bvColor": -0.058,
+    "distance": 485.41666666666674
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 32558,
+    "name": "HD 49331 -- Asymptotic Giant Branch Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+32558",
+    "alpha": 102.32122723374083,
+    "delta": -9.039196377873077,
+    "mag": 5.08,
+    "pmRA": -2.0410655974711467e-08,
+    "pmDE": -2.9573634547681694e-09,
+    "bvColor": 1.795,
+    "distance": 1310.0401606425703
+}

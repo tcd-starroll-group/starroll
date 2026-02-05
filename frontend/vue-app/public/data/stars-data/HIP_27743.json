@@ -1,0 +1,13 @@
+{
+    "hip": 27743,
+    "name": "* 137 Tau -- alpha2 CVn Variable",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+27743",
+    "alpha": 88.58797941074218,
+    "delta": 14.177393761173189,
+    "mag": 5.6,
+    "pmRA": -8.464846872172499e-08,
+    "pmDE": -1.3962634015954636e-08,
+    "bvColor": -0.053,
+    "distance": 515.3238546603475
+}

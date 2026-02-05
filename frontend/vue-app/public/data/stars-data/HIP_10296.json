@@ -1,0 +1,13 @@
+{
+    "hip": 10296,
+    "name": "HD 13522 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+10296",
+    "alpha": 33.6510579907026,
+    "delta": 24.329622538495045,
+    "mag": 5.96,
+    "pmRA": 2.018764168140108e-07,
+    "pmDE": -3.044629917367886e-08,
+    "bvColor": 1.366,
+    "distance": 565.3379549393414
+}

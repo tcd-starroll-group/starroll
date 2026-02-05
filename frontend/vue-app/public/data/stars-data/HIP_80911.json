@@ -1,0 +1,13 @@
+{
+    "hip": 80911,
+    "name": "* N Sco -- Variable Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+80911",
+    "alpha": 248.41654499737496,
+    "delta": -34.776741514603835,
+    "mag": 4.24,
+    "pmRA": -5.580205469570758e-08,
+    "pmDE": -8.998141921392987e-08,
+    "bvColor": -0.168,
+    "distance": 746.4530892448512
+}

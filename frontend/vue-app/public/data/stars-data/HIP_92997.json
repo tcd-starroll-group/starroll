@@ -1,0 +1,13 @@
+{
+    "hip": 92997,
+    "name": "* 48 Dra -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+92997",
+    "alpha": 284.3349780867944,
+    "delta": 57.86219400326243,
+    "mag": 5.67,
+    "pmRA": -1.2784536770858464e-07,
+    "pmDE": -2.8793084521095346e-07,
+    "bvColor": 1.155,
+    "distance": 286.14035087719293
+}

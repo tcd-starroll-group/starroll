@@ -1,0 +1,13 @@
+{
+    "hip": 35205,
+    "name": "HD 56618",
+    "description": "HD 56618 is a single star in the southern constellation of Canis Major.",
+    "url": "https://en.wikipedia.org/wiki/HD_56618",
+    "alpha": 109.4950486981339,
+    "delta": -27.94505708666255,
+    "mag": 4.66,
+    "pmRA": -6.05047474024701e-08,
+    "pmDE": 1.8825315237483279e-07,
+    "bvColor": 1.589,
+    "distance": 453.05555555555554
+}

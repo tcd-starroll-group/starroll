@@ -1,0 +1,13 @@
+{
+    "hip": 65536,
+    "name": "HD 117187 -- Variable Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+65536",
+    "alpha": 201.75578217196974,
+    "delta": 72.21117402446266,
+    "mag": 5.82,
+    "pmRA": 1.0966485466697706e-07,
+    "pmDE": -4.455437729396636e-08,
+    "bvColor": 1.652,
+    "distance": 1009.9071207430342
+}

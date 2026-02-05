@@ -1,0 +1,13 @@
+{
+    "hip": 3572,
+    "name": "* 21 Cas -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+3572",
+    "alpha": 12.006819725610242,
+    "delta": 75.1778013701551,
+    "mag": 5.64,
+    "pmRA": -7.238268258965373e-08,
+    "pmDE": -1.0598027069054458e-07,
+    "bvColor": 0.078,
+    "distance": 290.21352313167256
+}

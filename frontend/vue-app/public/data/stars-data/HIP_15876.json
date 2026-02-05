@@ -1,0 +1,13 @@
+{
+    "hip": 15876,
+    "name": "HD 20995 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+15876",
+    "alpha": 51.6709201666713,
+    "delta": 33.65678839336614,
+    "mag": 5.78,
+    "pmRA": 1.5451012016960912e-07,
+    "pmDE": -1.1145866528708233e-07,
+    "bvColor": -0.001,
+    "distance": 526.9789983844911
+}

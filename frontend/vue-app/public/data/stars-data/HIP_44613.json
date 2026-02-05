@@ -1,0 +1,13 @@
+{
+    "hip": 44613,
+    "name": "HD 77601 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+44613",
+    "alpha": 136.94686314112374,
+    "delta": 48.38918202749433,
+    "mag": 5.48,
+    "pmRA": -5.8323085837477174e-08,
+    "pmDE": -8.833305269815746e-08,
+    "bvColor": 0.475,
+    "distance": 348.1323372465315
+}

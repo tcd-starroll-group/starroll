@@ -1,0 +1,13 @@
+{
+    "hip": 15737,
+    "name": "Tau2 Arietis",
+    "description": "Tau2 Arietis is a binary star system in the northern constellation on Aries. Its name is a Bayer designation that is Latinized from τ2 Arietis, and abbreviated Tau2 Ari or τ2 Ari.",
+    "url": "https://en.wikipedia.org/wiki/Tau2_Arietis",
+    "alpha": 51.19163044533705,
+    "delta": 20.864156461085866,
+    "mag": 5.1,
+    "pmRA": -2.386252938421136e-07,
+    "pmDE": -7.214027574909895e-08,
+    "bvColor": 1.231,
+    "distance": 318.86608015640275
+}

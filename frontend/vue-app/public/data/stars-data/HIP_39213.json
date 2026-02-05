@@ -1,0 +1,13 @@
+{
+    "hip": 39213,
+    "name": "HD 65900 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+39213",
+    "alpha": 120.76803901531788,
+    "delta": 4.78143040837205,
+    "mag": 5.65,
+    "pmRA": -1.5581911710860487e-07,
+    "pmDE": 8.993293784581894e-08,
+    "bvColor": 0.013,
+    "distance": 346.2845010615711
+}

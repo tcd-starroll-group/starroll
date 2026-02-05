@@ -1,0 +1,13 @@
+{
+    "hip": 102599,
+    "name": "HD 199437 -- Variable Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+102599",
+    "alpha": 311.4593727758773,
+    "delta": 80.68093772505084,
+    "mag": 5.36,
+    "pmRA": -1.35844793446892e-07,
+    "pmDE": -1.789447296975297e-07,
+    "bvColor": 1.144,
+    "distance": 401.72413793103453
+}

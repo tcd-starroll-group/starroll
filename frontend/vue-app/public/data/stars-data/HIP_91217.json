@@ -1,0 +1,13 @@
+{
+    "hip": 91217,
+    "name": "HD 171802 -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+91217",
+    "alpha": 279.5314397298339,
+    "delta": 9.152925875035656,
+    "mag": 5.38,
+    "pmRA": -3.0494780541789814e-08,
+    "pmDE": -6.490685562694468e-07,
+    "bvColor": 0.387,
+    "distance": 126.67961165048543
+}

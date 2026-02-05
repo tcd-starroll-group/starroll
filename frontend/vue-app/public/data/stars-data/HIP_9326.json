@@ -1,0 +1,13 @@
+{
+    "hip": 9326,
+    "name": "* 57 Cet -- Variable Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+9326",
+    "alpha": 30.35203076948468,
+    "delta": -20.656755570222938,
+    "mag": 5.43,
+    "pmRA": 8.692709302293981e-08,
+    "pmDE": 7.369167952864946e-08,
+    "bvColor": 1.64,
+    "distance": 668.4426229508197
+}

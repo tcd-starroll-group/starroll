@@ -1,0 +1,13 @@
+{
+    "hip": 32531,
+    "name": "V* V448 Car -- Long-Period Variable",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+32531",
+    "alpha": 101.9975444849374,
+    "delta": -55.579840165880306,
+    "mag": 5.6,
+    "pmRA": -4.16939765754201e-09,
+    "pmDE": 1.2159127122227163e-07,
+    "bvColor": 1.549,
+    "distance": 598.5321100917431
+}

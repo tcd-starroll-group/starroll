@@ -1,0 +1,13 @@
+{
+    "hip": 29650,
+    "name": "* 71 Ori -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+29650",
+    "alpha": 94.22476978281185,
+    "delta": 19.14171347780937,
+    "mag": 5.2,
+    "pmRA": -4.6435454376671354e-07,
+    "pmDE": -8.803731635268063e-07,
+    "bvColor": 0.43,
+    "distance": 68.92034650327489
+}

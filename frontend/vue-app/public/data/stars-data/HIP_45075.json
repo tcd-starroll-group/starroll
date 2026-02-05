@@ -1,0 +1,13 @@
+{
+    "hip": 45075,
+    "name": "* tau UMa -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+45075",
+    "alpha": 138.43526682640714,
+    "delta": 63.36889800329948,
+    "mag": 4.67,
+    "pmRA": 4.807412461882158e-07,
+    "pmDE": -2.9554242000437313e-07,
+    "bvColor": 0.381,
+    "distance": 121.76185143710339
+}

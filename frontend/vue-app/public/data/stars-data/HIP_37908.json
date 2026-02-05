@@ -1,0 +1,13 @@
+{
+    "hip": 37908,
+    "name": "* g Gem -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+37908",
+    "alpha": 117.03456117765545,
+    "delta": 18.422291477636715,
+    "mag": 4.89,
+    "pmRA": -3.662767360782544e-07,
+    "pmDE": -2.4982448987574384e-07,
+    "bvColor": 1.425,
+    "distance": 341.5706806282722
+}

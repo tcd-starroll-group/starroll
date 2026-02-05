@@ -1,0 +1,13 @@
+{
+    "hip": 29151,
+    "name": "HD 42111 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+29151",
+    "alpha": 92.69595298026296,
+    "delta": 2.491233146429405,
+    "mag": 5.7,
+    "pmRA": -8.484239419416879e-09,
+    "pmDE": -6.869809861322124e-08,
+    "bvColor": 0.067,
+    "distance": 609.7196261682243
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 79098,
+    "name": "HIP 79098",
+    "description": "HIP 79098 is a binary star in the constellation Scorpius. It has a visual apparent magnitude of about +5.9, being visible to the naked eye under very dark skies.",
+    "url": "https://en.wikipedia.org/wiki/HIP_79098",
+    "alpha": 242.70395921507946,
+    "delta": -23.775319133543526,
+    "mag": 5.86,
+    "pmRA": -4.9499476841283623e-08,
+    "pmDE": -1.2503344835814932e-07,
+    "bvColor": 0.02,
+    "distance": 426.4052287581699
+}
