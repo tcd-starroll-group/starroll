@@ -20,7 +20,6 @@ export default defineConfig({
       '/api': {
         target: 'http://10.6.50.69:8000', // 这里填你后端真实的运行地址
         changeOrigin: true,              // 允许跨域
-        rewrite: (path) => path.replace(/^\/api/, '') // 发给后端时去掉 /api 前缀
       }
     }
   }

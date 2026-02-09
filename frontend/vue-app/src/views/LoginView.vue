@@ -48,8 +48,8 @@ const handleLogin = async () => {
     if (response.status === 200) {
       const { token } = response.data;
       localStorage.setItem('token', token);
-      console.log("Logged in successfully:", form.username);
-      // router.push('/profile'); 
+      console.log("login! success");
+      router.push('/profile'); 
     }
 
   } catch (err) {
