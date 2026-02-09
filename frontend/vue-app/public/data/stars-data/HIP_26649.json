@@ -1,0 +1,13 @@
+{
+    "hip": 26649,
+    "name": "HD 37811 -- Red Giant Branch star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+26649",
+    "alpha": 85.28016996755144,
+    "delta": -32.61294519857337,
+    "mag": 5.44,
+    "pmRA": -7.718233803263814e-08,
+    "pmDE": -1.532980859668353e-07,
+    "bvColor": 0.913,
+    "distance": 381.96721311475414
+}

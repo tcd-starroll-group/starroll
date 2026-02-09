@@ -1,0 +1,13 @@
+{
+    "hip": 96327,
+    "name": "37 Aquilae",
+    "description": "37 Aquilae, abbreviated 37 Aql, is a star in the equatorial constellation of Aquila. 37 Aquilae is its Flamsteed designation. It has an apparent visual magnitude of approximately 5.12, which is bright enough to be visible to the naked eye.",
+    "url": "https://en.wikipedia.org/wiki/37_Aquilae",
+    "alpha": 294.2594458887847,
+    "delta": -10.481542359990668,
+    "mag": 5.12,
+    "pmRA": 3.330669989222512e-08,
+    "pmDE": -1.4738335905729894e-08,
+    "bvColor": 1.122,
+    "distance": 444.41416893732975
+}

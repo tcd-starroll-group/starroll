@@ -1,0 +1,13 @@
+{
+    "hip": 35083,
+    "name": "HD 56342 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+35083",
+    "alpha": 109.17504862491843,
+    "delta": -30.7495128228769,
+    "mag": 5.36,
+    "pmRA": -6.307425991235064e-08,
+    "pmDE": 5.5414203750819955e-08,
+    "bvColor": -0.155,
+    "distance": 645.940594059406
+}

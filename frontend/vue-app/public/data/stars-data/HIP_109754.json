@@ -1,0 +1,13 @@
+{
+    "hip": 109754,
+    "name": "HD 211073",
+    "description": "HD 211073 is a triple star system in the northern constellation Lacerta, located around 580 light years from the Sun.",
+    "url": "https://en.wikipedia.org/wiki/HD_211073",
+    "alpha": 333.8445293089546,
+    "delta": 39.88881238956797,
+    "mag": 4.5,
+    "pmRA": 1.8253235093774028e-07,
+    "pmDE": 7.538852741253284e-08,
+    "bvColor": 1.385,
+    "distance": 563.3851468048359
+}

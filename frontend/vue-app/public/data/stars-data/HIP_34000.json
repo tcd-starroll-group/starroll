@@ -1,0 +1,13 @@
+{
+    "hip": 34000,
+    "name": "HD 53921 -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+34000",
+    "alpha": 105.94620857610863,
+    "delta": -59.231090005919235,
+    "mag": 5.5,
+    "pmRA": -4.8384405374731695e-08,
+    "pmDE": 5.299013534527229e-08,
+    "bvColor": -0.125,
+    "distance": 481.8316100443132
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 9347,
+    "name": "* ups Cet -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+9347",
+    "alpha": 30.41104218770476,
+    "delta": -20.910435270251956,
+    "mag": 3.99,
+    "pmRA": 6.448506772437938e-07,
+    "pmDE": -1.189247959761692e-07,
+    "bvColor": 1.554,
+    "distance": 300.92250922509226
+}

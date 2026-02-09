@@ -1,0 +1,13 @@
+{
+    "hip": 11670,
+    "name": "HD 15524",
+    "description": "HD 15524 is a wide binary star in the northern zodiac constellation of Aries.",
+    "url": "https://en.wikipedia.org/wiki/HD_15524",
+    "alpha": 38.13781570990343,
+    "delta": 25.387555597963864,
+    "mag": 5.88,
+    "pmRA": 2.990815598764728e-07,
+    "pmDE": -3.5357461763318463e-07,
+    "bvColor": 0.412,
+    "distance": 166.51352730985198
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 110103,
+    "name": "* 25 Cep -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+110103",
+    "alpha": 334.837234243009,
+    "delta": 62.97975909354967,
+    "mag": 5.75,
+    "pmRA": 2.071608859381047e-07,
+    "pmDE": 4.7511740748734534e-08,
+    "bvColor": 1.256,
+    "distance": 689.6405919661734
+}

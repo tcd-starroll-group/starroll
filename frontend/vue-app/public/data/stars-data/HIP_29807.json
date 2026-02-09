@@ -1,0 +1,13 @@
+{
+    "hip": 29807,
+    "name": "* kap Col -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+29807",
+    "alpha": 94.44822677313337,
+    "delta": -35.15439085297611,
+    "mag": 4.37,
+    "pmRA": 1.8907733563271904e-09,
+    "pmDE": 4.245998219157316e-07,
+    "bvColor": 0.978,
+    "distance": 182.9500841278744
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 23261,
+    "name": "5 Aurigae",
+    "description": "5 Aurigae is a triple star system in the northern constellation of Auriga, located about 195 light years away from the Sun based on parallax.",
+    "url": "https://en.wikipedia.org/wiki/5_Aurigae",
+    "alpha": 75.67685426970817,
+    "delta": 39.443638117931165,
+    "mag": 5.95,
+    "pmRA": -5.299013534527229e-08,
+    "pmDE": -5.8662455414253845e-09,
+    "bvColor": 0.415,
+    "distance": 172.95864262990457
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 112519,
+    "name": "HD 216446",
+    "description": "HD 216446 is a binary star system in the northern circumpolar constellation of Cepheus.",
+    "url": "https://en.wikipedia.org/wiki/HD_216446",
+    "alpha": 341.806756075458,
+    "delta": 83.33843033035095,
+    "mag": 4.77,
+    "pmRA": 1.1465843558240525e-07,
+    "pmDE": 2.2888053885181195e-07,
+    "bvColor": 1.257,
+    "distance": 324.2544731610338
+}

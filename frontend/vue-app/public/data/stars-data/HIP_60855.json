@@ -1,0 +1,13 @@
+{
+    "hip": 60855,
+    "name": "HD 108541",
+    "description": "HD 108541, also known by its Bayer designation u Centauri is a star located in the constellation Centaurus, It is also known as HR 4748. The apparent magnitude of the star is about 5.4, meaning it is only visible to the naked eye under excellent viewing conditions.",
+    "url": "https://en.wikipedia.org/wiki/HD_108541",
+    "alpha": 187.5598308703918,
+    "delta": -39.2336005691767,
+    "mag": 5.45,
+    "pmRA": -1.3909304511032587e-07,
+    "pmDE": -6.787391535533503e-08,
+    "bvColor": -0.073,
+    "distance": 426.96335078534037
+}

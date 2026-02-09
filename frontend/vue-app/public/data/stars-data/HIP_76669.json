@@ -1,0 +1,13 @@
+{
+    "hip": 76669,
+    "name": "* 7 CrB A -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+76669",
+    "alpha": 235.17273599293094,
+    "delta": 36.5245719868518,
+    "mag": 4.64,
+    "pmRA": -7.412801184164804e-08,
+    "pmDE": -3.156137064023079e-08,
+    "bvColor": -0.103,
+    "distance": 473.4397677793905
+}

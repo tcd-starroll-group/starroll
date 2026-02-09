@@ -1,0 +1,13 @@
+{
+    "hip": 76509,
+    "name": "HD 139778 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+76509",
+    "alpha": 234.60851930070763,
+    "delta": 54.395963974453636,
+    "mag": 5.85,
+    "pmRA": -1.7050897164622378e-07,
+    "pmDE": -9.93383232593439e-08,
+    "bvColor": 1.098,
+    "distance": 355.3376906318083
+}

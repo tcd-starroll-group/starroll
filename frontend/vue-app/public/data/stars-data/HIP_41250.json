@@ -1,0 +1,13 @@
+{
+    "hip": 41250,
+    "name": "HD 71302 -- Double or Multiple Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+41250",
+    "alpha": 126.53988925153389,
+    "delta": -42.88483496898409,
+    "mag": 5.97,
+    "pmRA": -5.8759418150475765e-08,
+    "pmDE": 3.3112774419781304e-08,
+    "bvColor": -0.159,
+    "distance": 3106.6666666666665
+}

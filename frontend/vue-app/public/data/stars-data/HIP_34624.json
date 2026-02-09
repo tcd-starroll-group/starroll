@@ -1,0 +1,13 @@
+{
+    "hip": 34624,
+    "name": "HD 55070 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+34624",
+    "alpha": 107.93050668082809,
+    "delta": -27.550643437589795,
+    "mag": 5.46,
+    "pmRA": -4.557248602429639e-08,
+    "pmDE": 9.066015836748323e-09,
+    "bvColor": 0.998,
+    "distance": 643.3925049309664
+}

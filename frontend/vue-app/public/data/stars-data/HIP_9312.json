@@ -1,0 +1,13 @@
+{
+    "hip": 9312,
+    "name": "HD 11946 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+9312",
+    "alpha": 30.561529166236028,
+    "delta": 64.78902325260786,
+    "mag": 5.29,
+    "pmRA": 1.7336937236477008e-07,
+    "pmDE": -7.37886422648714e-08,
+    "bvColor": 0.002,
+    "distance": 257.0527974783294
+}

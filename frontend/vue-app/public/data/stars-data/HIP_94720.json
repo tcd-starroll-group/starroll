@@ -1,0 +1,13 @@
+{
+    "hip": 94720,
+    "name": "HD 180555",
+    "description": "HD 180555 is a binary star in the equatorial constellation of Aquila. It consists of a two stars, orbiting with an orbital period of 8.95 years and an eccentricity of 0.43. A third component lies at an angular separation of 8.32″, but it is unrelated to the system.",
+    "url": "https://en.wikipedia.org/wiki/HD_180555",
+    "alpha": 289.51036057387864,
+    "delta": 14.608738302686454,
+    "mag": 5.65,
+    "pmRA": 4.436045182152254e-08,
+    "pmDE": 1.0665900984409792e-09,
+    "bvColor": -0.02,
+    "distance": 371.9498289623718
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 113860,
+    "name": "* pi. PsA -- Cepheid Variable",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+113860",
+    "alpha": 346.3531698716039,
+    "delta": -34.56055163205402,
+    "mag": 5.12,
+    "pmRA": 3.626406334699329e-07,
+    "pmDE": 4.0942515369700316e-07,
+    "bvColor": 0.305,
+    "distance": 93.25328759291024
+}

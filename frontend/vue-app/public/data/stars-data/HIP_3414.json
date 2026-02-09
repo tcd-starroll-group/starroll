@@ -1,0 +1,13 @@
+{
+    "hip": 3414,
+    "name": "* pi. Cas -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+3414",
+    "alpha": 11.353318594803222,
+    "delta": 47.21455474097594,
+    "mag": 4.95,
+    "pmRA": -1.1887631460805823e-07,
+    "pmDE": -1.8015676390030357e-07,
+    "bvColor": 0.17,
+    "distance": 174.3452699091395
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 79882,
+    "name": "* eps Oph -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+79882",
+    "alpha": 245.04177043275558,
+    "delta": -4.774751254609474,
+    "mag": 3.23,
+    "pmRA": 3.994379918661467e-07,
+    "pmDE": 1.94313323388702e-07,
+    "bvColor": 0.966,
+    "distance": 107.51483190507582
+}

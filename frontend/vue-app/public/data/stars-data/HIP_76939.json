@@ -1,0 +1,13 @@
+{
+    "hip": 76939,
+    "name": "* h Lup -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+76939",
+    "alpha": 236.22876236598373,
+    "delta": -37.53363468182824,
+    "mag": 5.23,
+    "pmRA": -2.441521698067623e-07,
+    "pmDE": -7.810348402674623e-08,
+    "bvColor": 0.987,
+    "distance": 270.93023255813955
+}

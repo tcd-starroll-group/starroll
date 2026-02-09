@@ -1,0 +1,13 @@
+{
+    "hip": 115054,
+    "name": "* phi Gru -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+115054",
+    "alpha": 350.0179261781005,
+    "delta": -40.6344070661345,
+    "mag": 5.54,
+    "pmRA": 6.179435179422145e-07,
+    "pmDE": -5.93460427046183e-07,
+    "bvColor": 0.445,
+    "distance": 112.91104188300449
+}

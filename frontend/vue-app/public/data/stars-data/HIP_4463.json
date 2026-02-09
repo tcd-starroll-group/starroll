@@ -1,0 +1,13 @@
+{
+    "hip": 4463,
+    "name": "Eta Andromedae",
+    "description": "Eta Andromedae, also named Kui, is a spectroscopic binary star system in the northern constellation of Andromeda.",
+    "url": "https://en.wikipedia.org/wiki/Eta_Andromedae",
+    "alpha": 14.768817576843176,
+    "delta": 23.605007585505245,
+    "mag": 4.4,
+    "pmRA": -2.1196054138108915e-07,
+    "pmDE": -2.2330518151905228e-07,
+    "bvColor": 0.94,
+    "distance": 242.70833333333337
+}

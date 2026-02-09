@@ -1,0 +1,13 @@
+{
+    "hip": 111710,
+    "name": "Kappa Aquarii",
+    "description": "Kappa Aquarii is a candidate binary star in the equatorial constellation of Aquarius. Its identifier is a Bayer designation that is Latinized from κ Aquarii, and abbreviated Kappa Aqr or κ Aqr, respectively.",
+    "url": "https://en.wikipedia.org/wiki/Kappa_Aquarii",
+    "alpha": 339.8897410176947,
+    "delta": -4.047092139559514,
+    "mag": 5.04,
+    "pmRA": -3.3141863240647883e-07,
+    "pmDE": -5.840550416326579e-07,
+    "bvColor": 1.14,
+    "distance": 234.33908045977012
+}

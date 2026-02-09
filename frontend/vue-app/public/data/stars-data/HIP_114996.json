@@ -1,0 +1,13 @@
+{
+    "hip": 114996,
+    "name": "* gam Tuc -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+114996",
+    "alpha": 349.8597594590097,
+    "delta": -58.044417644288096,
+    "mag": 3.99,
+    "pmRA": -1.6934541881156092e-07,
+    "pmDE": 3.858632087950797e-07,
+    "bvColor": 0.41,
+    "distance": 71.85022026431719
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 75049,
+    "name": "* omi CrB -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+75049",
+    "alpha": 230.39663649260487,
+    "delta": 29.491816504131307,
+    "mag": 5.51,
+    "pmRA": -5.756677649494631e-07,
+    "pmDE": -2.0371870880222705e-07,
+    "bvColor": 1.015,
+    "distance": 274.11764705882354
+}

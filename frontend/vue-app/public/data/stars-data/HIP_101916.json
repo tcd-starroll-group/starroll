@@ -1,0 +1,13 @@
+{
+    "hip": 101916,
+    "name": "* kap Del -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+101916",
+    "alpha": 310.20444079491494,
+    "delta": 10.210971357176032,
+    "mag": 5.07,
+    "pmRA": 1.5687601093342364e-06,
+    "pmDE": 1.0215024260977923e-07,
+    "bvColor": 0.702,
+    "distance": 98.04628794709947
+}

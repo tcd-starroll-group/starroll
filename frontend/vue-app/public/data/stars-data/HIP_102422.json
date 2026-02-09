@@ -1,0 +1,13 @@
+{
+    "hip": 102422,
+    "name": "* eta Cep -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+102422",
+    "alpha": 311.4965965862219,
+    "delta": 61.972978256797084,
+    "mag": 3.41,
+    "pmRA": 4.1732761669908856e-07,
+    "pmDE": 3.965242616426784e-06,
+    "bvColor": 0.912,
+    "distance": 46.780438835508384
+}

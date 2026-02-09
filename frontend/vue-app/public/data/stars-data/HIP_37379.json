@@ -1,0 +1,13 @@
+{
+    "hip": 37379,
+    "name": "HD 61772",
+    "description": "HD 61772 is a bright giant star in the constellation Puppis. Its apparent magnitude is 4.98 and it is approximately 660 light years away based on parallax.\nThe apparent Flamsteed designation 140 Puppis is actually a shorthand of the Gould designation 140 G.",
+    "url": "https://en.wikipedia.org/wiki/HD_61772",
+    "alpha": 115.49498400032715,
+    "delta": -15.34698840773299,
+    "mag": 4.98,
+    "pmRA": -1.1005270561186467e-08,
+    "pmDE": -1.359417561831139e-07,
+    "bvColor": 1.543,
+    "distance": 676.7634854771784
+}

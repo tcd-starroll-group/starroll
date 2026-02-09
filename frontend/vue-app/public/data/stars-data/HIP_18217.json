@@ -1,0 +1,13 @@
+{
+    "hip": 18217,
+    "name": "HD 24141 -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+18217",
+    "alpha": 59.1427131444687,
+    "delta": 58.07494256515709,
+    "mag": 5.8,
+    "pmRA": 4.1247947988799315e-07,
+    "pmDE": -4.548037142488557e-07,
+    "bvColor": 0.182,
+    "distance": 170.42842215256007
+}

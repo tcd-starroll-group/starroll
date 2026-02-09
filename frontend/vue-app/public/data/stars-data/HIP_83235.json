@@ -1,0 +1,13 @@
+{
+    "hip": 83235,
+    "name": "HD 153368 -- Horizontal Branch Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+83235",
+    "alpha": 255.73648162804173,
+    "delta": -35.98332539386644,
+    "mag": 5.95,
+    "pmRA": -3.8833575856873825e-08,
+    "pmDE": -3.120260851620974e-07,
+    "bvColor": 1.161,
+    "distance": 291.77101967799643
+}

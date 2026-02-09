@@ -1,0 +1,13 @@
+{
+    "hip": 10280,
+    "name": "* iot Tri -- Double or Multiple Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+10280",
+    "alpha": 33.601148937381225,
+    "delta": 30.464615457285486,
+    "mag": 4.94,
+    "pmRA": -3.131411566286493e-07,
+    "pmDE": -2.9607571505359364e-07,
+    "bvColor": 0.77,
+    "distance": 305.4307116104869
+}

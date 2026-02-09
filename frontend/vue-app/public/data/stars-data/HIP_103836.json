@@ -1,0 +1,13 @@
+{
+    "hip": 103836,
+    "name": "HD 200073 -- Red Giant Branch star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+103836",
+    "alpha": 316.1676974661825,
+    "delta": -38.39296531679534,
+    "mag": 5.93,
+    "pmRA": 7.511218361430042e-07,
+    "pmDE": -8.218076708487744e-07,
+    "bvColor": 1.106,
+    "distance": 214.46416831032215
+}

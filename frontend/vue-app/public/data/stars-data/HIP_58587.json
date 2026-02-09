@@ -1,0 +1,13 @@
+{
+    "hip": 58587,
+    "name": "* 31 Crt -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+58587",
+    "alpha": 180.65985283680342,
+    "delta": -19.85283908426432,
+    "mag": 5.28,
+    "pmRA": -8.169110526695682e-08,
+    "pmDE": 3.243403526622796e-08,
+    "bvColor": -0.192,
+    "distance": 1753.763440860215
+}

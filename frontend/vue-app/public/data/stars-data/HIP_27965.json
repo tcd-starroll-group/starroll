@@ -1,0 +1,13 @@
+{
+    "hip": 27965,
+    "name": "* 57 Ori -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+27965",
+    "alpha": 89.25210395727888,
+    "delta": 19.752975060254002,
+    "mag": 5.92,
+    "pmRA": 1.8907733563271904e-09,
+    "pmDE": -2.0071286397934785e-08,
+    "bvColor": -0.145,
+    "distance": 1406.0344827586207
+}

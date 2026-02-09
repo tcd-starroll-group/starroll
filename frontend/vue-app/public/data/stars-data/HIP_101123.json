@@ -1,0 +1,13 @@
+{
+    "hip": 101123,
+    "name": "* omi Cap A -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+101123",
+    "alpha": 307.9724579200872,
+    "delta": -18.465096742403034,
+    "mag": 5.94,
+    "pmRA": 1.239183768915974e-07,
+    "pmDE": -3.851844696415263e-07,
+    "bvColor": 0.062,
+    "distance": 238.97435897435895
+}

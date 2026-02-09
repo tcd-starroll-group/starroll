@@ -1,0 +1,13 @@
+{
+    "hip": 42799,
+    "name": "* eta Hya -- beta Cep Variable",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+42799",
+    "alpha": 131.26082380538338,
+    "delta": 3.2713527657013826,
+    "mag": 4.3,
+    "pmRA": -9.279333856436519e-08,
+    "pmDE": -6.254096486313016e-09,
+    "bvColor": -0.192,
+    "distance": 466.66666666666663
+}

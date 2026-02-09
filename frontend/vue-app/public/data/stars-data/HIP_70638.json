@@ -1,0 +1,13 @@
+{
+    "hip": 70638,
+    "name": "* del Oct -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+70638",
+    "alpha": 218.25441653962648,
+    "delta": -83.82184627755042,
+    "mag": 4.31,
+    "pmRA": -4.6440302513482463e-07,
+    "pmDE": -6.258944623124109e-08,
+    "bvColor": 1.3,
+    "distance": 278.8034188034188
+}

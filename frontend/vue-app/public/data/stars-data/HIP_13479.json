@@ -1,0 +1,13 @@
+{
+    "hip": 13479,
+    "name": "HD 18071 -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+13479",
+    "alpha": 43.78920788168361,
+    "delta": -22.236408431381246,
+    "mag": 5.93,
+    "pmRA": 4.150005110297628e-07,
+    "pmDE": -3.6899169269246777e-07,
+    "bvColor": 1.041,
+    "distance": 304.00745573159367
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 112716,
+    "name": "Tau2 Aquarii",
+    "description": "Tau2 Aquarii is a solitary star in the equatorial constellation of Aquarius. Its name is a Bayer designation that is Latinized from τ2 Aquarii, and abbreviated Tau2 Aqr or τ2 Aqr.",
+    "url": "https://en.wikipedia.org/wiki/Tau2_Aquarii",
+    "alpha": 342.8580138390968,
+    "delta": -13.407838720657892,
+    "mag": 4.05,
+    "pmRA": -6.098956108357963e-08,
+    "pmDE": -1.8810770827049995e-07,
+    "bvColor": 1.57,
+    "distance": 380.1864801864802
+}

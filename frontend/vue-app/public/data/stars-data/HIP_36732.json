@@ -1,0 +1,13 @@
+{
+    "hip": 36732,
+    "name": "HD 60341 -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+36732",
+    "alpha": 113.71517647049902,
+    "delta": -19.4904345501464,
+    "mag": 5.64,
+    "pmRA": 1.1684009714739819e-07,
+    "pmDE": -3.404846482432271e-07,
+    "bvColor": 1.121,
+    "distance": 292.5560538116592
+}

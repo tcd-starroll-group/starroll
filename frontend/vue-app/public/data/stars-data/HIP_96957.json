@@ -1,0 +1,13 @@
+{
+    "hip": 96957,
+    "name": "Chi Aquilae",
+    "description": "Chi Aquilae is a binary star system in the equatorial constellation of Aquila, the eagle. Its name is a Bayer designation that is Latinized from χ Aquilae, and abbreviated Chi Aql or χ Aql.",
+    "url": "https://en.wikipedia.org/wiki/Chi_Aquilae",
+    "alpha": 296.0513424479418,
+    "delta": 11.911046851770914,
+    "mag": 5.28,
+    "pmRA": 1.6629109262057086e-08,
+    "pmDE": -5.085695514839033e-08,
+    "bvColor": 0.575,
+    "distance": 751.6129032258065
+}

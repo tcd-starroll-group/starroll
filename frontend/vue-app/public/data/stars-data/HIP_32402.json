@@ -1,0 +1,13 @@
+{
+    "hip": 32402,
+    "name": "HD 49517 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+32402",
+    "alpha": 101.67313931296295,
+    "delta": -52.44853682044282,
+    "mag": 5.81,
+    "pmRA": -1.7210885679388525e-08,
+    "pmDE": 4.431197045341159e-08,
+    "bvColor": 1.551,
+    "distance": 1376.3713080168775
+}

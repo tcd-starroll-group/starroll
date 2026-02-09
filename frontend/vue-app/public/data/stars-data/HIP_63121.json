@@ -1,0 +1,13 @@
+{
+    "hip": 63121,
+    "name": "Cor Caroli",
+    "description": "Cor Caroli  is a binary star in the northern constellation of Canes Venatici. It is the brightest star in the constellation, lying at the third magnitude. The International Astronomical Union uses the name \"Cor Caroli\" specifically for the brighter star of the binary.",
+    "url": "https://en.wikipedia.org/wiki/Cor_Caroli",
+    "alpha": 194.40933081376377,
+    "delta": 38.127568594298964,
+    "mag": 5.61,
+    "pmRA": -9.884866144142329e-07,
+    "pmDE": 4.282844058921641e-07,
+    "bvColor": 0.337,
+    "distance": 81.65206508135168
+}

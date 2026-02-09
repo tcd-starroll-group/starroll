@@ -1,0 +1,13 @@
+{
+    "hip": 27973,
+    "name": "HD 39586 -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+27973",
+    "alpha": 89.31150983700347,
+    "delta": 31.703492305577655,
+    "mag": 5.9,
+    "pmRA": -2.1865097018040072e-07,
+    "pmDE": -8.718889241073895e-07,
+    "bvColor": 0.144,
+    "distance": 256.4465408805031
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 98478,
+    "name": "* mu.01 Pav -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+98478",
+    "alpha": 300.9342111080871,
+    "delta": -66.85230704572807,
+    "mag": 5.75,
+    "pmRA": -1.7792662096719973e-08,
+    "pmDE": -9.418960196596065e-07,
+    "bvColor": 1.033,
+    "distance": 216.16964877402253
+}

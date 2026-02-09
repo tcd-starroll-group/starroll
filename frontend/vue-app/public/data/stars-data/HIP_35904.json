@@ -1,0 +1,13 @@
+{
+    "hip": 35904,
+    "name": "Eta Canis Majoris",
+    "description": "Eta Canis Majoris is a blue supergiant star in the constellation of Canis Major. It has the proper name Aludra, pronounced ; Eta Canis Majoris is its Bayer designation.",
+    "url": "https://en.wikipedia.org/wiki/Eta_Canis_Majoris",
+    "alpha": 111.36841879316181,
+    "delta": -29.373156788655997,
+    "mag": 2.45,
+    "pmRA": -1.8228994409718554e-08,
+    "pmDE": 3.22885911618951e-08,
+    "bvColor": -0.083,
+    "distance": 3198.0392156862745
+}

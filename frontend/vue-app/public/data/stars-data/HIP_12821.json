@@ -1,0 +1,13 @@
+{
+    "hip": 12821,
+    "name": "HD 16769 -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+12821",
+    "alpha": 41.970338279751786,
+    "delta": 67.96943836632802,
+    "mag": 5.95,
+    "pmRA": 8.47454314579469e-08,
+    "pmDE": -1.5780685320115394e-07,
+    "bvColor": 0.136,
+    "distance": 406.73316708229424
+}

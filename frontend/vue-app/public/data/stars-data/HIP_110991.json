@@ -1,0 +1,13 @@
+{
+    "hip": 110991,
+    "name": "* del Cep -- Classical Cepheid Variable",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+110991",
+    "alpha": 337.6178008884405,
+    "delta": 58.594319954845204,
+    "mag": 4.07,
+    "pmRA": 7.984881327874056e-08,
+    "pmDE": 1.7210885679388525e-08,
+    "bvColor": 0.778,
+    "distance": 982.5301204819278
+}

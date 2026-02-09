@@ -1,0 +1,13 @@
+{
+    "hip": 22854,
+    "name": "* 5 Cam -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+22854",
+    "alpha": 74.47841441446148,
+    "delta": 55.31211191373287,
+    "mag": 5.52,
+    "pmRA": -7.824892813107912e-08,
+    "pmDE": -4.169397657542009e-08,
+    "bvColor": 0.015,
+    "distance": 661.6632860040569
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 75695,
+    "name": "Beta Coronae Borealis",
+    "description": "Beta Coronae Borealis (β Coronae Borealis, abbreviated Beta CrB, β CrB) is a binary star in the constellation of Corona Borealis.",
+    "url": "https://en.wikipedia.org/wiki/Beta_Coronae_Borealis",
+    "alpha": 232.31720927075764,
+    "delta": 28.987322057632593,
+    "mag": 3.66,
+    "pmRA": -8.794035361645872e-07,
+    "pmDE": 4.2101220067552103e-07,
+    "bvColor": 0.319,
+    "distance": 114.05594405594407
+}

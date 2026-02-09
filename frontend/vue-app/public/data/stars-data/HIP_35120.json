@@ -1,0 +1,13 @@
+{
+    "hip": 35120,
+    "name": "HD 56031 -- Variable Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+35120",
+    "alpha": 109.38632372270273,
+    "delta": 7.914159473036239,
+    "mag": 5.78,
+    "pmRA": 1.1460995421429432e-07,
+    "pmDE": 1.0665900984409792e-08,
+    "bvColor": 1.537,
+    "distance": 604.074074074074
+}

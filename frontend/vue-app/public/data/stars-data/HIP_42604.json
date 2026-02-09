@@ -1,0 +1,13 @@
+{
+    "hip": 42604,
+    "name": "* 34 Lyn -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+42604",
+    "alpha": 130.85227051014246,
+    "delta": 45.70860085995447,
+    "mag": 5.35,
+    "pmRA": 1.3182083989368283e-07,
+    "pmDE": 4.4840417365820984e-07,
+    "bvColor": 0.993,
+    "distance": 180.1214798453893
+}

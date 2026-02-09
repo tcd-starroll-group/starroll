@@ -1,0 +1,13 @@
+{
+    "hip": 85667,
+    "name": "HD 158614",
+    "description": "HD 158614 is a visual binary star system in the equatorial constellation of Ophiuchus.",
+    "url": "https://en.wikipedia.org/wiki/HD_158614",
+    "alpha": 263.04812453195177,
+    "delta": -1.0883896353814642,
+    "mag": 5.31,
+    "pmRA": -6.139680457571163e-07,
+    "pmDE": -8.338795315084019e-07,
+    "bvColor": 0.715,
+    "distance": 53.65131578947369
+}

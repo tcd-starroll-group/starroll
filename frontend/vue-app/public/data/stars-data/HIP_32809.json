@@ -1,0 +1,13 @@
+{
+    "hip": 32809,
+    "name": "HD 49980 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+32809",
+    "alpha": 102.97872244072597,
+    "delta": -17.127453059603152,
+    "mag": 5.77,
+    "pmRA": -3.296733031544844e-08,
+    "pmDE": 6.157133750091106e-09,
+    "bvColor": 1.435,
+    "distance": 1553.3333333333333
+}

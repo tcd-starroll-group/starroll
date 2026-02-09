@@ -1,0 +1,13 @@
+{
+    "hip": 61136,
+    "name": "* 35 Cru -- Classical Cepheid Variable",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+61136",
+    "alpha": 188.4110204024445,
+    "delta": -59.61589432026212,
+    "mag": 5.49,
+    "pmRA": -6.39469245383478e-08,
+    "pmDE": -1.68230347345009e-08,
+    "bvColor": 0.622,
+    "distance": 1681.4432989690722
+}

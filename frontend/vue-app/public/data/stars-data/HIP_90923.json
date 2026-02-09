@@ -1,0 +1,13 @@
+{
+    "hip": 90923,
+    "name": "HD 171301",
+    "description": "HD 171301 is a suspected binary star system in the northern constellation of Lyra. It has not been well-studied.",
+    "url": "https://en.wikipedia.org/wiki/HD_171301",
+    "alpha": 278.5412193248628,
+    "delta": 30.582549059631454,
+    "mag": 5.47,
+    "pmRA": 6.496503326867782e-08,
+    "pmDE": 5.628686837681713e-08,
+    "bvColor": -0.077,
+    "distance": 365.695067264574
+}

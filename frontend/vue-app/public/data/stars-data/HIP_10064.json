@@ -1,0 +1,13 @@
+{
+    "hip": 10064,
+    "name": "Beta Trianguli",
+    "description": "Beta Trianguli, formally named Alaybasan (for component A), is a binary star system in the constellation Triangulum, located about 127 light years from Earth. Although it is only a third-magnitude star, it is the brightest star in the constellation Triangulum.",
+    "url": "https://en.wikipedia.org/wiki/Beta_Trianguli",
+    "alpha": 32.906649470600385,
+    "delta": 35.150284498982984,
+    "mag": 3,
+    "pmRA": 7.213057947547676e-07,
+    "pmDE": -1.8970759341816145e-07,
+    "bvColor": 0.14,
+    "distance": 124.3140243902439
+}

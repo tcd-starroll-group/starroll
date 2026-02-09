@@ -1,0 +1,13 @@
+{
+    "hip": 110000,
+    "name": "* 42 Aqr -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+110000",
+    "alpha": 334.6653883109191,
+    "delta": -12.656477592865844,
+    "mag": 5.34,
+    "pmRA": 8.920571732415463e-09,
+    "pmDE": 2.2592317539704377e-08,
+    "bvColor": 1.132,
+    "distance": 483.97626112759644
+}

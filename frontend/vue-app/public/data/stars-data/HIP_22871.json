@@ -1,0 +1,13 @@
+{
+    "hip": 22871,
+    "name": "* eta Men -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+22871",
+    "alpha": 73.55283283508669,
+    "delta": -74.88189432004057,
+    "mag": 5.47,
+    "pmRA": 1.3380857598623193e-07,
+    "pmDE": 3.0000270587058084e-07,
+    "bvColor": 1.518,
+    "distance": 712.2270742358078
+}

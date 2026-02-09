@@ -1,0 +1,13 @@
+{
+    "hip": 52407,
+    "name": "HD 92845",
+    "description": "HD 92845 (HR 4194) is a probable astrometric binary in the southern constellation Antlia. It has an apparent magnitude of 5.62, allowing it to be faintly seen with the naked eye.",
+    "url": "https://en.wikipedia.org/wiki/HD_92845",
+    "alpha": 161.08508039322896,
+    "delta": -32.89888286671048,
+    "mag": 5.63,
+    "pmRA": -1.5004983430340138e-07,
+    "pmDE": -5.817764173314432e-10,
+    "bvColor": 0.006,
+    "distance": 605.1948051948052
+}

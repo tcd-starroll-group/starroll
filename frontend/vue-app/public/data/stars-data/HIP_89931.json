@@ -1,0 +1,13 @@
+{
+    "hip": 89931,
+    "name": "Delta Sagittarii",
+    "description": "Delta Sagittarii (δ Sagittarii, abbreviated Delta Sgr, δ Sgr), formally named Kaus Media , is a star in the southern zodiac constellation of Sagittarius. The apparent visual magnitude of this star is +2.70, making it easily visible to the naked eye.",
+    "url": "https://en.wikipedia.org/wiki/Delta_Sagittarii",
+    "alpha": 275.8056051209743,
+    "delta": -29.80960614731184,
+    "mag": 2.72,
+    "pmRA": 1.4525017886041699e-07,
+    "pmDE": -1.278938490766956e-07,
+    "bvColor": 1.38,
+    "distance": 305.71696344892223
+}

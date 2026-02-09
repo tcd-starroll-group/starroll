@@ -1,0 +1,13 @@
+{
+    "hip": 102162,
+    "name": "* mu.01 Oct -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+102162",
+    "alpha": 311.55045165875373,
+    "delta": -76.05334884165711,
+    "mag": 5.99,
+    "pmRA": 9.251699476613275e-07,
+    "pmDE": -4.571793012862924e-08,
+    "bvColor": 0.45,
+    "distance": 336.9834710743802
+}

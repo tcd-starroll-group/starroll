@@ -1,0 +1,13 @@
+{
+    "hip": 98194,
+    "name": "HD 189178 -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+98194",
+    "alpha": 299.6103238174352,
+    "delta": 40.46319388120182,
+    "mag": 5.46,
+    "pmRA": 3.4324808622555144e-08,
+    "pmDE": -2.2786243012148192e-09,
+    "bvColor": -0.09,
+    "distance": 1531.455399061033
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 94703,
+    "name": "* 1 Vul -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+94703",
+    "alpha": 289.4287878513964,
+    "delta": 21.454288430143368,
+    "mag": 4.76,
+    "pmRA": 3.539139872099612e-09,
+    "pmDE": -2.9670597283903605e-08,
+    "bvColor": -0.058,
+    "distance": 911.1731843575419
+}

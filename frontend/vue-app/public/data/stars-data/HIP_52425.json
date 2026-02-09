@@ -1,0 +1,13 @@
+{
+    "hip": 52425,
+    "name": "HD 92523 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+52425",
+    "alpha": 161.37684246299668,
+    "delta": 68.89270140408296,
+    "mag": 5.01,
+    "pmRA": 1.3574783071067008e-09,
+    "pmDE": -6.234703939068633e-08,
+    "bvColor": 1.406,
+    "distance": 426.4052287581699
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 65936,
+    "name": "HD 117440",
+    "description": "HD 117440, also known by its Bayer designation d Centauri, is a binary star system in the southern constellation of Centaurus.",
+    "url": "https://en.wikipedia.org/wiki/HD_117440",
+    "alpha": 203.26973963380917,
+    "delta": -39.58586095470893,
+    "mag": 3.9,
+    "pmRA": -7.587334109364239e-08,
+    "pmDE": -5.4541539124822793e-08,
+    "bvColor": 1.186,
+    "distance": 1254.6153846153845
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 91792,
+    "name": "* zet Pav -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+91792",
+    "alpha": 281.7705936366331,
+    "delta": -71.3913744453275,
+    "mag": 4.01,
+    "pmRA": 6.0601710138692e-09,
+    "pmDE": -7.674115758282844e-07,
+    "bvColor": 1.134,
+    "distance": 209.77491961414793
+}

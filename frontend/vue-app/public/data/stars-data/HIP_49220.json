@@ -1,0 +1,13 @@
+{
+    "hip": 49220,
+    "name": "HD 87015 -- Pulsating Variable",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+49220",
+    "alpha": 151.1879320526697,
+    "delta": 21.779718496674086,
+    "mag": 5.68,
+    "pmRA": -6.666188115256119e-08,
+    "pmDE": -2.5598162362583498e-08,
+    "bvColor": -0.178,
+    "distance": 1583.495145631068
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 35749,
+    "name": "HD 57749 -- delta Sct Variable",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+35749",
+    "alpha": 111.03288368027368,
+    "delta": -6.051806869830876,
+    "mag": 5.83,
+    "pmRA": -6.074715424302485e-08,
+    "pmDE": -4.091827468564483e-08,
+    "bvColor": 0.352,
+    "distance": 908.6350974930363
+}

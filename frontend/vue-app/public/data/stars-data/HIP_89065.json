@@ -1,0 +1,13 @@
+{
+    "hip": 89065,
+    "name": "HD 166460 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+89065",
+    "alpha": 273.1030693153434,
+    "delta": 3.333987729692375,
+    "mag": 5.5,
+    "pmRA": 9.148434162536945e-08,
+    "pmDE": -2.5889050571249224e-08,
+    "bvColor": 1.204,
+    "distance": 412.3893805309734
+}

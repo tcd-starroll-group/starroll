@@ -1,0 +1,13 @@
+{
+    "hip": 109422,
+    "name": "* tau PsA -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+109422",
+    "alpha": 333.04215961522476,
+    "delta": -32.3758585813174,
+    "mag": 4.94,
+    "pmRA": 2.078008399971693e-06,
+    "pmDE": 6.704973209744883e-08,
+    "bvColor": 0.489,
+    "distance": 61.131934032983516
+}

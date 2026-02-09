@@ -1,0 +1,13 @@
+{
+    "hip": 8046,
+    "name": "* 44 Cas -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+8046",
+    "alpha": 26.43046274231839,
+    "delta": 60.72529785401521,
+    "mag": 5.78,
+    "pmRA": 6.578921652656404e-08,
+    "pmDE": -7.650359887908477e-08,
+    "bvColor": -0.01,
+    "distance": 913.7254901960786
+}

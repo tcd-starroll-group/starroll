@@ -1,0 +1,13 @@
+{
+    "hip": 82673,
+    "name": "* iot Oph -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+82673",
+    "alpha": 253.91455969593395,
+    "delta": 10.110711085731014,
+    "mag": 4.39,
+    "pmRA": -2.605873535963756e-07,
+    "pmDE": -1.681333846087871e-07,
+    "bvColor": -0.088,
+    "distance": 233.83512544802866
+}

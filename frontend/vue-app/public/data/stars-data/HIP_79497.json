@@ -1,0 +1,13 @@
+{
+    "hip": 79497,
+    "name": "* zet Nor -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+79497",
+    "alpha": 244.04402487177134,
+    "delta": -55.627172938048055,
+    "mag": 5.78,
+    "pmRA": -4.871892681469727e-07,
+    "pmDE": -2.031854137530065e-07,
+    "bvColor": 0.365,
+    "distance": 230.8563340410474
+}

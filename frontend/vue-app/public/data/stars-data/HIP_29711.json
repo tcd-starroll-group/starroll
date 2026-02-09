@@ -1,0 +1,13 @@
+{
+    "hip": 29711,
+    "name": "HD 43319 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+29711",
+    "alpha": 94.3034237730792,
+    "delta": -4.928797364461408,
+    "mag": 5.99,
+    "pmRA": 1.0995574287564274e-07,
+    "pmDE": -1.6682438766979132e-07,
+    "bvColor": 0.097,
+    "distance": 217.0326014637392
+}

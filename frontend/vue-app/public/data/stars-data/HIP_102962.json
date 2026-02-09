@@ -1,0 +1,13 @@
+{
+    "hip": 102962,
+    "name": "CD-62 1338 -- Double or Multiple Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+102962",
+    "alpha": 313.6267396596503,
+    "delta": -62.29678985851333,
+    "mag": 5.67,
+    "pmRA": 4.025892807933587e-07,
+    "pmDE": -2.3940099573188887e-07,
+    "bvColor": 0.203,
+    "distance": 238.6247256766642
+}

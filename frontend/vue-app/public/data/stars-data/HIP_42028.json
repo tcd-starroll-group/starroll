@@ -1,0 +1,13 @@
+{
+    "hip": 42028,
+    "name": "HD 72660 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+42028",
+    "alpha": 128.9469440653525,
+    "delta": -2.2727220982656755,
+    "mag": 5.8,
+    "pmRA": -1.618308067543631e-07,
+    "pmDE": 1.0025946925345204e-07,
+    "bvColor": 0.007,
+    "distance": 326.2
+}

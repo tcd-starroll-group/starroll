@@ -1,0 +1,13 @@
+{
+    "hip": 96620,
+    "name": "V* V1143 Cyg -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+96620",
+    "alpha": 294.86647717901235,
+    "delta": 55.05621563571843,
+    "mag": 5.89,
+    "pmRA": 1.7167252448088665e-07,
+    "pmDE": 7.945611419704185e-07,
+    "bvColor": 0.482,
+    "distance": 129.85668789808915
+}

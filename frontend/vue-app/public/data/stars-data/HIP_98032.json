@@ -1,0 +1,13 @@
+{
+    "hip": 98032,
+    "name": "* iot Sgr -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+98032",
+    "alpha": 299.4134160630261,
+    "delta": -41.77356946624425,
+    "mag": 4.12,
+    "pmRA": 1.1330095727529856e-07,
+    "pmDE": 2.5016385945252056e-07,
+    "bvColor": 1.063,
+    "distance": 189.2111368909513
+}

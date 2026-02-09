@@ -1,0 +1,13 @@
+{
+    "hip": 36377,
+    "name": "* sig Pup -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+36377",
+    "alpha": 112.58442440400617,
+    "delta": -43.37409957416453,
+    "mag": 3.25,
+    "pmRA": -2.902094695121683e-07,
+    "pmDE": 9.149888603580271e-07,
+    "bvColor": 1.509,
+    "distance": 183.87824126268322
+}

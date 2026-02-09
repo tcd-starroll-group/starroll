@@ -1,0 +1,13 @@
+{
+    "hip": 82480,
+    "name": "* 21 Oph -- Double or Multiple Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+82480",
+    "alpha": 253.29618153515491,
+    "delta": 1.1593855278120633,
+    "mag": 5.51,
+    "pmRA": -8.338795315084018e-08,
+    "pmDE": -6.797087809155694e-08,
+    "bvColor": 0.055,
+    "distance": 345.1851851851852
+}

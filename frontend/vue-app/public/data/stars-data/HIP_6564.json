@@ -1,0 +1,13 @@
+{
+    "hip": 6564,
+    "name": "HD 8556 -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+6564",
+    "alpha": 21.523479574123918,
+    "delta": -6.733958973374501,
+    "mag": 5.92,
+    "pmRA": 1.505346479845109e-07,
+    "pmDE": 2.4822460472808246e-08,
+    "bvColor": 0.407,
+    "distance": 146.08150470219437
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 76532,
+    "name": "HD 139254 -- Horizontal Branch Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+76532",
+    "alpha": 234.9640493647143,
+    "delta": -23.254287992642,
+    "mag": 5.79,
+    "pmRA": -1.537828996479448e-07,
+    "pmDE": -3.6448292545814923e-07,
+    "bvColor": 1.074,
+    "distance": 272.51461988304095
+}

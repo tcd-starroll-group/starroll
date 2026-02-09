@@ -1,0 +1,13 @@
+{
+    "hip": 37031,
+    "name": "HD 60803",
+    "description": "HD 60803 is a binary star system in the equatorial constellation of Canis Minor, located less than a degree to the northwest of the prominent star Procyon.",
+    "url": "https://en.wikipedia.org/wiki/HD_60803",
+    "alpha": 114.60811024782673,
+    "delta": 5.782347931843585,
+    "mag": 5.89,
+    "pmRA": -5.272833595747313e-07,
+    "pmDE": 1.3409946419489765e-07,
+    "bvColor": 0.602,
+    "distance": 142.32111692844674
+}

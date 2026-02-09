@@ -1,0 +1,13 @@
+{
+    "hip": 30651,
+    "name": "V* RR Lyn -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+30651",
+    "alpha": 97.3420978987069,
+    "delta": 56.26171722361459,
+    "mag": 5.53,
+    "pmRA": -1.2222152900771404e-07,
+    "pmDE": 1.0457431101532691e-07,
+    "bvColor": 0.238,
+    "distance": 271.60699417152375
+}

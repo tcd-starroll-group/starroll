@@ -1,0 +1,13 @@
+{
+    "hip": 11381,
+    "name": "HD 15220 -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+11381",
+    "alpha": 37.05136675092095,
+    "delta": -19.88671013244669,
+    "mag": 5.89,
+    "pmRA": 4.1781243038019813e-07,
+    "pmDE": 4.918919608537352e-07,
+    "bvColor": 1.247,
+    "distance": 284.39407149084565
+}

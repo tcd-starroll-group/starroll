@@ -1,0 +1,13 @@
+{
+    "hip": 24340,
+    "name": "Mu Aurigae",
+    "description": "Mu Aurigae is a candidate binary star system in the northern constellation of Auriga. Its name is a Bayer designation that is Latinized from μ Aurigae, and abbreviated Mu Aur or μ Aur.",
+    "url": "https://en.wikipedia.org/wiki/Mu_Aurigae",
+    "alpha": 78.95455059883778,
+    "delta": 38.52210873200946,
+    "mag": 4.82,
+    "pmRA": -9.046623289503942e-08,
+    "pmDE": -3.51053586491415e-07,
+    "bvColor": 0.189,
+    "distance": 162.45019920318725
+}

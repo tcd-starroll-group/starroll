@@ -1,0 +1,13 @@
+{
+    "hip": 100064,
+    "name": "* alf02 Cap -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+100064",
+    "alpha": 304.99558049674044,
+    "delta": -12.434292407472944,
+    "mag": 3.58,
+    "pmRA": 2.9951789218947137e-07,
+    "pmDE": 1.3817189911621777e-08,
+    "bvColor": 0.883,
+    "distance": 108.69710096634454
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 28237,
+    "name": "* 139 Tau -- Blue Supergiant",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+28237",
+    "alpha": 90.03921666811804,
+    "delta": 25.954682531831363,
+    "mag": 4.81,
+    "pmRA": -1.3817189911621777e-08,
+    "pmDE": -8.193351210751158e-09,
+    "bvColor": -0.088,
+    "distance": 2104.516129032258
+}

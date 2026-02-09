@@ -1,0 +1,13 @@
+{
+    "hip": 49841,
+    "name": "* lam Hya -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+49841",
+    "alpha": 153.0723235391723,
+    "delta": -12.527360877409475,
+    "mag": 3.61,
+    "pmRA": -9.712272473667335e-07,
+    "pmDE": -4.861711594166428e-07,
+    "bvColor": 1.007,
+    "distance": 114.69760900140646
+}

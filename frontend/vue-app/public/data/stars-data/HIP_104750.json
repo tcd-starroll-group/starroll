@@ -1,0 +1,13 @@
+{
+    "hip": 104750,
+    "name": "* 3 PsA -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+104750",
+    "alpha": 318.83610936676166,
+    "delta": -27.474738798572062,
+    "mag": 5.41,
+    "pmRA": 4.795776933535529e-07,
+    "pmDE": -5.467243881872237e-07,
+    "bvColor": 1.425,
+    "distance": 391.5966386554622
+}

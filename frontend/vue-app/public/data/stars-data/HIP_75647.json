@@ -1,0 +1,13 @@
+{
+    "hip": 75647,
+    "name": "HD 137432 -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+75647",
+    "alpha": 232.38624473985766,
+    "delta": -36.8868327356203,
+    "mag": 5.46,
+    "pmRA": -1.0282898176333258e-07,
+    "pmDE": -1.1645224620251055e-07,
+    "bvColor": -0.15,
+    "distance": 418.7419768934531
+}

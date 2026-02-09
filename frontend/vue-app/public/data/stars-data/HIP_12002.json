@@ -1,0 +1,13 @@
+{
+    "hip": 12002,
+    "name": "* 77 Cet -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+12002",
+    "alpha": 39.107675087016155,
+    "delta": -7.708977378840803,
+    "mag": 5.74,
+    "pmRA": 2.9243961244527205e-07,
+    "pmDE": -3.12462417475096e-07,
+    "bvColor": 1.393,
+    "distance": 549.1582491582491
+}

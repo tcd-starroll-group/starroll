@@ -1,0 +1,13 @@
+{
+    "hip": 46734,
+    "name": "Zeta2 Antliae",
+    "description": "Zeta2 Antliae is a star in the southern constellation of Antlia, the air pump. Its Bayer designation is Latinized from ζ2 Antliae, and abbreviated Zet2 Ant or ζ2 Ant, respectively.",
+    "url": "https://en.wikipedia.org/wiki/Zeta2_Antliae",
+    "alpha": 143.25726720184156,
+    "delta": -32.026840611156985,
+    "mag": 5.91,
+    "pmRA": -2.386252938421136e-07,
+    "pmDE": -4.363323129985824e-10,
+    "bvColor": 0.258,
+    "distance": 374.51205510907
+}

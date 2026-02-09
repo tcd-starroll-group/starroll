@@ -1,0 +1,13 @@
+{
+    "hip": 103227,
+    "name": "Beta Indi",
+    "description": "Beta Indi, Latinized from β Indi, is the second brightest star in the southern constellation of Indus.",
+    "url": "https://en.wikipedia.org/wiki/Beta_Indi",
+    "alpha": 314.37536551715095,
+    "delta": -58.319526782542574,
+    "mag": 3.67,
+    "pmRA": 1.0210176124166827e-07,
+    "pmDE": -1.1999138607461016e-07,
+    "bvColor": 1.25,
+    "distance": 602.9574861367837
+}

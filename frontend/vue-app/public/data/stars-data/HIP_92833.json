@@ -1,0 +1,13 @@
+{
+    "hip": 92833,
+    "name": "HD 175635 -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+92833",
+    "alpha": 284.03811985375694,
+    "delta": 34.01507782032289,
+    "mag": 5.99,
+    "pmRA": -2.7149566142134013e-08,
+    "pmDE": -8.62968352374974e-09,
+    "bvColor": 0.922,
+    "distance": 1331.4285714285713
+}

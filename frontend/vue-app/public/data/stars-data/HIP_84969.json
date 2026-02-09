@@ -1,0 +1,13 @@
+{
+    "hip": 84969,
+    "name": "Zeta Apodis",
+    "description": "Zeta Apodis is a star in the southern constellation of Apus. Its identifier is a Bayer designation that is Latinized from ζ Apodis, and abbreviated Zet Aps or ζ Aps, respectively.",
+    "url": "https://en.wikipedia.org/wiki/Zeta_Apodis",
+    "alpha": 261.4128853166646,
+    "delta": -67.8011980699122,
+    "mag": 4.76,
+    "pmRA": -1.7986587569163787e-07,
+    "pmDE": -3.7718504390321903e-08,
+    "bvColor": 1.194,
+    "distance": 311.85468451242826
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 117503,
+    "name": "OU Andromedae",
+    "description": "OU Andromedae (also HR 9024) is a rotationally variable star in the constellation Andromeda. Varying between magnitudes 5.87 and 5.94, it has been classified as an FK Comae Berenices variable, but the classification is still uncertain.",
+    "url": "https://en.wikipedia.org/wiki/OU_Andromedae",
+    "alpha": 357.8610345750627,
+    "delta": 36.618671410175324,
+    "mag": 5.86,
+    "pmRA": 9.696273622190722e-10,
+    "pmDE": -2.3178942093846917e-07,
+    "bvColor": 0.806,
+    "distance": 440.2159244264508
+}

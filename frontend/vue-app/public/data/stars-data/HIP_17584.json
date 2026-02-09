@@ -1,0 +1,13 @@
+{
+    "hip": 17584,
+    "name": "HD 23300 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+17584",
+    "alpha": 57.10980101546976,
+    "delta": 45.78793424084956,
+    "mag": 5.66,
+    "pmRA": 8.489087556227977e-08,
+    "pmDE": -8.939964279659844e-08,
+    "bvColor": -0.08,
+    "distance": 1038.8535031847132
+}

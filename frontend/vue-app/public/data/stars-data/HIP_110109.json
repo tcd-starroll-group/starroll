@@ -1,0 +1,13 @@
+{
+    "hip": 110109,
+    "name": "HD 211415",
+    "description": "HD 211415 is a double star in the constellation Grus. With an apparent visual magnitude of 5.33, it is visible to the naked eye. The annual parallax shift is 71.09 mas, which yields a distance measurement of 45.88 light years.",
+    "url": "https://en.wikipedia.org/wiki/HD_211415",
+    "alpha": 335.1253463014777,
+    "delta": -53.45612674382191,
+    "mag": 5.36,
+    "pmRA": 2.132501457728405e-06,
+    "pmDE": -3.066931346698925e-06,
+    "bvColor": 0.614,
+    "distance": 44.39907445215734
+}

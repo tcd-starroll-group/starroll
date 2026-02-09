@@ -1,0 +1,13 @@
+{
+    "hip": 116584,
+    "name": "Lambda Andromedae",
+    "description": "Lambda Andromedae, Latinized from λ Andromedae, also named Udkadua, is a binary star system in the northern constellation of Andromeda.",
+    "url": "https://en.wikipedia.org/wiki/Lambda_Andromedae",
+    "alpha": 354.81903075775887,
+    "delta": 46.64813965538356,
+    "mag": 3.81,
+    "pmRA": 7.719203430626032e-07,
+    "pmDE": -2.0432957404042505e-06,
+    "bvColor": 0.984,
+    "distance": 84.20237480640165
+}

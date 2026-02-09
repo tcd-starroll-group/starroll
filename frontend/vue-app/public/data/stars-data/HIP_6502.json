@@ -1,0 +1,13 @@
+{
+    "hip": 6502,
+    "name": "HD 8498 -- Variable Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+6502",
+    "alpha": 21.283499254866033,
+    "delta": -30.76501196042842,
+    "mag": 5.84,
+    "pmRA": -7.519460194008902e-08,
+    "pmDE": -2.2219011005250033e-07,
+    "bvColor": 1.612,
+    "distance": 888.8283378746595
+}

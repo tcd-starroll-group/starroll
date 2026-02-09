@@ -1,0 +1,13 @@
+{
+    "hip": 109005,
+    "name": "* 20 Cep -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+109005",
+    "alpha": 331.51715775947065,
+    "delta": 62.95631762163238,
+    "mag": 5.27,
+    "pmRA": 6.879506134944315e-08,
+    "pmDE": 2.832766338723019e-07,
+    "bvColor": 1.413,
+    "distance": 318.2439024390244
+}

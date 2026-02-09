@@ -1,0 +1,13 @@
+{
+    "hip": 96441,
+    "name": "* tet Cyg -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+96441",
+    "alpha": 294.3440685632622,
+    "delta": 50.30258887971601,
+    "mag": 4.49,
+    "pmRA": -3.951231501042719e-08,
+    "pmDE": 1.2749630185818578e-06,
+    "bvColor": 0.395,
+    "distance": 60.65451840833023
+}

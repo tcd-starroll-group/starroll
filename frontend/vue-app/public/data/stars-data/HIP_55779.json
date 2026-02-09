@@ -1,0 +1,13 @@
+{
+    "hip": 55779,
+    "name": "HD 99453 -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+55779",
+    "alpha": 171.81663421441732,
+    "delta": -64.16477985514364,
+    "mag": 5.18,
+    "pmRA": -1.5241572506721593e-06,
+    "pmDE": -3.1764992386296794e-07,
+    "bvColor": 0.495,
+    "distance": 89.46791003839824
+}

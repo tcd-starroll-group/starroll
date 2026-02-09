@@ -1,0 +1,13 @@
+{
+    "hip": 13121,
+    "name": "VZ Arietis",
+    "description": "VZ Arietis is single, white-hued star in the northern zodiac constellation of Aries. Varying between magnitudes 5.82 and 5.89, the star can be seen with the naked eye in dark, unpolluted areas.",
+    "url": "https://en.wikipedia.org/wiki/VZ_Arietis",
+    "alpha": 42.699674164192615,
+    "delta": 25.331134730093204,
+    "mag": 5.89,
+    "pmRA": 2.6262357105703564e-07,
+    "pmDE": -1.900469629949381e-08,
+    "bvColor": -0.033,
+    "distance": 460.73446327683615
+}

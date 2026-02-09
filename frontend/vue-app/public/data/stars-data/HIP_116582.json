@@ -1,0 +1,13 @@
+{
+    "hip": 116582,
+    "name": "HD 222109",
+    "description": "HD 222109 is a binary star system located in the northern constellation of Andromeda. It has a combined apparent visual magnitude of 5.80, which allows it to be visible to the naked eye as a single star. The system has a combined spectral classification of B8V.",
+    "url": "https://en.wikipedia.org/wiki/HD_222109",
+    "alpha": 354.8119259411693,
+    "delta": 44.62191144926574,
+    "mag": 5.81,
+    "pmRA": 7.349775405620565e-08,
+    "pmDE": -8.241832578862112e-08,
+    "bvColor": -0.064,
+    "distance": 823.7373737373738
+}

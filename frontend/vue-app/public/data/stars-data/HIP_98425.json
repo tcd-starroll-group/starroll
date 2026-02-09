@@ -1,0 +1,13 @@
+{
+    "hip": 98425,
+    "name": "* 25 Cyg -- Be Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+98425",
+    "alpha": 300.299494022537,
+    "delta": 37.14025068177495,
+    "mag": 5.15,
+    "pmRA": 1.9877360925490974e-09,
+    "pmDE": -1.1635528346628864e-09,
+    "bvColor": -0.133,
+    "distance": 1575.8454106280194
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 76569,
+    "name": "HD 139329 -- Horizontal Branch Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+76569",
+    "alpha": 235.0756326243685,
+    "delta": -21.12857241968158,
+    "mag": 5.82,
+    "pmRA": 3.094080912841059e-07,
+    "pmDE": -3.461084869440977e-07,
+    "bvColor": 1.077,
+    "distance": 292.0322291853178
+}

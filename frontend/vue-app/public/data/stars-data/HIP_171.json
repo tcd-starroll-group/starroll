@@ -1,0 +1,13 @@
+{
+    "hip": 171,
+    "name": "* 85 Peg -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+171",
+    "alpha": 0.995358567264787,
+    "delta": 27.269503239107124,
+    "mag": 5.8,
+    "pmRA": 3.774710839750736e-06,
+    "pmDE": -4.454080251089529e-06,
+    "bvColor": 0.69,
+    "distance": 40.45640580429121
+}

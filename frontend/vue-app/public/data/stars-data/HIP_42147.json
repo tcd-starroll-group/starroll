@@ -1,0 +1,13 @@
+{
+    "hip": 42147,
+    "name": "HD 73072 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+42147",
+    "alpha": 129.23923281815178,
+    "delta": -26.96552103084498,
+    "mag": 5.95,
+    "pmRA": -1.5155275671484096e-07,
+    "pmDE": 9.05631956312613e-08,
+    "bvColor": 0.393,
+    "distance": 838.560411311054
+}

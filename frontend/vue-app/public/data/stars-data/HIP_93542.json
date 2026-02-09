@@ -1,0 +1,13 @@
+{
+    "hip": 93542,
+    "name": "* zet CrA -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+93542",
+    "alpha": 286.39343975266127,
+    "delta": -42.04170939126923,
+    "mag": 4.74,
+    "pmRA": 2.7023514585045536e-07,
+    "pmDE": -2.1976604164695267e-07,
+    "bvColor": -0.027,
+    "distance": 183.77464788732397
+}

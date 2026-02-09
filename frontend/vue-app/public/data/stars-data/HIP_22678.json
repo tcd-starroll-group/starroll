@@ -1,0 +1,13 @@
+{
+    "hip": 22678,
+    "name": "2 Aurigae",
+    "description": "2 Aurigae is a possible binary star system in the northern constellation of Auriga.",
+    "url": "https://en.wikipedia.org/wiki/2_Aurigae",
+    "alpha": 73.74306279595949,
+    "delta": 36.75839056751424,
+    "mag": 4.79,
+    "pmRA": -1.259061129841465e-07,
+    "pmDE": -1.8859252195160952e-08,
+    "bvColor": 1.414,
+    "distance": 561.4457831325301
+}

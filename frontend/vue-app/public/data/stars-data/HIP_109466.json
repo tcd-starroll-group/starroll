@@ -1,0 +1,13 @@
+{
+    "hip": 109466,
+    "name": "HD 210434",
+    "description": "HD 210434 is a giant star in the equatorial constellation of Aquarius. According to the Bortle scale, an apparent magnitude of six means this star is faintly visible to the naked eye from dark rural skies.",
+    "url": "https://en.wikipedia.org/wiki/HD_210434",
+    "alpha": 333.09385767825927,
+    "delta": -4.094256725899298,
+    "mag": 5.98,
+    "pmRA": 3.5081117965086027e-07,
+    "pmDE": 1.6968478838833758e-08,
+    "bvColor": 0.981,
+    "distance": 281.9360414866033
+}

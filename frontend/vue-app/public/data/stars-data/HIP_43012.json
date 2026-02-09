@@ -1,0 +1,13 @@
+{
+    "hip": 43012,
+    "name": "HD 76236 -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+43012",
+    "alpha": 131.1350046074544,
+    "delta": -79.63179969098852,
+    "mag": 5.79,
+    "pmRA": -1.2658485213769985e-07,
+    "pmDE": 3.9395959726960903e-07,
+    "bvColor": 1.595,
+    "distance": 559.5197255574615
+}

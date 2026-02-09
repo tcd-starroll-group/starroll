@@ -1,0 +1,13 @@
+{
+    "hip": 80399,
+    "name": "CD-29 12513 -- Double or Multiple Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+80399",
+    "alpha": 246.71405443096486,
+    "delta": -29.782773257745678,
+    "mag": 5.4,
+    "pmRA": 3.3583043690457555e-07,
+    "pmDE": -3.9783810671848525e-07,
+    "bvColor": 0.625,
+    "distance": 102.51414204902576
+}

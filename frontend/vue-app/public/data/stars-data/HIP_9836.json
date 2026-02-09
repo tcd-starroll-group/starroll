@@ -1,0 +1,13 @@
+{
+    "hip": 9836,
+    "name": "Kappa Arietis",
+    "description": "Kappa Arietis is a binary star system in the northern constellation of Aries. Its name is a Bayer designation that is Latinized from κ Arietis, and abbreviated Kappa Ari or κ Ari.",
+    "url": "https://en.wikipedia.org/wiki/Kappa_Arietis",
+    "alpha": 32.13067915407883,
+    "delta": 22.812718495446276,
+    "mag": 5.03,
+    "pmRA": 9.996858104478633e-08,
+    "pmDE": -1.737572233096577e-07,
+    "bvColor": 0.121,
+    "distance": 187.4712643678161
+}

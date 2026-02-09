@@ -1,0 +1,13 @@
+{
+    "hip": 10324,
+    "name": "* ksi01 Cet -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+10324",
+    "alpha": 33.71286904702592,
+    "delta": 9.008343951645656,
+    "mag": 4.36,
+    "pmRA": -1.271666285550313e-07,
+    "pmDE": -6.981317007977319e-08,
+    "bvColor": 0.878,
+    "distance": 362.04217536071036
+}

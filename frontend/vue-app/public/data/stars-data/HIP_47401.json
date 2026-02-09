@@ -1,0 +1,13 @@
+{
+    "hip": 47401,
+    "name": "HD 83126 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+47401",
+    "alpha": 145.57537262065753,
+    "delta": 67.11269017040902,
+    "mag": 5.96,
+    "pmRA": -1.3453579650789624e-07,
+    "pmDE": -1.8747745048505757e-07,
+    "bvColor": 1.528,
+    "distance": 543.6666666666666
+}

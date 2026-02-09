@@ -1,0 +1,13 @@
+{
+    "hip": 89937,
+    "name": "* chi Dra -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+89937",
+    "alpha": 275.0896386504511,
+    "delta": 72.7477909191753,
+    "mag": 3.55,
+    "pmRA": 2.574748497636524e-06,
+    "pmDE": -1.7045564214130172e-06,
+    "bvColor": 0.489,
+    "distance": 26.28313592780598
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 36258,
+    "name": "HD 59256 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+36258",
+    "alpha": 112.3423911388727,
+    "delta": -29.229037542472575,
+    "mag": 5.55,
+    "pmRA": -4.906314452828503e-08,
+    "pmDE": 1.1247677401741234e-08,
+    "bvColor": -0.048,
+    "distance": 673.9669421487604
+}

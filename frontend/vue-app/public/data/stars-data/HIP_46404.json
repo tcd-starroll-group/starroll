@@ -1,0 +1,13 @@
+{
+    "hip": 46404,
+    "name": "HR 3750",
+    "description": "HR 3750 is a binary star system in the equatorial constellation of Hydra at a distance of 101 light years.",
+    "url": "https://en.wikipedia.org/wiki/HR_3750",
+    "alpha": 142.37671044784574,
+    "delta": -6.224794172178135,
+    "mag": 5.38,
+    "pmRA": -1.1287916937273325e-06,
+    "pmDE": -3.161470014515284e-07,
+    "bvColor": 0.642,
+    "distance": 101.90565448297407
+}

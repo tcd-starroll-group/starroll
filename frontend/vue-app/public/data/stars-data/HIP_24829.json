@@ -1,0 +1,13 @@
+{
+    "hip": 24829,
+    "name": "* zet Pic -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+24829",
+    "alpha": 80.0562818954955,
+    "delta": -50.57048669608519,
+    "mag": 5.44,
+    "pmRA": 1.1150714665519327e-07,
+    "pmDE": 1.1024178294749737e-06,
+    "bvColor": 0.517,
+    "distance": 117.76173285198557
+}

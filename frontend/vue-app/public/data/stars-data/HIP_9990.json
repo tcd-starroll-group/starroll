@@ -1,0 +1,13 @@
+{
+    "hip": 9990,
+    "name": "HD 12953 -- Evolved Supergiant",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+9990",
+    "alpha": 32.78530069032071,
+    "delta": 58.58717861785557,
+    "mag": 5.66,
+    "pmRA": -3.975472185098195e-09,
+    "pmDE": -7.902463002085437e-09,
+    "bvColor": 0.595,
+    "distance": 1822.3463687150838
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 59173,
+    "name": "HD 105382",
+    "description": "HD 105382 (also known as V863 Centauri) is a star in the constellation Centaurus. Its apparent magnitude is 4.47, making it visible to the naked eye under good observing conditions. From parallax measurements, it is located 130 parsecs (440 light years) from the Sun.",
+    "url": "https://en.wikipedia.org/wiki/HD_105382",
+    "alpha": 182.4771818801657,
+    "delta": -50.855105321592426,
+    "mag": 4.46,
+    "pmRA": -1.6517602115401893e-07,
+    "pmDE": -4.775414758928929e-08,
+    "bvColor": -0.163,
+    "distance": 375.80645161290323
+}

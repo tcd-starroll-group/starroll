@@ -1,0 +1,13 @@
+{
+    "hip": 13847,
+    "name": "Theta Eridani",
+    "description": "Theta Eridani, Latinized from θ Eridani, is a triple star system in the constellation of Eridanus, with a combined apparent magnitude of 2.88. The primary component has the proper name Acamar , the traditional name of the system.",
+    "url": "https://en.wikipedia.org/wiki/Theta_Eridani",
+    "alpha": 44.89578928356042,
+    "delta": -40.166714940064175,
+    "mag": 2.88,
+    "pmRA": -2.595207634979346e-07,
+    "pmDE": 1.246455974132617e-07,
+    "bvColor": 0.128,
+    "distance": 161.3254203758655
+}

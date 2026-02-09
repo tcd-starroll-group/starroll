@@ -1,0 +1,13 @@
+{
+    "hip": 56078,
+    "name": "HD 99922",
+    "description": "HD 99922 is a double star system in the constellation of Crater. It shines with an apparent visual magnitude of 5.77 from a distance of about 377 light years (116 parsecs) away from the Earth.",
+    "url": "https://en.wikipedia.org/wiki/HD_99922",
+    "alpha": 172.84546766687856,
+    "delta": -24.656174442212656,
+    "mag": 5.77,
+    "pmRA": -2.409039181433284e-07,
+    "pmDE": 9.405385413524998e-08,
+    "bvColor": 0.067,
+    "distance": 403.7128712871287
+}

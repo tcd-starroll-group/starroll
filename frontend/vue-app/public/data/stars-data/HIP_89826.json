@@ -1,0 +1,13 @@
+{
+    "hip": 89826,
+    "name": "Kappa Lyrae",
+    "description": "κ Lyrae, Latinized as Kappa Lyrae, is a solitary star in the northern constellation of Lyra, near the constellation border with Hercules.",
+    "url": "https://en.wikipedia.org/wiki/Kappa_Lyrae",
+    "alpha": 275.2709201226888,
+    "delta": 36.08214276408272,
+    "mag": 4.33,
+    "pmRA": -7.824892813107912e-08,
+    "pmDE": 2.0032501303446027e-07,
+    "bvColor": 1.162,
+    "distance": 237.92851932895695
+}

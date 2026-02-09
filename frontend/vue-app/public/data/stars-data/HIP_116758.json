@@ -1,0 +1,13 @@
+{
+    "hip": 116758,
+    "name": "Omega1 Aquarii",
+    "description": "Omega1 Aquarii is a binary star system in the equatorial constellation of Aquarius. Its name is a Bayer designation that is Latinized from ω1 Aquarii, and abbreviated Omega1 Aqr or ω1 Aqr.",
+    "url": "https://en.wikipedia.org/wiki/Omega1_Aquarii",
+    "alpha": 355.39688574177853,
+    "delta": -14.029371966474576,
+    "mag": 4.97,
+    "pmRA": 2.511334868147396e-07,
+    "pmDE": -2.6945944396068007e-07,
+    "bvColor": 0.257,
+    "distance": 133.79819524200164
+}

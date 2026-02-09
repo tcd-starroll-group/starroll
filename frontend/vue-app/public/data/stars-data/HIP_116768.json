@@ -1,0 +1,13 @@
+{
+    "hip": 116768,
+    "name": "HD 222377 -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+116768",
+    "alpha": 355.4234701986508,
+    "delta": 9.870455215208567,
+    "mag": 5.99,
+    "pmRA": 4.3206595260481854e-07,
+    "pmDE": -5.4105206811824216e-08,
+    "bvColor": 0.212,
+    "distance": 190.0932400932401
+}

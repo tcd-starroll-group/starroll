@@ -1,0 +1,13 @@
+{
+    "hip": 76267,
+    "name": "Alpha Coronae Borealis",
+    "description": "Alpha Coronae Borealis (α Coronae Borealis, abbreviated Alpha CrB, α CrB), officially named Alphecca , is an eclipsing binary star in the constellation of Corona Borealis.",
+    "url": "https://en.wikipedia.org/wiki/Alpha_Coronae_Borealis",
+    "alpha": 234.04045757283166,
+    "delta": 26.599681885874496,
+    "mag": 2.22,
+    "pmRA": 5.836187093196594e-07,
+    "pmDE": -4.3361735638436897e-07,
+    "bvColor": 0.032,
+    "distance": 74.73081328751432
+}

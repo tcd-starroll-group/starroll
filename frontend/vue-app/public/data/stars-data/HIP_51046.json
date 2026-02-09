@@ -1,0 +1,13 @@
+{
+    "hip": 51046,
+    "name": "HD 90362 -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+51046",
+    "alpha": 156.8701232291123,
+    "delta": -7.236921660441517,
+    "mag": 5.6,
+    "pmRA": -6.554680968600926e-07,
+    "pmDE": 6.254096486313014e-07,
+    "bvColor": 1.528,
+    "distance": 329.1624621594349
+}

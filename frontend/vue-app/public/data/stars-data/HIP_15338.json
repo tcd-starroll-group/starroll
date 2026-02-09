@@ -1,0 +1,13 @@
+{
+    "hip": 15338,
+    "name": "* 30 Per -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+15338",
+    "alpha": 50.03708407522718,
+    "delta": 44.15016353381349,
+    "mag": 5.49,
+    "pmRA": 1.2900892054324753e-07,
+    "pmDE": -1.1499780515918192e-07,
+    "bvColor": -0.06,
+    "distance": 644.6640316205534
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 55874,
+    "name": "* kap Crt -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+55874",
+    "alpha": 172.22928995346933,
+    "delta": -12.548601713645187,
+    "mag": 5.93,
+    "pmRA": -4.765718485306739e-07,
+    "pmDE": 1.1548261884029147e-07,
+    "bvColor": 0.49,
+    "distance": 218.7793427230047
+}

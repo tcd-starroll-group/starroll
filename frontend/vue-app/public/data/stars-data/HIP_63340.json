@@ -1,0 +1,13 @@
+{
+    "hip": 63340,
+    "name": "HD 113049 -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+63340",
+    "alpha": 194.95329660899714,
+    "delta": 75.2851508385343,
+    "mag": 6,
+    "pmRA": 6.389844317023685e-08,
+    "pmDE": 6.67588438887831e-08,
+    "bvColor": 1.03,
+    "distance": 477.59882869692535
+}

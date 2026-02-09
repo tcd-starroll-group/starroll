@@ -1,0 +1,13 @@
+{
+    "hip": 80569,
+    "name": "Chi Ophiuchi",
+    "description": "Chi Ophiuchi, Latinized from χ Ophiuchi, is a variable star in the equatorial constellation of Ophiuchus.",
+    "url": "https://en.wikipedia.org/wiki/Chi_Ophiuchi",
+    "alpha": 247.26193069548296,
+    "delta": -18.532148141931785,
+    "mag": 4.22,
+    "pmRA": -2.7052603405912108e-08,
+    "pmDE": -1.0772559994253889e-07,
+    "bvColor": 0.217,
+    "distance": 489.0554722638681
+}

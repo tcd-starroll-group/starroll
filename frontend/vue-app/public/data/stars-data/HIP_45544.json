@@ -1,0 +1,13 @@
+{
+    "hip": 45544,
+    "name": "HD 80170 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+45544",
+    "alpha": 139.5799911905189,
+    "delta": -39.54902846572409,
+    "mag": 5.31,
+    "pmRA": -1.442805514981979e-07,
+    "pmDE": -1.676970522957885e-07,
+    "bvColor": 1.166,
+    "distance": 355.3376906318083
+}

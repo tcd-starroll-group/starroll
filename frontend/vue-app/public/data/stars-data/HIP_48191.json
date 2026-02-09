@@ -1,0 +1,13 @@
+{
+    "hip": 48191,
+    "name": "HD 85206 -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+48191",
+    "alpha": 147.73353833375114,
+    "delta": -37.35033224766072,
+    "mag": 5.95,
+    "pmRA": -4.308054370339336e-07,
+    "pmDE": 3.9075982697428605e-08,
+    "bvColor": 1.245,
+    "distance": 407.2409488139825
+}

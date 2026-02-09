@@ -1,0 +1,13 @@
+{
+    "hip": 8903,
+    "name": "Beta Arietis",
+    "description": "Beta Arietis is a binary star system in the constellation of Aries, marking the ram's second horn. Its identifier is a Bayer designation that is Latinized from β Arietis, and abbreviated Beta Ari or β Ari. It has the official name Sheratan, pronounced .",
+    "url": "https://en.wikipedia.org/wiki/Beta_Arietis",
+    "alpha": 29.142773378867002,
+    "delta": 20.977010955891185,
+    "mag": 2.64,
+    "pmRA": 4.66972537644705e-07,
+    "pmDE": -5.274772850471751e-07,
+    "bvColor": 0.165,
+    "distance": 59.59079283887468
+}

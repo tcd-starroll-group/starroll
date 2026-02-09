@@ -1,0 +1,13 @@
+{
+    "hip": 25816,
+    "name": "HD 36040 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+25816",
+    "alpha": 83.31912850450017,
+    "delta": 41.48534580273591,
+    "mag": 5.99,
+    "pmRA": 9.744754990301672e-09,
+    "pmDE": -1.666304621973475e-07,
+    "bvColor": 1.112,
+    "distance": 386.0355029585799
+}

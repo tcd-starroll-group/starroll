@@ -1,0 +1,13 @@
+{
+    "hip": 76750,
+    "name": "Kappa2 Apodis",
+    "description": "Kappa2 Apodis is a double star in the southern circumpolar constellation of Apus. Its identifier is a Bayer designation that is Latinized from κ2 Apodis, and abbreviated Kap2 Aps or κ2 Aps, respectively.",
+    "url": "https://en.wikipedia.org/wiki/Kappa2_Apodis",
+    "alpha": 236.0752387987341,
+    "delta": -73.55644330840045,
+    "mag": 5.64,
+    "pmRA": -6.18622257095768e-08,
+    "pmDE": -1.0050187609400681e-07,
+    "bvColor": -0.04,
+    "distance": 734.6846846846846
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 112031,
+    "name": "* 12 Lac -- beta Cep Variable",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+112031",
+    "alpha": 340.7608947351996,
+    "delta": 40.40827570637999,
+    "mag": 5.25,
+    "pmRA": -3.6361026083215196e-09,
+    "pmDE": -2.8604007185462623e-08,
+    "bvColor": -0.137,
+    "distance": 1394.017094017094
+}

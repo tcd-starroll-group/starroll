@@ -1,0 +1,13 @@
+{
+    "hip": 80686,
+    "name": "* zet TrA -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+80686",
+    "alpha": 248.05981265393774,
+    "delta": -70.15752397721585,
+    "mag": 4.9,
+    "pmRA": 9.690940671698514e-07,
+    "pmDE": 5.370281145650329e-07,
+    "bvColor": 0.555,
+    "distance": 39.48674494613243
+}

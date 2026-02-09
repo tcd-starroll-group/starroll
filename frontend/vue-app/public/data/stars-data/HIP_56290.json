@@ -1,0 +1,13 @@
+{
+    "hip": 56290,
+    "name": "HD 100203 -- Double or Multiple Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+56290",
+    "alpha": 173.57324872881452,
+    "delta": 60.889232705048265,
+    "mag": 5.46,
+    "pmRA": -6.889202408566506e-08,
+    "pmDE": -4.612032548395015e-07,
+    "bvColor": 0.515,
+    "distance": 89.76334617501375
+}

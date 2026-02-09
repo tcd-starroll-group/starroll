@@ -1,0 +1,13 @@
+{
+    "hip": 10732,
+    "name": "Theta Arietis",
+    "description": "Theta Arietis,  is a binary star system in the northern constellation of Aries. Its name is a Bayer designation that is Latinised from θ Arietis, and abbreviated Theta Ari or θ Ari.",
+    "url": "https://en.wikipedia.org/wiki/Theta_Arietis",
+    "alpha": 35.01779164310105,
+    "delta": 20.060453185081073,
+    "mag": 5.58,
+    "pmRA": -7.790955855430244e-08,
+    "pmDE": 4.3633231299858245e-09,
+    "bvColor": 0.011,
+    "distance": 387.4109263657957
+}

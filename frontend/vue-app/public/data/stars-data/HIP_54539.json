@@ -1,0 +1,13 @@
+{
+    "hip": 54539,
+    "name": "Psi Ursae Majoris",
+    "description": "Psi Ursae Majoris (Psi UMa, ψ Ursae Majoris, ψ UMa) is a star in the northern circumpolar constellation of Ursa Major. It has an apparent visual magnitude of +3.01, making it a third magnitude star and one of the brighter members of the constellation.",
+    "url": "https://en.wikipedia.org/wiki/Psi_Ursae_Majoris",
+    "alpha": 167.90234769513597,
+    "delta": 44.30886195836672,
+    "mag": 3,
+    "pmRA": -3.022813301717957e-07,
+    "pmDE": -1.3274198588779094e-07,
+    "bvColor": 1.144,
+    "distance": 146.87077892841063
+}

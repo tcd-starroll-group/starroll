@@ -1,0 +1,13 @@
+{
+    "hip": 13327,
+    "name": "Sigma Arietis",
+    "description": "Sigma Arietis is a star in the northern constellation of Aries. Its name is a Bayer designation that is Latinized from σ Arietis, and abbreviated Sigma Ari or σ Ari.",
+    "url": "https://en.wikipedia.org/wiki/Sigma_Arietis",
+    "alpha": 43.35567777048625,
+    "delta": 15.22346526096921,
+    "mag": 5.52,
+    "pmRA": 1.5155275671484096e-07,
+    "pmDE": -1.1291310633041093e-07,
+    "bvColor": -0.099,
+    "distance": 479.7058823529412
+}

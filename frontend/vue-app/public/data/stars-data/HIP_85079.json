@@ -1,0 +1,13 @@
+{
+    "hip": 85079,
+    "name": "Iota Arae",
+    "description": "Iota Arae is a binary star system in the southern constellation of Ara. Its name is a Bayer designation that is Latinized from ι Arae, and abbreviated Iota Ara or ι Ara.",
+    "url": "https://en.wikipedia.org/wiki/Iota_Arae",
+    "alpha": 261.47218286797863,
+    "delta": -47.498188165018654,
+    "mag": 5.21,
+    "pmRA": -3.22885911618951e-08,
+    "pmDE": -8.54726519796112e-08,
+    "bvColor": -0.097,
+    "distance": 721.6814159292036
+}

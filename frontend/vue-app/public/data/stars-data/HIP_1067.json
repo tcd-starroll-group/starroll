@@ -1,0 +1,13 @@
+{
+    "hip": 1067,
+    "name": "Gamma Pegasi",
+    "description": "Gamma Pegasi is a binary star in the constellation of Pegasus, located at the southeast corner of the asterism known as the Great Square. It has the formal name Algenib ; the Bayer designation Gamma Pegasi is Latinized from γ Pegasi and abbreviated Gamma Peg or γ Peg.",
+    "url": "https://en.wikipedia.org/wiki/Gamma_Pegasi",
+    "alpha": 3.758546115592115,
+    "delta": 15.377072136131282,
+    "mag": 2.83,
+    "pmRA": 2.2786243012148194e-08,
+    "pmDE": -3.994864732342577e-08,
+    "bvColor": -0.19,
+    "distance": 333.197139938713
+}

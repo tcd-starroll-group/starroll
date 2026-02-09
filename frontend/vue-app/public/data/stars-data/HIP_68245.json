@@ -1,0 +1,13 @@
+{
+    "hip": 68245,
+    "name": "* phi Cen -- Pulsating Variable",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+68245",
+    "alpha": 210.10130814479675,
+    "delta": -42.26909623976287,
+    "mag": 3.83,
+    "pmRA": -1.1480387968673813e-07,
+    "pmDE": -9.609007159591002e-08,
+    "bvColor": -0.224,
+    "distance": 465.3352353780314
+}

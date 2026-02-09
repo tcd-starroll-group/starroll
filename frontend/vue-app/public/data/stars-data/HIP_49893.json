@@ -1,0 +1,13 @@
+{
+    "hip": 49893,
+    "name": "HD 88231 -- Variable Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+49893",
+    "alpha": 153.3163351869452,
+    "delta": 37.22882527898908,
+    "mag": 5.86,
+    "pmRA": -9.85141400014577e-08,
+    "pmDE": -1.4064444888987639e-07,
+    "bvColor": 1.282,
+    "distance": 602.9574861367837
+}

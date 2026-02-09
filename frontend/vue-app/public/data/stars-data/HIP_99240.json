@@ -1,0 +1,13 @@
+{
+    "hip": 99240,
+    "name": "* del Pav -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+99240",
+    "alpha": 303.0017327113305,
+    "delta": -66.08581336747925,
+    "mag": 3.55,
+    "pmRA": 5.867651501100604e-06,
+    "pmDE": -5.480042963053529e-06,
+    "bvColor": 0.751,
+    "distance": 19.923044035912785
+}
