@@ -4,27 +4,30 @@ import StarBackground from '@/components/StarBackground.vue'
 import { ref, reactive } from 'vue'
 import '../assets/styles/common.css'
 import '../assets/styles/input.css'
+import { loginApi } from '@/api/auth';
+import { useRouter } from 'vue-router';
 
 // TypeScript interfaces for type safety
 interface LoginState {
-  email: string;
-  pass: string;
+  username: string;
+  password: string;
   rememberMe: boolean;
 }
 
 // Reactive form state
 const form = reactive<LoginState>({
-  email: '',
-  pass: '',
+  username: '',
+  password: '',
   rememberMe: false
 });
 
 const isLoading = ref(false);
 const errorMessage = ref('');
+const router = useRouter();
 
 // Handle Login Logic
 const handleLogin = async () => {
-  if (!form.email || !form.pass) {
+  if (!form.username || !form.password) {
     errorMessage.value = "Please fill in all cosmic coordinates (fields).";
     return;
   }
@@ -33,9 +36,22 @@ const handleLogin = async () => {
   errorMessage.value = '';
 
   try {
-    // Simulate API Call
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    console.log("Logged in successfully:", form.email);
+    const response = await loginApi({
+    username: form.username,
+    password: form.password
+    });
+
+    localStorage.setItem('token', response.data.token);
+
+    console.log("Logged in successfully:", form.username);
+
+    if (response.status === 200) {
+      const { token } = response.data;
+      localStorage.setItem('token', token);
+      console.log("Logged in successfully:", form.username);
+      // router.push('/profile'); 
+    }
+
   } catch (err) {
     errorMessage.value = "Unauthorized. Check your Star ID.";
   } finally {
@@ -57,10 +73,10 @@ const handleLogin = async () => {
 
       <form @submit.prevent="handleLogin" class="form">
         <div class="input-group">
-          <label>Star ID / Email</label>
+          <label>Star ID / username</label>
           <input 
-            v-model="form.email" 
-            type="email" 
+            v-model="form.username" 
+            type="username" 
             placeholder="pilot@starroll.com" 
             :disabled="isLoading"
           />
@@ -69,7 +85,7 @@ const handleLogin = async () => {
         <div class="input-group">
           <label>Access Key</label>
           <input 
-            v-model="form.pass" 
+            v-model="form.password" 
             type="password" 
             placeholder="••••••••" 
             :disabled="isLoading"
