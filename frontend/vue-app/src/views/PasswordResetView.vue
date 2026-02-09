@@ -2,6 +2,8 @@
 import { ref } from 'vue'
 import BaseButton from '@/components/BaseButton.vue'
 import StarBackground from '@/components/StarBackground.vue'
+import '../assets/styles/common.css'
+import '../assets/styles/input.css'
 
 // 1. Logic State
 const email = ref('')
@@ -34,10 +36,9 @@ const handleResetRequest = async () => {
 
 <template>
   <StarBackground>
-  <div class="auth-page">
     <div class="stars"></div>
 
-    <div class="auth-card glass-panel">
+    <div class="login-card glass-panel">
       <div v-if="!isSent">
         <div class="header">
           <h1 class="title">RECOVER ACCESS</h1>
@@ -85,79 +86,15 @@ const handleResetRequest = async () => {
         <a href="/login">Return to Login</a>
       </div>
     </div>
-  </div>
   </StarBackground>
 </template>
 
 <style scoped>
-/* Common Layout Logic */
-.auth-page {
-  min-height: 70vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: radial-gradient(circle at center, #1b2735 0%, var(--color-bg-deep) 100%);
-  overflow: hidden;
-  position: relative;
-  padding: 20px;
-}
 
-.auth-card {
-  padding: 3rem;
-  border-radius: 24px;
-  width: 100%;
-  max-width: 420px;
-  z-index: 10;
-  text-align: center;
-}
-
-.title {
-  color: var(--color-text-main);
-  letter-spacing: 2px;
-  font-weight: 800;
-  margin-bottom: 0.5rem;
-}
-
-.subtitle {
-  color: var(--color-text-muted);
-  font-size: 0.9rem;
-  line-height: 1.5;
-  margin-bottom: 2rem;
-}
 
 /* Form Styles */
 .form {
   text-align: left;
-}
-
-.input-group label {
-  display: block;
-  color: var(--color-star-primary);
-  font-size: 0.75rem;
-  margin-bottom: 0.5rem;
-  text-transform: uppercase;
-  font-weight: bold;
-}
-
-.input-group input {
-  width: 100%;
-  padding: 12px 16px;
-  background: rgba(0, 0, 0, 0.3);
-  border: var(--glass-border);
-  border-radius: 8px;
-  color: white;
-  margin-bottom: 1rem;
-}
-
-.input-group input:focus {
-  outline: none;
-  border-color: var(--color-star-primary);
-}
-
-.error-text {
-  color: var(--color-error);
-  font-size: 0.85rem;
-  margin-bottom: 1rem;
 }
 
 /* Success State Styles */
@@ -182,17 +119,6 @@ const handleResetRequest = async () => {
 
 .icon {
   font-size: 2rem;
-}
-
-.footer-links {
-  margin-top: 2rem;
-  font-size: 0.85rem;
-}
-
-.footer-links a {
-  color: var(--color-star-primary);
-  text-decoration: none;
-  font-weight: bold;
 }
 
 </style>

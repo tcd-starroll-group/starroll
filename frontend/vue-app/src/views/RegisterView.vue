@@ -2,6 +2,8 @@
 import { ref, reactive } from 'vue'
 import BaseButton from '@/components/BaseButton.vue'
 import StarBackground from '@/components/StarBackground.vue'
+import '../assets/styles/common.css'
+import '../assets/styles/input.css'
 
 // 1. TypeScript interface for Registration
 interface RegisterState {
@@ -53,10 +55,9 @@ const handleRegister = async () => {
 
 <template>
   <StarBackground>
-  <div class="register-page">
     <div class="stars"></div>
 
-    <div class="register-card glass-panel">
+    <div class="login-card glass-panel">
       <div class="header">
         <h1 class="title">JOIN THE FLEET</h1>
         <p class="subtitle">Create your unique Star Identity</p>
@@ -119,96 +120,15 @@ const handleRegister = async () => {
         <a href="/login">Login here</a>
       </div>
     </div>
-  </div>
   </StarBackground>
 </template>
 
 <style scoped>
-/* Inheriting structural layout from main.css */
-
-.register-page {
-  min-height: 70vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: radial-gradient(circle at center, #1b2735 0%, var(--color-bg-deep) 100%);
-  overflow: hidden;
-  position: relative;
-}
-
-.register-card {
-  padding: 2.5rem 3rem;
-  border-radius: 24px;
-  width: 100%;
-  max-width: 450px; /* Slightly wider for form clarity */
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-  z-index: 10;
-}
-
-.title {
-  color: var(--color-text-main);
-  letter-spacing: 2px;
-  font-weight: 800;
-  text-align: center;
-}
-
-.subtitle {
-  color: var(--color-text-muted);
-  text-align: center;
-  font-size: 0.9rem;
-  margin-bottom: 1.5rem;
-}
 
 .form {
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
-}
-
-.input-group label {
-  display: block;
-  color: var(--color-star-primary);
-  font-size: 0.75rem;
-  margin-bottom: 0.4rem;
-  text-transform: uppercase;
-  font-weight: bold;
-  letter-spacing: 1px;
-}
-
-.input-group input {
-  width: 100%;
-  padding: 12px 16px;
-  background: rgba(0, 0, 0, 0.3);
-  border: var(--glass-border);
-  border-radius: 8px;
-  color: white;
-  transition: all 0.3s ease;
-}
-
-.input-group input:focus {
-  outline: none;
-  border-color: var(--color-star-primary);
-  background: rgba(0, 0, 0, 0.5);
-}
-
-.error-text {
-  color: var(--color-error);
-  font-size: 0.85rem;
-  text-align: center;
-}
-
-.footer-links {
-  margin-top: 1.5rem;
-  text-align: center;
-  font-size: 0.85rem;
-  color: var(--color-text-muted);
-}
-
-.footer-links a {
-  color: var(--color-star-primary);
-  text-decoration: none;
-  margin-left: 5px;
-  font-weight: bold;
 }
 
 </style>

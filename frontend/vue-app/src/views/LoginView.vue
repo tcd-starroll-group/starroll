@@ -2,6 +2,8 @@
 import BaseButton from '../components/BaseButton.vue'
 import StarBackground from '@/components/StarBackground.vue'
 import { ref, reactive } from 'vue'
+import '../assets/styles/common.css'
+import '../assets/styles/input.css'
 
 // TypeScript interfaces for type safety
 interface LoginState {
@@ -96,96 +98,5 @@ const handleLogin = async () => {
 </template>
 
 <style scoped>
-/* REMOVED: background colors, fonts, and button styles 
-   inherited from main.css and BaseButton.vue 
-*/
 
-/* .login-page {
-  min-height: 70vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: radial-gradient(circle at center, #1b2735 0%, var(--color-bg-deep) 100%);
-  overflow: hidden;
-  position: relative;
-} */
-
-.login-card {
-  padding: 3rem;
-  border-radius: 24px;
-
-  /* Usage: clamp(minimum, preferred, maximum) */
-  width: clamp(320px, 50vw, 700px); 
-  
-  height: auto;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-  z-index: 10;
-  
-  /* Centers the card if it has space around it */
-  margin: 2rem auto;
-}
-
-.title {
-  color: var(--color-text-main);
-  letter-spacing: 4px;
-  font-weight: 800;
-  margin: 0;
-  text-align: center;
-}
-
-.subtitle {
-  color: var(--color-text-muted);
-  text-align: center;
-  font-size: 0.9rem;
-  margin-bottom: 2rem;
-}
-
-.input-group {
-  margin-bottom: 1.5rem;
-}
-
-.input-group label {
-  display: block;
-  color: var(--color-star-primary);
-  font-size: 0.8rem;
-  margin-bottom: 0.5rem;
-  text-transform: uppercase;
-  font-weight: bold;
-}
-
-.input-group input {
-  width: 100%;
-  padding: 12px 16px;
-  background: rgba(0, 0, 0, 0.3);
-  border: var(--glass-border);
-  border-radius: 8px;
-  color: white;
-  transition: all 0.3s ease;
-}
-
-.input-group input:focus {
-  outline: none;
-  border-color: var(--color-star-primary);
-  background: rgba(0, 0, 0, 0.5);
-}
-
-.error-text {
-  color: var(--color-error);
-  font-size: 0.85rem;
-  margin-bottom: 1rem;
-  text-align: center;
-}
-
-.footer-links {
-  margin-top: 2rem;
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  font-size: 0.8rem;
-}
-
-.footer-links a {
-  color: var(--color-star-primary);
-  text-decoration: none;
-}
 </style>

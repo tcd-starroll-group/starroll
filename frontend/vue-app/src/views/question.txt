@@ -1,5 +1,23 @@
-1. main page
-2. background style
-3. password reset
-4. guest user?
+1. main page design
+    camera.
+     - timeline
+    saved stars?
+
+    friends chatrooms?
+    best locations.
+
+3. password reset method
+    email 
+    verify 6digits
+
+4. password request 
+    upper
+
+4. guest user
+
+
 5. star details
+    name distance discrption 
+    link to wiki
+
+    
