@@ -512,18 +512,23 @@ paths:
       requestBody:
         required: true
         content:
-          multipart/form-data:
+          application/json:
             schema:
               type: object
               required:
                 - image
+                - userID
+                - token
               properties:
                 image:
                   type: string
-                  format: binary
-                  description: Image file to identify stars (JPEG, PNG, etc.)
-                userCredentials:
-                  $ref: "#/components/schemas/userCredentials"
+                  description: Base64-encoded image data (JPEG, PNG, etc.)
+                userID:
+                  type: string
+                  description: User ID for authentication
+                token:
+                  type: string
+                  description: Authentication token
       responses:
         "200":
           description: OK
@@ -958,7 +963,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-  
+
   /api/changePassword:
     post:
       operationId: api_change_password_post
@@ -966,10 +971,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ChangePasswordRequest'
+              $ref: "#/components/schemas/ChangePasswordRequest"
         required: true
       responses:
-        '200':
+        "200":
           description: Password updated successfully
           content:
             application/json:
@@ -978,9 +983,9 @@ paths:
                 properties:
                   message:
                     type: string
-        '401':
+        "401":
           description: Old password incorrect
-        '404':
+        "404":
           description: User not found
 
   /api/deleteUser:
@@ -991,10 +996,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UserAuth' 
+              $ref: "#/components/schemas/UserAuth"
         required: true
       responses:
-        '200':
+        "200":
           description: Deletion successful
           content:
             application/json:
@@ -1003,9 +1008,9 @@ paths:
                 properties:
                   message:
                     type: string
-        '401':
+        "401":
           description: Password incorrect
-        '404':
+        "404":
           description: User not found
   /api/usernameVerify:
     post:
@@ -1392,7 +1397,6 @@ components:
           description: "Detailed error message"
           example: "Invalid username or password"
 
-  
     # Blog items
     blogPreview:
       description: "Preview of a blog on the blogs page, before user clicks into one blog"

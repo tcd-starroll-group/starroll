@@ -24,6 +24,7 @@ src/openapi_server/models/api_comment_blog_post_request.py
 src/openapi_server/models/api_create_blog_post200_response.py
 src/openapi_server/models/api_create_blog_post_request.py
 src/openapi_server/models/api_create_identify_stars_job_post200_response.py
+src/openapi_server/models/api_create_identify_stars_job_post_request.py
 src/openapi_server/models/api_delete_blog_post200_response.py
 src/openapi_server/models/api_delete_comment_post_request.py
 src/openapi_server/models/api_display_chat_room_get200_response.py

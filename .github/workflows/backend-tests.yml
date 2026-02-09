@@ -14,6 +14,22 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Start MinIO
+        run: |
+          docker run -d --name minio \
+            -p 9000:9000 \
+            -e MINIO_ROOT_USER=minioadmin \
+            -e MINIO_ROOT_PASSWORD=minioadmin \
+            minio/minio server /data
+          for i in $(seq 1 30); do
+            if curl -sf http://localhost:9000/minio/health/live; then
+              echo "MinIO is ready"
+              break
+            fi
+            echo "Waiting for MinIO... ($i/30)"
+            sleep 2
+          done
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -32,6 +48,10 @@ jobs:
           JWT_SECRET: test_secret_key_for_github_actions_minimum_32_bytes_long
           JWT_ALGORITHM: HS256
           JWT_EXPIRE_HOURS: 2
+          MINIO_ENDPOINT: localhost:9000
+          MINIO_ACCESS_KEY: minioadmin
+          MINIO_SECRET_KEY: minioadmin
+          MINIO_SECURE: "false"
         run: |
           pytest backend/ \
             --cov=backend \

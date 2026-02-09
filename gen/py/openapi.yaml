@@ -262,7 +262,7 @@ paths:
     post:
       requestBody:
         content:
-          multipart/form-data:
+          application/json:
             schema:
               $ref: "#/components/schemas/_api_createIdentifyStarsJob_post_request"
         required: true
@@ -1682,13 +1682,22 @@ components:
     _api_createIdentifyStarsJob_post_request:
       properties:
         image:
-          description: "Image file to identify stars (JPEG, PNG, etc.)"
-          format: binary
+          description: "Base64-encoded image data (JPEG, PNG, etc.)"
+          title: image
           type: string
-        userCredentials:
-          $ref: "#/components/schemas/userCredentials"
+        userID:
+          description: User ID for authentication
+          title: userID
+          type: string
+        token:
+          description: Authentication token
+          title: token
+          type: string
       required:
       - image
+      - token
+      - userID
+      title: _api_createIdentifyStarsJob_post_request
       type: object
     _api_createIdentifyStarsJob_post_200_response:
       example:

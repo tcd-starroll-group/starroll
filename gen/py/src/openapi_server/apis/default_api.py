@@ -23,9 +23,7 @@ from fastapi import (  # noqa: F401
 )
 
 from openapi_server.models.extra_models import TokenModel  # noqa: F401
-from pydantic import Field, StrictBytes, StrictStr
-from typing import Any, Optional, Tuple, Union
-from typing_extensions import Annotated
+from typing import Any, Optional
 from openapi_server.models.api_calculate_star_coordinates_post200_response import ApiCalculateStarCoordinatesPost200Response
 from openapi_server.models.api_calculate_star_coordinates_post_request import ApiCalculateStarCoordinatesPostRequest
 from openapi_server.models.api_change_password_post200_response import ApiChangePasswordPost200Response
@@ -36,6 +34,7 @@ from openapi_server.models.api_comment_blog_post_request import ApiCommentBlogPo
 from openapi_server.models.api_create_blog_post200_response import ApiCreateBlogPost200Response
 from openapi_server.models.api_create_blog_post_request import ApiCreateBlogPostRequest
 from openapi_server.models.api_create_identify_stars_job_post200_response import ApiCreateIdentifyStarsJobPost200Response
+from openapi_server.models.api_create_identify_stars_job_post_request import ApiCreateIdentifyStarsJobPostRequest
 from openapi_server.models.api_delete_blog_post200_response import ApiDeleteBlogPost200Response
 from openapi_server.models.api_delete_comment_post_request import ApiDeleteCommentPostRequest
 from openapi_server.models.api_display_chat_room_get200_response import ApiDisplayChatRoomGet200Response
@@ -89,7 +88,6 @@ from openapi_server.models.gps import GPS
 from openapi_server.models.star_details import StarDetails
 from openapi_server.models.token_response import TokenResponse
 from openapi_server.models.user_auth import UserAuth
-from openapi_server.models.user_credentials import UserCredentials
 from openapi_server.models.user_response import UserResponse
 
 
@@ -419,12 +417,11 @@ async def api_display_save_success_post(
     response_model_by_alias=True,
 )
 async def api_create_identify_stars_job_post(
-    image: Annotated[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]], Field(description="Image file to identify stars (JPEG, PNG, etc.)")] = Form(None, description="Image file to identify stars (JPEG, PNG, etc.)"),
-    user_credentials: Optional[UserCredentials] = Form(None, description=""),
+    api_create_identify_stars_job_post_request: ApiCreateIdentifyStarsJobPostRequest = Body(None, description=""),
 ) -> ApiCreateIdentifyStarsJobPost200Response:
     if not BaseDefaultApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")
-    return await BaseDefaultApi.subclasses[0]().api_create_identify_stars_job_post(image, user_credentials)
+    return await BaseDefaultApi.subclasses[0]().api_create_identify_stars_job_post(api_create_identify_stars_job_post_request)
 
 
 @router.post(

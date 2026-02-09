@@ -2,9 +2,7 @@
 
 from typing import ClassVar, Dict, List, Tuple  # noqa: F401
 
-from pydantic import Field, StrictBytes, StrictStr
-from typing import Any, Optional, Tuple, Union
-from typing_extensions import Annotated
+from typing import Any, Optional
 from openapi_server.models.api_calculate_star_coordinates_post200_response import ApiCalculateStarCoordinatesPost200Response
 from openapi_server.models.api_calculate_star_coordinates_post_request import ApiCalculateStarCoordinatesPostRequest
 from openapi_server.models.api_change_password_post200_response import ApiChangePasswordPost200Response
@@ -15,6 +13,7 @@ from openapi_server.models.api_comment_blog_post_request import ApiCommentBlogPo
 from openapi_server.models.api_create_blog_post200_response import ApiCreateBlogPost200Response
 from openapi_server.models.api_create_blog_post_request import ApiCreateBlogPostRequest
 from openapi_server.models.api_create_identify_stars_job_post200_response import ApiCreateIdentifyStarsJobPost200Response
+from openapi_server.models.api_create_identify_stars_job_post_request import ApiCreateIdentifyStarsJobPostRequest
 from openapi_server.models.api_delete_blog_post200_response import ApiDeleteBlogPost200Response
 from openapi_server.models.api_delete_comment_post_request import ApiDeleteCommentPostRequest
 from openapi_server.models.api_display_chat_room_get200_response import ApiDisplayChatRoomGet200Response
@@ -68,7 +67,6 @@ from openapi_server.models.gps import GPS
 from openapi_server.models.star_details import StarDetails
 from openapi_server.models.token_response import TokenResponse
 from openapi_server.models.user_auth import UserAuth
-from openapi_server.models.user_credentials import UserCredentials
 from openapi_server.models.user_response import UserResponse
 
 
@@ -209,8 +207,7 @@ class BaseDefaultApi:
 
     async def api_create_identify_stars_job_post(
         self,
-        image: Annotated[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]], Field(description="Image file to identify stars (JPEG, PNG, etc.)")],
-        user_credentials: Optional[UserCredentials],
+        api_create_identify_stars_job_post_request: ApiCreateIdentifyStarsJobPostRequest,
     ) -> ApiCreateIdentifyStarsJobPost200Response:
         ...
 

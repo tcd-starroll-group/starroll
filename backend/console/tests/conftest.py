@@ -21,6 +21,7 @@ def db_session() -> Generator[Session, None, None]:
         yield session
     finally:
         session.close()
+        engine.dispose()
 
 
 def _execute_sql_files(engine) -> None:
@@ -42,10 +43,10 @@ def _execute_sql_files(engine) -> None:
 def _normalize_mysql_to_sqlite(sql: str) -> str:
     # 1. Remove backticks
     sql = re.sub(r"`", "", sql)
-    
+
     # 2. Remove comments
     sql = re.sub(r"COMMENT\s+'[^']*'", "", sql, flags=re.IGNORECASE)
-    
+
     # 3. Handle UNIQUE KEY
     sql = re.sub(
         r"UNIQUE\s+KEY\s+\w+\s*\(([^)]+)\)",
@@ -53,7 +54,7 @@ def _normalize_mysql_to_sqlite(sql: str) -> str:
         sql,
         flags=re.IGNORECASE,
     )
-    
+
     # 4. Remove MySQL specific table options (but keep the semicolon!)
     # Changed: stop before semicolon or newline
     sql = re.sub(
@@ -62,19 +63,21 @@ def _normalize_mysql_to_sqlite(sql: str) -> str:
         sql,
         flags=re.IGNORECASE,
     )
-    
+
     # 5. Remove ON UPDATE CURRENT_TIMESTAMP
     sql = re.sub(r"ON\s+UPDATE\s+CURRENT_TIMESTAMP",
                  "", sql, flags=re.IGNORECASE)
-    
+
     # 6. Convert types and handle AUTO_INCREMENT
     # SQLite uses INTEGER PRIMARY KEY AUTOINCREMENT
-    sql = re.sub(r"bigint\(\d+\)\s+unsigned\s+NOT\s+NULL\s+AUTO_INCREMENT", "INTEGER PRIMARY KEY AUTOINCREMENT", sql, flags=re.IGNORECASE)
-    sql = re.sub(r"bigint\(\d+\)\s+unsigned", "INTEGER", sql, flags=re.IGNORECASE)
+    sql = re.sub(r"bigint\(\d+\)\s+unsigned\s+NOT\s+NULL\s+AUTO_INCREMENT",
+                 "INTEGER PRIMARY KEY AUTOINCREMENT", sql, flags=re.IGNORECASE)
+    sql = re.sub(r"bigint\(\d+\)\s+unsigned",
+                 "INTEGER", sql, flags=re.IGNORECASE)
     sql = re.sub(r"tinyint\(\d+\)", "INTEGER", sql, flags=re.IGNORECASE)
     sql = re.sub(r"varchar\(\d+\)", "TEXT", sql, flags=re.IGNORECASE)
     sql = re.sub(r"JSON", "TEXT", sql, flags=re.IGNORECASE)
-    
+
     # 7. Remove internal INDEX/PRIMARY KEY definitions from CREATE TABLE
     lines = sql.split('\n')
     new_lines = []
@@ -108,3 +111,56 @@ def _validate_models_match_db(engine) -> None:
             raise AssertionError(
                 f"Table '{table_name}' is missing columns: {sorted(missing_columns)}"
             )
+
+
+# ==================== MinIO Test Fixtures ====================
+
+@pytest.fixture(scope="session")
+def minio_settings():
+    """Provide MinIO connection settings for tests."""
+    import os
+    return {
+        "endpoint": os.getenv("MINIO_ENDPOINT", "localhost:9000"),
+        "access_key": os.getenv("MINIO_ACCESS_KEY", "minioadmin"),
+        "secret_key": os.getenv("MINIO_SECRET_KEY", "minioadmin"),
+        "secure": os.getenv("MINIO_SECURE", "false").lower() == "true",
+    }
+
+
+@pytest.fixture(scope="session")
+def minio_client(minio_settings):
+    """Provide a MinIO client instance for the entire test session."""
+    from minio import Minio
+
+    client = Minio(
+        minio_settings["endpoint"],
+        access_key=minio_settings["access_key"],
+        secret_key=minio_settings["secret_key"],
+        secure=minio_settings["secure"],
+    )
+
+    return client
+
+
+@pytest.fixture
+def test_bucket(minio_client):
+    """Create and clean up a test bucket for each test."""
+    import uuid
+    from minio.error import S3Error
+
+    bucket_name = f"test-bucket-{uuid.uuid4().hex[:8]}"
+
+    # Create bucket
+    if not minio_client.bucket_exists(bucket_name):
+        minio_client.make_bucket(bucket_name)
+
+    yield bucket_name
+
+    # Cleanup: remove all objects then remove bucket
+    try:
+        objects = minio_client.list_objects(bucket_name, recursive=True)
+        for obj in objects:
+            minio_client.remove_object(bucket_name, obj.object_name)
+        minio_client.remove_bucket(bucket_name)
+    except S3Error:
+        pass  # Ignore cleanup errors
