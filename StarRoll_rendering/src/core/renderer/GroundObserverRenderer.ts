@@ -8,6 +8,24 @@ import { ModelLoader } from '../utils/GLTFLoader';
 import { GlassConstellationMaterial } from '../materials/ConstellationMaterials';
 import { sensorManager, type SensorData, type CameraOrientation } from '../Tensors/sensor';
 import { StarLabelManager } from './StarLabelManager';
+import { getStarName, formatStarDisplayName } from '../data/star-names';
+
+/**
+ * 星星点击信息
+ */
+export interface StarClickInfo {
+    hip: number;
+    name: string;
+    englishName: string;
+    constellation: string;
+    magnitude: number;
+    bvColor: number;
+    distance?: number;
+    rightAscension: number;
+    declination: number;
+    altitude: number;
+    azimuth: number;
+}
 
 /**
  * 地面观测者渲染器
@@ -44,6 +62,10 @@ export class GroundObserverRenderer {
     private arMode: boolean = false;
     private cameraOrientation: CameraOrientation | null = null;
     
+    // 摄像头视频
+    private videoElement: HTMLVideoElement | null = null;
+    private videoStream: MediaStream | null = null;
+    
     // 手动控制
     private manualRotation = { x: 0, y: 0 };
     private isDragging = false;
@@ -53,24 +75,34 @@ export class GroundObserverRenderer {
     // 标签管理
     private labelManager: StarLabelManager;
     
+    // 点击检测
+    private raycaster: THREE.Raycaster = new THREE.Raycaster();
+    private mouse: THREE.Vector2 = new THREE.Vector2();
+    private onStarClickCallback: ((starInfo: StarClickInfo) => void) | null = null;
+    
+    // 地理位置状态
+    private isRequestingLocation = false;
+    private locationPermissionGranted = false;
+    
     constructor(container: HTMLElement) {
         this.container = container;
         
         // 创建场景
         this.scene = new THREE.Scene();
-        this.scene.background = new THREE.Color(0x000510); // 深蓝夜空
+        // 默认深色背景，AR模式时会改为透明
+        this.scene.background = new THREE.Color(0x000510);
         
         // 创建相机（地面观测者视角）
         this.camera = new THREE.PerspectiveCamera(
-            75,  // FOV
+            75,  // FOV - 保持75度（后续算法需要）
             window.innerWidth / window.innerHeight,
             0.1,
             this.SKY_RADIUS * 2
         );
         
-        // 相机初始位置：地面，向上看（仰角45度）
-        this.camera.position.set(0, 0, 0); // 观测者位置
-        this.camera.lookAt(0, 1, 1); // 向北方天空看
+        // 相机初始位置：地面中心（观测者位置）
+        this.camera.position.set(0, 0, 0);
+        this.camera.lookAt(0, 1, 0); // 初始向上看（天顶方向）
         
         // 创建渲染器
         this.renderer = new THREE.WebGLRenderer({ 
@@ -101,6 +133,9 @@ export class GroundObserverRenderer {
         
         // 设置鼠标控制
         this.setupMouseControl();
+        
+        // 设置点击检测
+        this.setupClickDetection();
         
         // 监听窗口大小
         window.addEventListener('resize', this.onWindowResize);
@@ -216,13 +251,11 @@ export class GroundObserverRenderer {
         // 转换为地平坐标并渲染
         this.createStarFieldFromCatalog(stars);
         
-        // 创建星座连线
-        this.createConstellationLines();
-        
-        // 加载星座模型
-        await this.loadConstellationModels();
+        // 暂时禁用星座连线和模型，专注于星星渲染
+        // this.createConstellationLines();
+        // await this.loadConstellationModels();
             
-            console.log('✅ 地面观测星空加载完成');
+            console.log('✅ 地面观测星空加载完成（仅星星）');
             
         } catch (error) {
             console.error('❌ 星空加载失败:', error);
@@ -230,18 +263,18 @@ export class GroundObserverRenderer {
     }
     
     /**
-     * 从星表创建星点（地平坐标）
+     * 从星表创建星点（地平坐标）- 使用不同纹理渲染不同亮度的星星
      */
     private createStarFieldFromCatalog(stars: StarMeta[]): void {
-        const geometry = new THREE.BufferGeometry();
-        const positions: number[] = [];
-        const magnitudes: number[] = [];
-        const colors: number[] = [];
+        // 按星等分组
+        const brightStars: { pos: THREE.Vector3, color: THREE.Color, star: StarMeta }[] = [];  // < 1等
+        const mediumStars: { pos: THREE.Vector3, color: THREE.Color, star: StarMeta }[] = [];  // 1-2.5等
+        const dimStars: { pos: THREE.Vector3, color: THREE.Color, star: StarMeta }[] = [];     // 2.5-4.5等
         
-        let visibleCount = 0;
+        let totalCount = 0;
         
         stars.forEach(star => {
-            if (star.magnitude > 6.5) return; // 只显示肉眼可见的星
+            if (star.magnitude > 4.5) return; // 只显示4.5等及以下
             
             // 转换为地平坐标
             const { altitude, azimuth } = HorizonCoordinates.equatorialToHorizon(
@@ -251,61 +284,269 @@ export class GroundObserverRenderer {
                 this.localSiderealTime
             );
             
-            // 只渲染地平线以上的星
-            if (altitude < 0) return;
+            if (altitude < 0) return; // 只渲染地平线以上
             
             // 转换为 3D 位置
-            const pos = HorizonCoordinates.horizonToVector3(
-                altitude,
-                azimuth,
-                this.SKY_RADIUS
-            );
-            
-            positions.push(pos.x, pos.y, pos.z);
-            magnitudes.push(star.magnitude);
-            
-            // B-V 颜色
+            const pos = HorizonCoordinates.horizonToVector3(altitude, azimuth, this.SKY_RADIUS);
             const color = this.bvToRGB(star.bvColor);
-            colors.push(color.r, color.g, color.b);
             
-            // 保存星星位置（用于连线）
+            // 保存星星位置
             this.starMap.set(star.hIP, { star, position: pos });
             
-            visibleCount++;
-        });
-        
-        geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
-        geometry.setAttribute('aMagnitude', new THREE.Float32BufferAttribute(magnitudes, 1));
-        geometry.setAttribute('aColor', new THREE.Float32BufferAttribute(colors, 3));
-        
-        const material = this.createStarMaterial();
-        this.starPoints = new THREE.Points(geometry, material);
-        this.scene.add(this.starPoints);
-        
-        console.log(`✨ 地平线以上可见恒星: ${visibleCount} 颗`);
-        
-        // 添加亮星标签
-        const brightStarPositions = new Map<number, THREE.Vector3>();
-        this.starMap.forEach((data, hip) => {
-            if (data.star.magnitude <= 2.5) {  // 只标注 2.5 等以上的亮星
-                brightStarPositions.set(hip, data.position);
+            // 按星等分组
+            const starData = { pos, color, star };
+            if (star.magnitude < 1.0) {
+                brightStars.push(starData);
+            } else if (star.magnitude < 2.5) {
+                mediumStars.push(starData);
+            } else {
+                dimStars.push(starData);
             }
+            
+            totalCount++;
         });
         
-        this.labelManager.addBrightStarLabels(brightStarPositions, 2.5);
-        this.labelManager.addLabelsToScene(this.scene);
+        // 清除旧的星星
+        if (this.starPoints) {
+            this.scene.remove(this.starPoints);
+        }
+        
+        // 创建星星组
+        const starGroup = new THREE.Group();
+        starGroup.name = 'Stars';
+        
+        // 1. 渲染极亮星（带光芒）- 使用 star16x16_ray.png
+        if (brightStars.length > 0) {
+            const points = this.createStarPoints(
+                brightStars,
+                '/texture/star16x16_ray.png',  // 带光芒的纹理
+                8.0  // 较大
+            );
+            starGroup.add(points);
+            console.log(`⭐ 极亮星 (<1等): ${brightStars.length} 颗`);
+        }
+        
+        // 2. 渲染中等亮星 - 使用 star16x16.png
+        if (mediumStars.length > 0) {
+            const points = this.createStarPoints(
+                mediumStars,
+                '/texture/star16x16.png',  // 普通星点纹理
+                5.0  // 中等大小
+            );
+            starGroup.add(points);
+            console.log(`⭐ 中等亮星 (1-2.5等): ${mediumStars.length} 颗`);
+        }
+        
+        // 3. 渲染暗星 - 使用 star16x16.png（更小）
+        if (dimStars.length > 0) {
+            const points = this.createStarPoints(
+                dimStars,
+                '/texture/star16x16.png',
+                3.0  // 较小
+            );
+            starGroup.add(points);
+            console.log(`⭐ 暗星 (2.5-4.5等): ${dimStars.length} 颗`);
+        }
+        
+        this.starPoints = starGroup as any;  // 保存为组
+        this.scene.add(starGroup);
+        
+        console.log(`✨ 地平线以上可见恒星: ${totalCount} 颗`);
     }
     
     /**
-     * 创建星点材质
+     * 创建星星点对象（使用程序化纹理 + 闪烁效果）
      */
-    private createStarMaterial(): THREE.ShaderMaterial {
+    private createStarPoints(
+        starsData: { pos: THREE.Vector3, color: THREE.Color, star: StarMeta }[],
+        texturePath: string,
+        baseSize: number
+    ): THREE.Points {
+        const positions: number[] = [];
+        const colors: number[] = [];
+        const magnitudes: number[] = [];
+        const twinklePhases: number[] = [];  // 闪烁相位（随机）
+        
+        starsData.forEach(({ pos, color, star }) => {
+            positions.push(pos.x, pos.y, pos.z);
+            colors.push(color.r, color.g, color.b);
+            magnitudes.push(star.magnitude);
+            
+            // 每个星星有随机的闪烁相位
+            twinklePhases.push(Math.random() * Math.PI * 2);
+        });
+        
+        const geometry = new THREE.BufferGeometry();
+        geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+        geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
+        geometry.setAttribute('magnitude', new THREE.Float32BufferAttribute(magnitudes, 1));
+        geometry.setAttribute('twinklePhase', new THREE.Float32BufferAttribute(twinklePhases, 1));
+        
+        // 使用Canvas动态生成完美的星星纹理（无黑边）
+        const isRayTexture = texturePath.includes('ray');
+        const texture = this.createProceduralStarTexture(isRayTexture);
+        
+        // 创建带闪烁效果的shader材质
+        const material = this.createTwinkleStarMaterial(texture, baseSize);
+        
+        return new THREE.Points(geometry, material);
+    }
+    
+    /**
+     * 创建带闪烁效果的星星材质
+     */
+    private createTwinkleStarMaterial(texture: THREE.Texture, baseSize: number): THREE.ShaderMaterial {
+        return new THREE.ShaderMaterial({
+            uniforms: {
+                uTexture: { value: texture },
+                uSize: { value: baseSize },
+                uTime: { value: 0 },
+                uPixelRatio: { value: window.devicePixelRatio }
+            },
+            vertexShader: `
+                attribute vec3 color;
+                attribute float magnitude;
+                attribute float twinklePhase;
+                
+                uniform float uSize;
+                uniform float uTime;
+                uniform float uPixelRatio;
+                
+                varying vec3 vColor;
+                varying float vTwinkle;
+                
+                void main() {
+                    vColor = color;
+                    
+                    // 计算闪烁效果
+                    // 根据星等调整闪烁频率和幅度
+                    float twinkleSpeed = 1.0 + magnitude * 0.3;  // 暗星闪得慢
+                    float twinkleAmount = 0.15 + (6.0 - magnitude) * 0.05;  // 亮星闪得明显
+                    
+                    // 使用sin函数创建周期性闪烁
+                    float twinkle = sin(uTime * twinkleSpeed + twinklePhase) * twinkleAmount;
+                    vTwinkle = 1.0 + twinkle;  // 0.85 - 1.15 范围
+                    
+                    // 计算位置
+                    vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
+                    gl_Position = projectionMatrix * mvPosition;
+                    
+                    // 大小也随闪烁轻微变化
+                    gl_PointSize = uSize * vTwinkle * uPixelRatio;
+                }
+            `,
+            fragmentShader: `
+                uniform sampler2D uTexture;
+                
+                varying vec3 vColor;
+                varying float vTwinkle;
+                
+                void main() {
+                    // 采样纹理
+                    vec4 texColor = texture2D(uTexture, gl_PointCoord);
+                    
+                    // 应用星星颜色和闪烁
+                    vec3 finalColor = texColor.rgb * vColor * vTwinkle;
+                    float alpha = texColor.a;
+                    
+                    gl_FragColor = vec4(finalColor, alpha);
+                }
+            `,
+            transparent: true,
+            blending: THREE.AdditiveBlending,
+            depthWrite: false
+        });
+    }
+    
+    /**
+     * 程序化创建星星纹理（完美的透明背景，无黑边）
+     */
+    private createProceduralStarTexture(withRays: boolean = false): THREE.CanvasTexture {
+        const size = 128;
+        const canvas = document.createElement('canvas');
+        canvas.width = size;
+        canvas.height = size;
+        const ctx = canvas.getContext('2d')!;
+        
+        // 清除画布（完全透明）
+        ctx.clearRect(0, 0, size, size);
+        
+        const center = size / 2;
+        
+        if (withRays) {
+            // 带光芒的星星（用于极亮星）
+            ctx.save();
+            ctx.translate(center, center);
+            
+            // 绘制十字光芒
+            const rayLength = size * 0.45;
+            const rayWidth = 2;
+            
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.8)';
+            ctx.lineWidth = rayWidth;
+            ctx.lineCap = 'round';
+            
+            // 四向光芒
+            for (let i = 0; i < 4; i++) {
+                ctx.rotate(Math.PI / 4);
+                ctx.beginPath();
+                ctx.moveTo(0, 0);
+                ctx.lineTo(0, -rayLength);
+                ctx.stroke();
+                ctx.rotate(Math.PI / 4);
+            }
+            
+            ctx.restore();
+        }
+        
+        // 绘制中心发光球（所有星星都有）
+        const gradient = ctx.createRadialGradient(center, center, 0, center, center, size / 2);
+        gradient.addColorStop(0, 'rgba(255, 255, 255, 1.0)');     // 中心纯白
+        gradient.addColorStop(0.1, 'rgba(255, 255, 255, 1.0)');   // 核心
+        gradient.addColorStop(0.3, 'rgba(255, 255, 255, 0.8)');   // 内光晕
+        gradient.addColorStop(0.6, 'rgba(255, 255, 255, 0.4)');   // 中光晕
+        gradient.addColorStop(0.8, 'rgba(255, 255, 255, 0.1)');   // 外光晕
+        gradient.addColorStop(1.0, 'rgba(255, 255, 255, 0.0)');   // 边缘完全透明
+        
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, size, size);
+        
+        // 创建纹理
+        const texture = new THREE.CanvasTexture(canvas);
+        texture.needsUpdate = true;
+        
+        return texture;
+    }
+    
+    /**
+     * 创建星点材质（单一纹理版本 - 备用）
+     */
+    private createStarMaterialSingle(texturePath: string = '/texture/star16x16.png'): THREE.PointsMaterial {
+        const textureLoader = new THREE.TextureLoader();
+        const starTexture = textureLoader.load(texturePath);
+        
+        return new THREE.PointsMaterial({
+            size: 5.0,
+            map: starTexture,
+            transparent: true,
+            opacity: 1.0,
+            vertexColors: true,
+            sizeAttenuation: false,
+            blending: THREE.AdditiveBlending,
+            depthWrite: false
+        });
+    }
+    
+    /**
+     * 创建星点材质（Shader版本 - 备用）
+     */
+    private createStarMaterialShader(): THREE.ShaderMaterial {
         return new THREE.ShaderMaterial({
             uniforms: {
                 uTime: { value: 0 },
-                uExposure: { value: 4.0 },  // 大幅增加曝光（从 2.5 → 4.0）
+                uExposure: { value: 1.2 },
                 uPixelRatio: { value: window.devicePixelRatio },
-                uBaseSize: { value: 120.0 }  // 基础大小系数
+                uBaseSize: { value: 18.0 }
             },
             vertexShader: `
                 attribute float aMagnitude;
@@ -329,13 +570,12 @@ export class GroundObserverRenderer {
                     vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
                     gl_Position = projectionMatrix * mvPosition;
                     
-                    // 大幅增大星点大小
-                    // 使用更激进的缩放让星星非常明显
-                    float baseSize = pow(intensity, 0.5) * uBaseSize;  // 从 60 增加到 120，指数从 0.6 降到 0.5
+                    // 星点大小计算：根据亮度调整，创造更真实的星空效果
+                    float baseSize = pow(intensity, 0.8) * uBaseSize;
                     float size = baseSize * uPixelRatio;
                     
-                    // 增大最小尺寸，确保所有星星都清晰可见
-                    gl_PointSize = max(size, 8.0 * uPixelRatio);  // 从 3.0 增加到 8.0
+                    // 最小尺寸确保星星可见
+                    gl_PointSize = max(size, 1.5 * uPixelRatio);
                 }
             `,
             fragmentShader: `
@@ -345,41 +585,42 @@ export class GroundObserverRenderer {
                 
                 void main() {
                     vec2 coord = gl_PointCoord - vec2(0.5);
-                    float dist = length(coord) * 2.0;  // 归一化到半径
+                    float dist = length(coord) * 2.0;
                     
                     if (dist > 1.0) discard;
                     
-                    // 更明显的光晕结构
-                    // 核心：0-40% 半径，完全不透明
-                    float core = 1.0 - smoothstep(0.0, 0.4, dist);
+                    // 精细的星星光晕效果
+                    // 核心：0-30% 半径，高亮中心
+                    float core = 1.0 - smoothstep(0.0, 0.3, dist);
+                    core = pow(core, 0.5);  // 更锐利的中心
                     
-                    // 内光晕：40%-70% 半径
-                    float innerHalo = (1.0 - smoothstep(0.4, 0.7, dist)) * 0.6;
+                    // 内光晕：30%-60% 半径
+                    float innerHalo = (1.0 - smoothstep(0.3, 0.6, dist)) * 0.5;
                     
-                    // 外光晕：70%-100% 半径
-                    float outerHalo = (1.0 - smoothstep(0.7, 1.0, dist)) * 0.3;
+                    // 外光晕：60%-100% 半径，轻微扩散
+                    float outerHalo = (1.0 - smoothstep(0.6, 1.0, dist)) * 0.2;
                     
                     // 组合亮度
                     float brightness = core + innerHalo + outerHalo;
                     
-                    // 大幅增强星星亮度
+                    // 适度增强亮星
                     float starBrightness = vIntensity;
                     
-                    // 亮星有更强的增强
+                    // 对亮星进行适度增强
                     if (vMagnitude < 1.0) {
-                        starBrightness *= 3.0;  // 0-1等星：3倍增强
+                        starBrightness *= 1.8;  // 0-1等星：1.8倍
                     } else if (vMagnitude < 2.0) {
-                        starBrightness *= 2.5;  // 1-2等星：2.5倍增强
+                        starBrightness *= 1.5;  // 1-2等星：1.5倍
                     } else if (vMagnitude < 3.0) {
-                        starBrightness *= 2.0;  // 2-3等星：2倍增强
+                        starBrightness *= 1.3;  // 2-3等星：1.3倍
                     } else {
-                        starBrightness *= 1.5;  // 其他星：1.5倍增强
+                        starBrightness *= 1.1;  // 其他星：1.1倍
                     }
                     
                     float alpha = brightness * starBrightness;
                     
-                    // HDR 颜色（亮星可以很亮）
-                    vec3 finalColor = vColor * starBrightness * 1.5;  // 整体再增亮50%
+                    // 自然的星光颜色
+                    vec3 finalColor = vColor * starBrightness;
                     
                     gl_FragColor = vec4(finalColor, alpha);
                 }
@@ -679,8 +920,20 @@ export class GroundObserverRenderer {
         sensorManager.startListening();
         
         this.arMode = true;
+        
+        // 启用透明背景（显示摄像头画面）
+        this.scene.background = null;
+        
+        // 隐藏地面和地平线（AR模式不需要）
+        if (this.ground) this.ground.visible = false;
+        if (this.horizon) this.horizon.visible = false;
+        
+        // 启动摄像头
+        await this.startCamera();
+        
         console.log('✅ AR 模式已启用');
         console.log('📱 转动设备即可环顾星空');
+        console.log('📷 摄像头已启动');
         
         return true;
     }
@@ -695,7 +948,19 @@ export class GroundObserverRenderer {
         sensorManager.stopListening();
         
         this.arMode = false;
+        
+        // 停止摄像头
+        this.stopCamera();
+        
+        // 恢复深色背景
+        this.scene.background = new THREE.Color(0x000510);
+        
+        // 恢复地面和地平线
+        if (this.ground) this.ground.visible = true;
+        if (this.horizon) this.horizon.visible = true;
+        
         console.log('🛑 AR 模式已禁用');
+        console.log('📷 摄像头已关闭');
     }
     
     /**
@@ -722,19 +987,23 @@ export class GroundObserverRenderer {
         
         // 将方位角和仰角转换为相机旋转
         // 方位角: 0° = 北，90° = 东，180° = 南，270° = 西
-        // 仰角: 0° = 地平线，90° = 天顶，-90° = 地下
+        // 仰角: 0° = 地平线，90° = 天顶，-90° = 天底
         
         const azimuthRad = THREE.MathUtils.degToRad(azimuth);
         const altitudeRad = THREE.MathUtils.degToRad(altitude);
         
-        // 计算相机朝向
-        const direction = new THREE.Vector3(
-            Math.sin(azimuthRad) * Math.cos(altitudeRad),  // X
-            Math.sin(altitudeRad),                          // Y
-            Math.cos(azimuthRad) * Math.cos(altitudeRad)   // Z
+        // 计算相机朝向的目标点（足够远的点）
+        const distance = this.SKY_RADIUS;
+        const target = new THREE.Vector3(
+            Math.sin(azimuthRad) * Math.cos(altitudeRad) * distance,  // X
+            Math.sin(altitudeRad) * distance,                          // Y
+            Math.cos(azimuthRad) * Math.cos(altitudeRad) * distance   // Z
         );
         
-        this.camera.lookAt(direction);
+        // 重置相机位置到原点，然后看向目标点
+        this.camera.position.set(0, 0, 0);
+        this.camera.lookAt(target);
+        this.camera.updateProjectionMatrix();
     }
     
     /**
@@ -758,22 +1027,27 @@ export class GroundObserverRenderer {
     private animate = () => {
         const dt = 0.016;
         
-        // 更新星点闪烁
-        if (this.starPoints && this.starPoints.material instanceof THREE.ShaderMaterial) {
-            this.starPoints.material.uniforms.uTime.value += dt;
-        }
+        // 更新星点闪烁效果
+        const time = Date.now() * 0.001;  // 当前时间（秒）
         
-        // 更新星座模型旋转
-        this.constellationModels.children.forEach(model => {
-            model.rotation.y += dt * 0.05;
-            
-            // 更新玻璃材质动画
-            model.traverse((child: any) => {
-                if (child.isMesh && child.material && child.material.uniforms && child.material.uniforms.uTime) {
-                    child.material.uniforms.uTime.value += dt;
+        if (this.starPoints) {
+            this.starPoints.traverse((child: any) => {
+                if (child instanceof THREE.Points && child.material instanceof THREE.ShaderMaterial) {
+                    // 更新时间uniform，驱动闪烁动画
+                    child.material.uniforms.uTime.value = time;
                 }
             });
-        });
+        }
+        
+        // 暂时禁用星座模型动画
+        // this.constellationModels.children.forEach(model => {
+        //     model.rotation.y += dt * 0.05;
+        //     model.traverse((child: any) => {
+        //         if (child.isMesh && child.material && child.material.uniforms && child.material.uniforms.uTime) {
+        //             child.material.uniforms.uTime.value += dt;
+        //         }
+        //     });
+        // });
         
         // 渲染
         this.renderer.render(this.scene, this.camera);
@@ -852,9 +1126,15 @@ export class GroundObserverRenderer {
      * 窗口大小调整
      */
     private onWindowResize = () => {
-        this.camera.aspect = window.innerWidth / window.innerHeight;
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+        
+        this.camera.aspect = width / height;
         this.camera.updateProjectionMatrix();
-        this.renderer.setSize(window.innerWidth, window.innerHeight);
+        this.renderer.setSize(width, height);
+        this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        
+        console.log(`📐 窗口调整: ${width}x${height}, aspect: ${this.camera.aspect.toFixed(2)}`);
     };
     
     /**
@@ -911,5 +1191,297 @@ export class GroundObserverRenderer {
      */
     public setStarLabelsVisible(visible: boolean): void {
         this.labelManager.setLabelsVisible(visible);
+    }
+    
+    /**
+     * 设置星星点击回调
+     */
+    public setOnStarClick(callback: (starInfo: StarClickInfo) => void): void {
+        this.onStarClickCallback = callback;
+    }
+    
+    /**
+     * 设置点击检测
+     */
+    private setupClickDetection(): void {
+        // 配置 raycaster 参数 - 增大阈值让点击更容易
+        this.raycaster.params.Points = {
+            threshold: 5.0  // 点击检测阈值（世界坐标单位），增大以便更容易点击
+        };
+        
+        const handleClick = (clientX: number, clientY: number) => {
+            // 归一化鼠标坐标 (-1 到 +1)
+            this.mouse.x = (clientX / window.innerWidth) * 2 - 1;
+            this.mouse.y = -(clientY / window.innerHeight) * 2 + 1;
+            
+            // 更新射线
+            this.raycaster.setFromCamera(this.mouse, this.camera);
+            
+            // 检测星点
+            if (this.starPoints) {
+                const intersects = this.raycaster.intersectObject(this.starPoints);
+                
+                if (intersects.length > 0) {
+                    const intersection = intersects[0];
+                    const index = intersection.index;
+                    
+                    if (index !== undefined) {
+                        this.handleStarClick(index);
+                    }
+                }
+            }
+        };
+        
+        // 鼠标点击
+        this.renderer.domElement.addEventListener('click', (e) => {
+            if (this.isDragging) return; // 拖拽时不触发点击
+            handleClick(e.clientX, e.clientY);
+        });
+        
+        // 触摸点击（移动端）
+        this.renderer.domElement.addEventListener('touchend', (e) => {
+            if (e.changedTouches.length > 0) {
+                const touch = e.changedTouches[0];
+                handleClick(touch.clientX, touch.clientY);
+            }
+        });
+    }
+    
+    /**
+     * 处理星星点击
+     */
+    private handleStarClick(pointIndex: number): void {
+        // 从 starMap 中找到对应的星星
+        let clickedStar: { star: StarMeta, position: THREE.Vector3 } | undefined;
+        let starIndex = 0;
+        
+        for (const [hip, starData] of this.starMap.entries()) {
+            if (starIndex === pointIndex) {
+                clickedStar = starData;
+                break;
+            }
+            starIndex++;
+        }
+        
+        if (!clickedStar) return;
+        
+        const star = clickedStar.star;
+        
+        // 获取星星名称
+        const starName = getStarName(star.hIP);
+        
+        // 计算当前的地平坐标
+        const { altitude, azimuth } = HorizonCoordinates.equatorialToHorizon(
+            star.equatorialCoordinate.rightAscension,
+            star.equatorialCoordinate.declination,
+            this.observerLocation.latitude,
+            this.localSiderealTime
+        );
+        
+        // 构建星星信息
+        const starInfo: StarClickInfo = {
+            hip: star.hIP,
+            name: starName?.chinese || `HIP ${star.hIP}`,
+            englishName: starName?.english || '',
+            constellation: starName?.constellation || '未知星座',
+            magnitude: star.magnitude,
+            bvColor: star.bvColor,
+            distance: star.distance,
+            rightAscension: star.equatorialCoordinate.rightAscension,
+            declination: star.equatorialCoordinate.declination,
+            altitude: altitude,
+            azimuth: azimuth
+        };
+        
+        console.log('⭐ 点击星星:', starInfo.name, starInfo);
+        
+        // 触觉反馈
+        if (navigator.vibrate) {
+            navigator.vibrate(30);
+        }
+        
+        // 调用回调
+        if (this.onStarClickCallback) {
+            this.onStarClickCallback(starInfo);
+        }
+    }
+    
+    /**
+     * 请求用户的地理位置
+     * @returns Promise<ObserverLocation | null>
+     */
+    public async requestUserLocation(): Promise<ObserverLocation | null> {
+        if (this.isRequestingLocation) {
+            console.log('⏳ 正在请求地理位置...');
+            return null;
+        }
+        
+        if (!('geolocation' in navigator)) {
+            console.error('❌ 浏览器不支持地理位置API');
+            return null;
+        }
+        
+        this.isRequestingLocation = true;
+        
+        try {
+            console.log('📍 请求用户地理位置...');
+            
+            const position = await new Promise<GeolocationPosition>((resolve, reject) => {
+                navigator.geolocation.getCurrentPosition(
+                    resolve,
+                    reject,
+                    {
+                        enableHighAccuracy: true,
+                        timeout: 10000,
+                        maximumAge: 0
+                    }
+                );
+            });
+            
+            const { latitude, longitude } = position.coords;
+            
+            console.log(`✅ 获取到位置: ${latitude.toFixed(4)}°N, ${longitude.toFixed(4)}°E`);
+            console.log(`📏 精度: ${position.coords.accuracy.toFixed(0)}米`);
+            
+            this.locationPermissionGranted = true;
+            
+            // 创建自定义观测位置
+            const userLocation: ObserverLocation = {
+                name: '当前位置',
+                latitude: latitude,
+                longitude: longitude
+            };
+            
+            // 自动更新观测位置
+            this.setObserverLocation(userLocation);
+            
+            return userLocation;
+            
+        } catch (error: any) {
+            console.error('❌ 获取位置失败:', error.message);
+            
+            if (error.code === 1) {
+                console.log('用户拒绝了位置权限');
+            } else if (error.code === 2) {
+                console.log('位置信息不可用');
+            } else if (error.code === 3) {
+                console.log('获取位置超时');
+            }
+            
+            return null;
+            
+        } finally {
+            this.isRequestingLocation = false;
+        }
+    }
+    
+    /**
+     * 获取位置权限状态
+     */
+    public getLocationPermissionState(): 'granted' | 'prompt' | 'denied' {
+        if (this.locationPermissionGranted) {
+            return 'granted';
+        }
+        return 'prompt';
+    }
+    
+    /**
+     * 自动使用当前时间和位置
+     */
+    public async useCurrentLocationAndTime(): Promise<boolean> {
+        console.log('🌍 使用当前位置和时间...');
+        
+        // 设置当前时间
+        this.setObservationTime(new Date());
+        
+        // 请求位置
+        const location = await this.requestUserLocation();
+        
+        return location !== null;
+    }
+    
+    /**
+     * 启动摄像头
+     */
+    private async startCamera(): Promise<void> {
+        try {
+            console.log('📷 正在启动摄像头...');
+            
+            // 创建video元素
+            if (!this.videoElement) {
+                this.videoElement = document.createElement('video');
+                this.videoElement.setAttribute('playsinline', '');
+                this.videoElement.setAttribute('webkit-playsinline', '');
+                this.videoElement.style.position = 'fixed';
+                this.videoElement.style.top = '0';
+                this.videoElement.style.left = '0';
+                this.videoElement.style.width = '100%';
+                this.videoElement.style.height = '100%';
+                this.videoElement.style.objectFit = 'cover';
+                this.videoElement.style.zIndex = '-1';
+                this.videoElement.style.pointerEvents = 'none';
+                
+                // 添加到容器
+                this.container.appendChild(this.videoElement);
+            }
+            
+            // 请求摄像头权限
+            const constraints = {
+                video: {
+                    facingMode: 'environment',  // 后置摄像头
+                    width: { ideal: 1920 },
+                    height: { ideal: 1080 }
+                },
+                audio: false
+            };
+            
+            this.videoStream = await navigator.mediaDevices.getUserMedia(constraints);
+            this.videoElement.srcObject = this.videoStream;
+            
+            // 播放视频
+            await this.videoElement.play();
+            
+            console.log('✅ 摄像头已启动');
+            console.log(`📹 分辨率: ${this.videoElement.videoWidth}x${this.videoElement.videoHeight}`);
+            
+        } catch (error: any) {
+            console.error('❌ 摄像头启动失败:', error);
+            
+            if (error.name === 'NotAllowedError') {
+                console.log('用户拒绝了摄像头权限');
+            } else if (error.name === 'NotFoundError') {
+                console.log('未找到摄像头设备');
+            } else if (error.name === 'NotReadableError') {
+                console.log('摄像头被其他应用占用');
+            }
+            
+            throw error;
+        }
+    }
+    
+    /**
+     * 停止摄像头
+     */
+    private stopCamera(): void {
+        console.log('📷 正在关闭摄像头...');
+        
+        // 停止视频流
+        if (this.videoStream) {
+            this.videoStream.getTracks().forEach(track => {
+                track.stop();
+            });
+            this.videoStream = null;
+        }
+        
+        // 移除video元素
+        if (this.videoElement) {
+            this.videoElement.srcObject = null;
+            if (this.videoElement.parentNode) {
+                this.videoElement.parentNode.removeChild(this.videoElement);
+            }
+            this.videoElement = null;
+        }
+        
+        console.log('✅ 摄像头已关闭');
     }
 }

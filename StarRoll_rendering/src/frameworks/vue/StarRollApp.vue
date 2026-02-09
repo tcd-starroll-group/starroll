@@ -5,6 +5,7 @@ import { useGroundObserver } from './composables/useGroundObserver';
 import TopBar from './components/TopBar.vue';
 import InfoPanel from './components/InfoPanel.vue';
 import SensorDebugPanel from './components/SensorDebugPanel.vue';
+import StarInfoPanel from './components/StarInfoPanel.vue';
 import './assets/starroll.css';
 
 const containerRef = ref<HTMLElement | null>(null);
@@ -23,14 +24,19 @@ const {
     showConstellationLines,
     toggleConstellationLines,
     showStarLabels,
-    toggleStarLabels
+    toggleStarLabels,
+    selectedStar,
+    closeStarInfo,
+    requestUserLocation,
+    useCurrentLocationAndTime,
+    isRequestingLocation
 } = useGroundObserver();
 
 // 检测是否为移动设备
 const isMobile = /Android|iPhone|iPad/i.test(navigator.userAgent);
 const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
 
-onMounted(() => {
+onMounted(async () => {
     if (containerRef.value) {
         console.log('🌍 启动地面观测者模式');
         console.log('📐 视角: 地球表面观测者');
@@ -51,11 +57,26 @@ onMounted(() => {
             console.log('💡 提示: 拖动鼠标环顾天空');
             console.log('📱 提示: 在移动设备上会自动跟随设备方向');
         }, 3500);
+        
+        // 启动后自动尝试获取位置
+        setTimeout(async () => {
+            console.log('🌍 自动尝试获取当前位置...');
+            const success = await useCurrentLocationAndTime();
+            if (success) {
+                console.log('✅ 已自动更新到当前位置');
+                showLocationHint.value = false;
+            } else {
+                console.log('💡 使用默认位置（上海），可点击"使用当前位置"按钮更新');
+            }
+        }, 2000);
     }
 });
 
 // 点击反馈状态
 const isRequesting = ref(false);
+
+// 位置请求提示
+const showLocationHint = ref(true);
 
 // 测试按钮点击
 const testButtonClick = () => {
@@ -82,6 +103,58 @@ const testButtonClick = () => {
 如果能看到这个对话框，说明按钮事件正常工作！
 
 下一步：点击上方 "启用 AR" 按钮测试权限请求。`);
+};
+
+// 请求使用当前位置和时间
+const handleUseCurrentLocation = async () => {
+    console.log('📍 点击使用当前位置');
+    
+    // 触觉反馈
+    if (navigator.vibrate) {
+        navigator.vibrate(50);
+    }
+    
+    try {
+        const success = await useCurrentLocationAndTime();
+        
+        if (success) {
+            console.log('✅ 已使用当前位置和时间');
+            showLocationHint.value = false;
+            
+            // 提示用户
+            alert(`✅ 位置获取成功！
+
+当前位置: ${currentLocation.value.name}
+纬度: ${currentLocation.value.latitude.toFixed(4)}°
+经度: ${currentLocation.value.longitude.toFixed(4)}°
+
+星空已更新为您当前位置的天空！`);
+        } else {
+            console.error('❌ 位置获取失败');
+            
+            alert(`⚠️ 位置获取失败
+
+可能原因：
+1. 您拒绝了位置权限
+2. 设备不支持地理位置API
+3. 位置服务未开启
+
+解决方法：
+1. 在浏览器设置中允许位置权限
+2. 确保设备GPS已开启
+3. 刷新页面重试`);
+        }
+    } catch (error) {
+        console.error('❌ 获取位置时发生错误:', error);
+        alert('发生错误：' + error);
+    }
+};
+
+// 获取方向标签
+const getDirectionLabel = (azimuth: number): string => {
+    const directions = ['北', '东北', '东', '东南', '南', '西南', '西', '西北'];
+    const index = Math.round(azimuth / 45) % 8;
+    return directions[index];
 };
 
 // 切换 AR 模式
@@ -150,18 +223,26 @@ const toggleARMode = async () => {
     
     <!-- UI Overlay -->
     <div class="ui-layer">
-        <TopBar />
-        <InfoPanel />
+        <!-- AR模式下只显示最简洁的UI -->
+        <TopBar v-if="!arModeEnabled" />
+        <InfoPanel v-if="!arModeEnabled" />
         
-        <!-- 观测者信息 -->
-        <div class="observer-info">
+        <!-- 观测者信息（AR模式下隐藏） -->
+        <div class="observer-info" v-if="!arModeEnabled">
           <div class="info-row">
             <span class="icon">📍</span>
             <span class="text">{{ currentLocation.name }}</span>
           </div>
           <div class="info-row small">
-            <span>{{ currentLocation.latitude }}°N, {{ currentLocation.longitude }}°E</span>
+            <span>{{ currentLocation.latitude.toFixed(2) }}°N, {{ currentLocation.longitude.toFixed(2) }}°E</span>
           </div>
+          <button 
+            @click="handleUseCurrentLocation" 
+            class="location-btn"
+            :disabled="isRequestingLocation"
+          >
+            {{ isRequestingLocation ? '⏳ 获取中...' : '📍 使用当前位置' }}
+          </button>
           <button @click="showDebugPanel = true" class="debug-btn">
             🔧 传感器调试
           </button>
@@ -212,8 +293,8 @@ const toggleARMode = async () => {
           </button>
           <div class="hint-text">{{ arModeEnabled ? '转动设备环顾星空' : '点击按钮获取传感器权限' }}</div>
           
-          <!-- 显示控制 -->
-          <div class="display-controls">
+          <!-- AR模式下默认隐藏控制，保持画面简洁 -->
+          <div class="display-controls" v-if="!arModeEnabled">
             <div class="control-item">
               <span class="control-label">星座连线</span>
               <label class="toggle-switch">
@@ -230,16 +311,10 @@ const toggleARMode = async () => {
             </div>
           </div>
           
-          <!-- 调试信息 -->
-          <div v-if="arModeEnabled" class="debug-info">
-            <div class="debug-row">
-              <span class="label">方位角:</span>
-              <span class="value">{{ cameraOrientation.azimuth.toFixed(1) }}°</span>
-            </div>
-            <div class="debug-row">
-              <span class="label">仰角:</span>
-              <span class="value">{{ cameraOrientation.altitude.toFixed(1) }}°</span>
-            </div>
+          <!-- 简洁的方向指示（AR模式） -->
+          <div v-if="arModeEnabled" class="ar-compass">
+            <div class="compass-value">{{ Math.round(cameraOrientation.azimuth) }}°</div>
+            <div class="compass-label">{{ getDirectionLabel(cameraOrientation.azimuth) }}</div>
           </div>
         </div>
         
@@ -252,6 +327,12 @@ const toggleARMode = async () => {
         <SensorDebugPanel 
           v-if="showDebugPanel" 
           @close="showDebugPanel = false"
+        />
+        
+        <!-- 星星信息面板 -->
+        <StarInfoPanel 
+          :star-info="selectedStar"
+          @close="closeStarInfo"
         />
     </div>
   </div>
@@ -338,6 +419,34 @@ const toggleARMode = async () => {
 
 .info-row .icon {
     font-size: 14px;
+}
+
+.location-btn {
+    width: 100%;
+    margin-top: 8px;
+    padding: 8px 12px;
+    background: rgba(68, 170, 255, 0.15);
+    border: 1px solid rgba(68, 170, 255, 0.3);
+    border-radius: 6px;
+    color: rgba(68, 170, 255, 0.9);
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.location-btn:hover {
+    background: rgba(68, 170, 255, 0.25);
+    color: #44aaff;
+}
+
+.location-btn:disabled {
+    opacity: 0.5;
+    cursor: wait;
+}
+
+.location-btn:active:not(:disabled) {
+    transform: scale(0.98);
 }
 
 .debug-btn {
@@ -683,6 +792,28 @@ input:checked + .slider:before {
     color: rgba(68, 170, 255, 0.6);
     letter-spacing: 2px;
     text-transform: uppercase;
+}
+
+/* AR罗盘指示 */
+.ar-compass {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    text-align: center;
+}
+
+.compass-value {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--sr-accent-color);
+    font-family: 'Courier New', monospace;
+    margin-bottom: 4px;
+}
+
+.compass-label {
+    font-size: 14px;
+    color: var(--sr-text-primary);
+    letter-spacing: 2px;
 }
 </style>
 

@@ -165,24 +165,29 @@ class SensorManager {
     let altitude: number
 
     if (isIOS) {
-      // iOS: alpha是指北方向，beta是前后倾斜，gamma是左右倾斜
-      // 当手机竖直握持、屏幕朝向正北时：
-      // - alpha = 0
-      // - beta = 0 (垂直竖立)
-      // - gamma = 0
+      // iOS设备方向事件定义：
+      // - alpha (0-360): 设备绕Z轴旋转，指南针方向
+      // - beta (-180到180): 设备绕X轴旋转（前后倾斜）
+      // - gamma (-90到90): 设备绕Y轴旋转（左右倾斜）
       
-      // 计算方位角：相机朝向的水平角度
-      // webkitCompassHeading更准确，但alpha也可用
+      // 当手机竖直握持（屏幕朝向你）：
+      // - beta = 0°: 竖直
+      // - beta = -90°: 平躺屏幕朝上（看天空）
+      // - beta = 90°: 平躺屏幕朝下（看地面）
+      
+      // 方位角计算（指南针方向）
       azimuth = data.alpha
       
-      // 计算仰角：相机抬起的角度
-      // beta: 0度是竖直，90度是平躺屏幕朝上
-      altitude = 90 - data.beta
+      // 仰角计算：需要从beta转换为天文学的仰角
+      // 当手机平躺屏幕朝上看天空时：beta = -90, altitude = 90（天顶）
+      // 当手机竖直时：beta = 0, altitude = 0（地平线）
+      // 当手机平躺屏幕朝下时：beta = 90, altitude = -90（天底）
+      altitude = data.beta - 90
       
     } else {
-      // Android
+      // Android: 通常与iOS相似
       azimuth = data.alpha
-      altitude = 90 - data.beta
+      altitude = data.beta - 90
     }
 
     // 归一化角度范围

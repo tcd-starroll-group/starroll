@@ -1,5 +1,5 @@
 import { ref, shallowRef } from 'vue';
-import { GroundObserverRenderer } from '@/core/renderer/GroundObserverRenderer';
+import { GroundObserverRenderer, type StarClickInfo } from '@/core/renderer/GroundObserverRenderer';
 import { ObserverLocation, OBSERVER_LOCATIONS } from '@/core/astronomy/HorizonCoordinates';
 
 // 全局状态
@@ -18,6 +18,8 @@ const stats = ref({
     arMode: false,
     sensorPermission: 'prompt' as any
 });
+const selectedStar = ref<StarClickInfo | null>(null);
+const isRequestingLocation = ref(false);
 
 /**
  * 地面观测者组合式函数
@@ -36,6 +38,11 @@ export function useGroundObserver() {
         console.log('坐标系: 地平坐标系');
         
         rendererInstance.value = new GroundObserverRenderer(container);
+        
+        // 设置星星点击回调
+        rendererInstance.value.setOnStarClick((starInfo) => {
+            selectedStar.value = starInfo;
+        });
         
         // 延迟获取统计
         setTimeout(() => {
@@ -138,6 +145,62 @@ export function useGroundObserver() {
         }
     };
     
+    /**
+     * 请求用户位置
+     */
+    const requestUserLocation = async () => {
+        if (!rendererInstance.value || isRequestingLocation.value) {
+            return false;
+        }
+        
+        isRequestingLocation.value = true;
+        
+        try {
+            const location = await rendererInstance.value.requestUserLocation();
+            
+            if (location) {
+                currentLocation.value = location;
+                refreshStats();
+                return true;
+            }
+            
+            return false;
+        } finally {
+            isRequestingLocation.value = false;
+        }
+    };
+    
+    /**
+     * 使用当前位置和时间
+     */
+    const useCurrentLocationAndTime = async () => {
+        if (!rendererInstance.value) {
+            return false;
+        }
+        
+        isRequestingLocation.value = true;
+        
+        try {
+            const success = await rendererInstance.value.useCurrentLocationAndTime();
+            
+            if (success) {
+                currentTime.value = new Date();
+                refreshStats();
+            }
+            
+            return success;
+        } finally {
+            isRequestingLocation.value = false;
+        }
+    };
+    
+    /**
+     * 关闭星星信息面板
+     */
+    const closeStarInfo = () => {
+        selectedStar.value = null;
+    };
+    
     return {
         init,
         renderer: rendererInstance,
@@ -155,6 +218,11 @@ export function useGroundObserver() {
         toggleConstellationLines,
         showStarLabels,
         toggleStarLabels,
-        availableLocations: OBSERVER_LOCATIONS
+        availableLocations: OBSERVER_LOCATIONS,
+        selectedStar,
+        closeStarInfo,
+        requestUserLocation,
+        useCurrentLocationAndTime,
+        isRequestingLocation
     };
 }
