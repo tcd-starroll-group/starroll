@@ -50,6 +50,7 @@ pydantic==2.12.4
 pydantic_core==2.41.5
 Pygments==2.19.2
 PyJWT==2.11.0
+PyMySQL==1.1.2
 pytest==9.0.2
 python-dotenv==1.2.1
 python-multipart==0.0.20

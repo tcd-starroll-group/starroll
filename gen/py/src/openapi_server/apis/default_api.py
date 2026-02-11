@@ -33,6 +33,8 @@ from openapi_server.models.api_comment_blog_post200_response import ApiCommentBl
 from openapi_server.models.api_comment_blog_post_request import ApiCommentBlogPostRequest
 from openapi_server.models.api_create_blog_post200_response import ApiCreateBlogPost200Response
 from openapi_server.models.api_create_blog_post_request import ApiCreateBlogPostRequest
+from openapi_server.models.api_create_identify_stars_job_post200_response import ApiCreateIdentifyStarsJobPost200Response
+from openapi_server.models.api_create_identify_stars_job_post_request import ApiCreateIdentifyStarsJobPostRequest
 from openapi_server.models.api_delete_blog_post200_response import ApiDeleteBlogPost200Response
 from openapi_server.models.api_delete_comment_post_request import ApiDeleteCommentPostRequest
 from openapi_server.models.api_display_chat_room_get200_response import ApiDisplayChatRoomGet200Response
@@ -50,6 +52,8 @@ from openapi_server.models.api_get_chat_room_info_post200_response import ApiGet
 from openapi_server.models.api_get_chat_room_info_post_request import ApiGetChatRoomInfoPostRequest
 from openapi_server.models.api_get_chat_room_post200_response import ApiGetChatRoomPost200Response
 from openapi_server.models.api_get_chat_room_post_request import ApiGetChatRoomPostRequest
+from openapi_server.models.api_get_identify_stars_job_result_post200_response import ApiGetIdentifyStarsJobResultPost200Response
+from openapi_server.models.api_get_identify_stars_job_result_post_request import ApiGetIdentifyStarsJobResultPostRequest
 from openapi_server.models.api_get_message_post200_response import ApiGetMessagePost200Response
 from openapi_server.models.api_get_message_post_request import ApiGetMessagePostRequest
 from openapi_server.models.api_get_saved_blogs_post200_response import ApiGetSavedBlogsPost200Response
@@ -59,6 +63,8 @@ from openapi_server.models.api_get_star_details_post_request import ApiGetStarDe
 from openapi_server.models.api_like_blog_post200_response import ApiLikeBlogPost200Response
 from openapi_server.models.api_list_blogs_post200_response import ApiListBlogsPost200Response
 from openapi_server.models.api_list_blogs_post_request import ApiListBlogsPostRequest
+from openapi_server.models.api_list_identify_stars_jobs_post200_response import ApiListIdentifyStarsJobsPost200Response
+from openapi_server.models.api_list_identify_stars_jobs_post_request import ApiListIdentifyStarsJobsPostRequest
 from openapi_server.models.api_request_accuracy_adjust_post200_response import ApiRequestAccuracyAdjustPost200Response
 from openapi_server.models.api_request_accuracy_adjust_post_request import ApiRequestAccuracyAdjustPostRequest
 from openapi_server.models.api_request_save_type_post200_response import ApiRequestSaveTypePost200Response
@@ -399,6 +405,57 @@ async def api_display_save_success_post(
     if not BaseDefaultApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")
     return await BaseDefaultApi.subclasses[0]().api_display_save_success_post(api_display_save_success_post_request)
+
+
+@router.post(
+    "/api/createIdentifyStarsJob",
+    responses={
+        200: {"model": ApiCreateIdentifyStarsJobPost200Response, "description": "OK"},
+    },
+    tags=["default"],
+    summary="Create a job to identify the stars in the image.",
+    response_model_by_alias=True,
+)
+async def api_create_identify_stars_job_post(
+    api_create_identify_stars_job_post_request: ApiCreateIdentifyStarsJobPostRequest = Body(None, description=""),
+) -> ApiCreateIdentifyStarsJobPost200Response:
+    if not BaseDefaultApi.subclasses:
+        raise HTTPException(status_code=500, detail="Not implemented")
+    return await BaseDefaultApi.subclasses[0]().api_create_identify_stars_job_post(api_create_identify_stars_job_post_request)
+
+
+@router.post(
+    "/api/listIdentifyStarsJobs",
+    responses={
+        200: {"model": ApiListIdentifyStarsJobsPost200Response, "description": "OK"},
+    },
+    tags=["default"],
+    summary="List identify stars jobs.",
+    response_model_by_alias=True,
+)
+async def api_list_identify_stars_jobs_post(
+    api_list_identify_stars_jobs_post_request: Optional[ApiListIdentifyStarsJobsPostRequest] = Body(None, description=""),
+) -> ApiListIdentifyStarsJobsPost200Response:
+    if not BaseDefaultApi.subclasses:
+        raise HTTPException(status_code=500, detail="Not implemented")
+    return await BaseDefaultApi.subclasses[0]().api_list_identify_stars_jobs_post(api_list_identify_stars_jobs_post_request)
+
+
+@router.post(
+    "/api/getIdentifyStarsJobResult",
+    responses={
+        200: {"model": ApiGetIdentifyStarsJobResultPost200Response, "description": "OK"},
+    },
+    tags=["default"],
+    summary="get identify stars job result.",
+    response_model_by_alias=True,
+)
+async def api_get_identify_stars_job_result_post(
+    api_get_identify_stars_job_result_post_request: ApiGetIdentifyStarsJobResultPostRequest = Body(None, description=""),
+) -> ApiGetIdentifyStarsJobResultPost200Response:
+    if not BaseDefaultApi.subclasses:
+        raise HTTPException(status_code=500, detail="Not implemented")
+    return await BaseDefaultApi.subclasses[0]().api_get_identify_stars_job_result_post(api_get_identify_stars_job_result_post_request)
 
 
 @router.post(

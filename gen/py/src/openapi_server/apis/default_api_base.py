@@ -12,6 +12,8 @@ from openapi_server.models.api_comment_blog_post200_response import ApiCommentBl
 from openapi_server.models.api_comment_blog_post_request import ApiCommentBlogPostRequest
 from openapi_server.models.api_create_blog_post200_response import ApiCreateBlogPost200Response
 from openapi_server.models.api_create_blog_post_request import ApiCreateBlogPostRequest
+from openapi_server.models.api_create_identify_stars_job_post200_response import ApiCreateIdentifyStarsJobPost200Response
+from openapi_server.models.api_create_identify_stars_job_post_request import ApiCreateIdentifyStarsJobPostRequest
 from openapi_server.models.api_delete_blog_post200_response import ApiDeleteBlogPost200Response
 from openapi_server.models.api_delete_comment_post_request import ApiDeleteCommentPostRequest
 from openapi_server.models.api_display_chat_room_get200_response import ApiDisplayChatRoomGet200Response
@@ -29,6 +31,8 @@ from openapi_server.models.api_get_chat_room_info_post200_response import ApiGet
 from openapi_server.models.api_get_chat_room_info_post_request import ApiGetChatRoomInfoPostRequest
 from openapi_server.models.api_get_chat_room_post200_response import ApiGetChatRoomPost200Response
 from openapi_server.models.api_get_chat_room_post_request import ApiGetChatRoomPostRequest
+from openapi_server.models.api_get_identify_stars_job_result_post200_response import ApiGetIdentifyStarsJobResultPost200Response
+from openapi_server.models.api_get_identify_stars_job_result_post_request import ApiGetIdentifyStarsJobResultPostRequest
 from openapi_server.models.api_get_message_post200_response import ApiGetMessagePost200Response
 from openapi_server.models.api_get_message_post_request import ApiGetMessagePostRequest
 from openapi_server.models.api_get_saved_blogs_post200_response import ApiGetSavedBlogsPost200Response
@@ -38,6 +42,8 @@ from openapi_server.models.api_get_star_details_post_request import ApiGetStarDe
 from openapi_server.models.api_like_blog_post200_response import ApiLikeBlogPost200Response
 from openapi_server.models.api_list_blogs_post200_response import ApiListBlogsPost200Response
 from openapi_server.models.api_list_blogs_post_request import ApiListBlogsPostRequest
+from openapi_server.models.api_list_identify_stars_jobs_post200_response import ApiListIdentifyStarsJobsPost200Response
+from openapi_server.models.api_list_identify_stars_jobs_post_request import ApiListIdentifyStarsJobsPostRequest
 from openapi_server.models.api_request_accuracy_adjust_post200_response import ApiRequestAccuracyAdjustPost200Response
 from openapi_server.models.api_request_accuracy_adjust_post_request import ApiRequestAccuracyAdjustPostRequest
 from openapi_server.models.api_request_save_type_post200_response import ApiRequestSaveTypePost200Response
@@ -196,6 +202,27 @@ class BaseDefaultApi:
         api_display_save_success_post_request: Optional[ApiDisplaySaveSuccessPostRequest],
     ) -> ApiDisplaySaveSuccessPost200Response:
         """Return save result and metadata after starfield is saved"""
+        ...
+
+
+    async def api_create_identify_stars_job_post(
+        self,
+        api_create_identify_stars_job_post_request: ApiCreateIdentifyStarsJobPostRequest,
+    ) -> ApiCreateIdentifyStarsJobPost200Response:
+        ...
+
+
+    async def api_list_identify_stars_jobs_post(
+        self,
+        api_list_identify_stars_jobs_post_request: Optional[ApiListIdentifyStarsJobsPostRequest],
+    ) -> ApiListIdentifyStarsJobsPost200Response:
+        ...
+
+
+    async def api_get_identify_stars_job_result_post(
+        self,
+        api_get_identify_stars_job_result_post_request: ApiGetIdentifyStarsJobResultPostRequest,
+    ) -> ApiGetIdentifyStarsJobResultPost200Response:
         ...
 
 

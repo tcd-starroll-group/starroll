@@ -258,6 +258,54 @@ paths:
                 $ref: "#/components/schemas/_api_displaySaveSuccess_post_200_response"
           description: OK
       summary: Display save success confirmation
+  /api/createIdentifyStarsJob:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/_api_createIdentifyStarsJob_post_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/_api_createIdentifyStarsJob_post_200_response"
+          description: OK
+      summary: Create a job to identify the stars in the image.
+  /api/listIdentifyStarsJobs:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/_api_listIdentifyStarsJobs_post_request"
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/_api_listIdentifyStarsJobs_post_200_response"
+          description: OK
+      summary: List identify stars jobs.
+  /api/getIdentifyStarsJobResult:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/_api_getIdentifyStarsJobResult_post_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/_api_getIdentifyStarsJobResult_post_200_response"
+          description: OK
+      summary: get identify stars job result.
   /api/elimilateErrors:
     post:
       requestBody:
@@ -1011,6 +1059,86 @@ components:
           title: time
           type: string
       title: commentItem
+    identifyStarsJob:
+      example:
+        jobID: jobID
+        createTime: createTime
+        updateTime: updateTime
+        status: status
+      properties:
+        jobID:
+          title: jobID
+          type: string
+        status:
+          title: status
+          type: string
+        createTime:
+          title: createTime
+          type: string
+        updateTime:
+          title: updateTime
+          type: string
+      title: identifyStarsJob
+    PaginationQuery:
+      description: Reusable pagination and sorting parameters for list endpoints
+      properties:
+        limit:
+          default: 20
+          description: Maximum number of items to return
+          maximum: 100
+          minimum: 1
+          title: limit
+          type: integer
+        offset:
+          default: 0
+          description: Number of items to skip (for pagination)
+          minimum: 0
+          title: offset
+          type: integer
+        sort:
+          description: Field name to sort by
+          example: createTime
+          title: sort
+          type: string
+        order:
+          default: desc
+          description: Sort order (ascending or descending)
+          enum:
+          - asc
+          - desc
+          title: order
+          type: string
+      title: PaginationQuery
+      type: object
+    IdentifyStarsJobResult:
+      description: result of identify stars job
+      example:
+        center:
+          declination: 5.962133916683182
+          rightAscension: 1.4658129805029452
+        identifiedStars:
+        - names:
+          - 108Vir
+          vmag: 5.6
+          pixelX: 1676.0093296680352
+          pixelY: 629.9991687682354
+          HIP: 0
+        - names:
+          - 108Vir
+          vmag: 5.6
+          pixelX: 1676.0093296680352
+          pixelY: 629.9991687682354
+          HIP: 0
+      properties:
+        center:
+          $ref: "#/components/schemas/equatorialCoordinate"
+        identifiedStars:
+          description: List of identified stars in the image
+          items:
+            $ref: "#/components/schemas/IdentifyStarsJobResult_identifiedStars_inner"
+          title: identifiedStars
+          type: array
+      title: IdentifyStarsJobResult
     _api_displayChatRoom_get_200_response_style:
       description: GUI styling properties
       example:
@@ -1551,6 +1679,116 @@ components:
           title: saveTime
           type: string
       title: _api_displaySaveSuccess_post_200_response
+    _api_createIdentifyStarsJob_post_request:
+      properties:
+        image:
+          description: "Base64-encoded image data (JPEG, PNG, etc.)"
+          title: image
+          type: string
+        userID:
+          description: User ID for authentication
+          title: userID
+          type: string
+        token:
+          description: Authentication token
+          title: token
+          type: string
+      required:
+      - image
+      - token
+      - userID
+      title: _api_createIdentifyStarsJob_post_request
+      type: object
+    _api_createIdentifyStarsJob_post_200_response:
+      example:
+        jobID: jobID
+      properties:
+        jobID:
+          description: job id
+          title: jobID
+          type: string
+      title: _api_createIdentifyStarsJob_post_200_response
+    _api_listIdentifyStarsJobs_post_request:
+      allOf:
+      - $ref: "#/components/schemas/PaginationQuery"
+      - properties:
+          userCredentials:
+            $ref: "#/components/schemas/userCredentials"
+        type: object
+      title: _api_listIdentifyStarsJobs_post_request
+    _api_listIdentifyStarsJobs_post_200_response:
+      example:
+        identifyStarsJobsList:
+        - jobID: jobID
+          createTime: createTime
+          updateTime: updateTime
+          status: status
+        - jobID: jobID
+          createTime: createTime
+          updateTime: updateTime
+          status: status
+      properties:
+        identifyStarsJobsList:
+          items:
+            $ref: "#/components/schemas/identifyStarsJob"
+          title: identifyStarsJobsList
+          type: array
+      title: _api_listIdentifyStarsJobs_post_200_response
+    _api_getIdentifyStarsJobResult_post_request:
+      properties:
+        jobID:
+          description: Unique ID of the identify stars job
+          title: jobID
+          type: string
+        userCredentials:
+          $ref: "#/components/schemas/userCredentials"
+      required:
+      - jobID
+      - userCredentials
+      title: _api_getIdentifyStarsJobResult_post_request
+      type: object
+    _api_getIdentifyStarsJobResult_post_200_response:
+      example:
+        identifyStarsJobsList:
+        - center:
+            declination: 5.962133916683182
+            rightAscension: 1.4658129805029452
+          identifiedStars:
+          - names:
+            - 108Vir
+            vmag: 5.6
+            pixelX: 1676.0093296680352
+            pixelY: 629.9991687682354
+            HIP: 0
+          - names:
+            - 108Vir
+            vmag: 5.6
+            pixelX: 1676.0093296680352
+            pixelY: 629.9991687682354
+            HIP: 0
+        - center:
+            declination: 5.962133916683182
+            rightAscension: 1.4658129805029452
+          identifiedStars:
+          - names:
+            - 108Vir
+            vmag: 5.6
+            pixelX: 1676.0093296680352
+            pixelY: 629.9991687682354
+            HIP: 0
+          - names:
+            - 108Vir
+            vmag: 5.6
+            pixelX: 1676.0093296680352
+            pixelY: 629.9991687682354
+            HIP: 0
+      properties:
+        identifyStarsJobsList:
+          items:
+            $ref: "#/components/schemas/IdentifyStarsJobResult"
+          title: identifyStarsJobsList
+          type: array
+      title: _api_getIdentifyStarsJobResult_post_200_response
     _api_elimilateErrors_post_request:
       properties:
         cameraMeta:
@@ -1934,3 +2172,41 @@ components:
           title: commentID
           type: string
       title: _api_deleteComment_post_request
+    IdentifyStarsJobResult_identifiedStars_inner:
+      example:
+        names:
+        - 108Vir
+        vmag: 5.6
+        pixelX: 1676.0093296680352
+        pixelY: 629.9991687682354
+        HIP: 0
+      properties:
+        names:
+          description: Alternative names of the star
+          example:
+          - 108Vir
+          items:
+            type: string
+          title: names
+          type: array
+        pixelX:
+          description: X coordinate of star in image (pixels)
+          example: 1676.0093296680352
+          title: pixelX
+          type: number
+        pixelY:
+          description: Y coordinate of star in image (pixels)
+          example: 629.9991687682354
+          title: pixelY
+          type: number
+        vmag:
+          description: Visual magnitude of the star
+          example: 5.6
+          title: vmag
+          type: number
+        HIP:
+          description: Hipparcos catalog ID
+          title: HIP
+          type: integer
+      title: IdentifyStarsJobResult_identifiedStars_inner
+      type: object
