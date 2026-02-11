@@ -5,5 +5,5 @@ run-console:
 
 .PHONY: test-console
 test-console:
-	export PYTHONPATH="." && \
+	export PYTHONPATH="gen/py/src:." && \
 	pytest backend/console/tests

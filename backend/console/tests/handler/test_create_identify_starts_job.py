@@ -36,8 +36,8 @@ class TestApiCreateIdentifyStarsJobPost:
         def _get_db_override():
             yield db_session
 
-        def _verify_access_token_override(token):
-            return {"user_id": "123"}, True
+        def _verify_user_id_and_token_override(token, user_id):
+            pass  # Mock successful verification
 
         def _upload_bytes_override(**kwargs):
             pass  # Mock successful upload
@@ -45,7 +45,7 @@ class TestApiCreateIdentifyStarsJobPost:
         monkeypatch.setattr(create_identify_starts_job_module,
                             "get_db", _get_db_override)
         monkeypatch.setattr(
-            create_identify_starts_job_module, "verify_access_token", _verify_access_token_override
+            create_identify_starts_job_module, "verify_user_id_and_token", _verify_user_id_and_token_override
         )
         monkeypatch.setattr(
             create_identify_starts_job_module, "upload_bytes", _upload_bytes_override
@@ -128,13 +128,14 @@ class TestApiCreateIdentifyStarsJobPost:
         def _get_db_override():
             yield db_session
 
-        def _verify_access_token_override(token):
-            return None, False
+        def _verify_user_id_and_token_override(token, user_id):
+            raise HTTPException(
+                status_code=401, detail="Invalid or expired token")
 
         monkeypatch.setattr(create_identify_starts_job_module,
                             "get_db", _get_db_override)
         monkeypatch.setattr(
-            create_identify_starts_job_module, "verify_access_token", _verify_access_token_override
+            create_identify_starts_job_module, "verify_user_id_and_token", _verify_user_id_and_token_override
         )
 
         request = self._create_valid_request(token="invalid_token")
@@ -152,13 +153,13 @@ class TestApiCreateIdentifyStarsJobPost:
         def _get_db_override():
             yield db_session
 
-        def _verify_access_token_override(token):
-            return {"user_id": "999"}, True  # Different user ID
+        def _verify_user_id_and_token_override(token, user_id):
+            raise HTTPException(status_code=403, detail="User ID mismatch")
 
         monkeypatch.setattr(create_identify_starts_job_module,
                             "get_db", _get_db_override)
         monkeypatch.setattr(
-            create_identify_starts_job_module, "verify_access_token", _verify_access_token_override
+            create_identify_starts_job_module, "verify_user_id_and_token", _verify_user_id_and_token_override
         )
 
         request = self._create_valid_request(user_id="123")
@@ -176,13 +177,13 @@ class TestApiCreateIdentifyStarsJobPost:
         def _get_db_override():
             yield db_session
 
-        def _verify_access_token_override(token):
-            return {"user_id": "123"}, True
+        def _verify_user_id_and_token_override(token, user_id):
+            pass  # Mock successful verification
 
         monkeypatch.setattr(create_identify_starts_job_module,
                             "get_db", _get_db_override)
         monkeypatch.setattr(
-            create_identify_starts_job_module, "verify_access_token", _verify_access_token_override
+            create_identify_starts_job_module, "verify_user_id_and_token", _verify_user_id_and_token_override
         )
 
         request = self._create_valid_request(image="not_valid_base64!!!")
@@ -200,8 +201,8 @@ class TestApiCreateIdentifyStarsJobPost:
         def _get_db_override():
             yield db_session
 
-        def _verify_access_token_override(token):
-            return {"user_id": "123"}, True
+        def _verify_user_id_and_token_override(token, user_id):
+            pass  # Mock successful verification
 
         def _upload_bytes_failure(**kwargs):
             raise Exception("MinIO connection failed")
@@ -209,7 +210,7 @@ class TestApiCreateIdentifyStarsJobPost:
         monkeypatch.setattr(create_identify_starts_job_module,
                             "get_db", _get_db_override)
         monkeypatch.setattr(
-            create_identify_starts_job_module, "verify_access_token", _verify_access_token_override
+            create_identify_starts_job_module, "verify_user_id_and_token", _verify_user_id_and_token_override
         )
         monkeypatch.setattr(
             create_identify_starts_job_module, "upload_bytes", _upload_bytes_failure
@@ -230,8 +231,8 @@ class TestApiCreateIdentifyStarsJobPost:
         def _get_db_override():
             yield db_session
 
-        def _verify_access_token_override(token):
-            return {"user_id": "123"}, True
+        def _verify_user_id_and_token_override(token, user_id):
+            pass  # Mock successful verification
 
         def _upload_bytes_override(**kwargs):
             pass  # Mock successful upload
@@ -245,7 +246,7 @@ class TestApiCreateIdentifyStarsJobPost:
         monkeypatch.setattr(create_identify_starts_job_module,
                             "get_db", _get_db_override)
         monkeypatch.setattr(
-            create_identify_starts_job_module, "verify_access_token", _verify_access_token_override
+            create_identify_starts_job_module, "verify_user_id_and_token", _verify_user_id_and_token_override
         )
         monkeypatch.setattr(
             create_identify_starts_job_module, "upload_bytes", _upload_bytes_override
@@ -267,8 +268,8 @@ class TestApiCreateIdentifyStarsJobPost:
         def _get_db_override():
             yield db_session
 
-        def _verify_access_token_override(token):
-            return {"user_id": "123"}, True
+        def _verify_user_id_and_token_override(token, user_id):
+            pass  # Mock successful verification
 
         upload_call_params = {}
 
@@ -278,7 +279,7 @@ class TestApiCreateIdentifyStarsJobPost:
         monkeypatch.setattr(create_identify_starts_job_module,
                             "get_db", _get_db_override)
         monkeypatch.setattr(
-            create_identify_starts_job_module, "verify_access_token", _verify_access_token_override
+            create_identify_starts_job_module, "verify_user_id_and_token", _verify_user_id_and_token_override
         )
         monkeypatch.setattr(
             create_identify_starts_job_module, "upload_bytes", _upload_bytes_override

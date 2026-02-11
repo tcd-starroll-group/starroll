@@ -281,7 +281,7 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/_api_listIdentifyStarsJobs_post_request"
-        required: false
+        required: true
       responses:
         "200":
           content:
