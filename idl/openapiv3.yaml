@@ -544,7 +544,7 @@ paths:
     post:
       summary: List identify stars jobs.
       requestBody:
-        required: false
+        required: true
         content:
           application/json:
             schema:

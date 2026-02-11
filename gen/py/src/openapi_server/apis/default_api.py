@@ -434,7 +434,7 @@ async def api_create_identify_stars_job_post(
     response_model_by_alias=True,
 )
 async def api_list_identify_stars_jobs_post(
-    api_list_identify_stars_jobs_post_request: Optional[ApiListIdentifyStarsJobsPostRequest] = Body(None, description=""),
+    api_list_identify_stars_jobs_post_request: ApiListIdentifyStarsJobsPostRequest = Body(None, description=""),
 ) -> ApiListIdentifyStarsJobsPost200Response:
     if not BaseDefaultApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")

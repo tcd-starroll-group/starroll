@@ -1,7 +1,10 @@
 from sqlalchemy import Column, Integer, BigInteger, String, JSON, TIMESTAMP, SmallInteger, text
 from sqlalchemy.orm import declarative_base, Session
+from backend.constant.sort import SORT_ORDER_ASC, SORT_ORDER_DESC
+from backend.constant.star_identify import STAR_IDENTIFY_JOB_STATUS_PENDING
 
 Base = declarative_base()
+
 
 class IdentifyStarsJob(Base):
     """Identify stars jobs table model definition"""
@@ -9,8 +12,10 @@ class IdentifyStarsJob(Base):
 
     id = Column(BigInteger, primary_key=True, autoincrement=True)
     user_id = Column(BigInteger, nullable=False)
-    created_at = Column(TIMESTAMP, nullable=False, server_default=text("CURRENT_TIMESTAMP"))
-    updated_at = Column(TIMESTAMP, nullable=False, server_default=text("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
+    created_at = Column(TIMESTAMP, nullable=False,
+                        server_default=text("CURRENT_TIMESTAMP"))
+    updated_at = Column(TIMESTAMP, nullable=False, server_default=text(
+        "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
     image_key = Column(String(512), nullable=False)
     status = Column(String(16), nullable=False)
     result = Column(JSON, nullable=True)
@@ -26,15 +31,23 @@ class IdentifyStarsJob(Base):
         return db.query(cls).filter(cls.id == job_id, cls.is_deleted == 0).first()
 
     @classmethod
-    def list_by_user_id(cls, db: Session, user_id: int, limit: int = 20, offset: int = 0):
+    def list_by_user_id(cls, db: Session, user_id: int, limit: int = 20, offset: int = 0, order: str = SORT_ORDER_DESC):
         """List jobs for a specific user"""
-        return db.query(cls).filter(
-            cls.user_id == user_id, 
+        query = db.query(cls).filter(
+            cls.user_id == user_id,
             cls.is_deleted == 0
-        ).order_by(cls.created_at.desc()).offset(offset).limit(limit).all()
+        )
+
+        # Apply sorting (with ID as secondary sort for deterministic ordering)
+        if order == SORT_ORDER_ASC:
+            query = query.order_by(cls.created_at.asc(), cls.id.asc())
+        else:
+            query = query.order_by(cls.created_at.desc(), cls.id.desc())
+
+        return query.offset(offset).limit(limit).all()
 
     @classmethod
-    def create(cls, db: Session, user_id: int, image_key: str, status: str = "PENDING"):
+    def create(cls, db: Session, user_id: int, image_key: str, status: str = STAR_IDENTIFY_JOB_STATUS_PENDING):
         """Create a new identify stars job"""
         new_job = cls(
             user_id=user_id,

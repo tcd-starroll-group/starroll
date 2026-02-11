@@ -214,7 +214,7 @@ class BaseDefaultApi:
 
     async def api_list_identify_stars_jobs_post(
         self,
-        api_list_identify_stars_jobs_post_request: Optional[ApiListIdentifyStarsJobsPostRequest],
+        api_list_identify_stars_jobs_post_request: ApiListIdentifyStarsJobsPostRequest,
     ) -> ApiListIdentifyStarsJobsPost200Response:
         ...
 

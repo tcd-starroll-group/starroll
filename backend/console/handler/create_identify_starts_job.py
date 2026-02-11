@@ -13,7 +13,7 @@ from backend.console.dal.tos import upload_bytes
 from backend.console.dal.rds.identify_stars_job import IdentifyStarsJob
 from backend.console.dal.rds.client import get_db
 from backend.constant import tos as tos_const
-from backend.console.utils.auth import verify_access_token
+from backend.console.utils.auth import verify_access_token, verify_user_id_and_token
 from backend.constant import star_identify as star_identify_const
 
 logger = logging.getLogger(__name__)
@@ -34,18 +34,8 @@ async def api_create_identify_stars_job_post(
         logger.error("image is missing")
         raise HTTPException(status_code=400, detail="image is required")
 
-    # Verify access token
-    payload, is_valid = verify_access_token(request.token)
-    if not is_valid or not payload:
-        logger.error("Invalid or expired token")
-        raise HTTPException(status_code=401, detail="Invalid or expired token")
-
-    # Verify that the token's user_id matches the request's user_id
-    token_user_id = payload.get("user_id")
-    if not token_user_id or str(token_user_id) != str(request.user_id):
-        logger.error(
-            f"Token user_id mismatch: token has {token_user_id}, request has {request.user_id}")
-        raise HTTPException(status_code=403, detail="User ID mismatch")
+    # Verify access token and user ID
+    verify_user_id_and_token(request.token, request.user_id)
 
     logger.info(
         f"Token verification successful for user_id: {request.user_id}")
