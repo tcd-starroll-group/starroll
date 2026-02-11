@@ -65,6 +65,8 @@ from openapi_server.models.change_password_request import ChangePasswordRequest
 from openapi_server.models.error_response import ErrorResponse
 from openapi_server.models.gps import GPS
 from openapi_server.models.profile_and_token import ProfileAndToken
+from openapi_server.models.reset_password_request import ResetPasswordRequest
+from openapi_server.models.reset_password_send_code_request import ResetPasswordSendCodeRequest
 from openapi_server.models.star_details import StarDetails
 from openapi_server.models.token_response import TokenResponse
 from openapi_server.models.user_auth import UserAuth
@@ -316,6 +318,20 @@ class BaseDefaultApi:
     async def api_change_password_post(
         self,
         change_password_request: ChangePasswordRequest,
+    ) -> ApiChangePasswordPost200Response:
+        ...
+
+
+    async def api_reset_password_send_code_post(
+        self,
+        reset_password_send_code_request: ResetPasswordSendCodeRequest,
+    ) -> ApiChangePasswordPost200Response:
+        ...
+
+
+    async def api_reset_password_post(
+        self,
+        reset_password_request: ResetPasswordRequest,
     ) -> ApiChangePasswordPost200Response:
         ...
 

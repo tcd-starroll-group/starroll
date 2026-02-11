@@ -569,6 +569,46 @@ paths:
           description: Old password incorrect
         "404":
           description: User not found
+  /api/resetPasswordSendCode:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ResetPasswordSendCodeRequest"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/api_change_password_post_200_response"
+          description: Verification code sent successfully
+        "404":
+          description: Email not found
+        "500":
+          description: Failed to send email
+      summary: send code to email
+  /api/resetPassword:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/resetPasswordRequest"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/api_change_password_post_200_response"
+          description: Password reset successfully
+        "400":
+          description: Invalid or expired verification code
+        "404":
+          description: Email not found
+      summary: Use code to reset password
   /api/deleteUser:
     post:
       operationId: api_delete_user_post
@@ -1203,6 +1243,51 @@ components:
           title: identifiedStars
           type: array
       title: IdentifyStarsJobResult
+    ResetPasswordSendCodeRequest:
+      example:
+        userName: name
+        email: user@example.com
+      properties:
+        email:
+          description: User emial
+          example: user@example.com
+          format: email
+          title: email
+          type: string
+        userName:
+          description: User name
+          example: name
+          title: userName
+          type: string
+      required:
+      - email
+      - userName
+      title: ResetPasswordSendCodeRequest
+      type: object
+    resetPasswordRequest:
+      properties:
+        email:
+          description: User email
+          example: user@example.com
+          format: email
+          title: email
+          type: string
+        code:
+          description: 6 code in email
+          example: "123456"
+          title: code
+          type: string
+        newPassword:
+          description: new password
+          format: password
+          title: newPassword
+          type: string
+      required:
+      - code
+      - email
+      - newPassword
+      title: resetPasswordRequest
+      type: object
     _api_displayChatRoom_get_200_response_style:
       description: GUI styling properties
       example:

@@ -1,4 +1,3 @@
-
 $PROJECT_ROOT = "C:\Users\1\Desktop\First_semester\Advanced_software_enginering\starroll"
 
 

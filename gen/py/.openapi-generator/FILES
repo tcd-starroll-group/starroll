@@ -96,6 +96,8 @@ src/openapi_server/models/identify_stars_job_result.py
 src/openapi_server/models/identify_stars_job_result_identified_stars_inner.py
 src/openapi_server/models/pagination_query.py
 src/openapi_server/models/profile_and_token.py
+src/openapi_server/models/reset_password_request.py
+src/openapi_server/models/reset_password_send_code_request.py
 src/openapi_server/models/star_details.py
 src/openapi_server/models/star_meta.py
 src/openapi_server/models/token_response.py

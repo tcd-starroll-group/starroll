@@ -1,9 +1,11 @@
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import declarative_base, Session
 from sqlalchemy import JSON  # 或 from sqlalchemy.types import JSON
+from sqlalchemy.exc import SQLAlchemyError
 from typing import Dict, Any, Optional
 
 Base = declarative_base()
+
 
 class User(Base):
     """User table model definition"""
@@ -13,7 +15,8 @@ class User(Base):
     username = Column(String(50), unique=True, nullable=False)
     password = Column(String(255), nullable=False)
     email = Column(String(100), unique=True, nullable=True)
-    profile = Column(JSON, nullable=True, default=None, comment='User profile in JSON format')
+    profile = Column(JSON, nullable=True, default=None,
+                     comment='User profile in JSON format')
 
     # -------------------------------------------------------
     # Database Operations
@@ -36,7 +39,7 @@ class User(Base):
         db.commit()
         db.refresh(new_user)
         return new_user
-    
+
     @classmethod
     def delete_by_username(cls, db: Session, username: str):
         """Delete user by username"""
@@ -56,12 +59,12 @@ class User(Base):
             db.commit()
             return True
         return False
-    
+
     @classmethod
     def edit_profile(cls, db: Session, username: str, profile: Dict[str, Any]) -> Optional["User"]:
         """
         更新用户 profile。
-        
+
         :param db: SQLAlchemy 
         :param username: 
         :param profile: 
@@ -70,12 +73,26 @@ class User(Base):
         user = cls.get_by_username(db, username)
         if not user:
             return None
-        
+
         try:
             user.profile = profile
             db.commit()
-            db.refresh(user)  # 
+            db.refresh(user)
             return user
         except SQLAlchemyError as e:
-            db.rollback()  # 
-            raise ValueError(f"fail: {str(e)}")  # 
+            db.rollback()
+            raise ValueError(f"更新失败: {str(e)}")
+
+    @classmethod
+    def get_by_email(cls, db_session: Session, email: str):
+        return db_session.query(cls).filter(cls.email == email).first()
+
+    @classmethod
+    def update_password_by_email(cls, db: Session, email: str, new_password_hash: str):
+        """Update user password by email"""
+        user = cls.get_by_email(db, email)
+        if user:
+            user.password = new_password_hash
+            db.commit()
+            return True
+        return False
