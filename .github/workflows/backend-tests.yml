@@ -11,6 +11,17 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
+    env:
+      APP_ENV: ut
+      PYTHONPATH: "gen/py/src:."
+      JWT_SECRET: test_secret_key_for_github_actions_minimum_32_bytes_long
+      JWT_ALGORITHM: HS256
+      JWT_EXPIRE_HOURS: 2
+      MINIO_ENDPOINT: localhost:9000
+      MINIO_ACCESS_KEY: minioadmin
+      MINIO_SECRET_KEY: minioadmin
+      MINIO_SECURE: "false"
+
     steps:
       - uses: actions/checkout@v4
 
@@ -43,15 +54,6 @@ jobs:
           pip install -r backend/requirements.txt || echo "No requirements.txt found"
 
       - name: Run tests with coverage
-        env:
-          APP_ENV: ut
-          JWT_SECRET: test_secret_key_for_github_actions_minimum_32_bytes_long
-          JWT_ALGORITHM: HS256
-          JWT_EXPIRE_HOURS: 2
-          MINIO_ENDPOINT: localhost:9000
-          MINIO_ACCESS_KEY: minioadmin
-          MINIO_SECRET_KEY: minioadmin
-          MINIO_SECURE: "false"
         run: |
           pytest backend/ \
             --cov=backend \
