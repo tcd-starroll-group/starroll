@@ -1,9 +1,10 @@
-.PHONY: run-console
+.PHONY: run-console test-console run-api
+
 run-console:
 	export PYTHONPATH="gen/py/src:." && \
-	fastapi dev gen/py/src/openapi_server/main.py
+	uvicorn --reload --host 0.0.0.0 --port 8000 openapi_server.main:app
 
-.PHONY: test-console
 test-console:
 	export PYTHONPATH="gen/py/src:." && \
 	pytest backend/console/tests
+

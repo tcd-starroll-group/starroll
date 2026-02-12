@@ -482,6 +482,43 @@ paths:
                 $ref: "#/components/schemas/ErrorResponse"
           description: "Unauthorized: Incorrect username or password."
       summary: User login
+  /api/editProfile:
+    post:
+      description: update the user's profile information stored as JSON.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/profileAndToken"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserResponse"
+          description: Profile updated successfully.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Invalid request: For example, invalid JSON format."
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Unauthorized: Authentication required."
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: User not found.
+      security:
+      - bearerAuth: []
+      summary: ' update user profile'
   /api/userReg:
     post:
       description: Create an account with a new username and password.
@@ -692,6 +729,33 @@ paths:
       summary: Report a blog
 components:
   schemas:
+    profileAndToken:
+      properties:
+        username:
+          description: Username
+          example: user123
+          title: username
+          type: string
+        token:
+          description: The verified access token.
+          title: token
+          type: string
+        profile:
+          description: User profile in JSON format
+          example:
+            bio: Software engineer
+            location: New York
+            interests:
+            - coding
+            - reading
+          title: profile
+          type: object
+      required:
+      - profile
+      - token
+      - username
+      title: profileAndToken
+      type: object
     userCredentials:
       properties:
         userID:
