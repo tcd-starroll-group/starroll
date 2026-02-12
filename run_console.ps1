@@ -1,4 +1,4 @@
-# 替换为你的实际项目路径！！
+
 $PROJECT_ROOT = "C:\Users\1\Desktop\First_semester\Advanced_software_enginering\starroll"
 $env:PYTHONPATH = "$PROJECT_ROOT\gen\py\src;$PROJECT_ROOT"
 

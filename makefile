@@ -1,4 +1,4 @@
-.PHONY: run-console test-console run-api
+.PHONY: run-console test-console
 
 run-console:
 	export PYTHONPATH="gen/py/src:." && \

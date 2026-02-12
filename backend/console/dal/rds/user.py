@@ -62,10 +62,10 @@ class User(Base):
         """
         更新用户 profile。
         
-        :param db: SQLAlchemy 会话
-        :param username: 用户名
-        :param profile: 要更新的 profile 数据（JSON 兼容的 dict）
-        :return: 更新后的用户对象，或 None（如果用户不存在）
+        :param db: SQLAlchemy 
+        :param username: 
+        :param profile: 
+        :return: 
         """
         user = cls.get_by_username(db, username)
         if not user:
@@ -74,8 +74,8 @@ class User(Base):
         try:
             user.profile = profile
             db.commit()
-            db.refresh(user)  # 刷新以获取最新数据
+            db.refresh(user)  # 
             return user
         except SQLAlchemyError as e:
-            db.rollback()  # 回滚事务
-            raise ValueError(f"更新失败: {str(e)}")  # 或抛自定义异常
+            db.rollback()  # 
+            raise ValueError(f"fail: {str(e)}")  # 
