@@ -97,7 +97,62 @@ function convertHorizontalCoordinateToEquatorialCoordinatePro(
   return ans
 }
 
+function convertEquatorialCoordinateToCartesianCoordinate(
+  ec: model.EquatorialCoordinate,
+  radius: number = 100
+): model.CartesianCoordinate{
+   let ans: model.CartesianCoordinate = {
+    x: 0,
+    y: 0,
+    z: 0
+   }
+
+   const ra = degreesToRadians(ec.rightAscension)
+   const dec = degreesToRadians(ec.declination)
+
+  ans.x = radius * Math.cos(dec) * Math.cos(ra)
+  ans.y = radius * Math.cos(dec) * Math.sin(ra)
+  ans.z = radius * Math.sin(dec)
+
+  return ans
+
+}
+
+function convertEquatorialCoordinateToCartesianCoordinatePro(
+  ec: model.EquatorialCoordinate,
+  timestamp: number,
+  radius: number = 100,
+): model.CartesianCoordinate {
+
+  let ans: model.CartesianCoordinate = {
+    x: 0,
+    y: 0,
+    z: 0
+   }
+
+  const time = new astronomy.AstroTime(new Date(timestamp))
+  const raHours = ec.rightAscension / 15
+  const equator = new astronomy.EquatorEpoch(raHours, ec.declination, 1, time)
+  const vector = astronomy.VectorFromEquator(equator, time)
+
+  ans.x = vector.x * radius
+  ans.y = vector.y * radius
+  ans.z = vector.z * radius
+
+  return ans
+}
+
+function batchConvertEquatorialToCartesian(
+  stars: model.EquatorialCoordinate[],
+  radius: number = 100,
+): model.CartesianCoordinate[] {
+  return stars.map(star => convertEquatorialCoordinateToCartesianCoordinate(star, radius))
+}
+
 export {
   convertHorizontalCoordinateToEquatorialCoordinate,
   convertHorizontalCoordinateToEquatorialCoordinatePro,
+  convertEquatorialCoordinateToCartesianCoordinate,
+  convertEquatorialCoordinateToCartesianCoordinatePro,
+  batchConvertEquatorialToCartesian,
 }
