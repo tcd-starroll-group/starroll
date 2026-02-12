@@ -4,12 +4,14 @@ import BaseButton from '@/components/BaseButton.vue'
 import StarBackground from '@/components/StarBackground.vue'
 import '../assets/styles/common.css'
 import '../assets/styles/input.css'
+import { registerApi } from '@/api/auth';
+import { useRouter } from 'vue-router';
 
 // 1. TypeScript interface for Registration
 interface RegisterState {
   username: string;
   email: string;
-  pass: string;
+  password: string;
   confirmPass: string;
 }
 
@@ -17,22 +19,23 @@ interface RegisterState {
 const form = reactive<RegisterState>({
   username: '',
   email: '',
-  pass: '',
+  password: '',
   confirmPass: ''
 });
 
 const isLoading = ref(false);
 const errorMessage = ref('');
+const router = useRouter();
 
 // 3. Handle Registration Logic
 const handleRegister = async () => {
   // Basic Validations
-  if (!form.username || !form.email || !form.pass || !form.confirmPass) {
+  if (!form.username || !form.email || !form.password || !form.confirmPass) {
     errorMessage.value = "All cosmic coordinates are required.";
     return;
   }
 
-  if (form.pass !== form.confirmPass) {
+  if (form.password !== form.confirmPass) {
     errorMessage.value = "Access keys do not match.";
     return;
   }
@@ -41,10 +44,24 @@ const handleRegister = async () => {
   errorMessage.value = '';
 
   try {
-    // Simulate API Call to create user
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    console.log("Registered new pilot:", form.username);
-    // Redirect logic: router.push('/login')
+    const response = await registerApi({
+    username: form.username,
+    password: form.password,
+    email: form.email
+    });
+
+    localStorage.setItem('token', response.data.token);
+    console.log("Registration successful:", form.username);
+
+    if (response.status === 201) {
+      console.log("login! success");
+      router.push('/profile'); 
+    }
+    else if (response.status === 409) {
+      errorMessage.value = "Username taken.";
+    }
+
+
   } catch (err) {
     errorMessage.value = "Signal interference. Try a different Star ID.";
   } finally {
@@ -87,7 +104,7 @@ const handleRegister = async () => {
         <div class="input-group">
           <label>Access Key</label>
           <input 
-            v-model="form.pass" 
+            v-model="form.password" 
             type="password" 
             placeholder="Create password" 
             :disabled="isLoading"

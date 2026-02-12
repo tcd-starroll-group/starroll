@@ -41,19 +41,19 @@ const handleLogin = async () => {
     password: form.password
     });
 
-    localStorage.setItem('token', response.data.token);
-
     console.log("Logged in successfully:", form.username);
 
     if (response.status === 200) {
-      const { token } = response.data;
-      localStorage.setItem('token', token);
+      localStorage.setItem('token', response.data.token);
       console.log("login! success");
       router.push('/profile'); 
     }
+    else if (response.status === 401) {
+      errorMessage.value = "Invalid username or password.";
+    }
 
   } catch (err) {
-    errorMessage.value = "Unauthorized. Check your Star ID.";
+    errorMessage.value = "" + err;
   } finally {
     isLoading.value = false;
   }

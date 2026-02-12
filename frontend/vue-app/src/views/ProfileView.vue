@@ -1,7 +1,9 @@
 <script setup lang="ts">
-import { reactive } from 'vue'
+import { reactive, onMounted } from 'vue'
 import StarBackground from '@/components/StarBackground.vue'
 import BaseButton from '@/components/BaseButton.vue'
+import request from '@/utils/requests';
+import { getProfileApi } from '@/api/auth';
 
 // 1. TypeScript Interfaces for the Pilot
 interface PilotStats {
@@ -20,24 +22,37 @@ interface Discovery {
 
 // 2. Mock Data (This would eventually come from your Pinia store or API)
 const pilot = reactive({
-  name: 'Commander Nova',
-  email: 'nova@starroll.io',
-  avatar: 'https://api.dicebear.com/7.x/bottts/svg?seed=Nova',
+  name: 'Loading...',
+  email: '',
+  avatar: '',
   stats: {
-    starsDiscovered: 128,
-    totalScans: 450,
-    rank: 'Senior Navigator',
-    joinDate: '2024.03.15'
+    starsDiscovered: 0,
+    totalScans: 0,
+    rank: '---',
+    joinDate: ''
   } as PilotStats,
-  recentDiscoveries: [
-    { id: '1', name: 'Alpha Centauri', type: 'Triple Star System', date: '2 hours ago' },
-    { id: '2', name: 'Betelgeuse', type: 'Red Supergiant', date: 'Yesterday' },
-    { id: '3', name: 'Sirius B', type: 'White Dwarf', date: '3 days ago' }
-  ] as Discovery[]
+  recentDiscoveries: [] as Discovery[]
+})
+
+onMounted(async () => {
+  try {
+    // 发起请求，此时 requests.ts 里的拦截器会自动带上 token
+    const response = await getProfileApi();
+    
+    // 假设后端返回的数据结构与 pilot 对象一致
+    // 使用 Object.assign 将后端数据覆盖掉初始的模拟数据
+    if (response.status === 200) {
+      Object.assign(pilot, response.data);
+      console.log("档案同步成功:", pilot.name);
+    }
+  } catch (err) {
+    console.error("无法获取飞行员档案，请检查 Token 是否有效");
+  }
 })
 
 const handleLogout = () => {
   console.log("Logging out pilot...")
+  localStorage.removeItem('token')
   // router.push('/login')
 }
 </script>
@@ -106,7 +121,7 @@ const handleLogout = () => {
   gap: 24px;
   padding: 40px 20px;
   text-align: center;
-}
+}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
 
 /* Header Styles */
 .profile-header {
