@@ -7,7 +7,7 @@ import logging
 from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.triggers.interval import IntervalTrigger
 
-from identify_stars import identify_stars_handler
+from backend.cronjob.identify_stars import identify_stars_handler
 
 # Configuration logging
 logging.basicConfig(

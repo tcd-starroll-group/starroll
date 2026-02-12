@@ -50,7 +50,7 @@ def test_update_status_and_result(db_session: Session):
     job = IdentifyStarsJob.create(db_session, user_id=1, image_key="test.jpg")
 
     test_result = {"stars": [{"name": "Polaris", "ra": 37.95, "dec": 89.26}]}
-    updated = IdentifyStarsJob.update_status(
+    updated = IdentifyStarsJob.update(
         db_session, job.id, status="COMPLETED", result=test_result)
 
     assert updated is True
