@@ -34,8 +34,6 @@ export function useGroundObserver() {
         if (rendererInstance.value) return;
         
         console.log('🌍 初始化地面观测模式');
-        console.log('视角: 地球表面观测者');
-        console.log('坐标系: 地平坐标系');
         
         rendererInstance.value = new GroundObserverRenderer(container);
         
@@ -50,33 +48,21 @@ export function useGroundObserver() {
         }, 3000);
     };
     
-    /**
-     * 设置观测地点
-     */
+    // ... setLocation, setTime, refreshStats 保持不变 ...
+    
     const setLocation = (location: ObserverLocation) => {
         currentLocation.value = location;
-        if (rendererInstance.value) {
-            rendererInstance.value.setObserverLocation(location);
-        }
+        if (rendererInstance.value) rendererInstance.value.setObserverLocation(location);
     };
     
-    /**
-     * 设置观测时间
-     */
     const setTime = (time: Date) => {
         currentTime.value = time;
-        if (rendererInstance.value) {
-            rendererInstance.value.setObservationTime(time);
-        }
+        if (rendererInstance.value) rendererInstance.value.setObservationTime(time);
     };
     
-    /**
-     * 刷新统计
-     */
     const refreshStats = () => {
         if (rendererInstance.value) {
             stats.value = rendererInstance.value.getStats();
-            console.log('📊 地面观测统计:', stats.value);
         }
     };
     
@@ -111,12 +97,14 @@ export function useGroundObserver() {
     };
     
     /**
-     * 获取当前相机朝向（调试用）
+     * 获取当前相机朝向
+     * 这个循环会从渲染器获取修正后的方位角
      */
     const startOrientationTracking = () => {
         const update = () => {
             if (!arModeEnabled.value || !rendererInstance.value) return;
             
+            // 这里获取到的是 GroundObserverRenderer 中修正过的真实方位角
             const orientation = rendererInstance.value.getCameraOrientation();
             cameraOrientation.value = orientation;
             
@@ -125,81 +113,38 @@ export function useGroundObserver() {
         update();
     };
     
-    /**
-     * 切换星座连线
-     */
+    // ... 其他方法保持不变 ...
     const toggleConstellationLines = () => {
         showConstellationLines.value = !showConstellationLines.value;
-        if (rendererInstance.value) {
-            rendererInstance.value.setConstellationLinesVisible(showConstellationLines.value);
-        }
+        if (rendererInstance.value) rendererInstance.value.setConstellationLinesVisible(showConstellationLines.value);
     };
     
-    /**
-     * 切换星星标签
-     */
     const toggleStarLabels = () => {
         showStarLabels.value = !showStarLabels.value;
-        if (rendererInstance.value) {
-            rendererInstance.value.setStarLabelsVisible(showStarLabels.value);
-        }
+        if (rendererInstance.value) rendererInstance.value.setStarLabelsVisible(showStarLabels.value);
     };
     
-    /**
-     * 请求用户位置
-     */
     const requestUserLocation = async () => {
-        if (!rendererInstance.value || isRequestingLocation.value) {
-            return false;
-        }
-        
+        if (!rendererInstance.value || isRequestingLocation.value) return false;
         isRequestingLocation.value = true;
-        
         try {
             const location = await rendererInstance.value.requestUserLocation();
-            
-            if (location) {
-                currentLocation.value = location;
-                refreshStats();
-                return true;
-            }
-            
+            if (location) { currentLocation.value = location; refreshStats(); return true; }
             return false;
-        } finally {
-            isRequestingLocation.value = false;
-        }
+        } finally { isRequestingLocation.value = false; }
     };
     
-    /**
-     * 使用当前位置和时间
-     */
     const useCurrentLocationAndTime = async () => {
-        if (!rendererInstance.value) {
-            return false;
-        }
-        
+        if (!rendererInstance.value) return false;
         isRequestingLocation.value = true;
-        
         try {
             const success = await rendererInstance.value.useCurrentLocationAndTime();
-            
-            if (success) {
-                currentTime.value = new Date();
-                refreshStats();
-            }
-            
+            if (success) { currentTime.value = new Date(); refreshStats(); }
             return success;
-        } finally {
-            isRequestingLocation.value = false;
-        }
+        } finally { isRequestingLocation.value = false; }
     };
     
-    /**
-     * 关闭星星信息面板
-     */
-    const closeStarInfo = () => {
-        selectedStar.value = null;
-    };
+    const closeStarInfo = () => { selectedStar.value = null; };
     
     return {
         init,

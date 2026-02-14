@@ -107,7 +107,7 @@ export interface ObserverLocation {
 export const OBSERVER_LOCATIONS = {
     // 中国主要城市
     BEIJING: { latitude: 39.9, longitude: 116.4, name: '北京' },
-    SHANGHAI: { latitude: 31.2, longitude: 121.5, name: '上海' },
+    SHANGHAI: { latitude: 53.20, longitude: 6.15, name: 'Dublin' },
     GUANGZHOU: { latitude: 23.1, longitude: 113.3, name: '广州' },
     
     // 其他地点

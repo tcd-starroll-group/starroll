@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, onUnmounted } from 'vue';
 // 使用地面观测者模式（为 AR 准备）
 import { useGroundObserver } from './composables/useGroundObserver';
+import { sensorManager, type SensorData } from '@/core/Tensors/sensor'; // [新增] 引入 sensorManager
 import TopBar from './components/TopBar.vue';
 import InfoPanel from './components/InfoPanel.vue';
 import SensorDebugPanel from './components/SensorDebugPanel.vue';
@@ -35,6 +36,55 @@ const {
 // 检测是否为移动设备
 const isMobile = /Android|iPhone|iPad/i.test(navigator.userAgent);
 const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+// [新增] 指南针相关状态
+const showCompass = ref(false);
+const compassHeading = ref(0);
+const compassDirection = ref('--');
+
+// [新增] 获取方向标签
+const getDirectionLabel = (azimuth: number): string => {
+    const directions = ['北', '东北', '东', '东南', '南', '西南', '西', '西北'];
+    const index = Math.round(azimuth / 45) % 8;
+    return directions[index];
+};
+
+// [新增] 处理指南针数据更新
+const handleCompassUpdate = (data: SensorData) => {
+    const orientation = sensorManager.getCameraOrientation(data);
+    if (orientation) {
+        compassHeading.value = orientation.azimuth;
+        compassDirection.value = getDirectionLabel(orientation.azimuth);
+    }
+};
+
+// [新增] 切换指南针功能
+const toggleCompass = async () => {
+    if (showCompass.value) {
+        // 关闭指南针
+        showCompass.value = false;
+        sensorManager.removeListener(handleCompassUpdate);
+        // 如果 AR 模式未开启，可以停止监听以省电
+        if (!arModeEnabled.value) {
+            sensorManager.stopListening();
+        }
+    } else {
+        // 开启指南针
+        // 1. 请求权限
+        if (sensorManager.getPermissionState() === 'prompt') {
+            const result = await sensorManager.requestPermission();
+            if (result === 'denied') {
+                alert('需要传感器权限才能显示指南针');
+                return;
+            }
+        }
+        
+        // 2. 开启监听
+        sensorManager.addListener(handleCompassUpdate);
+        sensorManager.startListening();
+        showCompass.value = true;
+    }
+};
 
 onMounted(async () => {
     if (containerRef.value) {
@@ -70,6 +120,11 @@ onMounted(async () => {
             }
         }, 2000);
     }
+});
+
+// 组件卸载时清理
+onUnmounted(() => {
+    sensorManager.removeListener(handleCompassUpdate);
 });
 
 // 点击反馈状态
@@ -150,13 +205,6 @@ const handleUseCurrentLocation = async () => {
     }
 };
 
-// 获取方向标签
-const getDirectionLabel = (azimuth: number): string => {
-    const directions = ['北', '东北', '东', '东南', '南', '西南', '西', '西北'];
-    const index = Math.round(azimuth / 45) % 8;
-    return directions[index];
-};
-
 // 切换 AR 模式
 const toggleARMode = async () => {
     console.log('🔘 AR 按钮被点击');
@@ -218,16 +266,26 @@ const toggleARMode = async () => {
 
 <template>
   <div class="starroll-app">
-    <!-- 3D Canvas Container -->
     <div ref="containerRef" class="canvas-container"></div>
     
-    <!-- UI Overlay -->
     <div class="ui-layer">
-        <!-- AR模式下只显示最简洁的UI -->
         <TopBar v-if="!arModeEnabled" />
         <InfoPanel v-if="!arModeEnabled" />
         
-        <!-- 观测者信息（AR模式下隐藏） -->
+        <div v-if="showCompass" class="real-compass-display">
+            <div class="compass-ring" :style="{ transform: `rotate(${-compassHeading}deg)` }">
+                <span class="mark-n">N</span>
+                <span class="mark-e">E</span>
+                <span class="mark-s">S</span>
+                <span class="mark-w">W</span>
+                <div class="compass-pointer"></div>
+            </div>
+            <div class="compass-text">
+                <div class="compass-value">{{ compassHeading.toFixed(0) }}°</div>
+                <div class="compass-label">{{ compassDirection }} (磁北)</div>
+            </div>
+        </div>
+
         <div class="observer-info" v-if="!arModeEnabled">
           <div class="info-row">
             <span class="icon">📍</span>
@@ -248,7 +306,6 @@ const toggleARMode = async () => {
           </button>
         </div>
         
-        <!-- iOS 欢迎提示（首次访问） -->
         <div v-if="showWelcomeHint && isMobile" class="welcome-hint" @click="showWelcomeHint = false">
           <div class="hint-content">
             <div class="hint-icon">📱</div>
@@ -263,8 +320,12 @@ const toggleARMode = async () => {
           </div>
         </div>
         
-        <!-- AR 控制面板 -->
         <div class="ar-panel" :class="{ 'highlight': showWelcomeHint && isMobile }">
+          
+          <button @click="toggleCompass" class="compass-toggle-btn" :class="{ active: showCompass }">
+              🧭 {{ showCompass ? '关闭指南针' : '打开真实指南针' }}
+          </button>
+
           <button 
             @click="toggleARMode" 
             class="ar-button" 
@@ -287,13 +348,11 @@ const toggleARMode = async () => {
             </span>
           </button>
           
-          <!-- 点击测试按钮 -->
           <button @click="testButtonClick" class="test-button" v-if="!arModeEnabled">
             🔍 测试按钮点击
           </button>
           <div class="hint-text">{{ arModeEnabled ? '转动设备环顾星空' : '点击按钮获取传感器权限' }}</div>
           
-          <!-- AR模式下默认隐藏控制，保持画面简洁 -->
           <div class="display-controls" v-if="!arModeEnabled">
             <div class="control-item">
               <span class="control-label">星座连线</span>
@@ -311,25 +370,21 @@ const toggleARMode = async () => {
             </div>
           </div>
           
-          <!-- 简洁的方向指示（AR模式） -->
           <div v-if="arModeEnabled" class="ar-compass">
             <div class="compass-value">{{ Math.round(cameraOrientation.azimuth) }}°</div>
             <div class="compass-label">{{ getDirectionLabel(cameraOrientation.azimuth) }}</div>
           </div>
         </div>
         
-        <!-- Bottom Horizon Line -->
         <div class="horizon-line">
           <div class="horizon-label">地平线</div>
         </div>
         
-        <!-- 传感器调试面板 -->
         <SensorDebugPanel 
           v-if="showDebugPanel" 
           @close="showDebugPanel = false"
         />
         
-        <!-- 星星信息面板 -->
         <StarInfoPanel 
           :star-info="selectedStar"
           @close="closeStarInfo"
@@ -372,6 +427,97 @@ const toggleARMode = async () => {
 /* Re-enable pointer events for UI elements */
 .ui-layer > * {
     pointer-events: auto;
+}
+
+/* [新增] 指南针开关按钮样式 */
+.compass-toggle-btn {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: white;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.compass-toggle-btn.active {
+    background: rgba(255, 215, 0, 0.2);
+    border-color: rgba(255, 215, 0, 0.5);
+    color: #FFD700;
+}
+
+/* [新增] 真实指南针显示面板 */
+.real-compass-display {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 200px;
+    background: rgba(0, 0, 10, 0.8);
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    pointer-events: none;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+}
+
+.compass-ring {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    transition: transform 0.1s linear; /* 平滑旋转 */
+}
+
+.mark-n, .mark-e, .mark-s, .mark-w {
+    position: absolute;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.mark-n { top: 10px; left: 50%; transform: translateX(-50%); color: #ff4444; }
+.mark-e { right: 10px; top: 50%; transform: translateY(-50%); color: white; }
+.mark-s { bottom: 10px; left: 50%; transform: translateX(-50%); color: white; }
+.mark-w { left: 10px; top: 50%; transform: translateY(-50%); color: white; }
+
+/* 固定的指针 */
+.compass-pointer {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0; 
+    height: 0; 
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 15px solid #FFD700;
+    z-index: 101;
+}
+
+.compass-text {
+    text-align: center;
+    z-index: 102;
+}
+
+.compass-value {
+    font-size: 32px;
+    font-weight: 700;
+    color: #FFD700;
+    font-family: monospace;
+}
+
+.compass-label {
+    font-size: 12px;
+    color: #aaa;
 }
 
 .horizon-line {
@@ -816,4 +962,3 @@ input:checked + .slider:before {
     letter-spacing: 2px;
 }
 </style>
-
