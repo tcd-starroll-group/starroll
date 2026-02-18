@@ -36,6 +36,10 @@ class Settings:
     minio_secret_key: str = os.getenv("MINIO_SECRET_KEY")
     minio_secure: bool = _parse_bool(os.getenv("MINIO_SECURE"), default=False)
 
+    # Astronomy Net Configuration
+    astronomy_net_endpoint: str = os.getenv(
+        "ASTRONOMY_NET_ENDPOINT", "http://127.0.0.1:8001")
+
     @property
     def sqlalchemy_database_url(self) -> str:
         """Generate SQLAlchemy database URL from config parameters."""

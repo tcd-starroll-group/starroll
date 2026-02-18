@@ -8,6 +8,7 @@ CREATE TABLE `identify_stars_jobs`
     `updated_at`   timestamp           NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Last update timestamp',
     `image_key`    varchar(512)        NOT NULL COMMENT 'Image storage key',
     `status`       varchar(16)         NOT NULL COMMENT 'Job status',
+    `astronomy_net_job_id` bigint(20) unsigned DEFAULT NULL COMMENT 'astronomy.net job id',
     `result`       JSON                DEFAULT NULL COMMENT 'Job result',
     `is_deleted`   tinyint(1)          NOT NULL DEFAULT 0 COMMENT 'Soft delete flag (0: Active, 1: Deleted)',
     PRIMARY KEY (`id`)
