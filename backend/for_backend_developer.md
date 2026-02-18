@@ -143,7 +143,7 @@ We use **Pytest** combined with an **In-Memory SQLite** database to ensure tests
 
 ## 5. Deployment & Configuration
 
-这里是搭建测试环境的指南。后端依赖的服务有。
+This section provides a guide to setting up the test environment. The backend depends on the following services:
 
 - mysql
 - minio
@@ -153,11 +153,11 @@ We use **Pytest** combined with an **In-Memory SQLite** database to ensure tests
 
 ### Environment Variables (`.env`)
 
-Create a `.env` file in the project root directory. 参考 `backend/.env.example` 的格式，将各个值修改为你测试环境的值。
+Create a `.env` file in the project root directory. Refer to the format in `backend/.env.example` and modify the values to match your test environment.
 
 ### mysql
 
-你可以用以下命令快速拉起一个 mysql 服务
+You can quickly start a MySQL service using the following command:
 
 ```bash
 docker run -d \
