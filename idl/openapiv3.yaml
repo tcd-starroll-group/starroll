@@ -915,6 +915,45 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
 
+  /api/editProfile:
+    post:
+      summary: " update user profile"
+      description: "update the user's profile information stored as JSON."
+      security:
+        - bearerAuth: []  # Assuming authentication is required, adjust if needed
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/profileAndToken"
+      responses:
+        "200":
+          description: "Profile updated successfully."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserResponse"
+        "400":
+          description: "Invalid request: For example, invalid JSON format."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "401":
+          description: "Unauthorized: Authentication required."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "404":
+          description: "User not found."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+
   /api/userReg:
     post:
       summary: "User register"
@@ -1212,6 +1251,25 @@ paths:
 # Reused schemas
 components:
   schemas:
+    profileAndToken:
+      type: object
+      properties:
+        username:
+          type: string
+          description: "Username"
+          example: "user123"
+        token:
+          type: string
+          description: "The verified access token."
+        profile:
+          type: object
+          description: "User profile in JSON format"
+          example: { "bio": "Software engineer", "location": "New York", "interests": ["coding", "reading"] }
+      required:
+        - username
+        - profile
+        - token
+
     userCredentials:
       type: object
       properties:

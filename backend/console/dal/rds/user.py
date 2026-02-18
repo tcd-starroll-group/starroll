@@ -1,5 +1,7 @@
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import declarative_base, Session
+from sqlalchemy import JSON  # 或 from sqlalchemy.types import JSON
+from typing import Dict, Any, Optional
 
 Base = declarative_base()
 
@@ -11,6 +13,7 @@ class User(Base):
     username = Column(String(50), unique=True, nullable=False)
     password = Column(String(255), nullable=False)
     email = Column(String(100), unique=True, nullable=True)
+    profile = Column(JSON, nullable=True, default=None, comment='User profile in JSON format')
 
     # -------------------------------------------------------
     # Database Operations
@@ -53,3 +56,26 @@ class User(Base):
             db.commit()
             return True
         return False
+    
+    @classmethod
+    def edit_profile(cls, db: Session, username: str, profile: Dict[str, Any]) -> Optional["User"]:
+        """
+        更新用户 profile。
+        
+        :param db: SQLAlchemy 
+        :param username: 
+        :param profile: 
+        :return: 
+        """
+        user = cls.get_by_username(db, username)
+        if not user:
+            return None
+        
+        try:
+            user.profile = profile
+            db.commit()
+            db.refresh(user)  # 
+            return user
+        except SQLAlchemyError as e:
+            db.rollback()  # 
+            raise ValueError(f"fail: {str(e)}")  # 

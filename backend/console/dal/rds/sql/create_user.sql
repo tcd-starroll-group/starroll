@@ -9,6 +9,7 @@ CREATE TABLE `user`
     `created_at`   timestamp           NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Creation timestamp',
     `updated_at`   timestamp           NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Last update timestamp',
     `is_deleted`   tinyint(1)          NOT NULL DEFAULT 0 COMMENT 'Soft delete flag (0: Active, 1: Deleted)',
+    `profile`      json                DEFAULT NULL COMMENT 'User profile in JSON format',
     
     PRIMARY KEY (`id`),
     UNIQUE KEY `uk_username` (`username`),

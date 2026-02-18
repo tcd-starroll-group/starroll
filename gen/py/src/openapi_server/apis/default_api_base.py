@@ -64,6 +64,7 @@ from openapi_server.models.blog import Blog
 from openapi_server.models.change_password_request import ChangePasswordRequest
 from openapi_server.models.error_response import ErrorResponse
 from openapi_server.models.gps import GPS
+from openapi_server.models.profile_and_token import ProfileAndToken
 from openapi_server.models.star_details import StarDetails
 from openapi_server.models.token_response import TokenResponse
 from openapi_server.models.user_auth import UserAuth
@@ -293,6 +294,14 @@ class BaseDefaultApi:
         user_auth: UserAuth,
     ) -> TokenResponse:
         """Use username and password to authentication, return a token if success."""
+        ...
+
+
+    async def api_edit_profile_post(
+        self,
+        profile_and_token: ProfileAndToken,
+    ) -> UserResponse:
+        """update the user&#39;s profile information stored as JSON."""
         ...
 
 

@@ -85,6 +85,7 @@ from openapi_server.models.blog import Blog
 from openapi_server.models.change_password_request import ChangePasswordRequest
 from openapi_server.models.error_response import ErrorResponse
 from openapi_server.models.gps import GPS
+from openapi_server.models.profile_and_token import ProfileAndToken
 from openapi_server.models.star_details import StarDetails
 from openapi_server.models.token_response import TokenResponse
 from openapi_server.models.user_auth import UserAuth
@@ -620,6 +621,27 @@ async def api_user_login_post(
     if not BaseDefaultApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")
     return await BaseDefaultApi.subclasses[0]().api_user_login_post(user_auth)
+
+
+@router.post(
+    "/api/editProfile",
+    responses={
+        200: {"model": UserResponse, "description": "Profile updated successfully."},
+        400: {"model": ErrorResponse, "description": "Invalid request: For example, invalid JSON format."},
+        401: {"model": ErrorResponse, "description": "Unauthorized: Authentication required."},
+        404: {"model": ErrorResponse, "description": "User not found."},
+    },
+    tags=["default"],
+    summary=" update user profile",
+    response_model_by_alias=True,
+)
+async def api_edit_profile_post(
+    profile_and_token: ProfileAndToken = Body(None, description=""),
+) -> UserResponse:
+    """update the user&#39;s profile information stored as JSON."""
+    if not BaseDefaultApi.subclasses:
+        raise HTTPException(status_code=500, detail="Not implemented")
+    return await BaseDefaultApi.subclasses[0]().api_edit_profile_post(profile_and_token)
 
 
 @router.post(
