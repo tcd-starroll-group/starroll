@@ -58,3 +58,6 @@ class StarrollApiImpl(BaseDefaultApi):
 
     async def api_forgot_password_reset_post(self, forgot_password_reset_request: ForgotPasswordResetRequest):
         return await api_forgot_password_reset_post_handler(forgot_password_reset_request)
+    
+    async def api_get_identify_stars_job_result_post(self, api_get_identify_stars_job_result_post_request):
+        return await super().api_get_identify_stars_job_result_post(api_get_identify_stars_job_result_post_request)
