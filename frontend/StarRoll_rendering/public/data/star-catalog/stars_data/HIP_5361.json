@@ -1,0 +1,13 @@
+{
+    "hip": 5361,
+    "name": "HD 6676 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+5361",
+    "alpha": 17.679962871184998,
+    "delta": 58.448378772003664,
+    "mag": 5.77,
+    "pmRA": 8.314554631028543e-08,
+    "pmDE": -6.006841508947151e-08,
+    "bvColor": -0.019,
+    "distance": 567.304347826087
+}

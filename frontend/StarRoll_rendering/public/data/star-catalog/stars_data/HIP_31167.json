@@ -1,0 +1,13 @@
+{
+    "hip": 31167,
+    "name": "HD 46304 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+31167",
+    "alpha": 98.52287245761579,
+    "delta": -5.897150669552354,
+    "mag": 5.6,
+    "pmRA": -4.217879025652962e-09,
+    "pmDE": -2.0255515596756416e-07,
+    "bvColor": 0.256,
+    "distance": 141.02896670990057
+}

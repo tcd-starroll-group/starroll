@@ -1,0 +1,13 @@
+{
+    "hip": 81992,
+    "name": "HD 150894 -- Variable Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+81992",
+    "alpha": 251.79690464273884,
+    "delta": -28.571123458734224,
+    "mag": 5.99,
+    "pmRA": -1.3671745807288913e-07,
+    "pmDE": -2.2786243012148192e-09,
+    "bvColor": 0.103,
+    "distance": 755.0925925925925
+}

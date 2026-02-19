@@ -1,0 +1,13 @@
+{
+    "hip": 96481,
+    "name": "HD 185018",
+    "description": "HD 185018 is supergiant star in the equatorial constellation of Aquila.",
+    "url": "https://en.wikipedia.org/wiki/HD_185018",
+    "alpha": 294.6295851679397,
+    "delta": 11.353404668927777,
+    "mag": 5.98,
+    "pmRA": 4.44089331896335e-08,
+    "pmDE": 1.5562519163616104e-08,
+    "bvColor": 0.881,
+    "distance": 1140.5594405594406
+}

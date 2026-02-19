@@ -1,0 +1,13 @@
+{
+    "hip": 51979,
+    "name": "HD 92036",
+    "description": "HD 92036 is a single star in the equatorial constellation of Hydra. Its apparent magnitude is 4.87. This is an aging red giant star on the asymptotic giant branch with a stellar classification of M1III:Ba0.5.\n\n\n== References ==",
+    "url": "https://en.wikipedia.org/wiki/HD_92036",
+    "alpha": 159.71734759022917,
+    "delta": -27.594129901318645,
+    "mag": 4.87,
+    "pmRA": -5.477424969175538e-07,
+    "pmDE": 1.0433190417477214e-07,
+    "bvColor": 1.626,
+    "distance": 479.7058823529412
+}

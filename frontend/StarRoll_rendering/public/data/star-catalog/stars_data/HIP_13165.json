@@ -1,0 +1,13 @@
+{
+    "hip": 13165,
+    "name": "Pi Arietis",
+    "description": "Pi Arietis is a multiple star system in the northern constellation of Aries. Its name is a Bayer designation that is Latinized from π Arietis, and abbreviated Pi Ari or π Ari.",
+    "url": "https://en.wikipedia.org/wiki/Pi_Arietis",
+    "alpha": 42.81092659003284,
+    "delta": 17.607003679771026,
+    "mag": 5.26,
+    "pmRA": 1.7695699360498065e-08,
+    "pmDE": -7.08312788101032e-08,
+    "bvColor": -0.066,
+    "distance": 602.9574861367837
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 73745,
+    "name": "Psi Boötis",
+    "description": "Psi Boötis is a single, orange-hued star in the northern constellation of Boötes. Its name is a Bayer designation that is Latinized from ψ Boötis, and abbreviated Psi Boo or ψ Boo.",
+    "url": "https://en.wikipedia.org/wiki/Psi_Bo%C3%B6tis",
+    "alpha": 226.48542748061055,
+    "delta": 26.813648856146184,
+    "mag": 4.52,
+    "pmRA": -8.547750011642228e-07,
+    "pmDE": -2.1913578386151026e-08,
+    "bvColor": 1.24,
+    "distance": 250.15337423312886
+}

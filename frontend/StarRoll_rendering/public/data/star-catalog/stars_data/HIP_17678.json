@@ -1,0 +1,13 @@
+{
+    "hip": 17678,
+    "name": "* gam Hyi -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+17678",
+    "alpha": 56.68358034160196,
+    "delta": -74.13180470867515,
+    "mag": 3.26,
+    "pmRA": 2.4759434694264004e-07,
+    "pmDE": 5.588447302149621e-07,
+    "bvColor": 1.59,
+    "distance": 214.18253447143792
+}

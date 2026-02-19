@@ -1,0 +1,13 @@
+{
+    "hip": 63608,
+    "name": "Epsilon Virginis",
+    "description": "Epsilon Virginis (ε Virginis, abbreviated Epsilon Vir, ε Vir), formally named Vindemiatrix , is a star in the zodiac constellation of Virgo. The apparent visual magnitude of this star is +2.8, making it the third-brightest member of Virgo.",
+    "url": "https://en.wikipedia.org/wiki/Epsilon_Virginis",
+    "alpha": 195.97833937147453,
+    "delta": 10.772684470851235,
+    "mag": 2.85,
+    "pmRA": -1.333480029891779e-06,
+    "pmDE": 9.676881074946339e-08,
+    "bvColor": 0.934,
+    "distance": 102.25705329153605
+}

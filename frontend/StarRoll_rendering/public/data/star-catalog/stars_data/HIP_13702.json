@@ -1,0 +1,13 @@
+{
+    "hip": 13702,
+    "name": "Rho3 Arietis",
+    "description": "Rho3 Arietis is a star in the northern constellation of Aries. Its name is a Bayer designation that is Latinized from ρ3 Arietis, and abbreviated Rho3 Ari or ρ3 Ari.",
+    "url": "https://en.wikipedia.org/wiki/Rho3_Arietis",
+    "alpha": 44.60153363796028,
+    "delta": 18.160168262880642,
+    "mag": 5.58,
+    "pmRA": 1.3634415153843483e-06,
+    "pmDE": -1.0609662597401086e-06,
+    "bvColor": 0.471,
+    "distance": 115.5099150141643
+}

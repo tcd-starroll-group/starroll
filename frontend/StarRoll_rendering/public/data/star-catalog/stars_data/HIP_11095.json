@@ -1,0 +1,13 @@
+{
+    "hip": 11095,
+    "name": "* kap Hyi -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+11095",
+    "alpha": 35.780006341454026,
+    "delta": -73.48834383329428,
+    "mag": 5.99,
+    "pmRA": -3.9555948241727046e-07,
+    "pmDE": 5.7401939843369064e-08,
+    "bvColor": 1.088,
+    "distance": 317.9337231968811
+}

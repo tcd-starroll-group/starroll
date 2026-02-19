@@ -1,0 +1,13 @@
+{
+    "hip": 99675,
+    "name": "* 31 Cyg -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+99675",
+    "alpha": 303.6821630716306,
+    "delta": 46.84850450333189,
+    "mag": 3.8,
+    "pmRA": 2.0362174606600514e-08,
+    "pmDE": 9.066015836748323e-09,
+    "bvColor": 1.27,
+    "distance": 1353.5269709543568
+}

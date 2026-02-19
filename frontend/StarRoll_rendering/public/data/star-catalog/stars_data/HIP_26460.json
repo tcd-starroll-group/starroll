@@ -1,0 +1,13 @@
+{
+    "hip": 26460,
+    "name": "* nu.02 Col -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+26460",
+    "alpha": 84.77630352039678,
+    "delta": -28.67116514240096,
+    "mag": 5.28,
+    "pmRA": -1.8418071745351275e-07,
+    "pmDE": 2.0643366541644042e-07,
+    "bvColor": 0.486,
+    "distance": 138.57264231096008
+}

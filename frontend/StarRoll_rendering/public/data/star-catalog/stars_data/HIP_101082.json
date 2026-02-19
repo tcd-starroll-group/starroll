@@ -1,0 +1,13 @@
+{
+    "hip": 101082,
+    "name": "* 74 Dra -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+101082",
+    "alpha": 306.817124518435,
+    "delta": 81.20984192618124,
+    "mag": 5.96,
+    "pmRA": 3.2506757318394387e-07,
+    "pmDE": 1.0746864869155085e-06,
+    "bvColor": 0.942,
+    "distance": 205.41561712846345
+}

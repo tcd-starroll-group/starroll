@@ -1,0 +1,13 @@
+{
+    "hip": 65271,
+    "name": "* J Cen -- Double or Multiple Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+65271",
+    "alpha": 201.22963595527366,
+    "delta": -61.16960638424707,
+    "mag": 4.52,
+    "pmRA": -1.7210885679388529e-07,
+    "pmDE": -7.364319816053851e-08,
+    "bvColor": -0.141,
+    "distance": 354.5652173913044
+}

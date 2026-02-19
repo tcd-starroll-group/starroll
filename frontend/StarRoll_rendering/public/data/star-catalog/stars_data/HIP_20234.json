@@ -1,0 +1,13 @@
+{
+    "hip": 20234,
+    "name": "* b02 Per -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+20234",
+    "alpha": 65.71162941552632,
+    "delta": 51.00165448946885,
+    "mag": 5.55,
+    "pmRA": 2.763437982324355e-09,
+    "pmDE": -3.665191429188092e-08,
+    "bvColor": -0.031,
+    "distance": 1190.5109489051094
+}

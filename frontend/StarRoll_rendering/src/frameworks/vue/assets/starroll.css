@@ -1,0 +1,61 @@
+/* 极简宇宙风格全局样式 */
+:root {
+  --sr-bg-glass: rgba(10, 15, 30, 0.65);
+  --sr-border-glass: rgba(255, 255, 255, 0.12);
+  --sr-text-primary: #ffffff;
+  --sr-text-secondary: rgba(255, 255, 255, 0.6);
+  --sr-accent-color: #44aaff;
+  --sr-font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.sr-glass-panel {
+  background: var(--sr-bg-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--sr-border-glass);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  color: var(--sr-text-primary);
+  font-family: var(--sr-font-family);
+}
+
+.sr-glass-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--sr-border-glass);
+  color: var(--sr-text-primary);
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.sr-glass-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: var(--sr-accent-color);
+  text-shadow: 0 0 8px var(--sr-accent-color);
+}
+
+.sr-title {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--sr-text-secondary);
+  margin-bottom: 8px;
+}
+
+.sr-value {
+  font-size: 24px;
+  font-weight: 300;
+  letter-spacing: -0.5px;
+}
+
+/* 滚动条隐藏但可滚动 */
+.sr-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+.sr-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+}
+

@@ -1,0 +1,13 @@
+{
+    "hip": 95188,
+    "name": "* rho02 Sgr -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+95188",
+    "alpha": 290.96895352314453,
+    "delta": -18.24047369042499,
+    "mag": 5.84,
+    "pmRA": 4.961583212474991e-07,
+    "pmDE": -4.5068279795942463e-07,
+    "bvColor": 1.062,
+    "distance": 358.85588558855886
+}

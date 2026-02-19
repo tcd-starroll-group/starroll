@@ -1,0 +1,13 @@
+{
+    "hip": 87108,
+    "name": "* gam Oph -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+87108",
+    "alpha": 267.4101210801411,
+    "delta": 2.69724439631215,
+    "mag": 3.75,
+    "pmRA": -1.1223436717685759e-07,
+    "pmDE": -3.6419203724948345e-07,
+    "bvColor": 0.043,
+    "distance": 94.77048227774549
+}

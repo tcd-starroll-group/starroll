@@ -1,0 +1,13 @@
+{
+    "hip": 44511,
+    "name": "* c Vel -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+44511",
+    "alpha": 136.3398549458552,
+    "delta": -47.23774558080865,
+    "mag": 3.75,
+    "pmRA": -2.2698976549548475e-07,
+    "pmDE": -4.639666928218259e-08,
+    "bvColor": 1.174,
+    "distance": 309.19431279620846
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 83196,
+    "name": "* 26 Oph -- Double or Multiple Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+83196",
+    "alpha": 255.57377314161943,
+    "delta": -25.0386591631071,
+    "mag": 5.74,
+    "pmRA": 2.38237442897226e-07,
+    "pmDE": -2.661142295610243e-07,
+    "bvColor": 0.407,
+    "distance": 108.55241264559068
+}

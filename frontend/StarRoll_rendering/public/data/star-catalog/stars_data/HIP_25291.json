@@ -1,0 +1,13 @@
+{
+    "hip": 25291,
+    "name": "HD 35239 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+25291",
+    "alpha": 81.72265006069462,
+    "delta": 31.171964053780012,
+    "mag": 5.94,
+    "pmRA": -5.143873156572177e-08,
+    "pmDE": -3.0058448228791236e-08,
+    "bvColor": 0.034,
+    "distance": 821.6624685138538
+}

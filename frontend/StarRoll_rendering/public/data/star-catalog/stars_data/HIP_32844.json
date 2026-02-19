@@ -1,0 +1,13 @@
+{
+    "hip": 32844,
+    "name": "* psi07 Aur -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+32844",
+    "alpha": 103.30623134499804,
+    "delta": 41.73660415984317,
+    "mag": 4.99,
+    "pmRA": -1.1606439525762292e-07,
+    "pmDE": -6.691398426673816e-07,
+    "bvColor": 1.256,
+    "distance": 364.4692737430168
+}

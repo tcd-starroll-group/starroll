@@ -1,0 +1,13 @@
+{
+    "hip": 50933,
+    "name": "HR 4072",
+    "description": "HR 4072 is a binary star system in the northern circumpolar constellation of Ursa Major. It has the variable star designation ET Ursae Majoris, abbreviated ET UMa, while HR 4072 is the system's designation from the Bright Star Catalogue.",
+    "url": "https://en.wikipedia.org/wiki/HR_4072",
+    "alpha": 156.64951065111433,
+    "delta": 65.38865902284908,
+    "mag": 4.94,
+    "pmRA": -4.329386172308156e-08,
+    "pmDE": -1.0098668977511632e-07,
+    "bvColor": -0.052,
+    "distance": 300.92250922509226
+}

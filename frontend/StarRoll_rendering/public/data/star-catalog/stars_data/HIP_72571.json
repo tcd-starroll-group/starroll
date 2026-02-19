@@ -1,0 +1,13 @@
+{
+    "hip": 72571,
+    "name": "* E Hya -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+72571",
+    "alpha": 223.08695715120004,
+    "delta": -28.103036843122844,
+    "mag": 4.42,
+    "pmRA": -1.1508022348497057e-06,
+    "pmDE": -3.023782929080176e-07,
+    "bvColor": 1.366,
+    "distance": 305.4307116104869
+}

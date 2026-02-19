@@ -1,0 +1,13 @@
+{
+    "hip": 102485,
+    "name": "* psi Cap -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+102485",
+    "alpha": 312.0378874465214,
+    "delta": -25.142845130588928,
+    "mag": 4.13,
+    "pmRA": -2.490972693540796e-07,
+    "pmDE": -7.59509112826199e-07,
+    "bvColor": 0.426,
+    "distance": 47.85798122065728
+}

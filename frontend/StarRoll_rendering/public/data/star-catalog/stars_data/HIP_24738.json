@@ -1,0 +1,13 @@
+{
+    "hip": 24738,
+    "name": "PU Aurigae",
+    "description": "PU Aurigae is an irregular variable star located in the constellation Auriga. A red giant, it varies by 0.1 magnitude around magnitude 5.64, so it is faintly visible to the naked eye.",
+    "url": "https://en.wikipedia.org/wiki/PU_Aurigae",
+    "alpha": 80.18860799997562,
+    "delta": 42.82598117348533,
+    "mag": 5.55,
+    "pmRA": 8.779975764893697e-08,
+    "pmDE": -1.478681727384085e-07,
+    "bvColor": 1.492,
+    "distance": 694.0425531914893
+}

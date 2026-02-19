@@ -1,0 +1,13 @@
+{
+    "hip": 10540,
+    "name": "20 Arietis",
+    "description": "20 Arietis is a single star in the northern constellation of Aries. 20 Arietis is the Flamsteed designation. It has an apparent visual magnitude of 5.79, which is bright enough to be just faintly visible to the naked eye as a yellow-white hued star.",
+    "url": "https://en.wikipedia.org/wiki/20_Arietis",
+    "alpha": 34.44222712080125,
+    "delta": 25.942861635140893,
+    "mag": 5.79,
+    "pmRA": 8.552598148453324e-07,
+    "pmDE": -3.2181932152050993e-07,
+    "bvColor": 0.439,
+    "distance": 130.84636983553952
+}

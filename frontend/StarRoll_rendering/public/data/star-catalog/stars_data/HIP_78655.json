@@ -1,0 +1,13 @@
+{
+    "hip": 78655,
+    "name": "HD 143699",
+    "description": "HD 143699 is a single star in the southern constellation of Lupus. It is a dim star but visible to the naked eye with an apparent visual magnitude of 4.90. Based upon an annual parallax shift of 9.2 mas, it is located around 350 light years away.",
+    "url": "https://en.wikipedia.org/wiki/HD_143699",
+    "alpha": 241.43275277785094,
+    "delta": -38.696337935254256,
+    "mag": 4.9,
+    "pmRA": -8.571505882016597e-08,
+    "pmDE": -1.3836582458866157e-07,
+    "bvColor": -0.146,
+    "distance": 526.9789983844911
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 82493,
+    "name": "HD 151804 -- Blue Supergiant",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+82493",
+    "alpha": 253.49962343552255,
+    "delta": -41.28659416706387,
+    "mag": 5.23,
+    "pmRA": 2.666475246102448e-09,
+    "pmDE": -2.1331801968819583e-09,
+    "bvColor": 0.047,
+    "distance": 6795.833333333334
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 76878,
+    "name": "Tau7 Serpentis",
+    "description": "Tau7 Serpentis, Latinized from τ7 Serpentis, is an A-type star in the constellation of Serpens,  174 light-years from the Earth.",
+    "url": "https://en.wikipedia.org/wiki/Tau7_Serpentis",
+    "alpha": 235.87043606751337,
+    "delta": 18.355092949678816,
+    "mag": 5.8,
+    "pmRA": -3.5391398720996124e-07,
+    "pmDE": 2.7561657771077123e-07,
+    "bvColor": 0.207,
+    "distance": 173.69542066027688
+}

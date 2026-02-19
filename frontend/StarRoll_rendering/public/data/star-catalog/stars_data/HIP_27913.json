@@ -1,0 +1,13 @@
+{
+    "hip": 27913,
+    "name": "* chi01 Ori -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+27913",
+    "alpha": 89.11249310831955,
+    "delta": 20.279339435735785,
+    "mag": 4.39,
+    "pmRA": -7.910704834664297e-07,
+    "pmDE": -4.795776933535529e-07,
+    "bvColor": 0.594,
+    "distance": 28.259551243177683
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 70400,
+    "name": "HD 126248 -- Double or Multiple Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+70400",
+    "alpha": 216.48144819339348,
+    "delta": 5.6638247785345746,
+    "mag": 5.1,
+    "pmRA": -3.777183389524395e-07,
+    "pmDE": 3.146440790400889e-08,
+    "bvColor": 0.124,
+    "distance": 151.2987012987013
+}

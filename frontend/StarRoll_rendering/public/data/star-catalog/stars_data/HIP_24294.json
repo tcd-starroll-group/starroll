@@ -1,0 +1,13 @@
+{
+    "hip": 24294,
+    "name": "HD 33833 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+24294",
+    "alpha": 78.62689600316065,
+    "delta": -6.018470650809228,
+    "mag": 5.9,
+    "pmRA": 1.0602875205865553e-07,
+    "pmDE": -1.5271630954950382e-07,
+    "bvColor": 0.96,
+    "distance": 446.2380300957593
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 92862,
+    "name": "R Lyrae",
+    "description": "R Lyrae, also known as its Flamsteed designation 13 Lyrae, is a 4th magnitude semiregular variable star in the constellation Lyra, approximately 350 light years away from Earth. It is visible to the naked eye.",
+    "url": "https://en.wikipedia.org/wiki/R_Lyrae",
+    "alpha": 284.0986474266841,
+    "delta": 43.99346893162722,
+    "mag": 4.08,
+    "pmRA": 9.667184801324149e-08,
+    "pmDE": 3.9075982697428593e-07,
+    "bvColor": 1.397,
+    "distance": 349.62486602357984
+}

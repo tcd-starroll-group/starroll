@@ -1,0 +1,13 @@
+{
+    "hip": 115769,
+    "name": "HD 220790 -- Horizontal Branch Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+115769",
+    "alpha": 352.30251101698093,
+    "delta": -58.28355841120978,
+    "mag": 5.63,
+    "pmRA": 2.5428477574195166e-07,
+    "pmDE": 3.357334741683537e-07,
+    "bvColor": 0.983,
+    "distance": 298.44464775846296
+}

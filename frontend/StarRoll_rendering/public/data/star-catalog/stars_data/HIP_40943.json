@@ -1,0 +1,13 @@
+{
+    "hip": 40943,
+    "name": "HD 70556 -- Young Stellar Object",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+40943",
+    "alpha": 125.66692454968593,
+    "delta": -36.596737063542584,
+    "mag": 5.18,
+    "pmRA": -3.8979019961206686e-08,
+    "pmDE": 3.383999494144562e-08,
+    "bvColor": -0.187,
+    "distance": 1631
+}

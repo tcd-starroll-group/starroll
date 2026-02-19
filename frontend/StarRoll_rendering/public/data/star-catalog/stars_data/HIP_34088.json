@@ -1,0 +1,13 @@
+{
+    "hip": 34088,
+    "name": "* zet Gem -- Classical Cepheid Variable",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+34088",
+    "alpha": 106.54322235082837,
+    "delta": 20.515920379357354,
+    "mag": 4.01,
+    "pmRA": -2.7731342559465462e-08,
+    "pmDE": -4.6542113386515454e-09,
+    "bvColor": 0.899,
+    "distance": 1169.1756272401433
+}

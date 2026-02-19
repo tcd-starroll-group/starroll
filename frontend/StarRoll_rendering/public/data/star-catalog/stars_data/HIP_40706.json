@@ -1,0 +1,13 @@
+{
+    "hip": 40706,
+    "name": "HD 70060",
+    "description": "HD 70060 is a class A8V (white main-sequence) star in the constellation Puppis. Its apparent magnitude is 4.45 and it is approximately 93.4 light years away based on parallax.\n\n\n== References ==",
+    "url": "https://en.wikipedia.org/wiki/HD_70060",
+    "alpha": 124.96558258297637,
+    "delta": -36.76922616394465,
+    "mag": 4.44,
+    "pmRA": -5.394521829705806e-07,
+    "pmDE": 4.878195259324151e-07,
+    "bvColor": 0.222,
+    "distance": 93.04050199657729
+}

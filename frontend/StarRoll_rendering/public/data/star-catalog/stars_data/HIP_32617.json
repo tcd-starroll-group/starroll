@@ -1,0 +1,13 @@
+{
+    "hip": 32617,
+    "name": "HD 49434 -- gamma Dor Variable",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+32617",
+    "alpha": 102.52102242012012,
+    "delta": -1.3604744004666267,
+    "mag": 5.75,
+    "pmRA": -1.829686832507389e-07,
+    "pmDE": -1.664365367249037e-07,
+    "bvColor": 0.292,
+    "distance": 130.74148296593188
+}

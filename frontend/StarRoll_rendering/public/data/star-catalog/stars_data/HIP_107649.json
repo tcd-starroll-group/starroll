@@ -1,0 +1,13 @@
+{
+    "hip": 107649,
+    "name": "HD 207129",
+    "description": "HD 207129 is a G-type main-sequence star about 50.7 light-years away in the constellation of Grus. It has an apparent visual magnitude of approximately 5.6. This is a Sun-like star with the same stellar classification (G2V) and a similar mass.",
+    "url": "https://en.wikipedia.org/wiki/HD_207129",
+    "alpha": 327.62600238098935,
+    "delta": -47.142481390064276,
+    "mag": 5.57,
+    "pmRA": 8.030453813898352e-07,
+    "pmDE": -1.430200359273131e-06,
+    "bvColor": 0.601,
+    "distance": 51.008600469116494
+}

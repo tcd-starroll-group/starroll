@@ -1,0 +1,13 @@
+{
+    "hip": 65474,
+    "name": "Spica",
+    "description": "Spica is the brightest object in the constellation of Virgo and one of the 20 brightest stars in the night sky. It has the Bayer designation α Virginis, which is Latinised to Alpha Virginis and abbreviated Alpha Vir or α Vir.",
+    "url": "https://en.wikipedia.org/wiki/Spica",
+    "alpha": 201.75835538759154,
+    "delta": -11.341938850023785,
+    "mag": 0.98,
+    "pmRA": -2.0604581447155283e-07,
+    "pmDE": -1.5383138101605578e-07,
+    "bvColor": -0.235,
+    "distance": 262.2186495176849
+}

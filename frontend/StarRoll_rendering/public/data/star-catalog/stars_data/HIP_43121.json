@@ -1,0 +1,13 @@
+{
+    "hip": 43121,
+    "name": "* 50 Cnc -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+43121",
+    "alpha": 132.20999103193566,
+    "delta": 11.979910316695511,
+    "mag": 5.89,
+    "pmRA": -3.160985200834175e-07,
+    "pmDE": -2.4754586557452905e-07,
+    "bvColor": 0.12,
+    "distance": 199.14529914529916
+}

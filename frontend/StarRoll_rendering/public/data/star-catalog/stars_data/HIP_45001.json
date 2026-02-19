@@ -1,0 +1,13 @@
+{
+    "hip": 45001,
+    "name": "* eps Pyx -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+45001",
+    "alpha": 137.8545728282674,
+    "delta": -30.509103196020565,
+    "mag": 5.59,
+    "pmRA": -1.0423494143855022e-08,
+    "pmDE": -2.368799645901193e-07,
+    "bvColor": 0.179,
+    "distance": 212.50814332247558
+}

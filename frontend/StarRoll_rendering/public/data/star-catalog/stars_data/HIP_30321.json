@@ -1,0 +1,13 @@
+{
+    "hip": 30321,
+    "name": "* pi.01 Dor -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+30321",
+    "alpha": 95.57580742355731,
+    "delta": -70.00278463620108,
+    "mag": 5.56,
+    "pmRA": 1.2585763161603555e-07,
+    "pmDE": 1.6847275418556378e-07,
+    "bvColor": 1.51,
+    "distance": 595.2554744525547
+}

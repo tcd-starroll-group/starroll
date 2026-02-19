@@ -1,0 +1,13 @@
+{
+    "hip": 28380,
+    "name": "Theta Aurigae",
+    "description": "Theta Aurigae is a binary star system in the constellation of Auriga. Its name is a Bayer designation that is Latinized from θ Aurigae, and abbreviated Theta Aur or θ Aur.",
+    "url": "https://en.wikipedia.org/wiki/Theta_Aurigae",
+    "alpha": 90.52409754423735,
+    "delta": 37.21129626141528,
+    "mag": 2.65,
+    "pmRA": 2.040580783790037e-07,
+    "pmDE": -3.568713506647294e-07,
+    "bvColor": -0.083,
+    "distance": 173.23420074349445
+}

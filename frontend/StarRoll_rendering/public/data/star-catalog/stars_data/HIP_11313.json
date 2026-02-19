@@ -1,0 +1,13 @@
+{
+    "hip": 11313,
+    "name": "65 Andromedae",
+    "description": "65 Andromedae, abbreviated 65 And, is a single, orange-hued star in the northern constellation of Andromeda. With an apparent magnitude of 4.73, it is visible to the naked eye.",
+    "url": "https://en.wikipedia.org/wiki/65_Andromedae",
+    "alpha": 36.992201407079776,
+    "delta": 50.43400164348041,
+    "mag": 4.73,
+    "pmRA": 1.1533717473595861e-07,
+    "pmDE": -6.95707632392184e-08,
+    "bvColor": 1.532,
+    "distance": 344.8202959830867
+}

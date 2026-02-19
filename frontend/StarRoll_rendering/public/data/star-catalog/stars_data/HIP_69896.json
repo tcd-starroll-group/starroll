@@ -1,0 +1,13 @@
+{
+    "hip": 69896,
+    "name": "Eta Apodis",
+    "description": "Eta Apodis is a star in the southern circumpolar constellation Apus. Its identifier is a Bayer designation that is Latinized from η Apodis, and abbreviated Eta Aps or η Aps, respectively.",
+    "url": "https://en.wikipedia.org/wiki/Eta_Apodis",
+    "alpha": 215.71595541711986,
+    "delta": -81.16682183606214,
+    "mag": 4.89,
+    "pmRA": -9.672032938135243e-08,
+    "pmDE": -3.1701966607752556e-07,
+    "bvColor": 0.243,
+    "distance": 139.6404109589041
+}

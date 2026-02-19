@@ -1,0 +1,13 @@
+{
+    "hip": 12640,
+    "name": "Mu Arietis",
+    "description": "Mu Arietis is a multiple star system in the northern constellation of Aries. Its name is a Bayer designation that is Latinized from μ Arietis, and abbreviated Mu Ari or μ Ari.",
+    "url": "https://en.wikipedia.org/wiki/Mu_Arietis",
+    "alpha": 41.084240231770565,
+    "delta": 20.157842206447814,
+    "mag": 5.74,
+    "pmRA": 1.3327528093701145e-07,
+    "pmDE": -2.2340214425527418e-07,
+    "bvColor": -0.017,
+    "distance": 338.3817427385892
+}

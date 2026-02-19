@@ -1,0 +1,13 @@
+{
+    "hip": 70384,
+    "name": "HD 126200",
+    "description": "HD 126200 is a main sequence star in the northern constellation of Boötes. It has been identified as an Algol-type eclipsing binary, although subsequent observations do not confirm this.",
+    "url": "https://en.wikipedia.org/wiki/HD_126200",
+    "alpha": 216.43344358427393,
+    "delta": 8.087421191733096,
+    "mag": 5.94,
+    "pmRA": -2.9961485492569324e-08,
+    "pmDE": -6.942531913488557e-08,
+    "bvColor": 0.066,
+    "distance": 384.21672555948174
+}

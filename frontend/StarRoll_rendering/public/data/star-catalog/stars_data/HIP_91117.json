@@ -1,0 +1,13 @@
+{
+    "hip": 91117,
+    "name": "* alf Sct -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+91117",
+    "alpha": 279.2756287483632,
+    "delta": -8.215886345309956,
+    "mag": 3.85,
+    "pmRA": -9.201763667458993e-08,
+    "pmDE": -1.5253692848749332e-06,
+    "bvColor": 1.317,
+    "distance": 174.25213675213675
+}

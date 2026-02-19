@@ -1,0 +1,13 @@
+{
+    "hip": 92872,
+    "name": "HR 7135",
+    "description": "HR 7135 is a binary star system. Despite its Flamsteed designation of 62 Serpentis, the star can be found in the equatorial constellation of Aquila, in front of a dark rift in the Milky Way near the constellation border.",
+    "url": "https://en.wikipedia.org/wiki/HR_7135",
+    "alpha": 284.2887790719204,
+    "delta": 6.66180295839136,
+    "mag": 5.58,
+    "pmRA": 2.9185783602794062e-08,
+    "pmDE": -4.306599929296008e-07,
+    "bvColor": 1.041,
+    "distance": 292.81867145421904
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 82363,
+    "name": "Eta Arae",
+    "description": "Eta Arae is a single star in the southern constellation of Ara. Its name is a Bayer designation that is Latinized from η Arae, and abbreviated Eta Ara or η Ara.",
+    "url": "https://en.wikipedia.org/wiki/Eta_Arae",
+    "alpha": 253.2021371828366,
+    "delta": -59.09881211242691,
+    "mag": 3.77,
+    "pmRA": 1.9193773635126536e-07,
+    "pmDE": -1.225608985844907e-07,
+    "bvColor": 1.562,
+    "distance": 313.35254562920267
+}

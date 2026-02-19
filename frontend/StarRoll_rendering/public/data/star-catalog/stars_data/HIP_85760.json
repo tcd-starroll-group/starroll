@@ -1,0 +1,13 @@
+{
+    "hip": 85760,
+    "name": "NO Apodis",
+    "description": "NO Apodis is a solitary, red hued variable star located in the southern circumpolar constellation Apus. It has an average apparent magnitude of 5.86, allowing it to be faintly seen with the naked eye.",
+    "url": "https://en.wikipedia.org/wiki/NO_Apodis",
+    "alpha": 264.51000613616975,
+    "delta": -80.88076982954894,
+    "mag": 5.83,
+    "pmRA": -1.1005270561186467e-08,
+    "pmDE": -2.1011824939287292e-07,
+    "bvColor": 1.617,
+    "distance": 811.4427860696518
+}

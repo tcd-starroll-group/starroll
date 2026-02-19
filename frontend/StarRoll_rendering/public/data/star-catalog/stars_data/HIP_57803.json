@@ -1,0 +1,13 @@
+{
+    "hip": 57803,
+    "name": "* B Cen -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+57803",
+    "alpha": 178.22522187963438,
+    "delta": -45.36731980058426,
+    "mag": 4.47,
+    "pmRA": -3.51102067859526e-07,
+    "pmDE": -4.1790939311641994e-08,
+    "bvColor": 1.283,
+    "distance": 464.0113798008535
+}

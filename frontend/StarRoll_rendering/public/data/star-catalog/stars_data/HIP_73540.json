@@ -1,0 +1,13 @@
+{
+    "hip": 73540,
+    "name": "* pi.01 Oct -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+73540",
+    "alpha": 227.09969672624626,
+    "delta": -83.36128561783407,
+    "mag": 5.65,
+    "pmRA": 9.041775152692846e-08,
+    "pmDE": 2.5840569203138266e-07,
+    "bvColor": 0.962,
+    "distance": 388.79618593563765
+}

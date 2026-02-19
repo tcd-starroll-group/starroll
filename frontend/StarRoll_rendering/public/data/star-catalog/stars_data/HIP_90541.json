@@ -1,0 +1,13 @@
+{
+    "hip": 90541,
+    "name": "HD 169853 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+90541",
+    "alpha": 277.71485376437187,
+    "delta": -38.97096514050478,
+    "mag": 5.63,
+    "pmRA": -1.0181087303300257e-09,
+    "pmDE": -2.0202186091834367e-07,
+    "bvColor": 0.14,
+    "distance": 498.7767584097859
+}

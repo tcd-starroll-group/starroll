@@ -1,0 +1,13 @@
+{
+    "hip": 19893,
+    "name": "Gamma Doradus",
+    "description": "Gamma Doradus, Latinized from γ Doradus, is the third-brightest star in the southern constellation of Dorado.",
+    "url": "https://en.wikipedia.org/wiki/Gamma_Doradus",
+    "alpha": 64.234574731105,
+    "delta": -51.4006642266589,
+    "mag": 4.26,
+    "pmRA": 4.875771190918603e-07,
+    "pmDE": 8.931722447080981e-07,
+    "bvColor": 0.312,
+    "distance": 66.22005684125051
+}

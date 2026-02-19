@@ -1,0 +1,13 @@
+{
+    "hip": 14844,
+    "name": "HD 18778 -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+14844",
+    "alpha": 49.35230518510322,
+    "delta": 81.59885051185519,
+    "mag": 5.92,
+    "pmRA": -2.2117200132217035e-07,
+    "pmDE": -4.508767234318684e-09,
+    "bvColor": 0.149,
+    "distance": 202.2318660880347
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 54461,
+    "name": "HD 96919",
+    "description": "HD 96919, also known by its Bayer designation of z2 Carinae and the variable star designation of V371 Carinae, is a blue supergiant star in the constellation Carina. It lies near the Carina Nebula and at a comparable distance.",
+    "url": "https://en.wikipedia.org/wiki/HD_96919",
+    "alpha": 167.50776566381583,
+    "delta": -62.136330790958986,
+    "mag": 5.11,
+    "pmRA": -2.8216156240574995e-08,
+    "pmDE": 9.841717726523578e-09,
+    "bvColor": 0.195,
+    "distance": 5528.813559322034
+}

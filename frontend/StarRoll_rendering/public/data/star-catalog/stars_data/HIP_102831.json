@@ -1,0 +1,13 @@
+{
+    "hip": 102831,
+    "name": "Alpha Microscopii",
+    "description": "Alpha Microscopii (α Microscopii) is a star in the southern constellation of Microscopium.",
+    "url": "https://en.wikipedia.org/wiki/Alpha_Microscopii",
+    "alpha": 313.0333077299276,
+    "delta": -33.648204566842814,
+    "mag": 4.89,
+    "pmRA": 1.7986587569163784e-08,
+    "pmDE": -9.788388221601533e-08,
+    "bvColor": 1.004,
+    "distance": 380.6301050175029
+}

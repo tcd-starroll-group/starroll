@@ -1,0 +1,13 @@
+{
+    "hip": 34693,
+    "name": "* tau Gem -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+34693",
+    "alpha": 108.33829596487556,
+    "delta": 30.184690318501186,
+    "mag": 4.41,
+    "pmRA": -1.5029224114395617e-07,
+    "pmDE": -2.3464982165701539e-07,
+    "bvColor": 1.261,
+    "distance": 301.75763182238666
+}

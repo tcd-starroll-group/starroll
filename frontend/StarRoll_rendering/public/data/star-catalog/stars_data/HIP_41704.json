@@ -1,0 +1,13 @@
+{
+    "hip": 41704,
+    "name": "* omi UMa -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+41704",
+    "alpha": 128.28387082904624,
+    "delta": 60.598220187160464,
+    "mag": 3.35,
+    "pmRA": -6.511532550982178e-07,
+    "pmDE": -5.222897786593032e-07,
+    "bvColor": 0.856,
+    "distance": 183.67117117117115
+}

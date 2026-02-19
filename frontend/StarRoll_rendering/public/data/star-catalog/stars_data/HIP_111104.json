@@ -1,0 +1,13 @@
+{
+    "hip": 111104,
+    "name": "* 6 Lac -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+111104",
+    "alpha": 337.99937133268276,
+    "delta": 43.30288183830778,
+    "mag": 4.52,
+    "pmRA": -9.938680462745487e-09,
+    "pmDE": -2.7925268031909273e-08,
+    "bvColor": -0.086,
+    "distance": 1370.5882352941178
+}

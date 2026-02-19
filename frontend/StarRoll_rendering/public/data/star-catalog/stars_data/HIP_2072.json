@@ -1,0 +1,13 @@
+{
+    "hip": 2072,
+    "name": "* kap Phe -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+2072",
+    "alpha": 6.976068328631477,
+    "delta": -43.487039175281645,
+    "mag": 3.93,
+    "pmRA": 5.145812411296614e-07,
+    "pmDE": 1.5916433150826063e-07,
+    "bvColor": 0.175,
+    "distance": 76.73488590919784
+}

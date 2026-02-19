@@ -1,0 +1,13 @@
+{
+    "hip": 62683,
+    "name": "HD 111597",
+    "description": "HD 111597 is a suspected astrometric binary star system in the southern constellation of Centaurus. It has the Bayer designation p Centauri, while HD 111597 is the star's identifier from the Henry Draper catalogue.",
+    "url": "https://en.wikipedia.org/wiki/HD_111597",
+    "alpha": 193.146943861044,
+    "delta": -34.1884245408093,
+    "mag": 4.9,
+    "pmRA": -1.411292625709859e-07,
+    "pmDE": -6.927987503055268e-08,
+    "bvColor": -0.031,
+    "distance": 388.79618593563765
+}

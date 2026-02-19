@@ -1,0 +1,13 @@
+{
+    "hip": 67942,
+    "name": "HD 120913 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+67942",
+    "alpha": 209.38081312364807,
+    "delta": -67.82172402064907,
+    "mag": 5.74,
+    "pmRA": -8.154566116262397e-08,
+    "pmDE": -7.07343160738813e-08,
+    "bvColor": 1.49,
+    "distance": 1269.2607003891053
+}

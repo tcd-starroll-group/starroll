@@ -1,0 +1,13 @@
+{
+    "hip": 101923,
+    "name": "* tau Cap -- Double or Multiple Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+101923",
+    "alpha": 310.3037703132354,
+    "delta": -14.830111996716578,
+    "mag": 5.24,
+    "pmRA": 1.2508192972626031e-08,
+    "pmDE": -9.531436970613478e-08,
+    "bvColor": -0.129,
+    "distance": 1753.763440860215
+}

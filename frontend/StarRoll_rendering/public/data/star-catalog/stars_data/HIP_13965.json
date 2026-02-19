@@ -1,0 +1,13 @@
+{
+    "hip": 13965,
+    "name": "HD 18474 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+13965",
+    "alpha": 45.55300205660126,
+    "delta": 47.35735777707759,
+    "mag": 5.47,
+    "pmRA": 5.754738394770191e-08,
+    "pmDE": 1.0835585772798131e-07,
+    "bvColor": 0.869,
+    "distance": 557.6068376068376
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 10440,
+    "name": "HD 13940 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+10440",
+    "alpha": 33.9851627781173,
+    "delta": -41.005828365413144,
+    "mag": 5.91,
+    "pmRA": -1.0118061524756018e-07,
+    "pmDE": -1.2663333350581082e-07,
+    "bvColor": 0.965,
+    "distance": 333.8792221084954
+}

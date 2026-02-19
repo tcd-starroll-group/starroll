@@ -1,0 +1,13 @@
+{
+    "hip": 118234,
+    "name": "* pi. Phe -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+118234",
+    "alpha": 0.17919951492257438,
+    "delta": -52.55144044073746,
+    "mag": 5.13,
+    "pmRA": 2.808525654667542e-07,
+    "pmDE": 2.9796648840992083e-07,
+    "bvColor": 1.121,
+    "distance": 256.85039370078744
+}

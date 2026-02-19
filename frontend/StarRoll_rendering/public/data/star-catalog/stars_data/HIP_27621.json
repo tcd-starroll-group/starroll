@@ -1,0 +1,13 @@
+{
+    "hip": 27621,
+    "name": "HD 39640 -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+27621",
+    "alpha": 87.91909109538828,
+    "delta": -52.102057821761065,
+    "mag": 5.16,
+    "pmRA": 1.1732491082850769e-08,
+    "pmDE": -3.6986435731846505e-07,
+    "bvColor": 0.96,
+    "distance": 264.5579886455799
+}

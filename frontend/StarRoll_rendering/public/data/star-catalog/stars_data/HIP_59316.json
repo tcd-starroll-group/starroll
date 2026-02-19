@@ -1,0 +1,13 @@
+{
+    "hip": 59316,
+    "name": "* eps Crv -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+59316",
+    "alpha": 182.9808631012984,
+    "delta": -22.813388675420114,
+    "mag": 3.02,
+    "pmRA": -3.4673874472954015e-07,
+    "pmDE": 5.114784335705605e-08,
+    "bvColor": 1.326,
+    "distance": 303.44186046511624
+}

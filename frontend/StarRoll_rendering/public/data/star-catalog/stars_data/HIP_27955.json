@@ -1,0 +1,13 @@
+{
+    "hip": 27955,
+    "name": "HD 40091 -- Variable Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+27955",
+    "alpha": 89.00243985351145,
+    "delta": -39.95385164824419,
+    "mag": 5.55,
+    "pmRA": -6.161981886902202e-08,
+    "pmDE": 1.0462279238343785e-07,
+    "bvColor": 1.515,
+    "distance": 508.8923556942278
+}

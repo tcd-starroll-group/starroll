@@ -1,0 +1,13 @@
+{
+    "hip": 67301,
+    "name": "Alkaid",
+    "description": "Alkaid , also called Eta Ursae Majoris (Latinised from η Ursae Majoris, abbreviated Eta UMa, η UMa), is a star in the constellation of Ursa Major. It is the easternmost star in the Big Dipper (or Plough) asterism.",
+    "url": "https://en.wikipedia.org/wiki/Alkaid",
+    "alpha": 207.22844793942966,
+    "delta": 49.140467134354594,
+    "mag": 1.85,
+    "pmRA": -5.877396256090904e-07,
+    "pmDE": -7.543700878064381e-08,
+    "bvColor": -0.099,
+    "distance": 100.71009570855203
+}

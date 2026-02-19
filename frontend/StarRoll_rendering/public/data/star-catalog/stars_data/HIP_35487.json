@@ -1,0 +1,13 @@
+{
+    "hip": 35487,
+    "name": "V* R CMa -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+35487",
+    "alpha": 110.26116829256947,
+    "delta": -16.462763692785533,
+    "mag": 5.7,
+    "pmRA": 8.017363844508398e-07,
+    "pmDE": -6.613343424015181e-07,
+    "bvColor": 0.346,
+    "distance": 143.63716424482607
+}

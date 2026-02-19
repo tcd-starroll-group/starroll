@@ -1,0 +1,13 @@
+{
+    "hip": 42535,
+    "name": "HD 74196 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+42535",
+    "alpha": 130.3217959704376,
+    "delta": -53.14037362457581,
+    "mag": 5.56,
+    "pmRA": -1.2348204457859883e-07,
+    "pmDE": 1.1233132991307951e-07,
+    "bvColor": -0.125,
+    "distance": 472.0694645441389
+}

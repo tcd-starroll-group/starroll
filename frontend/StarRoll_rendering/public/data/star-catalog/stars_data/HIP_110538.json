@@ -1,0 +1,13 @@
+{
+    "hip": 110538,
+    "name": "Beta Lacertae",
+    "description": "Beta Lacertae (Beta Lac, β Lacertae, β Lac) is the fourth-brightest star in the constellation of Lacerta. Based upon an annual parallax shift of 19.19 mas, it is 170 light-years distant from Earth.",
+    "url": "https://en.wikipedia.org/wiki/Beta_Lacertae",
+    "alpha": 336.2344555428818,
+    "delta": 52.40492761280894,
+    "mag": 4.42,
+    "pmRA": -6.574073515845309e-08,
+    "pmDE": -9.035472574838422e-07,
+    "bvColor": 1.015,
+    "distance": 169.807391983342
+}

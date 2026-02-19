@@ -1,0 +1,13 @@
+{
+    "hip": 111660,
+    "name": "HD 214710 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+111660",
+    "alpha": 339.4871380096432,
+    "delta": 75.55338749726552,
+    "mag": 5.8,
+    "pmRA": 2.1671171545596261e-07,
+    "pmDE": 3.805787396709857e-08,
+    "bvColor": 1.594,
+    "distance": 623.7093690248565
+}

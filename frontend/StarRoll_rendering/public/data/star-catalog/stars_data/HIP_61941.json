@@ -1,0 +1,13 @@
+{
+    "hip": 61941,
+    "name": "Gamma Virginis",
+    "description": "Gamma Virginis (γ Virginis, abbreviated Gamma Vir, γ Vir), officially named Porrima , is a binary star system in the constellation of Virgo. It consists of two almost identical main sequence stars at a distance of about 38 light-years.",
+    "url": "https://en.wikipedia.org/wiki/Gamma_Virginis",
+    "alpha": 190.8579422070023,
+    "delta": -1.6395199443271613,
+    "mag": 2.74,
+    "pmRA": -2.9896520459300646e-06,
+    "pmDE": 2.940879789610445e-07,
+    "bvColor": 0.368,
+    "distance": 38.58984975748255
+}

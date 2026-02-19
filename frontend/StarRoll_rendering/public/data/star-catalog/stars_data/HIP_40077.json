@@ -1,0 +1,13 @@
+{
+    "hip": 40077,
+    "name": "HD 68657 -- Pulsating Variable",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+40077",
+    "alpha": 123.05704552311288,
+    "delta": -48.567361624210335,
+    "mag": 5.83,
+    "pmRA": -8.358187862328399e-08,
+    "pmDE": 1.9489509980603343e-08,
+    "bvColor": -0.146,
+    "distance": 728.1249999999999
+}

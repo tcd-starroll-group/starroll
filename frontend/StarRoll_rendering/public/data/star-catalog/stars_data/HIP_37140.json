@@ -1,0 +1,13 @@
+{
+    "hip": 37140,
+    "name": "HD 60652 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+37140",
+    "alpha": 115.12106523181774,
+    "delta": 48.69231255579684,
+    "mag": 5.93,
+    "pmRA": -1.581462227779306e-07,
+    "pmDE": -1.3807493637999584e-07,
+    "bvColor": 0.221,
+    "distance": 262.2186495176849
+}

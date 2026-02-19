@@ -1,0 +1,13 @@
+{
+    "hip": 6492,
+    "name": "HD 8388 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+6492",
+    "alpha": 21.32635177444821,
+    "delta": 20.649830584076597,
+    "mag": 5.97,
+    "pmRA": -2.710108477402306e-08,
+    "pmDE": -4.5087672343186855e-08,
+    "bvColor": 1.677,
+    "distance": 827.9187817258884
+}

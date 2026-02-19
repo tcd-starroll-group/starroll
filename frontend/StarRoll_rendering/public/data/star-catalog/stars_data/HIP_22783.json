@@ -1,0 +1,13 @@
+{
+    "hip": 22783,
+    "name": "Alpha Camelopardalis",
+    "description": "Alpha Camelopardalis is a blue hued star in the northern constellation of Camelopardalis. Its name is a Bayer designation that is Latinized from α Camelopardalis, and abbreviated Alpha Cam or α Cam.",
+    "url": "https://en.wikipedia.org/wiki/Alpha_Camelopardalis",
+    "alpha": 74.38474525608096,
+    "delta": 66.39635358270897,
+    "mag": 4.26,
+    "pmRA": 2.3755870374367262e-09,
+    "pmDE": 3.543988008910707e-08,
+    "bvColor": -0.008,
+    "distance": 6940.425531914894
+}

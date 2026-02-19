@@ -1,0 +1,13 @@
+{
+    "hip": 30214,
+    "name": "HD 44458 -- Be Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+30214",
+    "alpha": 95.75897752012374,
+    "delta": -11.79200097543091,
+    "mag": 5.48,
+    "pmRA": -2.060458144715528e-08,
+    "pmDE": 1.1490084242296004e-08,
+    "bvColor": 0.002,
+    "distance": 1672.8205128205127
+}

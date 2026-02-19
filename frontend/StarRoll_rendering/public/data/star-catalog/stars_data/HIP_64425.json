@@ -1,0 +1,13 @@
+{
+    "hip": 64425,
+    "name": "HD 114529 -- Ellipsoidal Variable Candidate",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+64425",
+    "alpha": 198.62524520601488,
+    "delta": -60.10474700628956,
+    "mag": 4.58,
+    "pmRA": -1.3836582458866157e-07,
+    "pmDE": -8.464846872172499e-08,
+    "bvColor": -0.073,
+    "distance": 346.2845010615711
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 4283,
+    "name": "HD 4853 -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+4283",
+    "alpha": 14.603526240042116,
+    "delta": 83.89538611472042,
+    "mag": 5.59,
+    "pmRA": 3.0058448228791234e-07,
+    "pmDE": -5.192354524683131e-08,
+    "bvColor": 0.105,
+    "distance": 245.26315789473682
+}

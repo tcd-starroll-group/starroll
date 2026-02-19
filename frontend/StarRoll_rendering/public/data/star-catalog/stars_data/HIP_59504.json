@@ -1,0 +1,13 @@
+{
+    "hip": 59504,
+    "name": "HD 106112",
+    "description": "HD 106112, also known as CO Camelopardalis, is a star in the constellation Camelopardalis. It has an apparent magnitude of about 5.1, meaning that it is just barely visible to the naked eye.",
+    "url": "https://en.wikipedia.org/wiki/HD_106112",
+    "alpha": 183.44636611617614,
+    "delta": 77.42279172466273,
+    "mag": 5.14,
+    "pmRA": 5.1050880620834135e-08,
+    "pmDE": 9.783540084790436e-08,
+    "bvColor": 0.358,
+    "distance": 109.83164983164983
+}

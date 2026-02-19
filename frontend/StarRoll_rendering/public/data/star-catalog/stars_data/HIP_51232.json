@@ -1,0 +1,13 @@
+{
+    "hip": 51232,
+    "name": "HD 90853",
+    "description": "HD 90853 is a single star in the southern constellation Carina. It has the Bayer designation s Carinae, while HD 90853 is the identifier from the Henry Draper catalogue.",
+    "url": "https://en.wikipedia.org/wiki/HD_90853",
+    "alpha": 157.29136578796854,
+    "delta": -58.91806210112143,
+    "mag": 3.81,
+    "pmRA": -6.423781274701353e-08,
+    "pmDE": 1.0714382352520746e-08,
+    "bvColor": 0.317,
+    "distance": 1042.1725239616612
+}

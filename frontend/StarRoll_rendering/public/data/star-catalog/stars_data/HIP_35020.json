@@ -1,0 +1,13 @@
+{
+    "hip": 35020,
+    "name": "HD 56456",
+    "description": "HD 56456 is a class B8.5V (blue main-sequence) star in the constellation Puppis. Its apparent magnitude is 4.76 and it is approximately 377 light years away based on parallax.\nIt has one companion, B, at magnitude 13.5 and separation 18\".",
+    "url": "https://en.wikipedia.org/wiki/HD_56456",
+    "alpha": 108.89907664735176,
+    "delta": -48.334333682509076,
+    "mag": 4.75,
+    "pmRA": -2.0265211870378602e-08,
+    "pmDE": 3.054326190990077e-09,
+    "bvColor": -0.091,
+    "distance": 354.5652173913044
+}

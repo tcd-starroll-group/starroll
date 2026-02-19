@@ -1,0 +1,13 @@
+{
+    "hip": 90497,
+    "name": "HD 170200 -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+90497",
+    "alpha": 277.42022033377026,
+    "delta": 6.218270223218347,
+    "mag": 5.71,
+    "pmRA": -6.0601710138692e-09,
+    "pmDE": -1.1276766222607808e-07,
+    "bvColor": -0.034,
+    "distance": 739.6825396825396
+}

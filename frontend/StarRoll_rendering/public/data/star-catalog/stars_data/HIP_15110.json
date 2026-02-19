@@ -1,0 +1,13 @@
+{
+    "hip": 15110,
+    "name": "Zeta Arietis",
+    "description": "Zeta Arietis is a star in the northern constellation of Aries. Its name is a Bayer designation that is Latinized from ζ Arietis, and abbreviated Zeta Ari or ζ Ari.",
+    "url": "https://en.wikipedia.org/wiki/Zeta_Arietis",
+    "alpha": 49.22791876230767,
+    "delta": 21.171168517526997,
+    "mag": 4.87,
+    "pmRA": -1.4461992107497458e-07,
+    "pmDE": -3.740337549760071e-07,
+    "bvColor": -0.007,
+    "distance": 340.1459854014599
+}

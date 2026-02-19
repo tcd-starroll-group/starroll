@@ -1,0 +1,13 @@
+{
+    "hip": 26221,
+    "name": "* tet01 Ori C -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+26221",
+    "alpha": 84.24673184222145,
+    "delta": -5.369534045070985,
+    "mag": 5.13,
+    "pmRA": -4.4602858662077315e-09,
+    "pmDE": 6.302577854423968e-10,
+    "bvColor": 0.02,
+    "distance": -1763.2432432432431
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 87936,
+    "name": "HD 163376",
+    "description": "HD 163376 is a single star in the southern constellation of Scorpius. It has a ruddy hue and is faintly visible to the naked eye with an apparent visual magnitude of 4.88. The distance to this star, as determined using parallax measurements, is approximately 450 light years.",
+    "url": "https://en.wikipedia.org/wiki/HD_163376",
+    "alpha": 270.068336582979,
+    "delta": -41.71721295238684,
+    "mag": 4.88,
+    "pmRA": -8.290313946973065e-09,
+    "pmDE": -7.340079131998376e-08,
+    "bvColor": 1.617,
+    "distance": 547.3154362416108
+}

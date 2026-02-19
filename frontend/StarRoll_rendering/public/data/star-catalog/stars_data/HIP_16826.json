@@ -1,0 +1,13 @@
+{
+    "hip": 16826,
+    "name": "* psi Per -- Be Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+16826",
+    "alpha": 54.74553747645081,
+    "delta": 48.30521329742561,
+    "mag": 4.32,
+    "pmRA": 1.0379860912555166e-07,
+    "pmDE": -1.3371161325001e-07,
+    "bvColor": -0.058,
+    "distance": 700
+}

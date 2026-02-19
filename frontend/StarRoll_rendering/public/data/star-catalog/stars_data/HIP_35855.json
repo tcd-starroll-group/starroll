@@ -1,0 +1,13 @@
+{
+    "hip": 35855,
+    "name": "HD 58286 -- Pulsating Variable",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+35855",
+    "alpha": 111.21499164887962,
+    "delta": -32.2716848179187,
+    "mag": 5.41,
+    "pmRA": -3.805787396709857e-08,
+    "pmDE": 2.2059022490483887e-08,
+    "bvColor": -0.169,
+    "distance": 1156.7375886524824
+}

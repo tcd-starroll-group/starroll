@@ -1,0 +1,13 @@
+{
+    "hip": 43797,
+    "name": "HD 76653",
+    "description": "HD 76653 is a single star in the southern constellation Vela. It is faintly visible to the naked eye with an apparent visual magnitude of +5.71. Based upon an annual parallax shift of 41.08 mas as seen from Earth, it is located 79 light years from the Sun.",
+    "url": "https://en.wikipedia.org/wiki/HD_76653",
+    "alpha": 134.0457935241676,
+    "delta": -55.1009502032673,
+    "mag": 5.7,
+    "pmRA": 1.1747035493284057e-07,
+    "pmDE": -4.4215007717189685e-07,
+    "bvColor": 0.481,
+    "distance": 78.77324317797634
+}

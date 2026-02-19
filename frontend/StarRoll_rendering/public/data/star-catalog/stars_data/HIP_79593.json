@@ -1,0 +1,13 @@
+{
+    "hip": 79593,
+    "name": "Delta Ophiuchi",
+    "description": "Delta Ophiuchi (δ Ophiuchi, abbreviated Delta Oph, δ Oph), formally named Yed Prior (), is a star in the constellation of Ophiuchus. It forms a naked-eye optical double with Epsilon Ophiuchi (named Yed Posterior).",
+    "url": "https://en.wikipedia.org/wiki/Delta_Ophiuchi",
+    "alpha": 244.04374429864788,
+    "delta": -3.7809218204115393,
+    "mag": 2.73,
+    "pmRA": -2.2219011005250033e-07,
+    "pmDE": -6.92847231673638e-07,
+    "bvColor": 1.584,
+    "distance": 170.25052192066806
+}

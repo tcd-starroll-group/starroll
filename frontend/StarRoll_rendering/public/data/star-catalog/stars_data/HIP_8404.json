@@ -1,0 +1,13 @@
+{
+    "hip": 8404,
+    "name": "HD 11037 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+8404",
+    "alpha": 27.560474872541654,
+    "delta": 3.8578456121870826,
+    "mag": 5.91,
+    "pmRA": -4.445741455774444e-08,
+    "pmDE": 8.571505882016597e-08,
+    "bvColor": 0.97,
+    "distance": 327.8391959798995
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 98055,
+    "name": "* psi Cyg -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+98055",
+    "alpha": 299.1326388749898,
+    "delta": 52.53279602226605,
+    "mag": 4.91,
+    "pmRA": -1.7753877002231206e-07,
+    "pmDE": -1.5038920388017804e-07,
+    "bvColor": 0.124,
+    "distance": 288.6725663716814
+}

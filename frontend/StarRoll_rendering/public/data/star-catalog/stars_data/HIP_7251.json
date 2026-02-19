@@ -1,0 +1,13 @@
+{
+    "hip": 7251,
+    "name": "HD 9353 -- Double or Multiple Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+7251",
+    "alpha": 23.92992594296668,
+    "delta": 58.50492073125133,
+    "mag": 5.69,
+    "pmRA": 1.832595714594046e-08,
+    "pmDE": -2.2592317539704377e-08,
+    "bvColor": 1.435,
+    "distance": 1953.2934131736527
+}

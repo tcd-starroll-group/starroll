@@ -1,0 +1,13 @@
+{
+    "hip": 64224,
+    "name": "* 50 Vir -- Variable Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+64224",
+    "alpha": 197.89566433356137,
+    "delta": -10.514140168636851,
+    "mag": 5.95,
+    "pmRA": -7.262508943020849e-08,
+    "pmDE": -3.543988008910707e-08,
+    "bvColor": 1.49,
+    "distance": 656.3380281690141
+}

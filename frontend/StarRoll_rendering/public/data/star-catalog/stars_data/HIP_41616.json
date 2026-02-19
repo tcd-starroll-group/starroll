@@ -1,0 +1,13 @@
+{
+    "hip": 41616,
+    "name": "HD 72108",
+    "description": "HD 72108 (A Vel, A Velorum) is a star system in the constellation Vela.  It is approximately 1640 light years from Earth.",
+    "url": "https://en.wikipedia.org/wiki/HD_72108",
+    "alpha": 127.5450414708939,
+    "delta": -48.0466753948856,
+    "mag": 5.33,
+    "pmRA": -3.767002302221094e-08,
+    "pmDE": 3.257947937056082e-08,
+    "bvColor": -0.14,
+    "distance": 1639.1959798994974
+}

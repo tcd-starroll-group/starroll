@@ -1,0 +1,13 @@
+{
+    "hip": 21323,
+    "name": "HD 28929 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+21323",
+    "alpha": 69.20484594737911,
+    "delta": 29.030690079154837,
+    "mag": 5.88,
+    "pmRA": -3.1028075591010307e-09,
+    "pmDE": -1.0602875205865553e-07,
+    "bvColor": -0.048,
+    "distance": 466
+}

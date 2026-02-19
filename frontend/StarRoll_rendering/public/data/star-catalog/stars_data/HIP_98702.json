@@ -1,0 +1,13 @@
+{
+    "hip": 98702,
+    "name": "* rho Dra -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+98702",
+    "alpha": 300.7398067626637,
+    "delta": 67.97297117607468,
+    "mag": 4.51,
+    "pmRA": 7.965488780629677e-08,
+    "pmDE": 2.3174093957035816e-07,
+    "bvColor": 1.313,
+    "distance": 406.73316708229424
+}

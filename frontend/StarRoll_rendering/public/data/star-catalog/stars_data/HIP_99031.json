@@ -1,0 +1,13 @@
+{
+    "hip": 99031,
+    "name": "* b01 Cyg -- RS CVn Variable",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+99031",
+    "alpha": 301.91559385093376,
+    "delta": 36.07131009900453,
+    "mag": 5.38,
+    "pmRA": -1.0880673445141316e-06,
+    "pmDE": -2.1359436348642826e-06,
+    "bvColor": 0.85,
+    "distance": 78.90662796323173
+}

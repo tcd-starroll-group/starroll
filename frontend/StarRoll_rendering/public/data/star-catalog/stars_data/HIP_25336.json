@@ -1,0 +1,13 @@
+{
+    "hip": 25336,
+    "name": "Bellatrix",
+    "description": "Bellatrix is the third-brightest star and a candidate binary star in the constellation of Orion, positioned 5° west of the red supergiant Betelgeuse (Alpha Orionis). It has the Bayer designation γ Orionis, which is Latinized to Gamma Orionis.",
+    "url": "https://en.wikipedia.org/wiki/Bellatrix",
+    "alpha": 81.75037415882942,
+    "delta": 6.378200084050735,
+    "mag": 1.64,
+    "pmRA": -4.24211970970844e-08,
+    "pmDE": -6.438325685134637e-08,
+    "bvColor": -0.224,
+    "distance": 243.07004470938898
+}

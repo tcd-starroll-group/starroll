@@ -1,0 +1,13 @@
+{
+    "hip": 7078,
+    "name": "* 38 Cas -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+7078",
+    "alpha": 23.467368773068568,
+    "delta": 70.44235504562174,
+    "mag": 5.82,
+    "pmRA": 6.667642556299449e-07,
+    "pmDE": -3.6845839764324737e-07,
+    "bvColor": 0.489,
+    "distance": 95.40801403919275
+}

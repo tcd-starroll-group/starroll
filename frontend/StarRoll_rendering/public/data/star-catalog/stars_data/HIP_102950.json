@@ -1,0 +1,13 @@
+{
+    "hip": 102950,
+    "name": "* iot Ind -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+102950",
+    "alpha": 313.4994931703296,
+    "delta": -51.47550543346786,
+    "mag": 5.06,
+    "pmRA": -1.1635528346628864e-09,
+    "pmDE": -2.3998277214922037e-08,
+    "bvColor": 1.125,
+    "distance": 567.304347826087
+}

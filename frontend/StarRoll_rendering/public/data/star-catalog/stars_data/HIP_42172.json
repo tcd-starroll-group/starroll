@@ -1,0 +1,13 @@
+{
+    "hip": 42172,
+    "name": "HD 72945 -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+42172",
+    "alpha": 129.42495825384802,
+    "delta": 6.496721754948506,
+    "mag": 5.91,
+    "pmRA": -6.533833980313217e-07,
+    "pmDE": -6.351059222534922e-07,
+    "bvColor": 0.53,
+    "distance": 86.57112526539278
+}

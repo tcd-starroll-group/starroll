@@ -1,0 +1,13 @@
+{
+    "hip": 2661,
+    "name": "HD 3059 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+2661",
+    "alpha": 8.85064245829858,
+    "delta": -29.366766932577264,
+    "mag": 5.55,
+    "pmRA": -1.353114983976715e-07,
+    "pmDE": -1.42098889933205e-07,
+    "bvColor": 1.262,
+    "distance": 497.2560975609756
+}

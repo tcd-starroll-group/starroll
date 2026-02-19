@@ -1,0 +1,13 @@
+{
+    "hip": 49065,
+    "name": "* mu. Cha -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+49065",
+    "alpha": 149.91301688727054,
+    "delta": -82.38246369318352,
+    "mag": 5.53,
+    "pmRA": -1.3085121253146377e-07,
+    "pmDE": 1.5082553619317662e-07,
+    "bvColor": 0.035,
+    "distance": 399.26560587515297
+}

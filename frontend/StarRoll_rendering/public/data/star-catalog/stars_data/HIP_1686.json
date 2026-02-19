@@ -1,0 +1,13 @@
+{
+    "hip": 1686,
+    "name": "Rho Andromedae",
+    "description": "Rho Andromedae is a star in the northern constellation of Andromeda. Its Bayer designation is Latinized from ρ Andromedae, abbreviated Rho And or ρ And, respectively.",
+    "url": "https://en.wikipedia.org/wiki/Rho_Andromedae",
+    "alpha": 5.741549994721003,
+    "delta": 38.161323942660744,
+    "mag": 5.16,
+    "pmRA": 2.827433388230814e-07,
+    "pmDE": -1.9222862455993098e-07,
+    "bvColor": 0.442,
+    "distance": 159.74534769833497
+}

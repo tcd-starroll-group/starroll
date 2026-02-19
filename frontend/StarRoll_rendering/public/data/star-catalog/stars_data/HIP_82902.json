@@ -1,0 +1,13 @@
+{
+    "hip": 82902,
+    "name": "HD 152527 -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+82902",
+    "alpha": 254.80774125590978,
+    "delta": -52.33598812485246,
+    "mag": 5.94,
+    "pmRA": -1.7327240962854815e-07,
+    "pmDE": -2.0575492626288708e-07,
+    "bvColor": -0.069,
+    "distance": 315.1690821256039
+}

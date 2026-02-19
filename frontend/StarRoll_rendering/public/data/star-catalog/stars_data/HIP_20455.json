@@ -1,0 +1,13 @@
+{
+    "hip": 20455,
+    "name": "Delta1 Tauri",
+    "description": "Delta1 Tauri (δ1 Tauri, abbreviated Delta1 Tau, δ1 Tau) is a double star in the zodiac constellation of Taurus. Based upon an annual parallax shift of 20.96 mas as seen from Earth, it is located roughly 156 light-years distant from the Sun.",
+    "url": "https://en.wikipedia.org/wiki/Delta1_Tauri",
+    "alpha": 66.23690334348693,
+    "delta": 17.621218696160437,
+    "mag": 3.77,
+    "pmRA": 5.223867413955249e-07,
+    "pmDE": -1.3982026563199015e-07,
+    "bvColor": 0.983,
+    "distance": 153.21747299201505
+}

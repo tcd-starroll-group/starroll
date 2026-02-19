@@ -1,0 +1,13 @@
+{
+    "hip": 63117,
+    "name": "HD 112244 -- Blue Supergiant",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+63117",
+    "alpha": 194.50760301876196,
+    "delta": -57.02375799836024,
+    "mag": 5.34,
+    "pmRA": -2.4822460472808246e-08,
+    "pmDE": -3.781546712654381e-09,
+    "bvColor": 0.01,
+    "distance": 1885.549132947977
+}

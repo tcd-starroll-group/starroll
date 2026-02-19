@@ -1,0 +1,13 @@
+{
+    "hip": 8714,
+    "name": "* 2 Per -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+8714",
+    "alpha": 28.59851343452205,
+    "delta": 50.96328642658653,
+    "mag": 5.7,
+    "pmRA": 8.915723595604367e-08,
+    "pmDE": -1.390445637422149e-07,
+    "bvColor": -0.067,
+    "distance": 492.0060331825038
+}

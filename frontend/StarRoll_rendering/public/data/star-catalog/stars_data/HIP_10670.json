@@ -1,0 +1,13 @@
+{
+    "hip": 10670,
+    "name": "* gam Tri -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+10670",
+    "alpha": 34.84925653546373,
+    "delta": 34.006461139695325,
+    "mag": 4.03,
+    "pmRA": 2.1772982418629262e-07,
+    "pmDE": -2.5413933163761875e-07,
+    "bvColor": 0.019,
+    "distance": 117.63433104940496
+}

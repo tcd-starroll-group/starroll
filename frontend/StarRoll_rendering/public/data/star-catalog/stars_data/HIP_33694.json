@@ -1,0 +1,13 @@
+{
+    "hip": 33694,
+    "name": "HD 49878",
+    "description": "HD 49878 is a single star in the northern circumpolar constellation of Camelopardalis.",
+    "url": "https://en.wikipedia.org/wiki/HD_49878",
+    "alpha": 106.26870582713266,
+    "delta": 76.9250235051482,
+    "mag": 4.55,
+    "pmRA": 3.5478665183595846e-07,
+    "pmDE": -6.72921389380036e-08,
+    "bvColor": 1.365,
+    "distance": 187.14859437751002
+}

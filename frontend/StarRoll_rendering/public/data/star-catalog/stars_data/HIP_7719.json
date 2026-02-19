@@ -1,0 +1,13 @@
+{
+    "hip": 7719,
+    "name": "Chi Andromedae",
+    "description": "Chi Andromedae (χ Andromedae, χ And) is the Bayer designation for a star in the northern constellation of Andromeda. It has an apparent visual magnitude of +5.01, which is relatively faint for a naked-eye star.",
+    "url": "https://en.wikipedia.org/wiki/Chi_Andromedae",
+    "alpha": 25.3644248061011,
+    "delta": 44.56188065852115,
+    "mag": 5.01,
+    "pmRA": -9.93383232593439e-08,
+    "pmDE": 7.247964532587562e-08,
+    "bvColor": 0.883,
+    "distance": 242.34769687964337
+}

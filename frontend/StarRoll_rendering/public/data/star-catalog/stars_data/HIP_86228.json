@@ -1,0 +1,13 @@
+{
+    "hip": 86228,
+    "name": "Theta Scorpii",
+    "description": "Theta Scorpii (θ Scorpii, abbreviated Theta Sco, θ Sco) is a binary star in the southern zodiac constellation of Scorpius. The apparent visual magnitude of this star is +1.87, making it readily visible to the naked eye and one of the brightest stars in the night sky.",
+    "url": "https://en.wikipedia.org/wiki/Theta_Scorpii",
+    "alpha": 264.9561213644673,
+    "delta": -43.01594640046697,
+    "mag": 1.86,
+    "pmRA": 2.9379709075237882e-08,
+    "pmDE": -4.605729970540591e-09,
+    "bvColor": 0.406,
+    "distance": 272.0600500417014
+}

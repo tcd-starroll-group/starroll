@@ -1,0 +1,13 @@
+{
+    "hip": 83187,
+    "name": "HD 153053",
+    "description": "HD 153053 is double star in the southern constellation of Ara. The brighter component is an A-type main sequence star that may be evolving into a subgiant. It has a twelfth magnitude visual companion at an angular separation of 24.7″ along a position angle of 52°.",
+    "url": "https://en.wikipedia.org/wiki/HD_153053",
+    "alpha": 255.73665193658428,
+    "delta": -54.64664644351009,
+    "mag": 5.64,
+    "pmRA": -3.728217207732331e-08,
+    "pmDE": -3.5410791268240514e-07,
+    "bvColor": 0.194,
+    "distance": 165.24822695035462
+}

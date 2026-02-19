@@ -1,0 +1,13 @@
+{
+    "hip": 12225,
+    "name": "* eta Hor -- Double or Multiple Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+12225",
+    "alpha": 39.63789625713702,
+    "delta": -52.393436951414124,
+    "mag": 5.3,
+    "pmRA": 5.395491457068027e-07,
+    "pmDE": 5.0905436516501285e-09,
+    "bvColor": 0.289,
+    "distance": 145.04224099599824
+}

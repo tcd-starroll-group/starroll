@@ -1,0 +1,13 @@
+{
+    "hip": 34622,
+    "name": "* 20 Mon -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+34622",
+    "alpha": 107.98950580692835,
+    "delta": -4.294722207894578,
+    "mag": 4.91,
+    "pmRA": 0,
+    "pmDE": 1.056166604297124e-06,
+    "bvColor": 1.02,
+    "distance": 211.13268608414242
+}

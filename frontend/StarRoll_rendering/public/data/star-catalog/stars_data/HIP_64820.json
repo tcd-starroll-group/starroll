@@ -1,0 +1,13 @@
+{
+    "hip": 64820,
+    "name": "HD 115211",
+    "description": "HD 115211 is a single star in the southern constellation of Musca.",
+    "url": "https://en.wikipedia.org/wiki/HD_115211",
+    "alpha": 199.9027623538292,
+    "delta": -66.96614811063478,
+    "mag": 4.86,
+    "pmRA": -7.403104910542616e-08,
+    "pmDE": -3.073718738234458e-08,
+    "bvColor": 1.48,
+    "distance": 1186.1818181818182
+}

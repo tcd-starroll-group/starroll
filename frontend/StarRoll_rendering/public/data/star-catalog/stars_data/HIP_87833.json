@@ -1,0 +1,13 @@
+{
+    "hip": 87833,
+    "name": "Gamma Draconis",
+    "description": "Gamma Draconis, formally named Eltanin , is a star in the northern constellation of Draco.",
+    "url": "https://en.wikipedia.org/wiki/Gamma_Draconis",
+    "alpha": 269.3541301896475,
+    "delta": 51.486192714273386,
+    "mag": 2.24,
+    "pmRA": -4.130612563053247e-08,
+    "pmDE": -1.1174955349574804e-07,
+    "bvColor": 1.521,
+    "distance": 147.6018099547511
+}

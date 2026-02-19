@@ -1,0 +1,13 @@
+{
+    "hip": 36114,
+    "name": "HD 59219 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+36114",
+    "alpha": 111.81439097411221,
+    "delta": -51.09014714027399,
+    "mag": 5.09,
+    "pmRA": -2.6664752461024477e-08,
+    "pmDE": 2.9525153179570744e-08,
+    "bvColor": 1.038,
+    "distance": 562.4137931034483
+}

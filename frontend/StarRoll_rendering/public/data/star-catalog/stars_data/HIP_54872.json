@@ -1,0 +1,13 @@
+{
+    "hip": 54872,
+    "name": "Delta Leonis",
+    "description": "Delta Leonis (δ Leonis, abbreviated Delta Leo, δ Leo), also named Zosma , is a star in the zodiac constellation of Leo. Based upon parallax measurements, it lies at a distance of about 58.4 light-years (17.9 parsecs) from the Sun.",
+    "url": "https://en.wikipedia.org/wiki/Delta_Leonis",
+    "alpha": 168.9884513007944,
+    "delta": 20.332576887559018,
+    "mag": 2.56,
+    "pmRA": 6.947864863980759e-07,
+    "pmDE": -6.323424842711679e-07,
+    "bvColor": 0.128,
+    "distance": 57.71408351026185
+}

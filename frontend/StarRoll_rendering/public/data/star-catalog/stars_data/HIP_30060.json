@@ -1,0 +1,13 @@
+{
+    "hip": 30060,
+    "name": "* 2 Lyn -- Eclipsing Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+30060",
+    "alpha": 95.6734088108567,
+    "delta": 58.99327655980004,
+    "mag": 4.44,
+    "pmRA": -1.701696020694471e-08,
+    "pmDE": 1.1843998229505965e-07,
+    "bvColor": 0.032,
+    "distance": 149.0859232175503
+}

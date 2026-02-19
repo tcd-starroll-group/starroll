@@ -1,0 +1,13 @@
+{
+    "hip": 93203,
+    "name": "11 Aquilae",
+    "description": "11 Aquilae (abbreviated 11 Aql) is a single star in the equatorial constellation of Aquila. 11 Aquilae is the Flamsteed designation. It has an apparent visual magnitude of 5.2, which means it is faintly visible to the naked eye.",
+    "url": "https://en.wikipedia.org/wiki/11_Aquilae",
+    "alpha": 285.174861392115,
+    "delta": 13.671450926262033,
+    "mag": 5.27,
+    "pmRA": 9.449018644824859e-08,
+    "pmDE": -6.056292504420324e-07,
+    "bvColor": 0.573,
+    "distance": 155.4073368270605
+}

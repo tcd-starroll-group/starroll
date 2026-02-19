@@ -1,0 +1,13 @@
+{
+    "hip": 42884,
+    "name": "HD 74772",
+    "description": "HD 74772 (d Velorum) is a single star in the southern constellation of Vela. It is positioned near the Vela SNR, which gives it an intense X-ray background. The star is of apparent visual magnitude 4.05, and hence is visible to the naked eye.",
+    "url": "https://en.wikipedia.org/wiki/HD_74772",
+    "alpha": 131.4113404406566,
+    "delta": -42.7770125301131,
+    "mag": 4.05,
+    "pmRA": -1.1577350704895718e-07,
+    "pmDE": 9.434474234391572e-08,
+    "bvColor": 0.874,
+    "distance": 228.59145059565523
+}

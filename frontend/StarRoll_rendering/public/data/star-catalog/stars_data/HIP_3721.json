@@ -1,0 +1,13 @@
+{
+    "hip": 3721,
+    "name": "* 23 Cas -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+3721",
+    "alpha": 12.54099958810015,
+    "delta": 75.03702652161347,
+    "mag": 5.42,
+    "pmRA": 7.286749627076325e-08,
+    "pmDE": -2.879793265790644e-08,
+    "bvColor": -0.066,
+    "distance": 803.4482758620691
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 82369,
+    "name": "* 20 Oph -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+82369",
+    "alpha": 252.94075036822707,
+    "delta": -10.841262432813597,
+    "mag": 4.64,
+    "pmRA": 4.542704191996352e-07,
+    "pmDE": -3.9725633030115375e-07,
+    "bvColor": 0.478,
+    "distance": 120.6360946745562
+}

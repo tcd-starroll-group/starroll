@@ -1,0 +1,13 @@
+{
+    "hip": 32292,
+    "name": "* 10 CMa -- Be Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+32292",
+    "alpha": 101.45020798530327,
+    "delta": -31.108411453493783,
+    "mag": 5.23,
+    "pmRA": -1.4738335905729894e-08,
+    "pmDE": 3.025237370123505e-08,
+    "bvColor": -0.127,
+    "distance": 2609.6
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 77853,
+    "name": "* tet Lib -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+77853",
+    "alpha": 238.9533719292036,
+    "delta": -16.82902695715161,
+    "mag": 4.13,
+    "pmRA": 4.853954575268674e-07,
+    "pmDE": 6.558074664368692e-07,
+    "bvColor": 1.003,
+    "distance": 162.93706293706293
+}

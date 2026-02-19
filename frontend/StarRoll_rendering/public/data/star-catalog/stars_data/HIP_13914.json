@@ -1,0 +1,13 @@
+{
+    "hip": 13914,
+    "name": "Epsilon Arietis",
+    "description": "Epsilon Arietis is a visual binary star system in the northern constellation of Aries. Its name is a Bayer designation that is Latinized from ε Arietis, and abbreviated Epsilon Ari or ε Ari.",
+    "url": "https://en.wikipedia.org/wiki/Epsilon_Arietis",
+    "alpha": 45.303001412352344,
+    "delta": 21.477369069005768,
+    "mag": 4.63,
+    "pmRA": -6.32197040166835e-08,
+    "pmDE": -3.175529611267461e-08,
+    "bvColor": 0.048,
+    "distance": 292.5560538116592
+}

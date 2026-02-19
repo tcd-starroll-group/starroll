@@ -1,0 +1,13 @@
+{
+    "hip": 7955,
+    "name": "* pi. Scl -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+7955",
+    "alpha": 25.928497097974123,
+    "delta": -32.15262899749553,
+    "mag": 5.25,
+    "pmRA": -3.6259215210182203e-07,
+    "pmDE": -2.2471114119426996e-07,
+    "bvColor": 1.044,
+    "distance": 217.17709720372838
+}

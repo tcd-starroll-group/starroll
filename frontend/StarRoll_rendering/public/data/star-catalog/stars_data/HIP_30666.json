@@ -1,0 +1,13 @@
+{
+    "hip": 30666,
+    "name": "HD 45320 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+30666",
+    "alpha": 97.10603197429312,
+    "delta": -1.5308089672638299,
+    "mag": 5.87,
+    "pmRA": -4.901466316017409e-08,
+    "pmDE": -1.4253522224620356e-07,
+    "bvColor": 0.07,
+    "distance": 228.75175315568023
+}

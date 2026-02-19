@@ -1,0 +1,13 @@
+{
+    "hip": 72125,
+    "name": "Omicron Boötis",
+    "description": "Omicron Boötis is a yellow-hued star in the northern constellation of Boötes. Its name is a Bayer designation that is Latinized from ο Boötis, and abbreviated Omicron Boo or ο Boo.",
+    "url": "https://en.wikipedia.org/wiki/Omicron_Bo%C3%B6tis",
+    "alpha": 221.71707793301132,
+    "delta": 16.81872673318911,
+    "mag": 4.6,
+    "pmRA": -2.9510608769137454e-07,
+    "pmDE": -2.457520549544238e-07,
+    "bvColor": 0.972,
+    "distance": 225.27624309392266
+}

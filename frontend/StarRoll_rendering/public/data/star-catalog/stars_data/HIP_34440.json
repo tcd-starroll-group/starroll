@@ -1,0 +1,13 @@
+{
+    "hip": 34440,
+    "name": "* 45 Gem -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+34440",
+    "alpha": 107.59079126254962,
+    "delta": 15.872117906456433,
+    "mag": 5.47,
+    "pmRA": -2.4337646791698702e-08,
+    "pmDE": -5.018791226845916e-07,
+    "bvColor": 1.02,
+    "distance": 305.4307116104869
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 104185,
+    "name": "V* DT Cyg -- Classical Cepheid Variable",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+104185",
+    "alpha": 316.9917632540386,
+    "delta": 31.32599500184822,
+    "mag": 5.77,
+    "pmRA": 1.9295584508159536e-08,
+    "pmDE": -2.3174093957035822e-08,
+    "bvColor": 0.554,
+    "distance": 1896.5116279069769
+}

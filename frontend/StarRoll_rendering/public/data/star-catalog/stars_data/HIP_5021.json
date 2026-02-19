@@ -1,0 +1,13 @@
+{
+    "hip": 5021,
+    "name": "HD 6210 -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+5021",
+    "alpha": 16.62825331283251,
+    "delta": 61.76607392871809,
+    "mag": 5.83,
+    "pmRA": -3.871722057340755e-07,
+    "pmDE": -1.2008834881083206e-07,
+    "bvColor": 0.569,
+    "distance": 261.58781074578985
+}

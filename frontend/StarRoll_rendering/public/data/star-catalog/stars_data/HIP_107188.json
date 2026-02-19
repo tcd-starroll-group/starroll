@@ -1,0 +1,13 @@
+{
+    "hip": 107188,
+    "name": "* kap Cap -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+107188",
+    "alpha": 326.1489112934723,
+    "delta": -18.7058105470598,
+    "mag": 4.72,
+    "pmRA": 7.07343160738813e-07,
+    "pmDE": -4.387563814041301e-08,
+    "bvColor": 0.868,
+    "distance": 290.73083778966134
+}

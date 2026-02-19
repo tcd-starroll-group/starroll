@@ -1,0 +1,13 @@
+{
+    "hip": 28992,
+    "name": "HD 42054 -- Emission-line Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+28992",
+    "alpha": 92.0793185999884,
+    "delta": -34.31852808092758,
+    "mag": 5.82,
+    "pmRA": 1.3720227175399866e-08,
+    "pmDE": 2.1331801968819583e-09,
+    "bvColor": -0.137,
+    "distance": 1052.258064516129
+}

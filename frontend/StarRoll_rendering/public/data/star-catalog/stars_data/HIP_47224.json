@@ -1,0 +1,13 @@
+{
+    "hip": 47224,
+    "name": "HD 83441 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+47224",
+    "alpha": 144.73220889847082,
+    "delta": -36.25397715702781,
+    "mag": 5.96,
+    "pmRA": -1.2416078373215217e-07,
+    "pmDE": -6.9328356398663655e-09,
+    "bvColor": 1.118,
+    "distance": 337.3319544984488
+}

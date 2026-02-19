@@ -1,0 +1,13 @@
+{
+    "hip": 109427,
+    "name": "* tet Peg -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+109427",
+    "alpha": 332.98848426343756,
+    "delta": 6.370500094065707,
+    "mag": 3.52,
+    "pmRA": 1.3669806552564475e-06,
+    "pmDE": 1.514073126105081e-07,
+    "bvColor": 0.086,
+    "distance": 96.59461060112524
+}

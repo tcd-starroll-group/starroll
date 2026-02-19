@@ -1,0 +1,13 @@
+{
+    "hip": 95503,
+    "name": "* chi03 Sgr -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+95503",
+    "alpha": 291.8997009381347,
+    "delta": -23.891047991066227,
+    "mag": 5.45,
+    "pmRA": -8.843001543437936e-08,
+    "pmDE": -6.477110779623401e-08,
+    "bvColor": 1.442,
+    "distance": 505.7364341085271
+}

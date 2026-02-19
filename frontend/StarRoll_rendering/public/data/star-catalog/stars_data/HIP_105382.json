@@ -1,0 +1,13 @@
+{
+    "hip": 105382,
+    "name": "* tet01 Mic -- alpha2 CVn Variable",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+105382",
+    "alpha": 320.74322519537606,
+    "delta": -40.65977495359833,
+    "mag": 4.8,
+    "pmRA": 3.693310622692446e-07,
+    "pmDE": 8.561809608394406e-08,
+    "bvColor": 0.029,
+    "distance": 186.50657518582048
+}

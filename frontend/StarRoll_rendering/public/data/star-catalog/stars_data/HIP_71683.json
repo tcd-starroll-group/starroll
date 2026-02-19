@@ -1,0 +1,13 @@
+{
+    "hip": 71683,
+    "name": "Alpha Centauri",
+    "description": "Alpha Centauri (α Centauri, α Cen, or Alpha Cen) is a star system in the southern constellation of Centaurus. It consists of three stars: Rigil Kentaurus (α Centauri A), Toliman (α Centauri B), and Proxima Centauri (α Centauri C).",
+    "url": "https://en.wikipedia.org/wiki/Alpha_Centauri",
+    "alpha": 220.55611298496922,
+    "delta": -60.9785399883964,
+    "mag": -0.01,
+    "pmRA": -1.7832368337202842e-05,
+    "pmDE": 2.336026241058188e-06,
+    "bvColor": 0.71,
+    "distance": 4.395515550045815
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 14502,
+    "name": "HD 19065 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+14502",
+    "alpha": 47.568704117819614,
+    "delta": 64.18933366097143,
+    "mag": 5.89,
+    "pmRA": -6.617706747145166e-08,
+    "pmDE": -1.5417075059283246e-08,
+    "bvColor": -0.02,
+    "distance": 557.6068376068376
+}

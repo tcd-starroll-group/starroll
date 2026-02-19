@@ -1,0 +1,13 @@
+{
+    "hip": 18396,
+    "name": "HD 24504 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+18396",
+    "alpha": 59.62345792067844,
+    "delta": 47.97024882505873,
+    "mag": 5.39,
+    "pmRA": 8.518176377094549e-08,
+    "pmDE": -9.996858104478633e-08,
+    "bvColor": -0.073,
+    "distance": 845.077720207254
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 95222,
+    "name": "HD 181907 -- Red Giant Branch star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+95222",
+    "alpha": 291.0355804639002,
+    "delta": 0.3209132450668991,
+    "mag": 5.81,
+    "pmRA": 2.929729074944926e-07,
+    "pmDE": -1.3225717220668142e-07,
+    "bvColor": 1.093,
+    "distance": 363.25167037861917
+}

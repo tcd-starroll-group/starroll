@@ -1,0 +1,13 @@
+{
+    "hip": 2021,
+    "name": "Beta Hydri",
+    "description": "Beta Hydri (β Hyi, β Hydri) is a star in the southern circumpolar constellation of Hydrus. (Note that Hydrus is not the same as Hydra.) With an apparent visual magnitude of 2.8, this is the brightest star in the constellation.",
+    "url": "https://en.wikipedia.org/wiki/Beta_Hydri",
+    "alpha": 6.783209751471547,
+    "delta": -77.05926857559035,
+    "mag": 2.82,
+    "pmRA": 1.076344549704903e-05,
+    "pmDE": 1.5725901374150016e-06,
+    "bvColor": 0.618,
+    "distance": 24.383315891762596
+}

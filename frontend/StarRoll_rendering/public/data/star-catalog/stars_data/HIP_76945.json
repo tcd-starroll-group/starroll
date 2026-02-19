@@ -1,0 +1,13 @@
+{
+    "hip": 76945,
+    "name": "* psi02 Lup -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+76945",
+    "alpha": 236.22856310903694,
+    "delta": -34.81920186810653,
+    "mag": 4.75,
+    "pmRA": -1.1616135799384484e-07,
+    "pmDE": -1.4752880316163178e-07,
+    "bvColor": -0.151,
+    "distance": 395.873786407767
+}
