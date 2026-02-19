@@ -1,0 +1,13 @@
+{
+    "hip": 8230,
+    "name": "HD 10824 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+8230",
+    "alpha": 26.934527820369997,
+    "delta": -5.56030015657352,
+    "mag": 5.37,
+    "pmRA": -4.4069563612856825e-08,
+    "pmDE": -1.4394118192142123e-07,
+    "bvColor": 1.517,
+    "distance": 509.6875
+}

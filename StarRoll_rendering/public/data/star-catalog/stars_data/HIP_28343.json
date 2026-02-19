@@ -1,0 +1,13 @@
+{
+    "hip": 28343,
+    "name": "HD 40084 -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+28343",
+    "alpha": 90.51745466641181,
+    "delta": 49.92392495383496,
+    "mag": 5.9,
+    "pmRA": -2.2155985226705796e-08,
+    "pmDE": -1.2314267500182213e-08,
+    "bvColor": 1.194,
+    "distance": 1124.8275862068965
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 10035,
+    "name": "HD 13336 -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+10035",
+    "alpha": 32.63613997563915,
+    "delta": -43.35335945519155,
+    "mag": 5.84,
+    "pmRA": -2.3431045208023873e-07,
+    "pmDE": -2.492911948265234e-07,
+    "bvColor": 1.197,
+    "distance": 574.2957746478874
+}

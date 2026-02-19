@@ -1,0 +1,13 @@
+{
+    "hip": 23900,
+    "name": "* 103 Tau -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+23900",
+    "alpha": 77.55923274337908,
+    "delta": 24.30779534743059,
+    "mag": 5.5,
+    "pmRA": 8.435758051305925e-09,
+    "pmDE": -2.564664373069445e-08,
+    "bvColor": 0.03,
+    "distance": 3229.7029702970294
+}

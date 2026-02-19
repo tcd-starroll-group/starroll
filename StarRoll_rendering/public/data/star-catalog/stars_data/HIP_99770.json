@@ -1,0 +1,13 @@
+{
+    "hip": 99770,
+    "name": "29 Cygni",
+    "description": "29 Cygni is a single star in the northern constellation of Cygnus. It is dimly visible to the naked eye as a white-hued star with an apparent visual magnitude of 4.93. The distance to 29 Cyg, as estimated from an annual parallax shift of 24.5 mas, is 133 light years.",
+    "url": "https://en.wikipedia.org/wiki/29_Cygni",
+    "alpha": 303.9593803276349,
+    "delta": 36.91466491188714,
+    "mag": 4.93,
+    "pmRA": 3.355880300640208e-07,
+    "pmDE": 3.329215548179184e-07,
+    "bvColor": 0.151,
+    "distance": 133.85309807139927
+}

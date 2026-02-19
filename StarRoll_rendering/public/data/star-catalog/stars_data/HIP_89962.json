@@ -1,0 +1,13 @@
+{
+    "hip": 89962,
+    "name": "* eta Ser -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+89962",
+    "alpha": 275.7795710639079,
+    "delta": -2.8851315444045196,
+    "mag": 3.23,
+    "pmRA": -2.6546942736514865e-06,
+    "pmDE": -3.39718642627074e-06,
+    "bvColor": 0.941,
+    "distance": 61.768604430978975
+}

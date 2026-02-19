@@ -1,0 +1,13 @@
+{
+    "hip": 52502,
+    "name": "HD 93194",
+    "description": "HD 93194 (HR 4205) is a star in the constellation Carina. Its apparent magnitude is 4.79. Its parent cluster is IC 2602.\nHD 93607 is a B4 main sequence star, notable for \"nebulous\" absorption lines caused by its rapid rotation.",
+    "url": "https://en.wikipedia.org/wiki/HD_93194",
+    "alpha": 161.3465227297558,
+    "delta": -64.14454615612833,
+    "mag": 4.8,
+    "pmRA": -8.270921399728682e-08,
+    "pmDE": 5.803219762881146e-08,
+    "bvColor": -0.134,
+    "distance": 483.97626112759644
+}

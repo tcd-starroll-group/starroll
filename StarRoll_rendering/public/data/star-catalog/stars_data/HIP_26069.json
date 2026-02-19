@@ -1,0 +1,13 @@
+{
+    "hip": 26069,
+    "name": "Beta Doradus",
+    "description": "Beta Doradus, Latinized from β Doradus, is the second brightest star in the southern constellation of Dorado.",
+    "url": "https://en.wikipedia.org/wiki/Beta_Doradus",
+    "alpha": 83.48289459031055,
+    "delta": -62.46760202710497,
+    "mag": 3.76,
+    "pmRA": 5.139025019761082e-09,
+    "pmDE": 6.089259834735772e-08,
+    "bvColor": 0.64,
+    "distance": 1038.8535031847132
+}

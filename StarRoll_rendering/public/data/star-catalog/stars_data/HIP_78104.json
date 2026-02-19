@@ -1,0 +1,13 @@
+{
+    "hip": 78104,
+    "name": "* rho Sco -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+78104",
+    "alpha": 239.7609495182701,
+    "delta": -29.31268568911478,
+    "mag": 3.87,
+    "pmRA": -7.369167952864946e-08,
+    "pmDE": -1.2168823395849353e-07,
+    "bvColor": -0.199,
+    "distance": 409.2848180677541
+}

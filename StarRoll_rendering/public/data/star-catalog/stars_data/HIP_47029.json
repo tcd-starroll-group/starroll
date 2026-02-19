@@ -1,0 +1,13 @@
+{
+    "hip": 47029,
+    "name": "HD 82741",
+    "description": "HD 82741 is a single star in the northern constellation of Lynx. It is visible to the naked eye with an apparent visual magnitude of 4.81. The distance to HD 82741 is 223 light years, as determined from its annual parallax shift of 14.6 mas.",
+    "url": "https://en.wikipedia.org/wiki/HD_82741",
+    "alpha": 144.3060506980384,
+    "delta": 39.46469693028678,
+    "mag": 4.81,
+    "pmRA": -1.4369877508086645e-07,
+    "pmDE": 1.002109878853411e-07,
+    "bvColor": 0.992,
+    "distance": 229.23401264933239
+}

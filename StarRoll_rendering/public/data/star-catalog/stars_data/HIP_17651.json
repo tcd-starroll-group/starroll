@@ -1,0 +1,13 @@
+{
+    "hip": 17651,
+    "name": "* tau06 Eri -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+17651",
+    "alpha": 57.08756468545359,
+    "delta": -23.147661457761227,
+    "mag": 4.22,
+    "pmRA": -7.750231506217044e-07,
+    "pmDE": -2.5624342301363415e-06,
+    "bvColor": 0.434,
+    "distance": 58.469259723964875
+}

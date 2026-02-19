@@ -1,0 +1,13 @@
+{
+    "hip": 79375,
+    "name": "* psi Sco -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+79375",
+    "alpha": 243.4769311236516,
+    "delta": -10.151778482885575,
+    "mag": 4.93,
+    "pmRA": -1.062711588992103e-07,
+    "pmDE": -1.3550542387011528e-07,
+    "bvColor": 0.087,
+    "distance": 164.83072258716524
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 59468,
+    "name": "* 4 Com -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+59468",
+    "alpha": 183.40404214754864,
+    "delta": 25.67645224708847,
+    "mag": 5.66,
+    "pmRA": -1.8476249387084417e-07,
+    "pmDE": -1.4966198335851376e-07,
+    "bvColor": 1.401,
+    "distance": 774.8218527315914
+}

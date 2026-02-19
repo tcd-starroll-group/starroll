@@ -1,0 +1,13 @@
+{
+    "hip": 57936,
+    "name": "Beta Hydrae",
+    "description": "Beta Hydrae, Latinized from β Hydrae, is a double star in the equatorial constellation of Hydra.",
+    "url": "https://en.wikipedia.org/wiki/Beta_Hydrae",
+    "alpha": 178.66950620680598,
+    "delta": -34.101953981611665,
+    "mag": 4.29,
+    "pmRA": -2.8128889777975277e-07,
+    "pmDE": 1.1635528346628862e-08,
+    "bvColor": -0.1,
+    "distance": 365.2855543113102
+}

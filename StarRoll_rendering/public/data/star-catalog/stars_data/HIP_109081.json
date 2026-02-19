@@ -1,0 +1,13 @@
+{
+    "hip": 109081,
+    "name": "* kap02 Ind -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+109081",
+    "alpha": 332.06517556786815,
+    "delta": -59.465627102801534,
+    "mag": 5.62,
+    "pmRA": 2.73725804354444e-07,
+    "pmDE": -2.597146889703784e-07,
+    "bvColor": 1.468,
+    "distance": 514.5110410094637
+}

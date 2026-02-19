@@ -1,0 +1,13 @@
+{
+    "hip": 13055,
+    "name": "HD 16458 -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+13055",
+    "alpha": 43.27538343354191,
+    "delta": 81.59062110346812,
+    "mag": 5.8,
+    "pmRA": 9.104800931237086e-08,
+    "pmDE": -3.800939259898763e-07,
+    "bvColor": 1.3,
+    "distance": 498.7767584097859
+}

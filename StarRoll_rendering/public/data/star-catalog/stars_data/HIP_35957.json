@@ -1,0 +1,13 @@
+{
+    "hip": 35957,
+    "name": "HD 58535 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+35957",
+    "alpha": 111.51669077861992,
+    "delta": -31.879426585579644,
+    "mag": 5.35,
+    "pmRA": -1.0360468365310785e-07,
+    "pmDE": 4.2324234360862496e-08,
+    "bvColor": 1.071,
+    "distance": 551.9458544839255
+}

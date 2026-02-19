@@ -1,0 +1,13 @@
+{
+    "hip": 64445,
+    "name": "HD 114780 -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+64445",
+    "alpha": 198.57069594509454,
+    "delta": 11.371825508441525,
+    "mag": 5.76,
+    "pmRA": -2.4570357358631285e-07,
+    "pmDE": -1.4820754231518515e-07,
+    "bvColor": 1.499,
+    "distance": 811.4427860696518
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 3031,
+    "name": "Epsilon Andromedae",
+    "description": "Epsilon Andromedae is a star in the constellation of Andromeda. Its identifier is a Bayer designation that is Latinized from ε Andromedae, and abbreviated eps And or ε And, respectively.",
+    "url": "https://en.wikipedia.org/wiki/Epsilon_Andromedae",
+    "alpha": 10.102373743807313,
+    "delta": 29.500942402159936,
+    "mag": 4.34,
+    "pmRA": -1.1122110658333865e-06,
+    "pmDE": -1.231814600963109e-06,
+    "bvColor": 0.871,
+    "distance": 168.6659772492244
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 39211,
+    "name": "* 28 Mon -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+39211",
+    "alpha": 120.74812613003351,
+    "delta": -1.4916448494062675,
+    "mag": 4.69,
+    "pmRA": 3.198315854279609e-07,
+    "pmDE": -3.671494007042516e-07,
+    "bvColor": 1.475,
+    "distance": 472.7536231884058
+}

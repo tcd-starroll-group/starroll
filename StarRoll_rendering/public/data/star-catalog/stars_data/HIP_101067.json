@@ -1,0 +1,13 @@
+{
+    "hip": 101067,
+    "name": "* 42 Cyg -- Post-AGB Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+101067",
+    "alpha": 307.6673702732549,
+    "delta": 36.57275477376836,
+    "mag": 5.9,
+    "pmRA": 1.2508192972626031e-08,
+    "pmDE": -7.660056161530669e-09,
+    "bvColor": 0.407,
+    "distance": 1690.155440414508
+}

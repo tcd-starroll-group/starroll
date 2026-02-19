@@ -1,0 +1,13 @@
+{
+    "hip": 54829,
+    "name": "HD 97670 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+54829",
+    "alpha": 168.7586890465884,
+    "delta": -59.80937379862681,
+    "mag": 5.74,
+    "pmRA": -3.645798881943711e-08,
+    "pmDE": -2.763437982324355e-09,
+    "bvColor": -0.106,
+    "distance": 1822.3463687150838
+}

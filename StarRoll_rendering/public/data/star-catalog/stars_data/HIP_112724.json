@@ -1,0 +1,13 @@
+{
+    "hip": 112724,
+    "name": "* iot Cep -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+112724",
+    "alpha": 342.7338776263517,
+    "delta": 66.38452824549896,
+    "mag": 3.5,
+    "pmRA": -3.2046184321340324e-07,
+    "pmDE": -6.047565858160352e-07,
+    "bvColor": 1.053,
+    "distance": 115.38733639900954
+}

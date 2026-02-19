@@ -1,0 +1,13 @@
+{
+    "hip": 85049,
+    "name": "HD 156768",
+    "description": "HD 156768 is a double star in the southern constellation of Ara, with a combined apparent magnitude of 5.86. The brighter component is a sixth magnitude bright giant or supergiant star with a stellar classification of G8Ib/II.",
+    "url": "https://en.wikipedia.org/wiki/HD_156768",
+    "alpha": 261.4832407138214,
+    "delta": -58.040406049903446,
+    "mag": 5.86,
+    "pmRA": -2.710108477402306e-08,
+    "pmDE": -7.543700878064381e-08,
+    "bvColor": 1.075,
+    "distance": 786.0240963855421
+}

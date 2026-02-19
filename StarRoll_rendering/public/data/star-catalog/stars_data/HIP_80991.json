@@ -1,0 +1,13 @@
+{
+    "hip": 80991,
+    "name": "HD 149650 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+80991",
+    "alpha": 248.23148346327991,
+    "delta": 60.75113004265007,
+    "mag": 5.92,
+    "pmRA": 1.0011402514911916e-07,
+    "pmDE": -4.746325938062357e-08,
+    "bvColor": 0.039,
+    "distance": 335.59670781893004
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 19811,
+    "name": "* f Per -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+19811",
+    "alpha": 64.3175113430403,
+    "delta": 40.56845748346337,
+    "mag": 4.67,
+    "pmRA": 4.71238898038469e-08,
+    "pmDE": -1.0462279238343785e-07,
+    "bvColor": 1.007,
+    "distance": 627.3076923076923
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 82020,
+    "name": "HD 151613 -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+82020",
+    "alpha": 251.49031543949832,
+    "delta": 56.720545375188095,
+    "mag": 4.84,
+    "pmRA": 1.2755447949991892e-07,
+    "pmDE": 3.391756513042313e-07,
+    "bvColor": 0.375,
+    "distance": 87.19593691526332
+}

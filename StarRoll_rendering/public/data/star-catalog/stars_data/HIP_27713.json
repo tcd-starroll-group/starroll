@@ -1,0 +1,13 @@
+{
+    "hip": 27713,
+    "name": "HD 39421 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+27713",
+    "alpha": 88.44762471780973,
+    "delta": -9.035703707349402,
+    "mag": 5.95,
+    "pmRA": -1.439896632895322e-08,
+    "pmDE": 1.566433003664911e-07,
+    "bvColor": 0.1,
+    "distance": 379.3023255813954
+}

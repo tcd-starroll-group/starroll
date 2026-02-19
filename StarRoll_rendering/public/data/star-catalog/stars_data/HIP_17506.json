@@ -1,0 +1,13 @@
+{
+    "hip": 17506,
+    "name": "* 25 Eri -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+17506",
+    "alpha": 56.6831008513207,
+    "delta": 0.40384448523581007,
+    "mag": 5.56,
+    "pmRA": 2.935062025437131e-07,
+    "pmDE": -9.017534468637368e-09,
+    "bvColor": 1.411,
+    "distance": 351.5086206896552
+}

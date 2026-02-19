@@ -1,0 +1,13 @@
+{
+    "hip": 3405,
+    "name": "* eta Phe -- delta Sct Variable",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+3405",
+    "alpha": 11.226774750430902,
+    "delta": -57.272635426759564,
+    "mag": 4.36,
+    "pmRA": -2.5016385945252063e-08,
+    "pmDE": 7.514612057197808e-08,
+    "bvColor": 0.024,
+    "distance": 240.38319823139278
+}

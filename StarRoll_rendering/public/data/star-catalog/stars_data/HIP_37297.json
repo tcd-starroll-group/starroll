@@ -1,0 +1,13 @@
+{
+    "hip": 37297,
+    "name": "HD 61831",
+    "description": "HD 61831 (d1 Puppis) is a class B2.5V (blue dwarf) star in the constellation Puppis. Its apparent magnitude is 4.84 and it is approximately 556 light years away based on parallax.\n\n\n== References ==",
+    "url": "https://en.wikipedia.org/wiki/HD_61831",
+    "alpha": 115.17101221807667,
+    "delta": -38.38990352902775,
+    "mag": 4.84,
+    "pmRA": -1.0350772091688592e-07,
+    "pmDE": 7.771563308185864e-08,
+    "bvColor": -0.189,
+    "distance": 574.2957746478874
+}

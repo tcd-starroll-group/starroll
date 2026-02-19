@@ -1,0 +1,13 @@
+{
+    "hip": 18805,
+    "name": "HD 25330 -- Double or Multiple Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+18805",
+    "alpha": 60.918489582863785,
+    "delta": 10.092992609662327,
+    "mag": 5.67,
+    "pmRA": 2.710108477402306e-08,
+    "pmDE": 5.4783945965377565e-09,
+    "bvColor": 0.005,
+    "distance": 565.3379549393414
+}

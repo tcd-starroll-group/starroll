@@ -1,0 +1,13 @@
+{
+    "hip": 60351,
+    "name": "* 12 Com -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+60351",
+    "alpha": 186.0629822116526,
+    "delta": 25.65320737097289,
+    "mag": 4.78,
+    "pmRA": -5.211747071927512e-08,
+    "pmDE": -4.2906010778193935e-08,
+    "bvColor": 0.515,
+    "distance": 273.4283319362951
+}

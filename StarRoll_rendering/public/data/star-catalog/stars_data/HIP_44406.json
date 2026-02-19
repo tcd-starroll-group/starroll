@@ -1,0 +1,13 @@
+{
+    "hip": 44406,
+    "name": "HD 77445 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+44406",
+    "alpha": 136.15004711148615,
+    "delta": 7.1589691164939815,
+    "mag": 5.85,
+    "pmRA": -4.518463507940875e-08,
+    "pmDE": 6.9328356398663655e-09,
+    "bvColor": 1.1,
+    "distance": 664.3584521384928
+}

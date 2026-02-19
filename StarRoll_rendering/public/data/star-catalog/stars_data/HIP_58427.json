@@ -1,0 +1,13 @@
+{
+    "hip": 58427,
+    "name": "HD 104035 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+58427",
+    "alpha": 180.1442881716319,
+    "delta": -64.53347961142885,
+    "mag": 5.59,
+    "pmRA": -2.8991858130350254e-08,
+    "pmDE": -7.417649320975901e-09,
+    "bvColor": 0.174,
+    "distance": 2836.521739130435
+}

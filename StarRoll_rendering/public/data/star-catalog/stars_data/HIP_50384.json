@@ -1,0 +1,13 @@
+{
+    "hip": 50384,
+    "name": "* 39 Leo -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+50384",
+    "alpha": 154.78934832807965,
+    "delta": 22.930413404256107,
+    "mag": 5.81,
+    "pmRA": -2.0036864626576014e-06,
+    "pmDE": -4.713358607746909e-07,
+    "bvColor": 0.5,
+    "distance": 74.11951829129744
+}

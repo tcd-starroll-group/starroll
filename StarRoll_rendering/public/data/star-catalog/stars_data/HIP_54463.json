@@ -1,0 +1,13 @@
+{
+    "hip": 54463,
+    "name": "* x Car -- Classical Cepheid Variable",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+54463",
+    "alpha": 167.52277736164888,
+    "delta": -59.16422681347266,
+    "mag": 3.93,
+    "pmRA": -2.4386128159809662e-08,
+    "pmDE": 1.0132605935189301e-08,
+    "bvColor": 1.225,
+    "distance": 5930.90909090909
+}

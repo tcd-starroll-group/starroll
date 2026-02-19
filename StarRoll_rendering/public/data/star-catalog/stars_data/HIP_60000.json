@@ -1,0 +1,13 @@
+{
+    "hip": 60000,
+    "name": "Beta Chamaeleontis",
+    "description": "Beta Chamaeleontis, Latinized from β Chamaeleontis,  is the third-brightest star in the southern constellation of Chamaeleon.",
+    "url": "https://en.wikipedia.org/wiki/Beta_Chamaeleontis",
+    "alpha": 185.12090646410965,
+    "delta": -79.50537575934794,
+    "mag": 4.24,
+    "pmRA": -1.8456856839840034e-07,
+    "pmDE": 5.817764173314431e-08,
+    "bvColor": -0.123,
+    "distance": 270.70539419087135
+}

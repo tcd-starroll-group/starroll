@@ -1,0 +1,13 @@
+{
+    "hip": 12332,
+    "name": "Nu Arietis",
+    "description": "Nu Arietis is a white-hued star in the northern constellation of Aries. Its name is a Bayer designation that is Latinized from ν Arietis, and abbreviated Nu Ari or ν Ari.",
+    "url": "https://en.wikipedia.org/wiki/Nu_Arietis",
+    "alpha": 40.20077435543685,
+    "delta": 22.10994492598032,
+    "mag": 5.45,
+    "pmRA": -3.4324808622555144e-08,
+    "pmDE": -7.330382858376184e-08,
+    "bvColor": 0.168,
+    "distance": 346.65249734325187
+}

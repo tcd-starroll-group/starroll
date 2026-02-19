@@ -1,0 +1,13 @@
+{
+    "hip": 17489,
+    "name": "* 16 Tau -- Variable Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+17489",
+    "alpha": 56.720432608359125,
+    "delta": 24.3962943453594,
+    "mag": 5.45,
+    "pmRA": 1.0050187609400681e-07,
+    "pmDE": -2.1331801968819581e-07,
+    "bvColor": -0.034,
+    "distance": 334.5641025641026
+}

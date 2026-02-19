@@ -1,0 +1,13 @@
+{
+    "hip": 29808,
+    "name": "HD 43847 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+29808",
+    "alpha": 94.43635284212087,
+    "delta": -39.27905578151651,
+    "mag": 6,
+    "pmRA": -7.432193731409185e-08,
+    "pmDE": -9.104800931237086e-08,
+    "bvColor": 0.163,
+    "distance": 390.65868263473055
+}

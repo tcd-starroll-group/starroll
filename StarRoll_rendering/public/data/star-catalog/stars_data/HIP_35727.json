@@ -1,0 +1,13 @@
+{
+    "hip": 35727,
+    "name": "HD 57821",
+    "description": "HD 57821 is a single star in the southern constellation of Canis Major. It has a blue-white hue and is faintly visible to the naked eye with an apparent visual magnitude of 4.94. Based on parallax measurements, the distance to this object is approximately 480 light years.",
+    "url": "https://en.wikipedia.org/wiki/HD_57821",
+    "alpha": 110.94001713470291,
+    "delta": -19.085340209494134,
+    "mag": 4.94,
+    "pmRA": -8.047907106418297e-09,
+    "pmDE": -3.1173519695343164e-08,
+    "bvColor": -0.039,
+    "distance": 516.9572107765453
+}

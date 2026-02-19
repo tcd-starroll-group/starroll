@@ -1,0 +1,13 @@
+{
+    "hip": 26366,
+    "name": "* phi02 Ori -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+26366",
+    "alpha": 84.70518737251285,
+    "delta": 9.307172878505629,
+    "mag": 4.09,
+    "pmRA": 4.694935687864747e-07,
+    "pmDE": -1.4747062551989864e-06,
+    "bvColor": 0.951,
+    "distance": 116.08540925266904
+}

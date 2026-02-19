@@ -1,0 +1,13 @@
+{
+    "hip": 78820,
+    "name": "Beta Scorpii",
+    "description": "Beta Scorpii is a multiple star system in the southern zodiac constellation of Scorpius. It bore the traditional proper name of Acrab , though the International Astronomical Union now regards that name as applying only to the β Scorpii Aa component.",
+    "url": "https://en.wikipedia.org/wiki/Beta_Scorpii",
+    "alpha": 241.86709486137013,
+    "delta": -19.897818660557864,
+    "mag": 2.56,
+    "pmRA": -3.272492347489368e-08,
+    "pmDE": -1.206701252281635e-07,
+    "bvColor": -0.065,
+    "distance": 530.4065040650406
+}

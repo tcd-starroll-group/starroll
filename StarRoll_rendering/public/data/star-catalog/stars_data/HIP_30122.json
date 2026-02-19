@@ -1,0 +1,13 @@
+{
+    "hip": 30122,
+    "name": "Zeta Canis Majoris",
+    "description": "Zeta Canis Majoris is a binary star system in the southern constellation of Canis Major. Its name is a Bayer designation that is Latinized from ζ Canis Majoris; it has the proper name Furud, pronounced .",
+    "url": "https://en.wikipedia.org/wiki/Zeta_Canis_Majoris",
+    "alpha": 95.41283644122407,
+    "delta": -30.08108021508379,
+    "mag": 3.02,
+    "pmRA": 3.8785094488762875e-08,
+    "pmDE": 1.847140125027332e-08,
+    "bvColor": -0.16,
+    "distance": 336.2886597938144
+}

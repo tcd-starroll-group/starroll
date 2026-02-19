@@ -1,0 +1,13 @@
+{
+    "hip": 104440,
+    "name": "HD 200525 -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+104440",
+    "alpha": 318.21935954450515,
+    "delta": -73.03144829388864,
+    "mag": 5.67,
+    "pmRA": 2.2364939923264002e-06,
+    "pmDE": -1.392578817619031e-06,
+    "bvColor": 0.59,
+    "distance": 61.109029599100786
+}

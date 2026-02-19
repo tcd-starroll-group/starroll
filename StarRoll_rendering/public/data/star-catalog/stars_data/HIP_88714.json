@@ -1,0 +1,13 @@
+{
+    "hip": 88714,
+    "name": "Theta Arae",
+    "description": "Theta Arae is a star in the southern constellation Ara. Its name is a Bayer designation that is Latinized from θ Arae, and abbreviated Theta Ara or θ Ara. This star has an apparent visual magnitude of +3.67, which is bright enough to be seen with the naked eye.",
+    "url": "https://en.wikipedia.org/wiki/Theta_Arae",
+    "alpha": 272.3357041292136,
+    "delta": -50.08477778522291,
+    "mag": 3.65,
+    "pmRA": -4.0869793317533876e-08,
+    "pmDE": -4.489374687074303e-08,
+    "bvColor": -0.101,
+    "distance": 1013.0434782608696
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 4151,
+    "name": "HR 244",
+    "description": "HR 244 is a single star in the constellation Cassiopeia.",
+    "url": "https://en.wikipedia.org/wiki/HR_244",
+    "alpha": 13.79604460192276,
+    "delta": 61.31372436746867,
+    "mag": 4.8,
+    "pmRA": -3.318549647194774e-07,
+    "pmDE": 8.228257795791044e-07,
+    "bvColor": 0.54,
+    "distance": 60.57567316620241
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 41451,
+    "name": "HD 72337",
+    "description": "HD 72337, also known as HR 3370, is a solitary, bluish-white hued star located in the southern constellation Volans. With an apparent magnitude of 5.51, it is faintly visible to the unaided eye but only under ideal conditions.",
+    "url": "https://en.wikipedia.org/wiki/HD_72337",
+    "alpha": 126.83608311371043,
+    "delta": -70.20936562818187,
+    "mag": 5.51,
+    "pmRA": -8.973901237337511e-08,
+    "pmDE": 2.2577773129271092e-07,
+    "bvColor": -0.024,
+    "distance": 285.38932633420825
+}

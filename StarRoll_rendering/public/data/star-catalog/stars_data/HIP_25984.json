@@ -1,0 +1,13 @@
+{
+    "hip": 25984,
+    "name": "Chi Aurigae",
+    "description": "Chi Aurigae is a binary star system in the northern constellation of Auriga. Its name is a Bayer designation that is Latinized from χ Aurigae, and abbreviated Chi Aur or χ Aur.",
+    "url": "https://en.wikipedia.org/wiki/Chi_Aurigae",
+    "alpha": 83.74955024649239,
+    "delta": 32.21405550737181,
+    "mag": 4.71,
+    "pmRA": -8.775127628082603e-09,
+    "pmDE": -1.9392547244381438e-08,
+    "bvColor": 0.281,
+    "distance": 4077.5
+}

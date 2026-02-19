@@ -1,0 +1,13 @@
+{
+    "hip": 96840,
+    "name": "QS Aquilae",
+    "description": "QS Aquilae is a triple or quadruple star system consisting of an eclipsing binary in a 2.5 day orbit around which a third star orbits in 77 years. There is some indication that there is a fourth component with a period of roughly 18 years.",
+    "url": "https://en.wikipedia.org/wiki/QS_Aquilae",
+    "alpha": 295.6761349421286,
+    "delta": 13.89899106434868,
+    "mag": 5.98,
+    "pmRA": 0,
+    "pmDE": -5.308709808149419e-08,
+    "bvColor": -0.078,
+    "distance": 1647.4747474747476
+}

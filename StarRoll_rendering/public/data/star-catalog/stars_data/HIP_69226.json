@@ -1,0 +1,13 @@
+{
+    "hip": 69226,
+    "name": "12 Boötis",
+    "description": "12 Boötis is a spectroscopic binary in the constellation Boötes.  It is approximately 122 light years from Earth.",
+    "url": "https://en.wikipedia.org/wiki/12_Bo%C3%B6tis",
+    "alpha": 212.99684452527362,
+    "delta": 24.928254987873366,
+    "mag": 4.82,
+    "pmRA": -1.1160410939141517e-07,
+    "pmDE": -2.912275782424983e-07,
+    "bvColor": 0.541,
+    "distance": 119.61862852951963
+}

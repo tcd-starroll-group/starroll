@@ -1,0 +1,13 @@
+{
+    "hip": 24727,
+    "name": "16 Aurigae",
+    "description": "16 Aurigae is a triple star system located 232 light years away from the Sun in the northern constellation of Auriga.",
+    "url": "https://en.wikipedia.org/wiki/16_Aurigae",
+    "alpha": 80.11631588882717,
+    "delta": 33.404680148584234,
+    "mag": 4.54,
+    "pmRA": 1.4476536517930747e-07,
+    "pmDE": -7.804530638501309e-07,
+    "bvColor": 1.252,
+    "distance": 234.33908045977012
+}

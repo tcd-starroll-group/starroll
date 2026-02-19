@@ -1,0 +1,13 @@
+{
+    "hip": 21029,
+    "name": "HD 28527 -- delta Sct Variable",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+21029",
+    "alpha": 68.13946411060925,
+    "delta": 16.266824447318413,
+    "mag": 4.78,
+    "pmRA": 5.089574024287909e-07,
+    "pmDE": -1.2188215943093736e-07,
+    "bvColor": 0.17,
+    "distance": 144.72049689440996
+}

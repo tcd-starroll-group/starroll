@@ -1,0 +1,13 @@
+{
+    "hip": 15305,
+    "name": "HD 20640 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+15305",
+    "alpha": 49.64505646098419,
+    "delta": -47.62552990951392,
+    "mag": 5.84,
+    "pmRA": -3.345214399655798e-08,
+    "pmDE": 1.4694702674430038e-07,
+    "bvColor": 1.228,
+    "distance": 473.4397677793905
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 19983,
+    "name": "HD 26755 -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+19983",
+    "alpha": 65.0094978360725,
+    "delta": 57.943020080700435,
+    "mag": 5.72,
+    "pmRA": 1.171309853560639e-07,
+    "pmDE": -2.426977287634337e-07,
+    "bvColor": 1.108,
+    "distance": 263.48949919224555
+}

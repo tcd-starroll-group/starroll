@@ -1,0 +1,13 @@
+{
+    "hip": 81266,
+    "name": "Tau Scorpii",
+    "description": "Tau Scorpii, Latinized from τ Scorpii, also named Paikauhale , is a star in the southern zodiac constellation of Scorpius. The apparent visual magnitude of Tau Scorpii is +2.8, which makes it among the brightest stars of the Scorpius constellation.",
+    "url": "https://en.wikipedia.org/wiki/Tau_Scorpii",
+    "alpha": 249.51429102807785,
+    "delta": -28.2849143434825,
+    "mag": 2.82,
+    "pmRA": -4.1645495207309146e-08,
+    "pmDE": -1.0908307824964559e-07,
+    "bvColor": -0.206,
+    "distance": 429.77602108036893
+}

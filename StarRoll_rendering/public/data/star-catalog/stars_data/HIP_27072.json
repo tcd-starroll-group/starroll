@@ -1,0 +1,13 @@
+{
+    "hip": 27072,
+    "name": "* gam Lep -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+27072",
+    "alpha": 86.48005556088354,
+    "delta": -22.438540746665517,
+    "mag": 3.59,
+    "pmRA": -1.4176921663005052e-06,
+    "pmDE": -1.7862960080480853e-06,
+    "bvColor": 0.481,
+    "distance": 29.25822943761772
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 35044,
+    "name": "HD 56160 -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+35044",
+    "alpha": 109.06541210885051,
+    "delta": -27.100979478981685,
+    "mag": 5.58,
+    "pmRA": -1.9775550052457973e-07,
+    "pmDE": -1.437472564489774e-07,
+    "bvColor": 1.22,
+    "distance": 272.74247491638795
+}

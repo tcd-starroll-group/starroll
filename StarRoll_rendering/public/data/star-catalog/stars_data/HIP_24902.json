@@ -1,0 +1,13 @@
+{
+    "hip": 24902,
+    "name": "HD 34557",
+    "description": "HD 34557 is a double star in the northern constellation of Auriga. The fainter star has an angular separation of 0.380″ from the primary component. They have a combined apparent magnitude of 5.52, making HD 34557 faintly visible to the naked eye from dark skies.",
+    "url": "https://en.wikipedia.org/wiki/HD_34557",
+    "alpha": 80.67405394080309,
+    "delta": 41.11827461763267,
+    "mag": 5.46,
+    "pmRA": -8.775127628082602e-08,
+    "pmDE": -2.531697042753997e-07,
+    "bvColor": 0.122,
+    "distance": 306.0037523452158
+}

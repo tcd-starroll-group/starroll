@@ -1,0 +1,13 @@
+{
+    "hip": 25708,
+    "name": "HD 36134 -- Variable Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+25708",
+    "alpha": 82.78321833313308,
+    "delta": -3.4213631766849417,
+    "mag": 5.8,
+    "pmRA": -1.3579631207878105e-07,
+    "pmDE": -4.581489286485115e-08,
+    "bvColor": 1.149,
+    "distance": 467.3352435530086
+}

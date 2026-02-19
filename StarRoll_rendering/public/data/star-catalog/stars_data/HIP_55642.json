@@ -1,0 +1,13 @@
+{
+    "hip": 55642,
+    "name": "* iot Leo -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+55642",
+    "alpha": 171.43380460882133,
+    "delta": 10.337310816464184,
+    "mag": 4,
+    "pmRA": 6.82375256161672e-07,
+    "pmDE": -3.77185043903219e-07,
+    "bvColor": 0.423,
+    "distance": 79.05962190984005
+}

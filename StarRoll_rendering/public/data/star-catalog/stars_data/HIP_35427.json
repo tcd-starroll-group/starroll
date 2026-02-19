@@ -1,0 +1,13 @@
+{
+    "hip": 35427,
+    "name": "HD 57146 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+35427",
+    "alpha": 110.06848404921766,
+    "delta": -26.651770608145416,
+    "mag": 5.29,
+    "pmRA": -3.767002302221094e-08,
+    "pmDE": 3.248251663433891e-08,
+    "bvColor": 0.956,
+    "distance": 1353.5269709543568
+}

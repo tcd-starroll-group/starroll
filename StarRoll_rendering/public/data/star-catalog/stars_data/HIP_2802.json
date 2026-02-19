@@ -1,0 +1,13 @@
+{
+    "hip": 2802,
+    "name": "* lam02 Phe -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+2802",
+    "alpha": 9.33405639719399,
+    "delta": -47.81019381759136,
+    "mag": 5.51,
+    "pmRA": 2.285411692750353e-07,
+    "pmDE": -4.916010726450695e-07,
+    "bvColor": 0.461,
+    "distance": 118.14559942049983
+}

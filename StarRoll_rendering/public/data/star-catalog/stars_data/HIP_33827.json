@@ -1,0 +1,13 @@
+{
+    "hip": 33827,
+    "name": "HD 50885 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+33827",
+    "alpha": 106.32073443429141,
+    "delta": 70.75528445195532,
+    "mag": 5.69,
+    "pmRA": 6.181374434146583e-08,
+    "pmDE": -7.66005616153067e-08,
+    "bvColor": 1.337,
+    "distance": 456.8627450980393
+}

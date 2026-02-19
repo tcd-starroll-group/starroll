@@ -1,0 +1,13 @@
+{
+    "hip": 83057,
+    "name": "HD 152824 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+83057",
+    "alpha": 255.24944337274005,
+    "delta": -50.69192843924283,
+    "mag": 5.53,
+    "pmRA": -4.945099547317267e-08,
+    "pmDE": -1.854412330243975e-07,
+    "bvColor": 0.016,
+    "distance": 523.5955056179774
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 27628,
+    "name": "Beta Columbae",
+    "description": "Beta Columbae (β Columbae, abbreviated Beta Col, β Col), officially named Wazn , is the second-brightest star in the southern constellation of Columba. It has an apparent visual magnitude of 3.1, which is bright enough to be viewed with the naked eye even from an urban location.",
+    "url": "https://en.wikipedia.org/wiki/Beta_Columbae",
+    "alpha": 88.04704658900414,
+    "delta": -35.758263313352835,
+    "mag": 3.12,
+    "pmRA": 2.7023514585045536e-07,
+    "pmDE": 1.9619440047140706e-06,
+    "bvColor": 1.146,
+    "distance": 85.97785977859779
+}

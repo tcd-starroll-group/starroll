@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { onMounted, ref, onUnmounted } from 'vue';
-// 使用地面观测者模式（为 AR 准备）
 import { useGroundObserver } from './composables/useGroundObserver';
-import { sensorManager, type SensorData } from '@/core/Tensors/sensor'; // [新增] 引入 sensorManager
+import { sensorManager, type SensorData } from '@/core/Tensors/sensor'; 
 import TopBar from './components/TopBar.vue';
 import InfoPanel from './components/InfoPanel.vue';
 import SensorDebugPanel from './components/SensorDebugPanel.vue';
 import StarInfoPanel from './components/StarInfoPanel.vue';
+import StarPopup from './components/StarPopup.vue'; // [Added] Import new popup component
+import type { StarClickInfo } from '@/core/renderer/GroundObserverRenderer'; // [Added] Import click info type
 import './assets/starroll.css';
 
 const containerRef = ref<HTMLElement | null>(null);
@@ -30,26 +31,41 @@ const {
     closeStarInfo,
     requestUserLocation,
     useCurrentLocationAndTime,
-    isRequestingLocation
+    isRequestingLocation,
+    renderer
 } = useGroundObserver();
 
-// 检测是否为移动设备
+// Detect mobile device
 const isMobile = /Android|iPhone|iPad/i.test(navigator.userAgent);
 const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
 
-// [新增] 指南针相关状态
+const clickedStarInfo = ref<StarClickInfo | null>(null);
+
+// [Added] Method to close star popup
+const closeStarPopup = () => {
+    clickedStarInfo.value = null;
+};
+
+// [Added] Compass related state
 const showCompass = ref(false);
 const compassHeading = ref(0);
 const compassDirection = ref('--');
 
-// [新增] 获取方向标签
+/**
+ * Get direction label from azimuth angle
+ * @param azimuth - Azimuth angle in degrees (0-360)
+ * @returns Cardinal direction label (N, NE, E, SE, S, SW, W, NW)
+ */
 const getDirectionLabel = (azimuth: number): string => {
-    const directions = ['北', '东北', '东', '东南', '南', '西南', '西', '西北'];
+    const directions = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
     const index = Math.round(azimuth / 45) % 8;
     return directions[index];
 };
 
-// [新增] 处理指南针数据更新
+/**
+ * Handle compass data updates from sensor manager
+ * @param data - Sensor data containing orientation information
+ */
 const handleCompassUpdate = (data: SensorData) => {
     const orientation = sensorManager.getCameraOrientation(data);
     if (orientation) {
@@ -58,28 +74,31 @@ const handleCompassUpdate = (data: SensorData) => {
     }
 };
 
-// [新增] 切换指南针功能
+/**
+ * Toggle compass functionality
+ * Requests sensor permission if needed and manages sensor listeners
+ */
 const toggleCompass = async () => {
     if (showCompass.value) {
-        // 关闭指南针
+        // Disable compass
         showCompass.value = false;
         sensorManager.removeListener(handleCompassUpdate);
-        // 如果 AR 模式未开启，可以停止监听以省电
+        // Stop sensor listening to save power if AR mode is not active
         if (!arModeEnabled.value) {
             sensorManager.stopListening();
         }
     } else {
-        // 开启指南针
-        // 1. 请求权限
+        // Enable compass
+        // 1. Request permission if needed
         if (sensorManager.getPermissionState() === 'prompt') {
             const result = await sensorManager.requestPermission();
             if (result === 'denied') {
-                alert('需要传感器权限才能显示指南针');
+                alert('Sensor permissions are required to display the compass');
                 return;
             }
         }
         
-        // 2. 开启监听
+        // 2. Start listening to sensor data
         sensorManager.addListener(handleCompassUpdate);
         sensorManager.startListening();
         showCompass.value = true;
@@ -88,83 +107,94 @@ const toggleCompass = async () => {
 
 onMounted(async () => {
     if (containerRef.value) {
-        console.log('🌍 启动地面观测者模式');
-        console.log('📐 视角: 地球表面观测者');
-        console.log('🧭 坐标系: 地平坐标系');
-        console.log('📱 为 AR 渲染准备');
+        console.log('Starting Ground Observer mode');
+        console.log('View: Earth surface observer');
+        console.log('Coordinate System: Horizon coordinates');
+        console.log('Preparing for AR rendering');
         
         init(containerRef.value);
+        if (renderer.value) {
+            renderer.value.setOnStarClick((starInfo: StarClickInfo) => {
+                clickedStarInfo.value = starInfo;
+            });
+        }
         
-        // 延迟获取统计信息
+        // Get stats with delay to ensure data is loaded
         setTimeout(() => {
             refreshStats();
-            console.log('📊 观测统计:', stats.value);
-            console.log(`✨ 可见恒星: ${stats.value.visibleStars} 颗`);
-            console.log(`🎭 可见星座: ${stats.value.visibleConstellations} 个`);
-            console.log(`📍 观测地点: ${stats.value.observerLocation}`);
-            console.log(`🕐 本地恒星时: ${stats.value.localSiderealTime}°`);
+            console.log('Observation Statistics:', stats.value);
+            console.log(`Visible Stars: ${stats.value.visibleStars}`);
+            console.log(`Visible Constellations: ${stats.value.visibleConstellations}`);
+            console.log(`Observation Location: ${stats.value.observerLocation}`);
+            console.log(`Local Sidereal Time: ${stats.value.localSiderealTime}°`);
             console.log('');
-            console.log('💡 提示: 拖动鼠标环顾天空');
-            console.log('📱 提示: 在移动设备上会自动跟随设备方向');
+            console.log('Tip: Drag mouse to look around the sky');
+            console.log('Tip: On mobile devices, the view will follow device orientation automatically');
         }, 3500);
         
-        // 启动后自动尝试获取位置
+        // Auto attempt to get current location after startup
         setTimeout(async () => {
-            console.log('🌍 自动尝试获取当前位置...');
+            console.log('Automatically attempting to get current location...');
             const success = await useCurrentLocationAndTime();
             if (success) {
-                console.log('✅ 已自动更新到当前位置');
+                console.log('Successfully updated to current location');
                 showLocationHint.value = false;
             } else {
-                console.log('💡 使用默认位置（上海），可点击"使用当前位置"按钮更新');
+                console.log('Using default location (Shanghai). Click "Use Current Location" button to update');
             }
         }, 2000);
     }
 });
 
-// 组件卸载时清理
+// Cleanup on component unmount
 onUnmounted(() => {
     sensorManager.removeListener(handleCompassUpdate);
 });
 
-// 点击反馈状态
+// Click request state
 const isRequesting = ref(false);
 
-// 位置请求提示
+// Location request hint
 const showLocationHint = ref(true);
 
-// 测试按钮点击
+/**
+ * Test button click handler
+ * Provides device information and haptic feedback
+ */
 const testButtonClick = () => {
-    console.log('✅ 测试按钮被点击！');
-    console.log('📱 设备类型:', isMobile ? '移动设备' : '桌面');
-    console.log('🍎 是否 iOS:', isIOS);
-    console.log('🌐 User Agent:', navigator.userAgent);
+    console.log('Test button clicked!');
+    console.log('Device Type:', isMobile ? 'Mobile' : 'Desktop');
+    console.log('Is iOS:', isIOS);
+    console.log('User Agent:', navigator.userAgent);
     
-    // 触觉反馈
+    // Haptic feedback if supported
     if (navigator.vibrate) {
         navigator.vibrate([50, 100, 50]);
-        console.log('📳 触觉反馈已触发');
+        console.log('Haptic feedback triggered');
     } else {
-        console.log('📳 设备不支持触觉反馈');
+        console.log('Device does not support haptic feedback');
     }
     
-    alert(`✅ 按钮点击测试成功！
+    alert(`Button click test successful!
 
-设备信息：
-- 类型: ${isMobile ? '移动设备' : '桌面'}
-- iOS: ${isIOS ? '是' : '否'}
-- 传感器支持: ${typeof DeviceOrientationEvent !== 'undefined' ? '是' : '否'}
+Device Information:
+- Type: ${isMobile ? 'Mobile' : 'Desktop'}
+- iOS: ${isIOS ? 'Yes' : 'No'}
+- Sensor Support: ${typeof DeviceOrientationEvent !== 'undefined' ? 'Yes' : 'No'}
 
-如果能看到这个对话框，说明按钮事件正常工作！
+If you can see this dialog, button events are working correctly!
 
-下一步：点击上方 "启用 AR" 按钮测试权限请求。`);
+Next step: Click the "Enable AR" button above to test permission requests.`);
 };
 
-// 请求使用当前位置和时间
+/**
+ * Handle request for current location and time
+ * Updates star map to user's current geographic position
+ */
 const handleUseCurrentLocation = async () => {
-    console.log('📍 点击使用当前位置');
+    console.log('Clicked to use current location');
     
-    // 触觉反馈
+    // Haptic feedback
     if (navigator.vibrate) {
         navigator.vibrate(50);
     }
@@ -173,91 +203,94 @@ const handleUseCurrentLocation = async () => {
         const success = await useCurrentLocationAndTime();
         
         if (success) {
-            console.log('✅ 已使用当前位置和时间');
+            console.log('Successfully using current location and time');
             showLocationHint.value = false;
             
-            // 提示用户
-            alert(`✅ 位置获取成功！
+            // User notification
+            alert(`Location retrieved successfully!
 
-当前位置: ${currentLocation.value.name}
-纬度: ${currentLocation.value.latitude.toFixed(4)}°
-经度: ${currentLocation.value.longitude.toFixed(4)}°
+Current Location: ${currentLocation.value.name}
+Latitude: ${currentLocation.value.latitude.toFixed(4)}°
+Longitude: ${currentLocation.value.longitude.toFixed(4)}°
 
-星空已更新为您当前位置的天空！`);
+The star map has been updated to the sky at your current location!`);
         } else {
-            console.error('❌ 位置获取失败');
+            console.error('Failed to retrieve location');
             
-            alert(`⚠️ 位置获取失败
+            alert(`Location retrieval failed
 
-可能原因：
-1. 您拒绝了位置权限
-2. 设备不支持地理位置API
-3. 位置服务未开启
+Possible reasons:
+1. You denied location permissions
+2. Device does not support Geolocation API
+3. Location services are disabled
 
-解决方法：
-1. 在浏览器设置中允许位置权限
-2. 确保设备GPS已开启
-3. 刷新页面重试`);
+Solutions:
+1. Allow location permissions in browser settings
+2. Ensure device GPS is enabled
+3. Refresh the page and try again`);
         }
     } catch (error) {
-        console.error('❌ 获取位置时发生错误:', error);
-        alert('发生错误：' + error);
+        console.error('Error retrieving location:', error);
+        alert('Error occurred: ' + error);
     }
 };
 
-// 切换 AR 模式
+/**
+ * Toggle AR mode
+ * Handles permission requests and AR mode activation/deactivation
+ */
 const toggleARMode = async () => {
-    console.log('🔘 AR 按钮被点击');
+    console.log('AR button clicked');
     
-    // 触觉反馈（如果支持）
+    // Haptic feedback (if supported)
     if (navigator.vibrate) {
         navigator.vibrate(50);
     }
     
     if (arModeEnabled.value) {
         disableARMode();
-        console.log('🛑 AR 模式已禁用');
+        console.log('AR mode disabled');
         return;
     }
     
-    // 显示请求中状态
+    // Show requesting state
     isRequesting.value = true;
     
     try {
-        console.log('📱 正在请求传感器权限...');
-        console.log('⏳ 等待用户响应 iOS 权限对话框...');
+        console.log('Requesting sensor permissions...');
+        console.log('Waiting for user response to iOS permission dialog...');
         
         const success = await enableARMode();
         
         if (success) {
-            console.log('✅ AR 模式已启用');
-            console.log('📱 现在转动您的设备，星空会跟随移动');
+            console.log('AR mode enabled');
+            console.log('Rotate your device to move the star map');
             showWelcomeHint.value = false;
         } else {
-            console.error('❌ AR 模式启用失败');
+            console.error('Failed to enable AR mode');
             
             if (isIOS) {
-                alert(`⚠️ iOS 权限请求失败
+                alert(`iOS permission request failed
 
-可能原因：
-1. 您拒绝了权限
-2. 需要使用 HTTPS 连接
-3. Safari 浏览器设置问题
+Possible reasons:
+1. You denied permissions
+2. HTTPS connection is required
+3. Safari browser settings issues
 
-解决方法：
-1. 使用 Safari 浏览器（不是 Chrome）
-2. 使用 ngrok 创建 HTTPS 隧道
-3. 刷新页面重试
-4. 检查 Safari 设置 → 隐私 → 动作与方向
+Solutions:
+1. Use Safari browser (not Chrome)
+2. Create an HTTPS tunnel with ngrok
+3. Refresh the page and try again
+4. Check Safari Settings → Privacy → Motion & Orientation
 
-是否需要使用 HTTPS？请在控制台查看详细信息。`);
+Is HTTPS required? Check console for detailed information.`);
             } else {
-                alert('⚠️ 无法启用 AR 模式\n\n请检查设备是否支持方向传感器');
+                alert('Unable to enable AR mode\n\nPlease check if your device supports orientation sensors');
             }
         }
     } catch (error) {
-        console.error('❌ 启用 AR 时发生错误:', error);
-        alert('发生错误：' + error);
+        console.error('Error enabling AR mode:', error);
+        alert('Error occurred: ' + error);
     } finally {
         isRequesting.value = false;
     }
@@ -265,13 +298,17 @@ const toggleARMode = async () => {
 </script>
 
 <template>
-  <div class="starroll-app">
-    <div ref="containerRef" class="canvas-container"></div>
+  <div class="starroll-app" @click.self="closeStarPopup">
+    <div ref="containerRef" class="canvas-container" @click.self="closeStarPopup"></div>
     
     <div class="ui-layer">
         <TopBar v-if="!arModeEnabled" />
         <InfoPanel v-if="!arModeEnabled" />
-        
+        <StarPopup 
+            :star-info="clickedStarInfo" 
+            @close="closeStarPopup" 
+        />
+
         <div v-if="showCompass" class="real-compass-display">
             <div class="compass-ring" :style="{ transform: `rotate(${-compassHeading}deg)` }">
                 <span class="mark-n">N</span>
@@ -282,7 +319,7 @@ const toggleARMode = async () => {
             </div>
             <div class="compass-text">
                 <div class="compass-value">{{ compassHeading.toFixed(0) }}°</div>
-                <div class="compass-label">{{ compassDirection }} (磁北)</div>
+                <div class="compass-label">{{ compassDirection }} (Magnetic North)</div>
             </div>
         </div>
 
@@ -299,31 +336,31 @@ const toggleARMode = async () => {
             class="location-btn"
             :disabled="isRequestingLocation"
           >
-            {{ isRequestingLocation ? '⏳ 获取中...' : '📍 使用当前位置' }}
+            {{ isRequestingLocation ? 'Retrieving...' : 'Use Current Location' }}
           </button>
           <button @click="showDebugPanel = true" class="debug-btn">
-            🔧 传感器调试
+            Sensor Debug
           </button>
         </div>
         
         <div v-if="showWelcomeHint && isMobile" class="welcome-hint" @click="showWelcomeHint = false">
           <div class="hint-content">
             <div class="hint-icon">📱</div>
-            <div class="hint-title">欢迎使用 AR 星空</div>
+            <div class="hint-title">Welcome to AR Star Map</div>
             <div class="hint-text-large">
-              {{ isIOS ? '👇 点击下方 "启用 AR 模式" 按钮' : '👇 点击下方按钮启用 AR' }}
+              {{ isIOS ? 'Tap the "Enable AR Mode" button below' : 'Tap the button below to enable AR' }}
             </div>
             <div class="hint-text-small" v-if="isIOS">
-              iOS 需要您手动授予传感器权限
+              iOS requires you to manually grant sensor permissions
             </div>
-            <div class="hint-dismiss">点击任意处关闭提示</div>
+            <div class="hint-dismiss">Tap anywhere to close this hint</div>
           </div>
         </div>
         
         <div class="ar-panel" :class="{ 'highlight': showWelcomeHint && isMobile }">
           
           <button @click="toggleCompass" class="compass-toggle-btn" :class="{ active: showCompass }">
-              🧭 {{ showCompass ? '关闭指南针' : '打开真实指南针' }}
+              {{ showCompass ? 'Disable Compass' : 'Enable Real Compass' }}
           </button>
 
           <button 
@@ -341,28 +378,28 @@ const toggleARMode = async () => {
             </span>
             <span class="button-text">
               {{ 
-                isRequesting ? '请求权限中...' :
-                arModeEnabled ? 'AR 模式已启用' : 
-                (isIOS ? '点击启用 AR (iOS)' : '启用 AR 模式') 
+                isRequesting ? 'Requesting Permissions...' :
+                arModeEnabled ? 'AR Mode Enabled' : 
+                (isIOS ? 'Tap to Enable AR (iOS)' : 'Enable AR Mode') 
               }}
             </span>
           </button>
           
           <button @click="testButtonClick" class="test-button" v-if="!arModeEnabled">
-            🔍 测试按钮点击
+            Test Button Click
           </button>
-          <div class="hint-text">{{ arModeEnabled ? '转动设备环顾星空' : '点击按钮获取传感器权限' }}</div>
+          <div class="hint-text">{{ arModeEnabled ? 'Rotate device to view stars' : 'Tap button to get sensor permissions' }}</div>
           
           <div class="display-controls" v-if="!arModeEnabled">
             <div class="control-item">
-              <span class="control-label">星座连线</span>
+              <span class="control-label">Constellation Lines</span>
               <label class="toggle-switch">
                 <input type="checkbox" :checked="showConstellationLines" @change="toggleConstellationLines">
                 <span class="slider"></span>
               </label>
             </div>
             <div class="control-item">
-              <span class="control-label">星星标签</span>
+              <span class="control-label">Star Labels</span>
               <label class="toggle-switch">
                 <input type="checkbox" :checked="showStarLabels" @change="toggleStarLabels">
                 <span class="slider"></span>
@@ -377,7 +414,7 @@ const toggleARMode = async () => {
         </div>
         
         <div class="horizon-line">
-          <div class="horizon-label">地平线</div>
+          <div class="horizon-label">Horizon</div>
         </div>
         
         <SensorDebugPanel 
@@ -429,7 +466,7 @@ const toggleARMode = async () => {
     pointer-events: auto;
 }
 
-/* [新增] 指南针开关按钮样式 */
+/* [Added] Compass toggle button styles */
 .compass-toggle-btn {
     width: 100%;
     margin-bottom: 10px;
@@ -449,7 +486,7 @@ const toggleARMode = async () => {
     color: #FFD700;
 }
 
-/* [新增] 真实指南针显示面板 */
+/* [Added] Real compass display panel */
 .real-compass-display {
     position: absolute;
     top: 50%;
@@ -475,7 +512,7 @@ const toggleARMode = async () => {
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    transition: transform 0.1s linear; /* 平滑旋转 */
+    transition: transform 0.1s linear; /* Smooth rotation */
 }
 
 .mark-n, .mark-e, .mark-s, .mark-w {
@@ -489,7 +526,7 @@ const toggleARMode = async () => {
 .mark-s { bottom: 10px; left: 50%; transform: translateX(-50%); color: white; }
 .mark-w { left: 10px; top: 50%; transform: translateY(-50%); color: white; }
 
-/* 固定的指针 */
+/* Fixed compass pointer */
 .compass-pointer {
     position: absolute;
     top: -10px;
@@ -536,7 +573,7 @@ const toggleARMode = async () => {
     pointer-events: none;
 }
 
-/* 观测者信息 */
+/* Observer information panel */
 .observer-info {
     position: absolute;
     top: 80px;
@@ -613,7 +650,7 @@ const toggleARMode = async () => {
     color: var(--sr-text-primary);
 }
 
-/* 欢迎提示 */
+/* Welcome hint panel */
 .welcome-hint {
     position: fixed;
     top: 50%;
@@ -678,7 +715,7 @@ const toggleARMode = async () => {
     margin-top: 16px;
 }
 
-/* AR 控制面板 */
+/* AR control panel */
 .ar-panel {
     position: absolute;
     bottom: 80px;
@@ -793,7 +830,7 @@ const toggleARMode = async () => {
     flex: 1;
 }
 
-/* 测试按钮 */
+/* Test button */
 .test-button {
     width: 100%;
     margin-top: 8px;
@@ -820,7 +857,7 @@ const toggleARMode = async () => {
     opacity: 0.8;
 }
 
-/* 调试信息 */
+/* Debug information */
 .debug-info {
     margin-top: 12px;
     padding-top: 12px;
@@ -845,7 +882,7 @@ const toggleARMode = async () => {
     font-family: 'Courier New', monospace;
 }
 
-/* 显示控制 */
+/* Display controls */
 .display-controls {
     margin-top: 12px;
     padding-top: 12px;
@@ -912,7 +949,7 @@ input:checked + .slider:before {
     transform: translateX(20px);
 }
 
-/* 地平线 */
+/* Horizon line */
 .horizon-line {
     position: absolute;
     bottom: 40px;
@@ -940,7 +977,7 @@ input:checked + .slider:before {
     text-transform: uppercase;
 }
 
-/* AR罗盘指示 */
+/* AR compass display */
 .ar-compass {
     margin-top: 12px;
     padding-top: 12px;
@@ -960,5 +997,19 @@ input:checked + .slider:before {
     font-size: 14px;
     color: var(--sr-text-primary);
     letter-spacing: 2px;
+}
+.ui-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    pointer-events: none; /* Let clicks pass through to canvas */
+}
+
+/* Re-enable pointer events for UI elements */
+.ui-layer > * {
+    pointer-events: auto;
 }
 </style>

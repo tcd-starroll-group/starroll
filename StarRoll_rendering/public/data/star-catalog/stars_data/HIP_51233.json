@@ -1,0 +1,13 @@
+{
+    "hip": 51233,
+    "name": "Beta Leonis Minoris",
+    "description": "Beta Leonis Minoris, Latinized from β Leonis Minoris, is a binary star in the northern constellation of Leo Minor.",
+    "url": "https://en.wikipedia.org/wiki/Beta_Leonis_Minoris",
+    "alpha": 157.47204369641787,
+    "delta": 36.52762611482144,
+    "mag": 4.2,
+    "pmRA": -6.182344061508802e-07,
+    "pmDE": -5.314527572322733e-07,
+    "bvColor": 0.908,
+    "distance": 146.0161145926589
+}

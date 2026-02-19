@@ -1,0 +1,13 @@
+{
+    "hip": 31079,
+    "name": "HD 46569 -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+31079",
+    "alpha": 98.02878690669878,
+    "delta": -51.85192762362761,
+    "mag": 5.58,
+    "pmRA": 4.969340231372743e-07,
+    "pmDE": 5.071151104405746e-07,
+    "bvColor": 0.534,
+    "distance": 121.39933010792704
+}

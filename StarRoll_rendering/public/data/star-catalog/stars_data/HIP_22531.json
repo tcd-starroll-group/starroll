@@ -1,0 +1,13 @@
+{
+    "hip": 22531,
+    "name": "* iot Pic A -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+22531",
+    "alpha": 72.92654906186402,
+    "delta": -53.40362350546457,
+    "mag": 5.58,
+    "pmRA": -3.8339065902142104e-07,
+    "pmDE": 4.2561793064606165e-07,
+    "bvColor": 0.341,
+    "distance": 120.94920281794589
+}

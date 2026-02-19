@@ -1,0 +1,13 @@
+{
+    "hip": 25980,
+    "name": "HD 36591 -- Variable Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+25980",
+    "alpha": 83.61323369294935,
+    "delta": -1.5695143457194156,
+    "mag": 5.34,
+    "pmRA": -9.841717726523578e-09,
+    "pmDE": 3.5876212402105665e-09,
+    "bvColor": -0.188,
+    "distance": 2568.503937007874
+}

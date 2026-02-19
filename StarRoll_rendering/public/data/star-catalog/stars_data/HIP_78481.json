@@ -1,0 +1,13 @@
+{
+    "hip": 78481,
+    "name": "* r Her -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+78481",
+    "alpha": 240.70152536847408,
+    "delta": 17.724036822560045,
+    "mag": 5.1,
+    "pmRA": -2.2345062562338514e-07,
+    "pmDE": 7.409892302078149e-07,
+    "bvColor": 0.992,
+    "distance": 308.3175803402646
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 72105,
+    "name": "Epsilon Boötis",
+    "description": "Epsilon Boötis is a binary star system in the northern constellation of Boötes. Its name is a Bayer designation that is Latinized from ε Boötis, and abbreviated Epsilon Boo or ε Boo. The primary component has the official name Izar, pronounced  (EYE-zar).",
+    "url": "https://en.wikipedia.org/wiki/Epsilon_Bo%C3%B6tis",
+    "alpha": 221.6272708108541,
+    "delta": 26.928988893350414,
+    "mag": 2.35,
+    "pmRA": -2.4555812948198e-07,
+    "pmDE": 9.69627362219072e-08,
+    "bvColor": 0.966,
+    "distance": 209.77491961414793
+}

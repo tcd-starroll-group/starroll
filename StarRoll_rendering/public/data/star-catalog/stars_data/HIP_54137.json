@@ -1,0 +1,13 @@
+{
+    "hip": 54137,
+    "name": "HD 96113 -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+54137",
+    "alpha": 166.52507434198182,
+    "delta": -47.86729201436933,
+    "mag": 5.67,
+    "pmRA": -5.598143575771812e-07,
+    "pmDE": 1.587279991952621e-07,
+    "bvColor": 0.256,
+    "distance": 279.0419161676647
+}

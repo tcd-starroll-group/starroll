@@ -1,0 +1,13 @@
+{
+    "hip": 102488,
+    "name": "Epsilon Cygni",
+    "description": "Epsilon Cygni (ε Cygni, abbreviated Epsilon Cyg, ε Cyg) is a binary star in the constellation of Cygnus. With an apparent visual magnitude of 2.48, it is readily visible to the naked eye at night, and is the third-brightest star in the constellation.",
+    "url": "https://en.wikipedia.org/wiki/Epsilon_Cygni",
+    "alpha": 311.90376710702157,
+    "delta": 34.10170895985323,
+    "mag": 2.48,
+    "pmRA": 1.7267124066397234e-06,
+    "pmDE": 1.6012426259685751e-06,
+    "bvColor": 1.021,
+    "distance": 72.0724701723376
+}

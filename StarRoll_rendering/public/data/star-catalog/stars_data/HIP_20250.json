@@ -1,0 +1,13 @@
+{
+    "hip": 20250,
+    "name": "* phi Tau -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+20250",
+    "alpha": 65.62577662294775,
+    "delta": 27.43105303044132,
+    "mag": 4.97,
+    "pmRA": -1.4078989299420925e-07,
+    "pmDE": -3.731610903500098e-07,
+    "bvColor": 1.15,
+    "distance": 342.2875131164743
+}

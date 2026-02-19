@@ -1,0 +1,13 @@
+{
+    "hip": 48926,
+    "name": "Eta Antliae",
+    "description": "Eta Antliae is a double star in the southern constellation of Antlia. Its Bayer designation is Latinized from η Antliae, and abbreviated Eta Ant or η Ant, respectively. The brighter component has an apparent visual magnitude of  5.222, making it visible to the naked eye.",
+    "url": "https://en.wikipedia.org/wiki/Eta_Antliae",
+    "alpha": 150.09291454098704,
+    "delta": -36.05887152676168,
+    "mag": 5.23,
+    "pmRA": -4.343445769060333e-07,
+    "pmDE": -7.88791859165215e-08,
+    "bvColor": 0.3,
+    "distance": 106.35800456472121
+}

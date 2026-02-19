@@ -1,0 +1,13 @@
+{
+    "hip": 86575,
+    "name": "HD 160781 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+86575",
+    "alpha": 265.8095508895858,
+    "delta": 6.298249105715488,
+    "mag": 5.97,
+    "pmRA": -1.439896632895322e-08,
+    "pmDE": -1.5611000531727057e-08,
+    "bvColor": 1.271,
+    "distance": 1240.3041825095058
+}

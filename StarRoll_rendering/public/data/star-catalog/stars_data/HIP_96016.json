@@ -1,0 +1,13 @@
+{
+    "hip": 96016,
+    "name": "HD 184010 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+96016",
+    "alpha": 293.19684162690777,
+    "delta": 26.69317932518654,
+    "mag": 5.89,
+    "pmRA": 5.492939006971042e-08,
+    "pmDE": 1.2231849174393594e-07,
+    "bvColor": 0.915,
+    "distance": 193.3609958506224
+}

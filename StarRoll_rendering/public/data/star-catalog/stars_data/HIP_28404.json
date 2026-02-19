@@ -1,0 +1,13 @@
+{
+    "hip": 28404,
+    "name": "Pi Aurigae",
+    "description": "Pi Aurigae is a single, red-hued star in the northern constellation of Auriga. Its name is a Bayer designation that is Latinized from π Aurigae, and abbreviated Pi Aur or π Aur.",
+    "url": "https://en.wikipedia.org/wiki/Pi_Aurigae",
+    "alpha": 90.63035291805762,
+    "delta": 45.93564009413009,
+    "mag": 4.3,
+    "pmRA": -1.1732491082850769e-08,
+    "pmDE": -3.5488361457218034e-08,
+    "bvColor": 1.701,
+    "distance": 840.7216494845361
+}

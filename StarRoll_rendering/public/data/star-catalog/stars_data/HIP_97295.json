@@ -1,0 +1,13 @@
+{
+    "hip": 97295,
+    "name": "* 17 Cyg -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+97295",
+    "alpha": 296.9373270719443,
+    "delta": 33.811698746883685,
+    "mag": 5,
+    "pmRA": 1.1174955349574804e-07,
+    "pmDE": -2.175165061666044e-06,
+    "bvColor": 0.476,
+    "distance": 68.04338756779308
+}

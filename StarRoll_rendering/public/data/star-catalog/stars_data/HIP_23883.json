@@ -1,0 +1,13 @@
+{
+    "hip": 23883,
+    "name": "* 105 Tau -- Be Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+23883",
+    "alpha": 77.50261327955849,
+    "delta": 21.747595454523672,
+    "mag": 5.84,
+    "pmRA": 8.484239419416879e-09,
+    "pmDE": -3.025237370123505e-08,
+    "bvColor": 0.168,
+    "distance": 1032.2784810126582
+}

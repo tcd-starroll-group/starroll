@@ -1,0 +1,13 @@
+{
+    "hip": 51069,
+    "name": "* mu. Hya -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+51069",
+    "alpha": 156.9446822538782,
+    "delta": -17.014997757575937,
+    "mag": 3.83,
+    "pmRA": -6.230340615938646e-07,
+    "pmDE": -3.8814183309629453e-07,
+    "bvColor": 1.456,
+    "distance": 248.2496194824962
+}

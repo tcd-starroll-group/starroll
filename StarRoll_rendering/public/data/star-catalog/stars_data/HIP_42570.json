@@ -1,0 +1,13 @@
+{
+    "hip": 42570,
+    "name": "HD 74180",
+    "description": "HD 74180 (b Velorum) is a single star in the constellation Vela. It is a yellow-white F-type supergiant with a mean apparent magnitude of +3.81 and a spectral classification F8Ib. Estimates of its distance to Earth vary between 3,200 and 8,300 light-years.",
+    "url": "https://en.wikipedia.org/wiki/HD_74180",
+    "alpha": 130.4458036626367,
+    "delta": -46.774130290051836,
+    "mag": 3.77,
+    "pmRA": -3.054326190990077e-08,
+    "pmDE": 2.0798506919599095e-08,
+    "bvColor": 0.67,
+    "distance": 3106.6666666666665
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 76996,
+    "name": "* rho Oct -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+76996",
+    "alpha": 237.956960580558,
+    "delta": -84.57050493745699,
+    "mag": 5.57,
+    "pmRA": 6.642432244881753e-07,
+    "pmDE": 4.690087551053651e-07,
+    "bvColor": 0.118,
+    "distance": 217.17709720372838
+}

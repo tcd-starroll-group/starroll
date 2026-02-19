@@ -1,0 +1,13 @@
+{
+    "hip": 23871,
+    "name": "* l Tau -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+23871",
+    "alpha": 77.46806726056356,
+    "delta": 20.461069775807257,
+    "mag": 5.28,
+    "pmRA": -2.3814048016100406e-07,
+    "pmDE": -1.518921262916176e-07,
+    "bvColor": 0.118,
+    "distance": 173.51063829787233
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 34495,
+    "name": "HD 54893",
+    "description": "HD 54893, often called A Puppis is a suspected variable star in the constellation Puppis. Its apparent magnitude is 4.83 and is approximately 860 light years away based on parallax.",
+    "url": "https://en.wikipedia.org/wiki/HD_54893",
+    "alpha": 107.50543409656986,
+    "delta": -39.71345357179125,
+    "mag": 4.83,
+    "pmRA": -5.31840608177161e-08,
+    "pmDE": 3.398543904577847e-08,
+    "bvColor": -0.179,
+    "distance": 751.6129032258065
+}

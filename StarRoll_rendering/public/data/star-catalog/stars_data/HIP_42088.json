@@ -1,0 +1,13 @@
+{
+    "hip": 42088,
+    "name": "* C Vel -- Red Supergiant",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+42088",
+    "alpha": 128.94777074375838,
+    "delta": -50.06562242831789,
+    "mag": 5.01,
+    "pmRA": -6.089259834735772e-08,
+    "pmDE": 8.561809608394406e-08,
+    "bvColor": 1.304,
+    "distance": 876.8817204301075
+}

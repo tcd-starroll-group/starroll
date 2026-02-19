@@ -1,0 +1,13 @@
+{
+    "hip": 71053,
+    "name": "Rho Boötis",
+    "description": "Rho Boötis is a single, orange-hued star in the northern constellation of Boötes. Its name is a Bayer designation that is Latinised from ρ Boötis, and abbreviated Rho Boo or ρ Boo.",
+    "url": "https://en.wikipedia.org/wiki/Rho_Bo%C3%B6tis",
+    "alpha": 218.33307913041895,
+    "delta": 30.219801649755457,
+    "mag": 3.57,
+    "pmRA": -4.86946861306418e-07,
+    "pmDE": 5.828430074298843e-07,
+    "bvColor": 1.298,
+    "distance": 148.81386861313868
+}

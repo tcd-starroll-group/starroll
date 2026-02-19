@@ -1,0 +1,13 @@
+{
+    "hip": 91262,
+    "name": "Vega",
+    "description": "Vega is the brightest star in the northern constellation of Lyra. It has the Bayer designation α Lyrae, which is Latinised to Alpha Lyrae and abbreviated Alpha Lyr or α Lyr.",
+    "url": "https://en.wikipedia.org/wiki/Vega",
+    "alpha": 279.5285164346937,
+    "delta": 38.817392510745904,
+    "mag": 0.03,
+    "pmRA": 9.745724617663892e-07,
+    "pmDE": 1.3936454077174722e-06,
+    "bvColor": -0.001,
+    "distance": 25.300550686418983
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 46776,
+    "name": "* tau02 Hya -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+46776",
+    "alpha": 143.4391496489762,
+    "delta": -1.3400085491369156,
+    "mag": 4.54,
+    "pmRA": -5.536572238270901e-08,
+    "pmDE": -1.8762289458939046e-08,
+    "bvColor": 0.109,
+    "distance": 458.79043600562585
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 40285,
+    "name": "V* NO Vel -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+40285",
+    "alpha": 123.67324348052468,
+    "delta": -47.09869670319487,
+    "mag": 5.14,
+    "pmRA": -4.998429052239316e-08,
+    "pmDE": 5.012973462672602e-08,
+    "bvColor": -0.139,
+    "distance": 970.8333333333335
+}

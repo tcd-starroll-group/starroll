@@ -1,0 +1,13 @@
+{
+    "hip": 35210,
+    "name": "145 G. Canis Majoris",
+    "description": "145 G. Canis Majoris (HD 56577) is a single K giant or supergiant star in the southern constellation of Canis Major. This star is Gould's 145th of Canis Major in his Uranometria Argentina. SIMBAD erroneously lists the star in its object query result as \"* 145 CMa – Star\".",
+    "url": "https://en.wikipedia.org/wiki/145_G._Canis_Majoris",
+    "alpha": 109.52074936815372,
+    "delta": -23.379790368722272,
+    "mag": 4.83,
+    "pmRA": -2.3804351742478216e-08,
+    "pmDE": 1.4592891801397031e-08,
+    "bvColor": 1.601,
+    "distance": 6273.076923076923
+}

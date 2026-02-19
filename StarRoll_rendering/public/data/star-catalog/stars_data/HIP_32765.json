@@ -1,0 +1,13 @@
+{
+    "hip": 32765,
+    "name": "* X Pup -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+32765",
+    "alpha": 102.72350892891325,
+    "delta": -46.65415198235027,
+    "mag": 5.14,
+    "pmRA": -2.7149566142134015e-09,
+    "pmDE": 1.8150454593378808e-06,
+    "bvColor": 0.46,
+    "distance": 82.24911749873928
+}

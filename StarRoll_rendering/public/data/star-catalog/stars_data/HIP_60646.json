@@ -1,0 +1,13 @@
+{
+    "hip": 60646,
+    "name": "* 6 CVn -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+60646",
+    "alpha": 186.88981788377197,
+    "delta": 38.82577077850379,
+    "mag": 5.01,
+    "pmRA": -3.786394849465476e-07,
+    "pmDE": -1.6483665157724225e-07,
+    "bvColor": 0.955,
+    "distance": 227.31707317073173
+}

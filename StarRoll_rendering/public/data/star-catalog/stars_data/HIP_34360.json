@@ -1,0 +1,13 @@
+{
+    "hip": 34360,
+    "name": "HD 54309 -- Be Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+34360",
+    "alpha": 107.20833438038534,
+    "delta": -23.897451282013844,
+    "mag": 5.75,
+    "pmRA": -1.2362748868293167e-08,
+    "pmDE": 2.4773979104697293e-08,
+    "bvColor": -0.117,
+    "distance": 2965.454545454545
+}

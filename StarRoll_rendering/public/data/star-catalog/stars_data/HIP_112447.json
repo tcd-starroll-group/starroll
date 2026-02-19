@@ -1,0 +1,13 @@
+{
+    "hip": 112447,
+    "name": "* ksi Peg -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+112447",
+    "alpha": 342.108099916727,
+    "delta": 12.35362789145337,
+    "mag": 4.2,
+    "pmRA": 1.1299067651938846e-06,
+    "pmDE": -2.385477236531361e-06,
+    "bvColor": 0.502,
+    "distance": 53.006174845628856
+}

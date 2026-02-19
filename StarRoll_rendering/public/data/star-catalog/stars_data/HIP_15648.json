@@ -1,0 +1,13 @@
+{
+    "hip": 15648,
+    "name": "* l Per -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+15648",
+    "alpha": 50.948330652562326,
+    "delta": 43.45257355865339,
+    "mag": 4.96,
+    "pmRA": -2.929729074944926e-07,
+    "pmDE": -1.8422919882162367e-09,
+    "bvColor": 0.051,
+    "distance": 155.33333333333334
+}

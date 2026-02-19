@@ -1,0 +1,13 @@
+{
+    "hip": 51364,
+    "name": "HD 90957 -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+51364",
+    "alpha": 157.77428550743238,
+    "delta": -29.843017950562466,
+    "mag": 5.58,
+    "pmRA": -2.894822489905039e-07,
+    "pmDE": 4.2906010778193935e-08,
+    "bvColor": 1.42,
+    "distance": 387.4109263657957
+}

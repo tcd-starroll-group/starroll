@@ -1,0 +1,13 @@
+{
+    "hip": 42008,
+    "name": "HD 72561",
+    "description": "HD 72561 is a star in the constellation Hydra. Its apparent magnitude is 5.867. Based on parallax shift, it is located about 1,600 light-years (500 parsecs) away.\nHD 72561 is a G-type giant star. It is over 4 times as massive as the Sun and 48 times as wide.",
+    "url": "https://en.wikipedia.org/wiki/HD_72561",
+    "alpha": 128.88978616495604,
+    "delta": 4.63583214506338,
+    "mag": 5.89,
+    "pmRA": -6.932835639866366e-08,
+    "pmDE": -2.9913004124458375e-08,
+    "bvColor": 1.066,
+    "distance": 5436.666666666667
+}

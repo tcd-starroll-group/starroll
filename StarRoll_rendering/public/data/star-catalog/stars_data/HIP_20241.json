@@ -1,0 +1,13 @@
+{
+    "hip": 20241,
+    "name": "HD 27278 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+20241",
+    "alpha": 65.66437515726898,
+    "delta": 41.88867028790287,
+    "mag": 5.95,
+    "pmRA": 7.815196539485721e-08,
+    "pmDE": -1.6701831314223514e-07,
+    "bvColor": 0.962,
+    "distance": 346.2845010615711
+}

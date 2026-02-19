@@ -1,0 +1,13 @@
+{
+    "hip": 7650,
+    "name": "* 40 Cas -- Variable Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+7650",
+    "alpha": 25.34514808516728,
+    "delta": 73.21571612628568,
+    "mag": 5.28,
+    "pmRA": -5.725649573903621e-08,
+    "pmDE": -6.414085001079161e-08,
+    "bvColor": 0.972,
+    "distance": 446.8493150684931
+}

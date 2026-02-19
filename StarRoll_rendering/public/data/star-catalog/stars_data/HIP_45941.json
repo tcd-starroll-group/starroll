@@ -1,0 +1,13 @@
+{
+    "hip": 45941,
+    "name": "Kappa Velorum",
+    "description": "Kappa Velorum (κ Velorum, abbreviated Kappa Vel, κ Vel; proper name Markeb ) is a binary star system in the southern constellation of Vela. The two components are designated Kappa Velorum A and B.",
+    "url": "https://en.wikipedia.org/wiki/Kappa_Velorum",
+    "alpha": 140.7985324440866,
+    "delta": -55.160562429110406,
+    "mag": 2.47,
+    "pmRA": -5.197202661494225e-08,
+    "pmDE": 5.4493057756711844e-08,
+    "bvColor": -0.141,
+    "distance": 539.1735537190083
+}

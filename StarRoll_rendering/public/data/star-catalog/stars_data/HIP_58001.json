@@ -1,0 +1,13 @@
+{
+    "hip": 58001,
+    "name": "Phecda",
+    "description": "Phecda , also called Gamma Ursae Majoris (γ Ursae Majoris, abbreviated Gamma UMa, γ UMa), is a star in the constellation of Ursa Major. Since 1943, the spectrum of this star has served as one of the stable anchor points by which other stars are classified.",
+    "url": "https://en.wikipedia.org/wiki/Phecda",
+    "alpha": 178.91060763689265,
+    "delta": 53.500971871952025,
+    "mag": 2.41,
+    "pmRA": 5.22435222763636e-07,
+    "pmDE": 5.4105206811824216e-08,
+    "bvColor": 0.044,
+    "distance": 83.6624775583483
+}

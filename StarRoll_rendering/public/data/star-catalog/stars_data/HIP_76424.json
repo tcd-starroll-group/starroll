@@ -1,0 +1,13 @@
+{
+    "hip": 76424,
+    "name": "Tau5 Serpentis",
+    "description": "Tau5 Serpentis, Latinized from τ5 Serpentis, is a star in the constellation of Serpens. The Flamsteed designation for this star is 18 Serpentis. It has an apparent visual magnitude of 5.93, which is bright enough to be dimly visible to the naked eye.",
+    "url": "https://en.wikipedia.org/wiki/Tau5_Serpentis",
+    "alpha": 234.5232828744987,
+    "delta": 16.005965977269383,
+    "mag": 5.93,
+    "pmRA": 3.468357074657621e-07,
+    "pmDE": -2.685867793346829e-08,
+    "bvColor": 0.354,
+    "distance": 159.90196078431373
+}

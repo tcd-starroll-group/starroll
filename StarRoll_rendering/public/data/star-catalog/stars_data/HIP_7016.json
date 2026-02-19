@@ -1,0 +1,13 @@
+{
+    "hip": 7016,
+    "name": "HD 9228 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+7016",
+    "alpha": 23.00518996494479,
+    "delta": -26.02909017059669,
+    "mag": 5.92,
+    "pmRA": 2.117181345405344e-07,
+    "pmDE": 6.787391535533503e-09,
+    "bvColor": 1.327,
+    "distance": 443.80952380952385
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 81497,
+    "name": "* 42 Her -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+81497",
+    "alpha": 249.92427140247406,
+    "delta": 48.86159760358975,
+    "mag": 4.86,
+    "pmRA": -2.3319538061368683e-07,
+    "pmDE": 1.299785479054666e-07,
+    "bvColor": 1.562,
+    "distance": 376.239907727797
+}

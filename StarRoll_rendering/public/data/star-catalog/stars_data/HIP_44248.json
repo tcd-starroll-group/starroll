@@ -1,0 +1,13 @@
+{
+    "hip": 44248,
+    "name": "* 10 UMa -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+44248",
+    "alpha": 135.72429134864467,
+    "delta": 41.64315788993366,
+    "mag": 3.96,
+    "pmRA": -2.3642908786668742e-06,
+    "pmDE": -1.0631479213051014e-06,
+    "bvColor": 0.463,
+    "distance": 53.59842260926717
+}

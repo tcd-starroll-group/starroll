@@ -1,0 +1,13 @@
+{
+    "hip": 88469,
+    "name": "* 9 Sgr -- Young Stellar Object",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+88469",
+    "alpha": 271.50255544652265,
+    "delta": -24.356557651783426,
+    "mag": 5.89,
+    "pmRA": 3.1028075591010307e-09,
+    "pmDE": -8.290313946973065e-09,
+    "bvColor": 0.031,
+    "distance": 4942.424242424242
+}

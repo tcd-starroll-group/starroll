@@ -1,0 +1,13 @@
+{
+    "hip": 27338,
+    "name": "* 130 Tau -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+27338",
+    "alpha": 87.36735636288373,
+    "delta": 17.738858258986443,
+    "mag": 5.47,
+    "pmRA": -9.938680462745487e-09,
+    "pmDE": -2.3222575325146775e-08,
+    "bvColor": 0.301,
+    "distance": 1269.2607003891053
+}

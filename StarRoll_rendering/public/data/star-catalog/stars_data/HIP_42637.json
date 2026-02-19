@@ -1,0 +1,13 @@
+{
+    "hip": 42637,
+    "name": "* eta Cha -- Pulsating Variable",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+42637",
+    "alpha": 130.01356922973125,
+    "delta": -79.0882418196465,
+    "mag": 5.46,
+    "pmRA": -1.42098889933205e-07,
+    "pmDE": 1.3371161325001e-07,
+    "bvColor": -0.101,
+    "distance": 316.08527131782944
+}

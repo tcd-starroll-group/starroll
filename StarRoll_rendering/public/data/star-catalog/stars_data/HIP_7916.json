@@ -1,0 +1,13 @@
+{
+    "hip": 7916,
+    "name": "HD 10453 -- Double or Multiple Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+7916",
+    "alpha": 25.86684245474979,
+    "delta": -11.15285225178347,
+    "mag": 5.75,
+    "pmRA": 2.913730223468312e-07,
+    "pmDE": -1.9960264064960702e-06,
+    "bvColor": 0.443,
+    "distance": 121.58032053671265
+}

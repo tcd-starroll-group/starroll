@@ -1,0 +1,13 @@
+{
+    "hip": 95294,
+    "name": "* bet02 Sgr -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+95294",
+    "alpha": 291.43100163151166,
+    "delta": -44.73029451794455,
+    "mag": 4.27,
+    "pmRA": 4.498101333334275e-07,
+    "pmDE": -2.604903908601537e-07,
+    "bvColor": 0.35,
+    "distance": 138.6904761904762
+}

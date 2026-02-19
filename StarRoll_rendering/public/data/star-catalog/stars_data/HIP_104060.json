@@ -1,0 +1,13 @@
+{
+    "hip": 104060,
+    "name": "* ksi Cyg -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+104060",
+    "alpha": 316.5499629203867,
+    "delta": 44.068268298156724,
+    "mag": 3.72,
+    "pmRA": 4.169397657542009e-08,
+    "pmDE": 1.6968478838833758e-09,
+    "bvColor": 1.609,
+    "distance": 1177.6173285198556
+}

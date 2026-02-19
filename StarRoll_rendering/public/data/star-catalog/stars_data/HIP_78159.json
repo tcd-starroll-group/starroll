@@ -1,0 +1,13 @@
+{
+    "hip": 78159,
+    "name": "* eps CrB -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+78159",
+    "alpha": 239.7580517207943,
+    "delta": 26.77925354400137,
+    "mag": 4.14,
+    "pmRA": -3.7112487288934976e-07,
+    "pmDE": -2.920517615003845e-07,
+    "bvColor": 1.231,
+    "distance": 229.71830985915497
+}

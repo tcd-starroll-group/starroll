@@ -1,0 +1,13 @@
+{
+    "hip": 18488,
+    "name": "HD 24480",
+    "description": "HD 24480 is a cool giant star in the northern constellation of Camelopardalis.  It has a stellar classification of K4III and an apparent magnitude of 5.05.\nThe nearby HD 24481 is at a similar distance and shares a common proper motion.",
+    "url": "https://en.wikipedia.org/wiki/HD_24480",
+    "alpha": 60.0346667348011,
+    "delta": 61.20673181781677,
+    "mag": 4.99,
+    "pmRA": -1.648366515772422e-08,
+    "pmDE": -6.816480356400075e-08,
+    "bvColor": 1.435,
+    "distance": 1853.4090909090908
+}

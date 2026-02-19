@@ -1,0 +1,13 @@
+{
+    "hip": 13834,
+    "name": "47 Arietis",
+    "description": "47 Arietis is a single star in the northern constellation of Aries.",
+    "url": "https://en.wikipedia.org/wiki/47_Arietis",
+    "alpha": 45.02142217192522,
+    "delta": 20.806157741248676,
+    "mag": 5.8,
+    "pmRA": 1.1382940418770796e-06,
+    "pmDE": -1.533950487030572e-07,
+    "bvColor": 0.415,
+    "distance": 103.85227634511301
+}

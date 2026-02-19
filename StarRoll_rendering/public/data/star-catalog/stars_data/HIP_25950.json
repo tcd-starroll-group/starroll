@@ -1,0 +1,13 @@
+{
+    "hip": 25950,
+    "name": "HD 36408A -- Be Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+25950",
+    "alpha": 83.56428843783698,
+    "delta": 17.080646388158325,
+    "mag": 5.5,
+    "pmRA": -2.050761871093337e-08,
+    "pmDE": -5.260228440038466e-08,
+    "bvColor": -0.004,
+    "distance": 1117.123287671233
+}

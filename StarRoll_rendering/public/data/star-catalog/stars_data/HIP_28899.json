@@ -1,0 +1,13 @@
+{
+    "hip": 28899,
+    "name": "HD 41843 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+28899",
+    "alpha": 91.85859138736512,
+    "delta": -29.764652768589194,
+    "mag": 5.79,
+    "pmRA": 5.303861671338323e-08,
+    "pmDE": -2.0211882365456555e-07,
+    "bvColor": 0.041,
+    "distance": 266.2857142857143
+}

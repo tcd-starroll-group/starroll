@@ -1,0 +1,13 @@
+{
+    "hip": 8241,
+    "name": "* q02 Eri -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+8241",
+    "alpha": 26.855652746357418,
+    "delta": -53.34837661166809,
+    "mag": 5.04,
+    "pmRA": 6.130468997630083e-07,
+    "pmDE": 2.862339973270701e-07,
+    "bvColor": 0.031,
+    "distance": 185.9749144811859
+}

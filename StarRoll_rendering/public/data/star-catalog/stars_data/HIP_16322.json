@@ -1,0 +1,13 @@
+{
+    "hip": 16322,
+    "name": "* s Tau -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+16322",
+    "alpha": 53.07930967123938,
+    "delta": 11.453444760978908,
+    "mag": 5.14,
+    "pmRA": -5.677168205792667e-08,
+    "pmDE": -7.795803992241337e-08,
+    "bvColor": -0.041,
+    "distance": 417.13554987212274
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 46853,
+    "name": "* tet UMa -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+46853",
+    "alpha": 143.80064131699663,
+    "delta": 51.517544017690874,
+    "mag": 3.17,
+    "pmRA": -4.591476448315971e-06,
+    "pmDE": -2.5966620760226748e-06,
+    "bvColor": 0.475,
+    "distance": 43.99190829399865
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 9631,
+    "name": "* 61 Cet -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+9631",
+    "alpha": 31.398318252835374,
+    "delta": 0.5056294075379927,
+    "mag": 5.96,
+    "pmRA": 4.01231802486252e-07,
+    "pmDE": -2.0890621519009907e-07,
+    "bvColor": 0.851,
+    "distance": 329.82810920121335
+}

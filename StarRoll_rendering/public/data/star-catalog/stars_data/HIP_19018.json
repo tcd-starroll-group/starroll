@@ -1,0 +1,13 @@
+{
+    "hip": 19018,
+    "name": "HD 25291",
+    "description": "HD 25291, also known as HR 1242, is a solitary, yellowish-white hued star located in the northern circumpolar constellation Camelopardalis. It has an apparent magnitude of 5.12, making it one of the brighter members of this generally faint constellation.",
+    "url": "https://en.wikipedia.org/wiki/HD_25291",
+    "alpha": 61.84525786954409,
+    "delta": 59.24808415252419,
+    "mag": 5,
+    "pmRA": -8.678164891860696e-09,
+    "pmDE": -1.8422919882162367e-09,
+    "bvColor": 0.495,
+    "distance": 1735.1063829787236
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 32607,
+    "name": "* alf Pic -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+32607",
+    "alpha": 102.13770015375923,
+    "delta": -61.980253170520314,
+    "mag": 3.24,
+    "pmRA": -3.3156407651081164e-07,
+    "pmDE": 1.1733945523894098e-06,
+    "bvColor": 0.225,
+    "distance": 98.96844660194175
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 746,
+    "name": "Beta Cassiopeiae",
+    "description": "Beta Cassiopeiae is a Delta Scuti variable star in the constellation of Cassiopeia. It has the proper name Caph, pronounced ; Beta Cassiopeiae is its Bayer designation, which is Latinized from β Cassiopeiae and abbreviated Beta Cas or β Cas.",
+    "url": "https://en.wikipedia.org/wiki/Beta_Cassiopeiae",
+    "alpha": 2.7577526415176012,
+    "delta": 59.342197467922446,
+    "mag": 2.28,
+    "pmRA": 2.5374663255592005e-06,
+    "pmDE": -8.747008434578249e-07,
+    "bvColor": 0.38,
+    "distance": 54.46652195692103
+}

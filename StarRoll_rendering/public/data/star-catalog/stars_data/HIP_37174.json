@@ -1,0 +1,13 @@
+{
+    "hip": 37174,
+    "name": "* y03 Pup -- Classical Cepheid Variable",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+37174",
+    "alpha": 114.82199094116268,
+    "delta": -48.68241998341211,
+    "mag": 5.68,
+    "pmRA": -2.0265211870378602e-08,
+    "pmDE": 2.4870941840919195e-08,
+    "bvColor": 0.683,
+    "distance": 5018.461538461538
+}

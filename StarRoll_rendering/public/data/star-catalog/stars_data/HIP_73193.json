@@ -1,0 +1,13 @@
+{
+    "hip": 73193,
+    "name": "* 1 Ser -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+73193",
+    "alpha": 224.83503973827644,
+    "delta": 0.029261967067870306,
+    "mag": 5.51,
+    "pmRA": 2.9045187635272303e-07,
+    "pmDE": -1.2702118445069844e-07,
+    "bvColor": 1.131,
+    "distance": 294.9367088607595
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 22840,
+    "name": "HD 31331 -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+22840",
+    "alpha": 74.15917043061586,
+    "delta": 0.5207788140863027,
+    "mag": 5.98,
+    "pmRA": -2.3755870374367262e-09,
+    "pmDE": -2.3707389006256308e-08,
+    "bvColor": -0.116,
+    "distance": 965.0887573964496
+}

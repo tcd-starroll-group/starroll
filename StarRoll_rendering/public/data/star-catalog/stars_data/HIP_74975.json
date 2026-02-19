@@ -1,0 +1,13 @@
+{
+    "hip": 74975,
+    "name": "* 5 Ser -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+74975",
+    "alpha": 230.27289423613516,
+    "delta": 1.6371892762204632,
+    "mag": 5.04,
+    "pmRA": 1.8095185833732321e-06,
+    "pmDE": -2.4901969916510207e-06,
+    "bvColor": 0.54,
+    "distance": 80.62283737024221
+}

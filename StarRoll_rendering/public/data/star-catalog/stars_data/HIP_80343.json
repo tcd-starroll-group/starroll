@@ -1,0 +1,13 @@
+{
+    "hip": 80343,
+    "name": "* psi Oph -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+80343",
+    "alpha": 246.5367874723687,
+    "delta": -20.11568189331853,
+    "mag": 4.48,
+    "pmRA": -1.0413797870232834e-07,
+    "pmDE": -2.3043194263136246e-07,
+    "bvColor": 0.996,
+    "distance": 178.05676855895194
+}

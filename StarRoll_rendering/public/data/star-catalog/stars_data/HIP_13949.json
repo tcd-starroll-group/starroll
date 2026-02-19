@@ -1,0 +1,13 @@
+{
+    "hip": 13949,
+    "name": "HD 18482 -- Variable Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+13949",
+    "alpha": 45.48257654121892,
+    "delta": 41.169243418582276,
+    "mag": 5.89,
+    "pmRA": 7.121912975499083e-08,
+    "pmDE": -2.2495354803482464e-07,
+    "bvColor": 1.445,
+    "distance": 780.3827751196172
+}

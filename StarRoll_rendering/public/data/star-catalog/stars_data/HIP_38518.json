@@ -1,0 +1,13 @@
+{
+    "hip": 38518,
+    "name": "HD 64760",
+    "description": "HD 64760 (J Puppis) is a class B0.5 supergiant star in the constellation Puppis. Its apparent magnitude is 4.24 and it is approximately 1,660 light years away based on parallax.\nThe stellar wind structure of HD 64760 has been extensively studied.",
+    "url": "https://en.wikipedia.org/wiki/HD_64760",
+    "alpha": 118.58155869137623,
+    "delta": -48.19527513292426,
+    "mag": 4.22,
+    "pmRA": -2.3755870374367267e-08,
+    "pmDE": 2.8555525817351667e-08,
+    "bvColor": -0.13,
+    "distance": 1941.666666666667
+}

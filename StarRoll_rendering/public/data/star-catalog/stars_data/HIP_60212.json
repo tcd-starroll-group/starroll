@@ -1,0 +1,13 @@
+{
+    "hip": 60212,
+    "name": "* 70 UMa -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+60212",
+    "alpha": 185.6294780247827,
+    "delta": 57.670553187823685,
+    "mag": 5.54,
+    "pmRA": 2.3149853272980343e-07,
+    "pmDE": -3.4193908928655583e-07,
+    "bvColor": 1.452,
+    "distance": 701.5053763440859
+}

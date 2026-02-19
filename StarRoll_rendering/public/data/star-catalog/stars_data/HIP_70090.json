@@ -1,0 +1,13 @@
+{
+    "hip": 70090,
+    "name": "* psi Cen -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+70090",
+    "alpha": 215.67281366759474,
+    "delta": -38.04343761029245,
+    "mag": 4.05,
+    "pmRA": -3.127048243156507e-07,
+    "pmDE": -5.522027827837616e-08,
+    "bvColor": -0.03,
+    "distance": 247.30856709628506
+}

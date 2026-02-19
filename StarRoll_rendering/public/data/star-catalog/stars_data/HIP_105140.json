@@ -1,0 +1,13 @@
+{
+    "hip": 105140,
+    "name": "* eps Mic -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+105140",
+    "alpha": 320.0097830064379,
+    "delta": -32.024693992143554,
+    "mag": 4.71,
+    "pmRA": 2.688776675433486e-07,
+    "pmDE": -1.0724078626142938e-07,
+    "bvColor": 0.07,
+    "distance": 165.08097165991902
+}

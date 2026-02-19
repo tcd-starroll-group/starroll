@@ -1,0 +1,13 @@
+{
+    "hip": 43234,
+    "name": "* rho Hya -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+43234",
+    "alpha": 132.56884696329854,
+    "delta": 5.707000906105697,
+    "mag": 4.35,
+    "pmRA": -8.489087556227977e-08,
+    "pmDE": -1.4442599560253075e-07,
+    "bvColor": -0.044,
+    "distance": 337.3319544984488
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 70492,
+    "name": "HD 125835 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+70492",
+    "alpha": 217.01305041742492,
+    "delta": -68.35095432665152,
+    "mag": 5.56,
+    "pmRA": -3.859116901631907e-08,
+    "pmDE": -1.8422919882162364e-08,
+    "bvColor": 0.435,
+    "distance": 3507.52688172043
+}

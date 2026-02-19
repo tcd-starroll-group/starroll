@@ -1,0 +1,13 @@
+{
+    "hip": 29716,
+    "name": "HD 43318 -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+29716",
+    "alpha": 94.3396112968172,
+    "delta": 0.49563758378790795,
+    "mag": 5.62,
+    "pmRA": -7.661995416255105e-07,
+    "pmDE": -1.05849370996645e-06,
+    "bvColor": 0.506,
+    "distance": 116.41684511063525
+}

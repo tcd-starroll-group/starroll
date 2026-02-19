@@ -1,0 +1,13 @@
+{
+    "hip": 25471,
+    "name": "HD 35520",
+    "description": "HD 35520 is a single star in the northern constellation of Auriga. It has a white hue and is dimly visible to the naked eye with an apparent visual magnitude of 5.92. The distance to this star is approximately 2,200 light years based on parallax.",
+    "url": "https://en.wikipedia.org/wiki/HD_35520",
+    "alpha": 82.28111225554247,
+    "delta": 34.41877554888336,
+    "mag": 5.92,
+    "pmRA": -1.0665900984409792e-09,
+    "pmDE": -3.553684282532899e-08,
+    "bvColor": 0.138,
+    "distance": 1289.3280632411067
+}

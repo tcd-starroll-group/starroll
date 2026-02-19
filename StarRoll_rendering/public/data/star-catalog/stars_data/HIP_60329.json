@@ -1,0 +1,13 @@
+{
+    "hip": 60329,
+    "name": "* zet01 Mus -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+60329",
+    "alpha": 186.04586478020687,
+    "delta": -68.50057766973623,
+    "mag": 5.73,
+    "pmRA": -1.1877935187183634e-08,
+    "pmDE": -2.3338930608613065e-07,
+    "bvColor": 1.038,
+    "distance": 395.873786407767
+}

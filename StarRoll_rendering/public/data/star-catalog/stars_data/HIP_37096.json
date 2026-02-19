@@ -1,0 +1,13 @@
+{
+    "hip": 37096,
+    "name": "HD 61330",
+    "description": "HD 61330 (f Puppis) is a class B8IV (blue subgiant) star in the constellation Puppis. Its apparent magnitude is 4.53 and it is approximately 360 light years away based on parallax.",
+    "url": "https://en.wikipedia.org/wiki/HD_61330",
+    "alpha": 114.66472350441619,
+    "delta": -35.048846813484246,
+    "mag": 4.53,
+    "pmRA": -6.617706747145166e-08,
+    "pmDE": 8.013970148740632e-08,
+    "bvColor": -0.081,
+    "distance": 358.4615384615385
+}

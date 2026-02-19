@@ -1,0 +1,13 @@
+{
+    "hip": 2355,
+    "name": "28 Andromedae",
+    "description": "28 Andromedae (abbreviated 28 And) is a Delta Scuti variable star in the constellation Andromeda. 28 Andromedae is the Flamsteed designation. It also bears the variable star name GN Andromedae. Its apparent magnitude is 5.214, varying by less than 0.1 magnitudes.",
+    "url": "https://en.wikipedia.org/wiki/28_Andromedae",
+    "alpha": 7.992308460751377,
+    "delta": 29.943274162011377,
+    "mag": 5.2,
+    "pmRA": 2.111848394913139e-07,
+    "pmDE": -2.7721646285843265e-07,
+    "bvColor": 0.271,
+    "distance": 185.13053348467648
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 89115,
+    "name": "HD 164712",
+    "description": "HD 164712, also known as HR 6731 is an orange hued star located in the southern constellation of Apus. It has an apparent magnitude of 5.86, making it faintly visible to the naked eye if viewed under ideal conditions.",
+    "url": "https://en.wikipedia.org/wiki/HD_164712",
+    "alpha": 274.03202945793845,
+    "delta": -75.88207303269007,
+    "mag": 5.86,
+    "pmRA": 8.101236611340347e-08,
+    "pmDE": -1.427436921290807e-06,
+    "bvColor": 1.253,
+    "distance": 253.2608695652174
+}

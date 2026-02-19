@@ -1,0 +1,13 @@
+{
+    "hip": 115830,
+    "name": "* tet Psc -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+115830",
+    "alpha": 352.43447221695595,
+    "delta": 6.570813808047168,
+    "mag": 4.27,
+    "pmRA": -6.003447813179384e-07,
+    "pmDE": -2.0973039844798527e-07,
+    "bvColor": 1.062,
+    "distance": 158.81207400194742
+}
