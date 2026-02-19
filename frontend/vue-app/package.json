@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "astronomy-engine": "^2.1.19",
+    "axios": "^1.13.5",
     "fs": "^0.0.1-security",
     "path": "^0.12.7",
     "vue": "^3.5.26",
