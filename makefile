@@ -7,4 +7,3 @@ run-console:
 test-console:
 	export PYTHONPATH="gen/py/src:." && \
 	pytest backend/console/tests
-

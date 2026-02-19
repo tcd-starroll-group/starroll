@@ -16,6 +16,8 @@ from openapi_server.models.change_password_request import ChangePasswordRequest
 
 from openapi_server.models.profile_and_token import ProfileAndToken
 
+from backend.console.handler.reset_password_send_code import api_forgot_password_send_code_post as api_forgot_password_send_code_post_handler
+from backend.console.handler.reset_password import api_forgot_password_reset_post as api_forgot_password_reset_post_handler
 
 from openapi_server.models.api_create_identify_stars_job_post_request import ApiCreateIdentifyStarsJobPostRequest
 from openapi_server.models.api_list_identify_stars_jobs_post_request import ApiListIdentifyStarsJobsPostRequest
@@ -50,3 +52,9 @@ class StarrollApiImpl(BaseDefaultApi):
 
     async def api_list_identify_stars_jobs_post(self, api_list_identify_stars_jobs_post_request: ApiListIdentifyStarsJobsPostRequest) -> ApiListIdentifyStarsJobsPost200Response:
         return await api_list_identify_stars_jobs_post(api_list_identify_stars_jobs_post_request)
+
+    async def api_forgot_password_send_code_post(self, forgot_password_send_code_request: ForgotPasswordSendCodeRequest):
+        return await api_forgot_password_send_code_post_handler(forgot_password_send_code_request)
+
+    async def api_forgot_password_reset_post(self, forgot_password_reset_request: ForgotPasswordResetRequest):
+        return await api_forgot_password_reset_post_handler(forgot_password_reset_request)

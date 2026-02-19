@@ -1026,6 +1026,53 @@ paths:
           description: Old password incorrect
         "404":
           description: User not found
+  /api/resetPasswordSendCode:
+    post:
+      summary: send code to email
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ResetPasswordSendCodeRequest"
+        required: true
+      responses:
+        "200":
+          description: Verification code sent successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        "404":
+          description: Email not found
+        "500":
+          description: Failed to send email
+
+  /api/resetPassword:
+    post:
+      summary: Use code to reset password
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/resetPasswordRequest"
+        required: true
+      responses:
+        "200":
+          description: Password reset successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        "400":
+          description: Invalid or expired verification code
+        "404":
+          description: Email not found
 
   /api/deleteUser:
     post:
@@ -1569,3 +1616,39 @@ components:
               HIP:
                 type: integer
                 description: "Hipparcos catalog ID"
+    ResetPasswordSendCodeRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          description: "User emial"
+          example: "user@example.com"
+        userName:
+          type: string
+          description: "User name"
+          example: "name"  
+      required:
+        - email
+        - userName
+
+    resetPasswordRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          description: "User email"
+          example: "user@example.com"
+        code:
+          type: string
+          description: "6 code in email"
+          example: "123456"
+        newPassword:
+          type: string
+          format: password
+          description: "new password"
+      required:
+        - email
+        - code
+        - newPassword

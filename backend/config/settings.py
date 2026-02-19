@@ -6,12 +6,6 @@ from backend.constant import jwt as jwt_const
 load_dotenv()
 
 
-def _parse_bool(value: str, default: bool = False) -> bool:
-    if value is None:
-        return default
-    return value.strip().lower() in {"1", "true", "yes", "y", "on"}
-
-
 class Settings:
     """Centralized configuration management for the application."""
 
@@ -34,11 +28,27 @@ class Settings:
     minio_endpoint: str = os.getenv("MINIO_ENDPOINT")
     minio_access_key: str = os.getenv("MINIO_ACCESS_KEY")
     minio_secret_key: str = os.getenv("MINIO_SECRET_KEY")
-    minio_secure: bool = _parse_bool(os.getenv("MINIO_SECURE"), default=False)
+    
 
     # Astronomy Net Configuration
     astronomy_net_endpoint: str = os.getenv(
         "ASTRONOMY_NET_ENDPOINT", "http://127.0.0.1:8001")
+
+    # Redis Configuration
+    redis_host: str = os.getenv("REDIS_HOST", "localhost")
+    redis_port: int = int(os.getenv("REDIS_PORT", "6379"))
+    redis_password: str = os.getenv("REDIS_PASSWORD", None)
+    redis_db: int = int(os.getenv("REDIS_DB", "0"))
+  
+
+    @property
+    def redis_url(self) -> str:
+        """Generate Redis connection URL from config parameters."""
+        if self.redis_password:
+            return (
+                f"redis://:{self.redis_password}@{self.redis_host}:{self.redis_port}/{self.redis_db}"
+            )
+        return f"redis://{self.redis_host}:{self.redis_port}/{self.redis_db}"
 
     @property
     def sqlalchemy_database_url(self) -> str:
@@ -67,17 +77,6 @@ class Settings:
             ]
             for field in required_fields:
                 if getattr(self, field) is None:
-                    raise ValueError(
-                        f"Missing required environment variable: {field.upper()}"
-                    )
-
-            minio_required_fields = [
-                "minio_endpoint",
-                "minio_access_key",
-                "minio_secret_key",
-            ]
-            for field in minio_required_fields:
-                if getattr(self, field) in (None, ""):
                     raise ValueError(
                         f"Missing required environment variable: {field.upper()}"
                     )
