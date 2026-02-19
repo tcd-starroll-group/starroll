@@ -1,0 +1,13 @@
+{
+    "hip": 74087,
+    "name": "* b Boo -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+74087",
+    "alpha": 227.47515472685612,
+    "delta": 26.169540672535643,
+    "mag": 5.67,
+    "pmRA": 5.52687596464871e-09,
+    "pmDE": -6.016537782569342e-08,
+    "bvColor": 1.24,
+    "distance": 419.8198198198199
+}

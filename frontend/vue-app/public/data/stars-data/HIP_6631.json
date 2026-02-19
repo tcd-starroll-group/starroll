@@ -1,0 +1,13 @@
+{
+    "hip": 6631,
+    "name": "HD 8810 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+6631",
+    "alpha": 21.571479490828033,
+    "delta": -64.18909618845112,
+    "mag": 5.92,
+    "pmRA": 1.1223436717685759e-07,
+    "pmDE": -8.290313946973066e-08,
+    "bvColor": 1.561,
+    "distance": 1009.9071207430342
+}

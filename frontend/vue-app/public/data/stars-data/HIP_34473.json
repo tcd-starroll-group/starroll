@@ -1,0 +1,13 @@
+{
+    "hip": 34473,
+    "name": "* gam01 Vol -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+34473",
+    "alpha": 107.0988637603179,
+    "delta": -70.5534661696439,
+    "mag": 5.68,
+    "pmRA": 8.324250904650733e-08,
+    "pmDE": 5.045940792988051e-07,
+    "bvColor": 0.436,
+    "distance": 147.20216606498195
+}

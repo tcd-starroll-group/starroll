@@ -1,0 +1,13 @@
+{
+    "hip": 43584,
+    "name": "* sig01 Cnc -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+43584",
+    "alpha": 133.6799103576368,
+    "delta": 32.340982916779794,
+    "mag": 5.67,
+    "pmRA": -1.832595714594046e-08,
+    "pmDE": 6.72921389380036e-08,
+    "bvColor": 0.224,
+    "distance": 203.7476577139288
+}

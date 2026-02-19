@@ -1,0 +1,13 @@
+{
+    "hip": 48802,
+    "name": "HD 85945",
+    "description": "HD 85945 (HR 3922) is a star in the constellation Ursa Major. It is a yellow giant star with a spectral type of G6III:Fe-0.5. Based on information from Gaia DR3, it is located 132.54 parsecs (432.3 ly) from Earth and is moving towards Earth at a velocity of 47 km/s.",
+    "url": "https://en.wikipedia.org/wiki/HD_85945",
+    "alpha": 149.9061803207504,
+    "delta": 57.25048314493886,
+    "mag": 5.97,
+    "pmRA": 1.7327240962854815e-07,
+    "pmDE": -3.092141658116621e-07,
+    "bvColor": 0.895,
+    "distance": 466.66666666666663
+}

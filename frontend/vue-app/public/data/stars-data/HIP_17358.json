@@ -1,0 +1,13 @@
+{
+    "hip": 17358,
+    "name": "Delta Persei",
+    "description": "Delta Persei, also named Sarvvis, is a double star in the northern constellation of Perseus. It has an apparent visual magnitude of 3.01, making it readily visible with the naked eye. Parallax measurements give it a distance of about 520 light-years (160 parsecs) from the Earth.",
+    "url": "https://en.wikipedia.org/wiki/Delta_Persei",
+    "alpha": 56.3553143984047,
+    "delta": 47.895572335910984,
+    "mag": 3.01,
+    "pmRA": 1.1553110020840243e-07,
+    "pmDE": -2.0328237648922844e-07,
+    "bvColor": -0.125,
+    "distance": 527.831715210356
+}

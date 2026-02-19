@@ -1,0 +1,13 @@
+{
+    "hip": 86032,
+    "name": "Alpha Ophiuchi",
+    "description": "Alpha Ophiuchi (α Ophiuchi, abbreviated Alpha Oph, α Oph), also named Rasalhague , is a binary star and the brightest star in the constellation of Ophiuchus.",
+    "url": "https://en.wikipedia.org/wiki/Alpha_Ophiuchi",
+    "alpha": 264.13775703624856,
+    "delta": 12.537945322353682,
+    "mag": 2.08,
+    "pmRA": 5.336829001653772e-07,
+    "pmDE": -1.0792437355179383e-06,
+    "bvColor": 0.155,
+    "distance": 46.70675830469644
+}

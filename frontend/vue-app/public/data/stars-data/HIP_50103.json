@@ -1,0 +1,13 @@
+{
+    "hip": 50103,
+    "name": "HD 88809",
+    "description": "HD 88809 is a star located in the southern constellation Antlia. With an apparent magnitude of 5.89 it is barely visible to the naked eye under ideal conditions.",
+    "url": "https://en.wikipedia.org/wiki/HD_88809",
+    "alpha": 153.8137518490312,
+    "delta": -40.51972947236244,
+    "mag": 5.91,
+    "pmRA": -3.5856819854861285e-07,
+    "pmDE": 4.10637187899777e-08,
+    "bvColor": 1.204,
+    "distance": 450.5524861878453
+}

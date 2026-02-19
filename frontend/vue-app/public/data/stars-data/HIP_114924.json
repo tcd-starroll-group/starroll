@@ -1,0 +1,13 @@
+{
+    "hip": 114924,
+    "name": "HD 219623",
+    "description": "HD 219623 is a solitary star in the northern circumpolar constellation of Cassiopeia.  HD 219623 is its Henry Draper Catalogue designation.  It has an apparent visual magnitude of 5.59, which lies in the brightness range that is visible to the naked eye.",
+    "url": "https://en.wikipedia.org/wiki/HD_219623",
+    "alpha": 349.5751751143274,
+    "delta": 53.40235495977415,
+    "mag": 5.58,
+    "pmRA": 5.415368817993516e-07,
+    "pmDE": -1.1455662470937224e-06,
+    "bvColor": 0.556,
+    "distance": 66.15291016021091
+}

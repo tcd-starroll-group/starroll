@@ -1,0 +1,13 @@
+{
+    "hip": 9459,
+    "name": "* chi Phe -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+9459",
+    "alpha": 30.775191120562322,
+    "delta": -44.546956142189515,
+    "mag": 5.15,
+    "pmRA": -1.5417075059283246e-07,
+    "pmDE": -2.3654059501334258e-07,
+    "bvColor": 1.471,
+    "distance": 372.3744292237443
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 80170,
+    "name": "* gam Her -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+80170",
+    "alpha": 245.8647532384341,
+    "delta": 19.073577100453715,
+    "mag": 3.74,
+    "pmRA": -2.2999561031836385e-07,
+    "pmDE": 2.16275383142964e-07,
+    "bvColor": 0.299,
+    "distance": 195.44637507489512
+}

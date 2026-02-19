@@ -1,0 +1,13 @@
+{
+    "hip": 98920,
+    "name": "* eta Sge -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+98920",
+    "alpha": 301.6757050647157,
+    "delta": 20.0929271099067,
+    "mag": 5.09,
+    "pmRA": 1.4840146778762897e-07,
+    "pmDE": 3.861540970037454e-07,
+    "bvColor": 1.058,
+    "distance": 161.72533465542884
+}

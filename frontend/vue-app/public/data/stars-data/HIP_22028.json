@@ -1,0 +1,13 @@
+{
+    "hip": 22028,
+    "name": "HD 30127 -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+22028",
+    "alpha": 71.41799356129698,
+    "delta": -18.604318458671486,
+    "mag": 5.53,
+    "pmRA": 2.5253944648995733e-07,
+    "pmDE": -8.552113334772213e-08,
+    "bvColor": 0.025,
+    "distance": 294.9367088607595
+}

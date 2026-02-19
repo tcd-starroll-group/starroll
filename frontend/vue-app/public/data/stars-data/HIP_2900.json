@@ -1,0 +1,13 @@
+{
+    "hip": 2900,
+    "name": "HD 3346",
+    "description": "HD 3346, also known as V428 Andromedae, is a binary star system in the northern constellation of Andromeda.",
+    "url": "https://en.wikipedia.org/wiki/HD_3346",
+    "alpha": 9.670866837208603,
+    "delta": 44.68009528928336,
+    "mag": 5.14,
+    "pmRA": -1.7792662096719974e-07,
+    "pmDE": 1.5402530648849957e-07,
+    "bvColor": 1.587,
+    "distance": 656.3380281690141
+}

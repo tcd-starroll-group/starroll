@@ -1,0 +1,13 @@
+{
+    "hip": 11249,
+    "name": "Xi Arietis",
+    "description": "Xi Arietis is a binary star system in the northern constellation of Aries. Its name is a Bayer designation that is Latinized from ξ Arietis, and abbreviated Xi Ari or ξ Ari. This system has an apparent visual magnitude of 5.46, and so is dimly visible to the naked eye.",
+    "url": "https://en.wikipedia.org/wiki/Xi_Arietis",
+    "alpha": 36.67253876567028,
+    "delta": 10.766478696463352,
+    "mag": 5.48,
+    "pmRA": 9.51689256018019e-08,
+    "pmDE": -6.593466063089689e-08,
+    "bvColor": -0.098,
+    "distance": 602.9574861367837
+}

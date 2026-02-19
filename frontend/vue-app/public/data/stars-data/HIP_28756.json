@@ -1,0 +1,13 @@
+{
+    "hip": 28756,
+    "name": "HD 41534",
+    "description": "HD 41534 is a binary star system in the southern constellation of Columba.",
+    "url": "https://en.wikipedia.org/wiki/HD_41534",
+    "alpha": 91.40866780384957,
+    "delta": -32.17577222500631,
+    "mag": 5.65,
+    "pmRA": -7.572789698930952e-08,
+    "pmDE": 5.854125199397647e-07,
+    "bvColor": -0.186,
+    "distance": 1083.7209302325582
+}

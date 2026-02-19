@@ -1,0 +1,13 @@
+{
+    "hip": 12719,
+    "name": "* 35 Ari -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+12719",
+    "alpha": 41.37644730636208,
+    "delta": 27.85314949294725,
+    "mag": 4.65,
+    "pmRA": 1.701696020694471e-08,
+    "pmDE": -4.8335924006620746e-08,
+    "bvColor": -0.122,
+    "distance": 369.8412698412698
+}

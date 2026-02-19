@@ -1,0 +1,13 @@
+{
+    "hip": 94336,
+    "name": "BD+49 2959 -- Double or Multiple Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+94336",
+    "alpha": 288.24727903059,
+    "delta": 49.920641431358526,
+    "mag": 5.85,
+    "pmRA": -9.939650090107706e-07,
+    "pmDE": 3.0268372552711667e-06,
+    "bvColor": 0.666,
+    "distance": 81.22509960159363
+}

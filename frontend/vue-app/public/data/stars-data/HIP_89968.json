@@ -1,0 +1,13 @@
+{
+    "hip": 89968,
+    "name": "V* Y Sgr -- Classical Cepheid Variable",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+89968",
+    "alpha": 275.8579291035862,
+    "delta": -18.841106474004643,
+    "mag": 5.76,
+    "pmRA": -1.3380857598623193e-08,
+    "pmDE": -3.141592653589793e-08,
+    "bvColor": 0.67,
+    "distance": 1294.4444444444443
+}

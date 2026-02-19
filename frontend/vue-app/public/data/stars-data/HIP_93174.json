@@ -1,0 +1,13 @@
+{
+    "hip": 93174,
+    "name": "* eps CrA -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+93174",
+    "alpha": 285.2677087188008,
+    "delta": -37.05805017188234,
+    "mag": 4.83,
+    "pmRA": -6.411660932673613e-07,
+    "pmDE": -5.354767107854826e-07,
+    "bvColor": 0.396,
+    "distance": 97.57702662279391
+}

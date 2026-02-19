@@ -1,0 +1,13 @@
+{
+    "hip": 113116,
+    "name": "HD 217382",
+    "description": "HD 217382 is a suspected binary star system in the northern circumpolar constellation of Cepheus.",
+    "url": "https://en.wikipedia.org/wiki/HD_217382",
+    "alpha": 343.48458348239495,
+    "delta": 84.53231051238473,
+    "mag": 4.7,
+    "pmRA": 4.772990690523382e-07,
+    "pmDE": 1.1582198841706814e-07,
+    "bvColor": 1.418,
+    "distance": 390.65868263473055
+}

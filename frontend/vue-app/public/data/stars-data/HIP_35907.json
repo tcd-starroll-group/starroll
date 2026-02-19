@@ -1,0 +1,13 @@
+{
+    "hip": 35907,
+    "name": "66 Aurigae",
+    "description": "66 Aurigae(also named fyozai) is a single star located approximately 880 light years away from the Sun in the northern constellation of Auriga.",
+    "url": "https://en.wikipedia.org/wiki/66_Aurigae",
+    "alpha": 111.63654842570085,
+    "delta": 40.60168908595992,
+    "mag": 5.23,
+    "pmRA": -1.6241258317169455e-08,
+    "pmDE": -1.0234416808222304e-07,
+    "bvColor": 1.249,
+    "distance": 728.1249999999999
+}

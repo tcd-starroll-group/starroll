@@ -1,0 +1,13 @@
+{
+    "hip": 113881,
+    "name": "Beta Pegasi",
+    "description": "Beta Pegasi (β Pegasi, abbreviated Beta Peg, β Peg), formally named Scheat , is a red giant star and the second-brightest star (after Epsilon Pegasi) in the constellation of Pegasus. It forms the upper right corner of the Great Square of Pegasus, a prominent rectangular asterism.",
+    "url": "https://en.wikipedia.org/wiki/Beta_Pegasi",
+    "alpha": 346.3662788534041,
+    "delta": 28.272051999764358,
+    "mag": 2.44,
+    "pmRA": 9.102861676512646e-07,
+    "pmDE": 6.671521065748325e-07,
+    "bvColor": 1.655,
+    "distance": 199.2669517409896
+}

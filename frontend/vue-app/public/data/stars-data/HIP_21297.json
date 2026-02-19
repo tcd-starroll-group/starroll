@@ -1,0 +1,13 @@
+{
+    "hip": 21297,
+    "name": "HD 29065 -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+21297",
+    "alpha": 68.96663270116801,
+    "delta": -8.90080160480976,
+    "mag": 5.24,
+    "pmRA": -1.7584192213842872e-07,
+    "pmDE": -5.438639874686775e-07,
+    "bvColor": 1.465,
+    "distance": 657.6612903225807
+}

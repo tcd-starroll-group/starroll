@@ -1,0 +1,13 @@
+{
+    "hip": 58188,
+    "name": "* eta Crt -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+58188",
+    "alpha": 179.44907272704532,
+    "delta": -17.34477693841981,
+    "mag": 5.17,
+    "pmRA": -2.3789807332044932e-07,
+    "pmDE": -3.9900165955314816e-08,
+    "bvColor": -0.022,
+    "distance": 285.6392294220666
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 45860,
+    "name": "* alf Lyn -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+45860",
+    "alpha": 140.79268341484416,
+    "delta": 34.24298629477631,
+    "mag": 3.14,
+    "pmRA": -1.0801648815120465e-06,
+    "pmDE": 7.165546206798941e-08,
+    "bvColor": 1.55,
+    "distance": 222.0558202859088
+}

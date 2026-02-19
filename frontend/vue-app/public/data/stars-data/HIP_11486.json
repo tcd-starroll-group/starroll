@@ -1,0 +1,13 @@
+{
+    "hip": 11486,
+    "name": "* 12 Tri -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+11486",
+    "alpha": 37.554905381105776,
+    "delta": 29.822954191601962,
+    "mag": 5.29,
+    "pmRA": -7.180090617232227e-08,
+    "pmDE": -4.145156973486533e-07,
+    "bvColor": 0.311,
+    "distance": 155.2594002855783
+}

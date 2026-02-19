@@ -1,0 +1,13 @@
+{
+    "hip": 85829,
+    "name": "* nu.02 Dra -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+85829",
+    "alpha": 263.2372178269546,
+    "delta": 55.15029007892661,
+    "mag": 4.86,
+    "pmRA": 6.967257411225141e-07,
+    "pmDE": 3.028146252210162e-07,
+    "bvColor": 0.279,
+    "distance": 99.93872549019608
+}

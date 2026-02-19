@@ -1,0 +1,13 @@
+{
+    "hip": 55280,
+    "name": "HD 98560 -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+55280",
+    "alpha": 170.19240074226477,
+    "delta": -64.77315276417731,
+    "mag": 5.99,
+    "pmRA": -1.46064665844681e-06,
+    "pmDE": 2.128332060070863e-07,
+    "bvColor": 0.471,
+    "distance": 122.08083832335329
+}

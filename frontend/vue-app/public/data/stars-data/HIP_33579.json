@@ -1,0 +1,13 @@
+{
+    "hip": 33579,
+    "name": "Epsilon Canis Majoris",
+    "description": "Epsilon Canis Majoris is a binary star system and the second-brightest star in the constellation of Canis Major. Its name is a Bayer designation that is Latinised from ε Canis Majoris, and abbreviated Epsilon CMa or ε CMa.",
+    "url": "https://en.wikipedia.org/wiki/Epsilon_Canis_Majoris",
+    "alpha": 104.99886760782167,
+    "delta": -29.021685092468754,
+    "mag": 1.5,
+    "pmRA": 1.2750599813180795e-08,
+    "pmDE": 1.1102233297408374e-08,
+    "bvColor": -0.211,
+    "distance": 430.9114927344782
+}

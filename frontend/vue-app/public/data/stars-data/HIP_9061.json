@@ -1,0 +1,13 @@
+{
+    "hip": 9061,
+    "name": "* 56 Cet -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+9061",
+    "alpha": 29.57492961072106,
+    "delta": -22.35803022030187,
+    "mag": 4.92,
+    "pmRA": 3.0165107238635325e-07,
+    "pmDE": -1.463652503269689e-07,
+    "bvColor": 1.434,
+    "distance": 398.77750611246944
+}

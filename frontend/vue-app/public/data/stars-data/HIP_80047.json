@@ -1,0 +1,13 @@
+{
+    "hip": 80047,
+    "name": "Delta Apodis",
+    "description": "Delta Apodis is a double star in the southern constellation of Apus. Its identifier is a Bayer designation that is Latinized from δ Apodis, and abbreviated Del Aps or δ Aps, respectively.",
+    "url": "https://en.wikipedia.org/wiki/Delta_Apodis",
+    "alpha": 246.4207333014717,
+    "delta": -78.77565390316241,
+    "mag": 4.68,
+    "pmRA": -4.804503579795501e-08,
+    "pmDE": -1.7739332591797923e-07,
+    "bvColor": 1.68,
+    "distance": 765.7276995305165
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 28814,
+    "name": "* 66 Ori -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+28814",
+    "alpha": 91.70353239978071,
+    "delta": 4.153657883077286,
+    "mag": 5.63,
+    "pmRA": 1.3574783071067008e-09,
+    "pmDE": -1.1538565610406953e-08,
+    "bvColor": 1.041,
+    "distance": 2490.0763358778627
+}

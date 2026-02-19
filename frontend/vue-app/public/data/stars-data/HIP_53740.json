@@ -1,0 +1,13 @@
+{
+    "hip": 53740,
+    "name": "* alf Crt -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+53740",
+    "alpha": 165.37007685297394,
+    "delta": -18.48529936148505,
+    "mag": 4.08,
+    "pmRA": -2.2417299800823837e-06,
+    "pmDE": 6.259429436805219e-07,
+    "bvColor": 1.079,
+    "distance": 174.3452699091395
+}

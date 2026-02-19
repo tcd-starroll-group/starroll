@@ -1,0 +1,13 @@
+{
+    "hip": 93815,
+    "name": "* rho Tel -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+93815",
+    "alpha": 287.2697116596182,
+    "delta": -52.2852976013725,
+    "mag": 5.17,
+    "pmRA": 1.4849843052385084e-07,
+    "pmDE": -5.585053606381855e-07,
+    "bvColor": 0.532,
+    "distance": 171.05401153644468
+}

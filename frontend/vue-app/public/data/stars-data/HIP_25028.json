@@ -1,0 +1,13 @@
+{
+    "hip": 25028,
+    "name": "HD 35007 -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+25028",
+    "alpha": 80.8303845890327,
+    "delta": 0.44816015146351446,
+    "mag": 5.68,
+    "pmRA": -1.3574783071067008e-09,
+    "pmDE": 5.720801437092525e-09,
+    "bvColor": -0.125,
+    "distance": 1076.5676567656767
+}

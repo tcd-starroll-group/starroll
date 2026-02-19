@@ -1,0 +1,13 @@
+{
+    "hip": 17527,
+    "name": "* 18 Tau -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+17527",
+    "alpha": 56.81207904147129,
+    "delta": 24.945790680752076,
+    "mag": 5.66,
+    "pmRA": 9.22600435151447e-08,
+    "pmDE": -2.2611710086948758e-07,
+    "bvColor": -0.064,
+    "distance": 367.75648252536644
+}

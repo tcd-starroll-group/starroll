@@ -1,0 +1,13 @@
+{
+    "hip": 97165,
+    "name": "Delta Cygni",
+    "description": "Delta Cygni is a binary star of a combined third-magnitude in the constellation of Cygnus.  It is also part of the Northern Cross asterism whose brightest star is Deneb. Its name is a Bayer designation that is Latinized from δ Cygni, and abbreviated Delta Cyg or δ Cyg.",
+    "url": "https://en.wikipedia.org/wiki/Delta_Cygni",
+    "alpha": 296.5154175867581,
+    "delta": 45.21732054332748,
+    "mag": 2.86,
+    "pmRA": 2.0953647297554147e-07,
+    "pmDE": 2.348437471294592e-07,
+    "bvColor": -0.002,
+    "distance": 171.05401153644468
+}

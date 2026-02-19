@@ -1,0 +1,13 @@
+{
+    "hip": 19747,
+    "name": "* alf Hor -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+19747",
+    "alpha": 63.789172509898215,
+    "delta": -42.209748585352045,
+    "mag": 3.85,
+    "pmRA": 2.0308845101678464e-07,
+    "pmDE": -9.8732306157957e-07,
+    "bvColor": 1.085,
+    "distance": 117.12746858168762
+}

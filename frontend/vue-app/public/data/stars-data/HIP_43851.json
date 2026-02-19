@@ -1,0 +1,13 @@
+{
+    "hip": 43851,
+    "name": "* 60 Cnc -- Variable Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+43851",
+    "alpha": 134.4560694828032,
+    "delta": 11.490683699031916,
+    "mag": 5.44,
+    "pmRA": -6.462566369190113e-08,
+    "pmDE": -6.991013281599508e-08,
+    "bvColor": 1.462,
+    "distance": 582.5
+}

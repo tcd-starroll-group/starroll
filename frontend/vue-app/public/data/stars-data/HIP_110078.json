@@ -1,0 +1,13 @@
+{
+    "hip": 110078,
+    "name": "* psi Oct -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+110078",
+    "alpha": 335.27630763044056,
+    "delta": -77.33589102554171,
+    "mag": 5.49,
+    "pmRA": -1.80738540317635e-07,
+    "pmDE": 6.923139366244173e-08,
+    "bvColor": 0.312,
+    "distance": 125.46153846153845
+}

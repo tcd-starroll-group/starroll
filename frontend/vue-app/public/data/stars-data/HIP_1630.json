@@ -1,0 +1,13 @@
+{
+    "hip": 1630,
+    "name": "HD 1606",
+    "description": "HD 1606 is a single star in the northern constellation of Andromeda, positioned a few degrees to the northeast of the bright star Alpheratz.",
+    "url": "https://en.wikipedia.org/wiki/HD_1606",
+    "alpha": 5.55888726571737,
+    "delta": 31.128675831247914,
+    "mag": 5.89,
+    "pmRA": 7.403104910542616e-08,
+    "pmDE": -3.1028075591010307e-09,
+    "bvColor": -0.098,
+    "distance": 582.5
+}

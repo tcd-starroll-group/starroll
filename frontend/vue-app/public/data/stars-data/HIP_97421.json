@@ -1,0 +1,13 @@
+{
+    "hip": 97421,
+    "name": "* nu. Tel -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+97421",
+    "alpha": 297.7101760781302,
+    "delta": -56.27449653043132,
+    "mag": 5.33,
+    "pmRA": 4.4796784134521125e-07,
+    "pmDE": -6.661339978445026e-07,
+    "bvColor": 0.196,
+    "distance": 169.9843668577384
+}

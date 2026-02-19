@@ -1,0 +1,13 @@
+{
+    "hip": 59309,
+    "name": "* 11 Vir -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+59309",
+    "alpha": 182.95843098724265,
+    "delta": 5.613461128583527,
+    "mag": 5.72,
+    "pmRA": -7.744898555724837e-07,
+    "pmDE": 8.886634774737794e-08,
+    "bvColor": 0.352,
+    "distance": 143.00745287154757
+}

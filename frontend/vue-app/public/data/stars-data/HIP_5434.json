@@ -1,0 +1,13 @@
+{
+    "hip": 5434,
+    "name": "Phi Andromedae",
+    "description": "Phi Andromedae, also named Junnanmen, is a binary star system near the border of the northern constellation of Andromeda. This system has a combined apparent visual magnitude of 4.25 and is visible to the naked eye.",
+    "url": "https://en.wikipedia.org/wiki/Phi_Andromedae",
+    "alpha": 17.88553603335757,
+    "delta": 47.426508812559184,
+    "mag": 4.26,
+    "pmRA": 1.847140125027332e-08,
+    "pmDE": -6.312274128046158e-08,
+    "bvColor": 0.012,
+    "distance": 736.3431151241535
+}

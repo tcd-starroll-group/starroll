@@ -1,0 +1,13 @@
+{
+    "hip": 6813,
+    "name": "Omega Andromedae",
+    "description": "Omega Andromedae (ω And, ω Andromedae) is a binary star system in the northern constellation of Andromeda. Parallax measurements made during the Gaia mission make this system to be approximately 93.9 light-years (28.8 parsecs) from Earth.",
+    "url": "https://en.wikipedia.org/wiki/Omega_Andromedae",
+    "alpha": 22.437077335930404,
+    "delta": 45.58545167133476,
+    "mag": 4.83,
+    "pmRA": 1.7307363601929327e-06,
+    "pmDE": -5.299983161889447e-07,
+    "bvColor": 0.421,
+    "distance": 92.32946504387208
+}

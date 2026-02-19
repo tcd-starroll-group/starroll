@@ -1,0 +1,13 @@
+{
+    "hip": 32463,
+    "name": "* 16 Mon -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+32463",
+    "alpha": 102.109899566908,
+    "delta": 8.547207515559581,
+    "mag": 5.92,
+    "pmRA": -2.4192202687365848e-08,
+    "pmDE": -3.277340484300463e-08,
+    "bvColor": -0.173,
+    "distance": 1117.123287671233
+}

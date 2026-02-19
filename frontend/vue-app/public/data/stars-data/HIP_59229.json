@@ -1,0 +1,13 @@
+{
+    "hip": 59229,
+    "name": "V* V788 Cen -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+59229",
+    "alpha": 182.67828280985393,
+    "delta": -44.520030462149336,
+    "mag": 5.75,
+    "pmRA": -2.280078742258148e-07,
+    "pmDE": -2.052216312136666e-07,
+    "bvColor": 0.24,
+    "distance": 326.5265265265265
+}

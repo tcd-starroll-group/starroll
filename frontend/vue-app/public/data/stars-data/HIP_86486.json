@@ -1,0 +1,13 @@
+{
+    "hip": 86486,
+    "name": "Lambda Arae",
+    "description": "Lambda Arae is a star in the southern constellation of Ara. Its name is a Bayer designation that is Latinized from λ Arae, and abbreviated Lambda Ara or λ Ara. The apparent visual magnitude of this star is 4.77, making it bright enough to be seen with the naked eye.",
+    "url": "https://en.wikipedia.org/wiki/Lambda_Arae",
+    "alpha": 265.7718779748285,
+    "delta": -49.43231599585349,
+    "mag": 4.76,
+    "pmRA": 5.055637066610241e-07,
+    "pmDE": -8.613684672273125e-07,
+    "bvColor": 0.415,
+    "distance": 71.34733158355206
+}

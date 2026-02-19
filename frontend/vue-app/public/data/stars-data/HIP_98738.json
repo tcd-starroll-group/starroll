@@ -1,0 +1,13 @@
+{
+    "hip": 98738,
+    "name": "HD 190211 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+98738",
+    "alpha": 301.2089091016858,
+    "delta": 18.60074786750425,
+    "mag": 5.99,
+    "pmRA": 5.5317241014598056e-08,
+    "pmDE": -9.536285107424574e-08,
+    "bvColor": 1.42,
+    "distance": 849.4791666666667
+}

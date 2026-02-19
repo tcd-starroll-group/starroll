@@ -1,0 +1,13 @@
+{
+    "hip": 92308,
+    "name": "* eta01 CrA -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+92308",
+    "alpha": 282.83744171209145,
+    "delta": -43.638152652345724,
+    "mag": 5.46,
+    "pmRA": 1.1824605682261582e-07,
+    "pmDE": -1.010351711432273e-07,
+    "bvColor": 0.133,
+    "distance": 347.02127659574467
+}

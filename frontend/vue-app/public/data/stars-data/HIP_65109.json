@@ -1,0 +1,13 @@
+{
+    "hip": 65109,
+    "name": "Iota Centauri",
+    "description": "Iota Centauri is a star in the southern constellation of Centaurus. It has the proper name Kulou; Iota Centauri is its Bayer designation, which is Latinized from ι Centauri and is abbreviated Iota Cen or ι Cen.",
+    "url": "https://en.wikipedia.org/wiki/Iota_Centauri",
+    "alpha": 200.64383283746818,
+    "delta": -36.894687825544636,
+    "mag": 2.75,
+    "pmRA": -1.6520510997488548e-06,
+    "pmDE": -4.2653907664016976e-07,
+    "bvColor": 0.068,
+    "distance": 58.626887131560025
+}

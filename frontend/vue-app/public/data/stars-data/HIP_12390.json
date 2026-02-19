@@ -1,0 +1,13 @@
+{
+    "hip": 12390,
+    "name": "* eps Cet -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+12390",
+    "alpha": 40.31238899393013,
+    "delta": -11.725549072195513,
+    "mag": 4.83,
+    "pmRA": 8.339280128765128e-07,
+    "pmDE": -1.1456632098299446e-06,
+    "bvColor": 0.447,
+    "distance": 88.18599621519328
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 20430,
+    "name": "* chi Tau -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+20430",
+    "alpha": 66.17709240970063,
+    "delta": 25.708332108854474,
+    "mag": 5.38,
+    "pmRA": 9.87565468420125e-08,
+    "pmDE": -8.668468618238504e-08,
+    "bvColor": -0.041,
+    "distance": 267.5963904840033
+}

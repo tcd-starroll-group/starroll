@@ -1,0 +1,13 @@
+{
+    "hip": 28325,
+    "name": "* 2 Mon -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+28325",
+    "alpha": 90.181664099551,
+    "delta": -9.558494140075265,
+    "mag": 5.04,
+    "pmRA": 4.096675605375579e-08,
+    "pmDE": -2.206871876410608e-07,
+    "bvColor": 0.189,
+    "distance": 328.4994964753273
+}

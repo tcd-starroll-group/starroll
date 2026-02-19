@@ -1,0 +1,13 @@
+{
+    "hip": 25541,
+    "name": "Phi Aurigae",
+    "description": "Phi Aurigae is a giant star in the northern constellation of Auriga. Its name is a Bayer designation that is Latinized from φ Aurigae, and abbreviated Phi Aur or φ Aur.",
+    "url": "https://en.wikipedia.org/wiki/Phi_Aurigae",
+    "alpha": 82.49028713953676,
+    "delta": 34.5019372492439,
+    "mag": 5.08,
+    "pmRA": -6.981317007977318e-09,
+    "pmDE": -1.8815618963861097e-07,
+    "bvColor": 1.4,
+    "distance": 400.7371007371007
+}

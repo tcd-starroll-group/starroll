@@ -1,0 +1,13 @@
+{
+    "hip": 93864,
+    "name": "* tau Sgr -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+93864",
+    "alpha": 287.27807386214783,
+    "delta": -27.615514950147105,
+    "mag": 3.32,
+    "pmRA": -2.462368686355333e-07,
+    "pmDE": -1.2145067525474985e-06,
+    "bvColor": 1.169,
+    "distance": 120.41343669250645
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 92117,
+    "name": "5 Aquilae",
+    "description": "5 Aquilae (abbreviated 5 Aql) is a quadruple star system in the constellation of Aquila. 5 Aquilae is the Flamsteed designation. The combined apparent visual magnitude of the system is 5.9, which means it is faintly visible to the naked eye.",
+    "url": "https://en.wikipedia.org/wiki/5_Aquilae",
+    "alpha": 282.0623030779962,
+    "delta": 1.0012168972093913,
+    "mag": 5.89,
+    "pmRA": 9.69627362219072e-08,
+    "pmDE": -1.0564090111376789e-07,
+    "bvColor": 0.131,
+    "distance": 258.4786053882726
+}

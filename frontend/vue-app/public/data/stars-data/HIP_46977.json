@@ -1,0 +1,13 @@
+{
+    "hip": 46977,
+    "name": "24 Ursae Majoris",
+    "description": "24 Ursae Majoris is a variable star in the northern circumpolar constellation of Ursa Major, located 101.5 light-years from the Sun. It has the variable star designation DK Ursae Majoris and the Bayer designation d Ursae Majoris; 24 Ursae Majoris is the Flamsteed designation.",
+    "url": "https://en.wikipedia.org/wiki/24_Ursae_Majoris",
+    "alpha": 144.3753744190666,
+    "delta": 69.67404523697972,
+    "mag": 4.54,
+    "pmRA": -3.0979594222899354e-07,
+    "pmDE": 3.7616693517288897e-07,
+    "bvColor": 0.781,
+    "distance": 105.6005179669796
+}

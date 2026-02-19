@@ -1,0 +1,13 @@
+{
+    "hip": 27483,
+    "name": "Tau Aurigae",
+    "description": "Tau Aurigae is a star in the northern constellation Auriga. Its name is a Bayer designation that is Latinized from τ Aurigae, and abbreviated Tau Aur or τ Aur.",
+    "url": "https://en.wikipedia.org/wiki/Tau_Aurigae",
+    "alpha": 87.89751036652792,
+    "delta": 39.18902736035116,
+    "mag": 4.51,
+    "pmRA": -1.3778404817133012e-07,
+    "pmDE": -1.2386989552348645e-07,
+    "bvColor": 0.949,
+    "distance": 212.64667535853977
+}

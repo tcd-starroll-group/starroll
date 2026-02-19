@@ -1,0 +1,13 @@
+{
+    "hip": 60718,
+    "name": "Acrux",
+    "description": "Acrux is the brightest star in the southern constellation of Crux. It has the Bayer designation α Crucis, which is Latinised to Alpha Crucis and abbreviated Alpha Cru or α Cru. With a combined visual magnitude of +0.76, it is the 13th-brightest star in the night sky.",
+    "url": "https://en.wikipedia.org/wiki/Acrux",
+    "alpha": 187.14176392649668,
+    "delta": -63.2917049018788,
+    "mag": 0.77,
+    "pmRA": -1.7147859900844288e-07,
+    "pmDE": -7.141305522743465e-08,
+    "bvColor": -0.243,
+    "distance": 320.7472959685349
+}

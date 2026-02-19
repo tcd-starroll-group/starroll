@@ -1,0 +1,13 @@
+{
+    "hip": 3717,
+    "name": "HD 4585 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+3717",
+    "alpha": 12.363338215939992,
+    "delta": -17.871515707441386,
+    "mag": 5.7,
+    "pmRA": 1.4631676895885795e-07,
+    "pmDE": 1.6677590630168035e-07,
+    "bvColor": 1.3,
+    "distance": 402.2194821208385
+}

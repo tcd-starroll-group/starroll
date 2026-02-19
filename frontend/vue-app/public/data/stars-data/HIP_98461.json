@@ -1,0 +1,13 @@
+{
+    "hip": 98461,
+    "name": "HD 189195 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+98461",
+    "alpha": 300.64190495591896,
+    "delta": -37.603742218233336,
+    "mag": 5.95,
+    "pmRA": 9.473259328880332e-08,
+    "pmDE": -5.575357332759663e-09,
+    "bvColor": 0.989,
+    "distance": 315.77928363988383
+}

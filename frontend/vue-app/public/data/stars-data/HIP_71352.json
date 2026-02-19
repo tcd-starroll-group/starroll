@@ -1,0 +1,13 @@
+{
+    "hip": 71352,
+    "name": "Eta Centauri",
+    "description": "Eta Centauri is a star in the southern constellation of Centaurus. Its name is a Bayer designation that is Latinized from η Centauri, and abbreviated Eta Cen or η Cen. This star has an apparent visual magnitude of +2.35, which indicates it is readily visible to the naked eye.",
+    "url": "https://en.wikipedia.org/wiki/Eta_Centauri",
+    "alpha": 219.43396097617202,
+    "delta": -42.30842874290851,
+    "mag": 2.33,
+    "pmRA": -1.7118771079977718e-07,
+    "pmDE": -1.5727355815193343e-07,
+    "bvColor": -0.157,
+    "distance": 308.6092715231788
+}

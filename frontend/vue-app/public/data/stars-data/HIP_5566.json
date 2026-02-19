@@ -1,0 +1,13 @@
+{
+    "hip": 5566,
+    "name": "HD 6960 -- Variable Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+5566",
+    "alpha": 18.428437163742114,
+    "delta": 64.3868047805158,
+    "mag": 5.56,
+    "pmRA": 1.9848272104624401e-07,
+    "pmDE": -9.356904045414046e-08,
+    "bvColor": -0.052,
+    "distance": 409.79899497487435
+}

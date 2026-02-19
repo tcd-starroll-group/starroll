@@ -1,0 +1,13 @@
+{
+    "hip": 99742,
+    "name": "Rho Aquilae",
+    "description": "Rho Aquilae, ρ Aquilae, is the Bayer designation for a star in the northern constellation of Delphinus. It has an apparent visual magnitude of 4.94 and is bright enough to be seen with the naked eye in good conditions.",
+    "url": "https://en.wikipedia.org/wiki/Rho_Aquilae",
+    "alpha": 303.9719893576989,
+    "delta": 15.305822129122236,
+    "mag": 4.94,
+    "pmRA": 2.699927390099006e-07,
+    "pmDE": 2.810949723073089e-07,
+    "bvColor": 0.072,
+    "distance": 153.57815442561207
+}

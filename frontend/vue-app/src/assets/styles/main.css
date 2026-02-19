@@ -1,0 +1,39 @@
+/* 1. Design Tokens (Variables) */
+:root {
+  /* Colors */
+  --color-bg-deep: #090a0f;
+  --color-bg-surface: rgba(255, 255, 255, 0.05);
+  --color-star-primary: #58a6ff;
+  --color-star-secondary: #9333ea;
+  --color-text-main: #ffffff;
+  --color-text-muted: #8b949e;
+  --color-error: #ff7b72;
+
+  /* Effects */
+  --glass-blur: blur(12px);
+  --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+  --shadow-glow: 0 0 20px rgba(88, 166, 255, 0.3);
+}
+
+/* 2. Global Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--color-bg-deep);
+  color: var(--color-text-main);
+  font-family: 'Inter', -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+/* 3. Helper Classes */
+.glass-panel {
+  background: var(--color-bg-surface);
+  backdrop-filter: var(--glass-blur);
+  border: var(--glass-border);
+  border-radius: 16px;
+}

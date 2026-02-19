@@ -1,0 +1,13 @@
+{
+    "hip": 67786,
+    "name": "* h Cen -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+67786",
+    "alpha": 208.80638398856541,
+    "delta": -32.098010533998895,
+    "mag": 4.75,
+    "pmRA": -6.559529105412021e-08,
+    "pmDE": -5.206898935116417e-08,
+    "bvColor": -0.111,
+    "distance": 669.8151950718686
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 28360,
+    "name": "Beta Aurigae",
+    "description": "Beta Aurigae is a binary star system in the northern constellation of Auriga. Its identifier is a Bayer designation that is Latinized from β Aurigae, and abbreviated Beta Aur or β Aur. This star has the official name Menkalinan, pronounced .",
+    "url": "https://en.wikipedia.org/wiki/Beta_Aurigae",
+    "alpha": 90.52165701792822,
+    "delta": 44.946753204458126,
+    "mag": 1.9,
+    "pmRA": -2.734833975138892e-07,
+    "pmDE": -4.266360393763917e-09,
+    "bvColor": 0.077,
+    "distance": 82.12487411883183
+}

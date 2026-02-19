@@ -1,0 +1,13 @@
+{
+    "hip": 93805,
+    "name": "Lambda Aquilae",
+    "description": "Lambda Aquilae is a binary star in the constellation Aquila. Its identifier is a Bayer designation that is Latinized from λ Aquilae, and abbreviated Lambda Aql or λ Aql. This star has the traditional name Al Thalimain, pronounced , which it shares with ι Aquilae.",
+    "url": "https://en.wikipedia.org/wiki/Lambda_Aquilae",
+    "alpha": 287.02414706122823,
+    "delta": -4.827183941746773,
+    "mag": 3.43,
+    "pmRA": -9.541133244235668e-08,
+    "pmDE": -4.3812612361868767e-07,
+    "bvColor": -0.096,
+    "distance": 125.22072936660268
+}

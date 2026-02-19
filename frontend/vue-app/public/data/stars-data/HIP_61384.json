@@ -1,0 +1,13 @@
+{
+    "hip": 61384,
+    "name": "* 6 Dra -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+61384",
+    "alpha": 189.04782931994802,
+    "delta": 69.83017183226514,
+    "mag": 4.95,
+    "pmRA": -1.4738335905729892e-07,
+    "pmDE": -6.593466063089689e-09,
+    "bvColor": 1.312,
+    "distance": 546.3986599664992
+}

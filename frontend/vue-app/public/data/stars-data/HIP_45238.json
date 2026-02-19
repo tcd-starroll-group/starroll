@@ -1,0 +1,13 @@
+{
+    "hip": 45238,
+    "name": "Beta Carinae",
+    "description": "Beta Carinae is the second-brightest star in the southern constellation of Carina. It has the official name Miaplacidus; Beta Carinae is the star's Bayer designation, which is Latinised from β Carinae and abbreviated Beta Car or β Car.",
+    "url": "https://en.wikipedia.org/wiki/Beta_Carinae",
+    "alpha": 138.3956909957352,
+    "delta": -69.86130649048474,
+    "mag": 1.67,
+    "pmRA": -7.643572496372944e-07,
+    "pmDE": 5.280105800963955e-07,
+    "bvColor": 0.07,
+    "distance": 111.17927743694617
+}

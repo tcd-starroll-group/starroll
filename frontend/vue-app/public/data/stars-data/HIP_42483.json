@@ -1,0 +1,13 @@
+{
+    "hip": 42483,
+    "name": "* zet Pyx -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+42483",
+    "alpha": 130.2887388925832,
+    "delta": -29.686665780053687,
+    "mag": 4.86,
+    "pmRA": -1.231911563699331e-07,
+    "pmDE": -4.423924840124516e-07,
+    "bvColor": 0.9,
+    "distance": 235.86406362979034
+}

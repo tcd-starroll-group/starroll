@@ -1,0 +1,13 @@
+{
+    "hip": 30436,
+    "name": "HD 45018 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+30436",
+    "alpha": 96.33694869133433,
+    "delta": -25.5987310683946,
+    "mag": 5.61,
+    "pmRA": 1.7307848415610433e-08,
+    "pmDE": -1.9838575831002214e-07,
+    "bvColor": 1.561,
+    "distance": 697.008547008547
+}

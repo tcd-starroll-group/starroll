@@ -1,0 +1,13 @@
+{
+    "hip": 9110,
+    "name": "Iota Arietis",
+    "description": "Iota Arietis is a binary star system in the northern constellation of Aries. Its name is a Bayer designation that is Latinized from ι Arietis, and abbreviated Iota Ari or ι Ari.",
+    "url": "https://en.wikipedia.org/wiki/Iota_Arietis",
+    "alpha": 29.81515061612146,
+    "delta": 17.985996458322543,
+    "mag": 5.09,
+    "pmRA": 1.6619412988434896e-07,
+    "pmDE": -1.1494932379107099e-07,
+    "bvColor": 0.921,
+    "distance": 658.989898989899
+}

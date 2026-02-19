@@ -1,0 +1,13 @@
+{
+    "hip": 27265,
+    "name": "* 129 Tau -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+27265",
+    "alpha": 87.19076416014474,
+    "delta": 15.8328212531087,
+    "mag": 6,
+    "pmRA": 2.5986013307471126e-08,
+    "pmDE": -1.4738335905729894e-08,
+    "bvColor": -0.061,
+    "distance": 879.2452830188679
+}

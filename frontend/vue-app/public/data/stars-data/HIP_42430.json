@@ -1,0 +1,13 @@
+{
+    "hip": 42430,
+    "name": "HD 73752 -- Double or Multiple Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+42430",
+    "alpha": 130.1650807442163,
+    "delta": -22.783386458649133,
+    "mag": 5.05,
+    "pmRA": -1.3005611809444412e-06,
+    "pmDE": 2.0559978588493203e-06,
+    "bvColor": 0.72,
+    "distance": 64.9800796812749
+}

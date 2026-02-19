@@ -1,0 +1,13 @@
+{
+    "hip": 83635,
+    "name": "HD 154445 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+83635",
+    "alpha": 256.8278725598563,
+    "delta": 0.8471191853998886,
+    "mag": 5.63,
+    "pmRA": 2.104091376015386e-08,
+    "pmDE": -9.259941309192137e-09,
+    "bvColor": 0.104,
+    "distance": 765.7276995305165
+}

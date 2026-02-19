@@ -1,0 +1,13 @@
+{
+    "hip": 74666,
+    "name": "Delta Boötis",
+    "description": "Delta Boötis is a double star in the northern constellation of Boötes, forming the easternmost member of the constellation's kite-shaped asterism of brighter stars. Its name is a Bayer designation that is Latinized from δ Boötis, and abbreviated Delta Boo or δ Boo.",
+    "url": "https://en.wikipedia.org/wiki/Delta_Bo%C3%B6tis",
+    "alpha": 229.22648970938647,
+    "delta": 33.186956406815646,
+    "mag": 3.46,
+    "pmRA": 4.113159270533303e-07,
+    "pmDE": -5.360584872028139e-07,
+    "bvColor": 0.961,
+    "distance": 116.75017895490335
+}

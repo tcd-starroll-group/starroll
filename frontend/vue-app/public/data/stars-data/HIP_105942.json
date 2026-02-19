@@ -1,0 +1,13 @@
+{
+    "hip": 105942,
+    "name": "* 70 Cyg -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+105942",
+    "alpha": 322.19474104501813,
+    "delta": 37.26966925682805,
+    "mag": 5.3,
+    "pmRA": 1.207186065962745e-08,
+    "pmDE": 1.289604391751366e-08,
+    "bvColor": -0.14,
+    "distance": 1772.8260869565217
+}

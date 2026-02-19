@@ -1,0 +1,13 @@
+{
+    "hip": 7588,
+    "name": "Achernar",
+    "description": "Achernar is the brightest star in the constellation of Eridanus and the ninth-brightest in the night sky. It has the Bayer designation Alpha Eridani, which is Latinized from α Eridani and abbreviated Alpha Eri or α Eri.",
+    "url": "https://en.wikipedia.org/wiki/Achernar",
+    "alpha": 24.750293858962106,
+    "delta": -57.06073022776335,
+    "mag": 0.45,
+    "pmRA": 4.267330021126136e-07,
+    "pmDE": -1.94313323388702e-07,
+    "bvColor": -0.158,
+    "distance": 143.82716049382717
+}

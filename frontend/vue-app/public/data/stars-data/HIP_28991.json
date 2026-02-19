@@ -1,0 +1,13 @@
+{
+    "hip": 28991,
+    "name": "HD 42540",
+    "description": "HD 42540, also known as HR 2196, is a giant star in the constellation Pictor. A class K2-3III orange giant, its apparent magnitude is 5.04 and it is approximately 389 light years away based on parallax.",
+    "url": "https://en.wikipedia.org/wiki/HD_42540",
+    "alpha": 91.84353382433062,
+    "delta": -62.16119455477142,
+    "mag": 5.04,
+    "pmRA": 1.039440532298845e-07,
+    "pmDE": -3.3772121026090275e-07,
+    "bvColor": 1.256,
+    "distance": 393.96135265700485
+}

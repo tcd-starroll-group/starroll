@@ -1,0 +1,13 @@
+{
+    "hip": 59196,
+    "name": "Delta Centauri",
+    "description": "Delta Centauri is a star in the southern constellation of Centaurus. Its name is a Bayer designation that is Latinized from δ Centauri, and abbreviated Delta Cen or δ Cen. The apparent visual magnitude of this star is +2.57, making it readily visible to the naked eye.",
+    "url": "https://en.wikipedia.org/wiki/Delta_Centauri",
+    "alpha": 182.54518684555023,
+    "delta": -50.91622965399757,
+    "mag": 2.58,
+    "pmRA": -2.3043194263136246e-07,
+    "pmDE": -3.112503832723221e-08,
+    "bvColor": -0.128,
+    "distance": 395.39393939393943
+}

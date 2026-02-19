@@ -1,0 +1,13 @@
+{
+    "hip": 102693,
+    "name": "* iot Mic -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+102693",
+    "alpha": 312.7066926815635,
+    "delta": -43.858572780464904,
+    "mag": 5.11,
+    "pmRA": 8.522054886543423e-07,
+    "pmDE": -5.438155061005665e-07,
+    "bvColor": 0.361,
+    "distance": 133.9630390143737
+}

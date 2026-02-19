@@ -1,0 +1,13 @@
+{
+    "hip": 104738,
+    "name": "HD 201772 -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+104738",
+    "alpha": 318.8155808634471,
+    "delta": -39.28042662181882,
+    "mag": 5.25,
+    "pmRA": 9.083469129268267e-07,
+    "pmDE": -5.545298884530872e-07,
+    "bvColor": 0.46,
+    "distance": 108.8785046728972
+}

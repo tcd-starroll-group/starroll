@@ -1,0 +1,13 @@
+{
+    "hip": 5310,
+    "name": "* psi02 Psc -- Double or Multiple Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+5310",
+    "alpha": 17.456907296525035,
+    "delta": 20.9237177631203,
+    "mag": 5.56,
+    "pmRA": 4.1417632777187665e-07,
+    "pmDE": -4.1601861976009275e-07,
+    "bvColor": 0.121,
+    "distance": 161.24567474048442
+}

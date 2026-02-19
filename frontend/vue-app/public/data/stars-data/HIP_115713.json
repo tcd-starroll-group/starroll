@@ -1,0 +1,13 @@
+{
+    "hip": 115713,
+    "name": "* omi Gru -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+115713",
+    "alpha": 352.1346437055695,
+    "delta": -52.52868635380432,
+    "mag": 5.53,
+    "pmRA": 1.607642166559221e-07,
+    "pmDE": 6.305971550191734e-07,
+    "bvColor": 0.409,
+    "distance": 104.28388746803068
+}

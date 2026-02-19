@@ -1,0 +1,13 @@
+{
+    "hip": 37508,
+    "name": "HD 61885 -- Variable Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+37508",
+    "alpha": 115.95380317050606,
+    "delta": 13.396138130830602,
+    "mag": 5.79,
+    "pmRA": -1.7264215184310577e-07,
+    "pmDE": -1.2096101343682923e-07,
+    "bvColor": 1.669,
+    "distance": 786.0240963855421
+}

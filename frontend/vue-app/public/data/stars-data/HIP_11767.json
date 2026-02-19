@@ -1,0 +1,13 @@
+{
+    "hip": 11767,
+    "name": "Polaris",
+    "description": "Polaris is a star in the northern circumpolar constellation of Ursa Minor. It is designated α Ursae Minoris (Latinized to Alpha Ursae Minoris) and is commonly called the North Star.",
+    "url": "https://en.wikipedia.org/wiki/Polaris",
+    "alpha": 49.997385596839244,
+    "delta": 89.40429665627384,
+    "mag": 1.97,
+    "pmRA": 2.1438460978663678e-07,
+    "pmDE": -5.6917126162259524e-08,
+    "bvColor": 0.636,
+    "distance": 431.48148148148147
+}

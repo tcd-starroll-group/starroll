@@ -1,0 +1,13 @@
+{
+    "hip": 21476,
+    "name": "* 58 Per -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+21476",
+    "alpha": 69.77838225089228,
+    "delta": 41.332661859851136,
+    "mag": 4.25,
+    "pmRA": -2.6276901516136852e-08,
+    "pmDE": -9.303574540491996e-08,
+    "bvColor": 1.171,
+    "distance": 642.1259842519685
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 4914,
+    "name": "* 25 Cet -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+4914",
+    "alpha": 16.20154740191072,
+    "delta": -4.650940962226053,
+    "mag": 5.4,
+    "pmRA": -5.674744137387119e-07,
+    "pmDE": -4.989217592298235e-07,
+    "bvColor": 1.106,
+    "distance": 410.314465408805
+}

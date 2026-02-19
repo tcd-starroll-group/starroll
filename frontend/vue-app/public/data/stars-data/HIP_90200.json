@@ -1,0 +1,13 @@
+{
+    "hip": 90200,
+    "name": "HR 6875",
+    "description": "HR 6875, previously known as Sigma Telescopii, is a single star in the constellation Corona Australis.",
+    "url": "https://en.wikipedia.org/wiki/HR_6875",
+    "alpha": 276.70902852620463,
+    "delta": -44.08882289253538,
+    "mag": 5.24,
+    "pmRA": 5.38143186031585e-09,
+    "pmDE": -1.0932548509020036e-07,
+    "bvColor": -0.163,
+    "distance": 524.4372990353698
+}

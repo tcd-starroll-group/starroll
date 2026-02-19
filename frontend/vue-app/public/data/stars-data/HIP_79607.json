@@ -1,0 +1,13 @@
+{
+    "hip": 79607,
+    "name": "* sig CrB -- RS CVn Variable",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+79607",
+    "alpha": 243.9981244749123,
+    "delta": 33.772481521317516,
+    "mag": 5.23,
+    "pmRA": -1.2918830160525807e-06,
+    "pmDE": -4.2120612614796477e-07,
+    "bvColor": 0.599,
+    "distance": 70.7438733463457
+}

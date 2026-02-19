@@ -1,0 +1,13 @@
+{
+    "hip": 15241,
+    "name": "V* V573 Per -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+15241",
+    "alpha": 49.685767462092144,
+    "delta": 32.309568353689606,
+    "mag": 5.98,
+    "pmRA": -1.9877360925490974e-08,
+    "pmDE": -4.0273472489769154e-07,
+    "bvColor": 0.988,
+    "distance": 551.0135135135135
+}

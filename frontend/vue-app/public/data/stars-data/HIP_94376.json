@@ -1,0 +1,13 @@
+{
+    "hip": 94376,
+    "name": "* del Dra -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+94376",
+    "alpha": 288.1361773728184,
+    "delta": 67.72256309044522,
+    "mag": 3.07,
+    "pmRA": 4.581004472804005e-07,
+    "pmDE": 4.4748302766410163e-07,
+    "bvColor": 0.99,
+    "distance": 100.2458512599877
+}

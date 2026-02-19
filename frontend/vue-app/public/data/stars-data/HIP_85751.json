@@ -1,0 +1,13 @@
+{
+    "hip": 85751,
+    "name": "HD 158220",
+    "description": "HD 158220 is a giant Be star in the southern constellation of Ara. Its apparent magnitude is 5.9, making it faintly visible to the naked eye under good observing conditions.",
+    "url": "https://en.wikipedia.org/wiki/HD_158220",
+    "alpha": 263.58901030646786,
+    "delta": -56.94388398726262,
+    "mag": 5.99,
+    "pmRA": -4.120916289431055e-09,
+    "pmDE": -2.0168249134156697e-08,
+    "bvColor": -0.045,
+    "distance": 2146.052631578947
+}

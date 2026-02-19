@@ -1,0 +1,13 @@
+{
+    "hip": 118077,
+    "name": "V* V1022 Cas -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+118077",
+    "alpha": 359.72899934595205,
+    "delta": 55.8995062532889,
+    "mag": 5.57,
+    "pmRA": -9.909591641878917e-08,
+    "pmDE": -5.92442318315853e-08,
+    "bvColor": 0.478,
+    "distance": 217.90247160988645
+}

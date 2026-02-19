@@ -1,0 +1,13 @@
+{
+    "hip": 3810,
+    "name": "* 64 Psc -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+3810",
+    "alpha": 12.703711879012392,
+    "delta": 17.12852063701218,
+    "mag": 5.07,
+    "pmRA": -1.1296158769852188e-08,
+    "pmDE": -9.772389370124917e-07,
+    "bvColor": 0.502,
+    "distance": 78.03827751196172
+}

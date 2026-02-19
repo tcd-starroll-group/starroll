@@ -1,0 +1,13 @@
+{
+    "hip": 25930,
+    "name": "Mintaka",
+    "description": "Mintaka , designation Delta Orionis (δ Orionis, abbreviated Delta Ori, δ Ori) and 34 Orionis (34 Ori), is a quintuple star system some 1,200 light-years from the Sun in the constellation of Orion.",
+    "url": "https://en.wikipedia.org/wiki/Mintaka",
+    "alpha": 83.44900347219766,
+    "delta": 0.3219632952340119,
+    "mag": 2.25,
+    "pmRA": 8.096388474529251e-09,
+    "pmDE": 2.7149566142134015e-09,
+    "bvColor": -0.175,
+    "distance": 916.2921348314607
+}

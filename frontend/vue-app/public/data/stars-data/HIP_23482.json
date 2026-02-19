@@ -1,0 +1,13 @@
+{
+    "hip": 23482,
+    "name": "* eta01 Pic -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+23482",
+    "alpha": 75.9316510540296,
+    "delta": -49.103697884116876,
+    "mag": 5.37,
+    "pmRA": -2.1312409421575202e-07,
+    "pmDE": 1.3177235852557187e-07,
+    "bvColor": 0.421,
+    "distance": 85.41503011259492
+}

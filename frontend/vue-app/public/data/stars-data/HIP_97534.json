@@ -1,0 +1,13 @@
+{
+    "hip": 97534,
+    "name": "HD 186219 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+97534",
+    "alpha": 298.34410406106434,
+    "delta": -72.41268794882947,
+    "mag": 5.39,
+    "pmRA": 3.350062536466894e-08,
+    "pmDE": 7.112216701876892e-08,
+    "bvColor": 0.234,
+    "distance": 135.46511627906978
+}

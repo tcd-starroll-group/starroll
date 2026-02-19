@@ -1,0 +1,13 @@
+{
+    "hip": 95564,
+    "name": "* 50 Sgr -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+95564",
+    "alpha": 292.0981112608024,
+    "delta": -21.704603906556237,
+    "mag": 5.57,
+    "pmRA": 1.753086270892082e-07,
+    "pmDE": -2.2059022490483887e-08,
+    "bvColor": 1.228,
+    "distance": 556.6552901023891
+}

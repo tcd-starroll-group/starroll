@@ -1,0 +1,13 @@
+{
+    "hip": 4200,
+    "name": "V* BQ Tuc -- Long-Period Variable Candidate",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+4200",
+    "alpha": 13.765863192913091,
+    "delta": -62.68287199590635,
+    "mag": 5.73,
+    "pmRA": 3.607983414817167e-07,
+    "pmDE": 3.1512889272119846e-09,
+    "bvColor": 1.574,
+    "distance": 613.1578947368421
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 64166,
+    "name": "* psi Hya -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+64166",
+    "alpha": 197.7347538878499,
+    "delta": -23.303293906229168,
+    "mag": 4.94,
+    "pmRA": -9.681729211757433e-08,
+    "pmDE": -1.9344065876270486e-07,
+    "bvColor": 1.048,
+    "distance": 230.69306930693068
+}

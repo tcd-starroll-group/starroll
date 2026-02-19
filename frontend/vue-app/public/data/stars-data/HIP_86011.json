@@ -1,0 +1,13 @@
+{
+    "hip": 86011,
+    "name": "HD 159176 -- Be Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+86011",
+    "alpha": 264.2466382182598,
+    "delta": -32.60208042739005,
+    "mag": 5.69,
+    "pmRA": 1.7841143464830926e-08,
+    "pmDE": -8.144869842640205e-09,
+    "bvColor": 0.045,
+    "distance": 3397.916666666667
+}

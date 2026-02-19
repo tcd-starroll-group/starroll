@@ -1,0 +1,13 @@
+{
+    "hip": 53035,
+    "name": "HD 94014 -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+53035",
+    "alpha": 163.21526430651068,
+    "delta": -3.2781748263051065,
+    "mag": 5.95,
+    "pmRA": -2.6209027600781513e-07,
+    "pmDE": -5.294165397716133e-08,
+    "bvColor": 1.475,
+    "distance": 514.5110410094637
+}

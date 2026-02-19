@@ -1,0 +1,13 @@
+{
+    "hip": 40183,
+    "name": "HD 68895 -- Double or Multiple Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+40183",
+    "alpha": 123.40479115404959,
+    "delta": -46.37058136784201,
+    "mag": 6,
+    "pmRA": -2.6664752461024477e-08,
+    "pmDE": 4.528159781563065e-08,
+    "bvColor": -0.113,
+    "distance": 706.0606060606061
+}

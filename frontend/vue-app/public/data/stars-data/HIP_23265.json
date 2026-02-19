@@ -1,0 +1,13 @@
+{
+    "hip": 23265,
+    "name": "HD 30338 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+23265",
+    "alpha": 76.75009550403784,
+    "delta": 81.24147574358133,
+    "mag": 5.09,
+    "pmRA": 4.799655442984407e-09,
+    "pmDE": 1.3317831820078952e-07,
+    "bvColor": 1.304,
+    "distance": 344.8202959830867
+}

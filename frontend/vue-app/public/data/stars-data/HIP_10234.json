@@ -1,0 +1,13 @@
+{
+    "hip": 10234,
+    "name": "* 63 Cet -- Horizontal Branch Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+10234",
+    "alpha": 33.34227439178269,
+    "delta": -1.6632794332875345,
+    "mag": 5.94,
+    "pmRA": -5.463850186104471e-08,
+    "pmDE": -1.611520676008098e-07,
+    "bvColor": 0.967,
+    "distance": 354.5652173913044
+}

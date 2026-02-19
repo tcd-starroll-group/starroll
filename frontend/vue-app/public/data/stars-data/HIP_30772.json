@@ -1,0 +1,13 @@
+{
+    "hip": 30772,
+    "name": "* 10 Mon -- beta Cep Variable",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+30772",
+    "alpha": 97.4200434425366,
+    "delta": -4.786489125833094,
+    "mag": 5.06,
+    "pmRA": -2.050761871093337e-08,
+    "pmDE": -1.522314958683943e-08,
+    "bvColor": -0.175,
+    "distance": 1353.5269709543568
+}

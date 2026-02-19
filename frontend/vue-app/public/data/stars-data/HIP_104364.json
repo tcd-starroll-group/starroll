@@ -1,0 +1,13 @@
+{
+    "hip": 104364,
+    "name": "HD 200751 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+104364",
+    "alpha": 317.84944544835145,
+    "delta": -63.785285165222305,
+    "mag": 5.75,
+    "pmRA": -3.068870601423363e-08,
+    "pmDE": 2.181661564992912e-08,
+    "bvColor": 1.18,
+    "distance": 489.0554722638681
+}

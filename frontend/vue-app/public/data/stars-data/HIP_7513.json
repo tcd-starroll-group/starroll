@@ -1,0 +1,13 @@
+{
+    "hip": 7513,
+    "name": "Upsilon Andromedae",
+    "description": "Upsilon Andromedae (υ Andromedae, abbreviated Upsilon And, υ And) is a binary star located 44 light-years from Earth in the constellation of Andromeda.",
+    "url": "https://en.wikipedia.org/wiki/Upsilon_Andromedae",
+    "alpha": 24.715527415113854,
+    "delta": 41.57921323252819,
+    "mag": 4.1,
+    "pmRA": -8.366429694907263e-07,
+    "pmDE": -1.8471886063954429e-06,
+    "bvColor": 0.536,
+    "distance": 43.93265993265994
+}

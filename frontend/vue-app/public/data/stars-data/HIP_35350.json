@@ -1,0 +1,13 @@
+{
+    "hip": 35350,
+    "name": "* lam Gem -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+35350",
+    "alpha": 110.02328348519532,
+    "delta": 16.474506684903965,
+    "mag": 3.58,
+    "pmRA": -2.2345062562338514e-07,
+    "pmDE": -1.837443851405141e-07,
+    "bvColor": 0.106,
+    "distance": 94.30471234460826
+}

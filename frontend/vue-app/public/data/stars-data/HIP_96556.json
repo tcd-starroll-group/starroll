@@ -1,0 +1,13 @@
+{
+    "hip": 96556,
+    "name": "* 42 Aql -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+96556",
+    "alpha": 294.90840745158835,
+    "delta": -4.567057221737827,
+    "mag": 5.45,
+    "pmRA": 5.079877750665718e-07,
+    "pmDE": -2.5981165170660034e-07,
+    "bvColor": 0.429,
+    "distance": 104.75272960822093
+}

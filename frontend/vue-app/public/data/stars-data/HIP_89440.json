@@ -1,0 +1,13 @@
+{
+    "hip": 89440,
+    "name": "* 16 Sgr -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+89440",
+    "alpha": 274.3222066447502,
+    "delta": -20.37425104331354,
+    "mag": 5.96,
+    "pmRA": 1.3720227175399866e-08,
+    "pmDE": -9.211459941081182e-09,
+    "bvColor": -0.023,
+    "distance": -14827.272727272726
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 91854,
+    "name": "HD 172211 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+91854",
+    "alpha": 281.75112441305185,
+    "delta": -64.51366812779658,
+    "mag": 5.76,
+    "pmRA": 7.044342786521557e-08,
+    "pmDE": -2.2689280275926285e-07,
+    "bvColor": 0.967,
+    "distance": 409.79899497487435
+}

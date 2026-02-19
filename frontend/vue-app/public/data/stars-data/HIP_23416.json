@@ -1,0 +1,13 @@
+{
+    "hip": 23416,
+    "name": "Epsilon Aurigae",
+    "description": "Epsilon Aurigae is a multiple star system in the northern constellation of Auriga, the charioteer. Its name is a Bayer designation that is Latinized from ε Aurigae, and abbreviated Epsilon Aur or ε Aur.",
+    "url": "https://en.wikipedia.org/wiki/Epsilon_Aurigae",
+    "alpha": 76.11905920892622,
+    "delta": 43.87083228133991,
+    "mag": 3.03,
+    "pmRA": 8.726646259971648e-10,
+    "pmDE": -1.1199196033630281e-08,
+    "bvColor": 0.537,
+    "distance": 2038.75
+}

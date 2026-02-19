@@ -1,0 +1,13 @@
+{
+    "hip": 1074,
+    "name": "HD 1032 -- Variable Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+1074",
+    "alpha": 3.64570701474128,
+    "delta": -84.80030920117564,
+    "mag": 5.78,
+    "pmRA": 5.31840608177161e-08,
+    "pmDE": 8.435758051305927e-08,
+    "bvColor": 1.71,
+    "distance": 815.5
+}

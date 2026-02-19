@@ -1,0 +1,13 @@
+{
+    "hip": 1473,
+    "name": "Sigma Andromedae",
+    "description": "Sigma Andromedae is a single star in the northern constellation of Andromeda. Its Bayer designation is Latinized from σ Andromedae, and abbreviated Sig And or σ And, respectively.",
+    "url": "https://en.wikipedia.org/wiki/Sigma_Andromedae",
+    "alpha": 5.039960258582265,
+    "delta": 36.97814867385615,
+    "mag": 4.51,
+    "pmRA": -3.2244957930595236e-07,
+    "pmDE": -2.0594885173533088e-07,
+    "bvColor": 0.054,
+    "distance": 141.15101687581134
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 30565,
+    "name": "* pi.02 Dor -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+30565",
+    "alpha": 96.2945271948761,
+    "delta": -69.71022149812617,
+    "mag": 5.37,
+    "pmRA": -6.423781274701353e-08,
+    "pmDE": 9.732634648273935e-07,
+    "bvColor": 0.971,
+    "distance": 266.2857142857143
+}

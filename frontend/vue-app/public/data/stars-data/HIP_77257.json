@@ -1,0 +1,13 @@
+{
+    "hip": 77257,
+    "name": "Lambda Serpentis",
+    "description": "Lambda Serpentis, Latinized from λ Serpentis, is a star in the constellation Serpens, in its head (Serpens Caput). It has an apparent visual magnitude of 4.43, making it visible to the naked eye.",
+    "url": "https://en.wikipedia.org/wiki/Lambda_Serpentis",
+    "alpha": 237.03476414354458,
+    "delta": 7.246471650329887,
+    "mag": 4.42,
+    "pmRA": -1.0933033322701146e-06,
+    "pmDE": -3.3219433429625407e-07,
+    "bvColor": 0.604,
+    "distance": 38.340385519511045
+}

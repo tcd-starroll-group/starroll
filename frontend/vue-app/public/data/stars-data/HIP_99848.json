@@ -1,0 +1,13 @@
+{
+    "hip": 99848,
+    "name": "* omi02 Cyg -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+99848",
+    "alpha": 304.13722441566813,
+    "delta": 47.82264637962476,
+    "mag": 3.96,
+    "pmRA": 1.8810770827049992e-08,
+    "pmDE": 5.817764173314431e-09,
+    "bvColor": 1.451,
+    "distance": 1109.5238095238096
+}

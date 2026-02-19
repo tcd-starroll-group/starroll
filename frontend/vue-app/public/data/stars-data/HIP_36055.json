@@ -1,0 +1,13 @@
+{
+    "hip": 36055,
+    "name": "HD 58526 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+36055",
+    "alpha": 111.89121419707263,
+    "delta": -5.846598538107593,
+    "mag": 5.98,
+    "pmRA": -2.9185783602794062e-08,
+    "pmDE": -1.4156559488398449e-08,
+    "bvColor": 0.901,
+    "distance": 1896.5116279069769
+}

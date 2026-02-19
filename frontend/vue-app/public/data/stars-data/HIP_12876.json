@@ -1,0 +1,13 @@
+{
+    "hip": 12876,
+    "name": "* zet Hyi -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+12876",
+    "alpha": 41.52187603387956,
+    "delta": -67.47096308138332,
+    "mag": 4.83,
+    "pmRA": 3.224010979378415e-07,
+    "pmDE": 2.1341498242441777e-07,
+    "bvColor": 0.058,
+    "distance": 294.9367088607595
+}

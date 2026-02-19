@@ -1,0 +1,13 @@
+{
+    "hip": 86614,
+    "name": "* psi01 Dra A -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+86614",
+    "alpha": 265.33132771029403,
+    "delta": 72.13136571676576,
+    "mag": 4.57,
+    "pmRA": 1.2896043917513657e-07,
+    "pmDE": -1.3078818675291952e-06,
+    "bvColor": 0.434,
+    "distance": 71.88188629352136
+}

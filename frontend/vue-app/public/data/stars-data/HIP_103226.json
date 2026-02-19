@@ -1,0 +1,13 @@
+{
+    "hip": 103226,
+    "name": "* 19 Cap -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+103226",
+    "alpha": 314.19005854314355,
+    "delta": -17.788460363435377,
+    "mag": 5.78,
+    "pmRA": -2.854582954372948e-07,
+    "pmDE": -8.256376989295397e-08,
+    "bvColor": 1.122,
+    "distance": 395.39393939393943
+}

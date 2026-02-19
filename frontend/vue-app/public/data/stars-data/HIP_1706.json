@@ -1,0 +1,13 @@
+{
+    "hip": 1706,
+    "name": "HD 1801 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+1706",
+    "alpha": 5.732721468659027,
+    "delta": -77.23392336527434,
+    "mag": 5.96,
+    "pmRA": 6.898898682188699e-08,
+    "pmDE": -3.1222001063454114e-08,
+    "bvColor": 1.397,
+    "distance": 697.008547008547
+}

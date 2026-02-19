@@ -1,0 +1,13 @@
+{
+    "hip": 19780,
+    "name": "Alpha Reticuli",
+    "description": "Alpha Reticuli, Latinized from α Reticuli, also named Rhombus, is the brightest star in the southern circumpolar constellation of Reticulum, with an apparent visual magnitude of 3.3. This appears to be a solitary star located at a distance of 160 light-years from Earth.",
+    "url": "https://en.wikipedia.org/wiki/Alpha_Reticuli",
+    "alpha": 63.71979251818703,
+    "delta": -62.38746301923529,
+    "mag": 3.33,
+    "pmRA": 2.018764168140108e-07,
+    "pmDE": 2.410493622476613e-07,
+    "bvColor": 0.915,
+    "distance": 163.26326326326324
+}

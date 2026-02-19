@@ -1,0 +1,13 @@
+{
+    "hip": 109139,
+    "name": "Iota Aquarii",
+    "description": "Iota Aquarii is a binary star system in the equatorial constellation of Aquarius. Its identifier is a Bayer designation that is Latinised from ι Aquarii, and abbreviated Iota Aqr or ι Aqr.",
+    "url": "https://en.wikipedia.org/wiki/Iota_Aquarii",
+    "alpha": 332.07832546164866,
+    "delta": -13.699117469390444,
+    "mag": 4.29,
+    "pmRA": 1.9610713400880732e-07,
+    "pmDE": -2.7711950012221073e-07,
+    "bvColor": -0.075,
+    "distance": 172.5925925925926
+}

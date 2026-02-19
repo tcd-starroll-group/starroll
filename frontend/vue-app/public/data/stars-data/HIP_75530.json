@@ -1,0 +1,13 @@
+{
+    "hip": 75530,
+    "name": "Tau1 Serpentis",
+    "description": "Tau1 Serpentis, Latinized from τ1 Serpentis, is a single star in the Caput (Head) segment of the equatorial constellation of Serpens.",
+    "url": "https://en.wikipedia.org/wiki/Tau1_Serpentis",
+    "alpha": 231.8518878737583,
+    "delta": 15.307668090541966,
+    "mag": 5.16,
+    "pmRA": -6.797087809155694e-08,
+    "pmDE": -3.640950745132615e-08,
+    "bvColor": 1.65,
+    "distance": 918.8732394366199
+}

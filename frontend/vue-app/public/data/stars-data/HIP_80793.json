@@ -1,0 +1,13 @@
+{
+    "hip": 80793,
+    "name": "HD 148604 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+80793",
+    "alpha": 247.93870828032803,
+    "delta": -14.624420229310603,
+    "mag": 5.66,
+    "pmRA": 1.6362461737446842e-07,
+    "pmDE": 3.670039565999188e-08,
+    "bvColor": 0.823,
+    "distance": 267.81609195402297
+}

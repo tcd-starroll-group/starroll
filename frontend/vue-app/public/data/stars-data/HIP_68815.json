@@ -1,0 +1,13 @@
+{
+    "hip": 68815,
+    "name": "Theta Apodis",
+    "description": "Theta Apodis is a variable star in the southern circumpolar constellation of Apus. Its identifier is a Bayer designation that is Latinized from θ Apodis, and abbreviated Tet Aps or θ Aps, respectively.",
+    "url": "https://en.wikipedia.org/wiki/Theta_Apodis",
+    "alpha": 212.21726053751618,
+    "delta": -76.96181672392356,
+    "mag": 5.69,
+    "pmRA": -4.237756386578454e-07,
+    "pmDE": -1.514073126105081e-07,
+    "bvColor": 1.239,
+    "distance": 328.4994964753273
+}

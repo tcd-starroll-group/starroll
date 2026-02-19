@@ -1,0 +1,13 @@
+{
+    "hip": 107773,
+    "name": "HIP 107773",
+    "description": "HIP 107773 is a star located 344 light years from Earth in the southern constellation Indus. It is classified as a horizontal branch K-type giant star, having a spectral type K0III and a radius of 11.6 R☉.",
+    "url": "https://en.wikipedia.org/wiki/HIP_107773",
+    "alpha": 328.1645015657593,
+    "delta": -64.54867134480963,
+    "mag": 5.62,
+    "pmRA": -1.7453292519943298e-08,
+    "pmDE": -1.8573212123306326e-07,
+    "bvColor": 1.018,
+    "distance": 333.8792221084954
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 27639,
+    "name": "Upsilon Aurigae",
+    "description": "Upsilon Aurigae is a single star in the northern constellation of Auriga. Its name is a Bayer designation that is Latinised from υ Aurigae, and abbreviated Upsilon Aur or υ Aur.",
+    "url": "https://en.wikipedia.org/wiki/Upsilon_Aurigae",
+    "alpha": 88.35435668264078,
+    "delta": 37.31183471739934,
+    "mag": 4.72,
+    "pmRA": 1.791871365380845e-07,
+    "pmDE": -2.1700260366462834e-07,
+    "bvColor": 1.621,
+    "distance": 475.51020408163265
+}

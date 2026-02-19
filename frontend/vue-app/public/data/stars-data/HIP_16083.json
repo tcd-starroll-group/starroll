@@ -1,0 +1,13 @@
+{
+    "hip": 16083,
+    "name": "* ksi Tau -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+16083",
+    "alpha": 52.26534464896423,
+    "delta": 9.851714249791844,
+    "mag": 3.73,
+    "pmRA": 2.599086144428222e-07,
+    "pmDE": -1.8481097523895513e-07,
+    "bvColor": -0.082,
+    "distance": 222.20708446866487
+}

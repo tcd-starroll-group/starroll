@@ -1,0 +1,13 @@
+{
+    "hip": 60170,
+    "name": "HD 107325 -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+60170",
+    "alpha": 185.51885907904074,
+    "delta": 26.42560151897481,
+    "mag": 5.52,
+    "pmRA": -3.233707253000606e-07,
+    "pmDE": -5.352343039449277e-07,
+    "bvColor": 1.091,
+    "distance": 156.97786333012513
+}

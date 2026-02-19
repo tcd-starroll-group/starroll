@@ -1,0 +1,13 @@
+{
+    "hip": 42459,
+    "name": "V* HW Vel -- beta Cep Variable",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+42459",
+    "alpha": 130.09466213916744,
+    "delta": -53.564175931829666,
+    "mag": 5.45,
+    "pmRA": -1.1620983936195575e-07,
+    "pmDE": 1.1397969642885194e-07,
+    "bvColor": -0.132,
+    "distance": 451.1756569847856
+}

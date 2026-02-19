@@ -1,0 +1,13 @@
+{
+    "hip": 62572,
+    "name": "HD 112028",
+    "description": "HD 112028 is an evolved star in the northern constellation of Camelopardalis.  It has spectral peculiarities that have been interpreted as a shell, and also relatively weak magnesium and silicon lines.",
+    "url": "https://en.wikipedia.org/wiki/HD_112028",
+    "alpha": 192.39938333168396,
+    "delta": 83.2236101428374,
+    "mag": 5.38,
+    "pmRA": -1.3647505123233437e-07,
+    "pmDE": 8.508480103472356e-08,
+    "bvColor": 0.033,
+    "distance": 303.44186046511624
+}

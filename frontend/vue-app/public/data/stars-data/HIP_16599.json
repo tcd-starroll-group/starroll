@@ -1,0 +1,13 @@
+{
+    "hip": 16599,
+    "name": "HD 21819 -- Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+16599",
+    "alpha": 54.08238404293365,
+    "delta": 55.08951314508374,
+    "mag": 5.98,
+    "pmRA": -2.0027653166634934e-07,
+    "pmDE": -7.902463002085437e-09,
+    "bvColor": 0.114,
+    "distance": 221.75390890550642
+}

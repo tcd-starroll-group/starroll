@@ -1,0 +1,13 @@
+{
+    "hip": 100738,
+    "name": "HD 194215 -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+100738",
+    "alpha": 306.89300560739713,
+    "delta": -28.54755037151293,
+    "mag": 5.86,
+    "pmRA": 5.686864479414858e-08,
+    "pmDE": 1.9634954084936208e-08,
+    "bvColor": 1.101,
+    "distance": 540.9618573797678
+}

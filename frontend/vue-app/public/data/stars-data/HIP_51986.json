@@ -1,0 +1,13 @@
+{
+    "hip": 51986,
+    "name": "* p Vel -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+51986",
+    "alpha": 159.69486028761546,
+    "delta": -48.407267673650914,
+    "mag": 3.84,
+    "pmRA": -6.374330279228178e-07,
+    "pmDE": -7.660056161530669e-09,
+    "bvColor": 0.3,
+    "distance": 86.50225404402015
+}

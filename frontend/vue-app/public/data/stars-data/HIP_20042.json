@@ -1,0 +1,13 @@
+{
+    "hip": 20042,
+    "name": "* ups04 Eri -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+20042",
+    "alpha": 64.8031869598949,
+    "delta": -33.715341958112916,
+    "mag": 3.55,
+    "pmRA": 3.020874046993519e-07,
+    "pmDE": -3.272492347489368e-08,
+    "bvColor": -0.108,
+    "distance": 178.544061302682
+}

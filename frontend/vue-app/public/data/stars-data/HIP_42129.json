@@ -1,0 +1,13 @@
+{
+    "hip": 42129,
+    "name": "HD 73390",
+    "description": "HD 73390, also called e1 Carinae, is a binary star system in the constellation Carina.  It is approximately 870 light years from Earth.",
+    "url": "https://en.wikipedia.org/wiki/HD_73390",
+    "alpha": 129.01683912550587,
+    "delta": -58.34644797718933,
+    "mag": 5.27,
+    "pmRA": -1.0234416808222304e-07,
+    "pmDE": 5.604446153626237e-08,
+    "bvColor": -0.133,
+    "distance": 962.2418879056047
+}

@@ -1,0 +1,13 @@
+{
+    "hip": 42913,
+    "name": "Delta Velorum",
+    "description": "Delta Velorum (δ Velorum, abbreviated Delta Vel, δ Vel) is a triple star system in the southern constellation of Vela, near the border with Carina, and is part of the False Cross. Based on parallax measurements, it is approximately 80.6 light-years (24.7 parsecs) from the Sun.",
+    "url": "https://en.wikipedia.org/wiki/Delta_Velorum",
+    "alpha": 131.41606777587168,
+    "delta": -54.83753396111416,
+    "mag": 1.93,
+    "pmRA": 1.3952937742332446e-07,
+    "pmDE": -5.048849675074707e-07,
+    "bvColor": 0.043,
+    "distance": 79.75550122249389
+}

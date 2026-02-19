@@ -1,0 +1,13 @@
+{
+    "hip": 58867,
+    "name": "* tet02 Cru -- Spectroscopic Binary",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+58867",
+    "alpha": 181.53506071854025,
+    "delta": -63.359581265818925,
+    "mag": 4.72,
+    "pmRA": -8.333947178272924e-08,
+    "pmDE": -4.8481368110953605e-11,
+    "bvColor": -0.081,
+    "distance": 753.3487297921478
+}

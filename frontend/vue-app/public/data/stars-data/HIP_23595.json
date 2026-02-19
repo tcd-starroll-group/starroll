@@ -1,0 +1,13 @@
+{
+    "hip": 23595,
+    "name": "* gam Cae -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+23595",
+    "alpha": 76.41463090141491,
+    "delta": -35.437228818567085,
+    "mag": 4.55,
+    "pmRA": 6.116894214559016e-07,
+    "pmDE": -2.1506334894019018e-07,
+    "bvColor": 1.177,
+    "distance": 185.0255246738514
+}

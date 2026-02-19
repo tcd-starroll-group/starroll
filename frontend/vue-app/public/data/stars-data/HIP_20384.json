@@ -1,0 +1,13 @@
+{
+    "hip": 20384,
+    "name": "* eta Ret -- High Proper Motion Star",
+    "description": "",
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HIP+20384",
+    "alpha": 65.56727625563958,
+    "delta": -63.304766477815384,
+    "mag": 5.24,
+    "pmRA": 4.130612563053246e-07,
+    "pmDE": 8.453696157506979e-07,
+    "bvColor": 0.955,
+    "distance": 380.1864801864802
+}

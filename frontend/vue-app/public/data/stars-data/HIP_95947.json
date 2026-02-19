@@ -1,0 +1,13 @@
+{
+    "hip": 95947,
+    "name": "Albireo",
+    "description": "Albireo  is a double star designated Beta Cygni (β Cygni, abbreviated Beta Cyg, β Cyg). The International Astronomical Union uses the name \"Albireo\" specifically for the brightest star in the system.",
+    "url": "https://en.wikipedia.org/wiki/Albireo",
+    "alpha": 293.03158590601583,
+    "delta": 28.034957459481472,
+    "mag": 3.05,
+    "pmRA": -3.43732899906661e-08,
+    "pmDE": -2.729501024646687e-08,
+    "bvColor": 1.088,
+    "distance": 385.57919621749403
+}

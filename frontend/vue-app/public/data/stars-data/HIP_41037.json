@@ -1,0 +1,13 @@
+{
+    "hip": 41037,
+    "name": "Epsilon Carinae",
+    "description": "Epsilon Carinae is a binary star in the southern constellation of Carina. It has the official proper name  Avior, pronounced ; Epsilon Carinae is its Bayer designation.",
+    "url": "https://en.wikipedia.org/wiki/Epsilon_Carinae",
+    "alpha": 125.80663674933294,
+    "delta": -59.62251050967063,
+    "mag": 1.86,
+    "pmRA": -1.2285178679315642e-07,
+    "pmDE": 1.1014966834808658e-07,
+    "bvColor": 1.196,
+    "distance": 632.1705426356589
+}
