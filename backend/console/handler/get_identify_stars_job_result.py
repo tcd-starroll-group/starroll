@@ -1,12 +1,11 @@
 import logging
+import json
 from fastapi import HTTPException
-from sqlalchemy.orm import Session
 
-from backend.console.dal.rds.identify_stars_job import IdentifyStarsJob
+from backend.console.dal.rds.identify_stars_job import IdentifyStarsJob as IdentifyStarsJobDAL
 from backend.console.dal.rds.client import get_db
 from backend.console.utils.auth import verify_user_id_and_token
 
-# Note: Ensure these import paths match your generated gen/ directory
 from gen.py.src.openapi_server.models.api_get_identify_stars_job_result_post_request import ApiGetIdentifyStarsJobResultPostRequest
 from gen.py.src.openapi_server.models.api_get_identify_stars_job_result_post200_response import ApiGetIdentifyStarsJobResultPost200Response
 
@@ -16,40 +15,76 @@ async def api_get_identify_stars_job_result_post(
     request: ApiGetIdentifyStarsJobResultPostRequest
 ) -> ApiGetIdentifyStarsJobResultPost200Response:
 
-    # 1. Verification of User
-    if not request.user_credentials:
-        raise HTTPException(status_code=400, detail="User credentials missing")
-    
+    # 1. Auth
     verify_user_id_and_token(request.user_credentials.token, request.user_credentials.user_id)
 
-    # 2. Database Lookup
     db_session = next(get_db())
     try:
-        # Cast jobID to int since your DB uses BigInteger
-        job = IdentifyStarsJob.get_by_id(db_session, int(request.job_id))
-
-        # 3. Security & Existence Check
+        # 2. Fetch Job
+        job = IdentifyStarsJobDAL.get_by_id(db_session, int(request.job_id))
         if not job:
-            logger.error(f"Job {request.job_id} not found")
             raise HTTPException(status_code=404, detail="Job not found")
         
+        # 3. Secure check
         if job.user_id != int(request.user_credentials.user_id):
-            logger.warning(f"Unauthorized access attempt: User {request.user_credentials.user_id} on Job {job.id}")
-            raise HTTPException(status_code=403, detail="Not authorized to view this job")
+            raise HTTPException(status_code=403, detail="Unauthorized")
 
-        # 4. Construct Response 
-        # The schema expects a list: identifyStarsJobsList
+        # 4. Data Processing
+        # Default empty structures to satisfy the OpenAPI model
+        center_info = {
+            "rightAscension": 0.0, 
+            "declination": 0.0, 
+            "radius": 0.0, 
+            "orientation": 0.0
+        }
+        stars_list = []
+
+        if job.result:
+            try:
+                # Load JSON (Handle string or dict)
+                data = json.loads(job.result) if isinstance(job.result, str) else job.result
+                
+                # 1. Map Calibration -> Center
+                cal = data.get("calibration", {})
+                if cal:
+                    center_info = {
+                        "rightAscension": float(cal.get("ra", 0.0)),
+                        "declination": float(cal.get("dec", 0.0)),
+                        "radius": float(cal.get("radius", 0.0)),
+                        "orientation": float(cal.get("orientation", 0.0))
+                    }
+
+                # 2. Map Stars -> identifiedStars
+                raw_stars = data.get("stars", [])
+                for s in raw_stars:
+                    stars_list.append({
+                        # The schema expects "names" (list of strings), "pixelX", "pixelY", "vmag"
+                        "names": s.get("names", []),
+                        "pixelX": float(s.get("pixelx", 0.0)),
+                        "pixelY": float(s.get("pixely", 0.0)),
+                        "vmag": float(s.get("vmag", 0.0)),
+                        "HIP": s.get("HIP") # Add this if your schema includes Hipparcos IDs
+                    })
+            except Exception as e:
+                logger.error(f"Mapping error for job {job.id}: {e}")
+
+        # 5. Final Return
         return ApiGetIdentifyStarsJobResultPost200Response(
             identify_stars_jobs_list=[{
-                "id": str(job.id),
+                "jobID": str(job.id),
                 "status": job.status,
-                "result": job.result, # This pulls the JSON data directly
-                "image_key": job.image_key,
-                "created_at": job.created_at.isoformat() if job.created_at else None
+                "center": center_info,
+                "identifiedStars": stars_list,
+                "imageKey": job.image_key or "",
+                "createTime": job.created_at.isoformat() if job.created_at else None
             }]
         )
 
-    except ValueError:
-        raise HTTPException(status_code=400, detail="Invalid jobID format")
+    except HTTPException as he:
+        raise he
+    except Exception as e:
+        # This will print the EXACT line and error in your terminal
+        logger.error("CRITICAL ERROR IN HANDLER", exc_info=True)
+        raise HTTPException(status_code=500, detail=f"Internal Error: {str(e)}")
     finally:
         db_session.close()
