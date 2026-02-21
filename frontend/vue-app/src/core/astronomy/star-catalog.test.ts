@@ -1,6 +1,6 @@
 import { describe, test, expect, vi, beforeEach, afterEach } from 'vitest'
 import { loadStarCatalog } from './star-catalog'
-import starCatalogData from '../../public/data/star-catalog/star-catalog.json'
+import starCatalogData from '../../../public/data/star-catalog/star-catalog.json'
 
 const originalFetch = globalThis.fetch
 

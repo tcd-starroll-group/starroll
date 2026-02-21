@@ -13,3 +13,5 @@ __pycache__
 test-images
 .idea
 .pytest_cache
+cert
+.vite
