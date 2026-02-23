@@ -3,7 +3,11 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
 from backend.config import settings
-from backend.constant.email import EMAIL_SUBJECT
+from backend.constant.email import (
+    EMAIL_SUBJECT,
+    VERIFICATION_EMAIL_TEXT_TEMPLATE,
+    VERIFICATION_EMAIL_HTML_TEMPLATE,
+)
 
 
 def send_verification_email(to_email: str, code: str) -> bool:
@@ -21,38 +25,10 @@ def send_verification_email(to_email: str, code: str) -> bool:
         msg["To"] = to_email
 
         # 纯文本内容
-        text_content = f"""Hello,
-
-Your StarRoll password reset verification code is:
-
-    {code}
-
-This code will expire in 10 minutes. If you did not request a password reset, please ignore this email.
-
-Best regards,
-StarRoll Team
-"""
+        text_content = VERIFICATION_EMAIL_TEXT_TEMPLATE.format(code=code)
 
         # HTML 内容（更美观）
-        html_content = f"""
-<html>
-<body style="font-family: Arial, sans-serif; padding: 20px;">
-    <h2 style="color: #333;">StarRoll Password Reset</h2>
-    <p>Hello,</p>
-    <p>Your verification code is:</p>
-    <div style="background: #f5f5f5; padding: 15px 25px; font-size: 28px;
-                font-weight: bold; letter-spacing: 8px; text-align: center;
-                border-radius: 8px; margin: 20px 0; color: #333;">
-        {code}
-    </div>
-    <p>This code will expire in <strong>10 minutes</strong>.</p>
-    <p style="color: #999; font-size: 12px;">
-        If you did not request a password reset, please ignore this email.
-    </p>
-    <p>Best regards,<br/>StarRoll Team</p>
-</body>
-</html>
-"""
+        html_content = VERIFICATION_EMAIL_HTML_TEMPLATE.format(code=code)
 
         msg.attach(MIMEText(text_content, "plain"))
         msg.attach(MIMEText(html_content, "html"))
