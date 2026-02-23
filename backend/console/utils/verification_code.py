@@ -1,4 +1,3 @@
-"""Verification code storage utility (for forgot password, registration, etc.)"""
 from typing import Optional
 
 from backend.config import settings
