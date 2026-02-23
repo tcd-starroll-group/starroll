@@ -5,7 +5,6 @@ import { getStarName } from '../data/star-names'
 import { absoluteOrientationManager, AbsoluteOrientationData } from '../sensors/AbsoluteOrientation'
 import { raDecToVector3 } from '../astronomy/cartesian-coordinate'
 import { convertHorizontalQuaternionToEquatorialQuaternionPro } from '../astronomy/astronomy'
-import { quadSwapX } from 'three/src/nodes/gpgpu/SubgroupFunctionNode'
 
 /**
  * Star click information
@@ -29,9 +28,6 @@ export interface StarClickInfo {
   url: string
   raw?: any
 }
-
-// Helper constants
-const degToRad = Math.PI / 180
 
 /**
  * Ground Observer Renderer
@@ -73,6 +69,7 @@ export class GroundObserverRenderer {
   private raycaster: THREE.Raycaster = new THREE.Raycaster()
   private mouse: THREE.Vector2 = new THREE.Vector2()
   private onStarClickCallback: ((starInfo: StarClickInfo) => void) | null = null
+  private selectedStarIndicator: THREE.Sprite | null = null
 
   constructor(container: HTMLElement) {
     this.container = container
@@ -239,6 +236,8 @@ export class GroundObserverRenderer {
       star: StarMeta
     }[] = []
 
+    this.starMap.clear()
+
     stars.forEach((star) => {
       if (star.magnitude > 4.5) return
 
@@ -281,12 +280,14 @@ export class GroundObserverRenderer {
     const colors: number[] = []
     const magnitudes: number[] = []
     const twinklePhases: number[] = []
+    const hips: number[] = []
 
     starsData.forEach(({ pos, color, star }) => {
       positions.push(pos.x, pos.y, pos.z)
       colors.push(color.r, color.g, color.b)
       magnitudes.push(star.magnitude)
       twinklePhases.push(Math.random() * Math.PI * 2)
+      hips.push(star.hIP)
     })
 
     const geometry = new THREE.BufferGeometry()
@@ -294,6 +295,7 @@ export class GroundObserverRenderer {
     geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3))
     geometry.setAttribute('magnitude', new THREE.Float32BufferAttribute(magnitudes, 1))
     geometry.setAttribute('twinklePhase', new THREE.Float32BufferAttribute(twinklePhases, 1))
+    geometry.setAttribute('hip', new THREE.Float32BufferAttribute(hips, 1))
 
     const isRayTexture = texturePath.includes('ray')
     const texture = this.createProceduralStarTexture(isRayTexture)
@@ -486,6 +488,8 @@ export class GroundObserverRenderer {
     if (this.arMode) this.disableARMode()
     window.removeEventListener('resize', this.onWindowResize)
 
+    this.clearSelectedStarIndicator()
+
     if (this.starPoints) {
       this.starPoints.geometry.dispose()
       if (this.starPoints.material instanceof THREE.Material) this.starPoints.material.dispose()
@@ -504,15 +508,39 @@ export class GroundObserverRenderer {
   }
 
   private setupClickDetection(): void {
-    this.raycaster.params.Points = { threshold: 50.0 }
+    this.raycaster.params.Points = { threshold: 20.0 }
     const handleClick = (clientX: number, clientY: number) => {
-      this.mouse.x = (clientX / window.innerWidth) * 2 - 1
-      this.mouse.y = -(clientY / window.innerHeight) * 2 + 1
+      const rect = this.renderer.domElement.getBoundingClientRect()
+      const x = clientX - rect.left
+      const y = clientY - rect.top
+      this.mouse.x = (x / rect.width) * 2 - 1
+      this.mouse.y = -(y / rect.height) * 2 + 1
       this.raycaster.setFromCamera(this.mouse, this.camera)
       if (this.starPoints) {
-        const intersects = this.raycaster.intersectObject(this.starPoints)
-        if (intersects.length > 0 && intersects[0].index !== undefined) {
-          this.handleStarClick(intersects[0].index)
+        const intersects = this.raycaster.intersectObject(this.starPoints, true)
+        console.log(`click detcted, intersects with ${intersects.length} stars`)
+        if (intersects.length > 0) {
+          const bestHit = intersects.reduce((best, current) => {
+            const bestDistanceToRay = best.distanceToRay ?? Number.POSITIVE_INFINITY
+            const currentDistanceToRay = current.distanceToRay ?? Number.POSITIVE_INFINITY
+
+            if (currentDistanceToRay < bestDistanceToRay) return current
+            if (currentDistanceToRay > bestDistanceToRay) return best
+            return current.distance < best.distance ? current : best
+          })
+
+          if (bestHit.index !== undefined) {
+            const hitObject = bestHit.object as THREE.Points
+            const hipAttribute = hitObject.geometry.getAttribute('hip') as
+              | THREE.BufferAttribute
+              | THREE.InterleavedBufferAttribute
+              | undefined
+
+            if (hipAttribute) {
+              const hip = Math.round(hipAttribute.getX(bestHit.index))
+              this.handleStarClick(hip)
+            }
+          }
         }
       }
     }
@@ -526,33 +554,77 @@ export class GroundObserverRenderer {
     })
   }
 
-  private async handleStarClick(index: number): Promise<void> {
-    let starData
-    let i = 0
-    for (const data of this.starMap.values()) {
-      if (i === index) {
-        starData = data
-        break
-      }
-      i++
+  private updateSelectedStarIndicator(position: THREE.Vector3): void {
+    if (!this.selectedStarIndicator) {
+      const texture = this.createSelectionRingTexture()
+      const material = new THREE.SpriteMaterial({
+        map: texture,
+        transparent: true,
+        depthWrite: false,
+        depthTest: false,
+      })
+      this.selectedStarIndicator = new THREE.Sprite(material)
+      this.selectedStarIndicator.renderOrder = 10
+      this.scene.add(this.selectedStarIndicator)
     }
+
+    this.selectedStarIndicator.position.copy(position)
+    this.selectedStarIndicator.scale.setScalar(28)
+    this.selectedStarIndicator.visible = true
+  }
+
+  private createSelectionRingTexture(): THREE.CanvasTexture {
+    const size = 128
+    const canvas = document.createElement('canvas')
+    canvas.width = size
+    canvas.height = size
+
+    const ctx = canvas.getContext('2d')!
+    const center = size / 2
+    const radius = size * 0.35
+
+    ctx.clearRect(0, 0, size, size)
+    ctx.beginPath()
+    ctx.arc(center, center, radius, 0, Math.PI * 2)
+    ctx.strokeStyle = 'rgba(255,255,255,0.95)'
+    ctx.lineWidth = size * 0.06
+    ctx.shadowColor = 'rgba(255,255,255,0.55)'
+    ctx.shadowBlur = size * 0.06
+    ctx.stroke()
+
+    const texture = new THREE.CanvasTexture(canvas)
+    texture.needsUpdate = true
+    return texture
+  }
+
+  private clearSelectedStarIndicator(): void {
+    if (!this.selectedStarIndicator) return
+
+    this.scene.remove(this.selectedStarIndicator)
+    const material = this.selectedStarIndicator.material
+    if (material.map) material.map.dispose()
+    material.dispose()
+    this.selectedStarIndicator = null
+  }
+
+  private async handleStarClick(hip: number): Promise<void> {
+    const starData = this.starMap.get(hip)
 
     if (starData && this.onStarClickCallback) {
       const { star, position } = starData
+      this.updateSelectedStarIndicator(position)
       const nameData = getStarName(star.hIP)
 
+      const rect = this.renderer.domElement.getBoundingClientRect()
       const screenPos = position.clone()
       screenPos.project(this.camera)
-      const screenX = (screenPos.x * 0.5 + 0.5) * window.innerWidth
-      const screenY = (-(screenPos.y * 0.5) + 0.5) * window.innerHeight
+      const screenX = rect.left + (screenPos.x * 0.5 + 0.5) * rect.width
+      const screenY = rect.top + (-(screenPos.y * 0.5 + 0.5) + 1) * rect.height
 
       let detailedData: any = {}
-      let fetchSuccess = false
 
       const baseUrl = import.meta.env?.BASE_URL || '/'
       const cleanBase = baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl
-
-      const pathsToTry = [`${cleanBase}/data/star-catalog/stars-data/HIP_${star.hIP}.json`]
 
       try {
         const response = await fetch(
@@ -561,7 +633,6 @@ export class GroundObserverRenderer {
         const contentType = response.headers.get('content-type')
         if (response.ok && contentType && contentType.indexOf('application/json') !== -1) {
           detailedData = await response.json()
-          fetchSuccess = true
         }
       } catch (error) {
         console.error(`Path star detail failed: ${star.hIP}`, error)
