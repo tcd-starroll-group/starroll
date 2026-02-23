@@ -15,7 +15,7 @@ function getLST(timestamp: number, longitude: number): number {
   const D = jd - 2451545.0
 
   // 2. Compute Greenwich Mean Sidereal Time (GMST)
-  let gmst = 18.697374558 + 24.06570982441908 * D
+  const gmst = 18.697374558 + 24.06570982441908 * D
 
   // 3. Apply longitude correction (1 degree = 1/15 hour)
   let lst = gmst + longitude / 15.0
@@ -34,7 +34,7 @@ function convertHorizontalCoordinateToEquatorialCoordinate(
   timestamp: number,
   location: model.GPS,
 ): model.EquatorialCoordinate {
-  let ans: model.EquatorialCoordinate = {
+  const ans: model.EquatorialCoordinate = {
     rightAscension: 0,
     declination: 0,
   }
@@ -43,17 +43,17 @@ function convertHorizontalCoordinateToEquatorialCoordinate(
   let lst = getLST(timestamp, location.longitude)
 
   // Convert all units to radians
-  let a = degreesToRadians(hc.altitude)
-  let A = degreesToRadians(hc.azimuth)
-  let phi = degreesToRadians(location.latitude)
+  const a = degreesToRadians(hc.altitude)
+  const A = degreesToRadians(hc.azimuth)
+  const phi = degreesToRadians(location.latitude)
   lst = (lst * Math.PI) / 12
 
-  let delta = Math.asin(Math.sin(a) * Math.sin(phi) + Math.cos(a) * Math.cos(phi) * Math.cos(A))
+  const delta = Math.asin(Math.sin(a) * Math.sin(phi) + Math.cos(a) * Math.cos(phi) * Math.cos(A))
 
   // Compute hour angle
-  let x = (Math.sin(a) - Math.sin(phi) * Math.sin(delta)) / Math.cos(phi)
-  let y = -Math.sin(A) * Math.cos(a)
-  let hourAngle = Math.atan2(y, x)
+  const x = (Math.sin(a) - Math.sin(phi) * Math.sin(delta)) / Math.cos(phi)
+  const y = -Math.sin(A) * Math.cos(a)
+  const hourAngle = Math.atan2(y, x)
   let alpha = lst - hourAngle
   // Normalize to [0, 2PI)
   alpha = alpha % (2 * Math.PI)
@@ -73,7 +73,7 @@ function convertHorizontalCoordinateToEquatorialCoordinatePro(
   timestamp: number,
   location: model.GPS,
 ): model.EquatorialCoordinate {
-  let ans: model.EquatorialCoordinate = {
+  const ans: model.EquatorialCoordinate = {
     rightAscension: 0,
     declination: 0,
   }

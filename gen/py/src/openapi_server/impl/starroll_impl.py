@@ -20,10 +20,14 @@ from backend.console.handler.reset_password_send_code import api_forgot_password
 from backend.console.handler.reset_password import api_forgot_password_reset_post as api_forgot_password_reset_post_handler
 
 from openapi_server.models.api_create_identify_stars_job_post_request import ApiCreateIdentifyStarsJobPostRequest
+
 from openapi_server.models.api_list_identify_stars_jobs_post_request import ApiListIdentifyStarsJobsPostRequest
 from openapi_server.models.api_list_identify_stars_jobs_post200_response import ApiListIdentifyStarsJobsPost200Response
 from backend.console.handler.list_identify_stars_jobs import api_list_identify_stars_jobs_post
 
+from openapi_server.models.api_get_identify_stars_job_result_post_request import ApiGetIdentifyStarsJobResultPostRequest
+from openapi_server.models.api_get_identify_stars_job_result_post200_response import ApiGetIdentifyStarsJobResultPost200Response
+from backend.console.handler.get_identify_stars_job_result import api_get_identify_stars_job_result_post
 
 class StarrollApiImpl(BaseDefaultApi):
     async def api_user_login_post(
@@ -58,3 +62,6 @@ class StarrollApiImpl(BaseDefaultApi):
 
     async def api_forgot_password_reset_post(self, forgot_password_reset_request: ForgotPasswordResetRequest):
         return await api_forgot_password_reset_post_handler(forgot_password_reset_request)
+    
+    async def api_get_identify_stars_job_result_post(self, api_get_identify_stars_job_result_post_request: ApiGetIdentifyStarsJobResultPostRequest) -> ApiGetIdentifyStarsJobResultPost200Response:  # <--- FIXED: Now returns the 200Response model
+        return await api_get_identify_stars_job_result_post(api_get_identify_stars_job_result_post_request)

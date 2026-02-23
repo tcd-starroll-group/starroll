@@ -1,4 +1,4 @@
-import type { StarMeta } from '../../../../gen/ts/models/index'
+import type { StarMeta } from '../../../../../gen/ts/models/StarMeta'
 
 // 原始 JSON 数据格式
 interface RawStarData {
@@ -16,7 +16,7 @@ interface RawStarData {
  * 将原始 JSON 数据转换为 StarMeta 格式
  */
 function convertToStarMeta(raw: RawStarData): StarMeta {
-  const distance = raw.distance != null && raw.distance >= 0 ? raw.distance : undefined
+  const distance = raw.distance != null && raw.distance >= 0 ? raw.distance : -1
   return {
     hIP: raw.hip,
     equatorialCoordinate: {

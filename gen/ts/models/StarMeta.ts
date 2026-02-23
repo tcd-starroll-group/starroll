@@ -32,49 +32,56 @@ export interface StarMeta {
      * @type {number}
      * @memberof StarMeta
      */
-    hIP?: number;
+    hIP: number;
     /**
      * 
      * @type {EquatorialCoordinate}
      * @memberof StarMeta
      */
-    equatorialCoordinate?: EquatorialCoordinate;
+    equatorialCoordinate: EquatorialCoordinate;
     /**
      * magnitude
      * @type {number}
      * @memberof StarMeta
      */
-    magnitude?: number;
+    magnitude: number;
     /**
      * Proper motion mu_alpha.cos(delta), The proper motion of a star along its right ascension, radian per year
      * @type {number}
      * @memberof StarMeta
      */
-    pmRA?: number;
+    pmRA: number;
     /**
      * Proper motion mu_delta, The proper motion of a star in the direction of declination, the radian per year
      * @type {number}
      * @memberof StarMeta
      */
-    pmDE?: number;
+    pmDE: number;
     /**
      * A measure of its surface temperature, determined by the difference between its measured blue (B) magnitude and its visual (V) magnitude.
      * @type {number}
      * @memberof StarMeta
      */
-    bvColor?: number;
+    bvColor: number;
     /**
      * Distance from earth, light-year
      * @type {number}
      * @memberof StarMeta
      */
-    distance?: number;
+    distance: number;
 }
 
 /**
  * Check if a given object implements the StarMeta interface.
  */
 export function instanceOfStarMeta(value: object): value is StarMeta {
+    if (!('hIP' in value) || value['hIP'] === undefined) return false;
+    if (!('equatorialCoordinate' in value) || value['equatorialCoordinate'] === undefined) return false;
+    if (!('magnitude' in value) || value['magnitude'] === undefined) return false;
+    if (!('pmRA' in value) || value['pmRA'] === undefined) return false;
+    if (!('pmDE' in value) || value['pmDE'] === undefined) return false;
+    if (!('bvColor' in value) || value['bvColor'] === undefined) return false;
+    if (!('distance' in value) || value['distance'] === undefined) return false;
     return true;
 }
 
@@ -88,13 +95,13 @@ export function StarMetaFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
     }
     return {
         
-        'hIP': json['HIP'] == null ? undefined : json['HIP'],
-        'equatorialCoordinate': json['equatorialCoordinate'] == null ? undefined : EquatorialCoordinateFromJSON(json['equatorialCoordinate']),
-        'magnitude': json['magnitude'] == null ? undefined : json['magnitude'],
-        'pmRA': json['pmRA'] == null ? undefined : json['pmRA'],
-        'pmDE': json['pmDE'] == null ? undefined : json['pmDE'],
-        'bvColor': json['bvColor'] == null ? undefined : json['bvColor'],
-        'distance': json['distance'] == null ? undefined : json['distance'],
+        'hIP': json['HIP'],
+        'equatorialCoordinate': EquatorialCoordinateFromJSON(json['equatorialCoordinate']),
+        'magnitude': json['magnitude'],
+        'pmRA': json['pmRA'],
+        'pmDE': json['pmDE'],
+        'bvColor': json['bvColor'],
+        'distance': json['distance'],
     };
 }
 
