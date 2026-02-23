@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { reactive, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 import StarBackground from '@/components/StarBackground.vue'
 import BaseButton from '@/components/BaseButton.vue'
 import request from '@/utils/requests';
@@ -49,11 +50,14 @@ onMounted(async () => {
     console.error("无法获取飞行员档案，请检查 Token 是否有效");
   }
 })
-
+const router = useRouter()
 const handleLogout = () => {
   console.log("Logging out pilot...")
   localStorage.removeItem('token')
   // router.push('/login')
+}
+const goToDetails = () => {
+  router.push({ name: 'UserDetails' }) // This matches the "name" in your router file
 }
 </script>
 
@@ -75,6 +79,9 @@ const handleLogout = () => {
           </div>
         </div>
         <div class="header-actions">
+          <BaseButton variant="primary" @click="goToDetails" class="details-btn">
+            User Details
+          </BaseButton>
           <BaseButton variant="outline" @click="handleLogout">Log Out</BaseButton>
         </div>
       </section>
@@ -271,9 +278,24 @@ const handleLogout = () => {
   width: 100%;
 }
 
+.header-actions {
+  display: flex;
+  flex-direction: row; /* Aligns buttons horizontally */
+  gap: 12px;           /* Adjust this value (e.g., 16px, 20px) for more/less space */
+  align-items: center;
+}
+
 @media (max-width: 600px) {
   .stats-grid { grid-template-columns: 1fr; }
   .profile-header { flex-direction: column; text-align: center; }
   .badge-row { justify-content: center; }
+  .header-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .header-actions > button {
+    width: 100%; /* Makes buttons full-width on mobile */
+  }
 }
 </style>
