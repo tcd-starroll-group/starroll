@@ -83,7 +83,7 @@ const handleResetRequest = async () => {
       </div>
 
       <div class="footer-links">
-        <a href="/login">Return to Login</a>
+        <a href="/userLogin">Return to Login</a>
       </div>
     </div>
   </StarBackground>
