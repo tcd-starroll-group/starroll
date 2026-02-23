@@ -55,3 +55,20 @@ Run unit tests:
 ```bash
 npm run test:unit
 ```
+
+## Docker CMD
+Using following cmd for up redis, mysql, minio, kafka by docker.
+```bash
+# In project root directory(starroll) when you open your computer...
+docker-compose up -d
+# Create message Topic(the First time)
+docker exec -it social_kafka /opt/kafka/bin/kafka-topics.sh --create --topic chat_messages --bootstrap-server localhost:9092
+# check the docker, make sure social_mysql, soical_redis, social_kafka, social_minio are running.
+docker-compose ps
+
+# Check whether kafka is running.
+docker exec -it social_kafka /opt/kafka/bin/kafka-topics.sh --list --bootstrap-server localhost:9092
+
+# check musql:
+docker exec -it social_mysql mysql -u root -p -e "use social_system; describe chat_messages;"
+```
