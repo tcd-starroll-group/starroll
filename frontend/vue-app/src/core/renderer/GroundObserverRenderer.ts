@@ -4,6 +4,8 @@ import { loadStarCatalog } from '../astronomy/star-catalog'
 import { getStarName } from '../data/star-names'
 import { absoluteOrientationManager, AbsoluteOrientationData } from '../sensors/AbsoluteOrientation'
 import { raDecToVector3 } from '../astronomy/cartesian-coordinate'
+import { convertHorizontalQuaternionToEquatorialQuaternionPro } from '../astronomy/astronomy'
+import { quadSwapX } from 'three/src/nodes/gpgpu/SubgroupFunctionNode'
 
 /**
  * Star click information
@@ -126,7 +128,13 @@ export class GroundObserverRenderer {
   private updateARCameraLookAt() {
     if (this.absoluteOrientation) {
       const [x, y, z, w] = this.absoluteOrientation
-      this.camera.quaternion.set(x, y, z, w)
+      // TODO 将这个旋转转化到赤道坐标系
+      let ans = convertHorizontalQuaternionToEquatorialQuaternionPro(
+        [x, y, z, w],
+        Date.UTC(2026, 2, 23, 14, 0, 0),
+        { latitude: 53.3498, longitude: -6.2603 },
+      )
+      this.camera.quaternion.set(ans[0], ans[1], ans[2], ans[3])
     } else {
       console.error('GroundObserverRenderer: no absoluteOrientation available')
     }

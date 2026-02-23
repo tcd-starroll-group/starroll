@@ -1,5 +1,6 @@
-import * as model from '../../../../gen/ts/models/index'
+import * as model from '../../../../../gen/ts/models/index'
 import * as astronomy from 'astronomy-engine'
+import * as THREE from 'three'
 
 function degreesToRadians(degrees: number): number {
   return (degrees * Math.PI) / 180
@@ -97,7 +98,52 @@ function convertHorizontalCoordinateToEquatorialCoordinatePro(
   return ans
 }
 
+function convertHorizontalQuaternionToEquatorialQuaternionPro(
+  horizontalQuaternion: [number, number, number, number],
+  timestamp: number,
+  location: model.GPS,
+): [number, number, number, number] {
+  const time = new astronomy.AstroTime(new Date(timestamp))
+  const observer = new astronomy.Observer(location.latitude, location.longitude, 0)
+  // Rotation_HOR_EQJ: horizon -> J2000 mean equatorial (catalog use)
+  // Rotation_HOR_EQD: horizon -> true equatorial of date (current positions)
+  const rotationMatrix = astronomy.Rotation_HOR_EQD(time, observer)
+  const matrix3 = rotationMatrix.rot
+  const frameRotationMatrix = new THREE.Matrix4().set(
+    matrix3[0][0],
+    matrix3[0][1],
+    matrix3[0][2],
+    0,
+    matrix3[1][0],
+    matrix3[1][1],
+    matrix3[1][2],
+    0,
+    matrix3[2][0],
+    matrix3[2][1],
+    matrix3[2][2],
+    0,
+    0,
+    0,
+    0,
+    1,
+  )
+
+  const rotationQuaternion = new THREE.Quaternion()
+    .setFromRotationMatrix(frameRotationMatrix)
+    .normalize()
+  const sourceQuaternion = new THREE.Quaternion(
+    horizontalQuaternion[0],
+    horizontalQuaternion[1],
+    horizontalQuaternion[2],
+    horizontalQuaternion[3],
+  ).normalize()
+
+  const targetQuaternion = rotationQuaternion.multiply(sourceQuaternion).normalize()
+  return [targetQuaternion.x, targetQuaternion.y, targetQuaternion.z, targetQuaternion.w]
+}
+
 export {
   convertHorizontalCoordinateToEquatorialCoordinate,
   convertHorizontalCoordinateToEquatorialCoordinatePro,
+  convertHorizontalQuaternionToEquatorialQuaternionPro,
 }
