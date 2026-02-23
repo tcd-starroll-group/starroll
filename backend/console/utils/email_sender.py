@@ -24,10 +24,8 @@ def send_verification_email(to_email: str, code: str) -> bool:
         msg["From"] = settings.smtp_from_email
         msg["To"] = to_email
 
-        
         text_content = VERIFICATION_EMAIL_TEXT_TEMPLATE.format(code=code)
 
-        
         html_content = VERIFICATION_EMAIL_HTML_TEMPLATE.format(code=code)
 
         msg.attach(MIMEText(text_content, "plain"))
