@@ -142,7 +142,31 @@ function convertHorizontalQuaternionToEquatorialQuaternionPro(
   return [targetQuaternion.x, targetQuaternion.y, targetQuaternion.z, targetQuaternion.w]
 }
 
+/**
+ * 减少四元数的 Roll 值（绕 X 轴旋转 -90 度）
+ * @param orientation [x, y, z, w] 形式的原始四元数数组
+ * @returns 旋转后的 [x, y, z, w] 数组
+ */
+function offsetRoll(
+  orientation: [number, number, number, number],
+): [number, number, number, number] {
+  // 1. 初始化 Three.js 四元数对象
+  const q = new THREE.Quaternion().fromArray(orientation)
+
+  // 2. 创建一个代表绕 X 轴旋转 -90 度的增量四元数
+  // -90度 = -PI / 2 弧度
+  const delta = new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(1, 0, 0), -Math.PI / 2)
+
+  // 3. 在局部坐标系下应用旋转 (q * delta)
+  // 如果需要基于世界坐标系旋转，请改用 q.premultiply(delta)
+  q.multiply(delta)
+
+  // 4. 返回数组格式 [x, y, z, w]
+  return q.toArray() as [number, number, number, number]
+}
+
 export {
+  offsetRoll,
   convertHorizontalCoordinateToEquatorialCoordinate,
   convertHorizontalCoordinateToEquatorialCoordinatePro,
   convertHorizontalQuaternionToEquatorialQuaternionPro,

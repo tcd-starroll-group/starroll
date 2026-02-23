@@ -4,7 +4,10 @@ import { loadStarCatalog } from '../astronomy/star-catalog'
 import { getStarName } from '../data/star-names'
 import { absoluteOrientationManager, AbsoluteOrientationData } from '../sensors/AbsoluteOrientation'
 import { raDecToVector3 } from '../astronomy/cartesian-coordinate'
-import { convertHorizontalQuaternionToEquatorialQuaternionPro } from '../astronomy/astronomy'
+import {
+  convertHorizontalQuaternionToEquatorialQuaternionPro,
+  offsetRoll,
+} from '../astronomy/astronomy'
 
 /**
  * Star click information
@@ -125,13 +128,25 @@ export class GroundObserverRenderer {
   private updateARCameraLookAt() {
     if (this.absoluteOrientation) {
       const [x, y, z, w] = this.absoluteOrientation
-      // TODO 将这个旋转转化到赤道坐标系
+      // let absoluteOrientationWithOffset = offsetRoll([x, y, z, w])
+      // Convert horizontal quaternion to equatorial quaternion for camera
       let ans = convertHorizontalQuaternionToEquatorialQuaternionPro(
         [x, y, z, w],
         Date.UTC(2026, 2, 23, 14, 0, 0),
         { latitude: 53.3498, longitude: -6.2603 },
       )
+
       this.camera.quaternion.set(ans[0], ans[1], ans[2], ans[3])
+
+      // Also convert the raw absolute orientation quaternion to Euler angles and log
+      const deviceQuat = new THREE.Quaternion(x, y, z, w)
+      const euler = new THREE.Euler().setFromQuaternion(deviceQuat, 'ZYX')
+      const radToDeg = (r: number) => (r * 180) / Math.PI
+      console.log('absoluteOrientation (quaternion):', [x, y, z, w], '-> euler (deg):', {
+        roll: Number(radToDeg(euler.x).toFixed(2)),
+        pitch: Number(radToDeg(euler.y).toFixed(2)),
+        yaw: Number(radToDeg(euler.z).toFixed(2)),
+      })
     } else {
       console.error('GroundObserverRenderer: no absoluteOrientation available')
     }
@@ -627,9 +642,7 @@ export class GroundObserverRenderer {
       const cleanBase = baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl
 
       try {
-        const response = await fetch(
-          `${cleanBase}/data/star-catalog/stars-data/HIP_${star.hIP}.json`,
-        )
+        const response = await fetch(`${cleanBase}/data/stars-data/HIP_${star.hIP}.json`)
         const contentType = response.headers.get('content-type')
         if (response.ok && contentType && contentType.indexOf('application/json') !== -1) {
           detailedData = await response.json()
