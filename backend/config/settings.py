@@ -39,6 +39,13 @@ class Settings:
     redis_port: int = int(os.getenv("REDIS_PORT", "6379"))
     redis_password: str = os.getenv("REDIS_PASSWORD", None)
     redis_db: int = int(os.getenv("REDIS_DB", "0"))
+
+    # SMTP Configuration
+    smtp_host: str = os.getenv("SMTP_HOST", "smtp.gmail.com")
+    smtp_port: int = int(os.getenv("SMTP_PORT", "587"))
+    smtp_user: str = os.getenv("SMTP_USER")
+    smtp_password: str = os.getenv("SMTP_PASSWORD")
+    smtp_from_email: str = os.getenv("SMTP_FROM_EMAIL")
   
 
     @property

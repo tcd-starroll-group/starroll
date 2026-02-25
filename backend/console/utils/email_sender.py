@@ -3,16 +3,20 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
 from backend.config import settings
-from backend.constant.email import EMAIL_SUBJECT
+from backend.constant.email import (
+    EMAIL_SUBJECT,
+    VERIFICATION_EMAIL_TEXT_TEMPLATE,
+    VERIFICATION_EMAIL_HTML_TEMPLATE,
+)
 
 
 def send_verification_email(to_email: str, code: str) -> bool:
     """
-    发送验证码邮件。
+    Semd verification email
 
-    :param to_email: 收件人邮箱
-    :param code: 6位验证码
-    :return: 是否发送成功
+    :param to_email: receiver email adress
+    :param code: 6digit verification code
+    :return: boolean param for send success
     """
     try:
         msg = MIMEMultipart("alternative")
@@ -20,39 +24,11 @@ def send_verification_email(to_email: str, code: str) -> bool:
         msg["From"] = settings.smtp_from_email
         msg["To"] = to_email
 
-        # 纯文本内容
-        text_content = f"""Hello,
+        
+        text_content = VERIFICATION_EMAIL_TEXT_TEMPLATE.format(code=code)
 
-Your StarRoll password reset verification code is:
-
-    {code}
-
-This code will expire in 10 minutes. If you did not request a password reset, please ignore this email.
-
-Best regards,
-StarRoll Team
-"""
-
-        # HTML 内容（更美观）
-        html_content = f"""
-<html>
-<body style="font-family: Arial, sans-serif; padding: 20px;">
-    <h2 style="color: #333;">StarRoll Password Reset</h2>
-    <p>Hello,</p>
-    <p>Your verification code is:</p>
-    <div style="background: #f5f5f5; padding: 15px 25px; font-size: 28px;
-                font-weight: bold; letter-spacing: 8px; text-align: center;
-                border-radius: 8px; margin: 20px 0; color: #333;">
-        {code}
-    </div>
-    <p>This code will expire in <strong>10 minutes</strong>.</p>
-    <p style="color: #999; font-size: 12px;">
-        If you did not request a password reset, please ignore this email.
-    </p>
-    <p>Best regards,<br/>StarRoll Team</p>
-</body>
-</html>
-"""
+        
+        html_content = VERIFICATION_EMAIL_HTML_TEMPLATE.format(code=code)
 
         msg.attach(MIMEText(text_content, "plain"))
         msg.attach(MIMEText(html_content, "html"))
