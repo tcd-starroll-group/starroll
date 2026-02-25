@@ -128,25 +128,24 @@ export class GroundObserverRenderer {
   private updateARCameraLookAt() {
     if (this.absoluteOrientation) {
       const [x, y, z, w] = this.absoluteOrientation
-      // let absoluteOrientationWithOffset = offsetRoll([x, y, z, w])
       // Convert horizontal quaternion to equatorial quaternion for camera
       let ans = convertHorizontalQuaternionToEquatorialQuaternionPro(
         [x, y, z, w],
-        Date.UTC(2026, 2, 23, 14, 0, 0),
+        Date.UTC(2026, 1, 25, 1, 0, 0),
         { latitude: 53.3498, longitude: -6.2603 },
       )
 
       this.camera.quaternion.set(ans[0], ans[1], ans[2], ans[3])
 
       // Also convert the raw absolute orientation quaternion to Euler angles and log
-      const deviceQuat = new THREE.Quaternion(x, y, z, w)
-      const euler = new THREE.Euler().setFromQuaternion(deviceQuat, 'ZYX')
-      const radToDeg = (r: number) => (r * 180) / Math.PI
-      console.log('absoluteOrientation (quaternion):', [x, y, z, w], '-> euler (deg):', {
-        roll: Number(radToDeg(euler.x).toFixed(2)),
-        pitch: Number(radToDeg(euler.y).toFixed(2)),
-        yaw: Number(radToDeg(euler.z).toFixed(2)),
-      })
+      // const deviceQuat = new THREE.Quaternion(x, y, z, w)
+      // const euler = new THREE.Euler().setFromQuaternion(deviceQuat, 'ZYX')
+      // const radToDeg = (r: number) => (r * 180) / Math.PI
+      // console.log('absoluteOrientation (quaternion):', [x, y, z, w], '-> euler (deg):', {
+      //   x: Number(radToDeg(euler.x).toFixed(2)),
+      //   y: Number(radToDeg(euler.y).toFixed(2)),
+      //   z: Number(radToDeg(euler.z).toFixed(2)),
+      // })
     } else {
       console.error('GroundObserverRenderer: no absoluteOrientation available')
     }

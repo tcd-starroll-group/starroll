@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
 import { useGroundObserver } from '../utils/useGroundObserver';
-import TopBar from '../components/TopBar.vue';
 import StarInfoPanel from '../components/StarInfoPanel.vue';
 import StarPopup from '../components/StarPopup.vue';
 import type { StarClickInfo } from '@/core/renderer/GroundObserverRenderer';
@@ -10,7 +9,6 @@ const containerRef = ref<HTMLElement | null>(null);
 
 const { 
     init, 
-    arModeEnabled,
     enableARMode,
     selectedStar,
     closeStarInfo,
@@ -48,7 +46,6 @@ onMounted(async () => {
     <div ref="containerRef" class="canvas-container" @click.self="closeStarPopup"></div>
     
     <div class="ui-layer">
-        <TopBar v-if="!arModeEnabled" />
         <StarPopup 
             :star-info="clickedStarInfo" 
             @close="closeStarPopup" 

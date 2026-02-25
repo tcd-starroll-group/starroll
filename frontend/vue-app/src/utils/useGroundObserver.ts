@@ -1,15 +1,12 @@
 import { ref, shallowRef } from 'vue'
 import { GroundObserverRenderer, type StarClickInfo } from '@/core/renderer/GroundObserverRenderer'
+import * as model from '../../../../gen/ts/models/index'
 
 // 全局状态
 const rendererInstance = shallowRef<GroundObserverRenderer | null>(null)
-const currentTime = ref<Date>(new Date())
 const arModeEnabled = ref(false)
-const cameraOrientation = ref({ azimuth: 0, altitude: 0 })
 const showConstellationLines = ref(true)
-const showStarLabels = ref(true)
 const selectedStar = ref<StarClickInfo | null>(null)
-const isRequestingLocation = ref(false)
 
 /**
  * 地面观测者组合式函数
@@ -55,7 +52,9 @@ export function useGroundObserver() {
     }
   }
 
-  // ... 其他方法保持不变 ...
+  // 设置渲染使用的 UTC 时间
+  const setTime = (timestamp: number) => {}
+
   const toggleConstellationLines = () => {
     showConstellationLines.value = !showConstellationLines.value
     if (rendererInstance.value)
@@ -69,16 +68,9 @@ export function useGroundObserver() {
   return {
     init,
     renderer: rendererInstance,
-    currentTime,
-    arModeEnabled,
     enableARMode,
     disableARMode,
-    cameraOrientation,
-    showConstellationLines,
-    toggleConstellationLines,
-    showStarLabels,
     selectedStar,
     closeStarInfo,
-    isRequestingLocation,
   }
 }
