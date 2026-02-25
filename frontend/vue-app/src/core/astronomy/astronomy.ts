@@ -105,10 +105,11 @@ function convertHorizontalQuaternionToEquatorialQuaternionPro(
 ): [number, number, number, number] {
   const time = new astronomy.AstroTime(new Date(timestamp))
   const observer = new astronomy.Observer(location.latitude, location.longitude, 0)
-  // Rotation_HOR_EQJ: horizon -> J2000 mean equatorial (catalog use)
-  // Rotation_HOR_EQD: horizon -> true equatorial of date (current positions)
+
+  // 1. 获取 HOR -> EQD 旋转矩阵
   const rotationMatrix = astronomy.Rotation_HOR_EQD(time, observer)
   const matrix3 = rotationMatrix.rot
+
   const frameRotationMatrix = new THREE.Matrix4().set(
     matrix3[0][0],
     matrix3[0][1],
@@ -128,9 +129,15 @@ function convertHorizontalQuaternionToEquatorialQuaternionPro(
     1,
   )
 
-  const rotationQuaternion = new THREE.Quaternion()
-    .setFromRotationMatrix(frameRotationMatrix)
-    .normalize()
+  const qH2E_astro = new THREE.Quaternion().setFromRotationMatrix(frameRotationMatrix).normalize()
+
+  // Z = S x=E y=U.       Astro : X=N Y=W Z=U
+  // 从 你的坐标系(N-U-E) 转到 Astro(N-W-U) => 绕X轴转 +90 度
+  const qUserToAstro = new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(1, 0, 0), Math.PI)
+
+  // 从 Astro 转回 你的坐标系 => 绕X轴转 -90 度 (直接取逆)
+  const qAstroToUser = qUserToAstro.clone().invert()
+
   const sourceQuaternion = new THREE.Quaternion(
     horizontalQuaternion[0],
     horizontalQuaternion[1],
@@ -138,7 +145,15 @@ function convertHorizontalQuaternionToEquatorialQuaternionPro(
     horizontalQuaternion[3],
   ).normalize()
 
-  const targetQuaternion = rotationQuaternion.multiply(sourceQuaternion).normalize()
+  // 3. 组合最终的四元数 (THREE.js 的 multiply 是按照从左到右执行 A * B 的)
+  // 顺序: qAstroToUser * qH2E_astro * qUserToAstro * sourceQuaternion
+  const targetQuaternion = new THREE.Quaternion()
+    .copy(qAstroToUser)
+    .multiply(qH2E_astro)
+    .multiply(qUserToAstro)
+    .multiply(sourceQuaternion)
+    .normalize()
+
   return [targetQuaternion.x, targetQuaternion.y, targetQuaternion.z, targetQuaternion.w]
 }
 

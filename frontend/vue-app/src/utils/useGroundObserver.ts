@@ -1,76 +1,48 @@
-import { ref, shallowRef } from 'vue'
 import { GroundObserverRenderer, type StarClickInfo } from '@/core/renderer/GroundObserverRenderer'
 import * as model from '../../../../gen/ts/models/index'
+import { ref } from 'vue'
 
-// 全局状态
-const rendererInstance = shallowRef<GroundObserverRenderer | null>(null)
-const arModeEnabled = ref(false)
-const showConstellationLines = ref(true)
-const selectedStar = ref<StarClickInfo | null>(null)
+export class GroundObserver {
+  private rendererInstance: GroundObserverRenderer | null = null
+  public selectedStar = ref<StarClickInfo | null>(null)
 
-/**
- * 地面观测者组合式函数
- * 模拟从地球表面观测星空
- */
-export function useGroundObserver() {
-  /**
-   * 初始化
-   */
-  const init = (container: HTMLElement) => {
-    if (rendererInstance.value) return
-
-    rendererInstance.value = new GroundObserverRenderer(container)
-
-    // 设置星星点击回调
-    rendererInstance.value.setOnStarClick((starInfo) => {
-      selectedStar.value = starInfo
+  constructor(container: HTMLElement) {
+    this.rendererInstance = new GroundObserverRenderer(container)
+    this.rendererInstance.setOnStarClick((starInfo) => {
+      this.selectedStar.value = starInfo
     })
   }
 
-  /**
-   * 启用 AR 模式
-   */
-  const enableARMode = async () => {
-    if (!rendererInstance.value) {
-      console.error('渲染器未初始化')
-      return false
+  public async enableARMode(): Promise<boolean> {
+    return this.rendererInstance!.enableARMode()
+  }
+
+  public disableARMode() {
+    this.rendererInstance!.disableARMode()
+  }
+
+  public setTimestamp(timestamp: number) {
+    this.rendererInstance!.timestamp = timestamp
+  }
+
+  public setLocation(location: model.GPS) {
+    this.rendererInstance!.location = location
+  }
+
+  public async testTimeFlash() {
+    const start_time = 1772034664175
+    let timestamp = start_time
+    if (!this.rendererInstance) return
+    this.rendererInstance.timestamp = timestamp
+
+    const multiplier = 1000 // simulated time runs 100x real time
+    const intervalMs = 100 // update every 0.1s real time
+    const incrementMs = intervalMs * multiplier // simulated ms per tick
+
+    while (true) {
+      await new Promise((resolve) => setTimeout(resolve, intervalMs))
+      timestamp += incrementMs
+      this.rendererInstance.timestamp = timestamp
     }
-
-    const success = await rendererInstance.value.enableARMode()
-    arModeEnabled.value = success
-
-    return success
-  }
-
-  /**
-   * 禁用 AR 模式
-   */
-  const disableARMode = () => {
-    if (rendererInstance.value) {
-      rendererInstance.value.disableARMode()
-      arModeEnabled.value = false
-    }
-  }
-
-  // 设置渲染使用的 UTC 时间
-  const setTime = (timestamp: number) => {}
-
-  const toggleConstellationLines = () => {
-    showConstellationLines.value = !showConstellationLines.value
-    if (rendererInstance.value)
-      rendererInstance.value.setConstellationLinesVisible(showConstellationLines.value)
-  }
-
-  const closeStarInfo = () => {
-    selectedStar.value = null
-  }
-
-  return {
-    init,
-    renderer: rendererInstance,
-    enableARMode,
-    disableARMode,
-    selectedStar,
-    closeStarInfo,
   }
 }

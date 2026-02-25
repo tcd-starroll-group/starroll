@@ -1,13 +1,11 @@
 import * as THREE from 'three'
 import type { StarMeta } from '../../../../../gen/ts/models/StarMeta'
+import type { GPS } from '../../../../../gen/ts/models/GPS'
 import { loadStarCatalog } from '../astronomy/star-catalog'
 import { getStarName } from '../data/star-names'
 import { absoluteOrientationManager, AbsoluteOrientationData } from '../sensors/AbsoluteOrientation'
 import { raDecToVector3 } from '../astronomy/cartesian-coordinate'
-import {
-  convertHorizontalQuaternionToEquatorialQuaternionPro,
-  offsetRoll,
-} from '../astronomy/astronomy'
+import { convertHorizontalQuaternionToEquatorialQuaternionPro } from '../astronomy/astronomy'
 
 /**
  * Star click information
@@ -37,6 +35,11 @@ export interface StarClickInfo {
  * Simulates sky view from Earth surface
  */
 export class GroundObserverRenderer {
+  // millisecond
+  public timestamp: number = 1772034664175
+  public location: GPS = { longitude: -6.2603, latitude: 85.3498 }
+  //  { longitude: -6.2603, latitude: 53.3498 }
+
   private scene: THREE.Scene
   // 用于AR渲染的camera，不是设备的camera
   private camera: THREE.PerspectiveCamera
@@ -131,12 +134,10 @@ export class GroundObserverRenderer {
       // Convert horizontal quaternion to equatorial quaternion for camera
       let ans = convertHorizontalQuaternionToEquatorialQuaternionPro(
         [x, y, z, w],
-        Date.UTC(2026, 1, 25, 1, 0, 0),
-        { latitude: 53.3498, longitude: -6.2603 },
+        this.timestamp,
+        this.location,
       )
-
       this.camera.quaternion.set(ans[0], ans[1], ans[2], ans[3])
-
       // Also convert the raw absolute orientation quaternion to Euler angles and log
       // const deviceQuat = new THREE.Quaternion(x, y, z, w)
       // const euler = new THREE.Euler().setFromQuaternion(deviceQuat, 'ZYX')
