@@ -11,14 +11,15 @@ async def api_reset_password_send_code_post(
 ) -> ApiChangePasswordPost200Response:
     print(f"Received forgot password request for email: {reset_password_send_code_request.email}")
 
-    db = next(get_db())
+    db_gen = get_db()
+    db = next(db_gen)
     try:
         # 1. check email exist
         user = User.get_by_email(db, reset_password_send_code_request.email)
         if not user:
             raise HTTPException(status_code=404, detail="Email not found")
         if user.username != reset_password_send_code_request.user_name:
-             raise HTTPException(status_code=400, detail="User not found")
+            raise HTTPException(status_code=400, detail="User not found")
 
         # 2. loading code
         code = verification_code_store.generate_verification_code()
@@ -37,3 +38,8 @@ async def api_reset_password_send_code_post(
             raise e
         print(f"Send verification code failed: {e}")
         raise HTTPException(status_code=500, detail="Internal Server Error")
+    finally:
+        try:
+            db_gen.close()
+        except Exception:
+            pass

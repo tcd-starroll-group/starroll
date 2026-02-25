@@ -1,4 +1,4 @@
-"""验证码存储工具（用于忘记密码、注册等场景）"""
+"""Verification code storage utility (for forgot password, registration, etc.)"""
 from typing import Optional
 
 from backend.config import settings
@@ -6,23 +6,23 @@ from backend.console.dal.cache import VerificationCodeDAO
 
 
 class VerificationCodeStore:
-    """验证码存储类（使用DAL层获取Redis操作）"""
+    """Verification code storage class (uses DAL layer for Redis operations)"""
     def __init__(self):
-        # 使用DAL层的验证码操作类
+        # Use verification code operation class from DAL layer
         self.dao = VerificationCodeDAO(settings)
 
     def generate_verification_code(self, length: int = 6) -> str:
-        """生成6位数字验证码"""
+        """Generate 6-digit numeric verification code"""
         return self.dao.generate_code(length)
 
     def save_verification_code(self, target: str, code: Optional[str] = None) -> str:
-        """保存验证码到Redis，返回生成的验证码"""
+        """Save verification code to Redis, return generated verification code"""
         return self.dao.save_code(target, code)
 
     def verify_verification_code(self, target: str, code: str) -> bool:
-        """验证验证码是否有效（验证成功后删除，实现一次使用）"""
+        """Verify if verification code is valid (delete after successful verification for one-time use)"""
         return self.dao.verify_code(target, code)
 
 
-# 全局单例实例（核心：必须在文件顶层定义，且命名完全一致）
+# Global singleton instance (Core requirement: must be defined at file top level with exact naming)
 verification_code_store = VerificationCodeStore()

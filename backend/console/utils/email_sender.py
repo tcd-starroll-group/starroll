@@ -12,11 +12,11 @@ from backend.constant.email import (
 
 def send_verification_email(to_email: str, code: str) -> bool:
     """
-    发送验证码邮件。
+    Semd verification email
 
-    :param to_email: 收件人邮箱
-    :param code: 6位验证码
-    :return: 是否发送成功
+    :param to_email: receiver email adress
+    :param code: 6digit verification code
+    :return: boolean param for send success
     """
     try:
         msg = MIMEMultipart("alternative")
@@ -24,10 +24,10 @@ def send_verification_email(to_email: str, code: str) -> bool:
         msg["From"] = settings.smtp_from_email
         msg["To"] = to_email
 
-        # 纯文本内容
+        
         text_content = VERIFICATION_EMAIL_TEXT_TEMPLATE.format(code=code)
 
-        # HTML 内容（更美观）
+        
         html_content = VERIFICATION_EMAIL_HTML_TEMPLATE.format(code=code)
 
         msg.attach(MIMEText(text_content, "plain"))
