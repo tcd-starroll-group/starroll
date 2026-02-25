@@ -73,7 +73,30 @@ paths:
                     type: string
                   notificationSent:
                     type: boolean
-  /api/listBlogs:
+
+  /api/listUserBlogs:
+    post:
+      summary: "List all blogs posted by a specific user"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                userCredentials:
+                  $ref: "#/components/schemas/userCredentials"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  blogsList:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/blogPreview"
+
+  /api/listStarBlogs:
     post:
       summary: "List all blogs under the certain star"
       requestBody:
@@ -103,7 +126,7 @@ paths:
           application/json:
             schema:
               properties:
-                HIP:
+                blogID:
                   type: string
                 userCredentials:
                   $ref: "#/components/schemas/userCredentials"
@@ -148,9 +171,9 @@ paths:
                   blogID:
                     type: string
 
-  /api/getSavedBlogs:
+  /api/listSavedBlogs:
     post:
-      summary: "List the blogs user saved"
+      summary: "List all blogs saved by the user"
       requestBody:
         content:
           application/json:
@@ -158,8 +181,7 @@ paths:
               properties:
                 userCredentials:
                   $ref: "#/components/schemas/userCredentials"
-                blogID:
-                  type: string
+                
       responses:
         "200":
           description: OK
@@ -170,11 +192,7 @@ paths:
                   blogsList:
                     type: array
                     items:
-                      properties:
-                        allOf:
-                          $ref: "#/components/schemas/blogPreview"
-                          HIP:
-                            type: string
+                      $ref: "#/components/schemas/blogPreview"
 
   # Data collection module
   /api/getLocation:
@@ -1284,6 +1302,9 @@ paths:
                   $ref: "#/components/schemas/userCredentials"
                 blogID:
                   type: string
+                reason:            
+                  type: string
+                  description: "Reason for reporting the blog"
       responses:
         "200":
           description: OK

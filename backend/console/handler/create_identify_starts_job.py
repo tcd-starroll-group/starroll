@@ -13,7 +13,8 @@ from backend.console.dal.tos import upload_bytes
 from backend.console.dal.rds.identify_stars_job import IdentifyStarsJob
 from backend.console.dal.rds.client import get_db
 from backend.constant import tos as tos_const
-from backend.console.utils.auth import verify_access_token, verify_user_id_and_token
+from backend.console.utils.auth import verify_access_token
+import backend.console.utils.auth as auth_module
 from backend.constant import star_identify as star_identify_const
 
 logger = logging.getLogger(__name__)
@@ -35,7 +36,7 @@ async def api_create_identify_stars_job_post(
         raise HTTPException(status_code=400, detail="image is required")
 
     # Verify access token and user ID
-    verify_user_id_and_token(request.token, request.user_id)
+    auth_module.verify_user_id_and_token(request.token, request.user_id)
 
     logger.info(
         f"Token verification successful for user_id: {request.user_id}")

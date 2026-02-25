@@ -4,7 +4,7 @@ from fastapi import HTTPException
 
 from backend.console.dal.rds.identify_stars_job import IdentifyStarsJob as IdentifyStarsJobDAL
 from backend.console.dal.rds.client import get_db
-from backend.console.utils.auth import verify_user_id_and_token
+import backend.console.utils.auth as auth_module
 
 from gen.py.src.openapi_server.models.api_get_identify_stars_job_result_post_request import ApiGetIdentifyStarsJobResultPostRequest
 from gen.py.src.openapi_server.models.api_get_identify_stars_job_result_post200_response import ApiGetIdentifyStarsJobResultPost200Response
@@ -16,7 +16,7 @@ async def api_get_identify_stars_job_result_post(
 ) -> ApiGetIdentifyStarsJobResultPost200Response:
 
     # 1. Auth
-    verify_user_id_and_token(request.user_credentials.token, request.user_credentials.user_id)
+    auth_module.verify_user_id_and_token(request.user_credentials.token, request.user_credentials.user_id)
 
     db_session = next(get_db())
     try:

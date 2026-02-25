@@ -31,18 +31,36 @@ from openapi_server.models.api_get_identify_stars_job_result_post_request import
 from openapi_server.models.api_get_identify_stars_job_result_post200_response import ApiGetIdentifyStarsJobResultPost200Response
 from backend.console.handler.get_identify_stars_job_result import api_get_identify_stars_job_result_post
 
+from openapi_server.models.api_create_blog_post_request import ApiCreateBlogPostRequest
+from openapi_server.models.api_create_blog_post200_response import ApiCreateBlogPost200Response
+from openapi_server.models.api_view_blog_post_request import ApiViewBlogPostRequest
+from openapi_server.models.blog import Blog
+from openapi_server.models.api_list_blogs_post_request import ApiListBlogsPostRequest
+from openapi_server.models.api_list_blogs_post200_response import ApiListBlogsPost200Response
+from openapi_server.models.api_get_saved_blogs_post_request import ApiGetSavedBlogsPostRequest
+from openapi_server.models.api_get_saved_blogs_post200_response import ApiGetSavedBlogsPost200Response
+from openapi_server.models.api_delete_blog_post200_response import ApiDeleteBlogPost200Response
+from openapi_server.models.api_like_blog_post200_response import ApiLikeBlogPost200Response
+from openapi_server.models.api_comment_blog_post_request import ApiCommentBlogPostRequest
+from openapi_server.models.api_comment_blog_post200_response import ApiCommentBlogPost200Response
+
+from backend.console.handler.create_blog import api_create_blog_post
+from backend.console.handler.view_blog import api_view_blog_post
+from backend.console.handler.list_star_blogs import api_list_star_blogs_post
+from backend.console.handler.list_user_blogs import api_list_user_blogs_post
+from backend.console.handler.list_saved_blogs import api_list_saved_blogs_post
+from backend.console.handler.delete_blog import api_delete_blog_post
+from backend.console.handler.save_blog import api_save_blog_post
+from backend.console.handler.report_blog import api_report_blog_post
+from backend.console.handler.like_blog import api_like_blog_post
+from backend.console.handler.comment_blog import api_comment_blog_post
+
 
 class StarrollApiImpl(BaseDefaultApi):
-    async def api_user_login_post(
-        self,
-        user_auth: UserAuth,
-    ) -> TokenResponse:
+    async def api_user_login_post(self, user_auth: UserAuth) -> TokenResponse:
         return await api_user_login_post(user_auth)
 
-    async def api_user_reg_post(
-        self,
-        user_auth: UserAuth,
-    ) -> UserResponse:
+    async def api_user_reg_post(self, user_auth: UserAuth) -> UserResponse:
         return await api_user_reg_post(user_auth)
 
     async def api_delete_user_post(self, user_auth: UserAuth):
@@ -71,3 +89,33 @@ class StarrollApiImpl(BaseDefaultApi):
 
     async def api_health_get(self) -> None:
         return
+
+    async def api_create_blog_post(self, api_create_blog_post_request: ApiCreateBlogPostRequest) -> ApiCreateBlogPost200Response:
+        return await api_create_blog_post(api_create_blog_post_request)
+
+    async def api_view_blog_post(self, api_view_blog_post_request: ApiViewBlogPostRequest) -> Blog:
+        return await api_view_blog_post(api_view_blog_post_request)
+
+    async def api_list_star_blogs_post(self, api_list_blogs_post_request: ApiListBlogsPostRequest) -> ApiListBlogsPost200Response:
+        return await api_list_star_blogs_post(api_list_blogs_post_request)
+
+    async def api_list_user_blogs_post(self, api_get_saved_blogs_post_request: ApiGetSavedBlogsPostRequest) -> ApiListBlogsPost200Response:
+        return await api_list_user_blogs_post(api_get_saved_blogs_post_request)
+
+    async def api_list_saved_blogs_post(self, api_get_saved_blogs_post_request: ApiGetSavedBlogsPostRequest) -> ApiGetSavedBlogsPost200Response:
+        return await api_list_saved_blogs_post(api_get_saved_blogs_post_request)
+
+    async def api_delete_blog_post(self, api_get_saved_blogs_post_request: ApiGetSavedBlogsPostRequest) -> ApiDeleteBlogPost200Response:
+        return await api_delete_blog_post(api_get_saved_blogs_post_request)
+
+    async def api_save_blog_post(self, api_get_saved_blogs_post_request: ApiGetSavedBlogsPostRequest) -> ApiDeleteBlogPost200Response:
+        return await api_save_blog_post(api_get_saved_blogs_post_request)
+
+    async def api_report_blog_post(self, api_get_saved_blogs_post_request: ApiGetSavedBlogsPostRequest) -> ApiDeleteBlogPost200Response:
+        return await api_report_blog_post(api_get_saved_blogs_post_request)
+
+    async def api_like_blog_post(self, api_get_saved_blogs_post_request: ApiGetSavedBlogsPostRequest) -> ApiLikeBlogPost200Response:
+        return await api_like_blog_post(api_get_saved_blogs_post_request)
+
+    async def api_comment_blog_post(self, api_comment_blog_post_request: ApiCommentBlogPostRequest) -> ApiCommentBlogPost200Response:
+        return await api_comment_blog_post(api_comment_blog_post_request)

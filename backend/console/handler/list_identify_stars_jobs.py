@@ -7,7 +7,7 @@ from gen.py.src.openapi_server.models.api_list_identify_stars_jobs_post_request 
 
 from backend.console.dal.rds.identify_stars_job import IdentifyStarsJob
 from backend.console.dal.rds.client import get_db
-from backend.console.utils.auth import verify_user_id_and_token
+import backend.console.utils.auth as auth_module
 from backend.constant.sort import SORT_BY_CREATE_TIME, SORT_ORDER_DESC, SORT_ORDER_ASC
 
 logger = logging.getLogger(__name__)
@@ -20,7 +20,7 @@ async def api_list_identify_stars_jobs_post(
     """List identify stars jobs for a user"""
 
     # Verify access token
-    verify_user_id_and_token(
+    auth_module.verify_user_id_and_token(
         request.user_credentials.token, request.user_credentials.user_id)
 
     # Get pagination parameters

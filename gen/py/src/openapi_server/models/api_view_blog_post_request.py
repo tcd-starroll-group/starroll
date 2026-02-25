@@ -32,6 +32,7 @@ class ApiViewBlogPostRequest(BaseModel):
     """
     ApiViewBlogPostRequest
     """ # noqa: E501
+    blog_id: Optional[StrictStr] = Field(default=None, alias="blogID")
     hip: Optional[StrictStr] = Field(default=None, alias="HIP")
     user_credentials: Optional[UserCredentials] = Field(default=None, alias="userCredentials")
     __properties: ClassVar[List[str]] = ["HIP", "userCredentials"]
