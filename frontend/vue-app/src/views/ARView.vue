@@ -2,6 +2,7 @@
 import { onMounted, ref, watch } from 'vue';
 import { GroundObserver } from '../utils/useGroundObserver';
 import StarPopupPanel from '../components/StarPopup.vue';
+import PermissionRequest from '../components/PermissionRequest.vue';
 import type { StarClickInfo } from '@/core/renderer/GroundObserverRenderer';
 
 const containerRef = ref<HTMLElement | null>(null);
@@ -9,7 +10,8 @@ let groundObserver: GroundObserver | null = null;
 
 const clickedStarInfo = ref<StarClickInfo | null>(null);
 
-
+// request permission
+const showPermission = ref(true);
 // click stars
 let selectedStar = ref<StarClickInfo | null>(null);
 const closeStarInfo = () => {
@@ -21,21 +23,36 @@ const closeStarInfo = () => {
 };
 
 onMounted(async () => {
-    if (containerRef.value) {
-        groundObserver = new GroundObserver(containerRef.value);
+    if (!containerRef.value) {
+        console.error('containerRef.value is null');
+        return;
+    }
+
+    const createObserverAndStart = async () => {
+        groundObserver = new GroundObserver(containerRef.value!);
         // bind the selectedStar ref from the GroundObserver instance
         selectedStar = groundObserver.selectedStar;
         watch(selectedStar, (val) => {
-            clickedStarInfo.value = val
-        })
+            clickedStarInfo.value = val;
+        });
+
         try {
-            await groundObserver.enableARMode();
+            await groundObserver!.enableARMode();
             // groundObserver.testTimeFlash();
         } catch (error) {
             console.error('Error enabling AR mode:', error);
         }
-    }else{
-        console.error('containerRef.value is null')
+    };
+
+    if (showPermission.value) {
+        const stopWatch = watch(showPermission, async (v) => {
+            if (!v) {
+                stopWatch();
+                await createObserverAndStart();
+            }
+        });
+    } else {
+        await createObserverAndStart();
     }
 });
 
@@ -47,10 +64,7 @@ onMounted(async () => {
     <div ref="containerRef" class="canvas-container" @click.self=""></div>
     
     <div class="ui-layer">        
-        <div class="horizon-line">
-          <div class="horizon-label">Horizon</div>
-        </div>
-        
+        <PermissionRequest v-if="showPermission" @granted="() => (showPermission = false)" />
         <StarPopupPanel 
             :starInfo="clickedStarInfo"
             @close="closeStarInfo"

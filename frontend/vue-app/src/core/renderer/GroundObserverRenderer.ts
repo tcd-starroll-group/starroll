@@ -119,7 +119,8 @@ export class GroundObserverRenderer {
     })
 
     absoluteOrientationManager.addListener((quaternion: AbsoluteOrientationData) => {
-      this.absoluteOrientation = quaternion.quaternion
+      const q = quaternion.quaternion
+      this.absoluteOrientation = [q.x, q.y, q.z, q.w]
       this.updateARCameraLookAt()
     })
     absoluteOrientationManager.startListening()
