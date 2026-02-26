@@ -35,8 +35,8 @@ export class GroundObserver {
     if (!this.rendererInstance) return
     this.rendererInstance.timestamp = timestamp
 
-    const multiplier = 1000 // simulated time runs 100x real time
-    const intervalMs = 100 // update every 0.1s real time
+    const multiplier = 2000
+    const intervalMs = 50
     const incrementMs = intervalMs * multiplier // simulated ms per tick
 
     while (true) {

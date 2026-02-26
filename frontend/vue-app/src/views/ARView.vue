@@ -30,7 +30,7 @@ onMounted(async () => {
         })
         try {
             await groundObserver.enableARMode();
-            groundObserver.testTimeFlash();
+            // groundObserver.testTimeFlash();
         } catch (error) {
             console.error('Error enabling AR mode:', error);
         }

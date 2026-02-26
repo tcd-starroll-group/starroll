@@ -36,8 +36,8 @@ export interface StarClickInfo {
  */
 export class GroundObserverRenderer {
   // millisecond
-  public timestamp: number = 1772034664175
-  public location: GPS = { longitude: -6.2603, latitude: 85.3498 }
+  public timestamp: number = 1772069929000
+  public location: GPS = { longitude: -6.2603, latitude: 53.3498 }
   //  { longitude: -6.2603, latitude: 53.3498 }
 
   private scene: THREE.Scene

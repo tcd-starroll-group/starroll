@@ -106,38 +106,44 @@ function convertHorizontalQuaternionToEquatorialQuaternionPro(
   const time = new astronomy.AstroTime(new Date(timestamp))
   const observer = new astronomy.Observer(location.latitude, location.longitude, 0)
 
-  // 1. 获取 HOR -> EQD 旋转矩阵
+  // 1. 获取 HOR -> EQD 旋转矩阵 (通常 astronomy 返回 3x3 行优先矩阵)
   const rotationMatrix = astronomy.Rotation_HOR_EQD(time, observer)
-  const matrix3 = rotationMatrix.rot
+  const m = rotationMatrix.rot
 
-  const frameRotationMatrix = new THREE.Matrix4().set(
-    matrix3[0][0],
-    matrix3[0][1],
-    matrix3[0][2],
-    0,
-    matrix3[1][0],
-    matrix3[1][1],
-    matrix3[1][2],
-    0,
-    matrix3[2][0],
-    matrix3[2][1],
-    matrix3[2][2],
-    0,
-    0,
-    0,
-    0,
-    1,
+  const frameRotationMatrix = new THREE.Matrix4()
+
+  frameRotationMatrix
+    .set(
+      m[0][0],
+      m[0][1],
+      m[0][2],
+      0,
+      m[1][0],
+      m[1][1],
+      m[1][2],
+      0,
+      m[2][0],
+      m[2][1],
+      m[2][2],
+      0,
+      0,
+      0,
+      0,
+      1,
+    )
+    .transpose() // 重要：将行优先转为 THREE.js 的列优先
+
+  const qH2E_astro = new THREE.Quaternion().setFromRotationMatrix(frameRotationMatrix)
+
+  // 手机的坐标系是 E-N-U 到 astronomy 的 坐标系 N-W-U 需绕 Z -90度
+  const qUserToAstro = new THREE.Quaternion().setFromAxisAngle(
+    new THREE.Vector3(0, 0, 1),
+    -Math.PI / 2,
   )
 
-  const qH2E_astro = new THREE.Quaternion().setFromRotationMatrix(frameRotationMatrix).normalize()
+  // const qAstroToUser = qUserToAstro.clone().invert()
 
-  // Z = S x=E y=U.       Astro : X=N Y=W Z=U
-  // 从 你的坐标系(N-U-E) 转到 Astro(N-W-U) => 绕X轴转 +90 度
-  const qUserToAstro = new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(1, 0, 0), Math.PI)
-
-  // 从 Astro 转回 你的坐标系 => 绕X轴转 -90 度 (直接取逆)
-  const qAstroToUser = qUserToAstro.clone().invert()
-
+  // 3. 原始输入四元数 (确保顺序是 [x, y, z, w])
   const sourceQuaternion = new THREE.Quaternion(
     horizontalQuaternion[0],
     horizontalQuaternion[1],
@@ -145,10 +151,13 @@ function convertHorizontalQuaternionToEquatorialQuaternionPro(
     horizontalQuaternion[3],
   ).normalize()
 
-  // 3. 组合最终的四元数 (THREE.js 的 multiply 是按照从左到右执行 A * B 的)
-  // 顺序: qAstroToUser * qH2E_astro * qUserToAstro * sourceQuaternion
+  /**
+   * 4. 组合变换
+   * 逻辑：先将姿态转到天文空间 -> 应用地平到赤道的旋转
+   * 矩阵顺序：Target = Q_A2U * Q_H2E * Q_U2A * Source
+   */
   const targetQuaternion = new THREE.Quaternion()
-    .copy(qAstroToUser)
+    // .copy(qAstroToUser)
     .multiply(qH2E_astro)
     .multiply(qUserToAstro)
     .multiply(sourceQuaternion)
