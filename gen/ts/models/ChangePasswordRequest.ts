@@ -14,29 +14,29 @@
 
 import { mapValues } from '../runtime';
 /**
- * Request for password modification
+ * 
  * @export
  * @interface ChangePasswordRequest
  */
 export interface ChangePasswordRequest {
     /**
-     * Target username
+     * 
      * @type {string}
      * @memberof ChangePasswordRequest
      */
     username: string;
     /**
-     * Current password (old password)
+     * 
      * @type {string}
      * @memberof ChangePasswordRequest
      */
-    password0: string;
+    oldPassword: string;
     /**
-     * New password (new password)
+     * 
      * @type {string}
      * @memberof ChangePasswordRequest
      */
-    password1: string;
+    newPassword: string;
 }
 
 /**
@@ -44,8 +44,8 @@ export interface ChangePasswordRequest {
  */
 export function instanceOfChangePasswordRequest(value: object): value is ChangePasswordRequest {
     if (!('username' in value) || value['username'] === undefined) return false;
-    if (!('password0' in value) || value['password0'] === undefined) return false;
-    if (!('password1' in value) || value['password1'] === undefined) return false;
+    if (!('oldPassword' in value) || value['oldPassword'] === undefined) return false;
+    if (!('newPassword' in value) || value['newPassword'] === undefined) return false;
     return true;
 }
 
@@ -60,8 +60,8 @@ export function ChangePasswordRequestFromJSONTyped(json: any, ignoreDiscriminato
     return {
         
         'username': json['username'],
-        'password0': json['password0'],
-        'password1': json['password1'],
+        'oldPassword': json['oldPassword'],
+        'newPassword': json['newPassword'],
     };
 }
 
@@ -77,8 +77,8 @@ export function ChangePasswordRequestToJSONTyped(value?: ChangePasswordRequest |
     return {
         
         'username': value['username'],
-        'password0': value['password0'],
-        'password1': value['password1'],
+        'oldPassword': value['oldPassword'],
+        'newPassword': value['newPassword'],
     };
 }
 

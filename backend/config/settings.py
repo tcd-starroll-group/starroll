@@ -24,6 +24,39 @@ class Settings:
     jwt_algorithm: str = os.getenv("JWT_ALGORITHM", "HS256")
     jwt_expire_hours: int = int(os.getenv("JWT_EXPIRE_HOURS", "24"))
 
+    # MinIO Configuration
+    minio_endpoint: str = os.getenv("MINIO_ENDPOINT")
+    minio_access_key: str = os.getenv("MINIO_ACCESS_KEY")
+    minio_secret_key: str = os.getenv("MINIO_SECRET_KEY")
+    
+
+    # Astronomy Net Configuration
+    astronomy_net_endpoint: str = os.getenv(
+        "ASTRONOMY_NET_ENDPOINT", "http://127.0.0.1:8001")
+
+    # Redis Configuration
+    redis_host: str = os.getenv("REDIS_HOST", "localhost")
+    redis_port: int = int(os.getenv("REDIS_PORT", "6379"))
+    redis_password: str = os.getenv("REDIS_PASSWORD", None)
+    redis_db: int = int(os.getenv("REDIS_DB", "0"))
+
+    # SMTP Configuration
+    smtp_host: str = os.getenv("SMTP_HOST", "smtp.gmail.com")
+    smtp_port: int = int(os.getenv("SMTP_PORT", "587"))
+    smtp_user: str = os.getenv("SMTP_USER")
+    smtp_password: str = os.getenv("SMTP_PASSWORD")
+    smtp_from_email: str = os.getenv("SMTP_FROM_EMAIL")
+  
+
+    @property
+    def redis_url(self) -> str:
+        """Generate Redis connection URL from config parameters."""
+        if self.redis_password:
+            return (
+                f"redis://:{self.redis_password}@{self.redis_host}:{self.redis_port}/{self.redis_db}"
+            )
+        return f"redis://{self.redis_host}:{self.redis_port}/{self.redis_db}"
+
     @property
     def sqlalchemy_database_url(self) -> str:
         """Generate SQLAlchemy database URL from config parameters."""

@@ -3,6 +3,7 @@ import datetime
 import logging
 from typing import Dict, Any, Tuple
 from backend.config import settings
+from fastapi import HTTPException
 
 logger = logging.getLogger(__name__)
 
@@ -47,3 +48,28 @@ def verify_access_token(token: str) -> Tuple[Dict[str, Any] | None, bool]:
     except jwt.InvalidTokenError as e:
         logger.warning(f"Token verification failed: {str(e)}")
         return None, False
+
+
+def verify_user_id_and_token(token: str, user_id: str) -> None:
+    """
+    Verify the access token and ensure the user_id matches the token's user_id.
+
+    Args:
+        token: The JWT token string to verify.
+        user_id: The user ID to match against the token's payload.
+
+    Raises:
+        HTTPException: If the token is invalid, expired, or the user_id does not match.
+    """
+    payload, is_valid = verify_access_token(token)
+    if not is_valid or not payload:
+        logger.error("Invalid or expired token")
+        raise HTTPException(status_code=401, detail="Invalid or expired token")
+
+    token_user_id = payload.get("user_id")
+    if not token_user_id or str(token_user_id) != str(user_id):
+        logger.error(
+            f"Token user_id mismatch: token has {token_user_id}, request has {user_id}")
+        raise HTTPException(status_code=403, detail="User ID mismatch")
+
+    logger.info(f"Token verification successful for user_id: {user_id}")

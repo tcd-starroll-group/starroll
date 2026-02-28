@@ -11,27 +11,66 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
+    env:
+      APP_ENV: ut
+      PYTHONPATH: "gen/py/src:."
+      JWT_SECRET: test_secret_key_for_github_actions_minimum_32_bytes_long
+      JWT_ALGORITHM: HS256
+      JWT_EXPIRE_HOURS: 2
+      MINIO_ENDPOINT: localhost:9000
+      MINIO_ACCESS_KEY: minioadmin
+      MINIO_SECRET_KEY: minioadmin
+      MINIO_SECURE: "false"
+      REDIS_HOST: localhost
+      REDIS_PORT: 6379
+      REDIS_PASSWORD: ""
+      REDIS_DB: 0
     steps:
       - uses: actions/checkout@v4
+
+      - name: Start MinIO
+        run: |
+          docker run -d --name minio \
+            -p 9000:9000 \
+            -e MINIO_ROOT_USER=minioadmin \
+            -e MINIO_ROOT_PASSWORD=minioadmin \
+            minio/minio server /data
+          for i in $(seq 1 30); do
+            if curl -sf http://localhost:9000/minio/health/live; then
+              echo "MinIO is ready"
+              break
+            fi
+            echo "Waiting for MinIO... ($i/30)"
+            sleep 2
+          done
+
+      - name: Start Redis
+        run: |
+          docker run -d --name redis \
+            -p 6379:6379 \
+            redis:alpine redis-server --appendonly yes
+          for i in $(seq 1 30); do
+            if docker exec redis redis-cli ping | grep -q "PONG"; then
+              echo "Redis is ready"
+              break
+            fi
+            echo "Waiting for Redis... ($i/30)"
+            sleep 2
+          done
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.13"
+          python-version: "3.11"
           cache: "pip"
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install pytest pytest-cov
-          pip install -r backend/requirements.txt || echo "No requirements.txt found"
+          pip install -r backend/requirements-ios.txt || echo "No requirements.txt found"
 
       - name: Run tests with coverage
-        env:
-          APP_ENV: ut
-          JWT_SECRET: test_secret_key_for_github_actions_minimum_32_bytes_long
-          JWT_ALGORITHM: HS256
-          JWT_EXPIRE_HOURS: 2
         run: |
           pytest backend/ \
             --cov=backend \

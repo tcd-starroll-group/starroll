@@ -1,15 +1,14 @@
 
 # ChangePasswordRequest
 
-Request for password modification
 
 ## Properties
 
 Name | Type
 ------------ | -------------
 `username` | string
-`password0` | string
-`password1` | string
+`oldPassword` | string
+`newPassword` | string
 
 ## Example
 
@@ -18,9 +17,9 @@ import type { ChangePasswordRequest } from ''
 
 // TODO: Update the object below with actual values
 const example = {
-  "username": user123,
-  "password0": OldPa$$w0rd,
-  "password1": NewStr0ngPa$$w0rd!,
+  "username": null,
+  "oldPassword": null,
+  "newPassword": null,
 } satisfies ChangePasswordRequest
 
 console.log(example)

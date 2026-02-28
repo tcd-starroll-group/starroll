@@ -12,6 +12,8 @@ from openapi_server.models.api_comment_blog_post200_response import ApiCommentBl
 from openapi_server.models.api_comment_blog_post_request import ApiCommentBlogPostRequest
 from openapi_server.models.api_create_blog_post200_response import ApiCreateBlogPost200Response
 from openapi_server.models.api_create_blog_post_request import ApiCreateBlogPostRequest
+from openapi_server.models.api_create_identify_stars_job_post200_response import ApiCreateIdentifyStarsJobPost200Response
+from openapi_server.models.api_create_identify_stars_job_post_request import ApiCreateIdentifyStarsJobPostRequest
 from openapi_server.models.api_delete_blog_post200_response import ApiDeleteBlogPost200Response
 from openapi_server.models.api_delete_comment_post_request import ApiDeleteCommentPostRequest
 from openapi_server.models.api_display_chat_room_get200_response import ApiDisplayChatRoomGet200Response
@@ -29,6 +31,8 @@ from openapi_server.models.api_get_chat_room_info_post200_response import ApiGet
 from openapi_server.models.api_get_chat_room_info_post_request import ApiGetChatRoomInfoPostRequest
 from openapi_server.models.api_get_chat_room_post200_response import ApiGetChatRoomPost200Response
 from openapi_server.models.api_get_chat_room_post_request import ApiGetChatRoomPostRequest
+from openapi_server.models.api_get_identify_stars_job_result_post200_response import ApiGetIdentifyStarsJobResultPost200Response
+from openapi_server.models.api_get_identify_stars_job_result_post_request import ApiGetIdentifyStarsJobResultPostRequest
 from openapi_server.models.api_get_message_post200_response import ApiGetMessagePost200Response
 from openapi_server.models.api_get_message_post_request import ApiGetMessagePostRequest
 from openapi_server.models.api_get_saved_blogs_post200_response import ApiGetSavedBlogsPost200Response
@@ -38,6 +42,8 @@ from openapi_server.models.api_get_star_details_post_request import ApiGetStarDe
 from openapi_server.models.api_like_blog_post200_response import ApiLikeBlogPost200Response
 from openapi_server.models.api_list_blogs_post200_response import ApiListBlogsPost200Response
 from openapi_server.models.api_list_blogs_post_request import ApiListBlogsPostRequest
+from openapi_server.models.api_list_identify_stars_jobs_post200_response import ApiListIdentifyStarsJobsPost200Response
+from openapi_server.models.api_list_identify_stars_jobs_post_request import ApiListIdentifyStarsJobsPostRequest
 from openapi_server.models.api_request_accuracy_adjust_post200_response import ApiRequestAccuracyAdjustPost200Response
 from openapi_server.models.api_request_accuracy_adjust_post_request import ApiRequestAccuracyAdjustPostRequest
 from openapi_server.models.api_request_save_type_post200_response import ApiRequestSaveTypePost200Response
@@ -58,6 +64,9 @@ from openapi_server.models.blog import Blog
 from openapi_server.models.change_password_request import ChangePasswordRequest
 from openapi_server.models.error_response import ErrorResponse
 from openapi_server.models.gps import GPS
+from openapi_server.models.profile_and_token import ProfileAndToken
+from openapi_server.models.reset_password_request import ResetPasswordRequest
+from openapi_server.models.reset_password_send_code_request import ResetPasswordSendCodeRequest
 from openapi_server.models.star_details import StarDetails
 from openapi_server.models.token_response import TokenResponse
 from openapi_server.models.user_auth import UserAuth
@@ -199,6 +208,27 @@ class BaseDefaultApi:
         ...
 
 
+    async def api_create_identify_stars_job_post(
+        self,
+        api_create_identify_stars_job_post_request: ApiCreateIdentifyStarsJobPostRequest,
+    ) -> ApiCreateIdentifyStarsJobPost200Response:
+        ...
+
+
+    async def api_list_identify_stars_jobs_post(
+        self,
+        api_list_identify_stars_jobs_post_request: ApiListIdentifyStarsJobsPostRequest,
+    ) -> ApiListIdentifyStarsJobsPost200Response:
+        ...
+
+
+    async def api_get_identify_stars_job_result_post(
+        self,
+        api_get_identify_stars_job_result_post_request: ApiGetIdentifyStarsJobResultPostRequest,
+    ) -> ApiGetIdentifyStarsJobResultPost200Response:
+        ...
+
+
     async def api_elimilate_errors_post(
         self,
         api_elimilate_errors_post_request: Optional[ApiElimilateErrorsPostRequest],
@@ -269,6 +299,14 @@ class BaseDefaultApi:
         ...
 
 
+    async def api_edit_profile_post(
+        self,
+        profile_and_token: ProfileAndToken,
+    ) -> UserResponse:
+        """update the user&#39;s profile information stored as JSON."""
+        ...
+
+
     async def api_user_reg_post(
         self,
         api_user_reg_post_request: ApiUserRegPostRequest,
@@ -280,6 +318,20 @@ class BaseDefaultApi:
     async def api_change_password_post(
         self,
         change_password_request: ChangePasswordRequest,
+    ) -> ApiChangePasswordPost200Response:
+        ...
+
+
+    async def api_reset_password_send_code_post(
+        self,
+        reset_password_send_code_request: ResetPasswordSendCodeRequest,
+    ) -> ApiChangePasswordPost200Response:
+        ...
+
+
+    async def api_reset_password_post(
+        self,
+        reset_password_request: ResetPasswordRequest,
     ) -> ApiChangePasswordPost200Response:
         ...
 

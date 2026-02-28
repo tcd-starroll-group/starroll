@@ -264,7 +264,7 @@ paths:
                           type: integer
                         viewCoordinate:
                           $ref: "#/components/schemas/viewCoordinate"
-  #huhu
+
   /api/triggerStarfieldRender:
     post:
       summary: Trigger starfield rendering
@@ -506,6 +506,96 @@ paths:
                     format: date-time
                     description: Timestamp when the file was saved
 
+  /api/createIdentifyStarsJob:
+    post:
+      summary: Create a job to identify the stars in the image.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - image
+                - userID
+                - token
+              properties:
+                image:
+                  type: string
+                  description: Base64-encoded image data (JPEG, PNG, etc.)
+                userID:
+                  type: string
+                  description: User ID for authentication
+                token:
+                  type: string
+                  description: Authentication token
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  jobID:
+                    description: job id
+                    type: string
+
+  /api/listIdentifyStarsJobs:
+    post:
+      summary: List identify stars jobs.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: "#/components/schemas/PaginationQuery"
+                - type: object
+                  properties:
+                    userCredentials:
+                      $ref: "#/components/schemas/userCredentials"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  identifyStarsJobsList:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/identifyStarsJob"
+
+  /api/getIdentifyStarsJobResult:
+    post:
+      summary: get identify stars job result.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - jobID
+                - userCredentials
+              properties:
+                jobID:
+                  type: string
+                  description: Unique ID of the identify stars job
+                userCredentials:
+                  $ref: "#/components/schemas/userCredentials"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  identifyStarsJobsList:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/IdentifyStarsJobResult"
+
   # Error Elimination Module
   /api/elimilateErrors:
     post:
@@ -543,6 +633,7 @@ paths:
                           type: integer
                         correctedViewCoordinate:
                           $ref: "#/components/schemas/viewCoordinate"
+
   # Render Engine
 
   # User System
@@ -824,6 +915,45 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
 
+  /api/editProfile:
+    post:
+      summary: " update user profile"
+      description: "update the user's profile information stored as JSON."
+      security:
+        - bearerAuth: []  # Assuming authentication is required, adjust if needed
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/profileAndToken"
+      responses:
+        "200":
+          description: "Profile updated successfully."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserResponse"
+        "400":
+          description: "Invalid request: For example, invalid JSON format."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "401":
+          description: "Unauthorized: Authentication required."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "404":
+          description: "User not found."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+
   /api/userReg:
     post:
       summary: "User register"
@@ -872,7 +1002,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-  
+
   /api/changePassword:
     post:
       operationId: api_change_password_post
@@ -880,10 +1010,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ChangePasswordRequest'
+              $ref: "#/components/schemas/ChangePasswordRequest"
         required: true
       responses:
-        '200':
+        "200":
           description: Password updated successfully
           content:
             application/json:
@@ -892,10 +1022,57 @@ paths:
                 properties:
                   message:
                     type: string
-        '401':
+        "401":
           description: Old password incorrect
-        '404':
+        "404":
           description: User not found
+  /api/resetPasswordSendCode:
+    post:
+      summary: send code to email
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ResetPasswordSendCodeRequest"
+        required: true
+      responses:
+        "200":
+          description: Verification code sent successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        "404":
+          description: Email not found
+        "500":
+          description: Failed to send email
+
+  /api/resetPassword:
+    post:
+      summary: Use code to reset password
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/resetPasswordRequest"
+        required: true
+      responses:
+        "200":
+          description: Password reset successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        "400":
+          description: Invalid or expired verification code
+        "404":
+          description: Email not found
 
   /api/deleteUser:
     post:
@@ -905,10 +1082,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UserAuth' 
+              $ref: "#/components/schemas/UserAuth"
         required: true
       responses:
-        '200':
+        "200":
           description: Deletion successful
           content:
             application/json:
@@ -917,9 +1094,9 @@ paths:
                 properties:
                   message:
                     type: string
-        '401':
+        "401":
           description: Password incorrect
-        '404':
+        "404":
           description: User not found
   /api/usernameVerify:
     post:
@@ -1121,6 +1298,25 @@ paths:
 # Reused schemas
 components:
   schemas:
+    profileAndToken:
+      type: object
+      properties:
+        username:
+          type: string
+          description: "Username"
+          example: "user123"
+        token:
+          type: string
+          description: "The verified access token."
+        profile:
+          type: object
+          description: "User profile in JSON format"
+          example: { "bio": "Software engineer", "location": "New York", "interests": ["coding", "reading"] }
+      required:
+        - username
+        - profile
+        - token
+
     userCredentials:
       type: object
       properties:
@@ -1163,6 +1359,14 @@ components:
           type: integer
     starMeta:
       type: object
+      required:
+        - HIP
+        - equatorialCoordinate
+        - magnitude
+        - pmRA
+        - pmDE
+        - bvColor
+        - distance
       properties:
         HIP:
           description: unique HIP index
@@ -1306,7 +1510,6 @@ components:
           description: "Detailed error message"
           example: "Invalid username or password"
 
-  
     # Blog items
     blogPreview:
       description: "Preview of a blog on the blogs page, before user clicks into one blog"
@@ -1351,3 +1554,109 @@ components:
           type: string
         time:
           type: string
+
+    identifyStarsJob:
+      properties:
+        jobID:
+          type: string
+        status:
+          type: string
+        createTime:
+          type: string
+        updateTime:
+          type: string
+
+    PaginationQuery:
+      description: "Reusable pagination and sorting parameters for list endpoints"
+      type: object
+      properties:
+        limit:
+          type: integer
+          description: "Maximum number of items to return"
+          default: 20
+          minimum: 1
+          maximum: 100
+        offset:
+          type: integer
+          description: "Number of items to skip (for pagination)"
+          default: 0
+          minimum: 0
+        sort:
+          type: string
+          description: "Field name to sort by"
+          example: "createTime"
+        order:
+          type: string
+          enum: [asc, desc]
+          default: desc
+          description: "Sort order (ascending or descending)"
+
+    IdentifyStarsJobResult:
+      description: "result of identify stars job"
+      properties:
+        center:
+          $ref: "#/components/schemas/equatorialCoordinate"
+          description: "Center equatorial coordinate of the image."
+        identifiedStars:
+          type: array
+          description: "List of identified stars in the image"
+          items:
+            type: object
+            properties:
+              names:
+                type: array
+                description: "Alternative names of the star"
+                items:
+                  type: string
+                example: ["108Vir"]
+              pixelX:
+                type: number
+                description: "X coordinate of star in image (pixels)"
+                example: 1676.0093296680352
+              pixelY:
+                type: number
+                description: "Y coordinate of star in image (pixels)"
+                example: 629.9991687682354
+              vmag:
+                type: number
+                description: "Visual magnitude of the star"
+                example: 5.6
+              HIP:
+                type: integer
+                description: "Hipparcos catalog ID"
+    ResetPasswordSendCodeRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          description: "User emial"
+          example: "user@example.com"
+        userName:
+          type: string
+          description: "User name"
+          example: "name"  
+      required:
+        - email
+        - userName
+
+    resetPasswordRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          description: "User email"
+          example: "user@example.com"
+        code:
+          type: string
+          description: "6 code in email"
+          example: "123456"
+        newPassword:
+          type: string
+          format: password
+          description: "new password"
+      required:
+        - email
+        - code
+        - newPassword

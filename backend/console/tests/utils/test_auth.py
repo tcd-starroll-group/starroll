@@ -3,8 +3,9 @@ import time
 
 import jwt
 import pytest
+from fastapi import HTTPException
 
-from backend.console.utils.auth import create_access_token, verify_access_token
+from backend.console.utils.auth import create_access_token, verify_access_token, verify_user_id_and_token
 from backend.config import settings
 
 
@@ -112,3 +113,104 @@ class TestVerifyAccessToken:
             assert payload is None
         finally:
             settings.jwt_secret = original_secret
+
+
+class TestVerifyUserIdAndToken:
+    """Test cases for verify_user_id_and_token function."""
+
+    def test_verify_user_id_and_token_success(self):
+        """Test successful verification with matching user_id."""
+        data = {"sub": "alice", "user_id": 123}
+        token = create_access_token(data)
+
+        # Should not raise any exception
+        verify_user_id_and_token(token, "123")
+
+    def test_verify_user_id_and_token_success_int_user_id(self):
+        """Test successful verification with integer user_id in request."""
+        data = {"sub": "bob", "user_id": 456}
+        token = create_access_token(data)
+
+        # Should not raise any exception (both int and str should work)
+        verify_user_id_and_token(token, "456")
+
+    def test_verify_user_id_and_token_success_str_user_id_in_token(self):
+        """Test successful verification with string user_id in token."""
+        data = {"sub": "carol", "user_id": "789"}
+        token = create_access_token(data)
+
+        # Should not raise any exception
+        verify_user_id_and_token(token, "789")
+
+    def test_verify_user_id_and_token_invalid_token(self):
+        """Test verification with invalid token raises 401."""
+        with pytest.raises(HTTPException) as exc_info:
+            verify_user_id_and_token("invalid.token.here", "123")
+
+        assert exc_info.value.status_code == 401
+        assert "Invalid or expired token" in exc_info.value.detail
+
+    def test_verify_user_id_and_token_expired_token(self):
+        """Test verification with expired token raises 401."""
+        data = {"sub": "dave", "user_id": 999}
+        to_encode = data.copy()
+        expire = datetime.datetime.now(
+            datetime.timezone.utc
+        ) - datetime.timedelta(seconds=1)
+        to_encode.update({"exp": expire})
+        expired_token = jwt.encode(
+            to_encode, settings.jwt_secret, algorithm=settings.jwt_algorithm
+        )
+
+        with pytest.raises(HTTPException) as exc_info:
+            verify_user_id_and_token(expired_token, "999")
+
+        assert exc_info.value.status_code == 401
+        assert "Invalid or expired token" in exc_info.value.detail
+
+    def test_verify_user_id_and_token_mismatched_user_id(self):
+        """Test verification with mismatched user_id raises 403."""
+        data = {"sub": "eve", "user_id": 111}
+        token = create_access_token(data)
+
+        with pytest.raises(HTTPException) as exc_info:
+            verify_user_id_and_token(token, "222")
+
+        assert exc_info.value.status_code == 403
+        assert "User ID mismatch" in exc_info.value.detail
+
+    def test_verify_user_id_and_token_missing_user_id_in_token(self):
+        """Test verification with token missing user_id raises 403."""
+        data = {"sub": "frank"}  # No user_id in payload
+        token = create_access_token(data)
+
+        with pytest.raises(HTTPException) as exc_info:
+            verify_user_id_and_token(token, "123")
+
+        assert exc_info.value.status_code == 403
+        assert "User ID mismatch" in exc_info.value.detail
+
+    def test_verify_user_id_and_token_none_user_id_in_token(self):
+        """Test verification with None user_id in token raises 403."""
+        data = {"sub": "grace", "user_id": None}
+        token = create_access_token(data)
+
+        with pytest.raises(HTTPException) as exc_info:
+            verify_user_id_and_token(token, "123")
+
+        assert exc_info.value.status_code == 403
+        assert "User ID mismatch" in exc_info.value.detail
+
+    def test_verify_user_id_and_token_type_conversion(self):
+        """Test that the function properly handles type conversion for comparison."""
+        # Token has integer user_id
+        data = {"sub": "henry", "user_id": 555}
+        token = create_access_token(data)
+
+        # Request has string user_id - should match due to str() conversion
+        verify_user_id_and_token(token, "555")
+
+        # This should also work
+        data2 = {"sub": "iris", "user_id": "666"}
+        token2 = create_access_token(data2)
+        verify_user_id_and_token(token2, "666")
