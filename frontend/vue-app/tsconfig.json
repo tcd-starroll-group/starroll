@@ -13,7 +13,7 @@
     "skipLibCheck": true,
     "noEmit": true,
     "baseUrl": ".",
-    "types": ["vite/client", "w3c-generic-sensor"],
+    "types": ["vite/client", "three", "w3c-generic-sensor"],
     "paths": {
       "@/*": ["src/*"]
     }

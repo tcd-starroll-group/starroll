@@ -134,7 +134,7 @@ const handleRegister = async () => {
 
       <div class="footer-links">
         <span>Already in the fleet?</span>
-        <a href="/login">Login here</a>
+        <a href="/userLogin">Login here</a>
       </div>
     </div>
   </StarBackground>

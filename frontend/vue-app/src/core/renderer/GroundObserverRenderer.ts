@@ -163,17 +163,16 @@ export class GroundObserverRenderer {
         uColor: { value: new THREE.Color(0x0a0a15) },
       },
       vertexShader: `
-                varying vec2 vUv;
+                attribute vec3 position;
                 varying vec3 vPosition;
                 void main() {
-                    vUv = uv;
-                    vPosition = position;
+                    vPosition = vec3(position);
                     gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
                 }
             `,
       fragmentShader: `
+                precision highp float;
                 uniform vec3 uColor;
-                varying vec2 vUv;
                 varying vec3 vPosition;
                 void main() {
                     float dist = length(vPosition);
