@@ -1,5 +1,6 @@
-import * as model from '../../../../gen/ts/models/index'
+import * as model from '../../../../../gen/ts/models/index'
 import * as astronomy from 'astronomy-engine'
+import * as THREE from 'three'
 
 function degreesToRadians(degrees: number): number {
   return (degrees * Math.PI) / 180
@@ -97,7 +98,95 @@ function convertHorizontalCoordinateToEquatorialCoordinatePro(
   return ans
 }
 
+function convertHorizontalQuaternionToEquatorialQuaternionPro(
+  horizontalQuaternion: [number, number, number, number],
+  timestamp: number,
+  location: model.GPS,
+): [number, number, number, number] {
+  const time = new astronomy.AstroTime(new Date(timestamp))
+  const observer = new astronomy.Observer(location.latitude, location.longitude, 0)
+
+  // 1. 获取 HOR -> EQD 旋转矩阵 (通常 astronomy 返回 3x3 行优先矩阵)
+  const rotationMatrix = astronomy.Rotation_HOR_EQD(time, observer)
+  const m = rotationMatrix.rot
+
+  const frameRotationMatrix = new THREE.Matrix4()
+
+  frameRotationMatrix
+    .set(
+      m[0][0],
+      m[0][1],
+      m[0][2],
+      0,
+      m[1][0],
+      m[1][1],
+      m[1][2],
+      0,
+      m[2][0],
+      m[2][1],
+      m[2][2],
+      0,
+      0,
+      0,
+      0,
+      1,
+    )
+    .transpose() // 重要：将行优先转为 THREE.js 的列优先
+
+  const qH2E_astro = new THREE.Quaternion().setFromRotationMatrix(frameRotationMatrix)
+
+  // 手机的坐标系是 E-N-U 到 astronomy 的 坐标系 N-W-U 需绕 Z -90度
+  const qUserToAstro = new THREE.Quaternion().setFromAxisAngle(
+    new THREE.Vector3(0, 0, 1),
+    -Math.PI / 2,
+  )
+
+  // const qAstroToUser = qUserToAstro.clone().invert()
+
+  // 3. 原始输入四元数 (确保顺序是 [x, y, z, w])
+  const sourceQuaternion = new THREE.Quaternion(
+    horizontalQuaternion[0],
+    horizontalQuaternion[1],
+    horizontalQuaternion[2],
+    horizontalQuaternion[3],
+  ).normalize()
+
+  /**
+   * 4. 组合变换
+   * 逻辑：先将姿态转到天文空间 -> 应用地平到赤道的旋转
+   * 矩阵顺序：Target = Q_A2U * Q_H2E * Q_U2A * Source
+   */
+  const targetQuaternion = new THREE.Quaternion()
+    // .copy(qAstroToUser)
+    .multiply(qH2E_astro)
+    .multiply(qUserToAstro)
+    .multiply(sourceQuaternion)
+    .normalize()
+
+  return [targetQuaternion.x, targetQuaternion.y, targetQuaternion.z, targetQuaternion.w]
+}
+
+/**
+ * @param orientation [x, y, z, w] 形式的原始四元数数组
+ * @returns 旋转后的 [x, y, z, w] 数组
+ */
+function offsetRoll(
+  orientation: [number, number, number, number],
+): [number, number, number, number] {
+  // 1. 初始化 Three.js 四元数对象
+  const q = new THREE.Quaternion().fromArray(orientation)
+
+  const deltaY = new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 1, 0), Math.PI / 2)
+
+  q.multiply(deltaY)
+
+  // 返回数组格式 [x, y, z, w]
+  return q.toArray() as [number, number, number, number]
+}
+
 export {
+  offsetRoll,
   convertHorizontalCoordinateToEquatorialCoordinate,
   convertHorizontalCoordinateToEquatorialCoordinatePro,
+  convertHorizontalQuaternionToEquatorialQuaternionPro,
 }

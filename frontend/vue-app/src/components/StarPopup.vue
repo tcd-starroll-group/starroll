@@ -10,45 +10,11 @@ const props = defineProps<{
 const emit = defineEmits<{
   (e: 'close'): void;
 }>();
-
-/**
- * Calculate popup position with boundary detection
- * Ensures the popup stays within viewport bounds
- * @param star - Star data containing screen position coordinates
- * @returns CSS style object with top/left positions
- */
-const getPopupStyle = (star: StarClickInfo) => {
-    const width = 240;
-    const padding = 15;
-    
-    // Initial position offset from star click position
-    let left = star.screenX + 15;
-    let top = star.screenY - 15;
-
-    // Boundary detection - prevent overflow on right side
-    if (left + width > window.innerWidth) {
-        left = star.screenX - width - 15;
-    }
-    
-    // Boundary detection - prevent overflow on bottom side
-    if (top + 300 > window.innerHeight) {
-        top = star.screenY - 300;
-    }
-    
-    // Boundary detection - prevent overflow on top side
-    if (top < padding) top = padding;
-
-    return {
-        top: `${top}px`,
-        left: `${left}px`
-    };
-};
 </script>
 
 <template>
   <div v-if="starInfo" 
        class="star-popup" 
-       :style="getPopupStyle(starInfo)"
        @click.stop> 
        <button class="close-btn" @click.stop="emit('close')">×</button>
       
@@ -100,8 +66,12 @@ const getPopupStyle = (star: StarClickInfo) => {
 
 <style scoped>
 .star-popup {
-    position: absolute;
+    position: fixed;
+    left: 50%;
+    bottom: 16px;
+    transform: translateX(-50%);
     width: 240px;
+    max-width: calc(100vw - 24px);
     background: rgba(15, 20, 35, 0.95);
     border: 1px solid rgba(100, 200, 255, 0.4);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);

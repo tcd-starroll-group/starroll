@@ -1,84 +1,125 @@
-import { ref, shallowRef } from 'vue'
 import { GroundObserverRenderer, type StarClickInfo } from '@/core/renderer/GroundObserverRenderer'
+import * as model from '../../../../gen/ts/models/index'
+import { ref } from 'vue'
 
-// 全局状态
-const rendererInstance = shallowRef<GroundObserverRenderer | null>(null)
-const currentTime = ref<Date>(new Date())
-const arModeEnabled = ref(false)
-const cameraOrientation = ref({ azimuth: 0, altitude: 0 })
-const showConstellationLines = ref(true)
-const showStarLabels = ref(true)
-const selectedStar = ref<StarClickInfo | null>(null)
-const isRequestingLocation = ref(false)
+export class GroundObserver {
+  private rendererInstance: GroundObserverRenderer | null = null
+  public selectedStar = ref<StarClickInfo | null>(null)
+  // Time control
+  public enumTimeMode = {
+    FIXED: 'FIXED',
+    REALTIME: 'REALTIME',
+    ACCELERATED: 'ACCELERATED',
+  } as const
+  public typeOfTimeMode = typeof this.enumTimeMode
+  private timeMode: keyof typeof this.enumTimeMode = 'REALTIME'
+  private fixedTimestamp: number | null = null
+  private accelerationMultiplier = 2000 // simulated ms per tick when accelerated
+  private tickIntervalMs = 1000 // default tick every 1s
+  private timerId: ReturnType<typeof setInterval> | null = null
+  private accelTimestamp: number | null = null
 
-/**
- * 地面观测者组合式函数
- * 模拟从地球表面观测星空
- */
-export function useGroundObserver() {
-  /**
-   * 初始化
-   */
-  const init = (container: HTMLElement) => {
-    if (rendererInstance.value) return
-
-    rendererInstance.value = new GroundObserverRenderer(container)
-
-    // 设置星星点击回调
-    rendererInstance.value.setOnStarClick((starInfo) => {
-      selectedStar.value = starInfo
+  constructor(container: HTMLElement) {
+    this.rendererInstance = new GroundObserverRenderer(container)
+    this.rendererInstance.setOnStarClick((starInfo) => {
+      this.selectedStar.value = starInfo
     })
+    // default: realtime mode; start time loop applying current UTC timestamp
+    this.startTimeLoop()
   }
 
-  /**
-   * 启用 AR 模式
-   */
-  const enableARMode = async () => {
-    if (!rendererInstance.value) {
-      console.error('渲染器未初始化')
-      return false
+  public async enableARMode(): Promise<boolean> {
+    return this.rendererInstance!.enableARMode()
+  }
+
+  public disableARMode() {
+    this.rendererInstance!.disableARMode()
+  }
+
+  public setTimestamp(timestamp: number) {
+    this.rendererInstance!.timestamp = timestamp
+  }
+
+  // Public API: set time mode
+  public setTimeMode(mode: keyof typeof this.enumTimeMode) {
+    if (this.timeMode === mode) return
+    this.timeMode = mode
+    if (mode === 'FIXED' && this.fixedTimestamp == null) this.fixedTimestamp = Date.now()
+    if (mode === 'ACCELERATED') {
+      // initialize accelerated timestamp from renderer or now
+      this.accelTimestamp = this.rendererInstance?.timestamp ?? Date.now()
+      // when accelerating we tick faster for smoothness
+      this.setTickInterval(50)
+    } else {
+      // restore default 1s tick for FIXED/REALTIME
+      this.setTickInterval(1000)
     }
-
-    const success = await rendererInstance.value.enableARMode()
-    arModeEnabled.value = success
-
-    return success
   }
 
-  /**
-   * 禁用 AR 模式
-   */
-  const disableARMode = () => {
-    if (rendererInstance.value) {
-      rendererInstance.value.disableARMode()
-      arModeEnabled.value = false
+  public setFixedTimestamp(timestamp: number) {
+    this.fixedTimestamp = timestamp
+  }
+
+  public setAcceleration(multiplier: number) {
+    this.accelerationMultiplier = multiplier
+  }
+
+  public setTickInterval(ms: number) {
+    this.tickIntervalMs = ms
+    // restart the loop with new interval
+    if (this.timerId) {
+      this.stopTimeLoop()
+      this.startTimeLoop()
     }
   }
 
-  // ... 其他方法保持不变 ...
-  const toggleConstellationLines = () => {
-    showConstellationLines.value = !showConstellationLines.value
-    if (rendererInstance.value)
-      rendererInstance.value.setConstellationLinesVisible(showConstellationLines.value)
+  private startTimeLoop() {
+    if (this.timerId) return
+    this.timerId = setInterval(() => {
+      if (!this.rendererInstance) return
+      switch (this.timeMode) {
+        case 'FIXED':
+          // use the fixed timestamp (doesn't change but still applied every tick)
+          if (this.fixedTimestamp == null) this.fixedTimestamp = Date.now()
+          this.rendererInstance.timestamp = this.fixedTimestamp
+          break
+        case 'REALTIME':
+          this.rendererInstance.timestamp = Date.now()
+          break
+        case 'ACCELERATED':
+          if (this.accelTimestamp == null)
+            this.accelTimestamp = this.rendererInstance.timestamp ?? Date.now()
+          this.accelTimestamp += this.tickIntervalMs * this.accelerationMultiplier
+          this.rendererInstance.timestamp = this.accelTimestamp
+          break
+      }
+    }, this.tickIntervalMs)
   }
 
-  const closeStarInfo = () => {
-    selectedStar.value = null
+  private stopTimeLoop() {
+    if (!this.timerId) return
+    clearInterval(this.timerId)
+    this.timerId = null
   }
 
-  return {
-    init,
-    renderer: rendererInstance,
-    currentTime,
-    arModeEnabled,
-    enableARMode,
-    disableARMode,
-    cameraOrientation,
-    showConstellationLines,
-    toggleConstellationLines,
-    showStarLabels,
-    selectedStar,
-    closeStarInfo,
-    isRequestingLocation,
+  public setLocation(location: model.GPS) {
+    this.rendererInstance!.location = location
+  }
+
+  public async testTimeFlash() {
+    const start_time = 1772034664175
+    let timestamp = start_time
+    if (!this.rendererInstance) return
+    this.rendererInstance.timestamp = timestamp
+
+    const multiplier = 2000
+    const intervalMs = 50
+    const incrementMs = intervalMs * multiplier // simulated ms per tick
+
+    while (true) {
+      await new Promise((resolve) => setTimeout(resolve, intervalMs))
+      timestamp += incrementMs
+      this.rendererInstance.timestamp = timestamp
+    }
   }
 }

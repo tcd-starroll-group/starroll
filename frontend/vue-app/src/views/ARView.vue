@@ -1,42 +1,58 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
-import { useGroundObserver } from '../utils/useGroundObserver';
-import TopBar from '../components/TopBar.vue';
-import StarInfoPanel from '../components/StarInfoPanel.vue';
-import StarPopup from '../components/StarPopup.vue';
+import { onMounted, ref, watch } from 'vue';
+import { GroundObserver } from '../utils/useGroundObserver';
+import StarPopupPanel from '../components/StarPopup.vue';
+import PermissionRequest from '../components/PermissionRequest.vue';
 import type { StarClickInfo } from '@/core/renderer/GroundObserverRenderer';
 
 const containerRef = ref<HTMLElement | null>(null);
-
-const { 
-    init, 
-    arModeEnabled,
-    enableARMode,
-    selectedStar,
-    closeStarInfo,
-    renderer
-} = useGroundObserver();
+let groundObserver: GroundObserver | null = null;
 
 const clickedStarInfo = ref<StarClickInfo | null>(null);
 
-const closeStarPopup = () => {
+// request permission
+const showPermission = ref(true);
+// click stars
+let selectedStar = ref<StarClickInfo | null>(null);
+const closeStarInfo = () => {
+    // clear the local mirror first so the UI panel hides reliably
     clickedStarInfo.value = null;
+    // also clear the renderer's selected ref if available
+    if (groundObserver?.selectedStar) groundObserver.selectedStar.value = null;
+    if (selectedStar) selectedStar.value = null;
 };
 
 onMounted(async () => {
-    if (containerRef.value) {
-        init(containerRef.value);
-        if (renderer.value) {
-            renderer.value.setOnStarClick((starInfo: StarClickInfo) => {
-                clickedStarInfo.value = starInfo;
-            });
-        }
+    if (!containerRef.value) {
+        console.error('containerRef.value is null');
+        return;
+    }
+
+    const createObserverAndStart = async () => {
+        groundObserver = new GroundObserver(containerRef.value!);
+        // bind the selectedStar ref from the GroundObserver instance
+        selectedStar = groundObserver.selectedStar;
+        watch(selectedStar, (val) => {
+            clickedStarInfo.value = val;
+        });
 
         try {
-            await enableARMode();
+            await groundObserver!.enableARMode();
+            // groundObserver.testTimeFlash();
         } catch (error) {
             console.error('Error enabling AR mode:', error);
         }
+    };
+
+    if (showPermission.value) {
+        const stopWatch = watch(showPermission, async (v) => {
+            if (!v) {
+                stopWatch();
+                await createObserverAndStart();
+            }
+        });
+    } else {
+        await createObserverAndStart();
     }
 });
 
@@ -44,24 +60,14 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="starroll-app" @click.self="closeStarPopup">
-    <div ref="containerRef" class="canvas-container" @click.self="closeStarPopup"></div>
+  <div class="starroll-app" @click.self="">
+    <div ref="containerRef" class="canvas-container" @click.self=""></div>
     
-    <div class="ui-layer">
-        <TopBar v-if="!arModeEnabled" />
-        <StarPopup 
-            :star-info="clickedStarInfo" 
-            @close="closeStarPopup" 
-        />
-
-        
-        <div class="horizon-line">
-          <div class="horizon-label">Horizon</div>
-        </div>
-        
-        <StarInfoPanel 
-          :star-info="selectedStar"
-          @close="closeStarInfo"
+    <div class="ui-layer">        
+        <PermissionRequest v-if="showPermission" @granted="() => (showPermission = false)" />
+        <StarPopupPanel 
+            :starInfo="clickedStarInfo"
+            @close="closeStarInfo"
         />
     </div>
   </div>

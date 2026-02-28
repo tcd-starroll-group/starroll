@@ -1,6 +1,12 @@
-import { expect, test, describe } from 'vitest'
-import * as astronomy from './astronomy'
-import * as model from '../../../../gen/ts/models/index'
+import { expect, test, describe, it } from 'vitest'
+import {
+  convertHorizontalCoordinateToEquatorialCoordinate,
+  convertHorizontalCoordinateToEquatorialCoordinatePro,
+  convertHorizontalQuaternionToEquatorialQuaternionPro,
+} from './astronomy'
+import * as THREE from 'three'
+import * as model from '../../../../../gen/ts/models/index'
+import * as astronomy from 'astronomy-engine'
 
 describe('convertHorizontalCoordinateToEquatorialCoordinate', () => {
   test('should return similar results for both methods', () => {
@@ -37,18 +43,10 @@ describe('convertHorizontalCoordinateToEquatorialCoordinate', () => {
     ]
 
     cases.forEach(({ hc, timestamp, location }) => {
-      const result1 = astronomy.convertHorizontalCoordinateToEquatorialCoordinate(
-        hc,
-        timestamp,
-        location,
-      )
+      const result1 = convertHorizontalCoordinateToEquatorialCoordinate(hc, timestamp, location)
       // console.log(`[${name}] my result:`, result1)
 
-      const result2 = astronomy.convertHorizontalCoordinateToEquatorialCoordinatePro(
-        hc,
-        timestamp,
-        location,
-      )
+      const result2 = convertHorizontalCoordinateToEquatorialCoordinatePro(hc, timestamp, location)
       // console.log(`[${name}] pro result:`, result2)
 
       expect(Math.abs(result1.rightAscension - result2.rightAscension)).toBeLessThan(1)
