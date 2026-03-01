@@ -399,3 +399,9 @@ class BaseDefaultApi:
         api_get_saved_blogs_post_request: Optional[ApiGetSavedBlogsPostRequest],
     ) -> ApiDeleteBlogPost200Response:
         ...
+
+
+    async def api_health_get(
+        self,
+    ) -> None:
+        ...

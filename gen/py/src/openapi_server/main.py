@@ -23,5 +23,3 @@ app = FastAPI(
 )
 
 app.include_router(DefaultApiRouter)
-
-# gen/py/src

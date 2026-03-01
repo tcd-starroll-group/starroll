@@ -15,11 +15,11 @@ export default defineConfig({
   },
   server: {
     host: '0.0.0.0',
-    port: 443,
+    port: 80,
     allowedHosts: ['starroll.ie'],
-    https: {
-      key: readFileSync(join(__dirname, './cert/privkey.pem')),
-      cert: readFileSync(join(__dirname, './cert/fullchain.pem')),
-    },
+    // https: {
+    //   key: readFileSync(join(__dirname, './cert/privkey.pem')),
+    //   cert: readFileSync(join(__dirname, './cert/fullchain.pem')),
+    // },
   },
 })
