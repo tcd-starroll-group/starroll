@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: console-service
+  namespace: starroll
+  annotations:
+    cloud.google.com/neg: '{"ingress": true}'
+    cloud.google.com/backend-config: '{"default": "starroll-backend-config"}'
+spec:
+  selector:
+    app: console
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 8000
+  type: ClusterIP

@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: astronomy
+  namespace: starroll
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: astronomy
+  template:
+    metadata:
+      labels:
+        app: astronomy
+    spec:
+      containers:
+        - name: main
+          image: europe-west1-docker.pkg.dev/starroll/astronomy/astronomy:1.0
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8000
+          resources:
+            requests:
+              cpu: "2000m"
+              memory: "4096Mi"
+            limits:
+              cpu: "2000m"
+              memory: "4096Mi"

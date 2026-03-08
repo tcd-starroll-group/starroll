@@ -879,3 +879,19 @@ async def api_report_blog_post(
     if not BaseDefaultApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")
     return await BaseDefaultApi.subclasses[0]().api_report_blog_post(api_get_saved_blogs_post_request)
+
+
+@router.get(
+    "/api/health",
+    responses={
+        200: {"description": "OK"},
+    },
+    tags=["default"],
+    summary="health check",
+    response_model_by_alias=True,
+)
+async def api_health_get(
+) -> None:
+    if not BaseDefaultApi.subclasses:
+        raise HTTPException(status_code=500, detail="Not implemented")
+    return await BaseDefaultApi.subclasses[0]().api_health_get()

@@ -4,7 +4,8 @@ import StarBackground from '@/components/StarBackground.vue'
 import { ref, reactive } from 'vue'
 import '../assets/styles/common.css'
 import '../assets/styles/input.css'
-import { loginApi } from '@/api/auth';
+import { defaultApi } from '@/api/defaultApi'
+import { ResponseError } from '../../../../gen/ts/runtime'
 import { useRouter } from 'vue-router';
 
 // TypeScript interfaces for type safety
@@ -36,24 +37,27 @@ const handleLogin = async () => {
   errorMessage.value = '';
 
   try {
-    const response = await loginApi({
-    username: form.username,
-    password: form.password
+    const response = await defaultApi.apiUserLoginPost({
+      userAuth: {
+        username: form.username,
+        password: form.password,
+      },
     });
 
     console.log("Logged in successfully:", form.username);
 
-    if (response.status === 200) {
-      localStorage.setItem('token', response.data.token);
-      console.log("login! success");
-      router.push('/profile'); 
+    if (response.token) {
+      localStorage.setItem('token', response.token);
     }
-    else if (response.status === 401) {
+    localStorage.setItem('username', form.username)
+    console.log("login! success");
+    router.push('/profile');
+  } catch (err: unknown) {
+    if (err instanceof ResponseError && (err.response.status === 401 || err.response.status === 404)) {
       errorMessage.value = "Invalid username or password.";
+    } else {
+      errorMessage.value = "" + err;
     }
-
-  } catch (err) {
-    errorMessage.value = "" + err;
   } finally {
     isLoading.value = false;
   }

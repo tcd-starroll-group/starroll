@@ -767,6 +767,12 @@ paths:
                 $ref: "#/components/schemas/_api_deleteBlog_post_200_response"
           description: OK
       summary: Report a blog
+  /api/health:
+    get:
+      responses:
+        "200":
+          description: OK
+      summary: health check
 components:
   schemas:
     profileAndToken:
@@ -902,6 +908,14 @@ components:
           description: "Distance from earth, light-year"
           title: distance
           type: number
+      required:
+      - HIP
+      - bvColor
+      - distance
+      - equatorialCoordinate
+      - magnitude
+      - pmDE
+      - pmRA
       title: starMeta
       type: object
     equatorialCoordinate:

@@ -920,7 +920,7 @@ paths:
       summary: " update user profile"
       description: "update the user's profile information stored as JSON."
       security:
-        - bearerAuth: []  # Assuming authentication is required, adjust if needed
+        - bearerAuth: [] # Assuming authentication is required, adjust if needed
       requestBody:
         required: true
         content:
@@ -952,7 +952,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-
 
   /api/userReg:
     post:
@@ -1295,6 +1294,13 @@ paths:
                   blogID:
                     type: string
 
+  /api/health:
+    get:
+      summary: "health check"
+      responses:
+        "200":
+          description: OK
+
 # Reused schemas
 components:
   schemas:
@@ -1311,7 +1317,12 @@ components:
         profile:
           type: object
           description: "User profile in JSON format"
-          example: { "bio": "Software engineer", "location": "New York", "interests": ["coding", "reading"] }
+          example:
+            {
+              "bio": "Software engineer",
+              "location": "New York",
+              "interests": ["coding", "reading"],
+            }
       required:
         - username
         - profile
@@ -1635,7 +1646,7 @@ components:
         userName:
           type: string
           description: "User name"
-          example: "name"  
+          example: "name"
       required:
         - email
         - userName

@@ -3,7 +3,7 @@ import { reactive, ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import StarBackground from '@/components/StarBackground.vue'
 import BaseButton from '@/components/BaseButton.vue'
-import { getProfileApi } from '@/api/auth';
+import { defaultApi } from '@/api/defaultApi'
 
 const router = useRouter()
 const isEditing = ref(false)
@@ -19,11 +19,11 @@ const pilotForm = reactive({
 
 onMounted(async () => {
   try {
-    const response = await getProfileApi();
-    if (response.status === 200) {
-      // Pre-fill the form with the user's current data
-      Object.assign(pilotForm, response.data);
-    }
+    const token = localStorage.getItem('token') || ''
+    const response = await defaultApi.apiVerifyUserTokenPost({
+      apiVerifyUserTokenPostRequest: { token },
+    })
+    pilotForm.name = response.username || ''
   } catch (err) {
     console.error("Transmission Interrupted: Could not fetch detailed logs.");
   }
