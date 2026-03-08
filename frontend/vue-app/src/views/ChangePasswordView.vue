@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { ref, reactive } from 'vue'
 import BaseButton from '../components/BaseButton.vue'
-import { changePasswordApi } from '@/api/auth' 
+import { defaultApi } from '@/api/defaultApi'
+import { ResponseError } from '../../../../gen/ts/runtime'
 import '../assets/styles/input.css'
 
 // 定义组件事件：用于点击“返回”或“成功后关闭”
@@ -31,29 +32,37 @@ const handleChangePassword = async () => {
     return
   }
 
+  const username = localStorage.getItem('username')
+  if (!username) {
+    errorMessage.value = 'Please login again before changing password.'
+    return
+  }
+
   isLoading.value = true
   errorMessage.value = ''
   successMessage.value = ''
 
   try {
-    // 调用 API。由于 requests.ts 拦截器已配置，请求会自动携带 Token
-    const response = await changePasswordApi({
-      oldPassword: form.oldPassword,
-      newPassword: form.newPassword
+    await defaultApi.apiChangePasswordPost({
+      changePasswordRequest: {
+        username,
+        oldPassword: form.oldPassword,
+        newPassword: form.newPassword,
+      },
     })
 
-    if (response.status === 200) {
-      successMessage.value = "密钥修改成功，正在同步..."
-      console.log("Password updated successfully")
-      
-      // 延迟关闭或跳转，让用户看清成功提示
-      setTimeout(() => {
-        emit('success')
-      }, 1500)
-    }
+    successMessage.value = "密钥修改成功，正在同步..."
+    console.log("Password updated successfully")
+
+    setTimeout(() => {
+      emit('success')
+    }, 1500)
   } catch (err: any) {
-    // 依据之前讨论的报错逻辑提取错误信息
-    errorMessage.value = err.response?.data?.message || "密钥修改失败，请检查旧密钥。"
+    if (err instanceof ResponseError && err.response.status === 401) {
+      errorMessage.value = "密钥修改失败，请检查旧密钥。"
+    } else {
+      errorMessage.value = err.response?.data?.message || "密钥修改失败，请检查旧密钥。"
+    }
     console.error("Update failed:", err)
   } finally {
     isLoading.value = false

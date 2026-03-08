@@ -3,8 +3,7 @@ import { reactive, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import StarBackground from '@/components/StarBackground.vue'
 import BaseButton from '@/components/BaseButton.vue'
-import request from '@/utils/requests';
-import { getProfileApi } from '@/api/auth';
+import { defaultApi } from '@/api/defaultApi'
 
 // 1. TypeScript Interfaces for the Pilot
 interface PilotStats {
@@ -37,15 +36,13 @@ const pilot = reactive({
 
 onMounted(async () => {
   try {
-    // 发起请求，此时 requests.ts 里的拦截器会自动带上 token
-    const response = await getProfileApi();
-    
-    // 假设后端返回的数据结构与 pilot 对象一致
-    // 使用 Object.assign 将后端数据覆盖掉初始的模拟数据
-    if (response.status === 200) {
-      Object.assign(pilot, response.data);
-      console.log("档案同步成功:", pilot.name);
-    }
+    const token = localStorage.getItem('token') || ''
+    const response = await defaultApi.apiVerifyUserTokenPost({
+      apiVerifyUserTokenPostRequest: { token },
+    })
+
+    pilot.name = response.username || 'Loading...'
+    console.log("档案同步成功:", pilot.name)
   } catch (err) {
     console.error("无法获取飞行员档案，请检查 Token 是否有效");
   }

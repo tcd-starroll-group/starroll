@@ -4,7 +4,8 @@ import BaseButton from '@/components/BaseButton.vue'
 import StarBackground from '@/components/StarBackground.vue'
 import '../assets/styles/common.css'
 import '../assets/styles/input.css'
-import { registerApi } from '@/api/auth';
+import { defaultApi } from '@/api/defaultApi'
+import { ResponseError } from '../../../../gen/ts/runtime'
 import { useRouter } from 'vue-router';
 
 // 1. TypeScript interface for Registration
@@ -44,26 +45,24 @@ const handleRegister = async () => {
   errorMessage.value = '';
 
   try {
-    const response = await registerApi({
-    username: form.username,
-    password: form.password,
-    email: form.email
+    await defaultApi.apiUserRegPost({
+      apiUserRegPostRequest: {
+        username: form.username,
+        password: form.password,
+        email: form.email,
+      },
     });
 
-    localStorage.setItem('token', response.data.token);
+    localStorage.setItem('username', form.username)
     console.log("Registration successful:", form.username);
-
-    if (response.status === 201) {
-      console.log("login! success");
-      router.push('/profile'); 
-    }
-    else if (response.status === 409) {
+    console.log("register! success");
+    router.push('/profile');
+  } catch (err: unknown) {
+    if (err instanceof ResponseError && err.response.status === 409) {
       errorMessage.value = "Username taken.";
+    } else {
+      errorMessage.value = "Signal interference. Try a different Star ID.";
     }
-
-
-  } catch (err) {
-    errorMessage.value = "Signal interference. Try a different Star ID.";
   } finally {
     isLoading.value = false;
   }

@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cronjob
+  namespace: starroll
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cronjob
+  template:
+    metadata:
+      labels:
+        app: cronjob
+    spec:
+      containers:
+        - name: main
+          image: europe-west1-docker.pkg.dev/starroll/console/console:0.1
+          imagePullPolicy: Always
+          command:
+            - "python"
+            - "/app/backend/cronjob/main.py"
+          volumeMounts:
+            - name: app-env-file
+              mountPath: /app/.env
+              subPath: .env
+              readOnly: true
+          resources:
+            requests:
+              cpu: "1000m"
+              memory: "2048Mi"
+            limits:
+              cpu: "1000m"
+              memory: "2048Mi"
+      volumes:
+        - name: app-env-file
+          secret:
+            secretName: starroll-secret
+            items:
+              - key: .env
+                path: .env

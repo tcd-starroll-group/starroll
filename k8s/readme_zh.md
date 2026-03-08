@@ -27,6 +27,14 @@ docker build --platform linux/amd64 -f backend/console/Dockerfile . -t europe-we
 docker push europe-west1-docker.pkg.dev/starroll/console/console:0.1
 ```
 
+### backend astronomy.net
+
+```bash
+docker pull dm90/astrometry:latest
+docker tag dm90/astrometry:latest europe-west1-docker.pkg.dev/starroll/astronomy/astronomy:1.0
+docker push europe-west1-docker.pkg.dev/starroll/astronomy/astronomy:1.0
+```
+
 ### frontend
 
 ```bash
@@ -49,6 +57,11 @@ kubectl apply -f k8s/prod/config/secret.yaml
 kubectl apply -f k8s/prod/console/backendconfig.yaml
 kubectl apply -f k8s/prod/console/service.yaml
 kubectl apply -f k8s/prod/console/deployment.yaml
+
+kubectl apply -f k8s/prod/cronjob/deployment.yaml
+
+kubectl apply -f k8s/prod/astronomy/deployment.yaml
+kubectl apply -f k8s/prod/astronomy/service.yaml
 
 kubectl apply -f k8s/prod/nginx/service.yaml
 kubectl apply -f k8s/prod/nginx/ingress.yaml
