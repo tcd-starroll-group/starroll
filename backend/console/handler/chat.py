@@ -5,7 +5,10 @@ from redis import StrictRedis
 from backend.console.utils.snowflake import id_worker
 
 # 初始化连接 (建议从 config 获取配置)
-kafka_prod = KafkaProducer(bootstrap_servers='localhost:9092')
+kafka_prod = KafkaProducer(bootstrap_servers=['localhost:9092'],
+                           api_version=(3, 0, 0),
+                           value_serializer=lambda v: json.dumps(v).encode('utf-8')
+                           )
 redis_client = StrictRedis(host='localhost', port=6379, db=0)
 
 
@@ -32,7 +35,8 @@ async def handle_send_message(websocket, user_id, payload):
 
     # 3. 异步并行处理：
     # A. 发送到 Kafka 的 chat_messages Topic [cite: 24, 75]
-    kafka_prod.send('chat_messages', json.dumps(full_msg).encode('utf-8'))
+    # kafka_prod.send('chat_messages', json.dumps(full_msg).encode('utf-8'))
+    kafka_prod.send('chat_messages', full_msg)
 
     # B. 发布到 Redis 对应的 channel (以星星 HIP 为名)
     redis_client.publish(f"group:channel:{room_id}", json.dumps(full_msg))

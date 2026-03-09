@@ -2,7 +2,7 @@ import asyncio
 import json
 
 # 导入你刚刚写好的消息处理函数
-from backend.console.handler.chat import handle_send_message
+from backend.console.handler.chat import handle_send_message, kafka_prod
 
 
 # 模拟一个 WebSocket 连接对象
@@ -21,13 +21,16 @@ async def run_test():
         "content": "Hello Universe! 这是一条来自本地测试的消息。"
     }
 
-    print("🚀 开始模拟发送群聊消息...")
+    print("开始模拟发送群聊消息...")
     print(f"发送内容: {json.dumps(mock_payload, ensure_ascii=False)}")
 
     # 2. 调用 Console 的处理逻辑
-    await handle_send_message(ws, mock_user_id, mock_payload)
+    await handle_send_message(ws, 999, mock_payload)
 
     print("✨ Console 处理逻辑执行完毕！")
+
+    kafka_prod.flush()
+    print("Kafka message push into the queue successfully!")
 
 
 if __name__ == "__main__":
