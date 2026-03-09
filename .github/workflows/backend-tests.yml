@@ -25,6 +25,7 @@ jobs:
       REDIS_PORT: 6379
       REDIS_PASSWORD: ""
       REDIS_DB: 0
+      KAFKA_BOOTSTRAP_SERVERS: localhost:9092
     steps:
       - uses: actions/checkout@v4
 
@@ -55,6 +56,21 @@ jobs:
               break
             fi
             echo "Waiting for Redis... ($i/30)"
+            sleep 2
+          done
+
+      - name: Start Kafka
+        run: |
+          docker run -d --name kafka \
+            -p 9092:9092 \
+            apache/kafka:latest
+          for i in $(seq 1 30); do
+            # 探测 Kafka 是否能成功响应列出 topic 的请求
+            if docker exec kafka /opt/kafka/bin/kafka-topics.sh --list --bootstrap-server localhost:9092 > /dev/null 2>&1; then
+              echo "Kafka is ready"
+              break
+            fi
+            echo "Waiting for Kafka... ($i/30)"
             sleep 2
           done
 
