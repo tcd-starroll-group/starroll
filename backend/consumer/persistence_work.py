@@ -1,8 +1,6 @@
 import json
 from kafka import KafkaConsumer
-# 修复点：修正导入路径
 from backend.console.dal.rds.sql.message import Message
-# 修复点：从 client.py 导入的是 SessionLocal，而不是 Session
 from backend.console.dal.rds.client import SessionLocal
 
 consumer = KafkaConsumer(
@@ -18,7 +16,6 @@ def start_consuming():
     for message in consumer:
         data = json.loads(message.value)
 
-        # 5. 由专用 Consumer 批量异步写入 MySQL [cite: 27, 78]
         new_msg = Message(
             id=data['msg_id'],
             room_id=data['room_id'],
@@ -26,7 +23,6 @@ def start_consuming():
             content=data['content']
         )
 
-        # 修复点：使用 SessionLocal() 创建会话实例
         session = SessionLocal()
         try:
             session.add(new_msg)

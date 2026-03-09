@@ -16,3 +16,5 @@ test-images
 cert
 .vite
 secret.yaml
+test_chat_flow.py
+test_get_message.py
