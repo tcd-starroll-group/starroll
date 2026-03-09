@@ -19,6 +19,11 @@ const router = createRouter({
       redirect: '/userLogin',
     },
     {
+      path: '/blog-detail',
+      name: 'BlogDetail',
+      component: () => import('../views/BlogDetailView.vue')
+    },
+    {
       path: '/add-blog',
       name: 'AddBlog',
       component: () => import('../views/AddBlogView.vue'),
