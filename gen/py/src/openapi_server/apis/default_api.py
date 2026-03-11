@@ -7,6 +7,9 @@ import pkgutil
 from openapi_server.apis.default_api_base import BaseDefaultApi
 import openapi_server.impl
 
+from fastapi import WebSocket, WebSocketDisconnect
+from backend.console.handler.chat import chat_websocket_endpoint
+
 from fastapi import (  # noqa: F401
     APIRouter,
     Body,
@@ -895,3 +898,8 @@ async def api_health_get(
     if not BaseDefaultApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")
     return await BaseDefaultApi.subclasses[0]().api_health_get()
+
+
+@router.websocket("/api/chat/ws/{user_id}")
+async def api_chat_ws(websocket: WebSocket, user_id: int):
+    await chat_websocket_endpoint(websocket, user_id)
