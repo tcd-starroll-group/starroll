@@ -3,13 +3,15 @@ import json
 from unittest.mock import AsyncMock, patch
 from backend.console.handler.chat import handle_send_message
 
+@pytest.fixture
+def anyio_backend():
+    return 'asyncio'
 
 @pytest.mark.asyncio
 # 拦截（Mock）掉外部依赖，防止测试时真的去连本地端口
 @patch('backend.console.handler.chat.kafka_prod')
 @patch('backend.console.handler.chat.redis_client')
 @patch('backend.console.handler.chat.id_worker')
-@pytest.mark.asyncio
 async def test_handle_send_message(mock_id_worker, mock_redis, mock_kafka):
     # 1. 设置 Mock 的返回值
     mock_id_worker.get_id.return_value = 888899990000  # 伪造一个 Snowflake ID
