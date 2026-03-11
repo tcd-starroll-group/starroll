@@ -21,7 +21,7 @@ import json
 
 
 from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt
-from typing import Any, ClassVar, Dict, List, Optional, Union
+from typing import Any, ClassVar, Dict, List, Union
 from openapi_server.models.equatorial_coordinate import EquatorialCoordinate
 try:
     from typing import Self
@@ -32,13 +32,13 @@ class StarMeta(BaseModel):
     """
     StarMeta
     """ # noqa: E501
-    hip: Optional[StrictInt] = Field(default=None, description="unique HIP index", alias="HIP")
-    equatorial_coordinate: Optional[EquatorialCoordinate] = Field(default=None, alias="equatorialCoordinate")
-    magnitude: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="magnitude")
-    pm_ra: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Proper motion mu_alpha.cos(delta), The proper motion of a star along its right ascension, radian per year", alias="pmRA")
-    pm_de: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Proper motion mu_delta, The proper motion of a star in the direction of declination, the radian per year", alias="pmDE")
-    bv_color: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="A measure of its surface temperature, determined by the difference between its measured blue (B) magnitude and its visual (V) magnitude.", alias="bvColor")
-    distance: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Distance from earth, light-year")
+    hip: StrictInt = Field(description="unique HIP index", alias="HIP")
+    equatorial_coordinate: EquatorialCoordinate = Field(alias="equatorialCoordinate")
+    magnitude: Union[StrictFloat, StrictInt] = Field(description="magnitude")
+    pm_ra: Union[StrictFloat, StrictInt] = Field(description="Proper motion mu_alpha.cos(delta), The proper motion of a star along its right ascension, radian per year", alias="pmRA")
+    pm_de: Union[StrictFloat, StrictInt] = Field(description="Proper motion mu_delta, The proper motion of a star in the direction of declination, the radian per year", alias="pmDE")
+    bv_color: Union[StrictFloat, StrictInt] = Field(description="A measure of its surface temperature, determined by the difference between its measured blue (B) magnitude and its visual (V) magnitude.", alias="bvColor")
+    distance: Union[StrictFloat, StrictInt] = Field(description="Distance from earth, light-year")
     __properties: ClassVar[List[str]] = ["HIP", "equatorialCoordinate", "magnitude", "pmRA", "pmDE", "bvColor", "distance"]
 
     model_config = {

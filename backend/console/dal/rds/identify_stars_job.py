@@ -1,4 +1,5 @@
-from sqlalchemy import Column, Integer, BigInteger, String, JSON, TIMESTAMP, SmallInteger, text
+from datetime import datetime, timedelta
+from sqlalchemy import Column, Integer, BigInteger, String, JSON, TIMESTAMP, SmallInteger, text, distinct
 from sqlalchemy.orm import declarative_base, Session
 from backend.constant.sort import SORT_ORDER_ASC, SORT_ORDER_DESC
 from backend.constant.star_identify import STAR_IDENTIFY_JOB_STATUS_PENDING
@@ -75,6 +76,17 @@ class IdentifyStarsJob(Base):
             query = query.order_by(cls.created_at.desc(), cls.id.desc())
 
         return query.offset(offset).limit(limit).all()
+
+    @classmethod
+    def list_recent_user_ids(cls, db: Session, days: int = 30) -> list:
+        """Return distinct user_ids that created jobs within the last N days."""
+        since = datetime.utcnow() - timedelta(days=days)
+        rows = (
+            db.query(distinct(cls.user_id))
+            .filter(cls.created_at >= since, cls.is_deleted == 0)
+            .all()
+        )
+        return [row[0] for row in rows]
 
     @classmethod
     def create(cls, db: Session, user_id: int, image_key: str, status: str = STAR_IDENTIFY_JOB_STATUS_PENDING):

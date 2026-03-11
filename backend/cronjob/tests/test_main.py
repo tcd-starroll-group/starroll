@@ -14,36 +14,70 @@ def test_register_jobs(monkeypatch):
     mock_add_job = MagicMock()
     scheduler.scheduler.add_job = mock_add_job
 
-    # Mock the identify_stars_handler function and IntervalTrigger
-    mock_handler = MagicMock()
-    mock_trigger = MagicMock()
-    monkeypatch.setattr(
-        "backend.cronjob.main.identify_stars_handler", mock_handler)
-    monkeypatch.setattr("backend.cronjob.main.IntervalTrigger",
-                        lambda seconds: mock_trigger)
+    # Mock job handlers and trigger constructors used by _register_jobs.
+    mock_identify_handler = MagicMock()
+    mock_precompute_handler = MagicMock()
+    mock_profile_handler = MagicMock()
+    mock_email_handler = MagicMock()
+
+    identify_trigger = MagicMock(name="identify_trigger")
+    precompute_trigger = MagicMock(name="precompute_trigger")
+    profile_trigger = MagicMock(name="profile_trigger")
+    email_trigger = MagicMock(name="email_trigger")
+
+    def _interval_trigger_stub(*args, **kwargs):
+        if kwargs.get("seconds") == 5:
+            return identify_trigger
+        if kwargs.get("hours") == 3:
+            return precompute_trigger
+        if kwargs.get("hours") == 6:
+            return profile_trigger
+        raise AssertionError(f"Unexpected IntervalTrigger args: {args}, {kwargs}")
+
+    def _cron_trigger_stub(*args, **kwargs):
+        if kwargs.get("hour") == 18 and kwargs.get("minute") == 0:
+            return email_trigger
+        raise AssertionError(f"Unexpected CronTrigger args: {args}, {kwargs}")
+
+    monkeypatch.setattr("backend.cronjob.main.identify_stars_handler", mock_identify_handler)
+    monkeypatch.setattr("backend.cronjob.main.precompute_stargazing_handler", mock_precompute_handler)
+    monkeypatch.setattr("backend.cronjob.main.update_user_stargazing_profile_handler", mock_profile_handler)
+    monkeypatch.setattr("backend.cronjob.main.send_stargazing_recommendation_email_handler", mock_email_handler)
+    monkeypatch.setattr("backend.cronjob.main.IntervalTrigger", _interval_trigger_stub)
+    monkeypatch.setattr("backend.cronjob.main.CronTrigger", _cron_trigger_stub)
 
     scheduler._register_jobs()
 
-    # Check that the identify_stars_handler job is registered
-    mock_add_job.assert_called()  # Ensure the method was called
+    # Four jobs should be registered: identify, precompute, profile update, email.
+    assert mock_add_job.call_count == 4
 
-    # Verify the arguments passed to the call
-    call_args = mock_add_job.call_args
-    if call_args.kwargs:  # If keyword arguments are used
-        kwargs = call_args.kwargs
-        assert kwargs["trigger"] == mock_trigger
-        assert kwargs["id"] == "identify_satrs_job"
-        assert kwargs["name"] == "Identify Stars Task"
-        assert kwargs["replace_existing"] is True
-        assert kwargs["misfire_grace_time"] == 10
-    else:  # If positional arguments are used
-        args = call_args.args
-        assert args[0] == mock_handler  # func
-        assert args[1] == mock_trigger  # trigger
-        assert args[2] == "identify_satrs_job"  # id
-        assert args[3] == "Identify Stars Task"  # name
-        assert args[4] is True  # replace_existing
-        assert args[5] == 10  # misfire_grace_time
+    calls = mock_add_job.call_args_list
+
+    identify_call = calls[0]
+    assert identify_call.args[0] == mock_identify_handler
+    assert identify_call.kwargs["trigger"] == identify_trigger
+    assert identify_call.kwargs["id"] == "identify_satrs_job"
+    assert identify_call.kwargs["name"] == "Identify Stars Task"
+    assert identify_call.kwargs["replace_existing"] is True
+    assert identify_call.kwargs["misfire_grace_time"] == 10
+
+    precompute_call = calls[1]
+    assert precompute_call.args[0] == mock_precompute_handler
+    assert precompute_call.kwargs["trigger"] == precompute_trigger
+    assert precompute_call.kwargs["id"] == "precompute_stargazing_job"
+    assert precompute_call.kwargs["name"] == "Precompute Stargazing Recommendations"
+
+    profile_call = calls[2]
+    assert profile_call.args[0] == mock_profile_handler
+    assert profile_call.kwargs["trigger"] == profile_trigger
+    assert profile_call.kwargs["id"] == "update_user_stargazing_profile_job"
+    assert profile_call.kwargs["name"] == "Update User Stargazing Profiles"
+
+    email_call = calls[3]
+    assert email_call.args[0] == mock_email_handler
+    assert email_call.kwargs["trigger"] == email_trigger
+    assert email_call.kwargs["id"] == "send_stargazing_recommendation_email_job"
+    assert email_call.kwargs["name"] == "Send Daily Stargazing Recommendation Emails"
 
 
 def test_start_scheduler(monkeypatch):

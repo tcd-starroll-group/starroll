@@ -677,6 +677,37 @@ paths:
                 $ref: "#/components/schemas/ErrorResponse"
           description: Invalid or expired Token.
       summary: Verify the user's Token
+  /api/getStargazingRecommendation:
+    post:
+      description: "Returns best time windows, recommended constellations, moon phase\
+        \ info, and personalized tips derived from the user's observation history\
+        \ and real-time weather."
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/_api_getStargazingRecommendation_post_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StargazingRecommendation"
+          description: Personalized stargazing recommendation
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Unauthorized
+      summary: Get personalized stargazing recommendations based on user history
   /api/deleteBlog:
     post:
       requestBody:
@@ -767,6 +798,12 @@ paths:
                 $ref: "#/components/schemas/_api_deleteBlog_post_200_response"
           description: OK
       summary: Report a blog
+  /api/health:
+    get:
+      responses:
+        "200":
+          description: OK
+      summary: health check
 components:
   schemas:
     profileAndToken:
@@ -902,6 +939,14 @@ components:
           description: "Distance from earth, light-year"
           title: distance
           type: number
+      required:
+      - HIP
+      - bvColor
+      - distance
+      - equatorialCoordinate
+      - magnitude
+      - pmDE
+      - pmRA
       title: starMeta
       type: object
     equatorialCoordinate:
@@ -1287,6 +1332,51 @@ components:
       - email
       - newPassword
       title: resetPasswordRequest
+      type: object
+    StargazingRecommendation:
+      example:
+        bestTimeSlots:
+        - score: 0.8008281904610115
+          startTime: 2000-01-23T04:56:07.000+00:00
+          endTime: 2000-01-23T04:56:07.000+00:00
+          skyCondition: skyCondition
+        - score: 0.8008281904610115
+          startTime: 2000-01-23T04:56:07.000+00:00
+          endTime: 2000-01-23T04:56:07.000+00:00
+          skyCondition: skyCondition
+        moonPhase:
+          phase: phase
+          illumination: 6.027456183070403
+        recommendedConstellations:
+        - reason: reason
+          name: name
+        - reason: reason
+          name: name
+        tips:
+        - tips
+        - tips
+      properties:
+        bestTimeSlots:
+          description: Top ranked time windows for stargazing tonight
+          items:
+            $ref: "#/components/schemas/StargazingRecommendation_bestTimeSlots_inner"
+          title: bestTimeSlots
+          type: array
+        recommendedConstellations:
+          description: Constellations recommended for this user tonight
+          items:
+            $ref: "#/components/schemas/StargazingRecommendation_recommendedConstellations_inner"
+          title: recommendedConstellations
+          type: array
+        moonPhase:
+          $ref: "#/components/schemas/StargazingRecommendation_moonPhase"
+        tips:
+          description: Personalized observation tips
+          items:
+            type: string
+          title: tips
+          type: array
+      title: StargazingRecommendation
       type: object
     _api_displayChatRoom_get_200_response_style:
       description: GUI styling properties
@@ -2271,6 +2361,19 @@ components:
           title: token
           type: string
       title: _api_verifyUserToken_post_request
+    _api_getStargazingRecommendation_post_request:
+      properties:
+        userCredentials:
+          $ref: "#/components/schemas/userCredentials"
+        gps:
+          $ref: "#/components/schemas/GPS"
+        targetDate:
+          description: Date to get recommendations for (defaults to today)
+          format: date
+          title: targetDate
+          type: string
+      title: _api_getStargazingRecommendation_post_request
+      type: object
     _api_deleteBlog_post_200_response:
       example:
         blogID: blogID
@@ -2358,4 +2461,58 @@ components:
           title: HIP
           type: integer
       title: IdentifyStarsJobResult_identifiedStars_inner
+      type: object
+    StargazingRecommendation_bestTimeSlots_inner:
+      example:
+        score: 0.8008281904610115
+        startTime: 2000-01-23T04:56:07.000+00:00
+        endTime: 2000-01-23T04:56:07.000+00:00
+        skyCondition: skyCondition
+      properties:
+        startTime:
+          format: date-time
+          title: startTime
+          type: string
+        endTime:
+          format: date-time
+          title: endTime
+          type: string
+        score:
+          description: Quality score 0-100 (higher is better)
+          title: score
+          type: number
+        skyCondition:
+          description: clear / partly-cloudy / cloudy
+          title: skyCondition
+          type: string
+      title: StargazingRecommendation_bestTimeSlots_inner
+      type: object
+    StargazingRecommendation_recommendedConstellations_inner:
+      example:
+        reason: reason
+        name: name
+      properties:
+        name:
+          title: name
+          type: string
+        reason:
+          description: Why this constellation is recommended
+          title: reason
+          type: string
+      title: StargazingRecommendation_recommendedConstellations_inner
+      type: object
+    StargazingRecommendation_moonPhase:
+      example:
+        phase: phase
+        illumination: 6.027456183070403
+      properties:
+        illumination:
+          description: "Moon illumination fraction (0.0=new moon, 1.0=full moon)"
+          title: illumination
+          type: number
+        phase:
+          description: "Phase name e.g. New Moon, Waxing Crescent, Full Moon"
+          title: phase
+          type: string
+      title: StargazingRecommendation_moonPhase
       type: object

@@ -10,10 +10,10 @@ _redis_client: Optional[RedisClient] = None
 
 def get_redis_client(settings: Optional[Settings] = None) -> RedisClient:
     """Get or create Redis client instance.
-    
+
     Args:
         settings: Settings object (optional, will create instance if not provided)
-        
+
     Returns:
         RedisClient instance
     """

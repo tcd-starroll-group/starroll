@@ -920,7 +920,7 @@ paths:
       summary: " update user profile"
       description: "update the user's profile information stored as JSON."
       security:
-        - bearerAuth: []  # Assuming authentication is required, adjust if needed
+        - bearerAuth: [] # Assuming authentication is required, adjust if needed
       requestBody:
         required: true
         content:
@@ -952,7 +952,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-
 
   /api/userReg:
     post:
@@ -1156,6 +1155,45 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
 
+  /api/getStargazingRecommendation:
+    post:
+      summary: Get personalized stargazing recommendations based on user history
+      description: Returns best time windows, recommended constellations, moon phase info, and personalized tips derived from the user's observation history and real-time weather.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userCredentials:
+                  $ref: "#/components/schemas/userCredentials"
+                gps:
+                  $ref: "#/components/schemas/GPS"
+                targetDate:
+                  type: string
+                  format: date
+                  description: "Date to get recommendations for (defaults to today)"
+      responses:
+        "200":
+          description: Personalized stargazing recommendation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StargazingRecommendation"
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
   # Social blog
   /api/deleteBlog:
     post:
@@ -1295,6 +1333,13 @@ paths:
                   blogID:
                     type: string
 
+  /api/health:
+    get:
+      summary: "health check"
+      responses:
+        "200":
+          description: OK
+
 # Reused schemas
 components:
   schemas:
@@ -1311,7 +1356,12 @@ components:
         profile:
           type: object
           description: "User profile in JSON format"
-          example: { "bio": "Software engineer", "location": "New York", "interests": ["coding", "reading"] }
+          example:
+            {
+              "bio": "Software engineer",
+              "location": "New York",
+              "interests": ["coding", "reading"],
+            }
       required:
         - username
         - profile
@@ -1635,7 +1685,7 @@ components:
         userName:
           type: string
           description: "User name"
-          example: "name"  
+          example: "name"
       required:
         - email
         - userName
@@ -1660,3 +1710,50 @@ components:
         - email
         - code
         - newPassword
+
+    StargazingRecommendation:
+      type: object
+      properties:
+        bestTimeSlots:
+          type: array
+          description: "Top ranked time windows for stargazing tonight"
+          items:
+            type: object
+            properties:
+              startTime:
+                type: string
+                format: date-time
+              endTime:
+                type: string
+                format: date-time
+              score:
+                type: number
+                description: "Quality score 0-100 (higher is better)"
+              skyCondition:
+                type: string
+                description: "clear / partly-cloudy / cloudy"
+        recommendedConstellations:
+          type: array
+          description: "Constellations recommended for this user tonight"
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              reason:
+                type: string
+                description: "Why this constellation is recommended"
+        moonPhase:
+          type: object
+          properties:
+            illumination:
+              type: number
+              description: "Moon illumination fraction (0.0=new moon, 1.0=full moon)"
+            phase:
+              type: string
+              description: "Phase name e.g. New Moon, Waxing Crescent, Full Moon"
+        tips:
+          type: array
+          description: "Personalized observation tips"
+          items:
+            type: string

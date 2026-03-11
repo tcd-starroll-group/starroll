@@ -3,8 +3,12 @@ from pathlib import Path
 from typing import Generator
 
 import pytest
+from dotenv import load_dotenv
 from sqlalchemy import create_engine, inspect, text
 from sqlalchemy.orm import sessionmaker, Session
+
+# Load .env so MINIO_ACCESS_KEY, MINIO_SECRET_KEY etc. are available in tests
+load_dotenv(Path(__file__).resolve().parents[2] / ".env", override=True)
 
 from backend.console.dal.rds.user import User, Base
 
@@ -121,8 +125,8 @@ def minio_settings():
     import os
     return {
         "endpoint": os.getenv("MINIO_ENDPOINT", "localhost:9000"),
-        "access_key": os.getenv("MINIO_ACCESS_KEY", "minioadmin"),
-        "secret_key": os.getenv("MINIO_SECRET_KEY", "minioadmin"),
+        "access_key": os.getenv("MINIO_ACCESS_KEY", "admin"),
+        "secret_key": os.getenv("MINIO_SECRET_KEY", "password123"),
         "secure": os.getenv("MINIO_SECURE", "false").lower() == "true",
     }
 

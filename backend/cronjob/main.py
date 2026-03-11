@@ -6,8 +6,12 @@ Use APScheduler to manage all scheduled tasks
 import logging
 from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.triggers.interval import IntervalTrigger
+from apscheduler.triggers.cron import CronTrigger
 
 from backend.cronjob.identify_stars import identify_stars_handler
+from backend.cronjob.precompute_stargazing import precompute_stargazing_handler
+from backend.cronjob.update_user_stargazing_profile import update_user_stargazing_profile_handler
+from backend.cronjob.send_stargazing_recommendation_email import send_stargazing_recommendation_email_handler
 
 # Configuration logging
 logging.basicConfig(
@@ -35,14 +39,33 @@ class CronJobScheduler:
             replace_existing=True
         )
 
-        # Additional tasks can be added here, e.g.:
-        # self.add_job(
-        #     func=other_task,
-        #     trigger=IntervalTrigger(minutes=1),
-        #     job_id='other_task_job',
-        #     name='Other Task',
-        #     replace_existing=True
-        # )
+        # Precompute stargazing recommendations for popular dark-sky locations every 3 hours
+        self.add_job(
+            func=precompute_stargazing_handler,
+            trigger=IntervalTrigger(hours=3),
+            job_id='precompute_stargazing_job',
+            name='Precompute Stargazing Recommendations',
+            replace_existing=True
+        )
+
+        # Update user stargazing profiles from observation history every 6 hours
+        self.add_job(
+            func=update_user_stargazing_profile_handler,
+            trigger=IntervalTrigger(hours=6),
+            job_id='update_user_stargazing_profile_job',
+            name='Update User Stargazing Profiles',
+            replace_existing=True
+        )
+
+        # Send daily stargazing recommendation emails at 18:00 every day
+        # (early evening so users can plan for the night)
+        self.add_job(
+            func=send_stargazing_recommendation_email_handler,
+            trigger=CronTrigger(hour=18, minute=0),
+            job_id='send_stargazing_recommendation_email_job',
+            name='Send Daily Stargazing Recommendation Emails',
+            replace_existing=True
+        )
 
     def add_job(self, func, trigger, job_id, name, replace_existing=True):
         """

@@ -60,6 +60,7 @@ from openapi_server.models.api_get_saved_blogs_post200_response import ApiGetSav
 from openapi_server.models.api_get_saved_blogs_post_request import ApiGetSavedBlogsPostRequest
 from openapi_server.models.api_get_star_catalog_post200_response import ApiGetStarCatalogPost200Response
 from openapi_server.models.api_get_star_details_post_request import ApiGetStarDetailsPostRequest
+from openapi_server.models.api_get_stargazing_recommendation_post_request import ApiGetStargazingRecommendationPostRequest
 from openapi_server.models.api_like_blog_post200_response import ApiLikeBlogPost200Response
 from openapi_server.models.api_list_blogs_post200_response import ApiListBlogsPost200Response
 from openapi_server.models.api_list_blogs_post_request import ApiListBlogsPostRequest
@@ -89,6 +90,7 @@ from openapi_server.models.profile_and_token import ProfileAndToken
 from openapi_server.models.reset_password_request import ResetPasswordRequest
 from openapi_server.models.reset_password_send_code_request import ResetPasswordSendCodeRequest
 from openapi_server.models.star_details import StarDetails
+from openapi_server.models.stargazing_recommendation import StargazingRecommendation
 from openapi_server.models.token_response import TokenResponse
 from openapi_server.models.user_auth import UserAuth
 from openapi_server.models.user_response import UserResponse
@@ -780,6 +782,26 @@ async def api_verify_user_token_post(
 
 
 @router.post(
+    "/api/getStargazingRecommendation",
+    responses={
+        200: {"model": StargazingRecommendation, "description": "Personalized stargazing recommendation"},
+        400: {"model": ErrorResponse, "description": "Bad request"},
+        401: {"model": ErrorResponse, "description": "Unauthorized"},
+    },
+    tags=["default"],
+    summary="Get personalized stargazing recommendations based on user history",
+    response_model_by_alias=True,
+)
+async def api_get_stargazing_recommendation_post(
+    api_get_stargazing_recommendation_post_request: ApiGetStargazingRecommendationPostRequest = Body(None, description=""),
+) -> StargazingRecommendation:
+    """Returns best time windows, recommended constellations, moon phase info, and personalized tips derived from the user&#39;s observation history and real-time weather."""
+    if not BaseDefaultApi.subclasses:
+        raise HTTPException(status_code=500, detail="Not implemented")
+    return await BaseDefaultApi.subclasses[0]().api_get_stargazing_recommendation_post(api_get_stargazing_recommendation_post_request)
+
+
+@router.post(
     "/api/deleteBlog",
     responses={
         200: {"model": ApiDeleteBlogPost200Response, "description": "OK"},
@@ -879,3 +901,19 @@ async def api_report_blog_post(
     if not BaseDefaultApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")
     return await BaseDefaultApi.subclasses[0]().api_report_blog_post(api_get_saved_blogs_post_request)
+
+
+@router.get(
+    "/api/health",
+    responses={
+        200: {"description": "OK"},
+    },
+    tags=["default"],
+    summary="health check",
+    response_model_by_alias=True,
+)
+async def api_health_get(
+) -> None:
+    if not BaseDefaultApi.subclasses:
+        raise HTTPException(status_code=500, detail="Not implemented")
+    return await BaseDefaultApi.subclasses[0]().api_health_get()

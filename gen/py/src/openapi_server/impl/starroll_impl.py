@@ -13,11 +13,13 @@ from backend.console.handler.edit_profile import api_edit_profile_post
 from backend.console.handler.user_change_password import api_change_password_post
 from backend.console.handler.create_identify_starts_job import api_create_identify_stars_job_post
 from openapi_server.models.change_password_request import ChangePasswordRequest
+from openapi_server.models.reset_password_send_code_request import ResetPasswordSendCodeRequest
+from openapi_server.models.reset_password_request import ResetPasswordRequest
 
 from openapi_server.models.profile_and_token import ProfileAndToken
 
-from backend.console.handler.reset_password_send_code import api_forgot_password_send_code_post as api_forgot_password_send_code_post_handler
-from backend.console.handler.reset_password import api_forgot_password_reset_post as api_forgot_password_reset_post_handler
+from backend.console.handler.reset_password_send_code import api_reset_password_send_code_post as api_reset_password_send_code_post_handler
+from backend.console.handler.reset_password import api_reset_password_post as api_reset_password_post_handler
 
 from openapi_server.models.api_create_identify_stars_job_post_request import ApiCreateIdentifyStarsJobPostRequest
 
@@ -28,6 +30,15 @@ from backend.console.handler.list_identify_stars_jobs import api_list_identify_s
 from openapi_server.models.api_get_identify_stars_job_result_post_request import ApiGetIdentifyStarsJobResultPostRequest
 from openapi_server.models.api_get_identify_stars_job_result_post200_response import ApiGetIdentifyStarsJobResultPost200Response
 from backend.console.handler.get_identify_stars_job_result import api_get_identify_stars_job_result_post
+
+from openapi_server.models.api_request_stargazing_time_post_request import ApiRequestStargazingTimePostRequest
+from openapi_server.models.api_request_stargazing_time_post200_response import ApiRequestStargazingTimePost200Response
+from backend.console.handler.request_stargazing_time import api_request_stargazing_time_post
+
+from openapi_server.models.api_get_stargazing_recommendation_post_request import ApiGetStargazingRecommendationPostRequest
+from openapi_server.models.stargazing_recommendation import StargazingRecommendation
+from backend.console.handler.get_stargazing_recommendation import api_get_stargazing_recommendation_post
+
 
 class StarrollApiImpl(BaseDefaultApi):
     async def api_user_login_post(
@@ -57,11 +68,26 @@ class StarrollApiImpl(BaseDefaultApi):
     async def api_list_identify_stars_jobs_post(self, api_list_identify_stars_jobs_post_request: ApiListIdentifyStarsJobsPostRequest) -> ApiListIdentifyStarsJobsPost200Response:
         return await api_list_identify_stars_jobs_post(api_list_identify_stars_jobs_post_request)
 
-    async def api_forgot_password_send_code_post(self, forgot_password_send_code_request: ForgotPasswordSendCodeRequest):
-        return await api_forgot_password_send_code_post_handler(forgot_password_send_code_request)
+    async def api_reset_password_send_code_post(self, reset_password_send_code_request: ResetPasswordSendCodeRequest):
+        return await api_reset_password_send_code_post_handler(reset_password_send_code_request)
 
-    async def api_forgot_password_reset_post(self, forgot_password_reset_request: ForgotPasswordResetRequest):
-        return await api_forgot_password_reset_post_handler(forgot_password_reset_request)
-    
-    async def api_get_identify_stars_job_result_post(self, api_get_identify_stars_job_result_post_request: ApiGetIdentifyStarsJobResultPostRequest) -> ApiGetIdentifyStarsJobResultPost200Response:  # <--- FIXED: Now returns the 200Response model
+    async def api_reset_password_post(self, reset_password_request: ResetPasswordRequest):
+        return await api_reset_password_post_handler(reset_password_request)
+
+    async def api_get_identify_stars_job_result_post(self, api_get_identify_stars_job_result_post_request: ApiGetIdentifyStarsJobResultPostRequest) -> ApiGetIdentifyStarsJobResultPost200Response:
         return await api_get_identify_stars_job_result_post(api_get_identify_stars_job_result_post_request)
+
+    async def api_request_stargazing_time_post(
+        self,
+        api_request_stargazing_time_post_request: ApiRequestStargazingTimePostRequest,
+    ) -> ApiRequestStargazingTimePost200Response:
+        return await api_request_stargazing_time_post(api_request_stargazing_time_post_request)
+
+    async def api_get_stargazing_recommendation_post(
+        self,
+        api_get_stargazing_recommendation_post_request: ApiGetStargazingRecommendationPostRequest,
+    ) -> StargazingRecommendation:
+        return await api_get_stargazing_recommendation_post(api_get_stargazing_recommendation_post_request)
+
+    async def api_health_get(self) -> None:
+        return

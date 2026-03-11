@@ -84,6 +84,25 @@ class User(Base):
             raise ValueError(f"更新失败: {str(e)}")
 
     @classmethod
+    def get_by_id(cls, db: Session, user_id: int) -> Optional["User"]:
+        """Query user by primary key ID"""
+        return db.query(cls).filter(cls.id == user_id).first()
+
+    @classmethod
+    def update_profile_by_id(cls, db: Session, user_id: int, profile: Dict[str, Any]) -> bool:
+        """Update user profile JSON by user ID"""
+        user = cls.get_by_id(db, user_id)
+        if not user:
+            return False
+        try:
+            user.profile = profile
+            db.commit()
+            return True
+        except SQLAlchemyError as e:
+            db.rollback()
+            raise ValueError(f"Profile update failed: {str(e)}")
+
+    @classmethod
     def get_by_email(cls, db_session: Session, email: str):
         return db_session.query(cls).filter(cls.email == email).first()
 
