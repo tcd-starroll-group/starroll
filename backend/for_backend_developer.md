@@ -139,7 +139,7 @@ docker run --rm \
 
 ## 4. Testing Guide
 
-We use **Pytest** combined with an **In-Memory SQLite** database to ensure tests are fast and environmentally isolated.
+We use **Pytest** with a dedicated **MySQL test service** in UT to keep test behavior aligned with runtime SQL semantics.
 
 ## 5. Deployment & Configuration
 

@@ -1,34 +1,16 @@
 import asyncio
 import pytest
 from fastapi import HTTPException
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, Session
+from sqlalchemy.orm import Session
 
 from backend.console.handler import list_saved_blogs as list_saved_blogs_module
 from backend.console.handler.list_saved_blogs import api_list_saved_blogs_post
-from backend.console.dal.rds.blog import Blog, Base as BlogBase
-from backend.console.dal.rds.blog_interactions import BlogSave, Base as InteractionBase
-from backend.console.dal.rds.blog_comment import Base as CommentBase
+from backend.console.dal.rds.blog import Blog
+from backend.console.dal.rds.blog_interactions import BlogSave
 from gen.py.src.openapi_server.models.api_get_saved_blogs_post_request import ApiGetSavedBlogsPostRequest
 from gen.py.src.openapi_server.models.user_credentials import UserCredentials
 
 import backend.console.utils.auth as auth_module
-
-
-@pytest.fixture()
-def db_session():
-    """Local fixture: bypass conftest SQL parsing, use ORM to create tables directly."""
-    engine = create_engine("sqlite:///:memory:")
-    BlogBase.metadata.create_all(engine)
-    InteractionBase.metadata.create_all(engine)
-    CommentBase.metadata.create_all(engine)
-    LocalSession = sessionmaker(bind=engine)
-    session = LocalSession()
-    try:
-        yield session
-    finally:
-        session.close()
-        engine.dispose()
 
 
 def _make_request(user_id: str, token: str = "valid_token") -> ApiGetSavedBlogsPostRequest:
@@ -39,9 +21,12 @@ def _make_request(user_id: str, token: str = "valid_token") -> ApiGetSavedBlogsP
 
 def test_list_saved_blogs_success(db_session: Session, monkeypatch: pytest.MonkeyPatch):
     """正常情况：返回用户收藏的所有博客"""
-    blog1 = Blog.create(db_session, user_id=99, hip=1, title="Saved Blog 1", content="c", image_urls=["http://img1.jpg"])
-    blog2 = Blog.create(db_session, user_id=99, hip=1, title="Saved Blog 2", content="c", image_urls=[])
-    Blog.create(db_session, user_id=99, hip=1, title="Not Saved", content="c", image_urls=[])
+    blog1 = Blog.create(db_session, user_id=99, hip=1, title="Saved Blog 1",
+                        content="c", image_urls=["http://img1.jpg"])
+    blog2 = Blog.create(db_session, user_id=99, hip=1,
+                        title="Saved Blog 2", content="c", image_urls=[])
+    Blog.create(db_session, user_id=99, hip=1,
+                title="Not Saved", content="c", image_urls=[])
 
     BlogSave.create(db_session, blog_id=blog1.blog_id, user_id=1)
     BlogSave.create(db_session, blog_id=blog2.blog_id, user_id=1)
@@ -50,7 +35,8 @@ def test_list_saved_blogs_success(db_session: Session, monkeypatch: pytest.Monke
         yield db_session
 
     monkeypatch.setattr(list_saved_blogs_module, "get_db", _get_db_override)
-    monkeypatch.setattr(auth_module, "verify_user_id_and_token", lambda token, user_id: None)
+    monkeypatch.setattr(auth_module, "verify_user_id_and_token",
+                        lambda token, user_id: None)
 
     result = asyncio.run(api_list_saved_blogs_post(_make_request("1")))
 
@@ -67,7 +53,8 @@ def test_list_saved_blogs_empty(db_session: Session, monkeypatch: pytest.MonkeyP
         yield db_session
 
     monkeypatch.setattr(list_saved_blogs_module, "get_db", _get_db_override)
-    monkeypatch.setattr(auth_module, "verify_user_id_and_token", lambda token, user_id: None)
+    monkeypatch.setattr(auth_module, "verify_user_id_and_token",
+                        lambda token, user_id: None)
 
     result = asyncio.run(api_list_saved_blogs_post(_make_request("999")))
 
@@ -90,14 +77,16 @@ def test_list_saved_blogs_missing_credentials(db_session: Session, monkeypatch: 
 
 def test_list_saved_blogs_no_blog_id_needed(db_session: Session, monkeypatch: pytest.MonkeyPatch):
     """确认即使传了 blogID 也不影响结果（blogID 已被忽略）"""
-    blog = Blog.create(db_session, user_id=99, hip=1, title="Saved", content="c", image_urls=[])
+    blog = Blog.create(db_session, user_id=99, hip=1,
+                       title="Saved", content="c", image_urls=[])
     BlogSave.create(db_session, blog_id=blog.blog_id, user_id=2)
 
     def _get_db_override():
         yield db_session
 
     monkeypatch.setattr(list_saved_blogs_module, "get_db", _get_db_override)
-    monkeypatch.setattr(auth_module, "verify_user_id_and_token", lambda token, user_id: None)
+    monkeypatch.setattr(auth_module, "verify_user_id_and_token",
+                        lambda token, user_id: None)
 
     payload = ApiGetSavedBlogsPostRequest(
         userCredentials=UserCredentials(userID="2", token="t"),

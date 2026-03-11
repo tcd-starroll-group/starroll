@@ -6,7 +6,7 @@ from backend.constant import app_env as app_env_const
 engine = None
 SessionLocal = None
 
-if settings.app_env == app_env_const.DEV or settings.app_env == app_env_const.PROD:
+if settings.app_env in [app_env_const.UT, app_env_const.DEV, app_env_const.PROD]:
     engine = create_engine(
         settings.sqlalchemy_database_url,
         pool_pre_ping=True,
