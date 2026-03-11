@@ -14,6 +14,11 @@ jobs:
     env:
       APP_ENV: ut
       PYTHONPATH: "gen/py/src:."
+      MYSQL_HOST: 127.0.0.1
+      MYSQL_PORT: 3306
+      MYSQL_USER: test_user
+      MYSQL_PASSWORD: test_password
+      MYSQL_DB_NAME: console
       JWT_SECRET: test_secret_key_for_github_actions_minimum_32_bytes_long
       JWT_ALGORITHM: HS256
       JWT_EXPIRE_HOURS: 2
@@ -27,6 +32,24 @@ jobs:
       REDIS_DB: 0
     steps:
       - uses: actions/checkout@v4
+
+      - name: Start MySQL
+        run: |
+          docker run -d --name mysql \
+            -p 3306:3306 \
+            -e MYSQL_ROOT_PASSWORD=root_password \
+            -e MYSQL_DATABASE=console \
+            -e MYSQL_USER=test_user \
+            -e MYSQL_PASSWORD=test_password \
+            mysql:8.0
+          for i in $(seq 1 60); do
+            if docker exec mysql mysqladmin ping -h127.0.0.1 -utest_user -ptest_password --silent; then
+              echo "MySQL is ready"
+              break
+            fi
+            echo "Waiting for MySQL... ($i/60)"
+            sleep 2
+          done
 
       - name: Start MinIO
         run: |
