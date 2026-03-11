@@ -22,7 +22,6 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
-from openapi_server.models.blog_preview import BlogPreview
 try:
     from typing import Self
 except ImportError:
@@ -32,7 +31,7 @@ class ApiListBlogsPost200Response(BaseModel):
     """
     ApiListBlogsPost200Response
     """ # noqa: E501
-    blogs_list: Optional[List[BlogPreview]] = Field(default=None, alias="blogsList")
+    blogs_list: Optional[List[Dict[str, Any]]] = Field(default=None, alias="blogsList")
     __properties: ClassVar[List[str]] = ["blogsList"]
 
     model_config = {
@@ -94,5 +93,3 @@ class ApiListBlogsPost200Response(BaseModel):
             "blogsList": [BlogPreview.from_dict(_item) for _item in obj.get("blogsList")] if obj.get("blogsList") is not None else None
         })
         return _obj
-
-

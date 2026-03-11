@@ -32,7 +32,7 @@ class ApiGetSavedBlogsPost200Response(BaseModel):
     """
     ApiGetSavedBlogsPost200Response
     """ # noqa: E501
-    blogs_list: Optional[List[ApiGetSavedBlogsPost200ResponseBlogsListInner]] = Field(default=None, alias="blogsList")
+    blogs_list: Optional[List[Dict[str, Any]]] = Field(default=None, alias="blogsList")
     __properties: ClassVar[List[str]] = ["blogsList"]
 
     model_config = {
@@ -94,5 +94,3 @@ class ApiGetSavedBlogsPost200Response(BaseModel):
             "blogsList": [ApiGetSavedBlogsPost200ResponseBlogsListInner.from_dict(_item) for _item in obj.get("blogsList")] if obj.get("blogsList") is not None else None
         })
         return _obj
-
-

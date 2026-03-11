@@ -20,7 +20,7 @@ import json
 
 
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from openapi_server.models.user_credentials import UserCredentials
 try:
@@ -41,6 +41,14 @@ class ApiGetSavedBlogsPostRequest(BaseModel):
         "validate_assignment": True,
         "protected_namespaces": (),
     }
+
+    @field_validator("user_credentials", mode="before")
+    @classmethod
+    def _coerce_user_credentials(cls, v: Any) -> Any:
+        """Accept UserCredentials instances from any import path by converting to dict first."""
+        if v is not None and hasattr(v, "model_dump"):
+            return v.model_dump(by_alias=True)
+        return v
 
 
     def to_str(self) -> str:
@@ -92,5 +100,3 @@ class ApiGetSavedBlogsPostRequest(BaseModel):
             "blogID": obj.get("blogID")
         })
         return _obj
-
-
