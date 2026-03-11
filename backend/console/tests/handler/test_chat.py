@@ -40,6 +40,6 @@ async def test_handle_send_message(mock_id_worker, mock_redis, mock_kafka):
 
     # 验证 WebSocket 给前端返回了 ACK，且 msg_id 变成了字符串
     mock_ws.send_text.assert_called_once()
-    ws_sent_data = json.loads(mock_ws.send.call_args[0][0])
+    ws_sent_data = json.loads(mock_ws.send_text.call_args[0][0])
     assert ws_sent_data["status"] == "ACK"
     assert ws_sent_data["msg_id"] == "888899990000"
