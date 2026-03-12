@@ -3,19 +3,19 @@ from fastapi import HTTPException
 
 from backend.console.dal.rds.user import User as UserDAL
 from backend.console.dal.rds.identify_stars_job import IdentifyStarsJob as IdentifyStarsJobDAL
-from backend.console.dal.rds.user_discovered_star import UserDiscoveredStar as UserDiscoveredStarDAL
+from backend.console.dal.rds.user_discovered_stars import UserDiscoveredStars as UserDiscoveredStarsDAL
 from backend.console.dal.rds.client import get_db
 from backend.console.utils.auth import verify_user_id_and_token
 
 # Import generated OpenAPI models
-from gen.py.src.openapi_server.models._api_get_profile_stats_post_request import ApiGetProfileStatsPostRequest
-from gen.py.src.openapi_server.models._api_get_profile_stats_post_200_response import ApiGetProfileStatsPost200Response
+from gen.py.src.openapi_server.models.profile_stats_request import ProfileStatsRequest
+from gen.py.src.openapi_server.models.profile_stats_response import ProfileStatsResponse
 
 logger = logging.getLogger(__name__)
 
 async def api_get_profile_stats_post(
-    request: ApiGetProfileStatsPostRequest
-) -> ApiGetProfileStatsPost200Response:
+    request: ProfileStatsRequest
+) -> ProfileStatsResponse:
 
     # 1. Auth check (Strict requirement)
     verify_user_id_and_token(request.user_credentials.token, request.user_credentials.user_id)
@@ -34,7 +34,7 @@ async def api_get_profile_stats_post(
 
         # 3. Fetch Metrics via DAL
         total_scans = IdentifyStarsJobDAL.count_all_time_scans(db_session, user_id)
-        stars_discovered = UserDiscoveredStarDAL.count_user_discoveries(db_session, user_id)
+        stars_discovered = UserDiscoveredStarsDAL.count_user_discoveries(db_session, user_id)
 
         # 4. Calculate Rank Gamification
         rank = "Novice"
