@@ -1515,6 +1515,13 @@ components:
           type: integer
           description: "Token expiration time (seconds)"
           example: 3600
+        userID: 
+          type: string
+          description: "The unique identifier for the logged-in user"
+          example: "1"
+      required:
+        - token
+        - userID
 
     UserResponse:
       description: "The basic user information returned after the operation is successful."

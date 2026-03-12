@@ -36,6 +36,7 @@ from openapi_server.models.api_create_blog_post_request import ApiCreateBlogPost
 from openapi_server.models.api_create_identify_stars_job_post200_response import ApiCreateIdentifyStarsJobPost200Response
 from openapi_server.models.api_create_identify_stars_job_post_request import ApiCreateIdentifyStarsJobPostRequest
 from openapi_server.models.api_delete_blog_post200_response import ApiDeleteBlogPost200Response
+from openapi_server.models.api_delete_blog_post_request import ApiDeleteBlogPostRequest
 from openapi_server.models.api_delete_comment_post_request import ApiDeleteCommentPostRequest
 from openapi_server.models.api_display_chat_room_get200_response import ApiDisplayChatRoomGet200Response
 from openapi_server.models.api_display_save_success_post200_response import ApiDisplaySaveSuccessPost200Response
@@ -56,15 +57,15 @@ from openapi_server.models.api_get_identify_stars_job_result_post200_response im
 from openapi_server.models.api_get_identify_stars_job_result_post_request import ApiGetIdentifyStarsJobResultPostRequest
 from openapi_server.models.api_get_message_post200_response import ApiGetMessagePost200Response
 from openapi_server.models.api_get_message_post_request import ApiGetMessagePostRequest
-from openapi_server.models.api_get_saved_blogs_post200_response import ApiGetSavedBlogsPost200Response
-from openapi_server.models.api_get_saved_blogs_post_request import ApiGetSavedBlogsPostRequest
 from openapi_server.models.api_get_star_catalog_post200_response import ApiGetStarCatalogPost200Response
 from openapi_server.models.api_get_star_details_post_request import ApiGetStarDetailsPostRequest
 from openapi_server.models.api_like_blog_post200_response import ApiLikeBlogPost200Response
-from openapi_server.models.api_list_blogs_post200_response import ApiListBlogsPost200Response
-from openapi_server.models.api_list_blogs_post_request import ApiListBlogsPostRequest
 from openapi_server.models.api_list_identify_stars_jobs_post200_response import ApiListIdentifyStarsJobsPost200Response
 from openapi_server.models.api_list_identify_stars_jobs_post_request import ApiListIdentifyStarsJobsPostRequest
+from openapi_server.models.api_list_star_blogs_post_request import ApiListStarBlogsPostRequest
+from openapi_server.models.api_list_user_blogs_post200_response import ApiListUserBlogsPost200Response
+from openapi_server.models.api_list_user_blogs_post_request import ApiListUserBlogsPostRequest
+from openapi_server.models.api_report_blog_post_request import ApiReportBlogPostRequest
 from openapi_server.models.api_request_accuracy_adjust_post200_response import ApiRequestAccuracyAdjustPost200Response
 from openapi_server.models.api_request_accuracy_adjust_post_request import ApiRequestAccuracyAdjustPostRequest
 from openapi_server.models.api_request_save_type_post200_response import ApiRequestSaveTypePost200Response
@@ -137,20 +138,37 @@ async def api_exit_chat_room_post(
 
 
 @router.post(
-    "/api/listBlogs",
+    "/api/listUserBlogs",
     responses={
-        200: {"model": ApiListBlogsPost200Response, "description": "OK"},
+        200: {"model": ApiListUserBlogsPost200Response, "description": "OK"},
+    },
+    tags=["default"],
+    summary="List all blogs posted by a specific user",
+    response_model_by_alias=True,
+)
+async def api_list_user_blogs_post(
+    api_list_user_blogs_post_request: Optional[ApiListUserBlogsPostRequest] = Body(None, description=""),
+) -> ApiListUserBlogsPost200Response:
+    if not BaseDefaultApi.subclasses:
+        raise HTTPException(status_code=500, detail="Not implemented")
+    return await BaseDefaultApi.subclasses[0]().api_list_user_blogs_post(api_list_user_blogs_post_request)
+
+
+@router.post(
+    "/api/listStarBlogs",
+    responses={
+        200: {"model": ApiListUserBlogsPost200Response, "description": "OK"},
     },
     tags=["default"],
     summary="List all blogs under the certain star",
     response_model_by_alias=True,
 )
-async def api_list_blogs_post(
-    api_list_blogs_post_request: Optional[ApiListBlogsPostRequest] = Body(None, description=""),
-) -> ApiListBlogsPost200Response:
+async def api_list_star_blogs_post(
+    api_list_star_blogs_post_request: Optional[ApiListStarBlogsPostRequest] = Body(None, description=""),
+) -> ApiListUserBlogsPost200Response:
     if not BaseDefaultApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")
-    return await BaseDefaultApi.subclasses[0]().api_list_blogs_post(api_list_blogs_post_request)
+    return await BaseDefaultApi.subclasses[0]().api_list_star_blogs_post(api_list_star_blogs_post_request)
 
 
 @router.post(
@@ -188,20 +206,20 @@ async def api_create_blog_post(
 
 
 @router.post(
-    "/api/getSavedBlogs",
+    "/api/listSavedBlogs",
     responses={
-        200: {"model": ApiGetSavedBlogsPost200Response, "description": "OK"},
+        200: {"model": ApiListUserBlogsPost200Response, "description": "OK"},
     },
     tags=["default"],
-    summary="List the blogs user saved",
+    summary="List all blogs saved by the user",
     response_model_by_alias=True,
 )
-async def api_get_saved_blogs_post(
-    api_get_saved_blogs_post_request: Optional[ApiGetSavedBlogsPostRequest] = Body(None, description=""),
-) -> ApiGetSavedBlogsPost200Response:
+async def api_list_saved_blogs_post(
+    api_list_user_blogs_post_request: Optional[ApiListUserBlogsPostRequest] = Body(None, description=""),
+) -> ApiListUserBlogsPost200Response:
     if not BaseDefaultApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")
-    return await BaseDefaultApi.subclasses[0]().api_get_saved_blogs_post(api_get_saved_blogs_post_request)
+    return await BaseDefaultApi.subclasses[0]().api_list_saved_blogs_post(api_list_user_blogs_post_request)
 
 
 @router.post(
@@ -789,11 +807,11 @@ async def api_verify_user_token_post(
     response_model_by_alias=True,
 )
 async def api_delete_blog_post(
-    api_get_saved_blogs_post_request: Optional[ApiGetSavedBlogsPostRequest] = Body(None, description=""),
+    api_delete_blog_post_request: Optional[ApiDeleteBlogPostRequest] = Body(None, description=""),
 ) -> ApiDeleteBlogPost200Response:
     if not BaseDefaultApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")
-    return await BaseDefaultApi.subclasses[0]().api_delete_blog_post(api_get_saved_blogs_post_request)
+    return await BaseDefaultApi.subclasses[0]().api_delete_blog_post(api_delete_blog_post_request)
 
 
 @router.post(
@@ -806,11 +824,11 @@ async def api_delete_blog_post(
     response_model_by_alias=True,
 )
 async def api_like_blog_post(
-    api_get_saved_blogs_post_request: Optional[ApiGetSavedBlogsPostRequest] = Body(None, description=""),
+    api_delete_blog_post_request: Optional[ApiDeleteBlogPostRequest] = Body(None, description=""),
 ) -> ApiLikeBlogPost200Response:
     if not BaseDefaultApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")
-    return await BaseDefaultApi.subclasses[0]().api_like_blog_post(api_get_saved_blogs_post_request)
+    return await BaseDefaultApi.subclasses[0]().api_like_blog_post(api_delete_blog_post_request)
 
 
 @router.post(
@@ -857,11 +875,11 @@ async def api_delete_comment_post(
     response_model_by_alias=True,
 )
 async def api_save_blog_post(
-    api_get_saved_blogs_post_request: Optional[ApiGetSavedBlogsPostRequest] = Body(None, description=""),
+    api_delete_blog_post_request: Optional[ApiDeleteBlogPostRequest] = Body(None, description=""),
 ) -> ApiDeleteBlogPost200Response:
     if not BaseDefaultApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")
-    return await BaseDefaultApi.subclasses[0]().api_save_blog_post(api_get_saved_blogs_post_request)
+    return await BaseDefaultApi.subclasses[0]().api_save_blog_post(api_delete_blog_post_request)
 
 
 @router.post(
@@ -874,11 +892,11 @@ async def api_save_blog_post(
     response_model_by_alias=True,
 )
 async def api_report_blog_post(
-    api_get_saved_blogs_post_request: Optional[ApiGetSavedBlogsPostRequest] = Body(None, description=""),
+    api_report_blog_post_request: Optional[ApiReportBlogPostRequest] = Body(None, description=""),
 ) -> ApiDeleteBlogPost200Response:
     if not BaseDefaultApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")
-    return await BaseDefaultApi.subclasses[0]().api_report_blog_post(api_get_saved_blogs_post_request)
+    return await BaseDefaultApi.subclasses[0]().api_report_blog_post(api_report_blog_post_request)
 
 
 @router.get(

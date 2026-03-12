@@ -20,21 +20,19 @@ import json
 
 
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 try:
     from typing import Self
 except ImportError:
     from typing_extensions import Self
 
-class TokenResponse(BaseModel):
+class ApiListStarBlogsPostRequest(BaseModel):
     """
-    The access token returned after successful login
+    ApiListStarBlogsPostRequest
     """ # noqa: E501
-    token: StrictStr = Field(description="JWT or other access token.")
-    expires_in: Optional[StrictInt] = Field(default=None, description="Token expiration time (seconds)", alias="expiresIn")
-    user_id: StrictStr = Field(description="The unique identifier for the logged-in user", alias="userID")
-    __properties: ClassVar[List[str]] = ["token", "expiresIn", "userID"]
+    hip: Optional[StrictStr] = Field(default=None, alias="HIP")
+    __properties: ClassVar[List[str]] = ["HIP"]
 
     model_config = {
         "populate_by_name": True,
@@ -54,7 +52,7 @@ class TokenResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
-        """Create an instance of TokenResponse from a JSON string"""
+        """Create an instance of ApiListStarBlogsPostRequest from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -77,7 +75,7 @@ class TokenResponse(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Dict) -> Self:
-        """Create an instance of TokenResponse from a dict"""
+        """Create an instance of ApiListStarBlogsPostRequest from a dict"""
         if obj is None:
             return None
 
@@ -85,9 +83,7 @@ class TokenResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "token": obj.get("token"),
-            "expiresIn": obj.get("expiresIn"),
-            "userID": obj.get("userID")
+            "HIP": obj.get("HIP")
         })
         return _obj
 
