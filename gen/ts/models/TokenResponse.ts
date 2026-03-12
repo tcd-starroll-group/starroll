@@ -24,19 +24,27 @@ export interface TokenResponse {
      * @type {string}
      * @memberof TokenResponse
      */
-    token?: string;
+    token: string;
     /**
      * Token expiration time (seconds)
      * @type {number}
      * @memberof TokenResponse
      */
     expiresIn?: number;
+    /**
+     * The unique identifier for the logged-in user
+     * @type {string}
+     * @memberof TokenResponse
+     */
+    userID: string;
 }
 
 /**
  * Check if a given object implements the TokenResponse interface.
  */
 export function instanceOfTokenResponse(value: object): value is TokenResponse {
+    if (!('token' in value) || value['token'] === undefined) return false;
+    if (!('userID' in value) || value['userID'] === undefined) return false;
     return true;
 }
 
@@ -50,8 +58,9 @@ export function TokenResponseFromJSONTyped(json: any, ignoreDiscriminator: boole
     }
     return {
         
-        'token': json['token'] == null ? undefined : json['token'],
+        'token': json['token'],
         'expiresIn': json['expiresIn'] == null ? undefined : json['expiresIn'],
+        'userID': json['userID'],
     };
 }
 
@@ -68,6 +77,7 @@ export function TokenResponseToJSONTyped(value?: TokenResponse | null, ignoreDis
         
         'token': value['token'],
         'expiresIn': value['expiresIn'],
+        'userID': value['userID'],
     };
 }
 

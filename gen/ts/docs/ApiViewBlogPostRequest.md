@@ -6,7 +6,7 @@
 
 Name | Type
 ------------ | -------------
-`hIP` | string
+`blogID` | string
 `userCredentials` | [UserCredentials](UserCredentials.md)
 
 ## Example
@@ -16,7 +16,7 @@ import type { ApiViewBlogPostRequest } from ''
 
 // TODO: Update the object below with actual values
 const example = {
-  "hIP": null,
+  "blogID": null,
   "userCredentials": null,
 } satisfies ApiViewBlogPostRequest
 

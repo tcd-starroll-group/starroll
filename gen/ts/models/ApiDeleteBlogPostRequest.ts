@@ -24,58 +24,58 @@ import {
 /**
  * 
  * @export
- * @interface ApiViewBlogPostRequest
+ * @interface ApiDeleteBlogPostRequest
  */
-export interface ApiViewBlogPostRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof ApiViewBlogPostRequest
-     */
-    blogID?: string;
+export interface ApiDeleteBlogPostRequest {
     /**
      * 
      * @type {UserCredentials}
-     * @memberof ApiViewBlogPostRequest
+     * @memberof ApiDeleteBlogPostRequest
      */
     userCredentials?: UserCredentials;
+    /**
+     * 
+     * @type {string}
+     * @memberof ApiDeleteBlogPostRequest
+     */
+    blogID?: string;
 }
 
 /**
- * Check if a given object implements the ApiViewBlogPostRequest interface.
+ * Check if a given object implements the ApiDeleteBlogPostRequest interface.
  */
-export function instanceOfApiViewBlogPostRequest(value: object): value is ApiViewBlogPostRequest {
+export function instanceOfApiDeleteBlogPostRequest(value: object): value is ApiDeleteBlogPostRequest {
     return true;
 }
 
-export function ApiViewBlogPostRequestFromJSON(json: any): ApiViewBlogPostRequest {
-    return ApiViewBlogPostRequestFromJSONTyped(json, false);
+export function ApiDeleteBlogPostRequestFromJSON(json: any): ApiDeleteBlogPostRequest {
+    return ApiDeleteBlogPostRequestFromJSONTyped(json, false);
 }
 
-export function ApiViewBlogPostRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): ApiViewBlogPostRequest {
+export function ApiDeleteBlogPostRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): ApiDeleteBlogPostRequest {
     if (json == null) {
         return json;
     }
     return {
         
-        'blogID': json['blogID'] == null ? undefined : json['blogID'],
         'userCredentials': json['userCredentials'] == null ? undefined : UserCredentialsFromJSON(json['userCredentials']),
+        'blogID': json['blogID'] == null ? undefined : json['blogID'],
     };
 }
 
-export function ApiViewBlogPostRequestToJSON(json: any): ApiViewBlogPostRequest {
-    return ApiViewBlogPostRequestToJSONTyped(json, false);
+export function ApiDeleteBlogPostRequestToJSON(json: any): ApiDeleteBlogPostRequest {
+    return ApiDeleteBlogPostRequestToJSONTyped(json, false);
 }
 
-export function ApiViewBlogPostRequestToJSONTyped(value?: ApiViewBlogPostRequest | null, ignoreDiscriminator: boolean = false): any {
+export function ApiDeleteBlogPostRequestToJSONTyped(value?: ApiDeleteBlogPostRequest | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
 
     return {
         
-        'blogID': value['blogID'],
         'userCredentials': UserCredentialsToJSON(value['userCredentials']),
+        'blogID': value['blogID'],
     };
 }
 

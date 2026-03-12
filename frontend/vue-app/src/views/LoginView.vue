@@ -46,12 +46,22 @@ const handleLogin = async () => {
 
     console.log("Logged in successfully:", form.username);
 
+    console.log("Logged in successfully:", form.username);
+
     if (response.token) {
       localStorage.setItem('token', response.token);
     }
-    localStorage.setItem('username', form.username)
+    
+    if (response.userID) {
+      localStorage.setItem('userID', String(response.userID));
+      console.log("UserID saved from response:", response.userID);
+    }
+    
+    localStorage.setItem('username', form.username);
     console.log("login! success");
+
     router.push('/profile');
+
   } catch (err: unknown) {
     if (err instanceof ResponseError && (err.response.status === 401 || err.response.status === 404)) {
       errorMessage.value = "Invalid username or password.";

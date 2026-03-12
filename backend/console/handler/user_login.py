@@ -4,6 +4,7 @@ from gen.py.src.openapi_server.models.user_auth import UserAuth
 from backend.console.dal.rds.client import get_db
 from backend.console.dal.rds.user import User
 from backend.console.utils.auth import create_access_token
+from fastapi.responses import JSONResponse
 
 
 async def api_user_login_post(user_auth: UserAuth):
@@ -33,4 +34,4 @@ async def api_user_login_post(user_auth: UserAuth):
     access_token = create_access_token(token_data)
 
     print(f"Login successful for user: {user.username}")
-    return {"message": "Login successful", "token": access_token}
+    return {"message": "Login successful", "token": access_token, "userID": str(user.id)}

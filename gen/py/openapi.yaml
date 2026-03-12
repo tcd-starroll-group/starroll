@@ -34,19 +34,34 @@ paths:
                 $ref: "#/components/schemas/_api_exitChatRoom_post_200_response"
           description: Successfully exited chat room
       summary: Exit chat room
-  /api/listBlogs:
+  /api/listUserBlogs:
     post:
       requestBody:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/_api_listBlogs_post_request"
+              $ref: "#/components/schemas/_api_listUserBlogs_post_request"
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/_api_listBlogs_post_200_response"
+                $ref: "#/components/schemas/_api_listUserBlogs_post_200_response"
+          description: OK
+      summary: List all blogs posted by a specific user
+  /api/listStarBlogs:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/_api_listStarBlogs_post_request"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/_api_listUserBlogs_post_200_response"
           description: OK
       summary: List all blogs under the certain star
   /api/viewBlog:
@@ -79,21 +94,21 @@ paths:
                 $ref: "#/components/schemas/_api_createBlog_post_200_response"
           description: OK
       summary: Create a new blog
-  /api/getSavedBlogs:
+  /api/listSavedBlogs:
     post:
       requestBody:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/_api_getSavedBlogs_post_request"
+              $ref: "#/components/schemas/_api_listUserBlogs_post_request"
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/_api_getSavedBlogs_post_200_response"
+                $ref: "#/components/schemas/_api_listUserBlogs_post_200_response"
           description: OK
-      summary: List the blogs user saved
+      summary: List all blogs saved by the user
   /api/getLocation:
     post:
       responses:
@@ -683,7 +698,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/_api_getSavedBlogs_post_request"
+              $ref: "#/components/schemas/_api_deleteBlog_post_request"
       responses:
         "200":
           content:
@@ -698,7 +713,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/_api_getSavedBlogs_post_request"
+              $ref: "#/components/schemas/_api_deleteBlog_post_request"
       responses:
         "200":
           content:
@@ -743,7 +758,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/_api_getSavedBlogs_post_request"
+              $ref: "#/components/schemas/_api_deleteBlog_post_request"
       responses:
         "200":
           content:
@@ -758,7 +773,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/_api_getSavedBlogs_post_request"
+              $ref: "#/components/schemas/_api_reportBlog_post_request"
       responses:
         "200":
           content:
@@ -1041,6 +1056,7 @@ components:
       description: The access token returned after successful login
       example:
         expiresIn: 3600
+        userID: "1"
         token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
       properties:
         token:
@@ -1053,6 +1069,14 @@ components:
           example: 3600
           title: expiresIn
           type: integer
+        userID:
+          description: The unique identifier for the logged-in user
+          example: "1"
+          title: userID
+          type: string
+      required:
+      - token
+      - userID
       title: TokenResponse
       type: object
     UserResponse:
@@ -1382,13 +1406,12 @@ components:
           type: boolean
       title: _api_exitChatRoom_post_200_response
       type: object
-    _api_listBlogs_post_request:
+    _api_listUserBlogs_post_request:
       properties:
-        HIP:
-          title: HIP
-          type: string
-      title: _api_listBlogs_post_request
-    _api_listBlogs_post_200_response:
+        userCredentials:
+          $ref: "#/components/schemas/userCredentials"
+      title: _api_listUserBlogs_post_request
+    _api_listUserBlogs_post_200_response:
       example:
         blogsList:
         - imageURL: imageURL
@@ -1403,11 +1426,17 @@ components:
             $ref: "#/components/schemas/blogPreview"
           title: blogsList
           type: array
-      title: _api_listBlogs_post_200_response
-    _api_viewBlog_post_request:
+      title: _api_listUserBlogs_post_200_response
+    _api_listStarBlogs_post_request:
       properties:
         HIP:
           title: HIP
+          type: string
+      title: _api_listStarBlogs_post_request
+    _api_viewBlog_post_request:
+      properties:
+        blogID:
+          title: blogID
           type: string
         userCredentials:
           $ref: "#/components/schemas/userCredentials"
@@ -1444,42 +1473,6 @@ components:
           title: blogID
           type: string
       title: _api_createBlog_post_200_response
-    _api_getSavedBlogs_post_request:
-      properties:
-        userCredentials:
-          $ref: "#/components/schemas/userCredentials"
-        blogID:
-          title: blogID
-          type: string
-      title: _api_getSavedBlogs_post_request
-    _api_getSavedBlogs_post_200_response_blogsList_inner:
-      example:
-        allOf:
-          imageURL: imageURL
-          title: title
-          blogID: blogID
-      properties:
-        allOf:
-          $ref: "#/components/schemas/blogPreview"
-      title: _api_getSavedBlogs_post_200_response_blogsList_inner
-    _api_getSavedBlogs_post_200_response:
-      example:
-        blogsList:
-        - allOf:
-            imageURL: imageURL
-            title: title
-            blogID: blogID
-        - allOf:
-            imageURL: imageURL
-            title: title
-            blogID: blogID
-      properties:
-        blogsList:
-          items:
-            $ref: "#/components/schemas/_api_getSavedBlogs_post_200_response_blogsList_inner"
-          title: blogsList
-          type: array
-      title: _api_getSavedBlogs_post_200_response
     _api_getCameraData_post_200_response:
       example:
         image: image
@@ -2285,6 +2278,14 @@ components:
           title: token
           type: string
       title: _api_verifyUserToken_post_request
+    _api_deleteBlog_post_request:
+      properties:
+        userCredentials:
+          $ref: "#/components/schemas/userCredentials"
+        blogID:
+          title: blogID
+          type: string
+      title: _api_deleteBlog_post_request
     _api_deleteBlog_post_200_response:
       example:
         blogID: blogID
@@ -2335,6 +2336,18 @@ components:
           title: commentID
           type: string
       title: _api_deleteComment_post_request
+    _api_reportBlog_post_request:
+      properties:
+        userCredentials:
+          $ref: "#/components/schemas/userCredentials"
+        blogID:
+          title: blogID
+          type: string
+        reason:
+          description: Reason for reporting the blog
+          title: reason
+          type: string
+      title: _api_reportBlog_post_request
     IdentifyStarsJobResult_identifiedStars_inner:
       example:
         names:

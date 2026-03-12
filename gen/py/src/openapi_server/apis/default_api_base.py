@@ -15,6 +15,7 @@ from openapi_server.models.api_create_blog_post_request import ApiCreateBlogPost
 from openapi_server.models.api_create_identify_stars_job_post200_response import ApiCreateIdentifyStarsJobPost200Response
 from openapi_server.models.api_create_identify_stars_job_post_request import ApiCreateIdentifyStarsJobPostRequest
 from openapi_server.models.api_delete_blog_post200_response import ApiDeleteBlogPost200Response
+from openapi_server.models.api_delete_blog_post_request import ApiDeleteBlogPostRequest
 from openapi_server.models.api_delete_comment_post_request import ApiDeleteCommentPostRequest
 from openapi_server.models.api_display_chat_room_get200_response import ApiDisplayChatRoomGet200Response
 from openapi_server.models.api_display_save_success_post200_response import ApiDisplaySaveSuccessPost200Response
@@ -35,15 +36,15 @@ from openapi_server.models.api_get_identify_stars_job_result_post200_response im
 from openapi_server.models.api_get_identify_stars_job_result_post_request import ApiGetIdentifyStarsJobResultPostRequest
 from openapi_server.models.api_get_message_post200_response import ApiGetMessagePost200Response
 from openapi_server.models.api_get_message_post_request import ApiGetMessagePostRequest
-from openapi_server.models.api_get_saved_blogs_post200_response import ApiGetSavedBlogsPost200Response
-from openapi_server.models.api_get_saved_blogs_post_request import ApiGetSavedBlogsPostRequest
 from openapi_server.models.api_get_star_catalog_post200_response import ApiGetStarCatalogPost200Response
 from openapi_server.models.api_get_star_details_post_request import ApiGetStarDetailsPostRequest
 from openapi_server.models.api_like_blog_post200_response import ApiLikeBlogPost200Response
-from openapi_server.models.api_list_blogs_post200_response import ApiListBlogsPost200Response
-from openapi_server.models.api_list_blogs_post_request import ApiListBlogsPostRequest
 from openapi_server.models.api_list_identify_stars_jobs_post200_response import ApiListIdentifyStarsJobsPost200Response
 from openapi_server.models.api_list_identify_stars_jobs_post_request import ApiListIdentifyStarsJobsPostRequest
+from openapi_server.models.api_list_star_blogs_post_request import ApiListStarBlogsPostRequest
+from openapi_server.models.api_list_user_blogs_post200_response import ApiListUserBlogsPost200Response
+from openapi_server.models.api_list_user_blogs_post_request import ApiListUserBlogsPostRequest
+from openapi_server.models.api_report_blog_post_request import ApiReportBlogPostRequest
 from openapi_server.models.api_request_accuracy_adjust_post200_response import ApiRequestAccuracyAdjustPost200Response
 from openapi_server.models.api_request_accuracy_adjust_post_request import ApiRequestAccuracyAdjustPostRequest
 from openapi_server.models.api_request_save_type_post200_response import ApiRequestSaveTypePost200Response
@@ -94,10 +95,17 @@ class BaseDefaultApi:
         ...
 
 
-    async def api_list_blogs_post(
+    async def api_list_user_blogs_post(
         self,
-        api_list_blogs_post_request: Optional[ApiListBlogsPostRequest],
-    ) -> ApiListBlogsPost200Response:
+        api_list_user_blogs_post_request: Optional[ApiListUserBlogsPostRequest],
+    ) -> ApiListUserBlogsPost200Response:
+        ...
+
+
+    async def api_list_star_blogs_post(
+        self,
+        api_list_star_blogs_post_request: Optional[ApiListStarBlogsPostRequest],
+    ) -> ApiListUserBlogsPost200Response:
         ...
 
 
@@ -115,10 +123,10 @@ class BaseDefaultApi:
         ...
 
 
-    async def api_get_saved_blogs_post(
+    async def api_list_saved_blogs_post(
         self,
-        api_get_saved_blogs_post_request: Optional[ApiGetSavedBlogsPostRequest],
-    ) -> ApiGetSavedBlogsPost200Response:
+        api_list_user_blogs_post_request: Optional[ApiListUserBlogsPostRequest],
+    ) -> ApiListUserBlogsPost200Response:
         ...
 
 
@@ -361,14 +369,14 @@ class BaseDefaultApi:
 
     async def api_delete_blog_post(
         self,
-        api_get_saved_blogs_post_request: Optional[ApiGetSavedBlogsPostRequest],
+        api_delete_blog_post_request: Optional[ApiDeleteBlogPostRequest],
     ) -> ApiDeleteBlogPost200Response:
         ...
 
 
     async def api_like_blog_post(
         self,
-        api_get_saved_blogs_post_request: Optional[ApiGetSavedBlogsPostRequest],
+        api_delete_blog_post_request: Optional[ApiDeleteBlogPostRequest],
     ) -> ApiLikeBlogPost200Response:
         ...
 
@@ -389,14 +397,14 @@ class BaseDefaultApi:
 
     async def api_save_blog_post(
         self,
-        api_get_saved_blogs_post_request: Optional[ApiGetSavedBlogsPostRequest],
+        api_delete_blog_post_request: Optional[ApiDeleteBlogPostRequest],
     ) -> ApiDeleteBlogPost200Response:
         ...
 
 
     async def api_report_blog_post(
         self,
-        api_get_saved_blogs_post_request: Optional[ApiGetSavedBlogsPostRequest],
+        api_report_blog_post_request: Optional[ApiReportBlogPostRequest],
     ) -> ApiDeleteBlogPost200Response:
         ...
 

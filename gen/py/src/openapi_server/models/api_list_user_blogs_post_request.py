@@ -20,21 +20,20 @@ import json
 
 
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
+from openapi_server.models.user_credentials import UserCredentials
 try:
     from typing import Self
 except ImportError:
     from typing_extensions import Self
 
-class TokenResponse(BaseModel):
+class ApiListUserBlogsPostRequest(BaseModel):
     """
-    The access token returned after successful login
+    ApiListUserBlogsPostRequest
     """ # noqa: E501
-    token: StrictStr = Field(description="JWT or other access token.")
-    expires_in: Optional[StrictInt] = Field(default=None, description="Token expiration time (seconds)", alias="expiresIn")
-    user_id: StrictStr = Field(description="The unique identifier for the logged-in user", alias="userID")
-    __properties: ClassVar[List[str]] = ["token", "expiresIn", "userID"]
+    user_credentials: Optional[UserCredentials] = Field(default=None, alias="userCredentials")
+    __properties: ClassVar[List[str]] = ["userCredentials"]
 
     model_config = {
         "populate_by_name": True,
@@ -54,7 +53,7 @@ class TokenResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
-        """Create an instance of TokenResponse from a JSON string"""
+        """Create an instance of ApiListUserBlogsPostRequest from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -73,11 +72,14 @@ class TokenResponse(BaseModel):
             },
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of user_credentials
+        if self.user_credentials:
+            _dict['userCredentials'] = self.user_credentials.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Dict) -> Self:
-        """Create an instance of TokenResponse from a dict"""
+        """Create an instance of ApiListUserBlogsPostRequest from a dict"""
         if obj is None:
             return None
 
@@ -85,9 +87,7 @@ class TokenResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "token": obj.get("token"),
-            "expiresIn": obj.get("expiresIn"),
-            "userID": obj.get("userID")
+            "userCredentials": UserCredentials.from_dict(obj.get("userCredentials")) if obj.get("userCredentials") is not None else None
         })
         return _obj
 

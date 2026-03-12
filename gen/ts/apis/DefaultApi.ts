@@ -27,6 +27,7 @@ import type {
   ApiCreateIdentifyStarsJobPost200Response,
   ApiCreateIdentifyStarsJobPostRequest,
   ApiDeleteBlogPost200Response,
+  ApiDeleteBlogPostRequest,
   ApiDeleteCommentPostRequest,
   ApiDisplayChatRoomGet200Response,
   ApiDisplaySaveSuccessPost200Response,
@@ -47,15 +48,15 @@ import type {
   ApiGetIdentifyStarsJobResultPostRequest,
   ApiGetMessagePost200Response,
   ApiGetMessagePostRequest,
-  ApiGetSavedBlogsPost200Response,
-  ApiGetSavedBlogsPostRequest,
   ApiGetStarCatalogPost200Response,
   ApiGetStarDetailsPostRequest,
   ApiLikeBlogPost200Response,
-  ApiListBlogsPost200Response,
-  ApiListBlogsPostRequest,
   ApiListIdentifyStarsJobsPost200Response,
   ApiListIdentifyStarsJobsPostRequest,
+  ApiListStarBlogsPostRequest,
+  ApiListUserBlogsPost200Response,
+  ApiListUserBlogsPostRequest,
+  ApiReportBlogPostRequest,
   ApiRequestAccuracyAdjustPost200Response,
   ApiRequestAccuracyAdjustPostRequest,
   ApiRequestSaveTypePost200Response,
@@ -109,6 +110,8 @@ import {
     ApiCreateIdentifyStarsJobPostRequestToJSON,
     ApiDeleteBlogPost200ResponseFromJSON,
     ApiDeleteBlogPost200ResponseToJSON,
+    ApiDeleteBlogPostRequestFromJSON,
+    ApiDeleteBlogPostRequestToJSON,
     ApiDeleteCommentPostRequestFromJSON,
     ApiDeleteCommentPostRequestToJSON,
     ApiDisplayChatRoomGet200ResponseFromJSON,
@@ -149,24 +152,24 @@ import {
     ApiGetMessagePost200ResponseToJSON,
     ApiGetMessagePostRequestFromJSON,
     ApiGetMessagePostRequestToJSON,
-    ApiGetSavedBlogsPost200ResponseFromJSON,
-    ApiGetSavedBlogsPost200ResponseToJSON,
-    ApiGetSavedBlogsPostRequestFromJSON,
-    ApiGetSavedBlogsPostRequestToJSON,
     ApiGetStarCatalogPost200ResponseFromJSON,
     ApiGetStarCatalogPost200ResponseToJSON,
     ApiGetStarDetailsPostRequestFromJSON,
     ApiGetStarDetailsPostRequestToJSON,
     ApiLikeBlogPost200ResponseFromJSON,
     ApiLikeBlogPost200ResponseToJSON,
-    ApiListBlogsPost200ResponseFromJSON,
-    ApiListBlogsPost200ResponseToJSON,
-    ApiListBlogsPostRequestFromJSON,
-    ApiListBlogsPostRequestToJSON,
     ApiListIdentifyStarsJobsPost200ResponseFromJSON,
     ApiListIdentifyStarsJobsPost200ResponseToJSON,
     ApiListIdentifyStarsJobsPostRequestFromJSON,
     ApiListIdentifyStarsJobsPostRequestToJSON,
+    ApiListStarBlogsPostRequestFromJSON,
+    ApiListStarBlogsPostRequestToJSON,
+    ApiListUserBlogsPost200ResponseFromJSON,
+    ApiListUserBlogsPost200ResponseToJSON,
+    ApiListUserBlogsPostRequestFromJSON,
+    ApiListUserBlogsPostRequestToJSON,
+    ApiReportBlogPostRequestFromJSON,
+    ApiReportBlogPostRequestToJSON,
     ApiRequestAccuracyAdjustPost200ResponseFromJSON,
     ApiRequestAccuracyAdjustPost200ResponseToJSON,
     ApiRequestAccuracyAdjustPostRequestFromJSON,
@@ -247,8 +250,8 @@ export interface ApiCreateIdentifyStarsJobPostOperationRequest {
     apiCreateIdentifyStarsJobPostRequest: ApiCreateIdentifyStarsJobPostRequest;
 }
 
-export interface ApiDeleteBlogPostRequest {
-    apiGetSavedBlogsPostRequest?: ApiGetSavedBlogsPostRequest;
+export interface ApiDeleteBlogPostOperationRequest {
+    apiDeleteBlogPostRequest?: ApiDeleteBlogPostRequest;
 }
 
 export interface ApiDeleteCommentPostOperationRequest {
@@ -299,28 +302,32 @@ export interface ApiGetMessagePostOperationRequest {
     apiGetMessagePostRequest: ApiGetMessagePostRequest;
 }
 
-export interface ApiGetSavedBlogsPostOperationRequest {
-    apiGetSavedBlogsPostRequest?: ApiGetSavedBlogsPostRequest;
-}
-
 export interface ApiGetStarDetailsPostOperationRequest {
     apiGetStarDetailsPostRequest?: ApiGetStarDetailsPostRequest;
 }
 
 export interface ApiLikeBlogPostRequest {
-    apiGetSavedBlogsPostRequest?: ApiGetSavedBlogsPostRequest;
-}
-
-export interface ApiListBlogsPostOperationRequest {
-    apiListBlogsPostRequest?: ApiListBlogsPostRequest;
+    apiDeleteBlogPostRequest?: ApiDeleteBlogPostRequest;
 }
 
 export interface ApiListIdentifyStarsJobsPostOperationRequest {
     apiListIdentifyStarsJobsPostRequest: ApiListIdentifyStarsJobsPostRequest;
 }
 
-export interface ApiReportBlogPostRequest {
-    apiGetSavedBlogsPostRequest?: ApiGetSavedBlogsPostRequest;
+export interface ApiListSavedBlogsPostRequest {
+    apiListUserBlogsPostRequest?: ApiListUserBlogsPostRequest;
+}
+
+export interface ApiListStarBlogsPostOperationRequest {
+    apiListStarBlogsPostRequest?: ApiListStarBlogsPostRequest;
+}
+
+export interface ApiListUserBlogsPostOperationRequest {
+    apiListUserBlogsPostRequest?: ApiListUserBlogsPostRequest;
+}
+
+export interface ApiReportBlogPostOperationRequest {
+    apiReportBlogPostRequest?: ApiReportBlogPostRequest;
 }
 
 export interface ApiRequestAccuracyAdjustPostOperationRequest {
@@ -340,7 +347,7 @@ export interface ApiResetPasswordSendCodePostRequest {
 }
 
 export interface ApiSaveBlogPostRequest {
-    apiGetSavedBlogsPostRequest?: ApiGetSavedBlogsPostRequest;
+    apiDeleteBlogPostRequest?: ApiDeleteBlogPostRequest;
 }
 
 export interface ApiSendMessagePostOperationRequest {
@@ -589,7 +596,7 @@ export class DefaultApi extends runtime.BaseAPI {
     /**
      * Delete a blog
      */
-    async apiDeleteBlogPostRaw(requestParameters: ApiDeleteBlogPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiDeleteBlogPost200Response>> {
+    async apiDeleteBlogPostRaw(requestParameters: ApiDeleteBlogPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiDeleteBlogPost200Response>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -604,7 +611,7 @@ export class DefaultApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: ApiGetSavedBlogsPostRequestToJSON(requestParameters['apiGetSavedBlogsPostRequest']),
+            body: ApiDeleteBlogPostRequestToJSON(requestParameters['apiDeleteBlogPostRequest']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ApiDeleteBlogPost200ResponseFromJSON(jsonValue));
@@ -613,7 +620,7 @@ export class DefaultApi extends runtime.BaseAPI {
     /**
      * Delete a blog
      */
-    async apiDeleteBlogPost(requestParameters: ApiDeleteBlogPostRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiDeleteBlogPost200Response> {
+    async apiDeleteBlogPost(requestParameters: ApiDeleteBlogPostOperationRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiDeleteBlogPost200Response> {
         const response = await this.apiDeleteBlogPostRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1179,38 +1186,6 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * List the blogs user saved
-     */
-    async apiGetSavedBlogsPostRaw(requestParameters: ApiGetSavedBlogsPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiGetSavedBlogsPost200Response>> {
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-
-        let urlPath = `/api/getSavedBlogs`;
-
-        const response = await this.request({
-            path: urlPath,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: ApiGetSavedBlogsPostRequestToJSON(requestParameters['apiGetSavedBlogsPostRequest']),
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => ApiGetSavedBlogsPost200ResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * List the blogs user saved
-     */
-    async apiGetSavedBlogsPost(requestParameters: ApiGetSavedBlogsPostOperationRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiGetSavedBlogsPost200Response> {
-        const response = await this.apiGetSavedBlogsPostRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
      * Get star catalog
      */
     async apiGetStarCatalogPostRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiGetStarCatalogPost200Response>> {
@@ -1272,6 +1247,34 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
+     * health check
+     */
+    async apiHealthGetRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/health`;
+
+        const response = await this.request({
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * health check
+     */
+    async apiHealthGet(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.apiHealthGetRaw(initOverrides);
+    }
+
+    /**
      * Like a blog
      */
     async apiLikeBlogPostRaw(requestParameters: ApiLikeBlogPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiLikeBlogPost200Response>> {
@@ -1289,7 +1292,7 @@ export class DefaultApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: ApiGetSavedBlogsPostRequestToJSON(requestParameters['apiGetSavedBlogsPostRequest']),
+            body: ApiDeleteBlogPostRequestToJSON(requestParameters['apiDeleteBlogPostRequest']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ApiLikeBlogPost200ResponseFromJSON(jsonValue));
@@ -1300,38 +1303,6 @@ export class DefaultApi extends runtime.BaseAPI {
      */
     async apiLikeBlogPost(requestParameters: ApiLikeBlogPostRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiLikeBlogPost200Response> {
         const response = await this.apiLikeBlogPostRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * List all blogs under the certain star
-     */
-    async apiListBlogsPostRaw(requestParameters: ApiListBlogsPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiListBlogsPost200Response>> {
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-
-        let urlPath = `/api/listBlogs`;
-
-        const response = await this.request({
-            path: urlPath,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: ApiListBlogsPostRequestToJSON(requestParameters['apiListBlogsPostRequest']),
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => ApiListBlogsPost200ResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * List all blogs under the certain star
-     */
-    async apiListBlogsPost(requestParameters: ApiListBlogsPostOperationRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiListBlogsPost200Response> {
-        const response = await this.apiListBlogsPostRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -1375,9 +1346,105 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
+     * List all blogs saved by the user
+     */
+    async apiListSavedBlogsPostRaw(requestParameters: ApiListSavedBlogsPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiListUserBlogsPost200Response>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/listSavedBlogs`;
+
+        const response = await this.request({
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ApiListUserBlogsPostRequestToJSON(requestParameters['apiListUserBlogsPostRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ApiListUserBlogsPost200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * List all blogs saved by the user
+     */
+    async apiListSavedBlogsPost(requestParameters: ApiListSavedBlogsPostRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiListUserBlogsPost200Response> {
+        const response = await this.apiListSavedBlogsPostRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * List all blogs under the certain star
+     */
+    async apiListStarBlogsPostRaw(requestParameters: ApiListStarBlogsPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiListUserBlogsPost200Response>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/listStarBlogs`;
+
+        const response = await this.request({
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ApiListStarBlogsPostRequestToJSON(requestParameters['apiListStarBlogsPostRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ApiListUserBlogsPost200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * List all blogs under the certain star
+     */
+    async apiListStarBlogsPost(requestParameters: ApiListStarBlogsPostOperationRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiListUserBlogsPost200Response> {
+        const response = await this.apiListStarBlogsPostRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * List all blogs posted by a specific user
+     */
+    async apiListUserBlogsPostRaw(requestParameters: ApiListUserBlogsPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiListUserBlogsPost200Response>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/listUserBlogs`;
+
+        const response = await this.request({
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ApiListUserBlogsPostRequestToJSON(requestParameters['apiListUserBlogsPostRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ApiListUserBlogsPost200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * List all blogs posted by a specific user
+     */
+    async apiListUserBlogsPost(requestParameters: ApiListUserBlogsPostOperationRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiListUserBlogsPost200Response> {
+        const response = await this.apiListUserBlogsPostRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Report a blog
      */
-    async apiReportBlogPostRaw(requestParameters: ApiReportBlogPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiDeleteBlogPost200Response>> {
+    async apiReportBlogPostRaw(requestParameters: ApiReportBlogPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiDeleteBlogPost200Response>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -1392,7 +1459,7 @@ export class DefaultApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: ApiGetSavedBlogsPostRequestToJSON(requestParameters['apiGetSavedBlogsPostRequest']),
+            body: ApiReportBlogPostRequestToJSON(requestParameters['apiReportBlogPostRequest']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ApiDeleteBlogPost200ResponseFromJSON(jsonValue));
@@ -1401,7 +1468,7 @@ export class DefaultApi extends runtime.BaseAPI {
     /**
      * Report a blog
      */
-    async apiReportBlogPost(requestParameters: ApiReportBlogPostRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiDeleteBlogPost200Response> {
+    async apiReportBlogPost(requestParameters: ApiReportBlogPostOperationRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiDeleteBlogPost200Response> {
         const response = await this.apiReportBlogPostRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1601,7 +1668,7 @@ export class DefaultApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: ApiGetSavedBlogsPostRequestToJSON(requestParameters['apiGetSavedBlogsPostRequest']),
+            body: ApiDeleteBlogPostRequestToJSON(requestParameters['apiDeleteBlogPostRequest']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ApiDeleteBlogPost200ResponseFromJSON(jsonValue));
