@@ -17,9 +17,14 @@ export default defineConfig({
     host: '0.0.0.0',
     port: 80,
     allowedHosts: ['starroll.ie'],
-    // https: {
-    //   key: readFileSync(join(__dirname, './cert/privkey.pem')),
-    //   cert: readFileSync(join(__dirname, './cert/fullchain.pem')),
-    // },
+    // https: { ... }
+    proxy: {
+      '/api': {
+        target: 'https://starroll.ie', 
+        changeOrigin: true,            
+        secure: false,                 
+
+      }
+    }
   },
 })
