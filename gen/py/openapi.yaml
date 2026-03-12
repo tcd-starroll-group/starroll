@@ -767,6 +767,24 @@ paths:
                 $ref: "#/components/schemas/_api_deleteBlog_post_200_response"
           description: OK
       summary: Report a blog
+  /api/getProfileStats:
+    post:
+      description: "Retrieve the user's scanning statistics, rank, and join date for\
+        \ the profile view."
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ProfileStatsRequest"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProfileStatsResponse"
+          description: OK
+      summary: Get user profile stats
   /api/health:
     get:
       responses:
@@ -803,6 +821,9 @@ components:
       title: profileAndToken
       type: object
     userCredentials:
+      example:
+        userID: userID
+        token: token
       properties:
         userID:
           title: userID
@@ -1301,6 +1322,43 @@ components:
       - email
       - newPassword
       title: resetPasswordRequest
+      type: object
+    ProfileStatsRequest:
+      example:
+        userCredentials:
+          userID: userID
+          token: token
+      properties:
+        userCredentials:
+          $ref: "#/components/schemas/userCredentials"
+      required:
+      - userCredentials
+      title: ProfileStatsRequest
+      type: object
+    ProfileStatsResponse:
+      example:
+        starsDiscovered: 0
+        totalScans: 6
+        joinDate: joinDate
+        rank: rank
+      properties:
+        starsDiscovered:
+          description: Count of stars found
+          title: starsDiscovered
+          type: integer
+        totalScans:
+          description: Total count of all scan entries for the user
+          title: totalScans
+          type: integer
+        rank:
+          description: Calculated title based on discoveries
+          title: rank
+          type: string
+        joinDate:
+          description: Formatted string of the user's registration date
+          title: joinDate
+          type: string
+      title: ProfileStatsResponse
       type: object
     _api_displayChatRoom_get_200_response_style:
       description: GUI styling properties

@@ -65,6 +65,8 @@ from openapi_server.models.change_password_request import ChangePasswordRequest
 from openapi_server.models.error_response import ErrorResponse
 from openapi_server.models.gps import GPS
 from openapi_server.models.profile_and_token import ProfileAndToken
+from openapi_server.models.profile_stats_request import ProfileStatsRequest
+from openapi_server.models.profile_stats_response import ProfileStatsResponse
 from openapi_server.models.reset_password_request import ResetPasswordRequest
 from openapi_server.models.reset_password_send_code_request import ResetPasswordSendCodeRequest
 from openapi_server.models.star_details import StarDetails
@@ -398,6 +400,14 @@ class BaseDefaultApi:
         self,
         api_get_saved_blogs_post_request: Optional[ApiGetSavedBlogsPostRequest],
     ) -> ApiDeleteBlogPost200Response:
+        ...
+
+
+    async def api_get_profile_stats_post(
+        self,
+        profile_stats_request: ProfileStatsRequest,
+    ) -> ProfileStatsResponse:
+        """Retrieve the user&#39;s scanning statistics, rank, and join date for the profile view."""
         ...
 
 

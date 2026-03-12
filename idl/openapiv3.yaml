@@ -1293,6 +1293,23 @@ paths:
                 properties:
                   blogID:
                     type: string
+  /api/getProfileStats:
+    post:
+      description: Retrieve the user's scanning statistics, rank, and join date for the profile view.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ProfileStatsRequest"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProfileStatsResponse"
+          description: OK
+      summary: Get user profile stats
 
   /api/health:
     get:
@@ -1671,3 +1688,27 @@ components:
         - email
         - code
         - newPassword
+
+    ProfileStatsRequest:
+      type: object
+      required:
+        - userCredentials
+      properties:
+        userCredentials:
+          $ref: "#/components/schemas/userCredentials"
+
+    ProfileStatsResponse:
+      type: object
+      properties:
+        starsDiscovered:
+          type: integer
+          description: Count of stars found
+        totalScans:
+          type: integer
+          description: Total count of all scan entries for the user
+        rank:
+          type: string
+          description: Calculated title based on discoveries
+        joinDate:
+          type: string
+          description: Formatted string of the user's registration date    
