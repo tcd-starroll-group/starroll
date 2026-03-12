@@ -14,8 +14,8 @@ export class GroundObserver {
   public typeOfTimeMode = typeof this.enumTimeMode
   private timeMode: keyof typeof this.enumTimeMode = 'REALTIME'
   private fixedTimestamp: number | null = null
-  private accelerationMultiplier = 2000 // simulated ms per tick when accelerated
-  private tickIntervalMs = 1000 // default tick every 1s
+  private accelerationMultiplier = 2000
+  private tickIntervalMs = 1000
   private timerId: ReturnType<typeof setInterval> | null = null
   private accelTimestamp: number | null = null
 

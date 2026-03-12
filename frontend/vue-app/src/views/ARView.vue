@@ -1,12 +1,20 @@
 <script setup lang="ts">
 import { onMounted, ref, watch } from 'vue';
 import { GroundObserver } from '../utils/useGroundObserver';
+import ObserverSettingsPanel from '../components/ObserverSettingsPanel.vue';
 import StarPopupPanel from '../components/StarPopup.vue';
 import PermissionRequest from '../components/PermissionRequest.vue';
 import type { StarClickInfo } from '@/core/renderer/GroundObserverRenderer';
 
+type ObserverSettingsPayload = {
+    utcTimestampMs: number;
+    lat: number;
+    lon: number;
+};
+
 const containerRef = ref<HTMLElement | null>(null);
 let groundObserver: GroundObserver | null = null;
+const latestObserverSettings = ref<ObserverSettingsPayload | null>(null);
 
 const clickedStarInfo = ref<StarClickInfo | null>(null);
 
@@ -22,6 +30,19 @@ const closeStarInfo = () => {
     if (selectedStar) selectedStar.value = null;
 };
 
+const applyObserverSettings = (payload: ObserverSettingsPayload) => {
+    latestObserverSettings.value = payload;
+    if (!groundObserver) return;
+
+    groundObserver.setLocation({
+        latitude: payload.lat,
+        longitude: payload.lon,
+    });
+    groundObserver.setTimeMode('FIXED');
+    groundObserver.setFixedTimestamp(payload.utcTimestampMs);
+    groundObserver.setTimestamp(payload.utcTimestampMs);
+};
+
 onMounted(async () => {
     if (!containerRef.value) {
         console.error('containerRef.value is null');
@@ -35,6 +56,10 @@ onMounted(async () => {
         watch(selectedStar, (val) => {
             clickedStarInfo.value = val;
         });
+
+        if (latestObserverSettings.value) {
+            applyObserverSettings(latestObserverSettings.value);
+        }
 
         try {
             await groundObserver!.enableARMode();
@@ -65,6 +90,7 @@ onMounted(async () => {
     
     <div class="ui-layer">        
         <PermissionRequest v-if="showPermission" @granted="() => (showPermission = false)" />
+        <ObserverSettingsPanel @apply="applyObserverSettings" />
         <StarPopupPanel 
             :starInfo="clickedStarInfo"
             @close="closeStarInfo"
