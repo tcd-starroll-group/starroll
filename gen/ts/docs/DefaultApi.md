@@ -10,7 +10,7 @@ All URIs are relative to *http://localhost*
 | [**apiCommentBlogPost**](DefaultApi.md#apicommentblogpostoperation) | **POST** /api/commentBlog | Comment a blog |
 | [**apiCreateBlogPost**](DefaultApi.md#apicreateblogpostoperation) | **POST** /api/createBlog | Create a new blog |
 | [**apiCreateIdentifyStarsJobPost**](DefaultApi.md#apicreateidentifystarsjobpostoperation) | **POST** /api/createIdentifyStarsJob | Create a job to identify the stars in the image. |
-| [**apiDeleteBlogPost**](DefaultApi.md#apideleteblogpost) | **POST** /api/deleteBlog | Delete a blog |
+| [**apiDeleteBlogPost**](DefaultApi.md#apideleteblogpostoperation) | **POST** /api/deleteBlog | Delete a blog |
 | [**apiDeleteCommentPost**](DefaultApi.md#apideletecommentpostoperation) | **POST** /api/deleteComment | Delete a comment |
 | [**apiDeleteUserPost**](DefaultApi.md#apideleteuserpost) | **POST** /api/deleteUser | 注销账号 |
 | [**apiDisplayChatRoomGet**](DefaultApi.md#apidisplaychatroomget) | **GET** /api/displayChatRoom | Display chat room entry button in GUI |
@@ -27,13 +27,15 @@ All URIs are relative to *http://localhost*
 | [**apiGetIdentifyStarsJobResultPost**](DefaultApi.md#apigetidentifystarsjobresultpostoperation) | **POST** /api/getIdentifyStarsJobResult | get identify stars job result. |
 | [**apiGetLocationPost**](DefaultApi.md#apigetlocationpost) | **POST** /api/getLocation | Get current location |
 | [**apiGetMessagePost**](DefaultApi.md#apigetmessagepostoperation) | **POST** /api/getMessage | Retrieve chat room messages |
-| [**apiGetSavedBlogsPost**](DefaultApi.md#apigetsavedblogspostoperation) | **POST** /api/getSavedBlogs | List the blogs user saved |
 | [**apiGetStarCatalogPost**](DefaultApi.md#apigetstarcatalogpost) | **POST** /api/getStarCatalog | Get star catalog |
 | [**apiGetStarDetailsPost**](DefaultApi.md#apigetstardetailspostoperation) | **POST** /api/getStarDetails | calculate star details |
+| [**apiHealthGet**](DefaultApi.md#apihealthget) | **GET** /api/health | health check |
 | [**apiLikeBlogPost**](DefaultApi.md#apilikeblogpost) | **POST** /api/likeBlog | Like a blog |
-| [**apiListBlogsPost**](DefaultApi.md#apilistblogspostoperation) | **POST** /api/listBlogs | List all blogs under the certain star |
 | [**apiListIdentifyStarsJobsPost**](DefaultApi.md#apilistidentifystarsjobspostoperation) | **POST** /api/listIdentifyStarsJobs | List identify stars jobs. |
-| [**apiReportBlogPost**](DefaultApi.md#apireportblogpost) | **POST** /api/reportBlog | Report a blog |
+| [**apiListSavedBlogsPost**](DefaultApi.md#apilistsavedblogspost) | **POST** /api/listSavedBlogs | List all blogs saved by the user |
+| [**apiListStarBlogsPost**](DefaultApi.md#apiliststarblogspostoperation) | **POST** /api/listStarBlogs | List all blogs under the certain star |
+| [**apiListUserBlogsPost**](DefaultApi.md#apilistuserblogspostoperation) | **POST** /api/listUserBlogs | List all blogs posted by a specific user |
+| [**apiReportBlogPost**](DefaultApi.md#apireportblogpostoperation) | **POST** /api/reportBlog | Report a blog |
 | [**apiRequestAccuracyAdjustPost**](DefaultApi.md#apirequestaccuracyadjustpostoperation) | **POST** /api/requestAccuracyAdjust | Request accuracy adjustment |
 | [**apiRequestSaveTypePost**](DefaultApi.md#apirequestsavetypepost) | **POST** /api/requestSaveType | Request save type options |
 | [**apiRequestStargazingTimePost**](DefaultApi.md#apirequeststargazingtimepostoperation) | **POST** /api/requestStargazingTime | Request optimal stargazing time |
@@ -447,7 +449,7 @@ No authorization required
 
 ## apiDeleteBlogPost
 
-> ApiDeleteBlogPost200Response apiDeleteBlogPost(apiGetSavedBlogsPostRequest)
+> ApiDeleteBlogPost200Response apiDeleteBlogPost(apiDeleteBlogPostRequest)
 
 Delete a blog
 
@@ -458,16 +460,16 @@ import {
   Configuration,
   DefaultApi,
 } from '';
-import type { ApiDeleteBlogPostRequest } from '';
+import type { ApiDeleteBlogPostOperationRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
   const api = new DefaultApi();
 
   const body = {
-    // ApiGetSavedBlogsPostRequest (optional)
-    apiGetSavedBlogsPostRequest: ...,
-  } satisfies ApiDeleteBlogPostRequest;
+    // ApiDeleteBlogPostRequest (optional)
+    apiDeleteBlogPostRequest: ...,
+  } satisfies ApiDeleteBlogPostOperationRequest;
 
   try {
     const data = await api.apiDeleteBlogPost(body);
@@ -486,7 +488,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **apiGetSavedBlogsPostRequest** | [ApiGetSavedBlogsPostRequest](ApiGetSavedBlogsPostRequest.md) |  | [Optional] |
+| **apiDeleteBlogPostRequest** | [ApiDeleteBlogPostRequest](ApiDeleteBlogPostRequest.md) |  | [Optional] |
 
 ### Return type
 
@@ -1541,71 +1543,6 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiGetSavedBlogsPost
-
-> ApiGetSavedBlogsPost200Response apiGetSavedBlogsPost(apiGetSavedBlogsPostRequest)
-
-List the blogs user saved
-
-### Example
-
-```ts
-import {
-  Configuration,
-  DefaultApi,
-} from '';
-import type { ApiGetSavedBlogsPostOperationRequest } from '';
-
-async function example() {
-  console.log("🚀 Testing  SDK...");
-  const api = new DefaultApi();
-
-  const body = {
-    // ApiGetSavedBlogsPostRequest (optional)
-    apiGetSavedBlogsPostRequest: ...,
-  } satisfies ApiGetSavedBlogsPostOperationRequest;
-
-  try {
-    const data = await api.apiGetSavedBlogsPost(body);
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// Run the test
-example().catch(console.error);
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **apiGetSavedBlogsPostRequest** | [ApiGetSavedBlogsPostRequest](ApiGetSavedBlogsPostRequest.md) |  | [Optional] |
-
-### Return type
-
-[**ApiGetSavedBlogsPost200Response**](ApiGetSavedBlogsPost200Response.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: `application/json`
-- **Accept**: `application/json`
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | OK |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
 ## apiGetStarCatalogPost
 
 > ApiGetStarCatalogPost200Response apiGetStarCatalogPost()
@@ -1728,9 +1665,66 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
+## apiHealthGet
+
+> apiHealthGet()
+
+health check
+
+### Example
+
+```ts
+import {
+  Configuration,
+  DefaultApi,
+} from '';
+import type { ApiHealthGetRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new DefaultApi();
+
+  try {
+    const data = await api.apiHealthGet();
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+`void` (Empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
 ## apiLikeBlogPost
 
-> ApiLikeBlogPost200Response apiLikeBlogPost(apiGetSavedBlogsPostRequest)
+> ApiLikeBlogPost200Response apiLikeBlogPost(apiDeleteBlogPostRequest)
 
 Like a blog
 
@@ -1748,8 +1742,8 @@ async function example() {
   const api = new DefaultApi();
 
   const body = {
-    // ApiGetSavedBlogsPostRequest (optional)
-    apiGetSavedBlogsPostRequest: ...,
+    // ApiDeleteBlogPostRequest (optional)
+    apiDeleteBlogPostRequest: ...,
   } satisfies ApiLikeBlogPostRequest;
 
   try {
@@ -1769,76 +1763,11 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **apiGetSavedBlogsPostRequest** | [ApiGetSavedBlogsPostRequest](ApiGetSavedBlogsPostRequest.md) |  | [Optional] |
+| **apiDeleteBlogPostRequest** | [ApiDeleteBlogPostRequest](ApiDeleteBlogPostRequest.md) |  | [Optional] |
 
 ### Return type
 
 [**ApiLikeBlogPost200Response**](ApiLikeBlogPost200Response.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: `application/json`
-- **Accept**: `application/json`
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | OK |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
-## apiListBlogsPost
-
-> ApiListBlogsPost200Response apiListBlogsPost(apiListBlogsPostRequest)
-
-List all blogs under the certain star
-
-### Example
-
-```ts
-import {
-  Configuration,
-  DefaultApi,
-} from '';
-import type { ApiListBlogsPostOperationRequest } from '';
-
-async function example() {
-  console.log("🚀 Testing  SDK...");
-  const api = new DefaultApi();
-
-  const body = {
-    // ApiListBlogsPostRequest (optional)
-    apiListBlogsPostRequest: ...,
-  } satisfies ApiListBlogsPostOperationRequest;
-
-  try {
-    const data = await api.apiListBlogsPost(body);
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// Run the test
-example().catch(console.error);
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **apiListBlogsPostRequest** | [ApiListBlogsPostRequest](ApiListBlogsPostRequest.md) |  | [Optional] |
-
-### Return type
-
-[**ApiListBlogsPost200Response**](ApiListBlogsPost200Response.md)
 
 ### Authorization
 
@@ -1923,9 +1852,204 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
+## apiListSavedBlogsPost
+
+> ApiListUserBlogsPost200Response apiListSavedBlogsPost(apiListUserBlogsPostRequest)
+
+List all blogs saved by the user
+
+### Example
+
+```ts
+import {
+  Configuration,
+  DefaultApi,
+} from '';
+import type { ApiListSavedBlogsPostRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new DefaultApi();
+
+  const body = {
+    // ApiListUserBlogsPostRequest (optional)
+    apiListUserBlogsPostRequest: ...,
+  } satisfies ApiListSavedBlogsPostRequest;
+
+  try {
+    const data = await api.apiListSavedBlogsPost(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **apiListUserBlogsPostRequest** | [ApiListUserBlogsPostRequest](ApiListUserBlogsPostRequest.md) |  | [Optional] |
+
+### Return type
+
+[**ApiListUserBlogsPost200Response**](ApiListUserBlogsPost200Response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## apiListStarBlogsPost
+
+> ApiListUserBlogsPost200Response apiListStarBlogsPost(apiListStarBlogsPostRequest)
+
+List all blogs under the certain star
+
+### Example
+
+```ts
+import {
+  Configuration,
+  DefaultApi,
+} from '';
+import type { ApiListStarBlogsPostOperationRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new DefaultApi();
+
+  const body = {
+    // ApiListStarBlogsPostRequest (optional)
+    apiListStarBlogsPostRequest: ...,
+  } satisfies ApiListStarBlogsPostOperationRequest;
+
+  try {
+    const data = await api.apiListStarBlogsPost(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **apiListStarBlogsPostRequest** | [ApiListStarBlogsPostRequest](ApiListStarBlogsPostRequest.md) |  | [Optional] |
+
+### Return type
+
+[**ApiListUserBlogsPost200Response**](ApiListUserBlogsPost200Response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## apiListUserBlogsPost
+
+> ApiListUserBlogsPost200Response apiListUserBlogsPost(apiListUserBlogsPostRequest)
+
+List all blogs posted by a specific user
+
+### Example
+
+```ts
+import {
+  Configuration,
+  DefaultApi,
+} from '';
+import type { ApiListUserBlogsPostOperationRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new DefaultApi();
+
+  const body = {
+    // ApiListUserBlogsPostRequest (optional)
+    apiListUserBlogsPostRequest: ...,
+  } satisfies ApiListUserBlogsPostOperationRequest;
+
+  try {
+    const data = await api.apiListUserBlogsPost(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **apiListUserBlogsPostRequest** | [ApiListUserBlogsPostRequest](ApiListUserBlogsPostRequest.md) |  | [Optional] |
+
+### Return type
+
+[**ApiListUserBlogsPost200Response**](ApiListUserBlogsPost200Response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
 ## apiReportBlogPost
 
-> ApiDeleteBlogPost200Response apiReportBlogPost(apiGetSavedBlogsPostRequest)
+> ApiDeleteBlogPost200Response apiReportBlogPost(apiReportBlogPostRequest)
 
 Report a blog
 
@@ -1936,16 +2060,16 @@ import {
   Configuration,
   DefaultApi,
 } from '';
-import type { ApiReportBlogPostRequest } from '';
+import type { ApiReportBlogPostOperationRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
   const api = new DefaultApi();
 
   const body = {
-    // ApiGetSavedBlogsPostRequest (optional)
-    apiGetSavedBlogsPostRequest: ...,
-  } satisfies ApiReportBlogPostRequest;
+    // ApiReportBlogPostRequest (optional)
+    apiReportBlogPostRequest: ...,
+  } satisfies ApiReportBlogPostOperationRequest;
 
   try {
     const data = await api.apiReportBlogPost(body);
@@ -1964,7 +2088,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **apiGetSavedBlogsPostRequest** | [ApiGetSavedBlogsPostRequest](ApiGetSavedBlogsPostRequest.md) |  | [Optional] |
+| **apiReportBlogPostRequest** | [ApiReportBlogPostRequest](ApiReportBlogPostRequest.md) |  | [Optional] |
 
 ### Return type
 
@@ -2317,7 +2441,7 @@ No authorization required
 
 ## apiSaveBlogPost
 
-> ApiDeleteBlogPost200Response apiSaveBlogPost(apiGetSavedBlogsPostRequest)
+> ApiDeleteBlogPost200Response apiSaveBlogPost(apiDeleteBlogPostRequest)
 
 Save a blog
 
@@ -2335,8 +2459,8 @@ async function example() {
   const api = new DefaultApi();
 
   const body = {
-    // ApiGetSavedBlogsPostRequest (optional)
-    apiGetSavedBlogsPostRequest: ...,
+    // ApiDeleteBlogPostRequest (optional)
+    apiDeleteBlogPostRequest: ...,
   } satisfies ApiSaveBlogPostRequest;
 
   try {
@@ -2356,7 +2480,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **apiGetSavedBlogsPostRequest** | [ApiGetSavedBlogsPostRequest](ApiGetSavedBlogsPostRequest.md) |  | [Optional] |
+| **apiDeleteBlogPostRequest** | [ApiDeleteBlogPostRequest](ApiDeleteBlogPostRequest.md) |  | [Optional] |
 
 ### Return type
 

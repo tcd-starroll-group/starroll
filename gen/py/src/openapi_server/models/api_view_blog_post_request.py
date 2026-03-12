@@ -33,9 +33,8 @@ class ApiViewBlogPostRequest(BaseModel):
     ApiViewBlogPostRequest
     """ # noqa: E501
     blog_id: Optional[StrictStr] = Field(default=None, alias="blogID")
-    hip: Optional[StrictStr] = Field(default=None, alias="HIP")
     user_credentials: Optional[UserCredentials] = Field(default=None, alias="userCredentials")
-    __properties: ClassVar[List[str]] = ["HIP", "userCredentials"]
+    __properties: ClassVar[List[str]] = ["blogID", "userCredentials"]
 
     model_config = {
         "populate_by_name": True,
@@ -89,7 +88,7 @@ class ApiViewBlogPostRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "HIP": obj.get("HIP"),
+            "blogID": obj.get("blogID"),
             "userCredentials": UserCredentials.from_dict(obj.get("userCredentials")) if obj.get("userCredentials") is not None else None
         })
         return _obj

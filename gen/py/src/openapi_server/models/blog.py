@@ -20,9 +20,9 @@ import json
 
 
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
-from openapi_server.models.comment_item import CommentItem
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from openapi_server.models.comment_item import CommentItem
 try:
     from typing import Self
 except ImportError:
@@ -40,21 +40,6 @@ class Blog(BaseModel):
     comment_number: Optional[StrictInt] = Field(default=None, alias="commentNumber")
     like_number: Optional[StrictInt] = Field(default=None, alias="likeNumber")
     __properties: ClassVar[List[str]] = ["blogID", "title", "imageURLList", "content", "commentList", "commentNumber", "likeNumber"]
-
-
-    @field_validator("comment_list", mode="before")
-    @classmethod
-    def _coerce_comment_list(cls, v: Any) -> Any:
-        """Accept CommentItem instances from any import path by converting to dict first."""
-        if v is None:
-            return v
-        result = []
-        for item in v:
-            if hasattr(item, "model_dump"):
-                result.append(item.model_dump(by_alias=True))
-            else:
-                result.append(item)
-        return result
 
     model_config = {
         "populate_by_name": True,
@@ -121,3 +106,5 @@ class Blog(BaseModel):
             "likeNumber": obj.get("likeNumber")
         })
         return _obj
+
+

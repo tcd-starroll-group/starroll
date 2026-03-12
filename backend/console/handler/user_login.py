@@ -34,8 +34,4 @@ async def api_user_login_post(user_auth: UserAuth):
     access_token = create_access_token(token_data)
 
     print(f"Login successful for user: {user.username}")
-    return JSONResponse(content={
-        "message": "Login successful", 
-        "token": access_token, 
-        "userID": str(user.id)
-    })
+    return {"message": "Login successful", "token": access_token, "userID": str(user.id)}

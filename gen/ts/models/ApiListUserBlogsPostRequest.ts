@@ -24,57 +24,49 @@ import {
 /**
  * 
  * @export
- * @interface ApiViewBlogPostRequest
+ * @interface ApiListUserBlogsPostRequest
  */
-export interface ApiViewBlogPostRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof ApiViewBlogPostRequest
-     */
-    blogID?: string;
+export interface ApiListUserBlogsPostRequest {
     /**
      * 
      * @type {UserCredentials}
-     * @memberof ApiViewBlogPostRequest
+     * @memberof ApiListUserBlogsPostRequest
      */
     userCredentials?: UserCredentials;
 }
 
 /**
- * Check if a given object implements the ApiViewBlogPostRequest interface.
+ * Check if a given object implements the ApiListUserBlogsPostRequest interface.
  */
-export function instanceOfApiViewBlogPostRequest(value: object): value is ApiViewBlogPostRequest {
+export function instanceOfApiListUserBlogsPostRequest(value: object): value is ApiListUserBlogsPostRequest {
     return true;
 }
 
-export function ApiViewBlogPostRequestFromJSON(json: any): ApiViewBlogPostRequest {
-    return ApiViewBlogPostRequestFromJSONTyped(json, false);
+export function ApiListUserBlogsPostRequestFromJSON(json: any): ApiListUserBlogsPostRequest {
+    return ApiListUserBlogsPostRequestFromJSONTyped(json, false);
 }
 
-export function ApiViewBlogPostRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): ApiViewBlogPostRequest {
+export function ApiListUserBlogsPostRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): ApiListUserBlogsPostRequest {
     if (json == null) {
         return json;
     }
     return {
         
-        'blogID': json['blogID'] == null ? undefined : json['blogID'],
         'userCredentials': json['userCredentials'] == null ? undefined : UserCredentialsFromJSON(json['userCredentials']),
     };
 }
 
-export function ApiViewBlogPostRequestToJSON(json: any): ApiViewBlogPostRequest {
-    return ApiViewBlogPostRequestToJSONTyped(json, false);
+export function ApiListUserBlogsPostRequestToJSON(json: any): ApiListUserBlogsPostRequest {
+    return ApiListUserBlogsPostRequestToJSONTyped(json, false);
 }
 
-export function ApiViewBlogPostRequestToJSONTyped(value?: ApiViewBlogPostRequest | null, ignoreDiscriminator: boolean = false): any {
+export function ApiListUserBlogsPostRequestToJSONTyped(value?: ApiListUserBlogsPostRequest | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
 
     return {
         
-        'blogID': value['blogID'],
         'userCredentials': UserCredentialsToJSON(value['userCredentials']),
     };
 }

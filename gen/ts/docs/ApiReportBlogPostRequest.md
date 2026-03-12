@@ -1,27 +1,26 @@
 
-# TokenResponse
+# ApiReportBlogPostRequest
 
-The access token returned after successful login
 
 ## Properties
 
 Name | Type
 ------------ | -------------
-`token` | string
-`expiresIn` | number
-`userID` | string
+`userCredentials` | [UserCredentials](UserCredentials.md)
+`blogID` | string
+`reason` | string
 
 ## Example
 
 ```typescript
-import type { TokenResponse } from ''
+import type { ApiReportBlogPostRequest } from ''
 
 // TODO: Update the object below with actual values
 const example = {
-  "token": eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...,
-  "expiresIn": 3600,
-  "userID": 1,
-} satisfies TokenResponse
+  "userCredentials": null,
+  "blogID": null,
+  "reason": null,
+} satisfies ApiReportBlogPostRequest
 
 console.log(example)
 
@@ -30,7 +29,7 @@ const exampleJSON: string = JSON.stringify(example)
 console.log(exampleJSON)
 
 // Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as TokenResponse
+const exampleParsed = JSON.parse(exampleJSON) as ApiReportBlogPostRequest
 console.log(exampleParsed)
 ```
 

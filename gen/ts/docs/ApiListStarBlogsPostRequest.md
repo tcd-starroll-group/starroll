@@ -1,27 +1,22 @@
 
-# TokenResponse
+# ApiListStarBlogsPostRequest
 
-The access token returned after successful login
 
 ## Properties
 
 Name | Type
 ------------ | -------------
-`token` | string
-`expiresIn` | number
-`userID` | string
+`hIP` | string
 
 ## Example
 
 ```typescript
-import type { TokenResponse } from ''
+import type { ApiListStarBlogsPostRequest } from ''
 
 // TODO: Update the object below with actual values
 const example = {
-  "token": eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...,
-  "expiresIn": 3600,
-  "userID": 1,
-} satisfies TokenResponse
+  "hIP": null,
+} satisfies ApiListStarBlogsPostRequest
 
 console.log(example)
 
@@ -30,7 +25,7 @@ const exampleJSON: string = JSON.stringify(example)
 console.log(exampleJSON)
 
 // Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as TokenResponse
+const exampleParsed = JSON.parse(exampleJSON) as ApiListStarBlogsPostRequest
 console.log(exampleParsed)
 ```
 

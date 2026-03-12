@@ -46,23 +46,20 @@ const handleLogin = async () => {
 
     console.log("Logged in successfully:", form.username);
 
+    console.log("Logged in successfully:", form.username);
+
     if (response.token) {
       localStorage.setItem('token', response.token);
-      
-      try {
-        const payloadBase64 = response.token.split('.')[1];
-        const payload = JSON.parse(atob(payloadBase64));
-        
-        if (payload.user_id) {
-          localStorage.setItem('userID', String(payload.user_id));
-        }
-      } catch (e) {
-        console.error("Failed to decode Token:", e);
-      }
     }
     
-    localStorage.setItem('username', form.username)
+    if (response.userID) {
+      localStorage.setItem('userID', String(response.userID));
+      console.log("UserID saved from response:", response.userID);
+    }
+    
+    localStorage.setItem('username', form.username);
     console.log("login! success");
+
     router.push('/profile');
 
   } catch (err: unknown) {
