@@ -48,10 +48,23 @@ const handleLogin = async () => {
 
     if (response.token) {
       localStorage.setItem('token', response.token);
+      
+      try {
+        const payloadBase64 = response.token.split('.')[1];
+        const payload = JSON.parse(atob(payloadBase64));
+        
+        if (payload.user_id) {
+          localStorage.setItem('userID', String(payload.user_id));
+        }
+      } catch (e) {
+        console.error("Failed to decode Token:", e);
+      }
     }
+    
     localStorage.setItem('username', form.username)
     console.log("login! success");
     router.push('/profile');
+
   } catch (err: unknown) {
     if (err instanceof ResponseError && (err.response.status === 401 || err.response.status === 404)) {
       errorMessage.value = "Invalid username or password.";
