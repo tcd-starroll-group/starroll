@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { onMounted, ref, watch } from 'vue';
 import { GroundObserver } from '../utils/useGroundObserver';
+import type { StartrailGenerationOptions } from '../utils/useGroundObserver';
 import ObserverSettingsPanel from '../components/ObserverSettingsPanel.vue';
+import StartrailSettingsPanel from '../components/StartrailSettingsPanel.vue';
 import StarPopupPanel from '../components/StarPopup.vue';
 import PermissionRequest from '../components/PermissionRequest.vue';
 import type { StarClickInfo } from '@/core/renderer/GroundObserverRenderer';
@@ -15,6 +17,7 @@ type ObserverSettingsPayload = {
 const containerRef = ref<HTMLElement | null>(null);
 let groundObserver: GroundObserver | null = null;
 const latestObserverSettings = ref<ObserverSettingsPayload | null>(null);
+const isGeneratingStartrail = ref(false);
 
 const clickedStarInfo = ref<StarClickInfo | null>(null);
 
@@ -31,6 +34,8 @@ const closeStarInfo = () => {
 };
 
 const applyObserverSettings = (payload: ObserverSettingsPayload) => {
+    if (isGeneratingStartrail.value) return;
+
     latestObserverSettings.value = payload;
     if (!groundObserver) return;
 
@@ -41,6 +46,26 @@ const applyObserverSettings = (payload: ObserverSettingsPayload) => {
     groundObserver.setTimeMode('FIXED');
     groundObserver.setFixedTimestamp(payload.utcTimestampMs);
     groundObserver.setTimestamp(payload.utcTimestampMs);
+};
+
+const onStartStartrail = async (payload: StartrailGenerationOptions) => {
+    if (!groundObserver) return;
+    if (isGeneratingStartrail.value) return;
+
+    try {
+        isGeneratingStartrail.value = true;
+        await groundObserver.generateStartrail(payload);
+    } catch (error) {
+        console.error('Error generating startrail:', error);
+    } finally {
+        isGeneratingStartrail.value = false;
+    }
+};
+
+const onStopStartrail = () => {
+    if (!groundObserver) return;
+    groundObserver.exitStartrailMode();
+    isGeneratingStartrail.value = false;
 };
 
 onMounted(async () => {
@@ -91,6 +116,7 @@ onMounted(async () => {
     <div class="ui-layer">        
         <PermissionRequest v-if="showPermission" @granted="() => (showPermission = false)" />
         <ObserverSettingsPanel @apply="applyObserverSettings" />
+        <StartrailSettingsPanel @start="onStartStartrail" @stop="onStopStartrail" />
         <StarPopupPanel 
             :starInfo="clickedStarInfo"
             @close="closeStarInfo"

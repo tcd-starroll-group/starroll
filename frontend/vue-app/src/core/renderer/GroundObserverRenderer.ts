@@ -7,6 +7,139 @@ import { absoluteOrientationManager, AbsoluteOrientationData } from '../sensors/
 import { raDecToVector3 } from '../astronomy/cartesian-coordinate'
 import { convertHorizontalQuaternionToEquatorialQuaternionPro } from '../astronomy/astronomy'
 
+const STELLARIUM_BV_START = -0.335
+const STELLARIUM_BV_FINISH = 3.347
+const STELLARIUM_BV_COLORS: ReadonlyArray<readonly [number, number, number]> = [
+  [0.602745, 0.713725, 1.0],
+  [0.604902, 0.715294, 1.0],
+  [0.607059, 0.716863, 1.0],
+  [0.609215, 0.718431, 1.0],
+  [0.611372, 0.72, 1.0],
+  [0.613529, 0.721569, 1.0],
+  [0.63549, 0.737255, 1.0],
+  [0.651059, 0.749673, 1.0],
+  [0.666627, 0.762092, 1.0],
+  [0.682196, 0.77451, 1.0],
+  [0.697764, 0.786929, 1.0],
+  [0.713333, 0.799347, 1.0],
+  [0.730306, 0.811242, 1.0],
+  [0.747278, 0.823138, 1.0],
+  [0.764251, 0.835033, 1.0],
+  [0.781223, 0.846929, 1.0],
+  [0.798196, 0.858824, 1.0],
+  [0.812282, 0.868236, 1.0],
+  [0.826368, 0.877647, 1.0],
+  [0.840455, 0.887059, 1.0],
+  [0.854541, 0.89647, 1.0],
+  [0.868627, 0.905882, 1.0],
+  [0.884627, 0.916862, 1.0],
+  [0.900627, 0.927843, 1.0],
+  [0.916627, 0.938823, 1.0],
+  [0.932627, 0.949804, 1.0],
+  [0.948627, 0.960784, 1.0],
+  [0.964444, 0.972549, 1.0],
+  [0.980261, 0.984313, 1.0],
+  [0.996078, 0.996078, 1.0],
+  [1.0, 1.0, 1.0],
+  [1.0, 0.999643, 0.999287],
+  [1.0, 0.999287, 0.998574],
+  [1.0, 0.99893, 0.997861],
+  [1.0, 0.998574, 0.997148],
+  [1.0, 0.998217, 0.996435],
+  [1.0, 0.997861, 0.995722],
+  [1.0, 0.997504, 0.995009],
+  [1.0, 0.997148, 0.994296],
+  [1.0, 0.996791, 0.993583],
+  [1.0, 0.996435, 0.99287],
+  [1.0, 0.996078, 0.992157],
+  [1.0, 0.99114, 0.981554],
+  [1.0, 0.986201, 0.970951],
+  [1.0, 0.981263, 0.960349],
+  [1.0, 0.976325, 0.949746],
+  [1.0, 0.971387, 0.939143],
+  [1.0, 0.966448, 0.92854],
+  [1.0, 0.96151, 0.917938],
+  [1.0, 0.956572, 0.907335],
+  [1.0, 0.951634, 0.896732],
+  [1.0, 0.946695, 0.886129],
+  [1.0, 0.941757, 0.875526],
+  [1.0, 0.936819, 0.864924],
+  [1.0, 0.931881, 0.854321],
+  [1.0, 0.926942, 0.843718],
+  [1.0, 0.922004, 0.833115],
+  [1.0, 0.917066, 0.822513],
+  [1.0, 0.912128, 0.81191],
+  [1.0, 0.907189, 0.801307],
+  [1.0, 0.902251, 0.790704],
+  [1.0, 0.897313, 0.780101],
+  [1.0, 0.892375, 0.769499],
+  [1.0, 0.887436, 0.758896],
+  [1.0, 0.882498, 0.748293],
+  [1.0, 0.87756, 0.73769],
+  [1.0, 0.872622, 0.727088],
+  [1.0, 0.867683, 0.716485],
+  [1.0, 0.862745, 0.705882],
+  [1.0, 0.858617, 0.695975],
+  [1.0, 0.85449, 0.686068],
+  [1.0, 0.850362, 0.676161],
+  [1.0, 0.846234, 0.666254],
+  [1.0, 0.842107, 0.656346],
+  [1.0, 0.837979, 0.646439],
+  [1.0, 0.833851, 0.636532],
+  [1.0, 0.829724, 0.626625],
+  [1.0, 0.825596, 0.616718],
+  [1.0, 0.821468, 0.606811],
+  [1.0, 0.81734, 0.596904],
+  [1.0, 0.813213, 0.586997],
+  [1.0, 0.809085, 0.57709],
+  [1.0, 0.804957, 0.567183],
+  [1.0, 0.80083, 0.557275],
+  [1.0, 0.796702, 0.547368],
+  [1.0, 0.792574, 0.537461],
+  [1.0, 0.788447, 0.527554],
+  [1.0, 0.784319, 0.517647],
+  [1.0, 0.784025, 0.520882],
+  [1.0, 0.783731, 0.524118],
+  [1.0, 0.783436, 0.527353],
+  [1.0, 0.783142, 0.530588],
+  [1.0, 0.782848, 0.533824],
+  [1.0, 0.782554, 0.537059],
+  [1.0, 0.782259, 0.540294],
+  [1.0, 0.781965, 0.543529],
+  [1.0, 0.781671, 0.546765],
+  [1.0, 0.781377, 0.55],
+  [1.0, 0.781082, 0.553235],
+  [1.0, 0.780788, 0.556471],
+  [1.0, 0.780494, 0.559706],
+  [1.0, 0.7802, 0.562941],
+  [1.0, 0.779905, 0.566177],
+  [1.0, 0.779611, 0.569412],
+  [1.0, 0.779317, 0.572647],
+  [1.0, 0.779023, 0.575882],
+  [1.0, 0.778728, 0.579118],
+  [1.0, 0.778434, 0.582353],
+  [1.0, 0.77814, 0.585588],
+  [1.0, 0.777846, 0.588824],
+  [1.0, 0.777551, 0.592059],
+  [1.0, 0.777257, 0.595294],
+  [1.0, 0.776963, 0.59853],
+  [1.0, 0.776669, 0.601765],
+  [1.0, 0.776374, 0.605],
+  [1.0, 0.77608, 0.608235],
+  [1.0, 0.775786, 0.611471],
+  [1.0, 0.775492, 0.614706],
+  [1.0, 0.775197, 0.617941],
+  [1.0, 0.774903, 0.621177],
+  [1.0, 0.774609, 0.624412],
+  [1.0, 0.774315, 0.627647],
+  [1.0, 0.77402, 0.630883],
+  [1.0, 0.773726, 0.634118],
+  [1.0, 0.773432, 0.637353],
+  [1.0, 0.773138, 0.640588],
+  [1.0, 0.772843, 0.643824],
+  [1.0, 0.772549, 0.647059],
+]
+
 /**
  * Star click information
  */
@@ -30,6 +163,16 @@ export interface StarClickInfo {
   raw?: any
 }
 
+export type StartrailRenderOptions = {
+  shotIntervalSeconds: number
+  startTimestampMs: number
+  durationSeconds: number
+  twinkleMultiplier: number
+  renderStarSizeMultiplier: number
+  renderStarBrightnessMultiplier: number
+  frameIntervalSeconds?: number
+}
+
 /**
  * Ground Observer Renderer
  * Simulates sky view from Earth surface
@@ -38,7 +181,12 @@ export class GroundObserverRenderer {
   // millisecond
   public timestamp: number = 1772069929000
   public location: GPS = { longitude: -6.2603, latitude: 53.3498 }
-  //  { longitude: -6.2603, latitude: 53.3498 }
+  public renderStarSizeMultiplier: number = 1.0
+  public renderStarBrightnessMultiplier: number = 1.0
+  private maxStarRadius: number = 8.0
+  private minStarRadius: number = 3.0
+  private maxStarBrightness: number = 1.5
+  private minStarBrightness: number = 0.1
 
   private scene: THREE.Scene
   // 用于AR渲染的camera，不是设备的camera
@@ -55,17 +203,27 @@ export class GroundObserverRenderer {
 
   // Star data
   private starMap: Map<number, { star: StarMeta; position: THREE.Vector3 }> = new Map()
+  private starCatalog: StarMeta[] = []
 
   // Celestial sphere
   private readonly SKY_RADIUS = 1000
 
   // Animation
   private animationFrameId: number | null = null
+  private arCameraUpdateIntervalId: number | null = null
+  private startrailFrameIntervalId: number | null = null
+  private renderStartTimeMs: number = performance.now()
+  private readonly defaultAutoClear = true
+  private orientationUpdatesEnabled = true
+  private renderMode: 'AR' | 'STARTRAIL' = 'AR'
+  private startrailTwinkleMultiplier = 1
+  private pendingStartrailResolve: (() => void) | null = null
+  private absoluteOrientationListener: ((quaternion: AbsoluteOrientationData) => void) | null = null
 
   // AR mode
   private arMode: boolean = false
 
-  private absoluteOrientation: [number, number, number, number] | null = null // 四元数数据
+  private absoluteOrientation: [number, number, number, number] = [0, 0, 0, 1] // 四元数数据
 
   // Camera
   private videoElement: HTMLVideoElement | null = null
@@ -81,7 +239,7 @@ export class GroundObserverRenderer {
     this.container = container
 
     this.scene = new THREE.Scene()
-    this.scene.background = new THREE.Color(0x000510)
+    this.scene.background = null
 
     // FOV tuned for mobile camera matching
     this.camera = new THREE.PerspectiveCamera(
@@ -98,7 +256,9 @@ export class GroundObserverRenderer {
     this.renderer = new THREE.WebGLRenderer({
       antialias: true,
       alpha: true,
+      preserveDrawingBuffer: true,
     })
+    this.renderer.autoClear = this.defaultAutoClear
     this.renderer.setSize(window.innerWidth, window.innerHeight)
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping
@@ -110,7 +270,7 @@ export class GroundObserverRenderer {
     this.setupLighting()
 
     this.loadStarField()
-    this.animate()
+    this.startARRenderLoop()
     this.setupClickDetection()
 
     window.addEventListener('resize', this.onWindowResize)
@@ -118,104 +278,34 @@ export class GroundObserverRenderer {
       setTimeout(this.onWindowResize, 200)
     })
 
-    absoluteOrientationManager.addListener((quaternion: AbsoluteOrientationData) => {
+    this.absoluteOrientationListener = (quaternion: AbsoluteOrientationData) => {
+      if (!this.orientationUpdatesEnabled) return
       const q = quaternion.quaternion
       this.absoluteOrientation = [q.x, q.y, q.z, q.w]
       this.updateARCameraLookAt()
-    })
+    }
+    absoluteOrientationManager.addListener(this.absoluteOrientationListener)
     absoluteOrientationManager.startListening()
+
+    // Fallback update loop for devices without sensor updates
+    this.arCameraUpdateIntervalId = window.setInterval(() => {
+      if (!this.orientationUpdatesEnabled) return
+      this.updateARCameraLookAt()
+    }, 100)
 
     console.log('Ground Observer Renderer initialized')
   }
 
   // 更新AR渲染时的lookat
   private updateARCameraLookAt() {
-    if (this.absoluteOrientation) {
-      const [x, y, z, w] = this.absoluteOrientation
-      // Convert horizontal quaternion to equatorial quaternion for camera
-      let ans = convertHorizontalQuaternionToEquatorialQuaternionPro(
-        [x, y, z, w],
-        this.timestamp,
-        this.location,
-      )
-      this.camera.quaternion.set(ans[0], ans[1], ans[2], ans[3])
-      // Also convert the raw absolute orientation quaternion to Euler angles and log
-      // const deviceQuat = new THREE.Quaternion(x, y, z, w)
-      // const euler = new THREE.Euler().setFromQuaternion(deviceQuat, 'ZYX')
-      // const radToDeg = (r: number) => (r * 180) / Math.PI
-      // console.log('absoluteOrientation (quaternion):', [x, y, z, w], '-> euler (deg):', {
-      //   x: Number(radToDeg(euler.x).toFixed(2)),
-      //   y: Number(radToDeg(euler.y).toFixed(2)),
-      //   z: Number(radToDeg(euler.z).toFixed(2)),
-      // })
-    } else {
-      console.error('GroundObserverRenderer: no absoluteOrientation available')
-    }
-  }
-
-  /**
-   * Create ground plane with fade-out grid
-   */
-  private createGround(): void {
-    const geometry = new THREE.CircleGeometry(2000, 64)
-    const material = new THREE.ShaderMaterial({
-      uniforms: {
-        uColor: { value: new THREE.Color(0x0a0a15) },
-      },
-      vertexShader: `
-                attribute vec3 position;
-                varying vec3 vPosition;
-                void main() {
-                    vPosition = vec3(position);
-                    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-                }
-            `,
-      fragmentShader: `
-                precision highp float;
-                uniform vec3 uColor;
-                varying vec3 vPosition;
-                void main() {
-                    float dist = length(vPosition);
-                    float fade = 1.0 - smoothstep(1000.0, 2000.0, dist);
-                    float grid = 0.0;
-                    float gridSize = 100.0;
-                    if (mod(vPosition.x, gridSize) < 2.0 || mod(vPosition.y, gridSize) < 2.0) {
-                        grid = 0.05;
-                    }
-                    vec3 color = uColor + vec3(grid);
-                    gl_FragColor = vec4(color, fade);
-                }
-            `,
-      transparent: true,
-      side: THREE.DoubleSide,
-    })
-    this.ground = new THREE.Mesh(geometry, material)
-    this.ground.rotation.x = -Math.PI / 2
-    this.ground.position.y = 0
-    this.scene.add(this.ground)
-  }
-
-  /**
-   * Create horizon circle line
-   */
-  private createHorizon(): void {
-    const points: THREE.Vector3[] = []
-    const segments = 128
-    const horizonRadius = 1500
-    for (let i = 0; i <= segments; i++) {
-      const angle = (i / segments) * Math.PI * 2
-      const x = Math.cos(angle) * horizonRadius
-      const z = Math.sin(angle) * horizonRadius
-      points.push(new THREE.Vector3(x, 0, z))
-    }
-    const geometry = new THREE.BufferGeometry().setFromPoints(points)
-    const material = new THREE.LineBasicMaterial({
-      color: 0x4488ff,
-      transparent: true,
-      opacity: 0.3,
-    })
-    this.horizon = new THREE.Line(geometry, material)
-    this.scene.add(this.horizon)
+    const [x, y, z, w] = this.absoluteOrientation
+    // Convert horizontal quaternion to equatorial quaternion for camera
+    let ans = convertHorizontalQuaternionToEquatorialQuaternionPro(
+      [x, y, z, w],
+      this.timestamp,
+      this.location,
+    )
+    this.camera.quaternion.set(ans[0], ans[1], ans[2], ans[3])
   }
 
   private setupLighting(): void {
@@ -227,6 +317,7 @@ export class GroundObserverRenderer {
     try {
       console.log('Loading star catalog...')
       const stars = await loadStarCatalog()
+      this.starCatalog = stars
       this.createStarFieldFromCatalog(stars)
       console.log('star catalog loaded')
     } catch (error) {
@@ -239,35 +330,33 @@ export class GroundObserverRenderer {
       pos: THREE.Vector3
       color: THREE.Color
       star: StarMeta
+      size: number
+      brightness: number
     }[] = []
     const mediumStars: {
       pos: THREE.Vector3
       color: THREE.Color
       star: StarMeta
-    }[] = []
-    const dimStars: {
-      pos: THREE.Vector3
-      color: THREE.Color
-      star: StarMeta
+      size: number
+      brightness: number
     }[] = []
 
     this.starMap.clear()
 
     stars.forEach((star) => {
-      if (star.magnitude > 4.5) return
-
       const pos = raDecToVector3(
         star.equatorialCoordinate.rightAscension,
         star.equatorialCoordinate.declination,
         this.SKY_RADIUS,
       )
       const color = this.bvToRGB(star.bvColor)
+      const size = this.getStarSize(star.magnitude)
+      const brightness = this.getStarBrightness(star.magnitude)
       this.starMap.set(star.hIP, { star, position: pos })
 
-      const starData = { pos, color, star }
+      const starData = { pos, color, star, size, brightness }
       if (star.magnitude < 1.0) brightStars.push(starData)
-      else if (star.magnitude < 2.5) mediumStars.push(starData)
-      else dimStars.push(starData)
+      else mediumStars.push(starData)
     })
 
     if (this.starPoints) this.scene.remove(this.starPoints)
@@ -276,33 +365,67 @@ export class GroundObserverRenderer {
     starGroup.name = 'Stars'
 
     if (brightStars.length > 0)
-      starGroup.add(this.createStarPoints(brightStars, '/texture/star16x16_ray.png', 8.0))
+      starGroup.add(this.createStarPoints(brightStars, '/texture/star16x16_ray.png'))
     if (mediumStars.length > 0)
-      starGroup.add(this.createStarPoints(mediumStars, '/texture/star16x16.png', 5.0))
-    if (dimStars.length > 0)
-      starGroup.add(this.createStarPoints(dimStars, '/texture/star16x16.png', 3.0))
+      starGroup.add(this.createStarPoints(mediumStars, '/texture/star16x16.png'))
 
     this.starPoints = starGroup as any
     this.scene.add(starGroup)
   }
 
+  private getStarSize(magnitude: number): number {
+    if (magnitude <= 1) {
+      return this.renderStarSizeMultiplier * this.maxStarRadius
+    }
+    if (magnitude >= 6) {
+      return this.renderStarSizeMultiplier * this.minStarRadius
+    }
+    return (
+      this.renderStarSizeMultiplier *
+      (this.maxStarRadius - ((magnitude - 1) / 5) * (this.maxStarRadius - this.minStarRadius))
+    )
+  }
+
+  private getStarBrightness(magnitude: number): number {
+    if (magnitude <= 1) {
+      return this.renderStarBrightnessMultiplier * this.maxStarBrightness
+    }
+    if (magnitude >= 6) {
+      return this.renderStarBrightnessMultiplier * this.minStarBrightness
+    }
+    return (
+      this.renderStarBrightnessMultiplier *
+      (this.maxStarBrightness -
+        ((magnitude - 1) / 5) * (this.maxStarBrightness - this.minStarBrightness))
+    )
+  }
+
   private createStarPoints(
-    starsData: { pos: THREE.Vector3; color: THREE.Color; star: StarMeta }[],
+    starsData: {
+      pos: THREE.Vector3
+      color: THREE.Color
+      star: StarMeta
+      size: number
+      brightness: number
+    }[],
     texturePath: string,
-    baseSize: number,
   ): THREE.Points {
     const positions: number[] = []
     const colors: number[] = []
     const magnitudes: number[] = []
     const twinklePhases: number[] = []
     const hips: number[] = []
+    const sizes: number[] = []
+    const brightnesses: number[] = []
 
-    starsData.forEach(({ pos, color, star }) => {
+    starsData.forEach(({ pos, color, star, size, brightness }) => {
       positions.push(pos.x, pos.y, pos.z)
       colors.push(color.r, color.g, color.b)
       magnitudes.push(star.magnitude)
       twinklePhases.push(Math.random() * Math.PI * 2)
       hips.push(star.hIP)
+      sizes.push(size)
+      brightnesses.push(brightness)
     })
 
     const geometry = new THREE.BufferGeometry()
@@ -311,53 +434,73 @@ export class GroundObserverRenderer {
     geometry.setAttribute('magnitude', new THREE.Float32BufferAttribute(magnitudes, 1))
     geometry.setAttribute('twinklePhase', new THREE.Float32BufferAttribute(twinklePhases, 1))
     geometry.setAttribute('hip', new THREE.Float32BufferAttribute(hips, 1))
+    geometry.setAttribute('size', new THREE.Float32BufferAttribute(sizes, 1))
+    geometry.setAttribute('brightness', new THREE.Float32BufferAttribute(brightnesses, 1))
 
     const isRayTexture = texturePath.includes('ray')
     const texture = this.createProceduralStarTexture(isRayTexture)
-    const material = this.createTwinkleStarMaterial(texture, baseSize)
+    const material = this.createTwinkleStarMaterial(texture)
 
     return new THREE.Points(geometry, material)
   }
 
-  private createTwinkleStarMaterial(
-    texture: THREE.Texture,
-    baseSize: number,
-  ): THREE.ShaderMaterial {
-    return new THREE.ShaderMaterial({
+  private createTwinkleStarMaterial(texture: THREE.Texture): THREE.ShaderMaterial {
+    return new THREE.RawShaderMaterial({
       uniforms: {
         uTexture: { value: texture },
-        uSize: { value: baseSize },
         uTime: { value: 0 },
         uPixelRatio: { value: window.devicePixelRatio },
+        uIsStartrailMode: { value: 0 },
+        uTwinkleMultiplier: { value: 1 },
       },
       vertexShader: `
+                precision mediump float;
+                precision mediump int;
+                uniform mat4 modelViewMatrix;
+                uniform mat4 projectionMatrix;
+                attribute vec3 position;
                 attribute vec3 color;
                 attribute float magnitude;
                 attribute float twinklePhase;
-                uniform float uSize;
+                attribute float size;
+                attribute float brightness;
                 uniform float uTime;
                 uniform float uPixelRatio;
+                uniform float uIsStartrailMode;
+                uniform float uTwinkleMultiplier;
                 varying vec3 vColor;
                 varying float vTwinkle;
+                varying float vBrightness;
+                float rand01(vec2 p) {
+                  return fract(sin(dot(p, vec2(12.9898, 78.233))) * 43758.5453);
+                }
                 void main() {
                     vColor = color;
+                    vBrightness = brightness;
                     float twinkleSpeed = 1.0 + magnitude * 0.3;
-                    float twinkleAmount = 0.15 + (6.0 - magnitude) * 0.05;
-                    float twinkle = sin(uTime * twinkleSpeed + twinklePhase) * twinkleAmount;
-                    vTwinkle = 1.0 + twinkle;
+                  if (uIsStartrailMode > 0.5) {
+                    float twinkleRandom = rand01(vec2(twinklePhase + magnitude, uTime * twinkleSpeed)) * 2.0 - 1.0;
+                    vTwinkle = 1.0 + uTwinkleMultiplier * twinkleRandom;
+                  } else {
+                    float twinkle = sin(uTime * twinkleSpeed + twinklePhase);
+                    vTwinkle = 1.0 + 0.2 * twinkle;
+                  }
                     vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
                     gl_Position = projectionMatrix * mvPosition;
-                    gl_PointSize = uSize * vTwinkle * uPixelRatio;
+                    gl_PointSize = size * vTwinkle * uPixelRatio;
                 }
             `,
       fragmentShader: `
+              precision mediump float;
+              precision mediump int;
                 uniform sampler2D uTexture;
                 varying vec3 vColor;
                 varying float vTwinkle;
+                varying float vBrightness;
                 void main() {
                     vec4 texColor = texture2D(uTexture, gl_PointCoord);
-                    vec3 finalColor = texColor.rgb * vColor * vTwinkle;
-                    float alpha = texColor.a;
+                    vec3 finalColor = texColor.rgb * vColor * vTwinkle * vBrightness;
+                    float alpha = texColor.a * vBrightness;
                     gl_FragColor = vec4(finalColor, alpha);
                 }
             `,
@@ -409,32 +552,27 @@ export class GroundObserverRenderer {
     return texture
   }
 
-  private bvToRGB(bv: number): THREE.Color {
-    let r: number, g: number, b: number
-    if (bv < 0) {
-      r = 0.7
-      g = 0.8
-      b = 1.0
-    } else if (bv < 0.5) {
-      const t = bv / 0.5
-      r = 0.8 + t * 0.2
-      g = 0.9 + t * 0.1
-      b = 1.0 - t * 0.1
-    } else if (bv < 1.0) {
-      const t = (bv - 0.5) / 0.5
-      r = 1.0
-      g = 1.0 - t * 0.15
-      b = 0.9 - t * 0.25
-    } else if (bv < 1.5) {
-      const t = (bv - 1.0) / 0.5
-      r = 1.0
-      g = 0.85 - t * 0.2
-      b = 0.65 - t * 0.25
-    } else {
-      r = 1.0
-      g = 0.65
-      b = 0.4
+  private bvToRGB(bv: number | null | undefined): THREE.Color {
+    if (bv === null || bv === undefined || Number.isNaN(bv)) {
+      return new THREE.Color(0, 0, 0)
     }
+
+    const numColors = STELLARIUM_BV_COLORS.length
+
+    if (bv <= STELLARIUM_BV_START) {
+      const [r, g, b] = STELLARIUM_BV_COLORS[0]
+      return new THREE.Color(r, g, b)
+    }
+
+    if (bv >= STELLARIUM_BV_FINISH) {
+      const [r, g, b] = STELLARIUM_BV_COLORS[numColors - 1]
+      return new THREE.Color(r, g, b)
+    }
+
+    const targetIndex = Math.floor(
+      ((bv - STELLARIUM_BV_START) / (STELLARIUM_BV_FINISH - STELLARIUM_BV_START)) * numColors,
+    )
+    const [r, g, b] = STELLARIUM_BV_COLORS[targetIndex]
     return new THREE.Color(r, g, b)
   }
 
@@ -461,7 +599,7 @@ export class GroundObserverRenderer {
     this.arMode = false
     this.stopCamera()
 
-    this.scene.background = new THREE.Color(0x000510)
+    this.scene.background = null
     if (this.ground) this.ground.visible = true
     if (this.horizon) this.horizon.visible = true
     console.log('AR mode disabled')
@@ -470,19 +608,142 @@ export class GroundObserverRenderer {
   /**
    * Main render loop with adaptive AR smoothing
    */
-  private animate = () => {
-    const time = Date.now() * 0.001 // second
+  private renderCurrentFrame = () => {
+    const time = (performance.now() - this.renderStartTimeMs) * 0.001 // second
+    const isStartrailMode = this.renderMode === 'STARTRAIL' ? 1 : 0
+    const twinkleMultiplier = this.renderMode === 'STARTRAIL' ? this.startrailTwinkleMultiplier : 1
 
     if (this.starPoints) {
       this.starPoints.traverse((child: any) => {
         if (child instanceof THREE.Points && child.material instanceof THREE.ShaderMaterial) {
           child.material.uniforms.uTime.value = time
+          child.material.uniforms.uIsStartrailMode.value = isStartrailMode
+          child.material.uniforms.uTwinkleMultiplier.value = twinkleMultiplier
         }
       })
     }
 
     this.renderer.render(this.scene, this.camera)
+  }
+
+  private animate = () => {
+    if (this.renderMode !== 'AR') {
+      this.animationFrameId = null
+      return
+    }
+
+    this.renderCurrentFrame()
     this.animationFrameId = requestAnimationFrame(this.animate)
+  }
+
+  private startARRenderLoop(): void {
+    if (this.animationFrameId !== null) return
+    this.animationFrameId = requestAnimationFrame(this.animate)
+  }
+
+  private stopARRenderLoop(): void {
+    if (this.animationFrameId !== null) {
+      cancelAnimationFrame(this.animationFrameId)
+      this.animationFrameId = null
+    }
+  }
+
+  private clearStartrailLoop(): void {
+    if (this.startrailFrameIntervalId !== null) {
+      window.clearInterval(this.startrailFrameIntervalId)
+      this.startrailFrameIntervalId = null
+    }
+  }
+
+  public async generateStartrail(options: StartrailRenderOptions): Promise<void> {
+    if (this.renderMode === 'STARTRAIL') {
+      this.exitStartrailMode()
+    }
+
+    return new Promise<void>((resolve) => {
+      this.pendingStartrailResolve = resolve
+      this.enterStartrailMode(options)
+    })
+  }
+
+  private enterStartrailMode(options: StartrailRenderOptions): void {
+    const frameIntervalMs = 100
+    const shotIntervalMs = Math.max(1, Math.round(options.shotIntervalSeconds * 1000))
+    const totalDurationMs = Math.max(0, Math.round(options.durationSeconds * 1000))
+    const totalFrames = Math.floor(totalDurationMs / shotIntervalMs)
+
+    this.stopARRenderLoop()
+    this.clearStartrailLoop()
+
+    this.renderMode = 'STARTRAIL'
+    this.orientationUpdatesEnabled = false
+    this.renderer.autoClear = false
+    this.clearSelectedStarIndicator()
+    this.startrailTwinkleMultiplier = Math.max(0, options.twinkleMultiplier)
+    this.renderStarSizeMultiplier = Math.max(0.01, options.renderStarSizeMultiplier)
+    this.renderStarBrightnessMultiplier = Math.max(0.01, options.renderStarBrightnessMultiplier)
+
+    if (this.starCatalog.length > 0) {
+      this.createStarFieldFromCatalog(this.starCatalog)
+    }
+
+    this.timestamp = options.startTimestampMs
+    this.updateARCameraLookAt()
+
+    this.renderer.clear()
+
+    if (totalFrames <= 0) {
+      this.finishStartrailMode()
+      return
+    }
+
+    let renderedFrames = 0
+    this.startrailFrameIntervalId = window.setInterval(() => {
+      if (renderedFrames >= totalFrames) {
+        this.finishStartrailMode()
+        return
+      }
+
+      this.timestamp += shotIntervalMs
+      const currentFrame = renderedFrames + 1
+      console.log(
+        `[Startrail] frame ${currentFrame}/${totalFrames}, currentTimeMs=${this.timestamp}, currentTime=${new Date(this.timestamp).toISOString()}`,
+      )
+      this.updateARCameraLookAt()
+      this.renderCurrentFrame()
+      renderedFrames += 1
+
+      if (renderedFrames >= totalFrames) {
+        this.finishStartrailMode()
+      }
+    }, frameIntervalMs)
+  }
+
+  private finishStartrailMode(): void {
+    this.clearStartrailLoop()
+
+    if (this.pendingStartrailResolve) {
+      this.pendingStartrailResolve()
+      this.pendingStartrailResolve = null
+    }
+  }
+
+  public exitStartrailMode(): void {
+    if (this.renderMode !== 'STARTRAIL') return
+
+    this.clearStartrailLoop()
+    this.renderMode = 'AR'
+    this.orientationUpdatesEnabled = true
+    this.startrailTwinkleMultiplier = 1
+    this.renderer.autoClear = this.defaultAutoClear
+    this.renderer.clear()
+    this.updateARCameraLookAt()
+    this.startARRenderLoop()
+
+    if (this.pendingStartrailResolve) {
+      this.pendingStartrailResolve()
+      this.pendingStartrailResolve = null
+    }
   }
 
   public isARMode(): boolean {
@@ -499,7 +760,12 @@ export class GroundObserverRenderer {
   }
 
   public dispose(): void {
-    if (this.animationFrameId) cancelAnimationFrame(this.animationFrameId)
+    this.stopARRenderLoop()
+    this.clearStartrailLoop()
+    if (this.arCameraUpdateIntervalId !== null) {
+      window.clearInterval(this.arCameraUpdateIntervalId)
+      this.arCameraUpdateIntervalId = null
+    }
     if (this.arMode) this.disableARMode()
     window.removeEventListener('resize', this.onWindowResize)
 
@@ -525,6 +791,8 @@ export class GroundObserverRenderer {
   private setupClickDetection(): void {
     this.raycaster.params.Points = { threshold: 20.0 }
     const handleClick = (clientX: number, clientY: number) => {
+      if (this.renderMode === 'STARTRAIL') return
+
       const rect = this.renderer.domElement.getBoundingClientRect()
       const x = clientX - rect.left
       const y = clientY - rect.top
