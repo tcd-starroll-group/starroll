@@ -87,6 +87,8 @@ from openapi_server.models.change_password_request import ChangePasswordRequest
 from openapi_server.models.error_response import ErrorResponse
 from openapi_server.models.gps import GPS
 from openapi_server.models.profile_and_token import ProfileAndToken
+from openapi_server.models.profile_stats_request import ProfileStatsRequest
+from openapi_server.models.profile_stats_response import ProfileStatsResponse
 from openapi_server.models.reset_password_request import ResetPasswordRequest
 from openapi_server.models.reset_password_send_code_request import ResetPasswordSendCodeRequest
 from openapi_server.models.star_details import StarDetails
@@ -918,6 +920,24 @@ async def api_report_blog_post(
     if not BaseDefaultApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")
     return await BaseDefaultApi.subclasses[0]().api_report_blog_post(api_report_blog_post_request)
+
+
+@router.post(
+    "/api/getProfileStats",
+    responses={
+        200: {"model": ProfileStatsResponse, "description": "OK"},
+    },
+    tags=["default"],
+    summary="Get user profile stats",
+    response_model_by_alias=True,
+)
+async def api_get_profile_stats_post(
+    profile_stats_request: ProfileStatsRequest = Body(None, description=""),
+) -> ProfileStatsResponse:
+    """Retrieve the user&#39;s scanning statistics, rank, and join date for the profile view."""
+    if not BaseDefaultApi.subclasses:
+        raise HTTPException(status_code=500, detail="Not implemented")
+    return await BaseDefaultApi.subclasses[0]().api_get_profile_stats_post(profile_stats_request)
 
 
 @router.get(

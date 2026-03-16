@@ -33,6 +33,9 @@ from openapi_server.models.api_get_identify_stars_job_result_post_request import
 from openapi_server.models.api_get_identify_stars_job_result_post200_response import ApiGetIdentifyStarsJobResultPost200Response
 from backend.console.handler.get_identify_stars_job_result import api_get_identify_stars_job_result_post
 
+from openapi_server.models.profile_stats_request import ProfileStatsRequest
+from openapi_server.models.profile_stats_response import ProfileStatsResponse
+from backend.console.handler.profile_stats import api_get_profile_stats_post as api_get_profile_stats_post_handler
 
 class StarrollApiImpl(BaseDefaultApi):
     async def api_user_login_post(
@@ -74,5 +77,8 @@ class StarrollApiImpl(BaseDefaultApi):
     async def api_get_identify_stars_job_result_post(self, api_get_identify_stars_job_result_post_request: ApiGetIdentifyStarsJobResultPostRequest) -> ApiGetIdentifyStarsJobResultPost200Response:
         return await api_get_identify_stars_job_result_post(api_get_identify_stars_job_result_post_request)
 
+    async def api_get_profile_stats_post(self, profile_stats_request: ProfileStatsRequest) -> ProfileStatsResponse:
+        return await api_get_profile_stats_post_handler(profile_stats_request)
+    
     async def api_health_get(self) -> None:
         return

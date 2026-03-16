@@ -1,4 +1,6 @@
-from sqlalchemy import Column, Integer, String
+from datetime import datetime
+
+from sqlalchemy import Boolean, DateTime,  Column, Integer, String
 from sqlalchemy.orm import declarative_base, Session
 from sqlalchemy import JSON  # 或 from sqlalchemy.types import JSON
 from sqlalchemy.exc import SQLAlchemyError
@@ -20,10 +22,17 @@ class User(Base):
     profile = Column(JSON, nullable=True, default=None,
                      comment='User profile in JSON format')
 
+
+    created_at = Column(DateTime, default=datetime.utcnow)
+    is_deleted = Column(Boolean, default=False)
     # -------------------------------------------------------
     # Database Operations
     # -------------------------------------------------------
-
+    @classmethod
+    def get_by_id(cls, db: Session, user_id: int):
+        """Query user by ID"""
+        return db.query(cls).filter(cls.id == user_id).first()
+    
     @classmethod
     def get_by_username(cls, db: Session, username: str):
         """Query user by username"""
