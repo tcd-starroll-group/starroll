@@ -46,7 +46,7 @@ async def api_get_profile_stats_post(
             rank = "Explorer"
 
         # 5. Return Response
-        return ApiGetProfileStatsPost200Response(
+        return ProfileStatsResponse(
             starsDiscovered=stars_discovered,
             totalScans=total_scans,
             rank=rank,
