@@ -181,7 +181,7 @@ paths:
               properties:
                 userCredentials:
                   $ref: "#/components/schemas/userCredentials"
-                
+
       responses:
         "200":
           description: OK
@@ -971,6 +971,41 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
 
+  /api/updateLastGps:
+    post:
+      summary: "update user last gps"
+      description: "update the user's latest GPS location used by recommendation emails."
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/updateLastGpsRequest"
+      responses:
+        "200":
+          description: "Last GPS updated successfully."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        "401":
+          description: "Unauthorized: Authentication required."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "404":
+          description: "User not found."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
   /api/userReg:
     post:
       summary: "User register"
@@ -1302,7 +1337,7 @@ paths:
                   $ref: "#/components/schemas/userCredentials"
                 blogID:
                   type: string
-                reason:            
+                reason:
                   type: string
                   description: "Reason for reporting the blog"
       responses:
@@ -1367,6 +1402,21 @@ components:
           type: number
         latitude:
           type: number
+    updateLastGpsRequest:
+      type: object
+      required:
+        - username
+        - token
+        - gps
+      properties:
+        username:
+          type: string
+          description: Username
+        token:
+          type: string
+          description: The verified access token.
+        gps:
+          $ref: "#/components/schemas/GPS"
     attitude:
       description: attitude of the mobile device
       type: object
@@ -1515,7 +1565,7 @@ components:
           type: integer
           description: "Token expiration time (seconds)"
           example: 3600
-        userID: 
+        userID:
           type: string
           description: "The unique identifier for the logged-in user"
           example: "1"

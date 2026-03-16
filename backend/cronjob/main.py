@@ -5,8 +5,10 @@ Use APScheduler to manage all scheduled tasks
 
 import logging
 from apscheduler.schedulers.background import BackgroundScheduler
+from apscheduler.triggers.cron import CronTrigger
 from apscheduler.triggers.interval import IntervalTrigger
 
+from backend.cronjob.email_recommendation import email_recommendation_handler
 from backend.cronjob.identify_stars import identify_stars_handler
 
 # Configuration logging
@@ -32,6 +34,14 @@ class CronJobScheduler:
             trigger=IntervalTrigger(seconds=5),
             job_id='identify_satrs_job',
             name='Identify Stars Task',
+            replace_existing=True
+        )
+
+        self.add_job(
+            func=email_recommendation_handler,
+            trigger=CronTrigger(hour=18, minute=0),
+            job_id='email_recommendation_job',
+            name='Email Recommendation Task',
             replace_existing=True
         )
 

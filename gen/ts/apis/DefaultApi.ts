@@ -17,7 +17,6 @@ import * as runtime from '../runtime';
 import type {
   ApiCalculateStarCoordinatesPost200Response,
   ApiCalculateStarCoordinatesPostRequest,
-  ApiChangePasswordPost200Response,
   ApiCheckRoomStatusPost200Response,
   ApiCheckRoomStatusPostRequest,
   ApiCommentBlogPost200Response,
@@ -67,6 +66,7 @@ import type {
   ApiSetUserPost200Response,
   ApiTriggerStarfieldRenderPost200Response,
   ApiTriggerStarfieldRenderPostRequest,
+  ApiUpdateLastGpsPost200Response,
   ApiUserRegPostRequest,
   ApiUsernameVerifyPost200Response,
   ApiUsernameVerifyPostRequest,
@@ -82,6 +82,7 @@ import type {
   ResetPasswordSendCodeRequest,
   StarDetails,
   TokenResponse,
+  UpdateLastGpsRequest,
   UserAuth,
   UserResponse,
 } from '../models/index';
@@ -90,8 +91,6 @@ import {
     ApiCalculateStarCoordinatesPost200ResponseToJSON,
     ApiCalculateStarCoordinatesPostRequestFromJSON,
     ApiCalculateStarCoordinatesPostRequestToJSON,
-    ApiChangePasswordPost200ResponseFromJSON,
-    ApiChangePasswordPost200ResponseToJSON,
     ApiCheckRoomStatusPost200ResponseFromJSON,
     ApiCheckRoomStatusPost200ResponseToJSON,
     ApiCheckRoomStatusPostRequestFromJSON,
@@ -190,6 +189,8 @@ import {
     ApiTriggerStarfieldRenderPost200ResponseToJSON,
     ApiTriggerStarfieldRenderPostRequestFromJSON,
     ApiTriggerStarfieldRenderPostRequestToJSON,
+    ApiUpdateLastGpsPost200ResponseFromJSON,
+    ApiUpdateLastGpsPost200ResponseToJSON,
     ApiUserRegPostRequestFromJSON,
     ApiUserRegPostRequestToJSON,
     ApiUsernameVerifyPost200ResponseFromJSON,
@@ -220,6 +221,8 @@ import {
     StarDetailsToJSON,
     TokenResponseFromJSON,
     TokenResponseToJSON,
+    UpdateLastGpsRequestFromJSON,
+    UpdateLastGpsRequestToJSON,
     UserAuthFromJSON,
     UserAuthToJSON,
     UserResponseFromJSON,
@@ -362,6 +365,10 @@ export interface ApiTriggerStarfieldRenderPostOperationRequest {
     apiTriggerStarfieldRenderPostRequest?: ApiTriggerStarfieldRenderPostRequest;
 }
 
+export interface ApiUpdateLastGpsPostRequest {
+    updateLastGpsRequest: UpdateLastGpsRequest;
+}
+
 export interface ApiUserLoginPostRequest {
     userAuth: UserAuth;
 }
@@ -421,7 +428,7 @@ export class DefaultApi extends runtime.BaseAPI {
 
     /**
      */
-    async apiChangePasswordPostRaw(requestParameters: ApiChangePasswordPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiChangePasswordPost200Response>> {
+    async apiChangePasswordPostRaw(requestParameters: ApiChangePasswordPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiUpdateLastGpsPost200Response>> {
         if (requestParameters['changePasswordRequest'] == null) {
             throw new runtime.RequiredError(
                 'changePasswordRequest',
@@ -446,12 +453,12 @@ export class DefaultApi extends runtime.BaseAPI {
             body: ChangePasswordRequestToJSON(requestParameters['changePasswordRequest']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ApiChangePasswordPost200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => ApiUpdateLastGpsPost200ResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async apiChangePasswordPost(requestParameters: ApiChangePasswordPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiChangePasswordPost200Response> {
+    async apiChangePasswordPost(requestParameters: ApiChangePasswordPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiUpdateLastGpsPost200Response> {
         const response = await this.apiChangePasswordPostRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -660,7 +667,7 @@ export class DefaultApi extends runtime.BaseAPI {
     /**
      * 注销账号
      */
-    async apiDeleteUserPostRaw(requestParameters: ApiDeleteUserPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiChangePasswordPost200Response>> {
+    async apiDeleteUserPostRaw(requestParameters: ApiDeleteUserPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiUpdateLastGpsPost200Response>> {
         if (requestParameters['userAuth'] == null) {
             throw new runtime.RequiredError(
                 'userAuth',
@@ -685,13 +692,13 @@ export class DefaultApi extends runtime.BaseAPI {
             body: UserAuthToJSON(requestParameters['userAuth']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ApiChangePasswordPost200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => ApiUpdateLastGpsPost200ResponseFromJSON(jsonValue));
     }
 
     /**
      * 注销账号
      */
-    async apiDeleteUserPost(requestParameters: ApiDeleteUserPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiChangePasswordPost200Response> {
+    async apiDeleteUserPost(requestParameters: ApiDeleteUserPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiUpdateLastGpsPost200Response> {
         const response = await this.apiDeleteUserPostRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1575,7 +1582,7 @@ export class DefaultApi extends runtime.BaseAPI {
     /**
      * Use code to reset password
      */
-    async apiResetPasswordPostRaw(requestParameters: ApiResetPasswordPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiChangePasswordPost200Response>> {
+    async apiResetPasswordPostRaw(requestParameters: ApiResetPasswordPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiUpdateLastGpsPost200Response>> {
         if (requestParameters['resetPasswordRequest'] == null) {
             throw new runtime.RequiredError(
                 'resetPasswordRequest',
@@ -1600,13 +1607,13 @@ export class DefaultApi extends runtime.BaseAPI {
             body: ResetPasswordRequestToJSON(requestParameters['resetPasswordRequest']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ApiChangePasswordPost200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => ApiUpdateLastGpsPost200ResponseFromJSON(jsonValue));
     }
 
     /**
      * Use code to reset password
      */
-    async apiResetPasswordPost(requestParameters: ApiResetPasswordPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiChangePasswordPost200Response> {
+    async apiResetPasswordPost(requestParameters: ApiResetPasswordPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiUpdateLastGpsPost200Response> {
         const response = await this.apiResetPasswordPostRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1614,7 +1621,7 @@ export class DefaultApi extends runtime.BaseAPI {
     /**
      * send code to email
      */
-    async apiResetPasswordSendCodePostRaw(requestParameters: ApiResetPasswordSendCodePostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiChangePasswordPost200Response>> {
+    async apiResetPasswordSendCodePostRaw(requestParameters: ApiResetPasswordSendCodePostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiUpdateLastGpsPost200Response>> {
         if (requestParameters['resetPasswordSendCodeRequest'] == null) {
             throw new runtime.RequiredError(
                 'resetPasswordSendCodeRequest',
@@ -1639,13 +1646,13 @@ export class DefaultApi extends runtime.BaseAPI {
             body: ResetPasswordSendCodeRequestToJSON(requestParameters['resetPasswordSendCodeRequest']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ApiChangePasswordPost200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => ApiUpdateLastGpsPost200ResponseFromJSON(jsonValue));
     }
 
     /**
      * send code to email
      */
-    async apiResetPasswordSendCodePost(requestParameters: ApiResetPasswordSendCodePostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiChangePasswordPost200Response> {
+    async apiResetPasswordSendCodePost(requestParameters: ApiResetPasswordSendCodePostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiUpdateLastGpsPost200Response> {
         const response = await this.apiResetPasswordSendCodePostRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1795,6 +1802,47 @@ export class DefaultApi extends runtime.BaseAPI {
      */
     async apiTriggerStarfieldRenderPost(requestParameters: ApiTriggerStarfieldRenderPostOperationRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiTriggerStarfieldRenderPost200Response> {
         const response = await this.apiTriggerStarfieldRenderPostRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * update the user\'s latest GPS location used by recommendation emails.
+     * update user last gps
+     */
+    async apiUpdateLastGpsPostRaw(requestParameters: ApiUpdateLastGpsPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiUpdateLastGpsPost200Response>> {
+        if (requestParameters['updateLastGpsRequest'] == null) {
+            throw new runtime.RequiredError(
+                'updateLastGpsRequest',
+                'Required parameter "updateLastGpsRequest" was null or undefined when calling apiUpdateLastGpsPost().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/updateLastGps`;
+
+        const response = await this.request({
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: UpdateLastGpsRequestToJSON(requestParameters['updateLastGpsRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ApiUpdateLastGpsPost200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * update the user\'s latest GPS location used by recommendation emails.
+     * update user last gps
+     */
+    async apiUpdateLastGpsPost(requestParameters: ApiUpdateLastGpsPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiUpdateLastGpsPost200Response> {
+        const response = await this.apiUpdateLastGpsPostRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

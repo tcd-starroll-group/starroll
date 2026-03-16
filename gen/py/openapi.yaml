@@ -534,6 +534,37 @@ paths:
       security:
       - bearerAuth: []
       summary: ' update user profile'
+  /api/updateLastGps:
+    post:
+      description: update the user's latest GPS location used by recommendation emails.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/updateLastGpsRequest"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/_api_updateLastGps_post_200_response"
+          description: Last GPS updated successfully.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Unauthorized: Authentication required."
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: User not found.
+      security:
+      - bearerAuth: []
+      summary: update user last gps
   /api/userReg:
     post:
       description: Create an account with a new username and password.
@@ -578,7 +609,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/api_change_password_post_200_response"
+                $ref: "#/components/schemas/_api_updateLastGps_post_200_response"
           description: Password updated successfully
         "401":
           description: Old password incorrect
@@ -597,7 +628,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/api_change_password_post_200_response"
+                $ref: "#/components/schemas/_api_updateLastGps_post_200_response"
           description: Verification code sent successfully
         "404":
           description: Email not found
@@ -617,7 +648,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/api_change_password_post_200_response"
+                $ref: "#/components/schemas/_api_updateLastGps_post_200_response"
           description: Password reset successfully
         "400":
           description: Invalid or expired verification code
@@ -638,7 +669,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/api_change_password_post_200_response"
+                $ref: "#/components/schemas/_api_updateLastGps_post_200_response"
           description: Deletion successful
         "401":
           description: Password incorrect
@@ -843,6 +874,24 @@ components:
       - latitude
       - longitude
       title: GPS
+      type: object
+    updateLastGpsRequest:
+      properties:
+        username:
+          description: Username
+          title: username
+          type: string
+        token:
+          description: The verified access token.
+          title: token
+          type: string
+        gps:
+          $ref: "#/components/schemas/GPS"
+      required:
+      - gps
+      - token
+      - username
+      title: updateLastGpsRequest
       type: object
     attitude:
       description: attitude of the mobile device
@@ -2220,6 +2269,15 @@ components:
           title: message
           type: string
       title: _api_setUser_post_200_response
+    _api_updateLastGps_post_200_response:
+      example:
+        message: message
+      properties:
+        message:
+          title: message
+          type: string
+      title: _api_updateLastGps_post_200_response
+      type: object
     _api_userReg_post_request:
       properties:
         username:
@@ -2244,15 +2302,6 @@ components:
       - password
       - username
       title: _api_userReg_post_request
-      type: object
-    api_change_password_post_200_response:
-      example:
-        message: message
-      properties:
-        message:
-          title: message
-          type: string
-      title: api_change_password_post_200_response
       type: object
     _api_usernameVerify_post_request:
       properties:

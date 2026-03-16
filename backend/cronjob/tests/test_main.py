@@ -1,4 +1,4 @@
-from unittest.mock import MagicMock, patch
+from unittest.mock import MagicMock
 from backend.cronjob.main import CronJobScheduler, get_scheduler
 
 
@@ -14,36 +14,56 @@ def test_register_jobs(monkeypatch):
     mock_add_job = MagicMock()
     scheduler.scheduler.add_job = mock_add_job
 
-    # Mock the identify_stars_handler function and IntervalTrigger
-    mock_handler = MagicMock()
-    mock_trigger = MagicMock()
+    # Mock the registered handlers and triggers
+    mock_identify_handler = MagicMock()
+    mock_email_handler = MagicMock()
+    mock_interval_trigger = MagicMock()
+    mock_cron_trigger = MagicMock()
     monkeypatch.setattr(
-        "backend.cronjob.main.identify_stars_handler", mock_handler)
+        "backend.cronjob.main.identify_stars_handler", mock_identify_handler)
+    monkeypatch.setattr(
+        "backend.cronjob.main.email_recommendation_handler", mock_email_handler)
     monkeypatch.setattr("backend.cronjob.main.IntervalTrigger",
-                        lambda seconds: mock_trigger)
+                        lambda seconds: mock_interval_trigger)
+    monkeypatch.setattr(
+        "backend.cronjob.main.CronTrigger",
+        lambda hour, minute: mock_cron_trigger,
+    )
 
     scheduler._register_jobs()
 
-    # Check that the identify_stars_handler job is registered
-    mock_add_job.assert_called()  # Ensure the method was called
+    assert mock_add_job.call_count == 2
+    expected_calls = [
+        {
+            "func": mock_identify_handler,
+            "trigger": mock_interval_trigger,
+            "id": "identify_satrs_job",
+            "name": "Identify Stars Task",
+            "replace_existing": True,
+            "misfire_grace_time": 10,
+        },
+        {
+            "func": mock_email_handler,
+            "trigger": mock_cron_trigger,
+            "id": "email_recommendation_job",
+            "name": "Email Recommendation Task",
+            "replace_existing": True,
+            "misfire_grace_time": 10,
+        },
+    ]
 
-    # Verify the arguments passed to the call
-    call_args = mock_add_job.call_args
-    if call_args.kwargs:  # If keyword arguments are used
-        kwargs = call_args.kwargs
-        assert kwargs["trigger"] == mock_trigger
-        assert kwargs["id"] == "identify_satrs_job"
-        assert kwargs["name"] == "Identify Stars Task"
-        assert kwargs["replace_existing"] is True
-        assert kwargs["misfire_grace_time"] == 10
-    else:  # If positional arguments are used
-        args = call_args.args
-        assert args[0] == mock_handler  # func
-        assert args[1] == mock_trigger  # trigger
-        assert args[2] == "identify_satrs_job"  # id
-        assert args[3] == "Identify Stars Task"  # name
-        assert args[4] is True  # replace_existing
-        assert args[5] == 10  # misfire_grace_time
+    for expected in expected_calls:
+        assert any(
+            call.args == (expected["func"],)
+            and call.kwargs == {
+                "trigger": expected["trigger"],
+                "id": expected["id"],
+                "name": expected["name"],
+                "replace_existing": expected["replace_existing"],
+                "misfire_grace_time": expected["misfire_grace_time"],
+            }
+            for call in mock_add_job.call_args_list
+        )
 
 
 def test_start_scheduler(monkeypatch):
