@@ -1,5 +1,5 @@
 from sqlalchemy import Column, BigInteger, TIMESTAMP, func
-from backend.console.dal.rds.client import Base
+from backend.console.dal.rds.user import Base
 
 class UserDiscoveredStars(Base):
     __tablename__ = 'user_discovered_stars'
