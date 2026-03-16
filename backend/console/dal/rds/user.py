@@ -15,6 +15,8 @@ class User(Base):
     username = Column(String(50), unique=True, nullable=False)
     password = Column(String(255), nullable=False)
     email = Column(String(100), unique=True, nullable=True)
+    last_gps = Column(JSON, nullable=True, default=None,
+                      comment='User last GPS location')
     profile = Column(JSON, nullable=True, default=None,
                      comment='User profile in JSON format')
 
@@ -84,8 +86,32 @@ class User(Base):
             raise ValueError(f"更新失败: {str(e)}")
 
     @classmethod
+    def update_last_gps(cls, db: Session, username: str, last_gps: Dict[str, Any]) -> Optional["User"]:
+        """Update the user's latest GPS payload."""
+        user = cls.get_by_username(db, username)
+        if not user:
+            return None
+
+        try:
+            user.last_gps = last_gps
+            db.commit()
+            db.refresh(user)
+            return user
+        except SQLAlchemyError as e:
+            db.rollback()
+            raise ValueError(f"更新失败: {str(e)}")
+
+    @classmethod
     def get_by_email(cls, db_session: Session, email: str):
         return db_session.query(cls).filter(cls.email == email).first()
+
+    @classmethod
+    def list_with_email(cls, db: Session):
+        """List users that can receive recommendation emails."""
+        return db.query(cls).filter(
+            cls.email.is_not(None),
+            cls.email != ""
+        ).all()
 
     @classmethod
     def update_password_by_email(cls, db: Session, email: str, new_password_hash: str):
