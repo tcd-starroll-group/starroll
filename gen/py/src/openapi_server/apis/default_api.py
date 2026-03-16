@@ -26,7 +26,6 @@ from openapi_server.models.extra_models import TokenModel  # noqa: F401
 from typing import Any, Optional
 from openapi_server.models.api_calculate_star_coordinates_post200_response import ApiCalculateStarCoordinatesPost200Response
 from openapi_server.models.api_calculate_star_coordinates_post_request import ApiCalculateStarCoordinatesPostRequest
-from openapi_server.models.api_change_password_post200_response import ApiChangePasswordPost200Response
 from openapi_server.models.api_check_room_status_post200_response import ApiCheckRoomStatusPost200Response
 from openapi_server.models.api_check_room_status_post_request import ApiCheckRoomStatusPostRequest
 from openapi_server.models.api_comment_blog_post200_response import ApiCommentBlogPost200Response
@@ -76,6 +75,7 @@ from openapi_server.models.api_send_message_post_request import ApiSendMessagePo
 from openapi_server.models.api_set_user_post200_response import ApiSetUserPost200Response
 from openapi_server.models.api_trigger_starfield_render_post200_response import ApiTriggerStarfieldRenderPost200Response
 from openapi_server.models.api_trigger_starfield_render_post_request import ApiTriggerStarfieldRenderPostRequest
+from openapi_server.models.api_update_last_gps_post200_response import ApiUpdateLastGpsPost200Response
 from openapi_server.models.api_user_reg_post_request import ApiUserRegPostRequest
 from openapi_server.models.api_username_verify_post200_response import ApiUsernameVerifyPost200Response
 from openapi_server.models.api_username_verify_post_request import ApiUsernameVerifyPostRequest
@@ -91,6 +91,7 @@ from openapi_server.models.reset_password_request import ResetPasswordRequest
 from openapi_server.models.reset_password_send_code_request import ResetPasswordSendCodeRequest
 from openapi_server.models.star_details import StarDetails
 from openapi_server.models.token_response import TokenResponse
+from openapi_server.models.update_last_gps_request import UpdateLastGpsRequest
 from openapi_server.models.user_auth import UserAuth
 from openapi_server.models.user_response import UserResponse
 
@@ -665,6 +666,26 @@ async def api_edit_profile_post(
 
 
 @router.post(
+    "/api/updateLastGps",
+    responses={
+        200: {"model": ApiUpdateLastGpsPost200Response, "description": "Last GPS updated successfully."},
+        401: {"model": ErrorResponse, "description": "Unauthorized: Authentication required."},
+        404: {"model": ErrorResponse, "description": "User not found."},
+    },
+    tags=["default"],
+    summary="update user last gps",
+    response_model_by_alias=True,
+)
+async def api_update_last_gps_post(
+    update_last_gps_request: UpdateLastGpsRequest = Body(None, description=""),
+) -> ApiUpdateLastGpsPost200Response:
+    """update the user&#39;s latest GPS location used by recommendation emails."""
+    if not BaseDefaultApi.subclasses:
+        raise HTTPException(status_code=500, detail="Not implemented")
+    return await BaseDefaultApi.subclasses[0]().api_update_last_gps_post(update_last_gps_request)
+
+
+@router.post(
     "/api/userReg",
     responses={
         201: {"model": UserResponse, "description": "Create user successful."},
@@ -687,7 +708,7 @@ async def api_user_reg_post(
 @router.post(
     "/api/changePassword",
     responses={
-        200: {"model": ApiChangePasswordPost200Response, "description": "Password updated successfully"},
+        200: {"model": ApiUpdateLastGpsPost200Response, "description": "Password updated successfully"},
         401: {"description": "Old password incorrect"},
         404: {"description": "User not found"},
     },
@@ -696,7 +717,7 @@ async def api_user_reg_post(
 )
 async def api_change_password_post(
     change_password_request: ChangePasswordRequest = Body(None, description=""),
-) -> ApiChangePasswordPost200Response:
+) -> ApiUpdateLastGpsPost200Response:
     if not BaseDefaultApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")
     return await BaseDefaultApi.subclasses[0]().api_change_password_post(change_password_request)
@@ -705,7 +726,7 @@ async def api_change_password_post(
 @router.post(
     "/api/resetPasswordSendCode",
     responses={
-        200: {"model": ApiChangePasswordPost200Response, "description": "Verification code sent successfully"},
+        200: {"model": ApiUpdateLastGpsPost200Response, "description": "Verification code sent successfully"},
         404: {"description": "Email not found"},
         500: {"description": "Failed to send email"},
     },
@@ -715,7 +736,7 @@ async def api_change_password_post(
 )
 async def api_reset_password_send_code_post(
     reset_password_send_code_request: ResetPasswordSendCodeRequest = Body(None, description=""),
-) -> ApiChangePasswordPost200Response:
+) -> ApiUpdateLastGpsPost200Response:
     if not BaseDefaultApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")
     return await BaseDefaultApi.subclasses[0]().api_reset_password_send_code_post(reset_password_send_code_request)
@@ -724,7 +745,7 @@ async def api_reset_password_send_code_post(
 @router.post(
     "/api/resetPassword",
     responses={
-        200: {"model": ApiChangePasswordPost200Response, "description": "Password reset successfully"},
+        200: {"model": ApiUpdateLastGpsPost200Response, "description": "Password reset successfully"},
         400: {"description": "Invalid or expired verification code"},
         404: {"description": "Email not found"},
     },
@@ -734,7 +755,7 @@ async def api_reset_password_send_code_post(
 )
 async def api_reset_password_post(
     reset_password_request: ResetPasswordRequest = Body(None, description=""),
-) -> ApiChangePasswordPost200Response:
+) -> ApiUpdateLastGpsPost200Response:
     if not BaseDefaultApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")
     return await BaseDefaultApi.subclasses[0]().api_reset_password_post(reset_password_request)
@@ -743,7 +764,7 @@ async def api_reset_password_post(
 @router.post(
     "/api/deleteUser",
     responses={
-        200: {"model": ApiChangePasswordPost200Response, "description": "Deletion successful"},
+        200: {"model": ApiUpdateLastGpsPost200Response, "description": "Deletion successful"},
         401: {"description": "Password incorrect"},
         404: {"description": "User not found"},
     },
@@ -753,7 +774,7 @@ async def api_reset_password_post(
 )
 async def api_delete_user_post(
     user_auth: UserAuth = Body(None, description=""),
-) -> ApiChangePasswordPost200Response:
+) -> ApiUpdateLastGpsPost200Response:
     if not BaseDefaultApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")
     return await BaseDefaultApi.subclasses[0]().api_delete_user_post(user_auth)

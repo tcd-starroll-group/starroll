@@ -3,7 +3,6 @@ apis/index.ts
 docs/ApiCalculateStarCoordinatesPost200Response.md
 docs/ApiCalculateStarCoordinatesPost200ResponseStarCoordinatesInner.md
 docs/ApiCalculateStarCoordinatesPostRequest.md
-docs/ApiChangePasswordPost200Response.md
 docs/ApiCheckRoomStatusPost200Response.md
 docs/ApiCheckRoomStatusPostRequest.md
 docs/ApiCommentBlogPost200Response.md
@@ -62,6 +61,7 @@ docs/ApiTriggerStarfieldRenderPost200Response.md
 docs/ApiTriggerStarfieldRenderPostRequest.md
 docs/ApiTriggerStarfieldRenderPostRequestCorrectedStarCoordinatesInner.md
 docs/ApiTriggerStarfieldRenderPostRequestRenderParams.md
+docs/ApiUpdateLastGpsPost200Response.md
 docs/ApiUserRegPostRequest.md
 docs/ApiUsernameVerifyPost200Response.md
 docs/ApiUsernameVerifyPostRequest.md
@@ -88,6 +88,7 @@ docs/ResetPasswordSendCodeRequest.md
 docs/StarDetails.md
 docs/StarMeta.md
 docs/TokenResponse.md
+docs/UpdateLastGpsRequest.md
 docs/UserAuth.md
 docs/UserCredentials.md
 docs/UserResponse.md
@@ -96,7 +97,6 @@ index.ts
 models/ApiCalculateStarCoordinatesPost200Response.ts
 models/ApiCalculateStarCoordinatesPost200ResponseStarCoordinatesInner.ts
 models/ApiCalculateStarCoordinatesPostRequest.ts
-models/ApiChangePasswordPost200Response.ts
 models/ApiCheckRoomStatusPost200Response.ts
 models/ApiCheckRoomStatusPostRequest.ts
 models/ApiCommentBlogPost200Response.ts
@@ -155,6 +155,7 @@ models/ApiTriggerStarfieldRenderPost200Response.ts
 models/ApiTriggerStarfieldRenderPostRequest.ts
 models/ApiTriggerStarfieldRenderPostRequestCorrectedStarCoordinatesInner.ts
 models/ApiTriggerStarfieldRenderPostRequestRenderParams.ts
+models/ApiUpdateLastGpsPost200Response.ts
 models/ApiUserRegPostRequest.ts
 models/ApiUsernameVerifyPost200Response.ts
 models/ApiUsernameVerifyPostRequest.ts
@@ -180,6 +181,7 @@ models/ResetPasswordSendCodeRequest.ts
 models/StarDetails.ts
 models/StarMeta.ts
 models/TokenResponse.ts
+models/UpdateLastGpsRequest.ts
 models/UserAuth.ts
 models/UserCredentials.ts
 models/UserResponse.ts

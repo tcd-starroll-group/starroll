@@ -45,6 +45,7 @@ All URIs are relative to *http://localhost*
 | [**apiSendMessagePost**](DefaultApi.md#apisendmessagepostoperation) | **POST** /api/sendMessage | Send message to chat room |
 | [**apiSetUserPost**](DefaultApi.md#apisetuserpost) | **POST** /api/setUser | Set/modify username and password |
 | [**apiTriggerStarfieldRenderPost**](DefaultApi.md#apitriggerstarfieldrenderpostoperation) | **POST** /api/triggerStarfieldRender | Trigger starfield rendering |
+| [**apiUpdateLastGpsPost**](DefaultApi.md#apiupdatelastgpspost) | **POST** /api/updateLastGps | update user last gps |
 | [**apiUserLoginPost**](DefaultApi.md#apiuserloginpost) | **POST** /api/userLogin | User login |
 | [**apiUserRegPost**](DefaultApi.md#apiuserregpostoperation) | **POST** /api/userReg | User register |
 | [**apiUsernameVerifyPost**](DefaultApi.md#apiusernameverifypostoperation) | **POST** /api/usernameVerify | Verify the username |
@@ -120,7 +121,7 @@ No authorization required
 
 ## apiChangePasswordPost
 
-> ApiChangePasswordPost200Response apiChangePasswordPost(changePasswordRequest)
+> ApiUpdateLastGpsPost200Response apiChangePasswordPost(changePasswordRequest)
 
 
 
@@ -163,7 +164,7 @@ example().catch(console.error);
 
 ### Return type
 
-[**ApiChangePasswordPost200Response**](ApiChangePasswordPost200Response.md)
+[**ApiUpdateLastGpsPost200Response**](ApiUpdateLastGpsPost200Response.md)
 
 ### Authorization
 
@@ -579,7 +580,7 @@ No authorization required
 
 ## apiDeleteUserPost
 
-> ApiChangePasswordPost200Response apiDeleteUserPost(userAuth)
+> ApiUpdateLastGpsPost200Response apiDeleteUserPost(userAuth)
 
 注销账号
 
@@ -622,7 +623,7 @@ example().catch(console.error);
 
 ### Return type
 
-[**ApiChangePasswordPost200Response**](ApiChangePasswordPost200Response.md)
+[**ApiUpdateLastGpsPost200Response**](ApiUpdateLastGpsPost200Response.md)
 
 ### Authorization
 
@@ -2307,7 +2308,7 @@ No authorization required
 
 ## apiResetPasswordPost
 
-> ApiChangePasswordPost200Response apiResetPasswordPost(resetPasswordRequest)
+> ApiUpdateLastGpsPost200Response apiResetPasswordPost(resetPasswordRequest)
 
 Use code to reset password
 
@@ -2350,7 +2351,7 @@ example().catch(console.error);
 
 ### Return type
 
-[**ApiChangePasswordPost200Response**](ApiChangePasswordPost200Response.md)
+[**ApiUpdateLastGpsPost200Response**](ApiUpdateLastGpsPost200Response.md)
 
 ### Authorization
 
@@ -2374,7 +2375,7 @@ No authorization required
 
 ## apiResetPasswordSendCodePost
 
-> ApiChangePasswordPost200Response apiResetPasswordSendCodePost(resetPasswordSendCodeRequest)
+> ApiUpdateLastGpsPost200Response apiResetPasswordSendCodePost(resetPasswordSendCodeRequest)
 
 send code to email
 
@@ -2417,7 +2418,7 @@ example().catch(console.error);
 
 ### Return type
 
-[**ApiChangePasswordPost200Response**](ApiChangePasswordPost200Response.md)
+[**ApiUpdateLastGpsPost200Response**](ApiUpdateLastGpsPost200Response.md)
 
 ### Authorization
 
@@ -2704,6 +2705,75 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## apiUpdateLastGpsPost
+
+> ApiUpdateLastGpsPost200Response apiUpdateLastGpsPost(updateLastGpsRequest)
+
+update user last gps
+
+update the user\&#39;s latest GPS location used by recommendation emails.
+
+### Example
+
+```ts
+import {
+  Configuration,
+  DefaultApi,
+} from '';
+import type { ApiUpdateLastGpsPostRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new DefaultApi();
+
+  const body = {
+    // UpdateLastGpsRequest
+    updateLastGpsRequest: ...,
+  } satisfies ApiUpdateLastGpsPostRequest;
+
+  try {
+    const data = await api.apiUpdateLastGpsPost(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **updateLastGpsRequest** | [UpdateLastGpsRequest](UpdateLastGpsRequest.md) |  | |
+
+### Return type
+
+[**ApiUpdateLastGpsPost200Response**](ApiUpdateLastGpsPost200Response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Last GPS updated successfully. |  -  |
+| **401** | Unauthorized: Authentication required. |  -  |
+| **404** | User not found. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 

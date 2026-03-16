@@ -5,7 +5,6 @@ from typing import ClassVar, Dict, List, Tuple  # noqa: F401
 from typing import Any, Optional
 from openapi_server.models.api_calculate_star_coordinates_post200_response import ApiCalculateStarCoordinatesPost200Response
 from openapi_server.models.api_calculate_star_coordinates_post_request import ApiCalculateStarCoordinatesPostRequest
-from openapi_server.models.api_change_password_post200_response import ApiChangePasswordPost200Response
 from openapi_server.models.api_check_room_status_post200_response import ApiCheckRoomStatusPost200Response
 from openapi_server.models.api_check_room_status_post_request import ApiCheckRoomStatusPostRequest
 from openapi_server.models.api_comment_blog_post200_response import ApiCommentBlogPost200Response
@@ -55,6 +54,7 @@ from openapi_server.models.api_send_message_post_request import ApiSendMessagePo
 from openapi_server.models.api_set_user_post200_response import ApiSetUserPost200Response
 from openapi_server.models.api_trigger_starfield_render_post200_response import ApiTriggerStarfieldRenderPost200Response
 from openapi_server.models.api_trigger_starfield_render_post_request import ApiTriggerStarfieldRenderPostRequest
+from openapi_server.models.api_update_last_gps_post200_response import ApiUpdateLastGpsPost200Response
 from openapi_server.models.api_user_reg_post_request import ApiUserRegPostRequest
 from openapi_server.models.api_username_verify_post200_response import ApiUsernameVerifyPost200Response
 from openapi_server.models.api_username_verify_post_request import ApiUsernameVerifyPostRequest
@@ -70,6 +70,7 @@ from openapi_server.models.reset_password_request import ResetPasswordRequest
 from openapi_server.models.reset_password_send_code_request import ResetPasswordSendCodeRequest
 from openapi_server.models.star_details import StarDetails
 from openapi_server.models.token_response import TokenResponse
+from openapi_server.models.update_last_gps_request import UpdateLastGpsRequest
 from openapi_server.models.user_auth import UserAuth
 from openapi_server.models.user_response import UserResponse
 
@@ -315,6 +316,14 @@ class BaseDefaultApi:
         ...
 
 
+    async def api_update_last_gps_post(
+        self,
+        update_last_gps_request: UpdateLastGpsRequest,
+    ) -> ApiUpdateLastGpsPost200Response:
+        """update the user&#39;s latest GPS location used by recommendation emails."""
+        ...
+
+
     async def api_user_reg_post(
         self,
         api_user_reg_post_request: ApiUserRegPostRequest,
@@ -326,28 +335,28 @@ class BaseDefaultApi:
     async def api_change_password_post(
         self,
         change_password_request: ChangePasswordRequest,
-    ) -> ApiChangePasswordPost200Response:
+    ) -> ApiUpdateLastGpsPost200Response:
         ...
 
 
     async def api_reset_password_send_code_post(
         self,
         reset_password_send_code_request: ResetPasswordSendCodeRequest,
-    ) -> ApiChangePasswordPost200Response:
+    ) -> ApiUpdateLastGpsPost200Response:
         ...
 
 
     async def api_reset_password_post(
         self,
         reset_password_request: ResetPasswordRequest,
-    ) -> ApiChangePasswordPost200Response:
+    ) -> ApiUpdateLastGpsPost200Response:
         ...
 
 
     async def api_delete_user_post(
         self,
         user_auth: UserAuth,
-    ) -> ApiChangePasswordPost200Response:
+    ) -> ApiUpdateLastGpsPost200Response:
         ...
 
 

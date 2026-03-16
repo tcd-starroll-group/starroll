@@ -46,7 +46,10 @@ class Settings:
     smtp_user: str = os.getenv("SMTP_USER")
     smtp_password: str = os.getenv("SMTP_PASSWORD")
     smtp_from_email: str = os.getenv("SMTP_FROM_EMAIL")
-  
+
+    # Weather API Configuration
+    weather_api_endpoint: str = os.getenv(
+        "WEATHER_API_ENDPOINT", "https://api.open-meteo.com/v1/forecast")
 
     @property
     def redis_url(self) -> str:

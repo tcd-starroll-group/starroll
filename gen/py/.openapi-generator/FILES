@@ -16,7 +16,6 @@ src/openapi_server/models/__init__.py
 src/openapi_server/models/api_calculate_star_coordinates_post200_response.py
 src/openapi_server/models/api_calculate_star_coordinates_post200_response_star_coordinates_inner.py
 src/openapi_server/models/api_calculate_star_coordinates_post_request.py
-src/openapi_server/models/api_change_password_post200_response.py
 src/openapi_server/models/api_check_room_status_post200_response.py
 src/openapi_server/models/api_check_room_status_post_request.py
 src/openapi_server/models/api_comment_blog_post200_response.py
@@ -75,6 +74,7 @@ src/openapi_server/models/api_trigger_starfield_render_post200_response.py
 src/openapi_server/models/api_trigger_starfield_render_post_request.py
 src/openapi_server/models/api_trigger_starfield_render_post_request_corrected_star_coordinates_inner.py
 src/openapi_server/models/api_trigger_starfield_render_post_request_render_params.py
+src/openapi_server/models/api_update_last_gps_post200_response.py
 src/openapi_server/models/api_user_reg_post_request.py
 src/openapi_server/models/api_username_verify_post200_response.py
 src/openapi_server/models/api_username_verify_post_request.py
@@ -101,6 +101,7 @@ src/openapi_server/models/reset_password_send_code_request.py
 src/openapi_server/models/star_details.py
 src/openapi_server/models/star_meta.py
 src/openapi_server/models/token_response.py
+src/openapi_server/models/update_last_gps_request.py
 src/openapi_server/models/user_auth.py
 src/openapi_server/models/user_credentials.py
 src/openapi_server/models/user_response.py
