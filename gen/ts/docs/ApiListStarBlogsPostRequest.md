@@ -6,6 +6,10 @@
 
 Name | Type
 ------------ | -------------
+`limit` | number
+`offset` | number
+`sort` | string
+`order` | string
 `hIP` | string
 
 ## Example
@@ -15,6 +19,10 @@ import type { ApiListStarBlogsPostRequest } from ''
 
 // TODO: Update the object below with actual values
 const example = {
+  "limit": null,
+  "offset": null,
+  "sort": createTime,
+  "order": null,
   "hIP": null,
 } satisfies ApiListStarBlogsPostRequest
 

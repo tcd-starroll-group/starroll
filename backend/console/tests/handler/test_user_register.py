@@ -8,7 +8,7 @@ from sqlalchemy.orm import Session
 from backend.console.handler import user_register as user_register_module
 from backend.console.handler.user_register import api_user_reg_post
 from backend.console.dal.rds.user import User
-from gen.py.src.openapi_server.models.api_user_reg_post_request import ApiUserRegPostRequest
+from openapi_server.models.api_user_reg_post_request import ApiUserRegPostRequest
 
 
 def test_api_user_reg_post_success(db_session: Session, monkeypatch: pytest.MonkeyPatch):
@@ -22,15 +22,15 @@ def test_api_user_reg_post_success(db_session: Session, monkeypatch: pytest.Monk
         password="password123",
         email="new@example.com"
     )
-    
+
     result = asyncio.run(api_user_reg_post(payload))
 
     assert result.username == "newuser"
-    
+
     assert result.user_id is not None
     assert result.user_id.isdigit()
 
-    user_in_db = User.get_by_username(db_session, "newuser")
+    user_in_db = User.get_by_id(db_session, int(result.user_id))
     assert user_in_db is not None
     assert user_in_db.email == "new@example.com"
 
@@ -41,7 +41,8 @@ def test_api_user_reg_post_success(db_session: Session, monkeypatch: pytest.Monk
 def test_api_user_reg_post_duplicate_username(db_session: Session, monkeypatch: pytest.MonkeyPatch):
 
     existing_password = hashlib.sha256("pwd".encode()).hexdigest()
-    User.create(db_session, "duplicate_user", existing_password, "u1@example.com")
+    User.create(db_session, "duplicate_user",
+                existing_password, "u1@example.com")
 
     def _get_db_override():
         yield db_session

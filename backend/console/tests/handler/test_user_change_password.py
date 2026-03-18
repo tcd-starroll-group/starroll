@@ -8,7 +8,7 @@ from sqlalchemy.orm import Session
 from backend.console.handler import user_change_password as user_change_password_module
 from backend.console.handler.user_change_password import api_change_password_post
 from backend.console.dal.rds.user import User
-from gen.py.src.openapi_server.models.change_password_request import ChangePasswordRequest
+from openapi_server.models.change_password_request import ChangePasswordRequest
 
 
 def test_api_change_password_post_success(db_session: Session, monkeypatch: pytest.MonkeyPatch):
@@ -17,13 +17,14 @@ def test_api_change_password_post_success(db_session: Session, monkeypatch: pyte
     old_raw_pass = "old_pass_123"
     new_raw_pass = "new_pass_456"
     old_hashed = hashlib.sha256(old_raw_pass.encode()).hexdigest()
-    
-    User.create(db_session, username, old_hashed, "cp@example.com")
+
+    created = User.create(db_session, username, old_hashed, "cp@example.com")
 
     def _get_db_override():
         yield db_session
 
-    monkeypatch.setattr(user_change_password_module, "get_db", _get_db_override)
+    monkeypatch.setattr(user_change_password_module,
+                        "get_db", _get_db_override)
 
     payload = ChangePasswordRequest(
         username=username,
@@ -35,7 +36,7 @@ def test_api_change_password_post_success(db_session: Session, monkeypatch: pyte
 
     assert result["message"] == "Password updated successfully"
 
-    user_in_db = User.get_by_username(db_session, username)
+    user_in_db = User.get_by_id(db_session, created.id)
     new_expected_hash = hashlib.sha256(new_raw_pass.encode()).hexdigest()
     assert user_in_db.password == new_expected_hash
 
@@ -49,7 +50,8 @@ def test_api_change_password_post_wrong_old_password(db_session: Session, monkey
     def _get_db_override():
         yield db_session
 
-    monkeypatch.setattr(user_change_password_module, "get_db", _get_db_override)
+    monkeypatch.setattr(user_change_password_module,
+                        "get_db", _get_db_override)
 
     payload = ChangePasswordRequest(
         username=username,
@@ -68,7 +70,8 @@ def test_api_change_password_post_user_not_found(db_session: Session, monkeypatc
     def _get_db_override():
         yield db_session
 
-    monkeypatch.setattr(user_change_password_module, "get_db", _get_db_override)
+    monkeypatch.setattr(user_change_password_module,
+                        "get_db", _get_db_override)
 
     payload = ChangePasswordRequest(
         username="ghost",

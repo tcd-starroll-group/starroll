@@ -1,6 +1,6 @@
 import hashlib
 from fastapi import HTTPException
-from gen.py.src.openapi_server.models.change_password_request import ChangePasswordRequest
+from openapi_server.models.change_password_request import ChangePasswordRequest
 from backend.console.dal.rds.client import get_db
 from backend.console.dal.rds.user import User
 
@@ -11,7 +11,9 @@ async def api_change_password_post(request: ChangePasswordRequest):
     db = next(get_db())
     try:
         # 1. Query user
-        user = User.get_by_username(db, request.username)
+        user_by_name = db.query(User).filter(
+            User.username == request.username).first()
+        user = User.get_by_id(db, user_by_name.id) if user_by_name else None
         if not user:
             raise HTTPException(status_code=404, detail="User not found")
 
@@ -32,7 +34,7 @@ async def api_change_password_post(request: ChangePasswordRequest):
 
         new_hash = hashlib.sha256(new_pwd.encode()).hexdigest()
 
-        User.update_password(db, request.username, new_hash)
+        User.update_password(db, user.id, new_hash)
 
         print(f"User {request.username} password changed successfully")
         return {"message": "Password updated successfully"}

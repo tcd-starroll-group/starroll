@@ -1,7 +1,7 @@
 import logging
 from fastapi import HTTPException
-from gen.py.src.openapi_server.models.api_view_blog_post_request import ApiViewBlogPostRequest
-from gen.py.src.openapi_server.models.blog import Blog as BlogModel
+from openapi_server.models.blog_id import BlogID
+from openapi_server.models.blog import Blog as BlogModel
 from backend.console.dal.rds.blog import Blog
 from backend.console.dal.rds.blog_comment import BlogComment
 from backend.console.dal.rds.client import get_db
@@ -9,7 +9,7 @@ from backend.console.dal.rds.client import get_db
 logger = logging.getLogger(__name__)
 
 
-async def api_view_blog_post(request: ApiViewBlogPostRequest) -> BlogModel:
+async def api_view_blog_post(request: BlogID) -> BlogModel:
 
     if not request.blog_id:
         raise HTTPException(status_code=400, detail="blogID is required")

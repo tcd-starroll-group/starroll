@@ -2,7 +2,7 @@
 
 from typing import ClassVar, Dict, List, Tuple  # noqa: F401
 
-from typing import Any, Optional
+from typing import Any, Dict
 from openapi_server.models.api_calculate_star_coordinates_post200_response import ApiCalculateStarCoordinatesPost200Response
 from openapi_server.models.api_calculate_star_coordinates_post_request import ApiCalculateStarCoordinatesPostRequest
 from openapi_server.models.api_check_room_status_post200_response import ApiCheckRoomStatusPost200Response
@@ -13,8 +13,6 @@ from openapi_server.models.api_create_blog_post200_response import ApiCreateBlog
 from openapi_server.models.api_create_blog_post_request import ApiCreateBlogPostRequest
 from openapi_server.models.api_create_identify_stars_job_post200_response import ApiCreateIdentifyStarsJobPost200Response
 from openapi_server.models.api_create_identify_stars_job_post_request import ApiCreateIdentifyStarsJobPostRequest
-from openapi_server.models.api_delete_blog_post200_response import ApiDeleteBlogPost200Response
-from openapi_server.models.api_delete_blog_post_request import ApiDeleteBlogPostRequest
 from openapi_server.models.api_delete_comment_post_request import ApiDeleteCommentPostRequest
 from openapi_server.models.api_display_chat_room_get200_response import ApiDisplayChatRoomGet200Response
 from openapi_server.models.api_display_save_success_post200_response import ApiDisplaySaveSuccessPost200Response
@@ -39,10 +37,7 @@ from openapi_server.models.api_get_star_catalog_post200_response import ApiGetSt
 from openapi_server.models.api_get_star_details_post_request import ApiGetStarDetailsPostRequest
 from openapi_server.models.api_like_blog_post200_response import ApiLikeBlogPost200Response
 from openapi_server.models.api_list_identify_stars_jobs_post200_response import ApiListIdentifyStarsJobsPost200Response
-from openapi_server.models.api_list_identify_stars_jobs_post_request import ApiListIdentifyStarsJobsPostRequest
 from openapi_server.models.api_list_star_blogs_post_request import ApiListStarBlogsPostRequest
-from openapi_server.models.api_list_user_blogs_post200_response import ApiListUserBlogsPost200Response
-from openapi_server.models.api_list_user_blogs_post_request import ApiListUserBlogsPostRequest
 from openapi_server.models.api_report_blog_post_request import ApiReportBlogPostRequest
 from openapi_server.models.api_request_accuracy_adjust_post200_response import ApiRequestAccuracyAdjustPost200Response
 from openapi_server.models.api_request_accuracy_adjust_post_request import ApiRequestAccuracyAdjustPostRequest
@@ -51,22 +46,21 @@ from openapi_server.models.api_request_stargazing_time_post200_response import A
 from openapi_server.models.api_request_stargazing_time_post_request import ApiRequestStargazingTimePostRequest
 from openapi_server.models.api_send_message_post200_response import ApiSendMessagePost200Response
 from openapi_server.models.api_send_message_post_request import ApiSendMessagePostRequest
-from openapi_server.models.api_set_user_post200_response import ApiSetUserPost200Response
 from openapi_server.models.api_trigger_starfield_render_post200_response import ApiTriggerStarfieldRenderPost200Response
 from openapi_server.models.api_trigger_starfield_render_post_request import ApiTriggerStarfieldRenderPostRequest
-from openapi_server.models.api_update_last_gps_post200_response import ApiUpdateLastGpsPost200Response
 from openapi_server.models.api_user_reg_post_request import ApiUserRegPostRequest
-from openapi_server.models.api_username_verify_post200_response import ApiUsernameVerifyPost200Response
 from openapi_server.models.api_username_verify_post_request import ApiUsernameVerifyPostRequest
 from openapi_server.models.api_verify_user_token_post_request import ApiVerifyUserTokenPostRequest
-from openapi_server.models.api_view_blog_post_request import ApiViewBlogPostRequest
 from openapi_server.models.attitude import Attitude
 from openapi_server.models.blog import Blog
+from openapi_server.models.blog_id import BlogID
+from openapi_server.models.blogs_list import BlogsList
 from openapi_server.models.change_password_request import ChangePasswordRequest
+from openapi_server.models.common_message import CommonMessage
 from openapi_server.models.error_response import ErrorResponse
 from openapi_server.models.gps import GPS
+from openapi_server.models.pagination_query import PaginationQuery
 from openapi_server.models.profile_and_token import ProfileAndToken
-from openapi_server.models.profile_stats_request import ProfileStatsRequest
 from openapi_server.models.profile_stats_response import ProfileStatsResponse
 from openapi_server.models.reset_password_request import ResetPasswordRequest
 from openapi_server.models.reset_password_send_code_request import ResetPasswordSendCodeRequest
@@ -100,36 +94,36 @@ class BaseDefaultApi:
 
     async def api_list_user_blogs_post(
         self,
-        api_list_user_blogs_post_request: Optional[ApiListUserBlogsPostRequest],
-    ) -> ApiListUserBlogsPost200Response:
+        pagination_query: PaginationQuery,
+    ) -> BlogsList:
         ...
 
 
     async def api_list_star_blogs_post(
         self,
-        api_list_star_blogs_post_request: Optional[ApiListStarBlogsPostRequest],
-    ) -> ApiListUserBlogsPost200Response:
+        api_list_star_blogs_post_request: ApiListStarBlogsPostRequest,
+    ) -> BlogsList:
         ...
 
 
     async def api_view_blog_post(
         self,
-        api_view_blog_post_request: Optional[ApiViewBlogPostRequest],
+        blog_id: BlogID,
     ) -> Blog:
         ...
 
 
     async def api_create_blog_post(
         self,
-        api_create_blog_post_request: Optional[ApiCreateBlogPostRequest],
+        api_create_blog_post_request: ApiCreateBlogPostRequest,
     ) -> ApiCreateBlogPost200Response:
         ...
 
 
     async def api_list_saved_blogs_post(
         self,
-        api_list_user_blogs_post_request: Optional[ApiListUserBlogsPostRequest],
-    ) -> ApiListUserBlogsPost200Response:
+        pagination_query: PaginationQuery,
+    ) -> BlogsList:
         ...
 
 
@@ -159,14 +153,14 @@ class BaseDefaultApi:
 
     async def api_calculate_star_coordinates_post(
         self,
-        api_calculate_star_coordinates_post_request: Optional[ApiCalculateStarCoordinatesPostRequest],
+        api_calculate_star_coordinates_post_request: ApiCalculateStarCoordinatesPostRequest,
     ) -> ApiCalculateStarCoordinatesPost200Response:
         ...
 
 
     async def api_trigger_starfield_render_post(
         self,
-        api_trigger_starfield_render_post_request: Optional[ApiTriggerStarfieldRenderPostRequest],
+        api_trigger_starfield_render_post_request: ApiTriggerStarfieldRenderPostRequest,
     ) -> ApiTriggerStarfieldRenderPost200Response:
         """Initiate starfield rendering process using corrected star coordinates and camera parameters"""
         ...
@@ -174,7 +168,7 @@ class BaseDefaultApi:
 
     async def api_request_stargazing_time_post(
         self,
-        api_request_stargazing_time_post_request: Optional[ApiRequestStargazingTimePostRequest],
+        api_request_stargazing_time_post_request: ApiRequestStargazingTimePostRequest,
     ) -> ApiRequestStargazingTimePost200Response:
         """Get recommended stargazing time range based on GPS location"""
         ...
@@ -182,7 +176,7 @@ class BaseDefaultApi:
 
     async def api_request_accuracy_adjust_post(
         self,
-        api_request_accuracy_adjust_post_request: Optional[ApiRequestAccuracyAdjustPostRequest],
+        api_request_accuracy_adjust_post_request: ApiRequestAccuracyAdjustPostRequest,
     ) -> ApiRequestAccuracyAdjustPost200Response:
         """Adjust calculation accuracy for star coordinates based on sensor precision"""
         ...
@@ -190,7 +184,7 @@ class BaseDefaultApi:
 
     async def api_display_starfield_post(
         self,
-        api_display_starfield_post_request: Optional[ApiDisplayStarfieldPostRequest],
+        api_display_starfield_post_request: ApiDisplayStarfieldPostRequest,
     ) -> ApiDisplayStarfieldPost200Response:
         """Retrieve rendered starfield data for GUI display"""
         ...
@@ -198,7 +192,7 @@ class BaseDefaultApi:
 
     async def api_display_star_details_post(
         self,
-        api_display_star_details_post_request: Optional[ApiDisplayStarDetailsPostRequest],
+        api_display_star_details_post_request: ApiDisplayStarDetailsPostRequest,
     ) -> StarDetails:
         """Retrieve detailed astronomical information of a specific star"""
         ...
@@ -213,7 +207,7 @@ class BaseDefaultApi:
 
     async def api_display_save_success_post(
         self,
-        api_display_save_success_post_request: Optional[ApiDisplaySaveSuccessPostRequest],
+        api_display_save_success_post_request: ApiDisplaySaveSuccessPostRequest,
     ) -> ApiDisplaySaveSuccessPost200Response:
         """Return save result and metadata after starfield is saved"""
         ...
@@ -228,7 +222,7 @@ class BaseDefaultApi:
 
     async def api_list_identify_stars_jobs_post(
         self,
-        api_list_identify_stars_jobs_post_request: ApiListIdentifyStarsJobsPostRequest,
+        pagination_query: PaginationQuery,
     ) -> ApiListIdentifyStarsJobsPost200Response:
         ...
 
@@ -242,7 +236,7 @@ class BaseDefaultApi:
 
     async def api_elimilate_errors_post(
         self,
-        api_elimilate_errors_post_request: Optional[ApiElimilateErrorsPostRequest],
+        api_elimilate_errors_post_request: ApiElimilateErrorsPostRequest,
     ) -> ApiElimilateErrorsPost200Response:
         ...
 
@@ -257,7 +251,7 @@ class BaseDefaultApi:
 
     async def api_get_chat_room_info_post(
         self,
-        api_get_chat_room_info_post_request: Optional[ApiGetChatRoomInfoPostRequest],
+        api_get_chat_room_info_post_request: ApiGetChatRoomInfoPostRequest,
     ) -> ApiGetChatRoomInfoPost200Response:
         """Gets specified chat room information from the social system"""
         ...
@@ -281,14 +275,14 @@ class BaseDefaultApi:
 
     async def api_get_star_details_post(
         self,
-        api_get_star_details_post_request: Optional[ApiGetStarDetailsPostRequest],
+        api_get_star_details_post_request: ApiGetStarDetailsPostRequest,
     ) -> StarDetails:
         ...
 
 
     async def api_check_room_status_post(
         self,
-        api_check_room_status_post_request: Optional[ApiCheckRoomStatusPostRequest],
+        api_check_room_status_post_request: ApiCheckRoomStatusPostRequest,
     ) -> ApiCheckRoomStatusPost200Response:
         """Determines if a user can join the specified chat room"""
         ...
@@ -297,7 +291,7 @@ class BaseDefaultApi:
     async def api_set_user_post(
         self,
         change_password_request: ChangePasswordRequest,
-    ) -> ApiSetUserPost200Response:
+    ) -> CommonMessage:
         """Modify the username and password by the username, current password(password0)and new password(password1) user provided."""
         ...
 
@@ -321,7 +315,7 @@ class BaseDefaultApi:
     async def api_update_last_gps_post(
         self,
         update_last_gps_request: UpdateLastGpsRequest,
-    ) -> ApiUpdateLastGpsPost200Response:
+    ) -> CommonMessage:
         """update the user&#39;s latest GPS location used by recommendation emails."""
         ...
 
@@ -337,35 +331,35 @@ class BaseDefaultApi:
     async def api_change_password_post(
         self,
         change_password_request: ChangePasswordRequest,
-    ) -> ApiUpdateLastGpsPost200Response:
+    ) -> CommonMessage:
         ...
 
 
     async def api_reset_password_send_code_post(
         self,
         reset_password_send_code_request: ResetPasswordSendCodeRequest,
-    ) -> ApiUpdateLastGpsPost200Response:
+    ) -> CommonMessage:
         ...
 
 
     async def api_reset_password_post(
         self,
         reset_password_request: ResetPasswordRequest,
-    ) -> ApiUpdateLastGpsPost200Response:
+    ) -> CommonMessage:
         ...
 
 
     async def api_delete_user_post(
         self,
         user_auth: UserAuth,
-    ) -> ApiUpdateLastGpsPost200Response:
+    ) -> CommonMessage:
         ...
 
 
     async def api_username_verify_post(
         self,
         api_username_verify_post_request: ApiUsernameVerifyPostRequest,
-    ) -> ApiUsernameVerifyPost200Response:
+    ) -> CommonMessage:
         """Check whether the username is available."""
         ...
 
@@ -380,49 +374,49 @@ class BaseDefaultApi:
 
     async def api_delete_blog_post(
         self,
-        api_delete_blog_post_request: Optional[ApiDeleteBlogPostRequest],
-    ) -> ApiDeleteBlogPost200Response:
+        blog_id: BlogID,
+    ) -> BlogID:
         ...
 
 
     async def api_like_blog_post(
         self,
-        api_delete_blog_post_request: Optional[ApiDeleteBlogPostRequest],
+        blog_id: BlogID,
     ) -> ApiLikeBlogPost200Response:
         ...
 
 
     async def api_comment_blog_post(
         self,
-        api_comment_blog_post_request: Optional[ApiCommentBlogPostRequest],
+        api_comment_blog_post_request: ApiCommentBlogPostRequest,
     ) -> ApiCommentBlogPost200Response:
         ...
 
 
     async def api_delete_comment_post(
         self,
-        api_delete_comment_post_request: Optional[ApiDeleteCommentPostRequest],
+        api_delete_comment_post_request: ApiDeleteCommentPostRequest,
     ) -> ApiCommentBlogPost200Response:
         ...
 
 
     async def api_save_blog_post(
         self,
-        api_delete_blog_post_request: Optional[ApiDeleteBlogPostRequest],
-    ) -> ApiDeleteBlogPost200Response:
+        blog_id: BlogID,
+    ) -> BlogID:
         ...
 
 
     async def api_report_blog_post(
         self,
-        api_report_blog_post_request: Optional[ApiReportBlogPostRequest],
-    ) -> ApiDeleteBlogPost200Response:
+        api_report_blog_post_request: ApiReportBlogPostRequest,
+    ) -> BlogID:
         ...
 
 
     async def api_get_profile_stats_post(
         self,
-        profile_stats_request: ProfileStatsRequest,
+        body: Dict[str, Any],
     ) -> ProfileStatsResponse:
         """Retrieve the user&#39;s scanning statistics, rank, and join date for the profile view."""
         ...

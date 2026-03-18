@@ -1,27 +1,24 @@
 from datetime import datetime, timezone
 import logging
 from fastapi import HTTPException, Body
-from gen.py.src.openapi_server.models.api_list_identify_stars_jobs_post200_response import ApiListIdentifyStarsJobsPost200Response
-from gen.py.src.openapi_server.models.api_list_identify_stars_jobs_post_request import ApiListIdentifyStarsJobsPostRequest
+from openapi_server.models.api_list_identify_stars_jobs_post200_response import ApiListIdentifyStarsJobsPost200Response
+from openapi_server.models.pagination_query import PaginationQuery
 
 
 from backend.console.dal.rds.identify_stars_job import IdentifyStarsJob
-from backend.console.dal.rds.client import get_db
-from backend.console.utils.auth import verify_user_id_and_token
+from backend.console.dal.rds.client import db_context
+from backend.console.utils.auth import get_current_user_id
 from backend.constant.sort import SORT_BY_CREATE_TIME, SORT_ORDER_DESC, SORT_ORDER_ASC
 
 logger = logging.getLogger(__name__)
 
 
 async def api_list_identify_stars_jobs_post(
-    request: ApiListIdentifyStarsJobsPostRequest = Body(
-        None, description=""),
+    request: PaginationQuery,
 ) -> ApiListIdentifyStarsJobsPost200Response:
     """List identify stars jobs for a user"""
 
-    # Verify access token
-    verify_user_id_and_token(
-        request.user_credentials.token, request.user_credentials.user_id)
+    user_id = get_current_user_id()
 
     # Get pagination parameters
     limit = request.limit if request.limit is not None else 20
@@ -36,22 +33,21 @@ async def api_list_identify_stars_jobs_post(
             detail=f"Only '{SORT_BY_CREATE_TIME}' is supported for sorting")
 
     logger.info(
-        f"Listing jobs for user_id: {request.user_credentials.user_id}, "
+        f"Listing jobs for user_id: {user_id}, "
         f"limit: {limit}, offset: {offset}, order: {order}")
 
     # Query database
-    db_session = next(get_db())
-    try:
+    with db_context() as db_session:
         db_jobs = IdentifyStarsJob.list_by_user_id(
             db=db_session,
-            user_id=int(request.user_credentials.user_id),
+            user_id=int(user_id),
             limit=limit,
             offset=offset,
             order=order
         )
 
         logger.info(
-            f"Found {len(db_jobs)} jobs for user {request.user_credentials.user_id}")
+            f"Found {len(db_jobs)} jobs for user {user_id}")
 
         # Convert database models to API models
         api_jobs = []
@@ -67,13 +63,3 @@ async def api_list_identify_stars_jobs_post(
         return ApiListIdentifyStarsJobsPost200Response(
             identify_stars_jobs_list=api_jobs
         )
-
-    except Exception as e:
-        logger.error(
-            f"Failed to list jobs for user {request.user_credentials.user_id}: {str(e)}",
-            exc_info=True)
-        raise HTTPException(
-            status_code=500,
-            detail=f"Failed to list jobs: {str(e)}")
-    finally:
-        db_session.close()

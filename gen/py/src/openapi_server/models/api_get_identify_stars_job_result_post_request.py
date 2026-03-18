@@ -22,7 +22,6 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List
-from openapi_server.models.user_credentials import UserCredentials
 try:
     from typing import Self
 except ImportError:
@@ -33,8 +32,7 @@ class ApiGetIdentifyStarsJobResultPostRequest(BaseModel):
     ApiGetIdentifyStarsJobResultPostRequest
     """ # noqa: E501
     job_id: StrictStr = Field(description="Unique ID of the identify stars job", alias="jobID")
-    user_credentials: UserCredentials = Field(alias="userCredentials")
-    __properties: ClassVar[List[str]] = ["jobID", "userCredentials"]
+    __properties: ClassVar[List[str]] = ["jobID"]
 
     model_config = {
         "populate_by_name": True,
@@ -73,9 +71,6 @@ class ApiGetIdentifyStarsJobResultPostRequest(BaseModel):
             },
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of user_credentials
-        if self.user_credentials:
-            _dict['userCredentials'] = self.user_credentials.to_dict()
         return _dict
 
     @classmethod
@@ -88,8 +83,7 @@ class ApiGetIdentifyStarsJobResultPostRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "jobID": obj.get("jobID"),
-            "userCredentials": UserCredentials.from_dict(obj.get("userCredentials")) if obj.get("userCredentials") is not None else None
+            "jobID": obj.get("jobID")
         })
         return _obj
 

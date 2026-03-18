@@ -10,7 +10,7 @@ All URIs are relative to *http://localhost*
 | [**apiCommentBlogPost**](DefaultApi.md#apicommentblogpostoperation) | **POST** /api/commentBlog | Comment a blog |
 | [**apiCreateBlogPost**](DefaultApi.md#apicreateblogpostoperation) | **POST** /api/createBlog | Create a new blog |
 | [**apiCreateIdentifyStarsJobPost**](DefaultApi.md#apicreateidentifystarsjobpostoperation) | **POST** /api/createIdentifyStarsJob | Create a job to identify the stars in the image. |
-| [**apiDeleteBlogPost**](DefaultApi.md#apideleteblogpostoperation) | **POST** /api/deleteBlog | Delete a blog |
+| [**apiDeleteBlogPost**](DefaultApi.md#apideleteblogpost) | **POST** /api/deleteBlog | Delete a blog |
 | [**apiDeleteCommentPost**](DefaultApi.md#apideletecommentpostoperation) | **POST** /api/deleteComment | Delete a comment |
 | [**apiDeleteUserPost**](DefaultApi.md#apideleteuserpost) | **POST** /api/deleteUser | 注销账号 |
 | [**apiDisplayChatRoomGet**](DefaultApi.md#apidisplaychatroomget) | **GET** /api/displayChatRoom | Display chat room entry button in GUI |
@@ -27,14 +27,15 @@ All URIs are relative to *http://localhost*
 | [**apiGetIdentifyStarsJobResultPost**](DefaultApi.md#apigetidentifystarsjobresultpostoperation) | **POST** /api/getIdentifyStarsJobResult | get identify stars job result. |
 | [**apiGetLocationPost**](DefaultApi.md#apigetlocationpost) | **POST** /api/getLocation | Get current location |
 | [**apiGetMessagePost**](DefaultApi.md#apigetmessagepostoperation) | **POST** /api/getMessage | Retrieve chat room messages |
+| [**apiGetProfileStatsPost**](DefaultApi.md#apigetprofilestatspost) | **POST** /api/getProfileStats | Get user profile stats |
 | [**apiGetStarCatalogPost**](DefaultApi.md#apigetstarcatalogpost) | **POST** /api/getStarCatalog | Get star catalog |
 | [**apiGetStarDetailsPost**](DefaultApi.md#apigetstardetailspostoperation) | **POST** /api/getStarDetails | calculate star details |
 | [**apiHealthGet**](DefaultApi.md#apihealthget) | **GET** /api/health | health check |
 | [**apiLikeBlogPost**](DefaultApi.md#apilikeblogpost) | **POST** /api/likeBlog | Like a blog |
-| [**apiListIdentifyStarsJobsPost**](DefaultApi.md#apilistidentifystarsjobspostoperation) | **POST** /api/listIdentifyStarsJobs | List identify stars jobs. |
+| [**apiListIdentifyStarsJobsPost**](DefaultApi.md#apilistidentifystarsjobspost) | **POST** /api/listIdentifyStarsJobs | List identify stars jobs. |
 | [**apiListSavedBlogsPost**](DefaultApi.md#apilistsavedblogspost) | **POST** /api/listSavedBlogs | List all blogs saved by the user |
 | [**apiListStarBlogsPost**](DefaultApi.md#apiliststarblogspostoperation) | **POST** /api/listStarBlogs | List all blogs under the certain star |
-| [**apiListUserBlogsPost**](DefaultApi.md#apilistuserblogspostoperation) | **POST** /api/listUserBlogs | List all blogs posted by a specific user |
+| [**apiListUserBlogsPost**](DefaultApi.md#apilistuserblogspost) | **POST** /api/listUserBlogs | List all blogs posted by a specific user |
 | [**apiReportBlogPost**](DefaultApi.md#apireportblogpostoperation) | **POST** /api/reportBlog | Report a blog |
 | [**apiRequestAccuracyAdjustPost**](DefaultApi.md#apirequestaccuracyadjustpostoperation) | **POST** /api/requestAccuracyAdjust | Request accuracy adjustment |
 | [**apiRequestSaveTypePost**](DefaultApi.md#apirequestsavetypepost) | **POST** /api/requestSaveType | Request save type options |
@@ -50,7 +51,7 @@ All URIs are relative to *http://localhost*
 | [**apiUserRegPost**](DefaultApi.md#apiuserregpostoperation) | **POST** /api/userReg | User register |
 | [**apiUsernameVerifyPost**](DefaultApi.md#apiusernameverifypostoperation) | **POST** /api/usernameVerify | Verify the username |
 | [**apiVerifyUserTokenPost**](DefaultApi.md#apiverifyusertokenpostoperation) | **POST** /api/verifyUserToken | Verify the user\&#39;s Token |
-| [**apiViewBlogPost**](DefaultApi.md#apiviewblogpostoperation) | **POST** /api/viewBlog | Details of one blog |
+| [**apiViewBlogPost**](DefaultApi.md#apiviewblogpost) | **POST** /api/viewBlog | Details of one blog |
 
 
 
@@ -74,7 +75,7 @@ async function example() {
   const api = new DefaultApi();
 
   const body = {
-    // ApiCalculateStarCoordinatesPostRequest (optional)
+    // ApiCalculateStarCoordinatesPostRequest
     apiCalculateStarCoordinatesPostRequest: ...,
   } satisfies ApiCalculateStarCoordinatesPostOperationRequest;
 
@@ -95,7 +96,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **apiCalculateStarCoordinatesPostRequest** | [ApiCalculateStarCoordinatesPostRequest](ApiCalculateStarCoordinatesPostRequest.md) |  | [Optional] |
+| **apiCalculateStarCoordinatesPostRequest** | [ApiCalculateStarCoordinatesPostRequest](ApiCalculateStarCoordinatesPostRequest.md) |  | |
 
 ### Return type
 
@@ -121,7 +122,7 @@ No authorization required
 
 ## apiChangePasswordPost
 
-> ApiUpdateLastGpsPost200Response apiChangePasswordPost(changePasswordRequest)
+> CommonMessage apiChangePasswordPost(changePasswordRequest)
 
 
 
@@ -164,7 +165,7 @@ example().catch(console.error);
 
 ### Return type
 
-[**ApiUpdateLastGpsPost200Response**](ApiUpdateLastGpsPost200Response.md)
+[**CommonMessage**](CommonMessage.md)
 
 ### Authorization
 
@@ -208,7 +209,7 @@ async function example() {
   const api = new DefaultApi();
 
   const body = {
-    // ApiCheckRoomStatusPostRequest (optional)
+    // ApiCheckRoomStatusPostRequest
     apiCheckRoomStatusPostRequest: ...,
   } satisfies ApiCheckRoomStatusPostOperationRequest;
 
@@ -229,7 +230,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **apiCheckRoomStatusPostRequest** | [ApiCheckRoomStatusPostRequest](ApiCheckRoomStatusPostRequest.md) |  | [Optional] |
+| **apiCheckRoomStatusPostRequest** | [ApiCheckRoomStatusPostRequest](ApiCheckRoomStatusPostRequest.md) |  | |
 
 ### Return type
 
@@ -273,7 +274,7 @@ async function example() {
   const api = new DefaultApi();
 
   const body = {
-    // ApiCommentBlogPostRequest (optional)
+    // ApiCommentBlogPostRequest
     apiCommentBlogPostRequest: ...,
   } satisfies ApiCommentBlogPostOperationRequest;
 
@@ -294,7 +295,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **apiCommentBlogPostRequest** | [ApiCommentBlogPostRequest](ApiCommentBlogPostRequest.md) |  | [Optional] |
+| **apiCommentBlogPostRequest** | [ApiCommentBlogPostRequest](ApiCommentBlogPostRequest.md) |  | |
 
 ### Return type
 
@@ -338,7 +339,7 @@ async function example() {
   const api = new DefaultApi();
 
   const body = {
-    // ApiCreateBlogPostRequest (optional)
+    // ApiCreateBlogPostRequest
     apiCreateBlogPostRequest: ...,
   } satisfies ApiCreateBlogPostOperationRequest;
 
@@ -359,7 +360,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **apiCreateBlogPostRequest** | [ApiCreateBlogPostRequest](ApiCreateBlogPostRequest.md) |  | [Optional] |
+| **apiCreateBlogPostRequest** | [ApiCreateBlogPostRequest](ApiCreateBlogPostRequest.md) |  | |
 
 ### Return type
 
@@ -450,7 +451,7 @@ No authorization required
 
 ## apiDeleteBlogPost
 
-> ApiDeleteBlogPost200Response apiDeleteBlogPost(apiDeleteBlogPostRequest)
+> BlogID apiDeleteBlogPost(blogID)
 
 Delete a blog
 
@@ -461,16 +462,16 @@ import {
   Configuration,
   DefaultApi,
 } from '';
-import type { ApiDeleteBlogPostOperationRequest } from '';
+import type { ApiDeleteBlogPostRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
   const api = new DefaultApi();
 
   const body = {
-    // ApiDeleteBlogPostRequest (optional)
-    apiDeleteBlogPostRequest: ...,
-  } satisfies ApiDeleteBlogPostOperationRequest;
+    // BlogID
+    blogID: ...,
+  } satisfies ApiDeleteBlogPostRequest;
 
   try {
     const data = await api.apiDeleteBlogPost(body);
@@ -489,11 +490,11 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **apiDeleteBlogPostRequest** | [ApiDeleteBlogPostRequest](ApiDeleteBlogPostRequest.md) |  | [Optional] |
+| **blogID** | [BlogID](BlogID.md) |  | |
 
 ### Return type
 
-[**ApiDeleteBlogPost200Response**](ApiDeleteBlogPost200Response.md)
+[**BlogID**](BlogID.md)
 
 ### Authorization
 
@@ -533,7 +534,7 @@ async function example() {
   const api = new DefaultApi();
 
   const body = {
-    // ApiDeleteCommentPostRequest (optional)
+    // ApiDeleteCommentPostRequest
     apiDeleteCommentPostRequest: ...,
   } satisfies ApiDeleteCommentPostOperationRequest;
 
@@ -554,7 +555,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **apiDeleteCommentPostRequest** | [ApiDeleteCommentPostRequest](ApiDeleteCommentPostRequest.md) |  | [Optional] |
+| **apiDeleteCommentPostRequest** | [ApiDeleteCommentPostRequest](ApiDeleteCommentPostRequest.md) |  | |
 
 ### Return type
 
@@ -580,7 +581,7 @@ No authorization required
 
 ## apiDeleteUserPost
 
-> ApiUpdateLastGpsPost200Response apiDeleteUserPost(userAuth)
+> CommonMessage apiDeleteUserPost(userAuth)
 
 注销账号
 
@@ -623,7 +624,7 @@ example().catch(console.error);
 
 ### Return type
 
-[**ApiUpdateLastGpsPost200Response**](ApiUpdateLastGpsPost200Response.md)
+[**CommonMessage**](CommonMessage.md)
 
 ### Authorization
 
@@ -726,7 +727,7 @@ async function example() {
   const api = new DefaultApi();
 
   const body = {
-    // ApiDisplaySaveSuccessPostRequest (optional)
+    // ApiDisplaySaveSuccessPostRequest
     apiDisplaySaveSuccessPostRequest: ...,
   } satisfies ApiDisplaySaveSuccessPostOperationRequest;
 
@@ -747,7 +748,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **apiDisplaySaveSuccessPostRequest** | [ApiDisplaySaveSuccessPostRequest](ApiDisplaySaveSuccessPostRequest.md) |  | [Optional] |
+| **apiDisplaySaveSuccessPostRequest** | [ApiDisplaySaveSuccessPostRequest](ApiDisplaySaveSuccessPostRequest.md) |  | |
 
 ### Return type
 
@@ -793,7 +794,7 @@ async function example() {
   const api = new DefaultApi();
 
   const body = {
-    // ApiDisplayStarDetailsPostRequest (optional)
+    // ApiDisplayStarDetailsPostRequest
     apiDisplayStarDetailsPostRequest: ...,
   } satisfies ApiDisplayStarDetailsPostOperationRequest;
 
@@ -814,7 +815,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **apiDisplayStarDetailsPostRequest** | [ApiDisplayStarDetailsPostRequest](ApiDisplayStarDetailsPostRequest.md) |  | [Optional] |
+| **apiDisplayStarDetailsPostRequest** | [ApiDisplayStarDetailsPostRequest](ApiDisplayStarDetailsPostRequest.md) |  | |
 
 ### Return type
 
@@ -860,7 +861,7 @@ async function example() {
   const api = new DefaultApi();
 
   const body = {
-    // ApiDisplayStarfieldPostRequest (optional)
+    // ApiDisplayStarfieldPostRequest
     apiDisplayStarfieldPostRequest: ...,
   } satisfies ApiDisplayStarfieldPostOperationRequest;
 
@@ -881,7 +882,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **apiDisplayStarfieldPostRequest** | [ApiDisplayStarfieldPostRequest](ApiDisplayStarfieldPostRequest.md) |  | [Optional] |
+| **apiDisplayStarfieldPostRequest** | [ApiDisplayStarfieldPostRequest](ApiDisplayStarfieldPostRequest.md) |  | |
 
 ### Return type
 
@@ -995,7 +996,7 @@ async function example() {
   const api = new DefaultApi();
 
   const body = {
-    // ApiElimilateErrorsPostRequest (optional)
+    // ApiElimilateErrorsPostRequest
     apiElimilateErrorsPostRequest: ...,
   } satisfies ApiElimilateErrorsPostOperationRequest;
 
@@ -1016,7 +1017,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **apiElimilateErrorsPostRequest** | [ApiElimilateErrorsPostRequest](ApiElimilateErrorsPostRequest.md) |  | [Optional] |
+| **apiElimilateErrorsPostRequest** | [ApiElimilateErrorsPostRequest](ApiElimilateErrorsPostRequest.md) |  | |
 
 ### Return type
 
@@ -1243,7 +1244,7 @@ async function example() {
   const api = new DefaultApi();
 
   const body = {
-    // ApiGetChatRoomInfoPostRequest (optional)
+    // ApiGetChatRoomInfoPostRequest
     apiGetChatRoomInfoPostRequest: ...,
   } satisfies ApiGetChatRoomInfoPostOperationRequest;
 
@@ -1264,7 +1265,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **apiGetChatRoomInfoPostRequest** | [ApiGetChatRoomInfoPostRequest](ApiGetChatRoomInfoPostRequest.md) |  | [Optional] |
+| **apiGetChatRoomInfoPostRequest** | [ApiGetChatRoomInfoPostRequest](ApiGetChatRoomInfoPostRequest.md) |  | |
 
 ### Return type
 
@@ -1544,6 +1545,73 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
+## apiGetProfileStatsPost
+
+> ProfileStatsResponse apiGetProfileStatsPost(body)
+
+Get user profile stats
+
+Retrieve the user\&#39;s scanning statistics, rank, and join date for the profile view.
+
+### Example
+
+```ts
+import {
+  Configuration,
+  DefaultApi,
+} from '';
+import type { ApiGetProfileStatsPostRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new DefaultApi();
+
+  const body = {
+    // object
+    body: Object,
+  } satisfies ApiGetProfileStatsPostRequest;
+
+  try {
+    const data = await api.apiGetProfileStatsPost(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **body** | `object` |  | |
+
+### Return type
+
+[**ProfileStatsResponse**](ProfileStatsResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
 ## apiGetStarCatalogPost
 
 > ApiGetStarCatalogPost200Response apiGetStarCatalogPost()
@@ -1621,7 +1689,7 @@ async function example() {
   const api = new DefaultApi();
 
   const body = {
-    // ApiGetStarDetailsPostRequest (optional)
+    // ApiGetStarDetailsPostRequest
     apiGetStarDetailsPostRequest: ...,
   } satisfies ApiGetStarDetailsPostOperationRequest;
 
@@ -1642,7 +1710,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **apiGetStarDetailsPostRequest** | [ApiGetStarDetailsPostRequest](ApiGetStarDetailsPostRequest.md) |  | [Optional] |
+| **apiGetStarDetailsPostRequest** | [ApiGetStarDetailsPostRequest](ApiGetStarDetailsPostRequest.md) |  | |
 
 ### Return type
 
@@ -1725,7 +1793,7 @@ No authorization required
 
 ## apiLikeBlogPost
 
-> ApiLikeBlogPost200Response apiLikeBlogPost(apiDeleteBlogPostRequest)
+> ApiLikeBlogPost200Response apiLikeBlogPost(blogID)
 
 Like a blog
 
@@ -1743,8 +1811,8 @@ async function example() {
   const api = new DefaultApi();
 
   const body = {
-    // ApiDeleteBlogPostRequest (optional)
-    apiDeleteBlogPostRequest: ...,
+    // BlogID
+    blogID: ...,
   } satisfies ApiLikeBlogPostRequest;
 
   try {
@@ -1764,7 +1832,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **apiDeleteBlogPostRequest** | [ApiDeleteBlogPostRequest](ApiDeleteBlogPostRequest.md) |  | [Optional] |
+| **blogID** | [BlogID](BlogID.md) |  | |
 
 ### Return type
 
@@ -1790,7 +1858,7 @@ No authorization required
 
 ## apiListIdentifyStarsJobsPost
 
-> ApiListIdentifyStarsJobsPost200Response apiListIdentifyStarsJobsPost(apiListIdentifyStarsJobsPostRequest)
+> ApiListIdentifyStarsJobsPost200Response apiListIdentifyStarsJobsPost(paginationQuery)
 
 List identify stars jobs.
 
@@ -1801,16 +1869,16 @@ import {
   Configuration,
   DefaultApi,
 } from '';
-import type { ApiListIdentifyStarsJobsPostOperationRequest } from '';
+import type { ApiListIdentifyStarsJobsPostRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
   const api = new DefaultApi();
 
   const body = {
-    // ApiListIdentifyStarsJobsPostRequest
-    apiListIdentifyStarsJobsPostRequest: ...,
-  } satisfies ApiListIdentifyStarsJobsPostOperationRequest;
+    // PaginationQuery
+    paginationQuery: ...,
+  } satisfies ApiListIdentifyStarsJobsPostRequest;
 
   try {
     const data = await api.apiListIdentifyStarsJobsPost(body);
@@ -1829,7 +1897,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **apiListIdentifyStarsJobsPostRequest** | [ApiListIdentifyStarsJobsPostRequest](ApiListIdentifyStarsJobsPostRequest.md) |  | |
+| **paginationQuery** | [PaginationQuery](PaginationQuery.md) |  | |
 
 ### Return type
 
@@ -1855,7 +1923,7 @@ No authorization required
 
 ## apiListSavedBlogsPost
 
-> ApiListUserBlogsPost200Response apiListSavedBlogsPost(apiListUserBlogsPostRequest)
+> BlogsList apiListSavedBlogsPost(paginationQuery)
 
 List all blogs saved by the user
 
@@ -1873,8 +1941,8 @@ async function example() {
   const api = new DefaultApi();
 
   const body = {
-    // ApiListUserBlogsPostRequest (optional)
-    apiListUserBlogsPostRequest: ...,
+    // PaginationQuery
+    paginationQuery: ...,
   } satisfies ApiListSavedBlogsPostRequest;
 
   try {
@@ -1894,11 +1962,11 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **apiListUserBlogsPostRequest** | [ApiListUserBlogsPostRequest](ApiListUserBlogsPostRequest.md) |  | [Optional] |
+| **paginationQuery** | [PaginationQuery](PaginationQuery.md) |  | |
 
 ### Return type
 
-[**ApiListUserBlogsPost200Response**](ApiListUserBlogsPost200Response.md)
+[**BlogsList**](BlogsList.md)
 
 ### Authorization
 
@@ -1920,7 +1988,7 @@ No authorization required
 
 ## apiListStarBlogsPost
 
-> ApiListUserBlogsPost200Response apiListStarBlogsPost(apiListStarBlogsPostRequest)
+> BlogsList apiListStarBlogsPost(apiListStarBlogsPostRequest)
 
 List all blogs under the certain star
 
@@ -1938,7 +2006,7 @@ async function example() {
   const api = new DefaultApi();
 
   const body = {
-    // ApiListStarBlogsPostRequest (optional)
+    // ApiListStarBlogsPostRequest
     apiListStarBlogsPostRequest: ...,
   } satisfies ApiListStarBlogsPostOperationRequest;
 
@@ -1959,11 +2027,11 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **apiListStarBlogsPostRequest** | [ApiListStarBlogsPostRequest](ApiListStarBlogsPostRequest.md) |  | [Optional] |
+| **apiListStarBlogsPostRequest** | [ApiListStarBlogsPostRequest](ApiListStarBlogsPostRequest.md) |  | |
 
 ### Return type
 
-[**ApiListUserBlogsPost200Response**](ApiListUserBlogsPost200Response.md)
+[**BlogsList**](BlogsList.md)
 
 ### Authorization
 
@@ -1985,7 +2053,7 @@ No authorization required
 
 ## apiListUserBlogsPost
 
-> ApiListUserBlogsPost200Response apiListUserBlogsPost(apiListUserBlogsPostRequest)
+> BlogsList apiListUserBlogsPost(paginationQuery)
 
 List all blogs posted by a specific user
 
@@ -1996,16 +2064,16 @@ import {
   Configuration,
   DefaultApi,
 } from '';
-import type { ApiListUserBlogsPostOperationRequest } from '';
+import type { ApiListUserBlogsPostRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
   const api = new DefaultApi();
 
   const body = {
-    // ApiListUserBlogsPostRequest (optional)
-    apiListUserBlogsPostRequest: ...,
-  } satisfies ApiListUserBlogsPostOperationRequest;
+    // PaginationQuery
+    paginationQuery: ...,
+  } satisfies ApiListUserBlogsPostRequest;
 
   try {
     const data = await api.apiListUserBlogsPost(body);
@@ -2024,11 +2092,11 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **apiListUserBlogsPostRequest** | [ApiListUserBlogsPostRequest](ApiListUserBlogsPostRequest.md) |  | [Optional] |
+| **paginationQuery** | [PaginationQuery](PaginationQuery.md) |  | |
 
 ### Return type
 
-[**ApiListUserBlogsPost200Response**](ApiListUserBlogsPost200Response.md)
+[**BlogsList**](BlogsList.md)
 
 ### Authorization
 
@@ -2050,7 +2118,7 @@ No authorization required
 
 ## apiReportBlogPost
 
-> ApiDeleteBlogPost200Response apiReportBlogPost(apiReportBlogPostRequest)
+> BlogID apiReportBlogPost(apiReportBlogPostRequest)
 
 Report a blog
 
@@ -2068,7 +2136,7 @@ async function example() {
   const api = new DefaultApi();
 
   const body = {
-    // ApiReportBlogPostRequest (optional)
+    // ApiReportBlogPostRequest
     apiReportBlogPostRequest: ...,
   } satisfies ApiReportBlogPostOperationRequest;
 
@@ -2089,11 +2157,11 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **apiReportBlogPostRequest** | [ApiReportBlogPostRequest](ApiReportBlogPostRequest.md) |  | [Optional] |
+| **apiReportBlogPostRequest** | [ApiReportBlogPostRequest](ApiReportBlogPostRequest.md) |  | |
 
 ### Return type
 
-[**ApiDeleteBlogPost200Response**](ApiDeleteBlogPost200Response.md)
+[**BlogID**](BlogID.md)
 
 ### Authorization
 
@@ -2135,7 +2203,7 @@ async function example() {
   const api = new DefaultApi();
 
   const body = {
-    // ApiRequestAccuracyAdjustPostRequest (optional)
+    // ApiRequestAccuracyAdjustPostRequest
     apiRequestAccuracyAdjustPostRequest: ...,
   } satisfies ApiRequestAccuracyAdjustPostOperationRequest;
 
@@ -2156,7 +2224,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **apiRequestAccuracyAdjustPostRequest** | [ApiRequestAccuracyAdjustPostRequest](ApiRequestAccuracyAdjustPostRequest.md) |  | [Optional] |
+| **apiRequestAccuracyAdjustPostRequest** | [ApiRequestAccuracyAdjustPostRequest](ApiRequestAccuracyAdjustPostRequest.md) |  | |
 
 ### Return type
 
@@ -2261,7 +2329,7 @@ async function example() {
   const api = new DefaultApi();
 
   const body = {
-    // ApiRequestStargazingTimePostRequest (optional)
+    // ApiRequestStargazingTimePostRequest
     apiRequestStargazingTimePostRequest: ...,
   } satisfies ApiRequestStargazingTimePostOperationRequest;
 
@@ -2282,7 +2350,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **apiRequestStargazingTimePostRequest** | [ApiRequestStargazingTimePostRequest](ApiRequestStargazingTimePostRequest.md) |  | [Optional] |
+| **apiRequestStargazingTimePostRequest** | [ApiRequestStargazingTimePostRequest](ApiRequestStargazingTimePostRequest.md) |  | |
 
 ### Return type
 
@@ -2308,7 +2376,7 @@ No authorization required
 
 ## apiResetPasswordPost
 
-> ApiUpdateLastGpsPost200Response apiResetPasswordPost(resetPasswordRequest)
+> CommonMessage apiResetPasswordPost(resetPasswordRequest)
 
 Use code to reset password
 
@@ -2351,7 +2419,7 @@ example().catch(console.error);
 
 ### Return type
 
-[**ApiUpdateLastGpsPost200Response**](ApiUpdateLastGpsPost200Response.md)
+[**CommonMessage**](CommonMessage.md)
 
 ### Authorization
 
@@ -2375,7 +2443,7 @@ No authorization required
 
 ## apiResetPasswordSendCodePost
 
-> ApiUpdateLastGpsPost200Response apiResetPasswordSendCodePost(resetPasswordSendCodeRequest)
+> CommonMessage apiResetPasswordSendCodePost(resetPasswordSendCodeRequest)
 
 send code to email
 
@@ -2418,7 +2486,7 @@ example().catch(console.error);
 
 ### Return type
 
-[**ApiUpdateLastGpsPost200Response**](ApiUpdateLastGpsPost200Response.md)
+[**CommonMessage**](CommonMessage.md)
 
 ### Authorization
 
@@ -2442,7 +2510,7 @@ No authorization required
 
 ## apiSaveBlogPost
 
-> ApiDeleteBlogPost200Response apiSaveBlogPost(apiDeleteBlogPostRequest)
+> BlogID apiSaveBlogPost(blogID)
 
 Save a blog
 
@@ -2460,8 +2528,8 @@ async function example() {
   const api = new DefaultApi();
 
   const body = {
-    // ApiDeleteBlogPostRequest (optional)
-    apiDeleteBlogPostRequest: ...,
+    // BlogID
+    blogID: ...,
   } satisfies ApiSaveBlogPostRequest;
 
   try {
@@ -2481,11 +2549,11 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **apiDeleteBlogPostRequest** | [ApiDeleteBlogPostRequest](ApiDeleteBlogPostRequest.md) |  | [Optional] |
+| **blogID** | [BlogID](BlogID.md) |  | |
 
 ### Return type
 
-[**ApiDeleteBlogPost200Response**](ApiDeleteBlogPost200Response.md)
+[**BlogID**](BlogID.md)
 
 ### Authorization
 
@@ -2574,7 +2642,7 @@ No authorization required
 
 ## apiSetUserPost
 
-> ApiSetUserPost200Response apiSetUserPost(changePasswordRequest)
+> CommonMessage apiSetUserPost(changePasswordRequest)
 
 Set/modify username and password
 
@@ -2619,7 +2687,7 @@ example().catch(console.error);
 
 ### Return type
 
-[**ApiSetUserPost200Response**](ApiSetUserPost200Response.md)
+[**CommonMessage**](CommonMessage.md)
 
 ### Authorization
 
@@ -2664,7 +2732,7 @@ async function example() {
   const api = new DefaultApi();
 
   const body = {
-    // ApiTriggerStarfieldRenderPostRequest (optional)
+    // ApiTriggerStarfieldRenderPostRequest
     apiTriggerStarfieldRenderPostRequest: ...,
   } satisfies ApiTriggerStarfieldRenderPostOperationRequest;
 
@@ -2685,7 +2753,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **apiTriggerStarfieldRenderPostRequest** | [ApiTriggerStarfieldRenderPostRequest](ApiTriggerStarfieldRenderPostRequest.md) |  | [Optional] |
+| **apiTriggerStarfieldRenderPostRequest** | [ApiTriggerStarfieldRenderPostRequest](ApiTriggerStarfieldRenderPostRequest.md) |  | |
 
 ### Return type
 
@@ -2711,7 +2779,7 @@ No authorization required
 
 ## apiUpdateLastGpsPost
 
-> ApiUpdateLastGpsPost200Response apiUpdateLastGpsPost(updateLastGpsRequest)
+> CommonMessage apiUpdateLastGpsPost(updateLastGpsRequest)
 
 update user last gps
 
@@ -2756,7 +2824,7 @@ example().catch(console.error);
 
 ### Return type
 
-[**ApiUpdateLastGpsPost200Response**](ApiUpdateLastGpsPost200Response.md)
+[**CommonMessage**](CommonMessage.md)
 
 ### Authorization
 
@@ -2917,7 +2985,7 @@ No authorization required
 
 ## apiUsernameVerifyPost
 
-> ApiUsernameVerifyPost200Response apiUsernameVerifyPost(apiUsernameVerifyPostRequest)
+> CommonMessage apiUsernameVerifyPost(apiUsernameVerifyPostRequest)
 
 Verify the username
 
@@ -2962,7 +3030,7 @@ example().catch(console.error);
 
 ### Return type
 
-[**ApiUsernameVerifyPost200Response**](ApiUsernameVerifyPost200Response.md)
+[**CommonMessage**](CommonMessage.md)
 
 ### Authorization
 
@@ -3053,7 +3121,7 @@ No authorization required
 
 ## apiViewBlogPost
 
-> Blog apiViewBlogPost(apiViewBlogPostRequest)
+> Blog apiViewBlogPost(blogID)
 
 Details of one blog
 
@@ -3064,16 +3132,16 @@ import {
   Configuration,
   DefaultApi,
 } from '';
-import type { ApiViewBlogPostOperationRequest } from '';
+import type { ApiViewBlogPostRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
   const api = new DefaultApi();
 
   const body = {
-    // ApiViewBlogPostRequest (optional)
-    apiViewBlogPostRequest: ...,
-  } satisfies ApiViewBlogPostOperationRequest;
+    // BlogID
+    blogID: ...,
+  } satisfies ApiViewBlogPostRequest;
 
   try {
     const data = await api.apiViewBlogPost(body);
@@ -3092,7 +3160,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **apiViewBlogPostRequest** | [ApiViewBlogPostRequest](ApiViewBlogPostRequest.md) |  | [Optional] |
+| **blogID** | [BlogID](BlogID.md) |  | |
 
 ### Return type
 

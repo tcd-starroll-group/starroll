@@ -6,8 +6,6 @@
 
 Name | Type
 ------------ | -------------
-`username` | string
-`token` | string
 `gps` | [GPS](GPS.md)
 
 ## Example
@@ -17,8 +15,6 @@ import type { UpdateLastGpsRequest } from ''
 
 // TODO: Update the object below with actual values
 const example = {
-  "username": null,
-  "token": null,
   "gps": null,
 } satisfies UpdateLastGpsRequest
 

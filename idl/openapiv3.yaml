@@ -78,58 +78,50 @@ paths:
     post:
       summary: "List all blogs posted by a specific user"
       requestBody:
+        required: true
         content:
           application/json:
             schema:
-              properties:
-                userCredentials:
-                  $ref: "#/components/schemas/userCredentials"
+              $ref: "#/components/schemas/PaginationQuery"
       responses:
         "200":
           description: OK
           content:
             application/json:
               schema:
-                properties:
-                  blogsList:
-                    type: array
-                    items:
-                      $ref: "#/components/schemas/blogPreview"
+                $ref: "#/components/schemas/BlogsList"
 
   /api/listStarBlogs:
     post:
       summary: "List all blogs under the certain star"
       requestBody:
+        required: true
         content:
           application/json:
             schema:
-              properties:
-                HIP:
-                  type: string
+              allOf:
+                - type: object
+                  properties:
+                    HIP:
+                      type: string
+                - $ref: "#/components/schemas/PaginationQuery"
       responses:
         "200":
           description: OK
           content:
             application/json:
               schema:
-                properties:
-                  blogsList:
-                    type: array
-                    items:
-                      $ref: "#/components/schemas/blogPreview"
+                $ref: "#/components/schemas/BlogsList"
 
   /api/viewBlog:
     post:
       summary: "Details of one blog"
       requestBody:
+        required: true
         content:
           application/json:
             schema:
-              properties:
-                blogID:
-                  type: string
-                userCredentials:
-                  $ref: "#/components/schemas/userCredentials"
+              $ref: "#/components/schemas/BlogID"
       responses:
         "200":
           description: OK
@@ -142,12 +134,11 @@ paths:
     post:
       summary: "Create a new blog"
       requestBody:
+        required: true
         content:
           application/json:
             schema:
               properties:
-                userCredentials:
-                  $ref: "#/components/schemas/userCredentials"
                 HIP:
                   type: string
                 title:
@@ -164,23 +155,23 @@ paths:
           content:
             application/json:
               schema:
-                properties:
-                  messages:
-                    description: "Post Successful"
-                    type: string
-                  blogID:
-                    type: string
+                allOf:
+                  - $ref: "#/components/schemas/BlogID"
+                  - type: object
+                    properties:
+                      messages:
+                        description: "Post Successful"
+                        type: string
 
   /api/listSavedBlogs:
     post:
       summary: "List all blogs saved by the user"
       requestBody:
+        required: true
         content:
           application/json:
             schema:
-              properties:
-                userCredentials:
-                  $ref: "#/components/schemas/userCredentials"
+              $ref: "#/components/schemas/PaginationQuery"
 
       responses:
         "200":
@@ -188,11 +179,7 @@ paths:
           content:
             application/json:
               schema:
-                properties:
-                  blogsList:
-                    type: array
-                    items:
-                      $ref: "#/components/schemas/blogPreview"
+                $ref: "#/components/schemas/BlogsList"
 
   # Data collection module
   /api/getLocation:
@@ -252,6 +239,7 @@ paths:
     post:
       summary: calculate star coordinates
       requestBody:
+        required: true
         content:
           application/json:
             schema:
@@ -288,6 +276,7 @@ paths:
       summary: Trigger starfield rendering
       description: Initiate starfield rendering process using corrected star coordinates and camera parameters
       requestBody:
+        required: true
         content:
           application/json:
             schema:
@@ -332,6 +321,7 @@ paths:
       summary: Request optimal stargazing time
       description: Get recommended stargazing time range based on GPS location
       requestBody:
+        required: true
         content:
           application/json:
             schema:
@@ -368,6 +358,7 @@ paths:
       summary: Request accuracy adjustment
       description: Adjust calculation accuracy for star coordinates based on sensor precision
       requestBody:
+        required: true
         content:
           application/json:
             schema:
@@ -405,6 +396,7 @@ paths:
       summary: Display starfield
       description: Retrieve rendered starfield data for GUI display
       requestBody:
+        required: true
         content:
           application/json:
             schema:
@@ -442,6 +434,7 @@ paths:
       summary: Display star details
       description: Retrieve detailed astronomical information of a specific star
       requestBody:
+        required: true
         content:
           application/json:
             schema:
@@ -493,6 +486,7 @@ paths:
       summary: Display save success confirmation
       description: Return save result and metadata after starfield is saved
       requestBody:
+        required: true
         content:
           application/json:
             schema:
@@ -566,12 +560,7 @@ paths:
         content:
           application/json:
             schema:
-              allOf:
-                - $ref: "#/components/schemas/PaginationQuery"
-                - type: object
-                  properties:
-                    userCredentials:
-                      $ref: "#/components/schemas/userCredentials"
+              $ref: "#/components/schemas/PaginationQuery"
       responses:
         "200":
           description: OK
@@ -595,13 +584,10 @@ paths:
               type: object
               required:
                 - jobID
-                - userCredentials
               properties:
                 jobID:
                   type: string
                   description: Unique ID of the identify stars job
-                userCredentials:
-                  $ref: "#/components/schemas/userCredentials"
       responses:
         "200":
           description: OK
@@ -619,6 +605,7 @@ paths:
     post:
       summary: Eliminating the errors between the stars' positions that we calculated and the stars' positions captured by the camera. These errors are generally caused by the limited accuracy of the sensor.
       requestBody:
+        required: true
         content:
           application/json:
             schema:
@@ -691,17 +678,18 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  status:
-                    type: boolean
-                  message:
-                    type: string
+                allOf:
+                  - type: object
+                    properties:
+                      status:
+                        type: boolean
+                  - $ref: "#/components/schemas/CommonMessage"
   /api/getChatRoomInfo:
     post:
       summary: Retrieve chat room from social system
       description: Gets specified chat room information from the social system
       requestBody:
+        required: true
         content:
           application/json:
             schema:
@@ -826,6 +814,7 @@ paths:
     post:
       summary: calculate star details
       requestBody:
+        required: true
         content:
           application/json:
             schema:
@@ -844,6 +833,7 @@ paths:
       summary: Check chat room status
       description: Determines if a user can join the specified chat room
       requestBody:
+        required: true
         content:
           application/json:
             schema:
@@ -860,16 +850,16 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  roomID:
-                    type: string
-                  isJoinable:
-                    type: boolean
-                  status:
-                    type: string
-                  message:
-                    type: string
+                allOf:
+                  - type: object
+                    properties:
+                      roomID:
+                        type: string
+                      isJoinable:
+                        type: boolean
+                      status:
+                        type: string
+                  - $ref: "#/components/schemas/CommonMessage"
   /api/setUser:
     post:
       summary: "Set/modify username and password"
@@ -886,10 +876,7 @@ paths:
           content:
             application/json:
               schema:
-                properties:
-                  message:
-                    type: string
-                    example: "Password updated successfully"
+                $ref: "#/components/schemas/CommonMessage"
         "400":
           description: "Invalid request: For example, the new password does not meet the security requirements, or the new and old passwords are the same."
           content:
@@ -989,10 +976,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  message:
-                    type: string
+                $ref: "#/components/schemas/CommonMessage"
         "401":
           description: "Unauthorized: Authentication required."
           content:
@@ -1070,10 +1054,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  message:
-                    type: string
+                $ref: "#/components/schemas/CommonMessage"
         "401":
           description: Old password incorrect
         "404":
@@ -1093,10 +1074,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  message:
-                    type: string
+                $ref: "#/components/schemas/CommonMessage"
         "404":
           description: Email not found
         "500":
@@ -1117,10 +1095,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  message:
-                    type: string
+                $ref: "#/components/schemas/CommonMessage"
         "400":
           description: Invalid or expired verification code
         "404":
@@ -1142,10 +1117,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  message:
-                    type: string
+                $ref: "#/components/schemas/CommonMessage"
         "401":
           description: Password incorrect
         "404":
@@ -1170,10 +1142,7 @@ paths:
           content:
             application/json:
               schema:
-                properties:
-                  message:
-                    type: string
-                    example: "Username is available"
+                $ref: "#/components/schemas/CommonMessage"
         "409":
           description: "The username is already in use."
           content:
@@ -1213,62 +1182,55 @@ paths:
     post:
       summary: "Delete a blog"
       requestBody:
+        required: true
         content:
           application/json:
             schema:
-              properties:
-                userCredentials:
-                  $ref: "#/components/schemas/userCredentials"
-                blogID:
-                  type: string
+              $ref: "#/components/schemas/BlogID"
       responses:
         "200":
           description: OK
           content:
             application/json:
               schema:
-                properties:
-                  blogID:
-                    type: string
+                $ref: "#/components/schemas/BlogID"
 
   /api/likeBlog:
     post:
       summary: "Like a blog"
       requestBody:
+        required: true
         content:
           application/json:
             schema:
-              properties:
-                userCredentials:
-                  $ref: "#/components/schemas/userCredentials"
-                blogID:
-                  type: string
+              $ref: "#/components/schemas/BlogID"
       responses:
         "200":
           description: OK
           content:
             application/json:
               schema:
-                properties:
-                  blogID:
-                    type: string
-                  likeNumber:
-                    type: integer
+                allOf:
+                  - $ref: "#/components/schemas/BlogID"
+                  - type: object
+                    properties:
+                      likeNumber:
+                        type: integer
 
   /api/commentBlog:
     post:
       summary: "Comment a blog"
       requestBody:
+        required: true
         content:
           application/json:
             schema:
-              properties:
-                userCredentials:
-                  $ref: "#/components/schemas/userCredentials"
-                blogID:
-                  type: string
-                commentText:
-                  type: string
+              allOf:
+                - $ref: "#/components/schemas/BlogID"
+                - type: object
+                  properties:
+                    commentText:
+                      type: string
       responses:
         "200":
           description: OK
@@ -1283,16 +1245,16 @@ paths:
     post:
       summary: "Delete a comment"
       requestBody:
+        required: true
         content:
           application/json:
             schema:
-              properties:
-                userCredentials:
-                  $ref: "#/components/schemas/userCredentials"
-                blogID:
-                  type: string
-                commentID:
-                  type: string
+              allOf:
+                - $ref: "#/components/schemas/BlogID"
+                - type: object
+                  properties:
+                    commentID:
+                      type: string
       responses:
         "200":
           description: OK
@@ -1307,48 +1269,41 @@ paths:
     post:
       summary: "Save a blog"
       requestBody:
+        required: true
         content:
           application/json:
             schema:
-              properties:
-                userCredentials:
-                  $ref: "#/components/schemas/userCredentials"
-                blogID:
-                  type: string
+              $ref: "#/components/schemas/BlogID"
       responses:
         "200":
           description: OK
           content:
             application/json:
               schema:
-                properties:
-                  blogID:
-                    type: string
+                $ref: "#/components/schemas/BlogID"
 
   /api/reportBlog:
     post:
       summary: "Report a blog"
       requestBody:
+        required: true
         content:
           application/json:
             schema:
-              properties:
-                userCredentials:
-                  $ref: "#/components/schemas/userCredentials"
-                blogID:
-                  type: string
-                reason:
-                  type: string
-                  description: "Reason for reporting the blog"
+              allOf:
+                - $ref: "#/components/schemas/BlogID"
+                - type: object
+                  properties:
+                    reason:
+                      type: string
+                      description: "Reason for reporting the blog"
       responses:
         "200":
           description: OK
           content:
             application/json:
               schema:
-                properties:
-                  blogID:
-                    type: string
+                $ref: "#/components/schemas/BlogID"
   /api/getProfileStats:
     post:
       description: Retrieve the user's scanning statistics, rank, and join date for the profile view.
@@ -1422,16 +1377,8 @@ components:
     updateLastGpsRequest:
       type: object
       required:
-        - username
-        - token
         - gps
       properties:
-        username:
-          type: string
-          description: Username
-        token:
-          type: string
-          description: The verified access token.
         gps:
           $ref: "#/components/schemas/GPS"
     attitude:
@@ -1603,20 +1550,44 @@ components:
           description: "Username"
           example: "user123"
 
-    ErrorResponse:
-      description: "General error response"
+    CommonMessage:
+      description: "Reusable response message text."
       type: object
       properties:
-        code:
-          type: string
-          description: "Internal error code"
-          example: "AUTH_001"
         message:
           type: string
-          description: "Detailed error message"
-          example: "Invalid username or password"
+          example: "Operation successful"
+
+    ErrorResponse:
+      description: "General error response"
+      allOf:
+        - type: object
+          properties:
+            code:
+              type: string
+              description: "Internal error code"
+              example: "AUTH_001"
+        - $ref: "#/components/schemas/CommonMessage"
+
+    BlogID:
+      description: "Reusable common ID object"
+      type: object
+      properties:
+        blogID:
+          type: string
+      required:
+        - blogID
 
     # Blog items
+    BlogsList:
+      description: "Reusable response for blog list endpoints"
+      type: object
+      properties:
+        blogsList:
+          type: array
+          items:
+            $ref: "#/components/schemas/blogPreview"
+
     blogPreview:
       description: "Preview of a blog on the blogs page, before user clicks into one blog"
       properties:
@@ -1769,11 +1740,7 @@ components:
 
     ProfileStatsRequest:
       type: object
-      required:
-        - userCredentials
-      properties:
-        userCredentials:
-          $ref: "#/components/schemas/userCredentials"
+      properties: {}
 
     ProfileStatsResponse:
       type: object
@@ -1789,4 +1756,4 @@ components:
           description: Calculated title based on discoveries
         joinDate:
           type: string
-          description: Formatted string of the user's registration date    
+          description: Formatted string of the user's registration date

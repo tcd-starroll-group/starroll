@@ -31,7 +31,7 @@ class ApiLikeBlogPost200Response(BaseModel):
     """
     ApiLikeBlogPost200Response
     """ # noqa: E501
-    blog_id: Optional[StrictStr] = Field(default=None, alias="blogID")
+    blog_id: StrictStr = Field(alias="blogID")
     like_number: Optional[StrictInt] = Field(default=None, alias="likeNumber")
     __properties: ClassVar[List[str]] = ["blogID", "likeNumber"]
 

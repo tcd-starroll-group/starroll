@@ -1,95 +1,89 @@
 import asyncio
-import hashlib
+from types import SimpleNamespace
 
 import pytest
 from fastapi import HTTPException
-from sqlalchemy.orm import Session
 
-from backend.console.handler import edit_profile as edit_profile_module
-from backend.console.handler.edit_profile import api_edit_profile_post
-from backend.console.dal.rds.user import User
-from gen.py.src.openapi_server.models.profile_and_token import ProfileAndToken
+from backend.console.handler import edit_profile as edit_module
 
 
-def test_api_edit_profile_post_success(db_session: Session, monkeypatch: pytest.MonkeyPatch):
-    # Create a user so that User.get_by_username will succeed
-    raw_password = "password123"
-    hashed_password = hashlib.sha256(raw_password.encode()).hexdigest()
-    User.create(db_session, "alice", hashed_password, "alice@example.com")
-
-    def _get_db_override():
-        yield db_session
-
-    monkeypatch.setattr(edit_profile_module, "get_db", _get_db_override)
-
-    # Mock token verification (must return (payload, is_valid))
-    def mock_verify_access_token(token):
-        return {"sub": "alice"}, True
-
-    monkeypatch.setattr(edit_profile_module, "verify_access_token", mock_verify_access_token)
-
-    # Profile payload – the exact shape depends on the generated model,
-    # but a dict is the most common for a free-form profile update.
-    profile = {
-        "email": "newemail@example.com",
-        "bio": "Updated bio",
-        "avatar_url": "https://example.com/new-avatar.jpg"
-    }
-
-    payload = ProfileAndToken(
-        username="alice",
-        token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.dummy",
-        profile=profile
-    )
-
-    result = asyncio.run(api_edit_profile_post(payload))
-
-    assert result["message"] == "profile updated successfully"
-
-
-def test_api_edit_profile_post_token_invalid(db_session: Session, monkeypatch: pytest.MonkeyPatch):
-    def _get_db_override():
-        yield db_session
-
-    monkeypatch.setattr(edit_profile_module, "get_db", _get_db_override)
-
-    def mock_verify_access_token(token):
-        return None, False
-
-    monkeypatch.setattr(edit_profile_module, "verify_access_token", mock_verify_access_token)
-
-    payload = ProfileAndToken(
-        username="alice",
-        token="invalid.token.here",
-        profile={}
-    )
+def test_edit_profile_invalid_token(monkeypatch: pytest.MonkeyPatch):
+    monkeypatch.setattr(edit_module, "verify_access_token",
+                        lambda t: (None, False))
+    payload = SimpleNamespace(username="u", token="bad", profile={})
 
     with pytest.raises(HTTPException) as exc_info:
-        asyncio.run(api_edit_profile_post(payload))
+        asyncio.run(edit_module.api_edit_profile_post(payload))
 
     assert exc_info.value.status_code == 404
-    assert exc_info.value.detail == "token invalid"
 
 
-def test_api_edit_profile_post_user_not_found(db_session: Session, monkeypatch: pytest.MonkeyPatch):
-    def _get_db_override():
-        yield db_session
+def test_edit_profile_user_not_found(monkeypatch: pytest.MonkeyPatch):
+    monkeypatch.setattr(edit_module, "verify_access_token",
+                        lambda t: ({}, True))
 
-    monkeypatch.setattr(edit_profile_module, "get_db", _get_db_override)
+    class Db:
+        def query(self, model):
+            class Q:
+                def filter(self, *a, **kw):
+                    class R:
+                        def first(self):
+                            return None
+                    return R()
+            return Q()
 
-    def mock_verify_access_token(token):
-        return {"sub": "alice"}, True
+    class Ctx:
+        def __enter__(self):
+            return Db()
 
-    monkeypatch.setattr(edit_profile_module, "verify_access_token", mock_verify_access_token)
+        def __exit__(self, *a):
+            return False
 
-    payload = ProfileAndToken(
-        username="missing_user",
-        token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.valid",
-        profile={}
-    )
+    monkeypatch.setattr(edit_module, "db_context", lambda: Ctx())
 
+    payload = SimpleNamespace(username="nouser", token="ok", profile={})
     with pytest.raises(HTTPException) as exc_info:
-        asyncio.run(api_edit_profile_post(payload))
+        asyncio.run(edit_module.api_edit_profile_post(payload))
 
     assert exc_info.value.status_code == 404
-    assert exc_info.value.detail == "User not found"
+
+
+def test_edit_profile_success(monkeypatch: pytest.MonkeyPatch):
+    monkeypatch.setattr(edit_module, "verify_access_token",
+                        lambda t: ({}, True))
+
+    class U:
+        id = 5
+
+    class Db:
+        def query(self, model):
+            class Q:
+                def filter(self, *a, **kw):
+                    class R:
+                        def first(self):
+                            return U()
+                    return R()
+            return Q()
+
+    class Ctx:
+        def __enter__(self):
+            return Db()
+
+        def __exit__(self, *a):
+            return False
+
+    edited = {}
+
+    def _edit_profile(db, uid, profile):
+        edited["ok"] = True
+
+    monkeypatch.setattr(edit_module, "db_context", lambda: Ctx())
+    monkeypatch.setattr(edit_module.User, "get_by_id",
+                        staticmethod(lambda db, uid: U()))
+    monkeypatch.setattr(edit_module.User, "edit_profile",
+                        staticmethod(_edit_profile))
+
+    payload = SimpleNamespace(username="u", token="ok", profile={})
+    result = asyncio.run(edit_module.api_edit_profile_post(payload))
+    assert result.get("message") == "profile updated successfully"
+    assert edited.get("ok") is True

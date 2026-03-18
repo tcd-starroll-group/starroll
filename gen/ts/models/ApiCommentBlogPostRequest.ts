@@ -13,14 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { UserCredentials } from './UserCredentials';
-import {
-    UserCredentialsFromJSON,
-    UserCredentialsFromJSONTyped,
-    UserCredentialsToJSON,
-    UserCredentialsToJSONTyped,
-} from './UserCredentials';
-
 /**
  * 
  * @export
@@ -29,16 +21,10 @@ import {
 export interface ApiCommentBlogPostRequest {
     /**
      * 
-     * @type {UserCredentials}
-     * @memberof ApiCommentBlogPostRequest
-     */
-    userCredentials?: UserCredentials;
-    /**
-     * 
      * @type {string}
      * @memberof ApiCommentBlogPostRequest
      */
-    blogID?: string;
+    blogID: string;
     /**
      * 
      * @type {string}
@@ -51,6 +37,7 @@ export interface ApiCommentBlogPostRequest {
  * Check if a given object implements the ApiCommentBlogPostRequest interface.
  */
 export function instanceOfApiCommentBlogPostRequest(value: object): value is ApiCommentBlogPostRequest {
+    if (!('blogID' in value) || value['blogID'] === undefined) return false;
     return true;
 }
 
@@ -64,8 +51,7 @@ export function ApiCommentBlogPostRequestFromJSONTyped(json: any, ignoreDiscrimi
     }
     return {
         
-        'userCredentials': json['userCredentials'] == null ? undefined : UserCredentialsFromJSON(json['userCredentials']),
-        'blogID': json['blogID'] == null ? undefined : json['blogID'],
+        'blogID': json['blogID'],
         'commentText': json['commentText'] == null ? undefined : json['commentText'],
     };
 }
@@ -81,7 +67,6 @@ export function ApiCommentBlogPostRequestToJSONTyped(value?: ApiCommentBlogPostR
 
     return {
         
-        'userCredentials': UserCredentialsToJSON(value['userCredentials']),
         'blogID': value['blogID'],
         'commentText': value['commentText'],
     };

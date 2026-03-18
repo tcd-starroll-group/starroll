@@ -2,6 +2,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from backend.config import settings
 from backend.constant import app_env as app_env_const
+from contextlib import contextmanager
 
 engine = None
 SessionLocal = None
@@ -26,6 +27,9 @@ def get_db():
         yield db
     finally:
         db.close()
+
+
+db_context = contextmanager(get_db)
 
 
 def dispose_engine():

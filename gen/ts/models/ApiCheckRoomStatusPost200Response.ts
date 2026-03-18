@@ -24,6 +24,12 @@ export interface ApiCheckRoomStatusPost200Response {
      * @type {string}
      * @memberof ApiCheckRoomStatusPost200Response
      */
+    message?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ApiCheckRoomStatusPost200Response
+     */
     roomID?: string;
     /**
      * 
@@ -37,12 +43,6 @@ export interface ApiCheckRoomStatusPost200Response {
      * @memberof ApiCheckRoomStatusPost200Response
      */
     status?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ApiCheckRoomStatusPost200Response
-     */
-    message?: string;
 }
 
 /**
@@ -62,10 +62,10 @@ export function ApiCheckRoomStatusPost200ResponseFromJSONTyped(json: any, ignore
     }
     return {
         
+        'message': json['message'] == null ? undefined : json['message'],
         'roomID': json['roomID'] == null ? undefined : json['roomID'],
         'isJoinable': json['isJoinable'] == null ? undefined : json['isJoinable'],
         'status': json['status'] == null ? undefined : json['status'],
-        'message': json['message'] == null ? undefined : json['message'],
     };
 }
 
@@ -80,10 +80,10 @@ export function ApiCheckRoomStatusPost200ResponseToJSONTyped(value?: ApiCheckRoo
 
     return {
         
+        'message': value['message'],
         'roomID': value['roomID'],
         'isJoinable': value['isJoinable'],
         'status': value['status'],
-        'message': value['message'],
     };
 }
 

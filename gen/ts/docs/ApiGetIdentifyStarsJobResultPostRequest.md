@@ -7,7 +7,6 @@
 Name | Type
 ------------ | -------------
 `jobID` | string
-`userCredentials` | [UserCredentials](UserCredentials.md)
 
 ## Example
 
@@ -17,7 +16,6 @@ import type { ApiGetIdentifyStarsJobResultPostRequest } from ''
 // TODO: Update the object below with actual values
 const example = {
   "jobID": null,
-  "userCredentials": null,
 } satisfies ApiGetIdentifyStarsJobResultPostRequest
 
 console.log(example)
