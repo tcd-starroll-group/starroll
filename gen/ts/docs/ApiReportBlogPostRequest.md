@@ -6,7 +6,6 @@
 
 Name | Type
 ------------ | -------------
-`userCredentials` | [UserCredentials](UserCredentials.md)
 `blogID` | string
 `reason` | string
 
@@ -17,7 +16,6 @@ import type { ApiReportBlogPostRequest } from ''
 
 // TODO: Update the object below with actual values
 const example = {
-  "userCredentials": null,
   "blogID": null,
   "reason": null,
 } satisfies ApiReportBlogPostRequest

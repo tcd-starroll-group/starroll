@@ -40,13 +40,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/_api_listUserBlogs_post_request"
+              $ref: "#/components/schemas/PaginationQuery"
+        required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/_api_listUserBlogs_post_200_response"
+                $ref: "#/components/schemas/BlogsList"
           description: OK
       summary: List all blogs posted by a specific user
   /api/listStarBlogs:
@@ -56,12 +57,13 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/_api_listStarBlogs_post_request"
+        required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/_api_listUserBlogs_post_200_response"
+                $ref: "#/components/schemas/BlogsList"
           description: OK
       summary: List all blogs under the certain star
   /api/viewBlog:
@@ -70,7 +72,8 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/_api_viewBlog_post_request"
+              $ref: "#/components/schemas/BlogID"
+        required: true
       responses:
         "200":
           content:
@@ -86,6 +89,7 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/_api_createBlog_post_request"
+        required: true
       responses:
         "200":
           content:
@@ -100,13 +104,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/_api_listUserBlogs_post_request"
+              $ref: "#/components/schemas/PaginationQuery"
+        required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/_api_listUserBlogs_post_200_response"
+                $ref: "#/components/schemas/BlogsList"
           description: OK
       summary: List all blogs saved by the user
   /api/getLocation:
@@ -156,6 +161,7 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/_api_calculateStarCoordinates_post_request"
+        required: true
       responses:
         "200":
           content:
@@ -173,6 +179,7 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/_api_triggerStarfieldRender_post_request"
+        required: true
       responses:
         "200":
           content:
@@ -189,6 +196,7 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/_api_requestStargazingTime_post_request"
+        required: true
       responses:
         "200":
           content:
@@ -206,6 +214,7 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/_api_requestAccuracyAdjust_post_request"
+        required: true
       responses:
         "200":
           content:
@@ -222,6 +231,7 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/_api_displayStarfield_post_request"
+        required: true
       responses:
         "200":
           content:
@@ -238,6 +248,7 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/_api_displayStarDetails_post_request"
+        required: true
       responses:
         "200":
           content:
@@ -265,6 +276,7 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/_api_displaySaveSuccess_post_request"
+        required: true
       responses:
         "200":
           content:
@@ -295,7 +307,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/_api_listIdentifyStarsJobs_post_request"
+              $ref: "#/components/schemas/PaginationQuery"
         required: true
       responses:
         "200":
@@ -328,6 +340,7 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/_api_elimilateErrors_post_request"
+        required: true
       responses:
         "200":
           content:
@@ -363,6 +376,7 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/_api_getChatRoomInfo_post_request"
+        required: true
       responses:
         "200":
           content:
@@ -412,6 +426,7 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/_api_getStarDetails_post_request"
+        required: true
       responses:
         "200":
           content:
@@ -428,6 +443,7 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/_api_checkRoomStatus_post_request"
+        required: true
       responses:
         "200":
           content:
@@ -451,7 +467,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/_api_setUser_post_200_response"
+                $ref: "#/components/schemas/CommonMessage"
           description: Modify password successful.
         "400":
           content:
@@ -548,7 +564,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/_api_updateLastGps_post_200_response"
+                $ref: "#/components/schemas/CommonMessage"
           description: Last GPS updated successfully.
         "401":
           content:
@@ -609,7 +625,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/_api_updateLastGps_post_200_response"
+                $ref: "#/components/schemas/CommonMessage"
           description: Password updated successfully
         "401":
           description: Old password incorrect
@@ -628,7 +644,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/_api_updateLastGps_post_200_response"
+                $ref: "#/components/schemas/CommonMessage"
           description: Verification code sent successfully
         "404":
           description: Email not found
@@ -648,7 +664,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/_api_updateLastGps_post_200_response"
+                $ref: "#/components/schemas/CommonMessage"
           description: Password reset successfully
         "400":
           description: Invalid or expired verification code
@@ -669,7 +685,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/_api_updateLastGps_post_200_response"
+                $ref: "#/components/schemas/CommonMessage"
           description: Deletion successful
         "401":
           description: Password incorrect
@@ -690,7 +706,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/_api_usernameVerify_post_200_response"
+                $ref: "#/components/schemas/CommonMessage"
           description: Username available
         "409":
           content:
@@ -729,13 +745,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/_api_deleteBlog_post_request"
+              $ref: "#/components/schemas/BlogID"
+        required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/_api_deleteBlog_post_200_response"
+                $ref: "#/components/schemas/BlogID"
           description: OK
       summary: Delete a blog
   /api/likeBlog:
@@ -744,7 +761,8 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/_api_deleteBlog_post_request"
+              $ref: "#/components/schemas/BlogID"
+        required: true
       responses:
         "200":
           content:
@@ -760,6 +778,7 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/_api_commentBlog_post_request"
+        required: true
       responses:
         "200":
           content:
@@ -775,6 +794,7 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/_api_deleteComment_post_request"
+        required: true
       responses:
         "200":
           content:
@@ -789,13 +809,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/_api_deleteBlog_post_request"
+              $ref: "#/components/schemas/BlogID"
+        required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/_api_deleteBlog_post_200_response"
+                $ref: "#/components/schemas/BlogID"
           description: OK
       summary: Save a blog
   /api/reportBlog:
@@ -805,12 +826,13 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/_api_reportBlog_post_request"
+        required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/_api_deleteBlog_post_200_response"
+                $ref: "#/components/schemas/BlogID"
           description: OK
       summary: Report a blog
   /api/getProfileStats:
@@ -867,17 +889,11 @@ components:
       title: profileAndToken
       type: object
     userCredentials:
-      example:
-        userID: userID
-        token: token
       properties:
         userID:
-          title: userID
           type: string
         token:
-          title: token
           type: string
-      title: userCredentials
       type: object
     GPS:
       description: GPS location
@@ -898,20 +914,10 @@ components:
       type: object
     updateLastGpsRequest:
       properties:
-        username:
-          description: Username
-          title: username
-          type: string
-        token:
-          description: The verified access token.
-          title: token
-          type: string
         gps:
           $ref: "#/components/schemas/GPS"
       required:
       - gps
-      - token
-      - username
       title: updateLastGpsRequest
       type: object
     attitude:
@@ -1167,23 +1173,60 @@ components:
           type: string
       title: UserResponse
       type: object
+    CommonMessage:
+      description: Reusable response message text.
+      example:
+        message: Operation successful
+      properties:
+        message:
+          example: Operation successful
+          title: message
+          type: string
+      title: CommonMessage
+      type: object
     ErrorResponse:
+      allOf:
+      - properties:
+          code:
+            description: Internal error code
+            example: AUTH_001
+            type: string
+        type: object
+      - $ref: "#/components/schemas/CommonMessage"
       description: General error response
       example:
         code: AUTH_001
-        message: Invalid username or password
-      properties:
-        code:
-          description: Internal error code
-          example: AUTH_001
-          title: code
-          type: string
-        message:
-          description: Detailed error message
-          example: Invalid username or password
-          title: message
-          type: string
+        message: Operation successful
       title: ErrorResponse
+    BlogID:
+      description: Reusable common ID object
+      example:
+        blogID: blogID
+      properties:
+        blogID:
+          title: blogID
+          type: string
+      required:
+      - blogID
+      title: BlogID
+      type: object
+    BlogsList:
+      description: Reusable response for blog list endpoints
+      example:
+        blogsList:
+        - imageURL: imageURL
+          title: title
+          blogID: blogID
+        - imageURL: imageURL
+          title: title
+          blogID: blogID
+      properties:
+        blogsList:
+          items:
+            $ref: "#/components/schemas/blogPreview"
+          title: blogsList
+          type: array
+      title: BlogsList
       type: object
     blogPreview:
       description: "Preview of a blog on the blogs page, before user clicks into one\
@@ -1293,6 +1336,11 @@ components:
       title: identifyStarsJob
     PaginationQuery:
       description: Reusable pagination and sorting parameters for list endpoints
+      example:
+        offset: 0
+        limit: 8
+        sort: createTime
+        order: desc
       properties:
         limit:
           default: 20
@@ -1397,16 +1445,7 @@ components:
       title: resetPasswordRequest
       type: object
     ProfileStatsRequest:
-      example:
-        userCredentials:
-          userID: userID
-          token: token
-      properties:
-        userCredentials:
-          $ref: "#/components/schemas/userCredentials"
-      required:
-      - userCredentials
-      title: ProfileStatsRequest
+      properties: {}
       type: object
     ProfileStatsResponse:
       example:
@@ -1513,45 +1552,16 @@ components:
           type: boolean
       title: _api_exitChatRoom_post_200_response
       type: object
-    _api_listUserBlogs_post_request:
-      properties:
-        userCredentials:
-          $ref: "#/components/schemas/userCredentials"
-      title: _api_listUserBlogs_post_request
-    _api_listUserBlogs_post_200_response:
-      example:
-        blogsList:
-        - imageURL: imageURL
-          title: title
-          blogID: blogID
-        - imageURL: imageURL
-          title: title
-          blogID: blogID
-      properties:
-        blogsList:
-          items:
-            $ref: "#/components/schemas/blogPreview"
-          title: blogsList
-          type: array
-      title: _api_listUserBlogs_post_200_response
     _api_listStarBlogs_post_request:
-      properties:
-        HIP:
-          title: HIP
-          type: string
+      allOf:
+      - properties:
+          HIP:
+            type: string
+        type: object
+      - $ref: "#/components/schemas/PaginationQuery"
       title: _api_listStarBlogs_post_request
-    _api_viewBlog_post_request:
-      properties:
-        blogID:
-          title: blogID
-          type: string
-        userCredentials:
-          $ref: "#/components/schemas/userCredentials"
-      title: _api_viewBlog_post_request
     _api_createBlog_post_request:
       properties:
-        userCredentials:
-          $ref: "#/components/schemas/userCredentials"
         HIP:
           title: HIP
           type: string
@@ -1568,17 +1578,16 @@ components:
           type: string
       title: _api_createBlog_post_request
     _api_createBlog_post_200_response:
+      allOf:
+      - $ref: "#/components/schemas/BlogID"
+      - properties:
+          messages:
+            description: Post Successful
+            type: string
+        type: object
       example:
         messages: messages
         blogID: blogID
-      properties:
-        messages:
-          description: Post Successful
-          title: messages
-          type: string
-        blogID:
-          title: blogID
-          type: string
       title: _api_createBlog_post_200_response
     _api_getCameraData_post_200_response:
       example:
@@ -1971,14 +1980,6 @@ components:
           title: jobID
           type: string
       title: _api_createIdentifyStarsJob_post_200_response
-    _api_listIdentifyStarsJobs_post_request:
-      allOf:
-      - $ref: "#/components/schemas/PaginationQuery"
-      - properties:
-          userCredentials:
-            $ref: "#/components/schemas/userCredentials"
-        type: object
-      title: _api_listIdentifyStarsJobs_post_request
     _api_listIdentifyStarsJobs_post_200_response:
       example:
         identifyStarsJobsList:
@@ -2003,11 +2004,8 @@ components:
           description: Unique ID of the identify stars job
           title: jobID
           type: string
-        userCredentials:
-          $ref: "#/components/schemas/userCredentials"
       required:
       - jobID
-      - userCredentials
       title: _api_getIdentifyStarsJobResult_post_request
       type: object
     _api_getIdentifyStarsJobResult_post_200_response:
@@ -2110,18 +2108,16 @@ components:
       title: _api_getChatRoom_post_request
       type: object
     _api_getChatRoom_post_200_response:
+      allOf:
+      - properties:
+          status:
+            type: boolean
+        type: object
+      - $ref: "#/components/schemas/CommonMessage"
       example:
-        message: message
+        message: Operation successful
         status: true
-      properties:
-        status:
-          title: status
-          type: boolean
-        message:
-          title: message
-          type: string
       title: _api_getChatRoom_post_200_response
-      type: object
     _api_getChatRoomInfo_post_request:
       properties:
         roomID:
@@ -2298,44 +2294,22 @@ components:
       title: _api_checkRoomStatus_post_request
       type: object
     _api_checkRoomStatus_post_200_response:
+      allOf:
+      - properties:
+          roomID:
+            type: string
+          isJoinable:
+            type: boolean
+          status:
+            type: string
+        type: object
+      - $ref: "#/components/schemas/CommonMessage"
       example:
-        message: message
+        message: Operation successful
         roomID: roomID
         isJoinable: true
         status: status
-      properties:
-        roomID:
-          title: roomID
-          type: string
-        isJoinable:
-          title: isJoinable
-          type: boolean
-        status:
-          title: status
-          type: string
-        message:
-          title: message
-          type: string
       title: _api_checkRoomStatus_post_200_response
-      type: object
-    _api_setUser_post_200_response:
-      example:
-        message: Password updated successfully
-      properties:
-        message:
-          example: Password updated successfully
-          title: message
-          type: string
-      title: _api_setUser_post_200_response
-    _api_updateLastGps_post_200_response:
-      example:
-        message: message
-      properties:
-        message:
-          title: message
-          type: string
-      title: _api_updateLastGps_post_200_response
-      type: object
     _api_userReg_post_request:
       properties:
         username:
@@ -2369,15 +2343,6 @@ components:
           title: username
           type: string
       title: _api_usernameVerify_post_request
-    _api_usernameVerify_post_200_response:
-      example:
-        message: Username is available
-      properties:
-        message:
-          example: Username is available
-          title: message
-          type: string
-      title: _api_usernameVerify_post_200_response
     _api_verifyUserToken_post_request:
       properties:
         token:
@@ -2385,44 +2350,24 @@ components:
           title: token
           type: string
       title: _api_verifyUserToken_post_request
-    _api_deleteBlog_post_request:
-      properties:
-        userCredentials:
-          $ref: "#/components/schemas/userCredentials"
-        blogID:
-          title: blogID
-          type: string
-      title: _api_deleteBlog_post_request
-    _api_deleteBlog_post_200_response:
-      example:
-        blogID: blogID
-      properties:
-        blogID:
-          title: blogID
-          type: string
-      title: _api_deleteBlog_post_200_response
     _api_likeBlog_post_200_response:
+      allOf:
+      - $ref: "#/components/schemas/BlogID"
+      - properties:
+          likeNumber:
+            type: integer
+        type: object
       example:
         blogID: blogID
         likeNumber: 0
-      properties:
-        blogID:
-          title: blogID
-          type: string
-        likeNumber:
-          title: likeNumber
-          type: integer
       title: _api_likeBlog_post_200_response
     _api_commentBlog_post_request:
-      properties:
-        userCredentials:
-          $ref: "#/components/schemas/userCredentials"
-        blogID:
-          title: blogID
-          type: string
-        commentText:
-          title: commentText
-          type: string
+      allOf:
+      - $ref: "#/components/schemas/BlogID"
+      - properties:
+          commentText:
+            type: string
+        type: object
       title: _api_commentBlog_post_request
     _api_commentBlog_post_200_response:
       example:
@@ -2433,27 +2378,21 @@ components:
           type: string
       title: _api_commentBlog_post_200_response
     _api_deleteComment_post_request:
-      properties:
-        userCredentials:
-          $ref: "#/components/schemas/userCredentials"
-        blogID:
-          title: blogID
-          type: string
-        commentID:
-          title: commentID
-          type: string
+      allOf:
+      - $ref: "#/components/schemas/BlogID"
+      - properties:
+          commentID:
+            type: string
+        type: object
       title: _api_deleteComment_post_request
     _api_reportBlog_post_request:
-      properties:
-        userCredentials:
-          $ref: "#/components/schemas/userCredentials"
-        blogID:
-          title: blogID
-          type: string
-        reason:
-          description: Reason for reporting the blog
-          title: reason
-          type: string
+      allOf:
+      - $ref: "#/components/schemas/BlogID"
+      - properties:
+          reason:
+            description: Reason for reporting the blog
+            type: string
+        type: object
       title: _api_reportBlog_post_request
     IdentifyStarsJobResult_identifiedStars_inner:
       example:

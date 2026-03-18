@@ -7,7 +7,6 @@
 Name | Type
 ------------ | -------------
 `blogID` | string
-`userCredentials` | [UserCredentials](UserCredentials.md)
 
 ## Example
 
@@ -17,7 +16,6 @@ import type { ApiViewBlogPostRequest } from ''
 // TODO: Update the object below with actual values
 const example = {
   "blogID": null,
-  "userCredentials": null,
 } satisfies ApiViewBlogPostRequest
 
 console.log(example)

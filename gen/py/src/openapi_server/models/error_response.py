@@ -31,9 +31,9 @@ class ErrorResponse(BaseModel):
     """
     General error response
     """ # noqa: E501
+    message: Optional[StrictStr] = None
     code: Optional[StrictStr] = Field(default=None, description="Internal error code")
-    message: Optional[StrictStr] = Field(default=None, description="Detailed error message")
-    __properties: ClassVar[List[str]] = ["code", "message"]
+    __properties: ClassVar[List[str]] = ["message", "code"]
 
     model_config = {
         "populate_by_name": True,
@@ -84,8 +84,8 @@ class ErrorResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "code": obj.get("code"),
-            "message": obj.get("message")
+            "message": obj.get("message"),
+            "code": obj.get("code")
         })
         return _obj
 

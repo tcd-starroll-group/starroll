@@ -12,13 +12,9 @@
 """  # noqa: E501
 
 
-from contextlib import asynccontextmanager
-
 from fastapi import FastAPI
 
-from openapi_server.apis.chat_api import router as ChatApiRouter
 from openapi_server.apis.default_api import router as DefaultApiRouter
-
 
 app = FastAPI(
     title="StarRoll API",
@@ -27,4 +23,3 @@ app = FastAPI(
 )
 
 app.include_router(DefaultApiRouter)
-app.include_router(ChatApiRouter)

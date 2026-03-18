@@ -8,7 +8,7 @@ from sqlalchemy.orm import Session
 from backend.console.handler import user_login as user_login_module
 from backend.console.handler.user_login import api_user_login_post
 from backend.console.dal.rds.user import User
-from gen.py.src.openapi_server.models.user_auth import UserAuth
+from openapi_server.models.user_auth import UserAuth
 
 
 def test_api_user_login_post_success(db_session: Session, monkeypatch: pytest.MonkeyPatch):

@@ -22,21 +22,16 @@ class User(Base):
     profile = Column(JSON, nullable=True, default=None,
                      comment='User profile in JSON format')
 
-
     created_at = Column(DateTime, default=datetime.utcnow)
     is_deleted = Column(Boolean, default=False)
     # -------------------------------------------------------
     # Database Operations
     # -------------------------------------------------------
+
     @classmethod
     def get_by_id(cls, db: Session, user_id: int):
         """Query user by ID"""
         return db.query(cls).filter(cls.id == user_id).first()
-    
-    @classmethod
-    def get_by_username(cls, db: Session, username: str):
-        """Query user by username"""
-        return db.query(cls).filter(cls.username == username).first()
 
     @classmethod
     def create(cls, db: Session, username: str, password_hash: str, email: str):
@@ -52,9 +47,9 @@ class User(Base):
         return new_user
 
     @classmethod
-    def delete_by_username(cls, db: Session, username: str):
-        """Delete user by username"""
-        user = cls.get_by_username(db, username)
+    def delete_by_id(cls, db: Session, user_id: int):
+        """Delete user by user ID"""
+        user = cls.get_by_id(db, user_id)
         if user:
             db.delete(user)
             db.commit()
@@ -62,9 +57,9 @@ class User(Base):
         return False
 
     @classmethod
-    def update_password(cls, db: Session, username: str, new_password_hash: str):
+    def update_password(cls, db: Session, user_id: int, new_password_hash: str):
         """Update user password"""
-        user = cls.get_by_username(db, username)
+        user = cls.get_by_id(db, user_id)
         if user:
             user.password = new_password_hash
             db.commit()
@@ -72,16 +67,16 @@ class User(Base):
         return False
 
     @classmethod
-    def edit_profile(cls, db: Session, username: str, profile: Dict[str, Any]) -> Optional["User"]:
+    def edit_profile(cls, db: Session, user_id: int, profile: Dict[str, Any]) -> Optional["User"]:
         """
         更新用户 profile。
 
         :param db: SQLAlchemy 
-        :param username: 
+        :param user_id: 
         :param profile: 
         :return: 
         """
-        user = cls.get_by_username(db, username)
+        user = cls.get_by_id(db, user_id)
         if not user:
             return None
 
@@ -94,18 +89,13 @@ class User(Base):
             db.rollback()
             raise ValueError(f"更新失败: {str(e)}")
 
-    @classmethod
-    def update_last_gps(cls, db: Session, username: str, last_gps: Dict[str, Any]) -> Optional["User"]:
-        """Update the user's latest GPS payload."""
-        user = cls.get_by_username(db, username)
-        if not user:
-            return None
-
+    def set_last_gps(self, db: Session, last_gps: Dict[str, Any]) -> "User":
+        """Set and persist this user's latest GPS payload."""
         try:
-            user.last_gps = last_gps
+            self.last_gps = last_gps
             db.commit()
-            db.refresh(user)
-            return user
+            db.refresh(self)
+            return self
         except SQLAlchemyError as e:
             db.rollback()
             raise ValueError(f"更新失败: {str(e)}")

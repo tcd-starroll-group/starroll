@@ -13,14 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { UserCredentials } from './UserCredentials';
-import {
-    UserCredentialsFromJSON,
-    UserCredentialsFromJSONTyped,
-    UserCredentialsToJSON,
-    UserCredentialsToJSONTyped,
-} from './UserCredentials';
-
 /**
  * 
  * @export
@@ -29,16 +21,10 @@ import {
 export interface ApiDeleteCommentPostRequest {
     /**
      * 
-     * @type {UserCredentials}
-     * @memberof ApiDeleteCommentPostRequest
-     */
-    userCredentials?: UserCredentials;
-    /**
-     * 
      * @type {string}
      * @memberof ApiDeleteCommentPostRequest
      */
-    blogID?: string;
+    blogID: string;
     /**
      * 
      * @type {string}
@@ -51,6 +37,7 @@ export interface ApiDeleteCommentPostRequest {
  * Check if a given object implements the ApiDeleteCommentPostRequest interface.
  */
 export function instanceOfApiDeleteCommentPostRequest(value: object): value is ApiDeleteCommentPostRequest {
+    if (!('blogID' in value) || value['blogID'] === undefined) return false;
     return true;
 }
 
@@ -64,8 +51,7 @@ export function ApiDeleteCommentPostRequestFromJSONTyped(json: any, ignoreDiscri
     }
     return {
         
-        'userCredentials': json['userCredentials'] == null ? undefined : UserCredentialsFromJSON(json['userCredentials']),
-        'blogID': json['blogID'] == null ? undefined : json['blogID'],
+        'blogID': json['blogID'],
         'commentID': json['commentID'] == null ? undefined : json['commentID'],
     };
 }
@@ -81,7 +67,6 @@ export function ApiDeleteCommentPostRequestToJSONTyped(value?: ApiDeleteCommentP
 
     return {
         
-        'userCredentials': UserCredentialsToJSON(value['userCredentials']),
         'blogID': value['blogID'],
         'commentID': value['commentID'],
     };

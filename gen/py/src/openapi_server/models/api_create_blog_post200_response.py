@@ -31,9 +31,9 @@ class ApiCreateBlogPost200Response(BaseModel):
     """
     ApiCreateBlogPost200Response
     """ # noqa: E501
+    blog_id: StrictStr = Field(alias="blogID")
     messages: Optional[StrictStr] = Field(default=None, description="Post Successful")
-    blog_id: Optional[StrictStr] = Field(default=None, alias="blogID")
-    __properties: ClassVar[List[str]] = ["messages", "blogID"]
+    __properties: ClassVar[List[str]] = ["blogID", "messages"]
 
     model_config = {
         "populate_by_name": True,
@@ -84,8 +84,8 @@ class ApiCreateBlogPost200Response(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "messages": obj.get("messages"),
-            "blogID": obj.get("blogID")
+            "blogID": obj.get("blogID"),
+            "messages": obj.get("messages")
         })
         return _obj
 

@@ -13,26 +13,12 @@
  */
 
 import { mapValues } from '../runtime';
-import type { UserCredentials } from './UserCredentials';
-import {
-    UserCredentialsFromJSON,
-    UserCredentialsFromJSONTyped,
-    UserCredentialsToJSON,
-    UserCredentialsToJSONTyped,
-} from './UserCredentials';
-
 /**
  * 
  * @export
  * @interface ApiCreateBlogPostRequest
  */
 export interface ApiCreateBlogPostRequest {
-    /**
-     * 
-     * @type {UserCredentials}
-     * @memberof ApiCreateBlogPostRequest
-     */
-    userCredentials?: UserCredentials;
     /**
      * 
      * @type {string}
@@ -76,7 +62,6 @@ export function ApiCreateBlogPostRequestFromJSONTyped(json: any, ignoreDiscrimin
     }
     return {
         
-        'userCredentials': json['userCredentials'] == null ? undefined : UserCredentialsFromJSON(json['userCredentials']),
         'hIP': json['HIP'] == null ? undefined : json['HIP'],
         'title': json['title'] == null ? undefined : json['title'],
         'imageURLList': json['imageURLList'] == null ? undefined : json['imageURLList'],
@@ -95,7 +80,6 @@ export function ApiCreateBlogPostRequestToJSONTyped(value?: ApiCreateBlogPostReq
 
     return {
         
-        'userCredentials': UserCredentialsToJSON(value['userCredentials']),
         'HIP': value['hIP'],
         'title': value['title'],
         'imageURLList': value['imageURLList'],

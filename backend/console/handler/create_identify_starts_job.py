@@ -4,14 +4,14 @@ import base64
 from datetime import datetime, timezone
 
 from fastapi import HTTPException
-from gen.py.src.openapi_server.models.api_create_identify_stars_job_post200_response import ApiCreateIdentifyStarsJobPost200Response
-from gen.py.src.openapi_server.models.api_create_identify_stars_job_post_request import ApiCreateIdentifyStarsJobPostRequest
-from gen.py.src.openapi_server.models.user_credentials import UserCredentials
+from openapi_server.models.api_create_identify_stars_job_post200_response import ApiCreateIdentifyStarsJobPost200Response
+from openapi_server.models.api_create_identify_stars_job_post_request import ApiCreateIdentifyStarsJobPostRequest
+from openapi_server.models.user_credentials import UserCredentials
 
 
 from backend.console.dal.tos import upload_bytes
 from backend.console.dal.rds.identify_stars_job import IdentifyStarsJob
-from backend.console.dal.rds.client import get_db
+from backend.console.dal.rds.client import db_context
 from backend.constant import tos as tos_const
 from backend.console.utils.auth import verify_user_id_and_token
 from backend.constant import star_identify as star_identify_const
@@ -74,8 +74,7 @@ async def api_create_identify_stars_job_post(
 
     # Save job to database
     logger.info(f"Saving job to database for userID: {request.user_id}")
-    db_session = next(get_db())
-    try:
+    with db_context() as db_session:
         job = IdentifyStarsJob.create(
             db=db_session,
             user_id=int(request.user_id),
@@ -84,10 +83,3 @@ async def api_create_identify_stars_job_post(
         )
         logger.info(f"Successfully created job with ID: {job.id}")
         return ApiCreateIdentifyStarsJobPost200Response(jobID=str(job.id))
-    except Exception as e:
-        logger.error(
-            f"Failed to create job in database: {str(e)}", exc_info=True)
-        raise HTTPException(
-            status_code=500, detail=f"Failed to create job: {str(e)}")
-    finally:
-        db_session.close()

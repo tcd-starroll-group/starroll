@@ -50,12 +50,13 @@ def test_extract_last_gps_invalid_returns_none():
 
 def test_generate_recommendation_for_user(db_session, monkeypatch):
     hashed_password = hashlib.sha256("password123".encode()).hexdigest()
-    user = User.create(db_session, "alice", hashed_password, "alice@example.com")
-    User.update_last_gps(db_session, "alice", {
+    user = User.create(db_session, "alice",
+                       hashed_password, "alice@example.com")
+    user.set_last_gps(db_session, {
         "latitude": 30.2741,
         "longitude": 120.1551,
     })
-    user = User.get_by_username(db_session, "alice")
+    user = User.get_by_id(db_session, user.id)
 
     monkeypatch.setattr(
         "backend.console.handler.generate_email_recommendation.get_current_weather",

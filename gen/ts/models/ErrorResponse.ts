@@ -20,17 +20,17 @@ import { mapValues } from '../runtime';
  */
 export interface ErrorResponse {
     /**
+     * 
+     * @type {string}
+     * @memberof ErrorResponse
+     */
+    message?: string;
+    /**
      * Internal error code
      * @type {string}
      * @memberof ErrorResponse
      */
     code?: string;
-    /**
-     * Detailed error message
-     * @type {string}
-     * @memberof ErrorResponse
-     */
-    message?: string;
 }
 
 /**
@@ -50,8 +50,8 @@ export function ErrorResponseFromJSONTyped(json: any, ignoreDiscriminator: boole
     }
     return {
         
-        'code': json['code'] == null ? undefined : json['code'],
         'message': json['message'] == null ? undefined : json['message'],
+        'code': json['code'] == null ? undefined : json['code'],
     };
 }
 
@@ -66,8 +66,8 @@ export function ErrorResponseToJSONTyped(value?: ErrorResponse | null, ignoreDis
 
     return {
         
-        'code': value['code'],
         'message': value['message'],
+        'code': value['code'],
     };
 }
 

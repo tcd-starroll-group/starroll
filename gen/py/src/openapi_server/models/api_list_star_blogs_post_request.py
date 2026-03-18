@@ -20,8 +20,9 @@ import json
 
 
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
 try:
     from typing import Self
 except ImportError:
@@ -31,8 +32,22 @@ class ApiListStarBlogsPostRequest(BaseModel):
     """
     ApiListStarBlogsPostRequest
     """ # noqa: E501
+    limit: Optional[Annotated[int, Field(le=100, strict=True, ge=1)]] = Field(default=20, description="Maximum number of items to return")
+    offset: Optional[Annotated[int, Field(strict=True, ge=0)]] = Field(default=0, description="Number of items to skip (for pagination)")
+    sort: Optional[StrictStr] = Field(default=None, description="Field name to sort by")
+    order: Optional[StrictStr] = Field(default='desc', description="Sort order (ascending or descending)")
     hip: Optional[StrictStr] = Field(default=None, alias="HIP")
-    __properties: ClassVar[List[str]] = ["HIP"]
+    __properties: ClassVar[List[str]] = ["limit", "offset", "sort", "order", "HIP"]
+
+    @field_validator('order')
+    def order_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in ('asc', 'desc',):
+            raise ValueError("must be one of enum values ('asc', 'desc')")
+        return value
 
     model_config = {
         "populate_by_name": True,
@@ -83,6 +98,10 @@ class ApiListStarBlogsPostRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "limit": obj.get("limit") if obj.get("limit") is not None else 20,
+            "offset": obj.get("offset") if obj.get("offset") is not None else 0,
+            "sort": obj.get("sort"),
+            "order": obj.get("order") if obj.get("order") is not None else 'desc',
             "HIP": obj.get("HIP")
         })
         return _obj

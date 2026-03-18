@@ -24,7 +24,7 @@ export interface ApiLikeBlogPost200Response {
      * @type {string}
      * @memberof ApiLikeBlogPost200Response
      */
-    blogID?: string;
+    blogID: string;
     /**
      * 
      * @type {number}
@@ -37,6 +37,7 @@ export interface ApiLikeBlogPost200Response {
  * Check if a given object implements the ApiLikeBlogPost200Response interface.
  */
 export function instanceOfApiLikeBlogPost200Response(value: object): value is ApiLikeBlogPost200Response {
+    if (!('blogID' in value) || value['blogID'] === undefined) return false;
     return true;
 }
 
@@ -50,7 +51,7 @@ export function ApiLikeBlogPost200ResponseFromJSONTyped(json: any, ignoreDiscrim
     }
     return {
         
-        'blogID': json['blogID'] == null ? undefined : json['blogID'],
+        'blogID': json['blogID'],
         'likeNumber': json['likeNumber'] == null ? undefined : json['likeNumber'],
     };
 }

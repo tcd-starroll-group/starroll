@@ -23,7 +23,7 @@ from fastapi import (  # noqa: F401
 )
 
 from openapi_server.models.extra_models import TokenModel  # noqa: F401
-from typing import Any, Optional
+from typing import Any, Dict
 from openapi_server.models.api_calculate_star_coordinates_post200_response import ApiCalculateStarCoordinatesPost200Response
 from openapi_server.models.api_calculate_star_coordinates_post_request import ApiCalculateStarCoordinatesPostRequest
 from openapi_server.models.api_check_room_status_post200_response import ApiCheckRoomStatusPost200Response
@@ -34,8 +34,6 @@ from openapi_server.models.api_create_blog_post200_response import ApiCreateBlog
 from openapi_server.models.api_create_blog_post_request import ApiCreateBlogPostRequest
 from openapi_server.models.api_create_identify_stars_job_post200_response import ApiCreateIdentifyStarsJobPost200Response
 from openapi_server.models.api_create_identify_stars_job_post_request import ApiCreateIdentifyStarsJobPostRequest
-from openapi_server.models.api_delete_blog_post200_response import ApiDeleteBlogPost200Response
-from openapi_server.models.api_delete_blog_post_request import ApiDeleteBlogPostRequest
 from openapi_server.models.api_delete_comment_post_request import ApiDeleteCommentPostRequest
 from openapi_server.models.api_display_chat_room_get200_response import ApiDisplayChatRoomGet200Response
 from openapi_server.models.api_display_save_success_post200_response import ApiDisplaySaveSuccessPost200Response
@@ -60,10 +58,7 @@ from openapi_server.models.api_get_star_catalog_post200_response import ApiGetSt
 from openapi_server.models.api_get_star_details_post_request import ApiGetStarDetailsPostRequest
 from openapi_server.models.api_like_blog_post200_response import ApiLikeBlogPost200Response
 from openapi_server.models.api_list_identify_stars_jobs_post200_response import ApiListIdentifyStarsJobsPost200Response
-from openapi_server.models.api_list_identify_stars_jobs_post_request import ApiListIdentifyStarsJobsPostRequest
 from openapi_server.models.api_list_star_blogs_post_request import ApiListStarBlogsPostRequest
-from openapi_server.models.api_list_user_blogs_post200_response import ApiListUserBlogsPost200Response
-from openapi_server.models.api_list_user_blogs_post_request import ApiListUserBlogsPostRequest
 from openapi_server.models.api_report_blog_post_request import ApiReportBlogPostRequest
 from openapi_server.models.api_request_accuracy_adjust_post200_response import ApiRequestAccuracyAdjustPost200Response
 from openapi_server.models.api_request_accuracy_adjust_post_request import ApiRequestAccuracyAdjustPostRequest
@@ -72,22 +67,21 @@ from openapi_server.models.api_request_stargazing_time_post200_response import A
 from openapi_server.models.api_request_stargazing_time_post_request import ApiRequestStargazingTimePostRequest
 from openapi_server.models.api_send_message_post200_response import ApiSendMessagePost200Response
 from openapi_server.models.api_send_message_post_request import ApiSendMessagePostRequest
-from openapi_server.models.api_set_user_post200_response import ApiSetUserPost200Response
 from openapi_server.models.api_trigger_starfield_render_post200_response import ApiTriggerStarfieldRenderPost200Response
 from openapi_server.models.api_trigger_starfield_render_post_request import ApiTriggerStarfieldRenderPostRequest
-from openapi_server.models.api_update_last_gps_post200_response import ApiUpdateLastGpsPost200Response
 from openapi_server.models.api_user_reg_post_request import ApiUserRegPostRequest
-from openapi_server.models.api_username_verify_post200_response import ApiUsernameVerifyPost200Response
 from openapi_server.models.api_username_verify_post_request import ApiUsernameVerifyPostRequest
 from openapi_server.models.api_verify_user_token_post_request import ApiVerifyUserTokenPostRequest
-from openapi_server.models.api_view_blog_post_request import ApiViewBlogPostRequest
 from openapi_server.models.attitude import Attitude
 from openapi_server.models.blog import Blog
+from openapi_server.models.blog_id import BlogID
+from openapi_server.models.blogs_list import BlogsList
 from openapi_server.models.change_password_request import ChangePasswordRequest
+from openapi_server.models.common_message import CommonMessage
 from openapi_server.models.error_response import ErrorResponse
 from openapi_server.models.gps import GPS
+from openapi_server.models.pagination_query import PaginationQuery
 from openapi_server.models.profile_and_token import ProfileAndToken
-from openapi_server.models.profile_stats_request import ProfileStatsRequest
 from openapi_server.models.profile_stats_response import ProfileStatsResponse
 from openapi_server.models.reset_password_request import ResetPasswordRequest
 from openapi_server.models.reset_password_send_code_request import ResetPasswordSendCodeRequest
@@ -143,32 +137,32 @@ async def api_exit_chat_room_post(
 @router.post(
     "/api/listUserBlogs",
     responses={
-        200: {"model": ApiListUserBlogsPost200Response, "description": "OK"},
+        200: {"model": BlogsList, "description": "OK"},
     },
     tags=["default"],
     summary="List all blogs posted by a specific user",
     response_model_by_alias=True,
 )
 async def api_list_user_blogs_post(
-    api_list_user_blogs_post_request: Optional[ApiListUserBlogsPostRequest] = Body(None, description=""),
-) -> ApiListUserBlogsPost200Response:
+    pagination_query: PaginationQuery = Body(None, description=""),
+) -> BlogsList:
     if not BaseDefaultApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")
-    return await BaseDefaultApi.subclasses[0]().api_list_user_blogs_post(api_list_user_blogs_post_request)
+    return await BaseDefaultApi.subclasses[0]().api_list_user_blogs_post(pagination_query)
 
 
 @router.post(
     "/api/listStarBlogs",
     responses={
-        200: {"model": ApiListUserBlogsPost200Response, "description": "OK"},
+        200: {"model": BlogsList, "description": "OK"},
     },
     tags=["default"],
     summary="List all blogs under the certain star",
     response_model_by_alias=True,
 )
 async def api_list_star_blogs_post(
-    api_list_star_blogs_post_request: Optional[ApiListStarBlogsPostRequest] = Body(None, description=""),
-) -> ApiListUserBlogsPost200Response:
+    api_list_star_blogs_post_request: ApiListStarBlogsPostRequest = Body(None, description=""),
+) -> BlogsList:
     if not BaseDefaultApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")
     return await BaseDefaultApi.subclasses[0]().api_list_star_blogs_post(api_list_star_blogs_post_request)
@@ -184,11 +178,11 @@ async def api_list_star_blogs_post(
     response_model_by_alias=True,
 )
 async def api_view_blog_post(
-    api_view_blog_post_request: Optional[ApiViewBlogPostRequest] = Body(None, description=""),
+    blog_id: BlogID = Body(None, description=""),
 ) -> Blog:
     if not BaseDefaultApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")
-    return await BaseDefaultApi.subclasses[0]().api_view_blog_post(api_view_blog_post_request)
+    return await BaseDefaultApi.subclasses[0]().api_view_blog_post(blog_id)
 
 
 @router.post(
@@ -201,7 +195,7 @@ async def api_view_blog_post(
     response_model_by_alias=True,
 )
 async def api_create_blog_post(
-    api_create_blog_post_request: Optional[ApiCreateBlogPostRequest] = Body(None, description=""),
+    api_create_blog_post_request: ApiCreateBlogPostRequest = Body(None, description=""),
 ) -> ApiCreateBlogPost200Response:
     if not BaseDefaultApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")
@@ -211,18 +205,18 @@ async def api_create_blog_post(
 @router.post(
     "/api/listSavedBlogs",
     responses={
-        200: {"model": ApiListUserBlogsPost200Response, "description": "OK"},
+        200: {"model": BlogsList, "description": "OK"},
     },
     tags=["default"],
     summary="List all blogs saved by the user",
     response_model_by_alias=True,
 )
 async def api_list_saved_blogs_post(
-    api_list_user_blogs_post_request: Optional[ApiListUserBlogsPostRequest] = Body(None, description=""),
-) -> ApiListUserBlogsPost200Response:
+    pagination_query: PaginationQuery = Body(None, description=""),
+) -> BlogsList:
     if not BaseDefaultApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")
-    return await BaseDefaultApi.subclasses[0]().api_list_saved_blogs_post(api_list_user_blogs_post_request)
+    return await BaseDefaultApi.subclasses[0]().api_list_saved_blogs_post(pagination_query)
 
 
 @router.post(
@@ -299,7 +293,7 @@ async def api_get_star_catalog_post(
     response_model_by_alias=True,
 )
 async def api_calculate_star_coordinates_post(
-    api_calculate_star_coordinates_post_request: Optional[ApiCalculateStarCoordinatesPostRequest] = Body(None, description=""),
+    api_calculate_star_coordinates_post_request: ApiCalculateStarCoordinatesPostRequest = Body(None, description=""),
 ) -> ApiCalculateStarCoordinatesPost200Response:
     if not BaseDefaultApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")
@@ -316,7 +310,7 @@ async def api_calculate_star_coordinates_post(
     response_model_by_alias=True,
 )
 async def api_trigger_starfield_render_post(
-    api_trigger_starfield_render_post_request: Optional[ApiTriggerStarfieldRenderPostRequest] = Body(None, description=""),
+    api_trigger_starfield_render_post_request: ApiTriggerStarfieldRenderPostRequest = Body(None, description=""),
 ) -> ApiTriggerStarfieldRenderPost200Response:
     """Initiate starfield rendering process using corrected star coordinates and camera parameters"""
     if not BaseDefaultApi.subclasses:
@@ -334,7 +328,7 @@ async def api_trigger_starfield_render_post(
     response_model_by_alias=True,
 )
 async def api_request_stargazing_time_post(
-    api_request_stargazing_time_post_request: Optional[ApiRequestStargazingTimePostRequest] = Body(None, description=""),
+    api_request_stargazing_time_post_request: ApiRequestStargazingTimePostRequest = Body(None, description=""),
 ) -> ApiRequestStargazingTimePost200Response:
     """Get recommended stargazing time range based on GPS location"""
     if not BaseDefaultApi.subclasses:
@@ -352,7 +346,7 @@ async def api_request_stargazing_time_post(
     response_model_by_alias=True,
 )
 async def api_request_accuracy_adjust_post(
-    api_request_accuracy_adjust_post_request: Optional[ApiRequestAccuracyAdjustPostRequest] = Body(None, description=""),
+    api_request_accuracy_adjust_post_request: ApiRequestAccuracyAdjustPostRequest = Body(None, description=""),
 ) -> ApiRequestAccuracyAdjustPost200Response:
     """Adjust calculation accuracy for star coordinates based on sensor precision"""
     if not BaseDefaultApi.subclasses:
@@ -370,7 +364,7 @@ async def api_request_accuracy_adjust_post(
     response_model_by_alias=True,
 )
 async def api_display_starfield_post(
-    api_display_starfield_post_request: Optional[ApiDisplayStarfieldPostRequest] = Body(None, description=""),
+    api_display_starfield_post_request: ApiDisplayStarfieldPostRequest = Body(None, description=""),
 ) -> ApiDisplayStarfieldPost200Response:
     """Retrieve rendered starfield data for GUI display"""
     if not BaseDefaultApi.subclasses:
@@ -388,7 +382,7 @@ async def api_display_starfield_post(
     response_model_by_alias=True,
 )
 async def api_display_star_details_post(
-    api_display_star_details_post_request: Optional[ApiDisplayStarDetailsPostRequest] = Body(None, description=""),
+    api_display_star_details_post_request: ApiDisplayStarDetailsPostRequest = Body(None, description=""),
 ) -> StarDetails:
     """Retrieve detailed astronomical information of a specific star"""
     if not BaseDefaultApi.subclasses:
@@ -423,7 +417,7 @@ async def api_request_save_type_post(
     response_model_by_alias=True,
 )
 async def api_display_save_success_post(
-    api_display_save_success_post_request: Optional[ApiDisplaySaveSuccessPostRequest] = Body(None, description=""),
+    api_display_save_success_post_request: ApiDisplaySaveSuccessPostRequest = Body(None, description=""),
 ) -> ApiDisplaySaveSuccessPost200Response:
     """Return save result and metadata after starfield is saved"""
     if not BaseDefaultApi.subclasses:
@@ -458,11 +452,11 @@ async def api_create_identify_stars_job_post(
     response_model_by_alias=True,
 )
 async def api_list_identify_stars_jobs_post(
-    api_list_identify_stars_jobs_post_request: ApiListIdentifyStarsJobsPostRequest = Body(None, description=""),
+    pagination_query: PaginationQuery = Body(None, description=""),
 ) -> ApiListIdentifyStarsJobsPost200Response:
     if not BaseDefaultApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")
-    return await BaseDefaultApi.subclasses[0]().api_list_identify_stars_jobs_post(api_list_identify_stars_jobs_post_request)
+    return await BaseDefaultApi.subclasses[0]().api_list_identify_stars_jobs_post(pagination_query)
 
 
 @router.post(
@@ -492,7 +486,7 @@ async def api_get_identify_stars_job_result_post(
     response_model_by_alias=True,
 )
 async def api_elimilate_errors_post(
-    api_elimilate_errors_post_request: Optional[ApiElimilateErrorsPostRequest] = Body(None, description=""),
+    api_elimilate_errors_post_request: ApiElimilateErrorsPostRequest = Body(None, description=""),
 ) -> ApiElimilateErrorsPost200Response:
     if not BaseDefaultApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")
@@ -527,7 +521,7 @@ async def api_get_chat_room_post(
     response_model_by_alias=True,
 )
 async def api_get_chat_room_info_post(
-    api_get_chat_room_info_post_request: Optional[ApiGetChatRoomInfoPostRequest] = Body(None, description=""),
+    api_get_chat_room_info_post_request: ApiGetChatRoomInfoPostRequest = Body(None, description=""),
 ) -> ApiGetChatRoomInfoPost200Response:
     """Gets specified chat room information from the social system"""
     if not BaseDefaultApi.subclasses:
@@ -581,7 +575,7 @@ async def api_send_message_post(
     response_model_by_alias=True,
 )
 async def api_get_star_details_post(
-    api_get_star_details_post_request: Optional[ApiGetStarDetailsPostRequest] = Body(None, description=""),
+    api_get_star_details_post_request: ApiGetStarDetailsPostRequest = Body(None, description=""),
 ) -> StarDetails:
     if not BaseDefaultApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")
@@ -598,7 +592,7 @@ async def api_get_star_details_post(
     response_model_by_alias=True,
 )
 async def api_check_room_status_post(
-    api_check_room_status_post_request: Optional[ApiCheckRoomStatusPostRequest] = Body(None, description=""),
+    api_check_room_status_post_request: ApiCheckRoomStatusPostRequest = Body(None, description=""),
 ) -> ApiCheckRoomStatusPost200Response:
     """Determines if a user can join the specified chat room"""
     if not BaseDefaultApi.subclasses:
@@ -609,7 +603,7 @@ async def api_check_room_status_post(
 @router.post(
     "/api/setUser",
     responses={
-        200: {"model": ApiSetUserPost200Response, "description": "Modify password successful."},
+        200: {"model": CommonMessage, "description": "Modify password successful."},
         400: {"model": ErrorResponse, "description": "Invalid request: For example, the new password does not meet the security requirements, or the new and old passwords are the same."},
         401: {"model": ErrorResponse, "description": "Unauthorized: Current password (password0) is incorrect"},
         404: {"model": ErrorResponse, "description": "Not Found: The username does not exist."},
@@ -620,7 +614,7 @@ async def api_check_room_status_post(
 )
 async def api_set_user_post(
     change_password_request: ChangePasswordRequest = Body(None, description=""),
-) -> ApiSetUserPost200Response:
+) -> CommonMessage:
     """Modify the username and password by the username, current password(password0)and new password(password1) user provided."""
     if not BaseDefaultApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")
@@ -670,7 +664,7 @@ async def api_edit_profile_post(
 @router.post(
     "/api/updateLastGps",
     responses={
-        200: {"model": ApiUpdateLastGpsPost200Response, "description": "Last GPS updated successfully."},
+        200: {"model": CommonMessage, "description": "Last GPS updated successfully."},
         401: {"model": ErrorResponse, "description": "Unauthorized: Authentication required."},
         404: {"model": ErrorResponse, "description": "User not found."},
     },
@@ -680,7 +674,7 @@ async def api_edit_profile_post(
 )
 async def api_update_last_gps_post(
     update_last_gps_request: UpdateLastGpsRequest = Body(None, description=""),
-) -> ApiUpdateLastGpsPost200Response:
+) -> CommonMessage:
     """update the user&#39;s latest GPS location used by recommendation emails."""
     if not BaseDefaultApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")
@@ -710,7 +704,7 @@ async def api_user_reg_post(
 @router.post(
     "/api/changePassword",
     responses={
-        200: {"model": ApiUpdateLastGpsPost200Response, "description": "Password updated successfully"},
+        200: {"model": CommonMessage, "description": "Password updated successfully"},
         401: {"description": "Old password incorrect"},
         404: {"description": "User not found"},
     },
@@ -719,7 +713,7 @@ async def api_user_reg_post(
 )
 async def api_change_password_post(
     change_password_request: ChangePasswordRequest = Body(None, description=""),
-) -> ApiUpdateLastGpsPost200Response:
+) -> CommonMessage:
     if not BaseDefaultApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")
     return await BaseDefaultApi.subclasses[0]().api_change_password_post(change_password_request)
@@ -728,7 +722,7 @@ async def api_change_password_post(
 @router.post(
     "/api/resetPasswordSendCode",
     responses={
-        200: {"model": ApiUpdateLastGpsPost200Response, "description": "Verification code sent successfully"},
+        200: {"model": CommonMessage, "description": "Verification code sent successfully"},
         404: {"description": "Email not found"},
         500: {"description": "Failed to send email"},
     },
@@ -738,7 +732,7 @@ async def api_change_password_post(
 )
 async def api_reset_password_send_code_post(
     reset_password_send_code_request: ResetPasswordSendCodeRequest = Body(None, description=""),
-) -> ApiUpdateLastGpsPost200Response:
+) -> CommonMessage:
     if not BaseDefaultApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")
     return await BaseDefaultApi.subclasses[0]().api_reset_password_send_code_post(reset_password_send_code_request)
@@ -747,7 +741,7 @@ async def api_reset_password_send_code_post(
 @router.post(
     "/api/resetPassword",
     responses={
-        200: {"model": ApiUpdateLastGpsPost200Response, "description": "Password reset successfully"},
+        200: {"model": CommonMessage, "description": "Password reset successfully"},
         400: {"description": "Invalid or expired verification code"},
         404: {"description": "Email not found"},
     },
@@ -757,7 +751,7 @@ async def api_reset_password_send_code_post(
 )
 async def api_reset_password_post(
     reset_password_request: ResetPasswordRequest = Body(None, description=""),
-) -> ApiUpdateLastGpsPost200Response:
+) -> CommonMessage:
     if not BaseDefaultApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")
     return await BaseDefaultApi.subclasses[0]().api_reset_password_post(reset_password_request)
@@ -766,7 +760,7 @@ async def api_reset_password_post(
 @router.post(
     "/api/deleteUser",
     responses={
-        200: {"model": ApiUpdateLastGpsPost200Response, "description": "Deletion successful"},
+        200: {"model": CommonMessage, "description": "Deletion successful"},
         401: {"description": "Password incorrect"},
         404: {"description": "User not found"},
     },
@@ -776,7 +770,7 @@ async def api_reset_password_post(
 )
 async def api_delete_user_post(
     user_auth: UserAuth = Body(None, description=""),
-) -> ApiUpdateLastGpsPost200Response:
+) -> CommonMessage:
     if not BaseDefaultApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")
     return await BaseDefaultApi.subclasses[0]().api_delete_user_post(user_auth)
@@ -785,7 +779,7 @@ async def api_delete_user_post(
 @router.post(
     "/api/usernameVerify",
     responses={
-        200: {"model": ApiUsernameVerifyPost200Response, "description": "Username available"},
+        200: {"model": CommonMessage, "description": "Username available"},
         409: {"model": ErrorResponse, "description": "The username is already in use."},
     },
     tags=["default"],
@@ -794,7 +788,7 @@ async def api_delete_user_post(
 )
 async def api_username_verify_post(
     api_username_verify_post_request: ApiUsernameVerifyPostRequest = Body(None, description=""),
-) -> ApiUsernameVerifyPost200Response:
+) -> CommonMessage:
     """Check whether the username is available."""
     if not BaseDefaultApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")
@@ -823,18 +817,18 @@ async def api_verify_user_token_post(
 @router.post(
     "/api/deleteBlog",
     responses={
-        200: {"model": ApiDeleteBlogPost200Response, "description": "OK"},
+        200: {"model": BlogID, "description": "OK"},
     },
     tags=["default"],
     summary="Delete a blog",
     response_model_by_alias=True,
 )
 async def api_delete_blog_post(
-    api_delete_blog_post_request: Optional[ApiDeleteBlogPostRequest] = Body(None, description=""),
-) -> ApiDeleteBlogPost200Response:
+    blog_id: BlogID = Body(None, description=""),
+) -> BlogID:
     if not BaseDefaultApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")
-    return await BaseDefaultApi.subclasses[0]().api_delete_blog_post(api_delete_blog_post_request)
+    return await BaseDefaultApi.subclasses[0]().api_delete_blog_post(blog_id)
 
 
 @router.post(
@@ -847,11 +841,11 @@ async def api_delete_blog_post(
     response_model_by_alias=True,
 )
 async def api_like_blog_post(
-    api_delete_blog_post_request: Optional[ApiDeleteBlogPostRequest] = Body(None, description=""),
+    blog_id: BlogID = Body(None, description=""),
 ) -> ApiLikeBlogPost200Response:
     if not BaseDefaultApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")
-    return await BaseDefaultApi.subclasses[0]().api_like_blog_post(api_delete_blog_post_request)
+    return await BaseDefaultApi.subclasses[0]().api_like_blog_post(blog_id)
 
 
 @router.post(
@@ -864,7 +858,7 @@ async def api_like_blog_post(
     response_model_by_alias=True,
 )
 async def api_comment_blog_post(
-    api_comment_blog_post_request: Optional[ApiCommentBlogPostRequest] = Body(None, description=""),
+    api_comment_blog_post_request: ApiCommentBlogPostRequest = Body(None, description=""),
 ) -> ApiCommentBlogPost200Response:
     if not BaseDefaultApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")
@@ -881,7 +875,7 @@ async def api_comment_blog_post(
     response_model_by_alias=True,
 )
 async def api_delete_comment_post(
-    api_delete_comment_post_request: Optional[ApiDeleteCommentPostRequest] = Body(None, description=""),
+    api_delete_comment_post_request: ApiDeleteCommentPostRequest = Body(None, description=""),
 ) -> ApiCommentBlogPost200Response:
     if not BaseDefaultApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")
@@ -891,32 +885,32 @@ async def api_delete_comment_post(
 @router.post(
     "/api/saveBlog",
     responses={
-        200: {"model": ApiDeleteBlogPost200Response, "description": "OK"},
+        200: {"model": BlogID, "description": "OK"},
     },
     tags=["default"],
     summary="Save a blog",
     response_model_by_alias=True,
 )
 async def api_save_blog_post(
-    api_delete_blog_post_request: Optional[ApiDeleteBlogPostRequest] = Body(None, description=""),
-) -> ApiDeleteBlogPost200Response:
+    blog_id: BlogID = Body(None, description=""),
+) -> BlogID:
     if not BaseDefaultApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")
-    return await BaseDefaultApi.subclasses[0]().api_save_blog_post(api_delete_blog_post_request)
+    return await BaseDefaultApi.subclasses[0]().api_save_blog_post(blog_id)
 
 
 @router.post(
     "/api/reportBlog",
     responses={
-        200: {"model": ApiDeleteBlogPost200Response, "description": "OK"},
+        200: {"model": BlogID, "description": "OK"},
     },
     tags=["default"],
     summary="Report a blog",
     response_model_by_alias=True,
 )
 async def api_report_blog_post(
-    api_report_blog_post_request: Optional[ApiReportBlogPostRequest] = Body(None, description=""),
-) -> ApiDeleteBlogPost200Response:
+    api_report_blog_post_request: ApiReportBlogPostRequest = Body(None, description=""),
+) -> BlogID:
     if not BaseDefaultApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")
     return await BaseDefaultApi.subclasses[0]().api_report_blog_post(api_report_blog_post_request)
@@ -932,12 +926,12 @@ async def api_report_blog_post(
     response_model_by_alias=True,
 )
 async def api_get_profile_stats_post(
-    profile_stats_request: ProfileStatsRequest = Body(None, description=""),
+    body: Dict[str, Any] = Body(None, description=""),
 ) -> ProfileStatsResponse:
     """Retrieve the user&#39;s scanning statistics, rank, and join date for the profile view."""
     if not BaseDefaultApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")
-    return await BaseDefaultApi.subclasses[0]().api_get_profile_stats_post(profile_stats_request)
+    return await BaseDefaultApi.subclasses[0]().api_get_profile_stats_post(body)
 
 
 @router.get(

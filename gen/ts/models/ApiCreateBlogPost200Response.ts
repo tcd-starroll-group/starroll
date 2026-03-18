@@ -20,23 +20,24 @@ import { mapValues } from '../runtime';
  */
 export interface ApiCreateBlogPost200Response {
     /**
+     * 
+     * @type {string}
+     * @memberof ApiCreateBlogPost200Response
+     */
+    blogID: string;
+    /**
      * Post Successful
      * @type {string}
      * @memberof ApiCreateBlogPost200Response
      */
     messages?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ApiCreateBlogPost200Response
-     */
-    blogID?: string;
 }
 
 /**
  * Check if a given object implements the ApiCreateBlogPost200Response interface.
  */
 export function instanceOfApiCreateBlogPost200Response(value: object): value is ApiCreateBlogPost200Response {
+    if (!('blogID' in value) || value['blogID'] === undefined) return false;
     return true;
 }
 
@@ -50,8 +51,8 @@ export function ApiCreateBlogPost200ResponseFromJSONTyped(json: any, ignoreDiscr
     }
     return {
         
+        'blogID': json['blogID'],
         'messages': json['messages'] == null ? undefined : json['messages'],
-        'blogID': json['blogID'] == null ? undefined : json['blogID'],
     };
 }
 
@@ -66,8 +67,8 @@ export function ApiCreateBlogPost200ResponseToJSONTyped(value?: ApiCreateBlogPos
 
     return {
         
-        'messages': value['messages'],
         'blogID': value['blogID'],
+        'messages': value['messages'],
     };
 }
 

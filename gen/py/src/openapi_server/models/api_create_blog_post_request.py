@@ -22,7 +22,6 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from openapi_server.models.user_credentials import UserCredentials
 try:
     from typing import Self
 except ImportError:
@@ -32,12 +31,11 @@ class ApiCreateBlogPostRequest(BaseModel):
     """
     ApiCreateBlogPostRequest
     """ # noqa: E501
-    user_credentials: Optional[UserCredentials] = Field(default=None, alias="userCredentials")
     hip: Optional[StrictStr] = Field(default=None, alias="HIP")
     title: Optional[StrictStr] = None
     image_url_list: Optional[List[StrictStr]] = Field(default=None, alias="imageURLList")
     content: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["userCredentials", "HIP", "title", "imageURLList", "content"]
+    __properties: ClassVar[List[str]] = ["HIP", "title", "imageURLList", "content"]
 
     model_config = {
         "populate_by_name": True,
@@ -76,9 +74,6 @@ class ApiCreateBlogPostRequest(BaseModel):
             },
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of user_credentials
-        if self.user_credentials:
-            _dict['userCredentials'] = self.user_credentials.to_dict()
         return _dict
 
     @classmethod
@@ -91,7 +86,6 @@ class ApiCreateBlogPostRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "userCredentials": UserCredentials.from_dict(obj.get("userCredentials")) if obj.get("userCredentials") is not None else None,
             "HIP": obj.get("HIP"),
             "title": obj.get("title"),
             "imageURLList": obj.get("imageURLList"),

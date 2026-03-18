@@ -1,11 +1,17 @@
 import jwt
 import datetime
 import logging
+from contextvars import ContextVar, Token
 from typing import Dict, Any, Tuple
 from backend.config import settings
 from fastapi import HTTPException
 
 logger = logging.getLogger(__name__)
+
+_current_token_payload: ContextVar[Dict[str, Any] | None] = ContextVar(
+    "current_token_payload",
+    default=None,
+)
 
 
 def create_access_token(data: dict) -> str:
@@ -73,3 +79,26 @@ def verify_user_id_and_token(token: str, user_id: str) -> None:
         raise HTTPException(status_code=403, detail="User ID mismatch")
 
     logger.info(f"Token verification successful for user_id: {user_id}")
+
+
+def set_current_token_payload(payload: Dict[str, Any]) -> Token:
+    return _current_token_payload.set(payload)
+
+
+def reset_current_token_payload(token: Token) -> None:
+    _current_token_payload.reset(token)
+
+
+def get_current_token_payload() -> Dict[str, Any]:
+    payload = _current_token_payload.get()
+    if not payload:
+        raise HTTPException(status_code=401, detail="Invalid or expired token")
+    return payload
+
+
+def get_current_user_id() -> str:
+    payload = get_current_token_payload()
+    user_id = payload.get("user_id")
+    if user_id is None:
+        raise HTTPException(status_code=401, detail="Invalid token payload")
+    return str(user_id)

@@ -3,11 +3,11 @@ import json
 from fastapi import HTTPException
 
 from backend.console.dal.rds.identify_stars_job import IdentifyStarsJob as IdentifyStarsJobDAL
-from backend.console.dal.rds.client import get_db
-from backend.console.utils.auth import verify_user_id_and_token
+from backend.console.dal.rds.client import db_context
+from backend.console.utils.auth import get_current_user_id
 
-from gen.py.src.openapi_server.models.api_get_identify_stars_job_result_post_request import ApiGetIdentifyStarsJobResultPostRequest
-from gen.py.src.openapi_server.models.api_get_identify_stars_job_result_post200_response import ApiGetIdentifyStarsJobResultPost200Response
+from openapi_server.models.api_get_identify_stars_job_result_post_request import ApiGetIdentifyStarsJobResultPostRequest
+from openapi_server.models.api_get_identify_stars_job_result_post200_response import ApiGetIdentifyStarsJobResultPost200Response
 
 logger = logging.getLogger(__name__)
 
@@ -16,19 +16,16 @@ async def api_get_identify_stars_job_result_post(
     request: ApiGetIdentifyStarsJobResultPostRequest
 ) -> ApiGetIdentifyStarsJobResultPost200Response:
 
-    # 1. Auth
-    verify_user_id_and_token(
-        request.user_credentials.token, request.user_credentials.user_id)
+    user_id = get_current_user_id()
 
-    db_session = next(get_db())
-    try:
+    with db_context() as db_session:
         # 2. Fetch Job
         job = IdentifyStarsJobDAL.get_by_id(db_session, int(request.job_id))
         if not job:
             raise HTTPException(status_code=404, detail="Job not found")
 
         # 3. Secure check
-        if job.user_id != int(request.user_credentials.user_id):
+        if job.user_id != int(user_id):
             raise HTTPException(status_code=403, detail="Unauthorized")
 
         # 4. Data Processing
@@ -83,13 +80,3 @@ async def api_get_identify_stars_job_result_post(
                 "createTime": job.created_at.isoformat() if job.created_at else None
             }]
         )
-
-    except HTTPException as he:
-        raise he
-    except Exception as e:
-        # This will print the EXACT line and error in your terminal
-        logger.error("CRITICAL ERROR IN HANDLER", exc_info=True)
-        raise HTTPException(
-            status_code=500, detail=f"Internal Error: {str(e)}")
-    finally:
-        db_session.close()

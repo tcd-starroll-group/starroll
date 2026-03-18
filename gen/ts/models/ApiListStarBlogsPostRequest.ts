@@ -20,12 +20,47 @@ import { mapValues } from '../runtime';
  */
 export interface ApiListStarBlogsPostRequest {
     /**
+     * Maximum number of items to return
+     * @type {number}
+     * @memberof ApiListStarBlogsPostRequest
+     */
+    limit?: number;
+    /**
+     * Number of items to skip (for pagination)
+     * @type {number}
+     * @memberof ApiListStarBlogsPostRequest
+     */
+    offset?: number;
+    /**
+     * Field name to sort by
+     * @type {string}
+     * @memberof ApiListStarBlogsPostRequest
+     */
+    sort?: string;
+    /**
+     * Sort order (ascending or descending)
+     * @type {string}
+     * @memberof ApiListStarBlogsPostRequest
+     */
+    order?: ApiListStarBlogsPostRequestOrderEnum;
+    /**
      * 
      * @type {string}
      * @memberof ApiListStarBlogsPostRequest
      */
     hIP?: string;
 }
+
+
+/**
+ * @export
+ */
+export const ApiListStarBlogsPostRequestOrderEnum = {
+    Asc: 'asc',
+    Desc: 'desc'
+} as const;
+export type ApiListStarBlogsPostRequestOrderEnum = typeof ApiListStarBlogsPostRequestOrderEnum[keyof typeof ApiListStarBlogsPostRequestOrderEnum];
+
 
 /**
  * Check if a given object implements the ApiListStarBlogsPostRequest interface.
@@ -44,6 +79,10 @@ export function ApiListStarBlogsPostRequestFromJSONTyped(json: any, ignoreDiscri
     }
     return {
         
+        'limit': json['limit'] == null ? undefined : json['limit'],
+        'offset': json['offset'] == null ? undefined : json['offset'],
+        'sort': json['sort'] == null ? undefined : json['sort'],
+        'order': json['order'] == null ? undefined : json['order'],
         'hIP': json['HIP'] == null ? undefined : json['HIP'],
     };
 }
@@ -59,6 +98,10 @@ export function ApiListStarBlogsPostRequestToJSONTyped(value?: ApiListStarBlogsP
 
     return {
         
+        'limit': value['limit'],
+        'offset': value['offset'],
+        'sort': value['sort'],
+        'order': value['order'],
         'HIP': value['hIP'],
     };
 }
