@@ -30,6 +30,11 @@ const router = createRouter({
       component: () => import('../views/BlogIndexView.vue'),
     },
     {
+      path: '/star-blogs',
+      name: 'StarBlogs',
+      component: () => import('../views/StarBlogsView.vue'),
+    },
+    {
       path: '/Recognizer',
       name: 'Recognizer',
       component: () => import('../views/RecognizerView.vue'),

@@ -16,14 +16,14 @@ export default defineConfig({
   server: {
     host: '0.0.0.0',
     port: 80,
-    allowedHosts: ['starroll.ie'],
-    // https: { ... }
+    // 建议把 localhost 也加进去，方便你本地通过 http://localhost 访问测试
+    allowedHosts: ['starroll.ie', 'localhost', '127.0.0.1'], 
     proxy: {
       '/api': {
-        target: 'https://starroll.ie', 
+        // 👇 将这里改成你本地的 FastAPI 服务地址
+        target: 'http://127.0.0.1:8000', 
         changeOrigin: true,            
         secure: false,                 
-
       }
     }
   },
