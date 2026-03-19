@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
-import { DefaultApi } from '@/gen/ts/apis/DefaultApi';
-import { Configuration } from '@/gen/ts/runtime';
+// 移除生成的 API 客户端引入，改用原生 fetch
 import type { BlogPreview } from '@/gen/ts/models/BlogPreview';
 
 const router = useRouter();
@@ -14,6 +13,7 @@ const hipId = Number(route.query.hip);
 const isLoading = ref(true);
 const blogs = ref<BlogPreview[]>([]);
 
+// 🌟 核心修复：原生 fetch 替换法
 const fetchStarBlogs = async () => {
   if (!hipId) {
     alert('Missing star identification (HIP number).');
@@ -21,18 +21,51 @@ const fetchStarBlogs = async () => {
     return;
   }
 
-  const api = new DefaultApi(new Configuration({ basePath: '/api' }));
+  // 1. 获取本地 Token
+  const token = localStorage.getItem('token');
+  const userID = localStorage.getItem('userID');
+
+  if (!token || !userID) {
+    alert('You need to log in to view star logs.');
+    router.push('/login'); // 未登录则踢回登录页
+    return;
+  }
   
   try {
     isLoading.value = true;
     
-    const response = await api.apiListStarBlogsPost({
-      apiListStarBlogsPostRequest: {
-        hIP: String(hipId) // 🌟 修复 1：将数字强转为 string，满足后端模型要求
-      }
+    // 2. 原生 fetch 强力出击，写死正确的单斜杠路径
+    const response = await fetch('/api/listStarBlogs', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        // 强制注入 Token，突破自动生成代码吞 Token 的 Bug
+        'Authorization': `Bearer ${token}` 
+      },
+      body: JSON.stringify({
+        userCredentials: {
+          token: token,
+          userID: userID
+        },
+        HIP: String(hipId), 
+        hIP: String(hipId) // 兼容后端模型大小写
+      })
     });
 
-    blogs.value = response.blogsList || [];
+    // 3. 错误处理与 401 拦截
+    if (!response.ok) {
+      if (response.status === 401) {
+        alert('Your session has expired. Please log in again. (凭证过期，请重新登录)');
+        localStorage.removeItem('token');
+        router.push('/login');
+        return;
+      }
+      throw new Error(`Server error: ${response.status}`);
+    }
+
+    // 4. 解析数据并绑定到 Vue 响应式变量
+    const data = await response.json();
+    blogs.value = data.blogsList || [];
     
   } catch (error) {
     console.error('Failed to fetch blogs for this star:', error);
@@ -195,7 +228,6 @@ onMounted(() => {
   font-weight: 600;
 }
 
-/* 🌟 新增的图片预览样式 */
 .blog-image-preview {
   margin-bottom: 16px;
   border-radius: 8px;

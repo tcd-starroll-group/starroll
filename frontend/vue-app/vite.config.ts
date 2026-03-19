@@ -1,6 +1,5 @@
 import { fileURLToPath, URL } from 'node:url'
-import { readFileSync } from 'fs'
-import { join } from 'path'
+// ... (其他 import 保持不变)
 
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
@@ -11,20 +10,27 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
+      // 如果你之前修复了 gen 的路径，这里应该还有 '@gen': ...
     },
   },
   server: {
     host: '0.0.0.0',
     port: 80,
-    // 建议把 localhost 也加进去，方便你本地通过 http://localhost 访问测试
-    allowedHosts: ['starroll.ie', 'localhost', '127.0.0.1'], 
+    allowedHosts: ['starroll.ie'],
+    
+    // === 新增以下 proxy 配置 ===
     proxy: {
       '/api': {
-        // 👇 将这里改成你本地的 FastAPI 服务地址
-        target: 'http://127.0.0.1:8000', 
-        changeOrigin: true,            
-        secure: false,                 
+        target: 'https://starroll.ie', // 你的线上后端地址
+        changeOrigin: true,            // 允许跨域
+        secure: false,                 // 如果线上环境 HTTPS 证书有问题，设为 false 忽略验证
       }
     }
+    // ========================
+    
+    // https: {
+    //   key: readFileSync(join(__dirname, './cert/privkey.pem')),
+    //   cert: readFileSync(join(__dirname, './cert/fullchain.pem')),
+    // },
   },
 })

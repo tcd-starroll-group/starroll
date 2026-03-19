@@ -5,17 +5,13 @@ import { QuillEditor } from '@vueup/vue-quill';
 import '@vueup/vue-quill/dist/vue-quill.snow.css';
 import BlotFormatter from 'quill-blot-formatter';
 
-// 🌟 引入生成的 API 客户端
-import { DefaultApi } from '@/gen/ts/apis/DefaultApi';
-import { Configuration } from '@/gen/ts/runtime';
-
 const router = useRouter();
-const route = useRoute(); // 实例化 route 以获取 URL 中的 hip
+const route = useRoute();
 
 const blogTitle = ref('');
 const contentHtml = ref('');
 
-// 注册 Quill 插件
+// Register Quill plugin
 const editorModules = [
   {
     name: 'blotFormatter',
@@ -24,7 +20,7 @@ const editorModules = [
   }
 ];
 
-// 富文本编辑器配置
+// Rich text editor configuration, explicitly includes the 'image' button here
 const editorOptions = {
   placeholder: 'Record your star-gazing log, or share the romance of the universe...',
   theme: 'snow',
@@ -41,17 +37,16 @@ const editorOptions = {
       [{ 'align': [] }],
       [{ 'direction': 'rtl' }],
       ['blockquote', 'code-block'],
-      ['link', 'image', 'video'],
+      ['link', 'image', 'video'], // 🌟 Image upload button is here
       ['clean']
     ]
   }
 };
 
-// 🌟 真实的发布博客联调函数
+// 🌟 Native fetch sends requests to resolve 401 errors
 const publishBlog = async () => {
   const cleanContent = contentHtml.value === '<p><br></p>' ? '' : contentHtml.value;
 
-  // 1. 校验前端必填项
   if (!blogTitle.value.trim()) {
     alert('Please enter a title for your log');
     return;
@@ -61,48 +56,61 @@ const publishBlog = async () => {
     return;
   }
 
-  // 2. 提取用户身份凭证
   const token = localStorage.getItem('token');
   const userID = localStorage.getItem('userID');
 
   if (!token || !userID) {
     alert('You need to log in first to share the starry sky!');
+    router.push('/login'); 
     return;
   }
 
-  // 3. 提取 HIP 编号 (从 URL query 解析)
   const hipId = Number(route.query.hip);
   if (!hipId) {
     alert('Error: Missing star identification (HIP number).');
     return;
   }
 
-  // 4. 初始化 API
-  const api = new DefaultApi(new Configuration({ basePath: '/api' }));
-
   try {
-    // 发送创建博客请求
-    const response = await api.apiCreateBlogPost({
-      apiCreateBlogPostRequest: {
+    const response = await fetch('/api/createBlog', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}` 
+      },
+      body: JSON.stringify({
         userCredentials: {
           token: token,
-          userID: userID // 如果生成器生成的是 userID（大写D），请自行修改
+          userID: userID
         },
-        hIP: String(hipId), // 强制转为 String，以匹配后端模型
+        HIP: String(hipId), 
+        hIP: String(hipId), 
         title: blogTitle.value,
         content: cleanContent,
-        imageURLList: []    // 暂时没有图片上传功能，传空数组
-      }
+        imageURLList: [] // Rich text images will be converted to Base64 and stored in content, pass empty array for this field
+      })
     });
 
-    console.log('Blog published successfully! ID:', response.blogID);
+    if (!response.ok) {
+      if (response.status === 401) {
+        alert('Your session has expired. Please log in again.');
+        localStorage.removeItem('token');
+        router.push('/login');
+        return;
+      }
+      throw new Error(`Server error: ${response.status}`);
+    }
+
+    const data = await response.json();
+    console.log('Blog published successfully!', data);
     alert('Published successfully!');
     
-    // 发布成功后，退回到星空日记浏览页
     router.back();
-  } catch (error) {
+
+  // 🌟 Removed error: any, perfectly resolved the Unexpected any red line error
+  } catch (error) { 
     console.error('Failed to publish blog:', error);
-    alert('Failed to publish. Check console for details. (Maybe Token expired?)');
+    alert('Failed to publish. Check console for details.');
   }
 };
 </script>
@@ -128,7 +136,7 @@ const publishBlog = async () => {
           <QuillEditor 
             v-model:content="contentHtml" 
             contentType="html" 
-            :options="editorOptions" 
+            :toolbar="editorOptions.modules.toolbar"  :options="editorOptions"
             :modules="editorModules" 
           />
         </div>
@@ -225,7 +233,7 @@ const publishBlog = async () => {
   min-height: 400px;
 }
 
-/* 🌟 Quill Editor 深度适配深色太空主题 */
+/* 🌟 Quill Editor deep adaptation for dark space theme */
 :deep(.ql-toolbar.ql-snow) {
   border: none;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);

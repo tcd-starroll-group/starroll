@@ -6,7 +6,7 @@ import '../assets/styles/main.css';
 
 const router = useRouter();
 
-// 核心功能列表数据
+
 const features = [
   {
     id: 'ar',
