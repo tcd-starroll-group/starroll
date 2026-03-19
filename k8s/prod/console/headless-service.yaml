@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: console-headless-service
+  namespace: starroll
+spec:
+  selector:
+    app: console
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 8000
+  type: ClusterIP
+  clusterIP: None

@@ -74,6 +74,10 @@ class ConnectionManager:
                     self._pubsub_listener = RedisPubSubListener(
                         get_redis_client())
 
+                if not self._pubsub_listener.has_subscriptions():
+                    await asyncio.sleep(self._pubsub_retry_interval_seconds)
+                    continue
+
                 loop = asyncio.get_running_loop()
 
                 def _message_handler(channel: str, message: str) -> None:
@@ -81,10 +85,11 @@ class ConnectionManager:
                         self._handle_pubsub_message(channel, message), loop)
 
                 await asyncio.to_thread(self._pubsub_listener.listen, _message_handler)
-                print(
-                    "Redis Pub/Sub listener returned unexpectedly; "
-                    f"retrying in {self._pubsub_retry_interval_seconds}s..."
-                )
+                if self._pubsub_listener.has_subscriptions():
+                    print(
+                        "Redis Pub/Sub listener returned unexpectedly; "
+                        f"retrying in {self._pubsub_retry_interval_seconds}s..."
+                    )
             except asyncio.CancelledError:
                 raise
             except Exception as exc:
@@ -164,9 +169,10 @@ class ConnectionManager:
             self._pubsub_listener.unsubscribe([old_channel_to_unsubscribe])
 
         if channel_to_subscribe is not None:
+            if self._pubsub_listener is None:
+                self._pubsub_listener = RedisPubSubListener(get_redis_client())
+            self._pubsub_listener.subscribe([channel_to_subscribe])
             self._ensure_pubsub_listener_started()
-            if self._pubsub_listener is not None:
-                self._pubsub_listener.subscribe([channel_to_subscribe])
 
     async def exit_room(self, user_id: str) -> None:
         channel_to_unsubscribe: str | None = None

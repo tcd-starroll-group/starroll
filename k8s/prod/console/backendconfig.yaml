@@ -10,3 +10,7 @@ spec:
     port: 8000
     checkIntervalSec: 10
     timeoutSec: 5
+  timeoutSec: 3600
+  sessionAffinity:
+    affinityType: GENERATED_COOKIE
+    affinityCookieTtlSec: 86400

@@ -494,6 +494,10 @@ class RedisPubSubListener:
         except Exception as e:
             raise Exception(f"Error in listen: {e}")
 
+    def has_subscriptions(self) -> bool:
+        """Check whether listener currently has any active subscriptions."""
+        return bool(self.subscribed_channels or self.subscribed_patterns)
+
     def unsubscribe(self, channels: List[str]) -> None:
         """Unsubscribe from channels.
 
