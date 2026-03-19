@@ -132,3 +132,12 @@ class Settings:
         if not self.kafka_bootstrap_servers:
             raise ValueError(
                 "Missing required environment variable: KAFKA_BOOTSTRAP_SERVERS")
+
+        pod_name = os.getenv("POD_NAME", "")
+        if pod_name != "":
+            ordinal_str = pod_name.rsplit("-", 1)[-1]
+            if not ordinal_str.isdigit():
+                raise ValueError(f"Invalid POD_NAME ordinal: {pod_name}")
+
+            self.worker_id = int(ordinal_str)
+            print(f"get worker id from pod name, {self.worker_id}")
