@@ -53,10 +53,17 @@ kubectl apply -f k8s/prod/redis/pvc.yaml
 kubectl apply -f k8s/prod/redis/service.yaml
 kubectl apply -f k8s/prod/redis/deployment.yaml
 
+kubectl apply -f k8s/prod/kafka/pvc.yaml
+kubectl apply -f k8s/prod/kafka/service.yaml
+kubectl apply -f k8s/prod/kafka/deployment.yaml
+
+kubectl apply -f k8s/prod/consumer/deployment.yaml
+
 kubectl apply -f k8s/prod/config/secret.yaml
 kubectl apply -f k8s/prod/console/backendconfig.yaml
 kubectl apply -f k8s/prod/console/service.yaml
-kubectl apply -f k8s/prod/console/deployment.yaml
+kubectl apply -f k8s/prod/console/headless-service.yaml
+kubectl apply -f k8s/prod/console/statefulset.yaml
 
 kubectl apply -f k8s/prod/cronjob/deployment.yaml
 

@@ -7,7 +7,10 @@
 Name | Type
 ------------ | -------------
 `blogID` | string
+<<<<<<< HEAD
 `userCredentials` | [UserCredentials](UserCredentials.md)
+=======
+>>>>>>> main
 
 ## Example
 
@@ -17,7 +20,10 @@ import type { ApiViewBlogPostRequest } from ''
 // TODO: Update the object below with actual values
 const example = {
   "blogID": null,
+<<<<<<< HEAD
   "userCredentials": null,
+=======
+>>>>>>> main
 } satisfies ApiViewBlogPostRequest
 
 console.log(example)

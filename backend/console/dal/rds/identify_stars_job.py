@@ -120,3 +120,11 @@ class IdentifyStarsJob(Base):
             db.commit()
             return True
         return False
+    
+    @classmethod
+    def count_all_time_scans(cls, db_session, user_id: int) -> int:
+        """Counts every scan a user has ever submitted (excluding deleted ones)."""
+        return db_session.query(cls).filter(
+            cls.user_id == user_id,
+            cls.is_deleted == 0
+        ).count()

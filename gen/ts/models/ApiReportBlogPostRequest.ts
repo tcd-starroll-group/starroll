@@ -13,6 +13,7 @@
  */
 
 import { mapValues } from '../runtime';
+<<<<<<< HEAD
 import type { UserCredentials } from './UserCredentials';
 import {
     UserCredentialsFromJSON,
@@ -21,6 +22,8 @@ import {
     UserCredentialsToJSONTyped,
 } from './UserCredentials';
 
+=======
+>>>>>>> main
 /**
  * 
  * @export
@@ -29,6 +32,7 @@ import {
 export interface ApiReportBlogPostRequest {
     /**
      * 
+<<<<<<< HEAD
      * @type {UserCredentials}
      * @memberof ApiReportBlogPostRequest
      */
@@ -39,6 +43,12 @@ export interface ApiReportBlogPostRequest {
      * @memberof ApiReportBlogPostRequest
      */
     blogID?: string;
+=======
+     * @type {string}
+     * @memberof ApiReportBlogPostRequest
+     */
+    blogID: string;
+>>>>>>> main
     /**
      * Reason for reporting the blog
      * @type {string}
@@ -51,6 +61,10 @@ export interface ApiReportBlogPostRequest {
  * Check if a given object implements the ApiReportBlogPostRequest interface.
  */
 export function instanceOfApiReportBlogPostRequest(value: object): value is ApiReportBlogPostRequest {
+<<<<<<< HEAD
+=======
+    if (!('blogID' in value) || value['blogID'] === undefined) return false;
+>>>>>>> main
     return true;
 }
 
@@ -64,8 +78,12 @@ export function ApiReportBlogPostRequestFromJSONTyped(json: any, ignoreDiscrimin
     }
     return {
         
+<<<<<<< HEAD
         'userCredentials': json['userCredentials'] == null ? undefined : UserCredentialsFromJSON(json['userCredentials']),
         'blogID': json['blogID'] == null ? undefined : json['blogID'],
+=======
+        'blogID': json['blogID'],
+>>>>>>> main
         'reason': json['reason'] == null ? undefined : json['reason'],
     };
 }
@@ -81,7 +99,10 @@ export function ApiReportBlogPostRequestToJSONTyped(value?: ApiReportBlogPostReq
 
     return {
         
+<<<<<<< HEAD
         'userCredentials': UserCredentialsToJSON(value['userCredentials']),
+=======
+>>>>>>> main
         'blogID': value['blogID'],
         'reason': value['reason'],
     };

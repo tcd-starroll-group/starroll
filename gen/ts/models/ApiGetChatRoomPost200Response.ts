@@ -21,16 +21,16 @@ import { mapValues } from '../runtime';
 export interface ApiGetChatRoomPost200Response {
     /**
      * 
-     * @type {boolean}
-     * @memberof ApiGetChatRoomPost200Response
-     */
-    status?: boolean;
-    /**
-     * 
      * @type {string}
      * @memberof ApiGetChatRoomPost200Response
      */
     message?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ApiGetChatRoomPost200Response
+     */
+    status?: boolean;
 }
 
 /**
@@ -50,8 +50,8 @@ export function ApiGetChatRoomPost200ResponseFromJSONTyped(json: any, ignoreDisc
     }
     return {
         
-        'status': json['status'] == null ? undefined : json['status'],
         'message': json['message'] == null ? undefined : json['message'],
+        'status': json['status'] == null ? undefined : json['status'],
     };
 }
 
@@ -66,8 +66,8 @@ export function ApiGetChatRoomPost200ResponseToJSONTyped(value?: ApiGetChatRoomP
 
     return {
         
-        'status': value['status'],
         'message': value['message'],
+        'status': value['status'],
     };
 }
 

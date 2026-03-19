@@ -6,7 +6,6 @@
 
 Name | Type
 ------------ | -------------
-`userCredentials` | [UserCredentials](UserCredentials.md)
 `hIP` | string
 `title` | string
 `imageURLList` | Array&lt;string&gt;
@@ -19,7 +18,6 @@ import type { ApiCreateBlogPostRequest } from ''
 
 // TODO: Update the object below with actual values
 const example = {
-  "userCredentials": null,
   "hIP": null,
   "title": null,
   "imageURLList": null,

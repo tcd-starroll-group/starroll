@@ -12,6 +12,9 @@ class Settings:
     # Application Environment
     app_env: str = os.getenv("APP_ENV", app_env_const.UT)
 
+    # worker id, used by snowflake id
+    worker_id: int = os.getenv("WORKER_ID", "0")
+
     # Database Configuration
     db_user: str = os.getenv("MYSQL_USER")
     db_password: str = os.getenv("MYSQL_PASSWORD")
@@ -28,8 +31,19 @@ class Settings:
     minio_endpoint: str = os.getenv("MINIO_ENDPOINT")
     minio_access_key: str = os.getenv("MINIO_ACCESS_KEY")
     minio_secret_key: str = os.getenv("MINIO_SECRET_KEY")
-    
 
+    # Kafka Configuration
+    kafka_bootstrap_servers: str = os.getenv(
+        "KAFKA_BOOTSTRAP_SERVERS", "localhost:9092"
+    )
+    kafka_client_id: str = os.getenv("KAFKA_CLIENT_ID", "starroll-console")
+    kafka_security_protocol: str = os.getenv(
+        "KAFKA_SECURITY_PROTOCOL", "PLAINTEXT")
+    kafka_sasl_mechanism: str = os.getenv("KAFKA_SASL_MECHANISM")
+    kafka_sasl_username: str = os.getenv("KAFKA_SASL_USERNAME")
+    kafka_sasl_password: str = os.getenv("KAFKA_SASL_PASSWORD")
+    kafka_auto_offset_reset: str = os.getenv(
+        "KAFKA_AUTO_OFFSET_RESET", "earliest")
     # Astronomy Net Configuration
     astronomy_net_endpoint: str = os.getenv(
         "ASTRONOMY_NET_ENDPOINT", "http://127.0.0.1:8001")
@@ -68,6 +82,24 @@ class Settings:
             f"@{self.db_host}:{self.db_port}/{self.db_name}"
         )
 
+    @property
+    def kafka_common_config(self) -> dict:
+        """Build shared Kafka client configuration."""
+        config = {
+            "bootstrap.servers": self.kafka_bootstrap_servers,
+            "client.id": self.kafka_client_id,
+            "security.protocol": self.kafka_security_protocol,
+        }
+
+        if self.kafka_sasl_mechanism:
+            config["sasl.mechanism"] = self.kafka_sasl_mechanism
+        if self.kafka_sasl_username:
+            config["sasl.username"] = self.kafka_sasl_username
+        if self.kafka_sasl_password:
+            config["sasl.password"] = self.kafka_sasl_password
+
+        return config
+
     def __init__(self):
         """Validate that all required settings are loaded."""
         # Validate app_env
@@ -96,3 +128,16 @@ class Settings:
                 raise ValueError(
                     f"defualt jwt secret can not be used in prod environment"
                 )
+
+        if not self.kafka_bootstrap_servers:
+            raise ValueError(
+                "Missing required environment variable: KAFKA_BOOTSTRAP_SERVERS")
+
+        pod_name = os.getenv("POD_NAME", "")
+        if pod_name != "":
+            ordinal_str = pod_name.rsplit("-", 1)[-1]
+            if not ordinal_str.isdigit():
+                raise ValueError(f"Invalid POD_NAME ordinal: {pod_name}")
+
+            self.worker_id = int(ordinal_str)
+            print(f"get worker id from pod name, {self.worker_id}")

@@ -7,8 +7,8 @@ General error response
 
 Name | Type
 ------------ | -------------
-`code` | string
 `message` | string
+`code` | string
 
 ## Example
 
@@ -17,8 +17,8 @@ import type { ErrorResponse } from ''
 
 // TODO: Update the object below with actual values
 const example = {
+  "message": Operation successful,
   "code": AUTH_001,
-  "message": Invalid username or password,
 } satisfies ErrorResponse
 
 console.log(example)

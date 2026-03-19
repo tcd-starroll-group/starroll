@@ -22,7 +22,10 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+<<<<<<< HEAD
 from openapi_server.models.user_credentials import UserCredentials
+=======
+>>>>>>> main
 try:
     from typing import Self
 except ImportError:
@@ -32,10 +35,16 @@ class ApiReportBlogPostRequest(BaseModel):
     """
     ApiReportBlogPostRequest
     """ # noqa: E501
+<<<<<<< HEAD
     user_credentials: Optional[UserCredentials] = Field(default=None, alias="userCredentials")
     blog_id: Optional[StrictStr] = Field(default=None, alias="blogID")
     reason: Optional[StrictStr] = Field(default=None, description="Reason for reporting the blog")
     __properties: ClassVar[List[str]] = ["userCredentials", "blogID", "reason"]
+=======
+    blog_id: StrictStr = Field(alias="blogID")
+    reason: Optional[StrictStr] = Field(default=None, description="Reason for reporting the blog")
+    __properties: ClassVar[List[str]] = ["blogID", "reason"]
+>>>>>>> main
 
     model_config = {
         "populate_by_name": True,
@@ -74,9 +83,12 @@ class ApiReportBlogPostRequest(BaseModel):
             },
             exclude_none=True,
         )
+<<<<<<< HEAD
         # override the default output from pydantic by calling `to_dict()` of user_credentials
         if self.user_credentials:
             _dict['userCredentials'] = self.user_credentials.to_dict()
+=======
+>>>>>>> main
         return _dict
 
     @classmethod
@@ -89,7 +101,10 @@ class ApiReportBlogPostRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+<<<<<<< HEAD
             "userCredentials": UserCredentials.from_dict(obj.get("userCredentials")) if obj.get("userCredentials") is not None else None,
+=======
+>>>>>>> main
             "blogID": obj.get("blogID"),
             "reason": obj.get("reason")
         })

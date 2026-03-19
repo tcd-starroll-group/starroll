@@ -51,7 +51,7 @@ from openapi_server.models.api_trigger_starfield_render_post_request import ApiT
 from openapi_server.models.api_username_verify_post200_response import ApiUsernameVerifyPost200Response  # noqa: F401
 from openapi_server.models.api_username_verify_post_request import ApiUsernameVerifyPostRequest  # noqa: F401
 from openapi_server.models.api_verify_user_token_post_request import ApiVerifyUserTokenPostRequest  # noqa: F401
-from openapi_server.models.api_view_blog_post_request import ApiViewBlogPostRequest  # noqa: F401
+from openapi_server.models.api_view_blog_post_request import BlogID  # noqa: F401
 from openapi_server.models.attitude import Attitude  # noqa: F401
 from openapi_server.models.blog import Blog  # noqa: F401
 from openapi_server.models.change_password_request import ChangePasswordRequest  # noqa: F401
@@ -72,14 +72,14 @@ def test_api_display_chat_room_get(client: TestClient):
     headers = {
     }
     # uncomment below to make a request
-    #response = client.request(
+    # response = client.request(
     #    "GET",
     #    "/api/displayChatRoom",
     #    headers=headers,
-    #)
+    # )
 
     # uncomment below to assert the status code of the HTTP response
-    #assert response.status_code == 200
+    # assert response.status_code == 200
 
 
 def test_api_exit_chat_room_post(client: TestClient):
@@ -92,15 +92,15 @@ def test_api_exit_chat_room_post(client: TestClient):
     headers = {
     }
     # uncomment below to make a request
-    #response = client.request(
+    # response = client.request(
     #    "POST",
     #    "/api/exitChatRoom",
     #    headers=headers,
     #    json=api_exit_chat_room_post_request,
-    #)
+    # )
 
     # uncomment below to assert the status code of the HTTP response
-    #assert response.status_code == 200
+    # assert response.status_code == 200
 
 
 def test_api_list_blogs_post(client: TestClient):
@@ -113,15 +113,15 @@ def test_api_list_blogs_post(client: TestClient):
     headers = {
     }
     # uncomment below to make a request
-    #response = client.request(
+    # response = client.request(
     #    "POST",
     #    "/api/listBlogs",
     #    headers=headers,
     #    json=api_list_blogs_post_request,
-    #)
+    # )
 
     # uncomment below to assert the status code of the HTTP response
-    #assert response.status_code == 200
+    # assert response.status_code == 200
 
 
 def test_api_view_blog_post(client: TestClient):
@@ -129,20 +129,20 @@ def test_api_view_blog_post(client: TestClient):
 
     Details of one blog
     """
-    api_view_blog_post_request = openapi_server.ApiViewBlogPostRequest()
+    api_view_blog_post_request = openapi_server.BlogID()
 
     headers = {
     }
     # uncomment below to make a request
-    #response = client.request(
+    # response = client.request(
     #    "POST",
     #    "/api/viewBlog",
     #    headers=headers,
     #    json=api_view_blog_post_request,
-    #)
+    # )
 
     # uncomment below to assert the status code of the HTTP response
-    #assert response.status_code == 200
+    # assert response.status_code == 200
 
 
 def test_api_create_blog_post(client: TestClient):
@@ -155,15 +155,15 @@ def test_api_create_blog_post(client: TestClient):
     headers = {
     }
     # uncomment below to make a request
-    #response = client.request(
+    # response = client.request(
     #    "POST",
     #    "/api/createBlog",
     #    headers=headers,
     #    json=api_create_blog_post_request,
-    #)
+    # )
 
     # uncomment below to assert the status code of the HTTP response
-    #assert response.status_code == 200
+    # assert response.status_code == 200
 
 
 def test_api_get_saved_blogs_post(client: TestClient):
@@ -176,15 +176,15 @@ def test_api_get_saved_blogs_post(client: TestClient):
     headers = {
     }
     # uncomment below to make a request
-    #response = client.request(
+    # response = client.request(
     #    "POST",
     #    "/api/getSavedBlogs",
     #    headers=headers,
     #    json=api_get_saved_blogs_post_request,
-    #)
+    # )
 
     # uncomment below to assert the status code of the HTTP response
-    #assert response.status_code == 200
+    # assert response.status_code == 200
 
 
 def test_api_get_location_post(client: TestClient):
@@ -196,14 +196,14 @@ def test_api_get_location_post(client: TestClient):
     headers = {
     }
     # uncomment below to make a request
-    #response = client.request(
+    # response = client.request(
     #    "POST",
     #    "/api/getLocation",
     #    headers=headers,
-    #)
+    # )
 
     # uncomment below to assert the status code of the HTTP response
-    #assert response.status_code == 200
+    # assert response.status_code == 200
 
 
 def test_api_get_attitude_post(client: TestClient):
@@ -215,14 +215,14 @@ def test_api_get_attitude_post(client: TestClient):
     headers = {
     }
     # uncomment below to make a request
-    #response = client.request(
+    # response = client.request(
     #    "POST",
     #    "/api/getAttitude",
     #    headers=headers,
-    #)
+    # )
 
     # uncomment below to assert the status code of the HTTP response
-    #assert response.status_code == 200
+    # assert response.status_code == 200
 
 
 def test_api_get_camera_data_post(client: TestClient):
@@ -234,14 +234,14 @@ def test_api_get_camera_data_post(client: TestClient):
     headers = {
     }
     # uncomment below to make a request
-    #response = client.request(
+    # response = client.request(
     #    "POST",
     #    "/api/getCameraData",
     #    headers=headers,
-    #)
+    # )
 
     # uncomment below to assert the status code of the HTTP response
-    #assert response.status_code == 200
+    # assert response.status_code == 200
 
 
 def test_api_get_star_catalog_post(client: TestClient):
@@ -253,14 +253,14 @@ def test_api_get_star_catalog_post(client: TestClient):
     headers = {
     }
     # uncomment below to make a request
-    #response = client.request(
+    # response = client.request(
     #    "POST",
     #    "/api/getStarCatalog",
     #    headers=headers,
-    #)
+    # )
 
     # uncomment below to assert the status code of the HTTP response
-    #assert response.status_code == 200
+    # assert response.status_code == 200
 
 
 def test_api_calculate_star_coordinates_post(client: TestClient):
@@ -273,15 +273,15 @@ def test_api_calculate_star_coordinates_post(client: TestClient):
     headers = {
     }
     # uncomment below to make a request
-    #response = client.request(
+    # response = client.request(
     #    "POST",
     #    "/api/calculateStarCoordinates",
     #    headers=headers,
     #    json=api_calculate_star_coordinates_post_request,
-    #)
+    # )
 
     # uncomment below to assert the status code of the HTTP response
-    #assert response.status_code == 200
+    # assert response.status_code == 200
 
 
 def test_api_trigger_starfield_render_post(client: TestClient):
@@ -294,15 +294,15 @@ def test_api_trigger_starfield_render_post(client: TestClient):
     headers = {
     }
     # uncomment below to make a request
-    #response = client.request(
+    # response = client.request(
     #    "POST",
     #    "/api/triggerStarfieldRender",
     #    headers=headers,
     #    json=api_trigger_starfield_render_post_request,
-    #)
+    # )
 
     # uncomment below to assert the status code of the HTTP response
-    #assert response.status_code == 200
+    # assert response.status_code == 200
 
 
 def test_api_request_stargazing_time_post(client: TestClient):
@@ -315,15 +315,15 @@ def test_api_request_stargazing_time_post(client: TestClient):
     headers = {
     }
     # uncomment below to make a request
-    #response = client.request(
+    # response = client.request(
     #    "POST",
     #    "/api/requestStargazingTime",
     #    headers=headers,
     #    json=api_request_stargazing_time_post_request,
-    #)
+    # )
 
     # uncomment below to assert the status code of the HTTP response
-    #assert response.status_code == 200
+    # assert response.status_code == 200
 
 
 def test_api_request_accuracy_adjust_post(client: TestClient):
@@ -336,15 +336,15 @@ def test_api_request_accuracy_adjust_post(client: TestClient):
     headers = {
     }
     # uncomment below to make a request
-    #response = client.request(
+    # response = client.request(
     #    "POST",
     #    "/api/requestAccuracyAdjust",
     #    headers=headers,
     #    json=api_request_accuracy_adjust_post_request,
-    #)
+    # )
 
     # uncomment below to assert the status code of the HTTP response
-    #assert response.status_code == 200
+    # assert response.status_code == 200
 
 
 def test_api_display_starfield_post(client: TestClient):
@@ -357,15 +357,15 @@ def test_api_display_starfield_post(client: TestClient):
     headers = {
     }
     # uncomment below to make a request
-    #response = client.request(
+    # response = client.request(
     #    "POST",
     #    "/api/displayStarfield",
     #    headers=headers,
     #    json=api_display_starfield_post_request,
-    #)
+    # )
 
     # uncomment below to assert the status code of the HTTP response
-    #assert response.status_code == 200
+    # assert response.status_code == 200
 
 
 def test_api_display_star_details_post(client: TestClient):
@@ -378,15 +378,15 @@ def test_api_display_star_details_post(client: TestClient):
     headers = {
     }
     # uncomment below to make a request
-    #response = client.request(
+    # response = client.request(
     #    "POST",
     #    "/api/displayStarDetails",
     #    headers=headers,
     #    json=api_display_star_details_post_request,
-    #)
+    # )
 
     # uncomment below to assert the status code of the HTTP response
-    #assert response.status_code == 200
+    # assert response.status_code == 200
 
 
 def test_api_request_save_type_post(client: TestClient):
@@ -398,14 +398,14 @@ def test_api_request_save_type_post(client: TestClient):
     headers = {
     }
     # uncomment below to make a request
-    #response = client.request(
+    # response = client.request(
     #    "POST",
     #    "/api/requestSaveType",
     #    headers=headers,
-    #)
+    # )
 
     # uncomment below to assert the status code of the HTTP response
-    #assert response.status_code == 200
+    # assert response.status_code == 200
 
 
 def test_api_display_save_success_post(client: TestClient):
@@ -418,15 +418,15 @@ def test_api_display_save_success_post(client: TestClient):
     headers = {
     }
     # uncomment below to make a request
-    #response = client.request(
+    # response = client.request(
     #    "POST",
     #    "/api/displaySaveSuccess",
     #    headers=headers,
     #    json=api_display_save_success_post_request,
-    #)
+    # )
 
     # uncomment below to assert the status code of the HTTP response
-    #assert response.status_code == 200
+    # assert response.status_code == 200
 
 
 def test_api_elimilate_errors_post(client: TestClient):
@@ -439,15 +439,15 @@ def test_api_elimilate_errors_post(client: TestClient):
     headers = {
     }
     # uncomment below to make a request
-    #response = client.request(
+    # response = client.request(
     #    "POST",
     #    "/api/elimilateErrors",
     #    headers=headers,
     #    json=api_elimilate_errors_post_request,
-    #)
+    # )
 
     # uncomment below to assert the status code of the HTTP response
-    #assert response.status_code == 200
+    # assert response.status_code == 200
 
 
 def test_api_get_chat_room_post(client: TestClient):
@@ -460,15 +460,15 @@ def test_api_get_chat_room_post(client: TestClient):
     headers = {
     }
     # uncomment below to make a request
-    #response = client.request(
+    # response = client.request(
     #    "POST",
     #    "/api/getChatRoom",
     #    headers=headers,
     #    json=api_get_chat_room_post_request,
-    #)
+    # )
 
     # uncomment below to assert the status code of the HTTP response
-    #assert response.status_code == 200
+    # assert response.status_code == 200
 
 
 def test_api_get_chat_room_info_post(client: TestClient):
@@ -481,15 +481,15 @@ def test_api_get_chat_room_info_post(client: TestClient):
     headers = {
     }
     # uncomment below to make a request
-    #response = client.request(
+    # response = client.request(
     #    "POST",
     #    "/api/getChatRoomInfo",
     #    headers=headers,
     #    json=api_get_chat_room_info_post_request,
-    #)
+    # )
 
     # uncomment below to assert the status code of the HTTP response
-    #assert response.status_code == 200
+    # assert response.status_code == 200
 
 
 def test_api_get_message_post(client: TestClient):
@@ -502,15 +502,15 @@ def test_api_get_message_post(client: TestClient):
     headers = {
     }
     # uncomment below to make a request
-    #response = client.request(
+    # response = client.request(
     #    "POST",
     #    "/api/getMessage",
     #    headers=headers,
     #    json=api_get_message_post_request,
-    #)
+    # )
 
     # uncomment below to assert the status code of the HTTP response
-    #assert response.status_code == 200
+    # assert response.status_code == 200
 
 
 def test_api_send_message_post(client: TestClient):
@@ -523,15 +523,15 @@ def test_api_send_message_post(client: TestClient):
     headers = {
     }
     # uncomment below to make a request
-    #response = client.request(
+    # response = client.request(
     #    "POST",
     #    "/api/sendMessage",
     #    headers=headers,
     #    json=api_send_message_post_request,
-    #)
+    # )
 
     # uncomment below to assert the status code of the HTTP response
-    #assert response.status_code == 200
+    # assert response.status_code == 200
 
 
 def test_api_get_star_details_post(client: TestClient):
@@ -544,15 +544,15 @@ def test_api_get_star_details_post(client: TestClient):
     headers = {
     }
     # uncomment below to make a request
-    #response = client.request(
+    # response = client.request(
     #    "POST",
     #    "/api/getStarDetails",
     #    headers=headers,
     #    json=api_get_star_details_post_request,
-    #)
+    # )
 
     # uncomment below to assert the status code of the HTTP response
-    #assert response.status_code == 200
+    # assert response.status_code == 200
 
 
 def test_api_check_room_status_post(client: TestClient):
@@ -565,15 +565,15 @@ def test_api_check_room_status_post(client: TestClient):
     headers = {
     }
     # uncomment below to make a request
-    #response = client.request(
+    # response = client.request(
     #    "POST",
     #    "/api/checkRoomStatus",
     #    headers=headers,
     #    json=api_check_room_status_post_request,
-    #)
+    # )
 
     # uncomment below to assert the status code of the HTTP response
-    #assert response.status_code == 200
+    # assert response.status_code == 200
 
 
 def test_api_set_user_post(client: TestClient):
@@ -581,20 +581,21 @@ def test_api_set_user_post(client: TestClient):
 
     Set/modify username and password
     """
-    change_password_request = {"password0":"OldPa$$w0rd","password1":"NewStr0ngPa$$w0rd!","username":"user123"}
+    change_password_request = {"password0": "OldPa$$w0rd",
+                               "password1": "NewStr0ngPa$$w0rd!", "username": "user123"}
 
     headers = {
     }
     # uncomment below to make a request
-    #response = client.request(
+    # response = client.request(
     #    "POST",
     #    "/api/setUser",
     #    headers=headers,
     #    json=change_password_request,
-    #)
+    # )
 
     # uncomment below to assert the status code of the HTTP response
-    #assert response.status_code == 200
+    # assert response.status_code == 200
 
 
 def test_api_user_login_post(client: TestClient):
@@ -602,20 +603,20 @@ def test_api_user_login_post(client: TestClient):
 
     User login
     """
-    user_auth = {"password":"Str0ngPa$$w0rd!","username":"user123"}
+    user_auth = {"password": "Str0ngPa$$w0rd!", "username": "user123"}
 
     headers = {
     }
     # uncomment below to make a request
-    #response = client.request(
+    # response = client.request(
     #    "POST",
     #    "/api/userLogin",
     #    headers=headers,
     #    json=user_auth,
-    #)
+    # )
 
     # uncomment below to assert the status code of the HTTP response
-    #assert response.status_code == 200
+    # assert response.status_code == 200
 
 
 def test_api_user_reg_post(client: TestClient):
@@ -623,20 +624,20 @@ def test_api_user_reg_post(client: TestClient):
 
     User register
     """
-    user_auth = {"password":"Str0ngPa$$w0rd!","username":"user123"}
+    user_auth = {"password": "Str0ngPa$$w0rd!", "username": "user123"}
 
     headers = {
     }
     # uncomment below to make a request
-    #response = client.request(
+    # response = client.request(
     #    "POST",
     #    "/api/userReg",
     #    headers=headers,
     #    json=user_auth,
-    #)
+    # )
 
     # uncomment below to assert the status code of the HTTP response
-    #assert response.status_code == 200
+    # assert response.status_code == 200
 
 
 def test_api_username_verify_post(client: TestClient):
@@ -649,15 +650,15 @@ def test_api_username_verify_post(client: TestClient):
     headers = {
     }
     # uncomment below to make a request
-    #response = client.request(
+    # response = client.request(
     #    "POST",
     #    "/api/usernameVerify",
     #    headers=headers,
     #    json=api_username_verify_post_request,
-    #)
+    # )
 
     # uncomment below to assert the status code of the HTTP response
-    #assert response.status_code == 200
+    # assert response.status_code == 200
 
 
 def test_api_verify_user_token_post(client: TestClient):
@@ -670,15 +671,15 @@ def test_api_verify_user_token_post(client: TestClient):
     headers = {
     }
     # uncomment below to make a request
-    #response = client.request(
+    # response = client.request(
     #    "POST",
     #    "/api/verifyUserToken",
     #    headers=headers,
     #    json=api_verify_user_token_post_request,
-    #)
+    # )
 
     # uncomment below to assert the status code of the HTTP response
-    #assert response.status_code == 200
+    # assert response.status_code == 200
 
 
 def test_api_delete_blog_post(client: TestClient):
@@ -691,15 +692,15 @@ def test_api_delete_blog_post(client: TestClient):
     headers = {
     }
     # uncomment below to make a request
-    #response = client.request(
+    # response = client.request(
     #    "POST",
     #    "/api/deleteBlog",
     #    headers=headers,
     #    json=api_get_saved_blogs_post_request,
-    #)
+    # )
 
     # uncomment below to assert the status code of the HTTP response
-    #assert response.status_code == 200
+    # assert response.status_code == 200
 
 
 def test_api_like_blog_post(client: TestClient):
@@ -712,15 +713,15 @@ def test_api_like_blog_post(client: TestClient):
     headers = {
     }
     # uncomment below to make a request
-    #response = client.request(
+    # response = client.request(
     #    "POST",
     #    "/api/likeBlog",
     #    headers=headers,
     #    json=api_get_saved_blogs_post_request,
-    #)
+    # )
 
     # uncomment below to assert the status code of the HTTP response
-    #assert response.status_code == 200
+    # assert response.status_code == 200
 
 
 def test_api_comment_blog_post(client: TestClient):
@@ -733,15 +734,15 @@ def test_api_comment_blog_post(client: TestClient):
     headers = {
     }
     # uncomment below to make a request
-    #response = client.request(
+    # response = client.request(
     #    "POST",
     #    "/api/commentBlog",
     #    headers=headers,
     #    json=api_comment_blog_post_request,
-    #)
+    # )
 
     # uncomment below to assert the status code of the HTTP response
-    #assert response.status_code == 200
+    # assert response.status_code == 200
 
 
 def test_api_delete_comment_post(client: TestClient):
@@ -754,15 +755,15 @@ def test_api_delete_comment_post(client: TestClient):
     headers = {
     }
     # uncomment below to make a request
-    #response = client.request(
+    # response = client.request(
     #    "POST",
     #    "/api/deleteComment",
     #    headers=headers,
     #    json=api_delete_comment_post_request,
-    #)
+    # )
 
     # uncomment below to assert the status code of the HTTP response
-    #assert response.status_code == 200
+    # assert response.status_code == 200
 
 
 def test_api_save_blog_post(client: TestClient):
@@ -775,15 +776,15 @@ def test_api_save_blog_post(client: TestClient):
     headers = {
     }
     # uncomment below to make a request
-    #response = client.request(
+    # response = client.request(
     #    "POST",
     #    "/api/saveBlog",
     #    headers=headers,
     #    json=api_get_saved_blogs_post_request,
-    #)
+    # )
 
     # uncomment below to assert the status code of the HTTP response
-    #assert response.status_code == 200
+    # assert response.status_code == 200
 
 
 def test_api_report_blog_post(client: TestClient):
@@ -796,13 +797,12 @@ def test_api_report_blog_post(client: TestClient):
     headers = {
     }
     # uncomment below to make a request
-    #response = client.request(
+    # response = client.request(
     #    "POST",
     #    "/api/reportBlog",
     #    headers=headers,
     #    json=api_get_saved_blogs_post_request,
-    #)
+    # )
 
     # uncomment below to assert the status code of the HTTP response
-    #assert response.status_code == 200
-
+    # assert response.status_code == 200

@@ -28,6 +28,7 @@ import {
  */
 export interface UpdateLastGpsRequest {
     /**
+<<<<<<< HEAD
      * Username
      * @type {string}
      * @memberof UpdateLastGpsRequest
@@ -40,6 +41,8 @@ export interface UpdateLastGpsRequest {
      */
     token: string;
     /**
+=======
+>>>>>>> main
      * 
      * @type {GPS}
      * @memberof UpdateLastGpsRequest
@@ -51,8 +54,11 @@ export interface UpdateLastGpsRequest {
  * Check if a given object implements the UpdateLastGpsRequest interface.
  */
 export function instanceOfUpdateLastGpsRequest(value: object): value is UpdateLastGpsRequest {
+<<<<<<< HEAD
     if (!('username' in value) || value['username'] === undefined) return false;
     if (!('token' in value) || value['token'] === undefined) return false;
+=======
+>>>>>>> main
     if (!('gps' in value) || value['gps'] === undefined) return false;
     return true;
 }
@@ -67,8 +73,11 @@ export function UpdateLastGpsRequestFromJSONTyped(json: any, ignoreDiscriminator
     }
     return {
         
+<<<<<<< HEAD
         'username': json['username'],
         'token': json['token'],
+=======
+>>>>>>> main
         'gps': GPSFromJSON(json['gps']),
     };
 }
@@ -84,8 +93,11 @@ export function UpdateLastGpsRequestToJSONTyped(value?: UpdateLastGpsRequest | n
 
     return {
         
+<<<<<<< HEAD
         'username': value['username'],
         'token': value['token'],
+=======
+>>>>>>> main
         'gps': GPSToJSON(value['gps']),
     };
 }

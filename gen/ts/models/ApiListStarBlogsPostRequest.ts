@@ -20,6 +20,33 @@ import { mapValues } from '../runtime';
  */
 export interface ApiListStarBlogsPostRequest {
     /**
+<<<<<<< HEAD
+=======
+     * Maximum number of items to return
+     * @type {number}
+     * @memberof ApiListStarBlogsPostRequest
+     */
+    limit?: number;
+    /**
+     * Number of items to skip (for pagination)
+     * @type {number}
+     * @memberof ApiListStarBlogsPostRequest
+     */
+    offset?: number;
+    /**
+     * Field name to sort by
+     * @type {string}
+     * @memberof ApiListStarBlogsPostRequest
+     */
+    sort?: string;
+    /**
+     * Sort order (ascending or descending)
+     * @type {string}
+     * @memberof ApiListStarBlogsPostRequest
+     */
+    order?: ApiListStarBlogsPostRequestOrderEnum;
+    /**
+>>>>>>> main
      * 
      * @type {string}
      * @memberof ApiListStarBlogsPostRequest
@@ -27,6 +54,20 @@ export interface ApiListStarBlogsPostRequest {
     hIP?: string;
 }
 
+<<<<<<< HEAD
+=======
+
+/**
+ * @export
+ */
+export const ApiListStarBlogsPostRequestOrderEnum = {
+    Asc: 'asc',
+    Desc: 'desc'
+} as const;
+export type ApiListStarBlogsPostRequestOrderEnum = typeof ApiListStarBlogsPostRequestOrderEnum[keyof typeof ApiListStarBlogsPostRequestOrderEnum];
+
+
+>>>>>>> main
 /**
  * Check if a given object implements the ApiListStarBlogsPostRequest interface.
  */
@@ -44,6 +85,13 @@ export function ApiListStarBlogsPostRequestFromJSONTyped(json: any, ignoreDiscri
     }
     return {
         
+<<<<<<< HEAD
+=======
+        'limit': json['limit'] == null ? undefined : json['limit'],
+        'offset': json['offset'] == null ? undefined : json['offset'],
+        'sort': json['sort'] == null ? undefined : json['sort'],
+        'order': json['order'] == null ? undefined : json['order'],
+>>>>>>> main
         'hIP': json['HIP'] == null ? undefined : json['HIP'],
     };
 }
@@ -59,6 +107,13 @@ export function ApiListStarBlogsPostRequestToJSONTyped(value?: ApiListStarBlogsP
 
     return {
         
+<<<<<<< HEAD
+=======
+        'limit': value['limit'],
+        'offset': value['offset'],
+        'sort': value['sort'],
+        'order': value['order'],
+>>>>>>> main
         'HIP': value['hIP'],
     };
 }

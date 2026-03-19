@@ -20,7 +20,11 @@ import json
 
 
 
+<<<<<<< HEAD
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
+=======
+from pydantic import BaseModel, ConfigDict
+>>>>>>> main
 from typing import Any, ClassVar, Dict, List
 from openapi_server.models.gps import GPS
 try:
@@ -32,10 +36,15 @@ class UpdateLastGpsRequest(BaseModel):
     """
     UpdateLastGpsRequest
     """ # noqa: E501
+<<<<<<< HEAD
     username: StrictStr = Field(description="Username")
     token: StrictStr = Field(description="The verified access token.")
     gps: GPS
     __properties: ClassVar[List[str]] = ["username", "token", "gps"]
+=======
+    gps: GPS
+    __properties: ClassVar[List[str]] = ["gps"]
+>>>>>>> main
 
     model_config = {
         "populate_by_name": True,
@@ -89,8 +98,11 @@ class UpdateLastGpsRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+<<<<<<< HEAD
             "username": obj.get("username"),
             "token": obj.get("token"),
+=======
+>>>>>>> main
             "gps": GPS.from_dict(obj.get("gps")) if obj.get("gps") is not None else None
         })
         return _obj

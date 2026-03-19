@@ -11,8 +11,11 @@ export * from './ApiCreateBlogPost200Response';
 export * from './ApiCreateBlogPostRequest';
 export * from './ApiCreateIdentifyStarsJobPost200Response';
 export * from './ApiCreateIdentifyStarsJobPostRequest';
+<<<<<<< HEAD
 export * from './ApiDeleteBlogPost200Response';
 export * from './ApiDeleteBlogPostRequest';
+=======
+>>>>>>> main
 export * from './ApiDeleteCommentPostRequest';
 export * from './ApiDisplayChatRoomGet200Response';
 export * from './ApiDisplayChatRoomGet200ResponseStyle';
@@ -41,10 +44,14 @@ export * from './ApiGetStarCatalogPost200Response';
 export * from './ApiGetStarDetailsPostRequest';
 export * from './ApiLikeBlogPost200Response';
 export * from './ApiListIdentifyStarsJobsPost200Response';
+<<<<<<< HEAD
 export * from './ApiListIdentifyStarsJobsPostRequest';
 export * from './ApiListStarBlogsPostRequest';
 export * from './ApiListUserBlogsPost200Response';
 export * from './ApiListUserBlogsPostRequest';
+=======
+export * from './ApiListStarBlogsPostRequest';
+>>>>>>> main
 export * from './ApiReportBlogPostRequest';
 export * from './ApiRequestAccuracyAdjustPost200Response';
 export * from './ApiRequestAccuracyAdjustPost200ResponseCurrentAccuracyParams';
@@ -56,23 +63,23 @@ export * from './ApiRequestStargazingTimePost200ResponseOptimalTimeRange';
 export * from './ApiRequestStargazingTimePostRequest';
 export * from './ApiSendMessagePost200Response';
 export * from './ApiSendMessagePostRequest';
-export * from './ApiSetUserPost200Response';
 export * from './ApiTriggerStarfieldRenderPost200Response';
 export * from './ApiTriggerStarfieldRenderPostRequest';
 export * from './ApiTriggerStarfieldRenderPostRequestCorrectedStarCoordinatesInner';
 export * from './ApiTriggerStarfieldRenderPostRequestRenderParams';
 export * from './ApiUpdateLastGpsPost200Response';
 export * from './ApiUserRegPostRequest';
-export * from './ApiUsernameVerifyPost200Response';
 export * from './ApiUsernameVerifyPostRequest';
 export * from './ApiVerifyUserTokenPostRequest';
-export * from './ApiViewBlogPostRequest';
 export * from './Attitude';
 export * from './Blog';
+export * from './BlogID';
 export * from './BlogPreview';
+export * from './BlogsList';
 export * from './CameraMeta';
 export * from './ChangePasswordRequest';
 export * from './CommentItem';
+export * from './CommonMessage';
 export * from './EquatorialCoordinate';
 export * from './ErrorResponse';
 export * from './GPS';
@@ -82,6 +89,7 @@ export * from './IdentifyStarsJobResult';
 export * from './IdentifyStarsJobResultIdentifiedStarsInner';
 export * from './PaginationQuery';
 export * from './ProfileAndToken';
+export * from './ProfileStatsResponse';
 export * from './ResetPasswordRequest';
 export * from './ResetPasswordSendCodeRequest';
 export * from './StarDetails';

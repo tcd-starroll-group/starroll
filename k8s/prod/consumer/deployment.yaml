@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chat-message-consumer
+  namespace: starroll
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: chat-message-consumer
+  template:
+    metadata:
+      labels:
+        app: chat-message-consumer
+    spec:
+      containers:
+        - name: main
+          image: europe-west1-docker.pkg.dev/starroll/console/console:0.1
+          imagePullPolicy: Always
+          command:
+            - "python"
+            - "/app/backend/consumer/chat_message.py"
+          volumeMounts:
+            - name: app-env-file
+              mountPath: /app/.env
+              subPath: .env
+              readOnly: true
+          resources:
+            requests:
+              cpu: "250m"
+              memory: "512Mi"
+            limits:
+              cpu: "250m"
+              memory: "512Mi"
+      volumes:
+        - name: app-env-file
+          secret:
+            secretName: starroll-secret
+            items:
+              - key: .env
+                path: .env

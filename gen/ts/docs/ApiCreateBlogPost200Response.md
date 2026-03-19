@@ -6,8 +6,8 @@
 
 Name | Type
 ------------ | -------------
-`messages` | string
 `blogID` | string
+`messages` | string
 
 ## Example
 
@@ -16,8 +16,8 @@ import type { ApiCreateBlogPost200Response } from ''
 
 // TODO: Update the object below with actual values
 const example = {
-  "messages": null,
   "blogID": null,
+  "messages": null,
 } satisfies ApiCreateBlogPost200Response
 
 console.log(example)

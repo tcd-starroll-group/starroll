@@ -6,10 +6,10 @@
 
 Name | Type
 ------------ | -------------
+`message` | string
 `roomID` | string
 `isJoinable` | boolean
 `status` | string
-`message` | string
 
 ## Example
 
@@ -18,10 +18,10 @@ import type { ApiCheckRoomStatusPost200Response } from ''
 
 // TODO: Update the object below with actual values
 const example = {
+  "message": Operation successful,
   "roomID": null,
   "isJoinable": null,
   "status": null,
-  "message": null,
 } satisfies ApiCheckRoomStatusPost200Response
 
 console.log(example)

@@ -25,8 +25,11 @@ import type {
   ApiCreateBlogPostRequest,
   ApiCreateIdentifyStarsJobPost200Response,
   ApiCreateIdentifyStarsJobPostRequest,
+<<<<<<< HEAD
   ApiDeleteBlogPost200Response,
   ApiDeleteBlogPostRequest,
+=======
+>>>>>>> main
   ApiDeleteCommentPostRequest,
   ApiDisplayChatRoomGet200Response,
   ApiDisplaySaveSuccessPost200Response,
@@ -51,10 +54,14 @@ import type {
   ApiGetStarDetailsPostRequest,
   ApiLikeBlogPost200Response,
   ApiListIdentifyStarsJobsPost200Response,
+<<<<<<< HEAD
   ApiListIdentifyStarsJobsPostRequest,
   ApiListStarBlogsPostRequest,
   ApiListUserBlogsPost200Response,
   ApiListUserBlogsPostRequest,
+=======
+  ApiListStarBlogsPostRequest,
+>>>>>>> main
   ApiReportBlogPostRequest,
   ApiRequestAccuracyAdjustPost200Response,
   ApiRequestAccuracyAdjustPostRequest,
@@ -63,21 +70,23 @@ import type {
   ApiRequestStargazingTimePostRequest,
   ApiSendMessagePost200Response,
   ApiSendMessagePostRequest,
-  ApiSetUserPost200Response,
   ApiTriggerStarfieldRenderPost200Response,
   ApiTriggerStarfieldRenderPostRequest,
   ApiUpdateLastGpsPost200Response,
   ApiUserRegPostRequest,
-  ApiUsernameVerifyPost200Response,
   ApiUsernameVerifyPostRequest,
   ApiVerifyUserTokenPostRequest,
-  ApiViewBlogPostRequest,
   Attitude,
   Blog,
+  BlogID,
+  BlogsList,
   ChangePasswordRequest,
+  CommonMessage,
   ErrorResponse,
   GPS,
+  PaginationQuery,
   ProfileAndToken,
+  ProfileStatsResponse,
   ResetPasswordRequest,
   ResetPasswordSendCodeRequest,
   StarDetails,
@@ -107,10 +116,13 @@ import {
     ApiCreateIdentifyStarsJobPost200ResponseToJSON,
     ApiCreateIdentifyStarsJobPostRequestFromJSON,
     ApiCreateIdentifyStarsJobPostRequestToJSON,
+<<<<<<< HEAD
     ApiDeleteBlogPost200ResponseFromJSON,
     ApiDeleteBlogPost200ResponseToJSON,
     ApiDeleteBlogPostRequestFromJSON,
     ApiDeleteBlogPostRequestToJSON,
+=======
+>>>>>>> main
     ApiDeleteCommentPostRequestFromJSON,
     ApiDeleteCommentPostRequestToJSON,
     ApiDisplayChatRoomGet200ResponseFromJSON,
@@ -159,6 +171,7 @@ import {
     ApiLikeBlogPost200ResponseToJSON,
     ApiListIdentifyStarsJobsPost200ResponseFromJSON,
     ApiListIdentifyStarsJobsPost200ResponseToJSON,
+<<<<<<< HEAD
     ApiListIdentifyStarsJobsPostRequestFromJSON,
     ApiListIdentifyStarsJobsPostRequestToJSON,
     ApiListStarBlogsPostRequestFromJSON,
@@ -167,6 +180,10 @@ import {
     ApiListUserBlogsPost200ResponseToJSON,
     ApiListUserBlogsPostRequestFromJSON,
     ApiListUserBlogsPostRequestToJSON,
+=======
+    ApiListStarBlogsPostRequestFromJSON,
+    ApiListStarBlogsPostRequestToJSON,
+>>>>>>> main
     ApiReportBlogPostRequestFromJSON,
     ApiReportBlogPostRequestToJSON,
     ApiRequestAccuracyAdjustPost200ResponseFromJSON,
@@ -183,8 +200,6 @@ import {
     ApiSendMessagePost200ResponseToJSON,
     ApiSendMessagePostRequestFromJSON,
     ApiSendMessagePostRequestToJSON,
-    ApiSetUserPost200ResponseFromJSON,
-    ApiSetUserPost200ResponseToJSON,
     ApiTriggerStarfieldRenderPost200ResponseFromJSON,
     ApiTriggerStarfieldRenderPost200ResponseToJSON,
     ApiTriggerStarfieldRenderPostRequestFromJSON,
@@ -193,26 +208,32 @@ import {
     ApiUpdateLastGpsPost200ResponseToJSON,
     ApiUserRegPostRequestFromJSON,
     ApiUserRegPostRequestToJSON,
-    ApiUsernameVerifyPost200ResponseFromJSON,
-    ApiUsernameVerifyPost200ResponseToJSON,
     ApiUsernameVerifyPostRequestFromJSON,
     ApiUsernameVerifyPostRequestToJSON,
     ApiVerifyUserTokenPostRequestFromJSON,
     ApiVerifyUserTokenPostRequestToJSON,
-    ApiViewBlogPostRequestFromJSON,
-    ApiViewBlogPostRequestToJSON,
     AttitudeFromJSON,
     AttitudeToJSON,
     BlogFromJSON,
     BlogToJSON,
+    BlogIDFromJSON,
+    BlogIDToJSON,
+    BlogsListFromJSON,
+    BlogsListToJSON,
     ChangePasswordRequestFromJSON,
     ChangePasswordRequestToJSON,
+    CommonMessageFromJSON,
+    CommonMessageToJSON,
     ErrorResponseFromJSON,
     ErrorResponseToJSON,
     GPSFromJSON,
     GPSToJSON,
+    PaginationQueryFromJSON,
+    PaginationQueryToJSON,
     ProfileAndTokenFromJSON,
     ProfileAndTokenToJSON,
+    ProfileStatsResponseFromJSON,
+    ProfileStatsResponseToJSON,
     ResetPasswordRequestFromJSON,
     ResetPasswordRequestToJSON,
     ResetPasswordSendCodeRequestFromJSON,
@@ -230,7 +251,7 @@ import {
 } from '../models/index';
 
 export interface ApiCalculateStarCoordinatesPostOperationRequest {
-    apiCalculateStarCoordinatesPostRequest?: ApiCalculateStarCoordinatesPostRequest;
+    apiCalculateStarCoordinatesPostRequest: ApiCalculateStarCoordinatesPostRequest;
 }
 
 export interface ApiChangePasswordPostRequest {
@@ -238,27 +259,32 @@ export interface ApiChangePasswordPostRequest {
 }
 
 export interface ApiCheckRoomStatusPostOperationRequest {
-    apiCheckRoomStatusPostRequest?: ApiCheckRoomStatusPostRequest;
+    apiCheckRoomStatusPostRequest: ApiCheckRoomStatusPostRequest;
 }
 
 export interface ApiCommentBlogPostOperationRequest {
-    apiCommentBlogPostRequest?: ApiCommentBlogPostRequest;
+    apiCommentBlogPostRequest: ApiCommentBlogPostRequest;
 }
 
 export interface ApiCreateBlogPostOperationRequest {
-    apiCreateBlogPostRequest?: ApiCreateBlogPostRequest;
+    apiCreateBlogPostRequest: ApiCreateBlogPostRequest;
 }
 
 export interface ApiCreateIdentifyStarsJobPostOperationRequest {
     apiCreateIdentifyStarsJobPostRequest: ApiCreateIdentifyStarsJobPostRequest;
 }
 
+<<<<<<< HEAD
 export interface ApiDeleteBlogPostOperationRequest {
     apiDeleteBlogPostRequest?: ApiDeleteBlogPostRequest;
+=======
+export interface ApiDeleteBlogPostRequest {
+    blogID: BlogID;
+>>>>>>> main
 }
 
 export interface ApiDeleteCommentPostOperationRequest {
-    apiDeleteCommentPostRequest?: ApiDeleteCommentPostRequest;
+    apiDeleteCommentPostRequest: ApiDeleteCommentPostRequest;
 }
 
 export interface ApiDeleteUserPostRequest {
@@ -266,15 +292,15 @@ export interface ApiDeleteUserPostRequest {
 }
 
 export interface ApiDisplaySaveSuccessPostOperationRequest {
-    apiDisplaySaveSuccessPostRequest?: ApiDisplaySaveSuccessPostRequest;
+    apiDisplaySaveSuccessPostRequest: ApiDisplaySaveSuccessPostRequest;
 }
 
 export interface ApiDisplayStarDetailsPostOperationRequest {
-    apiDisplayStarDetailsPostRequest?: ApiDisplayStarDetailsPostRequest;
+    apiDisplayStarDetailsPostRequest: ApiDisplayStarDetailsPostRequest;
 }
 
 export interface ApiDisplayStarfieldPostOperationRequest {
-    apiDisplayStarfieldPostRequest?: ApiDisplayStarfieldPostRequest;
+    apiDisplayStarfieldPostRequest: ApiDisplayStarfieldPostRequest;
 }
 
 export interface ApiEditProfilePostRequest {
@@ -282,7 +308,7 @@ export interface ApiEditProfilePostRequest {
 }
 
 export interface ApiElimilateErrorsPostOperationRequest {
-    apiElimilateErrorsPostRequest?: ApiElimilateErrorsPostRequest;
+    apiElimilateErrorsPostRequest: ApiElimilateErrorsPostRequest;
 }
 
 export interface ApiExitChatRoomPostOperationRequest {
@@ -290,7 +316,7 @@ export interface ApiExitChatRoomPostOperationRequest {
 }
 
 export interface ApiGetChatRoomInfoPostOperationRequest {
-    apiGetChatRoomInfoPostRequest?: ApiGetChatRoomInfoPostRequest;
+    apiGetChatRoomInfoPostRequest: ApiGetChatRoomInfoPostRequest;
 }
 
 export interface ApiGetChatRoomPostOperationRequest {
@@ -305,18 +331,34 @@ export interface ApiGetMessagePostOperationRequest {
     apiGetMessagePostRequest: ApiGetMessagePostRequest;
 }
 
+<<<<<<< HEAD
+=======
+export interface ApiGetProfileStatsPostRequest {
+    body: object;
+}
+
+>>>>>>> main
 export interface ApiGetStarDetailsPostOperationRequest {
-    apiGetStarDetailsPostRequest?: ApiGetStarDetailsPostRequest;
+    apiGetStarDetailsPostRequest: ApiGetStarDetailsPostRequest;
 }
 
 export interface ApiLikeBlogPostRequest {
+<<<<<<< HEAD
     apiDeleteBlogPostRequest?: ApiDeleteBlogPostRequest;
+=======
+    blogID: BlogID;
 }
 
-export interface ApiListIdentifyStarsJobsPostOperationRequest {
-    apiListIdentifyStarsJobsPostRequest: ApiListIdentifyStarsJobsPostRequest;
+export interface ApiListIdentifyStarsJobsPostRequest {
+    paginationQuery: PaginationQuery;
+>>>>>>> main
 }
 
+export interface ApiListSavedBlogsPostRequest {
+    paginationQuery: PaginationQuery;
+}
+
+<<<<<<< HEAD
 export interface ApiListSavedBlogsPostRequest {
     apiListUserBlogsPostRequest?: ApiListUserBlogsPostRequest;
 }
@@ -331,14 +373,26 @@ export interface ApiListUserBlogsPostOperationRequest {
 
 export interface ApiReportBlogPostOperationRequest {
     apiReportBlogPostRequest?: ApiReportBlogPostRequest;
+=======
+export interface ApiListStarBlogsPostOperationRequest {
+    apiListStarBlogsPostRequest: ApiListStarBlogsPostRequest;
+}
+
+export interface ApiListUserBlogsPostRequest {
+    paginationQuery: PaginationQuery;
+}
+
+export interface ApiReportBlogPostOperationRequest {
+    apiReportBlogPostRequest: ApiReportBlogPostRequest;
+>>>>>>> main
 }
 
 export interface ApiRequestAccuracyAdjustPostOperationRequest {
-    apiRequestAccuracyAdjustPostRequest?: ApiRequestAccuracyAdjustPostRequest;
+    apiRequestAccuracyAdjustPostRequest: ApiRequestAccuracyAdjustPostRequest;
 }
 
 export interface ApiRequestStargazingTimePostOperationRequest {
-    apiRequestStargazingTimePostRequest?: ApiRequestStargazingTimePostRequest;
+    apiRequestStargazingTimePostRequest: ApiRequestStargazingTimePostRequest;
 }
 
 export interface ApiResetPasswordPostRequest {
@@ -350,7 +404,11 @@ export interface ApiResetPasswordSendCodePostRequest {
 }
 
 export interface ApiSaveBlogPostRequest {
+<<<<<<< HEAD
     apiDeleteBlogPostRequest?: ApiDeleteBlogPostRequest;
+=======
+    blogID: BlogID;
+>>>>>>> main
 }
 
 export interface ApiSendMessagePostOperationRequest {
@@ -362,7 +420,11 @@ export interface ApiSetUserPostRequest {
 }
 
 export interface ApiTriggerStarfieldRenderPostOperationRequest {
-    apiTriggerStarfieldRenderPostRequest?: ApiTriggerStarfieldRenderPostRequest;
+    apiTriggerStarfieldRenderPostRequest: ApiTriggerStarfieldRenderPostRequest;
+}
+
+export interface ApiUpdateLastGpsPostRequest {
+    updateLastGpsRequest: UpdateLastGpsRequest;
 }
 
 export interface ApiUpdateLastGpsPostRequest {
@@ -385,8 +447,8 @@ export interface ApiVerifyUserTokenPostOperationRequest {
     apiVerifyUserTokenPostRequest: ApiVerifyUserTokenPostRequest;
 }
 
-export interface ApiViewBlogPostOperationRequest {
-    apiViewBlogPostRequest?: ApiViewBlogPostRequest;
+export interface ApiViewBlogPostRequest {
+    blogID: BlogID;
 }
 
 /**
@@ -398,6 +460,13 @@ export class DefaultApi extends runtime.BaseAPI {
      * calculate star coordinates
      */
     async apiCalculateStarCoordinatesPostRaw(requestParameters: ApiCalculateStarCoordinatesPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiCalculateStarCoordinatesPost200Response>> {
+        if (requestParameters['apiCalculateStarCoordinatesPostRequest'] == null) {
+            throw new runtime.RequiredError(
+                'apiCalculateStarCoordinatesPostRequest',
+                'Required parameter "apiCalculateStarCoordinatesPostRequest" was null or undefined when calling apiCalculateStarCoordinatesPost().'
+            );
+        }
+
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -421,14 +490,18 @@ export class DefaultApi extends runtime.BaseAPI {
     /**
      * calculate star coordinates
      */
-    async apiCalculateStarCoordinatesPost(requestParameters: ApiCalculateStarCoordinatesPostOperationRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiCalculateStarCoordinatesPost200Response> {
+    async apiCalculateStarCoordinatesPost(requestParameters: ApiCalculateStarCoordinatesPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiCalculateStarCoordinatesPost200Response> {
         const response = await this.apiCalculateStarCoordinatesPostRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
+<<<<<<< HEAD
     async apiChangePasswordPostRaw(requestParameters: ApiChangePasswordPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiUpdateLastGpsPost200Response>> {
+=======
+    async apiChangePasswordPostRaw(requestParameters: ApiChangePasswordPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommonMessage>> {
+>>>>>>> main
         if (requestParameters['changePasswordRequest'] == null) {
             throw new runtime.RequiredError(
                 'changePasswordRequest',
@@ -453,12 +526,20 @@ export class DefaultApi extends runtime.BaseAPI {
             body: ChangePasswordRequestToJSON(requestParameters['changePasswordRequest']),
         }, initOverrides);
 
+<<<<<<< HEAD
         return new runtime.JSONApiResponse(response, (jsonValue) => ApiUpdateLastGpsPost200ResponseFromJSON(jsonValue));
+=======
+        return new runtime.JSONApiResponse(response, (jsonValue) => CommonMessageFromJSON(jsonValue));
+>>>>>>> main
     }
 
     /**
      */
+<<<<<<< HEAD
     async apiChangePasswordPost(requestParameters: ApiChangePasswordPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiUpdateLastGpsPost200Response> {
+=======
+    async apiChangePasswordPost(requestParameters: ApiChangePasswordPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommonMessage> {
+>>>>>>> main
         const response = await this.apiChangePasswordPostRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -468,6 +549,13 @@ export class DefaultApi extends runtime.BaseAPI {
      * Check chat room status
      */
     async apiCheckRoomStatusPostRaw(requestParameters: ApiCheckRoomStatusPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiCheckRoomStatusPost200Response>> {
+        if (requestParameters['apiCheckRoomStatusPostRequest'] == null) {
+            throw new runtime.RequiredError(
+                'apiCheckRoomStatusPostRequest',
+                'Required parameter "apiCheckRoomStatusPostRequest" was null or undefined when calling apiCheckRoomStatusPost().'
+            );
+        }
+
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -492,7 +580,7 @@ export class DefaultApi extends runtime.BaseAPI {
      * Determines if a user can join the specified chat room
      * Check chat room status
      */
-    async apiCheckRoomStatusPost(requestParameters: ApiCheckRoomStatusPostOperationRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiCheckRoomStatusPost200Response> {
+    async apiCheckRoomStatusPost(requestParameters: ApiCheckRoomStatusPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiCheckRoomStatusPost200Response> {
         const response = await this.apiCheckRoomStatusPostRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -501,6 +589,13 @@ export class DefaultApi extends runtime.BaseAPI {
      * Comment a blog
      */
     async apiCommentBlogPostRaw(requestParameters: ApiCommentBlogPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiCommentBlogPost200Response>> {
+        if (requestParameters['apiCommentBlogPostRequest'] == null) {
+            throw new runtime.RequiredError(
+                'apiCommentBlogPostRequest',
+                'Required parameter "apiCommentBlogPostRequest" was null or undefined when calling apiCommentBlogPost().'
+            );
+        }
+
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -524,7 +619,7 @@ export class DefaultApi extends runtime.BaseAPI {
     /**
      * Comment a blog
      */
-    async apiCommentBlogPost(requestParameters: ApiCommentBlogPostOperationRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiCommentBlogPost200Response> {
+    async apiCommentBlogPost(requestParameters: ApiCommentBlogPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiCommentBlogPost200Response> {
         const response = await this.apiCommentBlogPostRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -533,6 +628,13 @@ export class DefaultApi extends runtime.BaseAPI {
      * Create a new blog
      */
     async apiCreateBlogPostRaw(requestParameters: ApiCreateBlogPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiCreateBlogPost200Response>> {
+        if (requestParameters['apiCreateBlogPostRequest'] == null) {
+            throw new runtime.RequiredError(
+                'apiCreateBlogPostRequest',
+                'Required parameter "apiCreateBlogPostRequest" was null or undefined when calling apiCreateBlogPost().'
+            );
+        }
+
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -556,7 +658,7 @@ export class DefaultApi extends runtime.BaseAPI {
     /**
      * Create a new blog
      */
-    async apiCreateBlogPost(requestParameters: ApiCreateBlogPostOperationRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiCreateBlogPost200Response> {
+    async apiCreateBlogPost(requestParameters: ApiCreateBlogPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiCreateBlogPost200Response> {
         const response = await this.apiCreateBlogPostRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -603,7 +705,18 @@ export class DefaultApi extends runtime.BaseAPI {
     /**
      * Delete a blog
      */
+<<<<<<< HEAD
     async apiDeleteBlogPostRaw(requestParameters: ApiDeleteBlogPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiDeleteBlogPost200Response>> {
+=======
+    async apiDeleteBlogPostRaw(requestParameters: ApiDeleteBlogPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BlogID>> {
+        if (requestParameters['blogID'] == null) {
+            throw new runtime.RequiredError(
+                'blogID',
+                'Required parameter "blogID" was null or undefined when calling apiDeleteBlogPost().'
+            );
+        }
+
+>>>>>>> main
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -618,16 +731,24 @@ export class DefaultApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
+<<<<<<< HEAD
             body: ApiDeleteBlogPostRequestToJSON(requestParameters['apiDeleteBlogPostRequest']),
+=======
+            body: BlogIDToJSON(requestParameters['blogID']),
+>>>>>>> main
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ApiDeleteBlogPost200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => BlogIDFromJSON(jsonValue));
     }
 
     /**
      * Delete a blog
      */
+<<<<<<< HEAD
     async apiDeleteBlogPost(requestParameters: ApiDeleteBlogPostOperationRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiDeleteBlogPost200Response> {
+=======
+    async apiDeleteBlogPost(requestParameters: ApiDeleteBlogPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BlogID> {
+>>>>>>> main
         const response = await this.apiDeleteBlogPostRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -636,6 +757,13 @@ export class DefaultApi extends runtime.BaseAPI {
      * Delete a comment
      */
     async apiDeleteCommentPostRaw(requestParameters: ApiDeleteCommentPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiCommentBlogPost200Response>> {
+        if (requestParameters['apiDeleteCommentPostRequest'] == null) {
+            throw new runtime.RequiredError(
+                'apiDeleteCommentPostRequest',
+                'Required parameter "apiDeleteCommentPostRequest" was null or undefined when calling apiDeleteCommentPost().'
+            );
+        }
+
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -659,7 +787,7 @@ export class DefaultApi extends runtime.BaseAPI {
     /**
      * Delete a comment
      */
-    async apiDeleteCommentPost(requestParameters: ApiDeleteCommentPostOperationRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiCommentBlogPost200Response> {
+    async apiDeleteCommentPost(requestParameters: ApiDeleteCommentPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiCommentBlogPost200Response> {
         const response = await this.apiDeleteCommentPostRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -667,7 +795,11 @@ export class DefaultApi extends runtime.BaseAPI {
     /**
      * 注销账号
      */
+<<<<<<< HEAD
     async apiDeleteUserPostRaw(requestParameters: ApiDeleteUserPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiUpdateLastGpsPost200Response>> {
+=======
+    async apiDeleteUserPostRaw(requestParameters: ApiDeleteUserPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommonMessage>> {
+>>>>>>> main
         if (requestParameters['userAuth'] == null) {
             throw new runtime.RequiredError(
                 'userAuth',
@@ -692,13 +824,21 @@ export class DefaultApi extends runtime.BaseAPI {
             body: UserAuthToJSON(requestParameters['userAuth']),
         }, initOverrides);
 
+<<<<<<< HEAD
         return new runtime.JSONApiResponse(response, (jsonValue) => ApiUpdateLastGpsPost200ResponseFromJSON(jsonValue));
+=======
+        return new runtime.JSONApiResponse(response, (jsonValue) => CommonMessageFromJSON(jsonValue));
+>>>>>>> main
     }
 
     /**
      * 注销账号
      */
+<<<<<<< HEAD
     async apiDeleteUserPost(requestParameters: ApiDeleteUserPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiUpdateLastGpsPost200Response> {
+=======
+    async apiDeleteUserPost(requestParameters: ApiDeleteUserPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommonMessage> {
+>>>>>>> main
         const response = await this.apiDeleteUserPostRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -739,6 +879,13 @@ export class DefaultApi extends runtime.BaseAPI {
      * Display save success confirmation
      */
     async apiDisplaySaveSuccessPostRaw(requestParameters: ApiDisplaySaveSuccessPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiDisplaySaveSuccessPost200Response>> {
+        if (requestParameters['apiDisplaySaveSuccessPostRequest'] == null) {
+            throw new runtime.RequiredError(
+                'apiDisplaySaveSuccessPostRequest',
+                'Required parameter "apiDisplaySaveSuccessPostRequest" was null or undefined when calling apiDisplaySaveSuccessPost().'
+            );
+        }
+
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -763,7 +910,7 @@ export class DefaultApi extends runtime.BaseAPI {
      * Return save result and metadata after starfield is saved
      * Display save success confirmation
      */
-    async apiDisplaySaveSuccessPost(requestParameters: ApiDisplaySaveSuccessPostOperationRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiDisplaySaveSuccessPost200Response> {
+    async apiDisplaySaveSuccessPost(requestParameters: ApiDisplaySaveSuccessPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiDisplaySaveSuccessPost200Response> {
         const response = await this.apiDisplaySaveSuccessPostRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -773,6 +920,13 @@ export class DefaultApi extends runtime.BaseAPI {
      * Display star details
      */
     async apiDisplayStarDetailsPostRaw(requestParameters: ApiDisplayStarDetailsPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<StarDetails>> {
+        if (requestParameters['apiDisplayStarDetailsPostRequest'] == null) {
+            throw new runtime.RequiredError(
+                'apiDisplayStarDetailsPostRequest',
+                'Required parameter "apiDisplayStarDetailsPostRequest" was null or undefined when calling apiDisplayStarDetailsPost().'
+            );
+        }
+
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -797,7 +951,7 @@ export class DefaultApi extends runtime.BaseAPI {
      * Retrieve detailed astronomical information of a specific star
      * Display star details
      */
-    async apiDisplayStarDetailsPost(requestParameters: ApiDisplayStarDetailsPostOperationRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<StarDetails> {
+    async apiDisplayStarDetailsPost(requestParameters: ApiDisplayStarDetailsPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<StarDetails> {
         const response = await this.apiDisplayStarDetailsPostRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -807,6 +961,13 @@ export class DefaultApi extends runtime.BaseAPI {
      * Display starfield
      */
     async apiDisplayStarfieldPostRaw(requestParameters: ApiDisplayStarfieldPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiDisplayStarfieldPost200Response>> {
+        if (requestParameters['apiDisplayStarfieldPostRequest'] == null) {
+            throw new runtime.RequiredError(
+                'apiDisplayStarfieldPostRequest',
+                'Required parameter "apiDisplayStarfieldPostRequest" was null or undefined when calling apiDisplayStarfieldPost().'
+            );
+        }
+
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -831,7 +992,7 @@ export class DefaultApi extends runtime.BaseAPI {
      * Retrieve rendered starfield data for GUI display
      * Display starfield
      */
-    async apiDisplayStarfieldPost(requestParameters: ApiDisplayStarfieldPostOperationRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiDisplayStarfieldPost200Response> {
+    async apiDisplayStarfieldPost(requestParameters: ApiDisplayStarfieldPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiDisplayStarfieldPost200Response> {
         const response = await this.apiDisplayStarfieldPostRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -881,6 +1042,13 @@ export class DefaultApi extends runtime.BaseAPI {
      * Eliminating the errors between the stars\' positions that we calculated and the stars\' positions captured by the camera. These errors are generally caused by the limited accuracy of the sensor.
      */
     async apiElimilateErrorsPostRaw(requestParameters: ApiElimilateErrorsPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiElimilateErrorsPost200Response>> {
+        if (requestParameters['apiElimilateErrorsPostRequest'] == null) {
+            throw new runtime.RequiredError(
+                'apiElimilateErrorsPostRequest',
+                'Required parameter "apiElimilateErrorsPostRequest" was null or undefined when calling apiElimilateErrorsPost().'
+            );
+        }
+
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -904,7 +1072,7 @@ export class DefaultApi extends runtime.BaseAPI {
     /**
      * Eliminating the errors between the stars\' positions that we calculated and the stars\' positions captured by the camera. These errors are generally caused by the limited accuracy of the sensor.
      */
-    async apiElimilateErrorsPost(requestParameters: ApiElimilateErrorsPostOperationRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiElimilateErrorsPost200Response> {
+    async apiElimilateErrorsPost(requestParameters: ApiElimilateErrorsPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiElimilateErrorsPost200Response> {
         const response = await this.apiElimilateErrorsPostRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1013,6 +1181,13 @@ export class DefaultApi extends runtime.BaseAPI {
      * Retrieve chat room from social system
      */
     async apiGetChatRoomInfoPostRaw(requestParameters: ApiGetChatRoomInfoPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiGetChatRoomInfoPost200Response>> {
+        if (requestParameters['apiGetChatRoomInfoPostRequest'] == null) {
+            throw new runtime.RequiredError(
+                'apiGetChatRoomInfoPostRequest',
+                'Required parameter "apiGetChatRoomInfoPostRequest" was null or undefined when calling apiGetChatRoomInfoPost().'
+            );
+        }
+
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -1037,7 +1212,7 @@ export class DefaultApi extends runtime.BaseAPI {
      * Gets specified chat room information from the social system
      * Retrieve chat room from social system
      */
-    async apiGetChatRoomInfoPost(requestParameters: ApiGetChatRoomInfoPostOperationRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiGetChatRoomInfoPost200Response> {
+    async apiGetChatRoomInfoPost(requestParameters: ApiGetChatRoomInfoPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiGetChatRoomInfoPost200Response> {
         const response = await this.apiGetChatRoomInfoPostRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1193,21 +1368,40 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
+<<<<<<< HEAD
      * Get star catalog
      */
     async apiGetStarCatalogPostRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiGetStarCatalogPost200Response>> {
+=======
+     * Retrieve the user\'s scanning statistics, rank, and join date for the profile view.
+     * Get user profile stats
+     */
+    async apiGetProfileStatsPostRaw(requestParameters: ApiGetProfileStatsPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProfileStatsResponse>> {
+        if (requestParameters['body'] == null) {
+            throw new runtime.RequiredError(
+                'body',
+                'Required parameter "body" was null or undefined when calling apiGetProfileStatsPost().'
+            );
+        }
+
+>>>>>>> main
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
 
 
+<<<<<<< HEAD
         let urlPath = `/api/getStarCatalog`;
+=======
+        let urlPath = `/api/getProfileStats`;
+>>>>>>> main
 
         const response = await this.request({
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
+<<<<<<< HEAD
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ApiGetStarCatalogPost200ResponseFromJSON(jsonValue));
@@ -1218,6 +1412,20 @@ export class DefaultApi extends runtime.BaseAPI {
      */
     async apiGetStarCatalogPost(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiGetStarCatalogPost200Response> {
         const response = await this.apiGetStarCatalogPostRaw(initOverrides);
+=======
+            body: requestParameters['body'] as any,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ProfileStatsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve the user\'s scanning statistics, rank, and join date for the profile view.
+     * Get user profile stats
+     */
+    async apiGetProfileStatsPost(requestParameters: ApiGetProfileStatsPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProfileStatsResponse> {
+        const response = await this.apiGetProfileStatsPostRaw(requestParameters, initOverrides);
+>>>>>>> main
         return await response.value();
     }
 
@@ -1256,6 +1464,51 @@ export class DefaultApi extends runtime.BaseAPI {
     /**
      * health check
      */
+<<<<<<< HEAD
+    async apiHealthGetRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+=======
+    async apiGetStarDetailsPostRaw(requestParameters: ApiGetStarDetailsPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<StarDetails>> {
+        if (requestParameters['apiGetStarDetailsPostRequest'] == null) {
+            throw new runtime.RequiredError(
+                'apiGetStarDetailsPostRequest',
+                'Required parameter "apiGetStarDetailsPostRequest" was null or undefined when calling apiGetStarDetailsPost().'
+            );
+        }
+
+>>>>>>> main
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/health`;
+
+        const response = await this.request({
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * health check
+     */
+<<<<<<< HEAD
+    async apiHealthGet(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.apiHealthGetRaw(initOverrides);
+=======
+    async apiGetStarDetailsPost(requestParameters: ApiGetStarDetailsPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<StarDetails> {
+        const response = await this.apiGetStarDetailsPostRaw(requestParameters, initOverrides);
+        return await response.value();
+>>>>>>> main
+    }
+
+    /**
+     * health check
+     */
     async apiHealthGetRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         const queryParameters: any = {};
 
@@ -1285,6 +1538,13 @@ export class DefaultApi extends runtime.BaseAPI {
      * Like a blog
      */
     async apiLikeBlogPostRaw(requestParameters: ApiLikeBlogPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiLikeBlogPost200Response>> {
+        if (requestParameters['blogID'] == null) {
+            throw new runtime.RequiredError(
+                'blogID',
+                'Required parameter "blogID" was null or undefined when calling apiLikeBlogPost().'
+            );
+        }
+
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -1299,7 +1559,11 @@ export class DefaultApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
+<<<<<<< HEAD
             body: ApiDeleteBlogPostRequestToJSON(requestParameters['apiDeleteBlogPostRequest']),
+=======
+            body: BlogIDToJSON(requestParameters['blogID']),
+>>>>>>> main
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ApiLikeBlogPost200ResponseFromJSON(jsonValue));
@@ -1308,7 +1572,7 @@ export class DefaultApi extends runtime.BaseAPI {
     /**
      * Like a blog
      */
-    async apiLikeBlogPost(requestParameters: ApiLikeBlogPostRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiLikeBlogPost200Response> {
+    async apiLikeBlogPost(requestParameters: ApiLikeBlogPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiLikeBlogPost200Response> {
         const response = await this.apiLikeBlogPostRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1316,11 +1580,19 @@ export class DefaultApi extends runtime.BaseAPI {
     /**
      * List identify stars jobs.
      */
+<<<<<<< HEAD
     async apiListIdentifyStarsJobsPostRaw(requestParameters: ApiListIdentifyStarsJobsPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiListIdentifyStarsJobsPost200Response>> {
         if (requestParameters['apiListIdentifyStarsJobsPostRequest'] == null) {
             throw new runtime.RequiredError(
                 'apiListIdentifyStarsJobsPostRequest',
                 'Required parameter "apiListIdentifyStarsJobsPostRequest" was null or undefined when calling apiListIdentifyStarsJobsPost().'
+=======
+    async apiListIdentifyStarsJobsPostRaw(requestParameters: ApiListIdentifyStarsJobsPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiListIdentifyStarsJobsPost200Response>> {
+        if (requestParameters['paginationQuery'] == null) {
+            throw new runtime.RequiredError(
+                'paginationQuery',
+                'Required parameter "paginationQuery" was null or undefined when calling apiListIdentifyStarsJobsPost().'
+>>>>>>> main
             );
         }
 
@@ -1338,7 +1610,11 @@ export class DefaultApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
+<<<<<<< HEAD
             body: ApiListIdentifyStarsJobsPostRequestToJSON(requestParameters['apiListIdentifyStarsJobsPostRequest']),
+=======
+            body: PaginationQueryToJSON(requestParameters['paginationQuery']),
+>>>>>>> main
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ApiListIdentifyStarsJobsPost200ResponseFromJSON(jsonValue));
@@ -1347,7 +1623,11 @@ export class DefaultApi extends runtime.BaseAPI {
     /**
      * List identify stars jobs.
      */
+<<<<<<< HEAD
     async apiListIdentifyStarsJobsPost(requestParameters: ApiListIdentifyStarsJobsPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiListIdentifyStarsJobsPost200Response> {
+=======
+    async apiListIdentifyStarsJobsPost(requestParameters: ApiListIdentifyStarsJobsPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiListIdentifyStarsJobsPost200Response> {
+>>>>>>> main
         const response = await this.apiListIdentifyStarsJobsPostRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1355,7 +1635,18 @@ export class DefaultApi extends runtime.BaseAPI {
     /**
      * List all blogs saved by the user
      */
+<<<<<<< HEAD
     async apiListSavedBlogsPostRaw(requestParameters: ApiListSavedBlogsPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiListUserBlogsPost200Response>> {
+=======
+    async apiListSavedBlogsPostRaw(requestParameters: ApiListSavedBlogsPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BlogsList>> {
+        if (requestParameters['paginationQuery'] == null) {
+            throw new runtime.RequiredError(
+                'paginationQuery',
+                'Required parameter "paginationQuery" was null or undefined when calling apiListSavedBlogsPost().'
+            );
+        }
+
+>>>>>>> main
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -1370,16 +1661,27 @@ export class DefaultApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
+<<<<<<< HEAD
             body: ApiListUserBlogsPostRequestToJSON(requestParameters['apiListUserBlogsPostRequest']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ApiListUserBlogsPost200ResponseFromJSON(jsonValue));
+=======
+            body: PaginationQueryToJSON(requestParameters['paginationQuery']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => BlogsListFromJSON(jsonValue));
+>>>>>>> main
     }
 
     /**
      * List all blogs saved by the user
      */
+<<<<<<< HEAD
     async apiListSavedBlogsPost(requestParameters: ApiListSavedBlogsPostRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiListUserBlogsPost200Response> {
+=======
+    async apiListSavedBlogsPost(requestParameters: ApiListSavedBlogsPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BlogsList> {
+>>>>>>> main
         const response = await this.apiListSavedBlogsPostRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1387,7 +1689,18 @@ export class DefaultApi extends runtime.BaseAPI {
     /**
      * List all blogs under the certain star
      */
+<<<<<<< HEAD
     async apiListStarBlogsPostRaw(requestParameters: ApiListStarBlogsPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiListUserBlogsPost200Response>> {
+=======
+    async apiListStarBlogsPostRaw(requestParameters: ApiListStarBlogsPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BlogsList>> {
+        if (requestParameters['apiListStarBlogsPostRequest'] == null) {
+            throw new runtime.RequiredError(
+                'apiListStarBlogsPostRequest',
+                'Required parameter "apiListStarBlogsPostRequest" was null or undefined when calling apiListStarBlogsPost().'
+            );
+        }
+
+>>>>>>> main
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -1405,13 +1718,21 @@ export class DefaultApi extends runtime.BaseAPI {
             body: ApiListStarBlogsPostRequestToJSON(requestParameters['apiListStarBlogsPostRequest']),
         }, initOverrides);
 
+<<<<<<< HEAD
         return new runtime.JSONApiResponse(response, (jsonValue) => ApiListUserBlogsPost200ResponseFromJSON(jsonValue));
+=======
+        return new runtime.JSONApiResponse(response, (jsonValue) => BlogsListFromJSON(jsonValue));
+>>>>>>> main
     }
 
     /**
      * List all blogs under the certain star
      */
+<<<<<<< HEAD
     async apiListStarBlogsPost(requestParameters: ApiListStarBlogsPostOperationRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiListUserBlogsPost200Response> {
+=======
+    async apiListStarBlogsPost(requestParameters: ApiListStarBlogsPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BlogsList> {
+>>>>>>> main
         const response = await this.apiListStarBlogsPostRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1419,7 +1740,18 @@ export class DefaultApi extends runtime.BaseAPI {
     /**
      * List all blogs posted by a specific user
      */
+<<<<<<< HEAD
     async apiListUserBlogsPostRaw(requestParameters: ApiListUserBlogsPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiListUserBlogsPost200Response>> {
+=======
+    async apiListUserBlogsPostRaw(requestParameters: ApiListUserBlogsPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BlogsList>> {
+        if (requestParameters['paginationQuery'] == null) {
+            throw new runtime.RequiredError(
+                'paginationQuery',
+                'Required parameter "paginationQuery" was null or undefined when calling apiListUserBlogsPost().'
+            );
+        }
+
+>>>>>>> main
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -1434,16 +1766,27 @@ export class DefaultApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
+<<<<<<< HEAD
             body: ApiListUserBlogsPostRequestToJSON(requestParameters['apiListUserBlogsPostRequest']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ApiListUserBlogsPost200ResponseFromJSON(jsonValue));
+=======
+            body: PaginationQueryToJSON(requestParameters['paginationQuery']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => BlogsListFromJSON(jsonValue));
+>>>>>>> main
     }
 
     /**
      * List all blogs posted by a specific user
      */
+<<<<<<< HEAD
     async apiListUserBlogsPost(requestParameters: ApiListUserBlogsPostOperationRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiListUserBlogsPost200Response> {
+=======
+    async apiListUserBlogsPost(requestParameters: ApiListUserBlogsPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BlogsList> {
+>>>>>>> main
         const response = await this.apiListUserBlogsPostRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1451,7 +1794,18 @@ export class DefaultApi extends runtime.BaseAPI {
     /**
      * Report a blog
      */
+<<<<<<< HEAD
     async apiReportBlogPostRaw(requestParameters: ApiReportBlogPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiDeleteBlogPost200Response>> {
+=======
+    async apiReportBlogPostRaw(requestParameters: ApiReportBlogPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BlogID>> {
+        if (requestParameters['apiReportBlogPostRequest'] == null) {
+            throw new runtime.RequiredError(
+                'apiReportBlogPostRequest',
+                'Required parameter "apiReportBlogPostRequest" was null or undefined when calling apiReportBlogPost().'
+            );
+        }
+
+>>>>>>> main
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -1469,13 +1823,17 @@ export class DefaultApi extends runtime.BaseAPI {
             body: ApiReportBlogPostRequestToJSON(requestParameters['apiReportBlogPostRequest']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ApiDeleteBlogPost200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => BlogIDFromJSON(jsonValue));
     }
 
     /**
      * Report a blog
      */
+<<<<<<< HEAD
     async apiReportBlogPost(requestParameters: ApiReportBlogPostOperationRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiDeleteBlogPost200Response> {
+=======
+    async apiReportBlogPost(requestParameters: ApiReportBlogPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BlogID> {
+>>>>>>> main
         const response = await this.apiReportBlogPostRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1485,6 +1843,13 @@ export class DefaultApi extends runtime.BaseAPI {
      * Request accuracy adjustment
      */
     async apiRequestAccuracyAdjustPostRaw(requestParameters: ApiRequestAccuracyAdjustPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiRequestAccuracyAdjustPost200Response>> {
+        if (requestParameters['apiRequestAccuracyAdjustPostRequest'] == null) {
+            throw new runtime.RequiredError(
+                'apiRequestAccuracyAdjustPostRequest',
+                'Required parameter "apiRequestAccuracyAdjustPostRequest" was null or undefined when calling apiRequestAccuracyAdjustPost().'
+            );
+        }
+
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -1509,7 +1874,7 @@ export class DefaultApi extends runtime.BaseAPI {
      * Adjust calculation accuracy for star coordinates based on sensor precision
      * Request accuracy adjustment
      */
-    async apiRequestAccuracyAdjustPost(requestParameters: ApiRequestAccuracyAdjustPostOperationRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiRequestAccuracyAdjustPost200Response> {
+    async apiRequestAccuracyAdjustPost(requestParameters: ApiRequestAccuracyAdjustPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiRequestAccuracyAdjustPost200Response> {
         const response = await this.apiRequestAccuracyAdjustPostRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1550,6 +1915,13 @@ export class DefaultApi extends runtime.BaseAPI {
      * Request optimal stargazing time
      */
     async apiRequestStargazingTimePostRaw(requestParameters: ApiRequestStargazingTimePostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiRequestStargazingTimePost200Response>> {
+        if (requestParameters['apiRequestStargazingTimePostRequest'] == null) {
+            throw new runtime.RequiredError(
+                'apiRequestStargazingTimePostRequest',
+                'Required parameter "apiRequestStargazingTimePostRequest" was null or undefined when calling apiRequestStargazingTimePost().'
+            );
+        }
+
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -1574,7 +1946,7 @@ export class DefaultApi extends runtime.BaseAPI {
      * Get recommended stargazing time range based on GPS location
      * Request optimal stargazing time
      */
-    async apiRequestStargazingTimePost(requestParameters: ApiRequestStargazingTimePostOperationRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiRequestStargazingTimePost200Response> {
+    async apiRequestStargazingTimePost(requestParameters: ApiRequestStargazingTimePostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiRequestStargazingTimePost200Response> {
         const response = await this.apiRequestStargazingTimePostRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1582,7 +1954,11 @@ export class DefaultApi extends runtime.BaseAPI {
     /**
      * Use code to reset password
      */
+<<<<<<< HEAD
     async apiResetPasswordPostRaw(requestParameters: ApiResetPasswordPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiUpdateLastGpsPost200Response>> {
+=======
+    async apiResetPasswordPostRaw(requestParameters: ApiResetPasswordPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommonMessage>> {
+>>>>>>> main
         if (requestParameters['resetPasswordRequest'] == null) {
             throw new runtime.RequiredError(
                 'resetPasswordRequest',
@@ -1607,13 +1983,21 @@ export class DefaultApi extends runtime.BaseAPI {
             body: ResetPasswordRequestToJSON(requestParameters['resetPasswordRequest']),
         }, initOverrides);
 
+<<<<<<< HEAD
         return new runtime.JSONApiResponse(response, (jsonValue) => ApiUpdateLastGpsPost200ResponseFromJSON(jsonValue));
+=======
+        return new runtime.JSONApiResponse(response, (jsonValue) => CommonMessageFromJSON(jsonValue));
+>>>>>>> main
     }
 
     /**
      * Use code to reset password
      */
+<<<<<<< HEAD
     async apiResetPasswordPost(requestParameters: ApiResetPasswordPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiUpdateLastGpsPost200Response> {
+=======
+    async apiResetPasswordPost(requestParameters: ApiResetPasswordPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommonMessage> {
+>>>>>>> main
         const response = await this.apiResetPasswordPostRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1621,7 +2005,11 @@ export class DefaultApi extends runtime.BaseAPI {
     /**
      * send code to email
      */
+<<<<<<< HEAD
     async apiResetPasswordSendCodePostRaw(requestParameters: ApiResetPasswordSendCodePostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiUpdateLastGpsPost200Response>> {
+=======
+    async apiResetPasswordSendCodePostRaw(requestParameters: ApiResetPasswordSendCodePostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommonMessage>> {
+>>>>>>> main
         if (requestParameters['resetPasswordSendCodeRequest'] == null) {
             throw new runtime.RequiredError(
                 'resetPasswordSendCodeRequest',
@@ -1646,13 +2034,21 @@ export class DefaultApi extends runtime.BaseAPI {
             body: ResetPasswordSendCodeRequestToJSON(requestParameters['resetPasswordSendCodeRequest']),
         }, initOverrides);
 
+<<<<<<< HEAD
         return new runtime.JSONApiResponse(response, (jsonValue) => ApiUpdateLastGpsPost200ResponseFromJSON(jsonValue));
+=======
+        return new runtime.JSONApiResponse(response, (jsonValue) => CommonMessageFromJSON(jsonValue));
+>>>>>>> main
     }
 
     /**
      * send code to email
      */
+<<<<<<< HEAD
     async apiResetPasswordSendCodePost(requestParameters: ApiResetPasswordSendCodePostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiUpdateLastGpsPost200Response> {
+=======
+    async apiResetPasswordSendCodePost(requestParameters: ApiResetPasswordSendCodePostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommonMessage> {
+>>>>>>> main
         const response = await this.apiResetPasswordSendCodePostRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1660,7 +2056,14 @@ export class DefaultApi extends runtime.BaseAPI {
     /**
      * Save a blog
      */
-    async apiSaveBlogPostRaw(requestParameters: ApiSaveBlogPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiDeleteBlogPost200Response>> {
+    async apiSaveBlogPostRaw(requestParameters: ApiSaveBlogPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BlogID>> {
+        if (requestParameters['blogID'] == null) {
+            throw new runtime.RequiredError(
+                'blogID',
+                'Required parameter "blogID" was null or undefined when calling apiSaveBlogPost().'
+            );
+        }
+
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -1675,16 +2078,20 @@ export class DefaultApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
+<<<<<<< HEAD
             body: ApiDeleteBlogPostRequestToJSON(requestParameters['apiDeleteBlogPostRequest']),
+=======
+            body: BlogIDToJSON(requestParameters['blogID']),
+>>>>>>> main
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ApiDeleteBlogPost200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => BlogIDFromJSON(jsonValue));
     }
 
     /**
      * Save a blog
      */
-    async apiSaveBlogPost(requestParameters: ApiSaveBlogPostRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiDeleteBlogPost200Response> {
+    async apiSaveBlogPost(requestParameters: ApiSaveBlogPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BlogID> {
         const response = await this.apiSaveBlogPostRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1734,7 +2141,7 @@ export class DefaultApi extends runtime.BaseAPI {
      * Modify the username and password by the username, current password(password0)and new password(password1) user provided.
      * Set/modify username and password
      */
-    async apiSetUserPostRaw(requestParameters: ApiSetUserPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiSetUserPost200Response>> {
+    async apiSetUserPostRaw(requestParameters: ApiSetUserPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommonMessage>> {
         if (requestParameters['changePasswordRequest'] == null) {
             throw new runtime.RequiredError(
                 'changePasswordRequest',
@@ -1759,14 +2166,14 @@ export class DefaultApi extends runtime.BaseAPI {
             body: ChangePasswordRequestToJSON(requestParameters['changePasswordRequest']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ApiSetUserPost200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => CommonMessageFromJSON(jsonValue));
     }
 
     /**
      * Modify the username and password by the username, current password(password0)and new password(password1) user provided.
      * Set/modify username and password
      */
-    async apiSetUserPost(requestParameters: ApiSetUserPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiSetUserPost200Response> {
+    async apiSetUserPost(requestParameters: ApiSetUserPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommonMessage> {
         const response = await this.apiSetUserPostRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1776,6 +2183,13 @@ export class DefaultApi extends runtime.BaseAPI {
      * Trigger starfield rendering
      */
     async apiTriggerStarfieldRenderPostRaw(requestParameters: ApiTriggerStarfieldRenderPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiTriggerStarfieldRenderPost200Response>> {
+        if (requestParameters['apiTriggerStarfieldRenderPostRequest'] == null) {
+            throw new runtime.RequiredError(
+                'apiTriggerStarfieldRenderPostRequest',
+                'Required parameter "apiTriggerStarfieldRenderPostRequest" was null or undefined when calling apiTriggerStarfieldRenderPost().'
+            );
+        }
+
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -1800,7 +2214,7 @@ export class DefaultApi extends runtime.BaseAPI {
      * Initiate starfield rendering process using corrected star coordinates and camera parameters
      * Trigger starfield rendering
      */
-    async apiTriggerStarfieldRenderPost(requestParameters: ApiTriggerStarfieldRenderPostOperationRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiTriggerStarfieldRenderPost200Response> {
+    async apiTriggerStarfieldRenderPost(requestParameters: ApiTriggerStarfieldRenderPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiTriggerStarfieldRenderPost200Response> {
         const response = await this.apiTriggerStarfieldRenderPostRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1809,7 +2223,11 @@ export class DefaultApi extends runtime.BaseAPI {
      * update the user\'s latest GPS location used by recommendation emails.
      * update user last gps
      */
+<<<<<<< HEAD
     async apiUpdateLastGpsPostRaw(requestParameters: ApiUpdateLastGpsPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiUpdateLastGpsPost200Response>> {
+=======
+    async apiUpdateLastGpsPostRaw(requestParameters: ApiUpdateLastGpsPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommonMessage>> {
+>>>>>>> main
         if (requestParameters['updateLastGpsRequest'] == null) {
             throw new runtime.RequiredError(
                 'updateLastGpsRequest',
@@ -1834,14 +2252,22 @@ export class DefaultApi extends runtime.BaseAPI {
             body: UpdateLastGpsRequestToJSON(requestParameters['updateLastGpsRequest']),
         }, initOverrides);
 
+<<<<<<< HEAD
         return new runtime.JSONApiResponse(response, (jsonValue) => ApiUpdateLastGpsPost200ResponseFromJSON(jsonValue));
+=======
+        return new runtime.JSONApiResponse(response, (jsonValue) => CommonMessageFromJSON(jsonValue));
+>>>>>>> main
     }
 
     /**
      * update the user\'s latest GPS location used by recommendation emails.
      * update user last gps
      */
+<<<<<<< HEAD
     async apiUpdateLastGpsPost(requestParameters: ApiUpdateLastGpsPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiUpdateLastGpsPost200Response> {
+=======
+    async apiUpdateLastGpsPost(requestParameters: ApiUpdateLastGpsPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommonMessage> {
+>>>>>>> main
         const response = await this.apiUpdateLastGpsPostRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1932,7 +2358,7 @@ export class DefaultApi extends runtime.BaseAPI {
      * Check whether the username is available.
      * Verify the username
      */
-    async apiUsernameVerifyPostRaw(requestParameters: ApiUsernameVerifyPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiUsernameVerifyPost200Response>> {
+    async apiUsernameVerifyPostRaw(requestParameters: ApiUsernameVerifyPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommonMessage>> {
         if (requestParameters['apiUsernameVerifyPostRequest'] == null) {
             throw new runtime.RequiredError(
                 'apiUsernameVerifyPostRequest',
@@ -1957,14 +2383,14 @@ export class DefaultApi extends runtime.BaseAPI {
             body: ApiUsernameVerifyPostRequestToJSON(requestParameters['apiUsernameVerifyPostRequest']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ApiUsernameVerifyPost200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => CommonMessageFromJSON(jsonValue));
     }
 
     /**
      * Check whether the username is available.
      * Verify the username
      */
-    async apiUsernameVerifyPost(requestParameters: ApiUsernameVerifyPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiUsernameVerifyPost200Response> {
+    async apiUsernameVerifyPost(requestParameters: ApiUsernameVerifyPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommonMessage> {
         const response = await this.apiUsernameVerifyPostRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2013,7 +2439,14 @@ export class DefaultApi extends runtime.BaseAPI {
     /**
      * Details of one blog
      */
-    async apiViewBlogPostRaw(requestParameters: ApiViewBlogPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Blog>> {
+    async apiViewBlogPostRaw(requestParameters: ApiViewBlogPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Blog>> {
+        if (requestParameters['blogID'] == null) {
+            throw new runtime.RequiredError(
+                'blogID',
+                'Required parameter "blogID" was null or undefined when calling apiViewBlogPost().'
+            );
+        }
+
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -2028,7 +2461,7 @@ export class DefaultApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: ApiViewBlogPostRequestToJSON(requestParameters['apiViewBlogPostRequest']),
+            body: BlogIDToJSON(requestParameters['blogID']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => BlogFromJSON(jsonValue));
@@ -2037,7 +2470,7 @@ export class DefaultApi extends runtime.BaseAPI {
     /**
      * Details of one blog
      */
-    async apiViewBlogPost(requestParameters: ApiViewBlogPostOperationRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Blog> {
+    async apiViewBlogPost(requestParameters: ApiViewBlogPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Blog> {
         const response = await this.apiViewBlogPostRaw(requestParameters, initOverrides);
         return await response.value();
     }

@@ -1,7 +1,7 @@
 import hashlib
 from fastapi import HTTPException
-from gen.py.src.openapi_server.models.api_user_reg_post_request import ApiUserRegPostRequest
-from gen.py.src.openapi_server.models.user_response import UserResponse
+from openapi_server.models.api_user_reg_post_request import ApiUserRegPostRequest
+from openapi_server.models.user_response import UserResponse
 from backend.console.dal.rds.client import get_db
 from backend.console.dal.rds.user import User
 
@@ -12,7 +12,9 @@ async def api_user_reg_post(user_auth: ApiUserRegPostRequest) -> UserResponse:
     db = next(get_db())
     try:
         # 1. Check if username exists
-        if User.get_by_username(db, user_auth.username):
+        existing_by_name = db.query(User).filter(
+            User.username == user_auth.username).first()
+        if existing_by_name and User.get_by_id(db, existing_by_name.id):
             raise HTTPException(
                 status_code=400, detail="Username already exists")
 

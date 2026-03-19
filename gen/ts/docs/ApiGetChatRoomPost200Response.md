@@ -6,8 +6,8 @@
 
 Name | Type
 ------------ | -------------
-`status` | boolean
 `message` | string
+`status` | boolean
 
 ## Example
 
@@ -16,8 +16,8 @@ import type { ApiGetChatRoomPost200Response } from ''
 
 // TODO: Update the object below with actual values
 const example = {
+  "message": Operation successful,
   "status": null,
-  "message": null,
 } satisfies ApiGetChatRoomPost200Response
 
 console.log(example)

@@ -148,8 +148,8 @@ This section provides a guide to setting up the test environment. The backend de
 - mysql
 - minio
 - astronomy.net
-- redis (todo)
-- kafka (todo)
+- redis
+- kafka
 
 ### Environment Variables (`.env`)
 
@@ -184,4 +184,29 @@ docker run -d \
 
 ```bash
 docker run -d -p 8001:8000 dm90/astrometry
+```
+
+### redis
+
+```bash
+docker run --name starroll-redis -d \
+  -p 6379:6379 \
+  redis:latest \
+  redis-server --requirepass "starroll"
+```
+
+### kafka
+
+```bash
+docker run -d \
+  --name starroll-kafka \
+  -p 9092:9092 \
+  -e KAFKA_NODE_ID=1 \
+  -e KAFKA_PROCESS_ROLES=broker,controller \
+  -e KAFKA_LISTENERS=PLAINTEXT://:9092,CONTROLLER://:9093 \
+  -e KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://localhost:9092 \
+  -e KAFKA_CONTROLLER_QUORUM_VOTERS=1@localhost:9093 \
+  -e KAFKA_CONTROLLER_LISTENER_NAMES=CONTROLLER \
+  -e KAFKA_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT \
+  apache/kafka:latest
 ```

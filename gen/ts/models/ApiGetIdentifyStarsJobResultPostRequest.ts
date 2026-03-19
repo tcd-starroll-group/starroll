@@ -13,14 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { UserCredentials } from './UserCredentials';
-import {
-    UserCredentialsFromJSON,
-    UserCredentialsFromJSONTyped,
-    UserCredentialsToJSON,
-    UserCredentialsToJSONTyped,
-} from './UserCredentials';
-
 /**
  * 
  * @export
@@ -33,12 +25,6 @@ export interface ApiGetIdentifyStarsJobResultPostRequest {
      * @memberof ApiGetIdentifyStarsJobResultPostRequest
      */
     jobID: string;
-    /**
-     * 
-     * @type {UserCredentials}
-     * @memberof ApiGetIdentifyStarsJobResultPostRequest
-     */
-    userCredentials: UserCredentials;
 }
 
 /**
@@ -46,7 +32,6 @@ export interface ApiGetIdentifyStarsJobResultPostRequest {
  */
 export function instanceOfApiGetIdentifyStarsJobResultPostRequest(value: object): value is ApiGetIdentifyStarsJobResultPostRequest {
     if (!('jobID' in value) || value['jobID'] === undefined) return false;
-    if (!('userCredentials' in value) || value['userCredentials'] === undefined) return false;
     return true;
 }
 
@@ -61,7 +46,6 @@ export function ApiGetIdentifyStarsJobResultPostRequestFromJSONTyped(json: any, 
     return {
         
         'jobID': json['jobID'],
-        'userCredentials': UserCredentialsFromJSON(json['userCredentials']),
     };
 }
 
@@ -77,7 +61,6 @@ export function ApiGetIdentifyStarsJobResultPostRequestToJSONTyped(value?: ApiGe
     return {
         
         'jobID': value['jobID'],
-        'userCredentials': UserCredentialsToJSON(value['userCredentials']),
     };
 }
 

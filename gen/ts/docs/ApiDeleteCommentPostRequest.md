@@ -6,7 +6,6 @@
 
 Name | Type
 ------------ | -------------
-`userCredentials` | [UserCredentials](UserCredentials.md)
 `blogID` | string
 `commentID` | string
 
@@ -17,7 +16,6 @@ import type { ApiDeleteCommentPostRequest } from ''
 
 // TODO: Update the object below with actual values
 const example = {
-  "userCredentials": null,
   "blogID": null,
   "commentID": null,
 } satisfies ApiDeleteCommentPostRequest

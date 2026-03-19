@@ -31,9 +31,9 @@ class ApiGetChatRoomPost200Response(BaseModel):
     """
     ApiGetChatRoomPost200Response
     """ # noqa: E501
-    status: Optional[StrictBool] = None
     message: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["status", "message"]
+    status: Optional[StrictBool] = None
+    __properties: ClassVar[List[str]] = ["message", "status"]
 
     model_config = {
         "populate_by_name": True,
@@ -84,8 +84,8 @@ class ApiGetChatRoomPost200Response(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "status": obj.get("status"),
-            "message": obj.get("message")
+            "message": obj.get("message"),
+            "status": obj.get("status")
         })
         return _obj
 

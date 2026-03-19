@@ -31,11 +31,11 @@ class ApiCheckRoomStatusPost200Response(BaseModel):
     """
     ApiCheckRoomStatusPost200Response
     """ # noqa: E501
+    message: Optional[StrictStr] = None
     room_id: Optional[StrictStr] = Field(default=None, alias="roomID")
     is_joinable: Optional[StrictBool] = Field(default=None, alias="isJoinable")
     status: Optional[StrictStr] = None
-    message: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["roomID", "isJoinable", "status", "message"]
+    __properties: ClassVar[List[str]] = ["message", "roomID", "isJoinable", "status"]
 
     model_config = {
         "populate_by_name": True,
@@ -86,10 +86,10 @@ class ApiCheckRoomStatusPost200Response(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "message": obj.get("message"),
             "roomID": obj.get("roomID"),
             "isJoinable": obj.get("isJoinable"),
-            "status": obj.get("status"),
-            "message": obj.get("message")
+            "status": obj.get("status")
         })
         return _obj
 

@@ -6,8 +6,11 @@
 
 Name | Type
 ------------ | -------------
+<<<<<<< HEAD
 `username` | string
 `token` | string
+=======
+>>>>>>> main
 `gps` | [GPS](GPS.md)
 
 ## Example
@@ -17,8 +20,11 @@ import type { UpdateLastGpsRequest } from ''
 
 // TODO: Update the object below with actual values
 const example = {
+<<<<<<< HEAD
   "username": null,
   "token": null,
+=======
+>>>>>>> main
   "gps": null,
 } satisfies UpdateLastGpsRequest
 
