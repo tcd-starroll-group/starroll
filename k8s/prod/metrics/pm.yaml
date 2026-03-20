@@ -1,0 +1,13 @@
+apiVersion: monitoring.googleapis.com/v1
+kind: PodMonitoring
+metadata:
+  name: console-metrics
+  namespace: starroll
+spec:
+  selector:
+    matchLabels:
+      app: console
+  endpoints:
+    - port: backend-port
+      interval: 30s
+      path: /metrics
