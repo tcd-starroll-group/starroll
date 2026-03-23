@@ -117,7 +117,6 @@ onMounted(async () => {
     }
 });
 
-
 </script>
 
 <template>
@@ -749,7 +748,4 @@ input:checked + .slider:before {
   background: rgba(255, 255, 255, 0.2);
   border-radius: 2px;
 }
-
-
-
 </style>
