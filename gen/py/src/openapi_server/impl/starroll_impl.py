@@ -56,6 +56,10 @@ from backend.console.handler.get_identify_stars_job_result import api_get_identi
 from openapi_server.models.profile_stats_response import ProfileStatsResponse
 from backend.console.handler.profile_stats import api_get_profile_stats_post as api_get_profile_stats_post_handler
 
+from openapi_server.models.api_upload_blog_image_post_request import ApiUploadBlogImagePostRequest
+from openapi_server.models.api_upload_blog_image_post200_response import ApiUploadBlogImagePost200Response
+from backend.console.handler.upload_blog_image import api_upload_blog_image_post
+
 
 class StarrollApiImpl(BaseDefaultApi):
     async def api_user_login_post(
@@ -161,6 +165,12 @@ class StarrollApiImpl(BaseDefaultApi):
         api_comment_blog_post_request: ApiCommentBlogPostRequest,
     ) -> ApiCommentBlogPost200Response:
         return await api_comment_blog_post(api_comment_blog_post_request)
+
+    async def api_upload_blog_image_post(
+        self,
+        api_upload_blog_image_post_request: ApiUploadBlogImagePostRequest,
+    ) -> ApiUploadBlogImagePost200Response:
+        return await api_upload_blog_image_post(api_upload_blog_image_post_request)
 
     async def api_health_get(self) -> None:
         return

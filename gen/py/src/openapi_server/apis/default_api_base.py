@@ -48,6 +48,8 @@ from openapi_server.models.api_send_message_post200_response import ApiSendMessa
 from openapi_server.models.api_send_message_post_request import ApiSendMessagePostRequest
 from openapi_server.models.api_trigger_starfield_render_post200_response import ApiTriggerStarfieldRenderPost200Response
 from openapi_server.models.api_trigger_starfield_render_post_request import ApiTriggerStarfieldRenderPostRequest
+from openapi_server.models.api_upload_blog_image_post200_response import ApiUploadBlogImagePost200Response
+from openapi_server.models.api_upload_blog_image_post_request import ApiUploadBlogImagePostRequest
 from openapi_server.models.api_user_reg_post_request import ApiUserRegPostRequest
 from openapi_server.models.api_username_verify_post_request import ApiUsernameVerifyPostRequest
 from openapi_server.models.api_verify_user_token_post_request import ApiVerifyUserTokenPostRequest
@@ -117,6 +119,13 @@ class BaseDefaultApi:
         self,
         api_create_blog_post_request: ApiCreateBlogPostRequest,
     ) -> ApiCreateBlogPost200Response:
+        ...
+
+
+    async def api_upload_blog_image_post(
+        self,
+        api_upload_blog_image_post_request: ApiUploadBlogImagePostRequest,
+    ) -> ApiUploadBlogImagePost200Response:
         ...
 
 
