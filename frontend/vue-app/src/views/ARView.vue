@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { onMounted, ref, watch } from 'vue';
 import { GroundObserver } from '../utils/useGroundObserver';
+import type { StartrailGenerationOptions } from '../utils/useGroundObserver';
 import ObserverSettingsPanel from '../components/ObserverSettingsPanel.vue';
+import StartrailSettingsPanel from '../components/StartrailSettingsPanel.vue';
 import StarPopupPanel from '../components/StarPopup.vue';
 import PermissionRequest from '../components/PermissionRequest.vue';
 import type { StarClickInfo } from '@/core/renderer/GroundObserverRenderer';
@@ -15,6 +17,8 @@ type ObserverSettingsPayload = {
 const containerRef = ref<HTMLElement | null>(null);
 let groundObserver: GroundObserver | null = null;
 const latestObserverSettings = ref<ObserverSettingsPayload | null>(null);
+const isGeneratingStartrail = ref(false);
+const isCameraOn = ref(true);
 
 const clickedStarInfo = ref<StarClickInfo | null>(null);
 
@@ -31,6 +35,8 @@ const closeStarInfo = () => {
 };
 
 const applyObserverSettings = (payload: ObserverSettingsPayload) => {
+    if (isGeneratingStartrail.value) return;
+
     latestObserverSettings.value = payload;
     if (!groundObserver) return;
 
@@ -41,6 +47,31 @@ const applyObserverSettings = (payload: ObserverSettingsPayload) => {
     groundObserver.setTimeMode('FIXED');
     groundObserver.setFixedTimestamp(payload.utcTimestampMs);
     groundObserver.setTimestamp(payload.utcTimestampMs);
+};
+
+const onStartStartrail = async (payload: StartrailGenerationOptions) => {
+    if (!groundObserver) return;
+    if (isGeneratingStartrail.value) return;
+
+    try {
+        isGeneratingStartrail.value = true;
+        await groundObserver.generateStartrail(payload);
+    } catch (error) {
+        console.error('Error generating startrail:', error);
+    } finally {
+        isGeneratingStartrail.value = false;
+    }
+};
+
+const onStopStartrail = () => {
+    if (!groundObserver) return;
+    groundObserver.exitStartrailMode();
+    isGeneratingStartrail.value = false;
+};
+
+const onToggleCamera = () => {
+    if (!groundObserver) return;
+    groundObserver.toggleCamera();
 };
 
 onMounted(async () => {
@@ -55,6 +86,11 @@ onMounted(async () => {
         selectedStar = groundObserver.selectedStar;
         watch(selectedStar, (val) => {
             clickedStarInfo.value = val;
+        });
+        // sync camera state ref
+        isCameraOn.value = groundObserver.isCameraOn.value;
+        watch(groundObserver.isCameraOn, (val) => {
+            isCameraOn.value = val;
         });
 
         if (latestObserverSettings.value) {
@@ -91,15 +127,72 @@ onMounted(async () => {
     <div class="ui-layer">        
         <PermissionRequest v-if="showPermission" @granted="() => (showPermission = false)" />
         <ObserverSettingsPanel @apply="applyObserverSettings" />
+        <StartrailSettingsPanel @start="onStartStartrail" @stop="onStopStartrail" />
         <StarPopupPanel 
             :starInfo="clickedStarInfo"
             @close="closeStarInfo"
         />
+        <button
+            v-if="!showPermission"
+            class="camera-toggle-btn"
+            :class="{ 'camera-off': !isCameraOn }"
+            @click="onToggleCamera"
+            :title="isCameraOn ? '关闭摄像头' : '开启摄像头'"
+        >
+            <span class="camera-icon">{{ isCameraOn ? '📷' : '🚫' }}</span>
+        </button>
     </div>
   </div>
 </template>
 
 <style>
+/* Camera toggle button */
+.camera-toggle-btn {
+    position: absolute;
+    top: 20px;
+    left: 24px;
+    z-index: 21;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(10, 15, 30, 0.65);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 0;
+    pointer-events: auto;
+}
+
+.camera-toggle-btn:active {
+    transform: scale(0.92);
+}
+
+.camera-toggle-btn:hover {
+    background: rgba(68, 170, 255, 0.2);
+    border-color: rgba(68, 170, 255, 0.4);
+}
+
+.camera-toggle-btn.camera-off {
+    background: rgba(30, 10, 10, 0.7);
+    border-color: rgba(255, 80, 80, 0.35);
+}
+
+.camera-toggle-btn.camera-off:hover {
+    background: rgba(255, 80, 80, 0.2);
+    border-color: rgba(255, 80, 80, 0.5);
+}
+
+.camera-icon {
+    font-size: 18px;
+    line-height: 1;
+    pointer-events: none;
+}
+
 /* Global Reset for this App */
 .starroll-app {
     width: 100vw;
