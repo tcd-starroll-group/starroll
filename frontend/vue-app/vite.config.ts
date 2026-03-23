@@ -1,6 +1,4 @@
 import { fileURLToPath, URL } from 'node:url'
-// ... (其他 import 保持不变)
-
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueDevTools from 'vite-plugin-vue-devtools'
@@ -10,7 +8,6 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
-      // 如果你之前修复了 gen 的路径，这里应该还有 '@gen': ...
     },
   },
   server: {
@@ -21,9 +18,9 @@ export default defineConfig({
     // === 新增以下 proxy 配置 ===
     proxy: {
       '/api': {
-        target: 'https://starroll.ie', // 你的线上后端地址
-        changeOrigin: true,            // 允许跨域
-        secure: false,                 // 如果线上环境 HTTPS 证书有问题，设为 false 忽略验证
+        target: 'https://starroll.ie', 
+        changeOrigin: true,       
+        secure: false,      
       }
     }
     // ========================
