@@ -82,7 +82,9 @@ const stopGenerate = () => {
 </script>
 
 <template>
-	<button class="startrail-toggle" @click="panelVisible = !panelVisible">星轨</button>
+	<button class="startrail-toggle" @click="panelVisible = !panelVisible">
+		<img src="/images/star_trail.png" alt="Startrail settings" />
+	</button>
 
 	<div v-if="panelVisible" class="startrail-panel sr-glass-panel">
 		<div class="header-row">
@@ -133,15 +135,20 @@ const stopGenerate = () => {
 	top: 20px;
 	right: 76px;
 	z-index: 21;
-	min-width: 52px;
+	width: 40px;
 	height: 40px;
-	border: 1px solid var(--sr-border-glass);
+	border: none;
 	border-radius: 10px;
-	background: var(--sr-bg-glass);
-	color: var(--sr-text-primary);
+	background: transparent;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	cursor: pointer;
-	backdrop-filter: blur(12px);
-	-webkit-backdrop-filter: blur(12px);
+}
+
+.startrail-toggle img {
+	width: 24px;
+	height: 24px;
 }
 
 .startrail-panel {

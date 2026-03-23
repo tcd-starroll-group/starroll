@@ -64,6 +64,11 @@ const router = createRouter({
       name: 'UserDetails',
       component: () => import('../views/UserDetailsView.vue'),
     },
+    {
+      path: '/chat/:roomId',
+      name: 'ChatRoom',
+      component: () => import('../views/ChatRoomView.vue'),
+    },
   ],
 })
 export default router

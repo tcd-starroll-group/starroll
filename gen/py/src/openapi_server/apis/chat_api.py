@@ -10,18 +10,20 @@ connection_manager = ConnectionManager()
 
 @router.websocket("/api/chat")
 async def api_chat(websocket: WebSocket) -> None:
+    # Accept token from Authorization header or ?token= query parameter
+    # (browsers cannot set arbitrary headers on WebSocket connections)
+    token: str = ""
     auth_header = websocket.headers.get("Authorization")
-    if not auth_header:
-        await websocket.close(code=1008, reason="Authorization header required")
-        return
-
-    if auth_header.startswith("Bearer "):
-        token = auth_header[len("Bearer "):].strip()
+    if auth_header:
+        if auth_header.startswith("Bearer "):
+            token = auth_header[len("Bearer "):].strip()
+        else:
+            token = auth_header.strip()
     else:
-        token = auth_header.strip()
+        token = (websocket.query_params.get("token") or "").strip()
 
     if not token:
-        await websocket.close(code=1008, reason="Invalid Authorization header")
+        await websocket.close(code=1008, reason="Authorization required")
         return
 
     token_payload, is_valid = verify_access_token(token)

@@ -153,8 +153,6 @@ export interface StarClickInfo {
   distance?: number
   rightAscension: number
   declination: number
-  altitude: number
-  azimuth: number
   screenX: number
   screenY: number
   originalName: string
@@ -725,7 +723,6 @@ export class GroundObserverRenderer {
 
   private finishStartrailMode(): void {
     this.clearStartrailLoop()
-    this.unfreezeVideoFrame()
 
     if (this.pendingStartrailResolve) {
       this.pendingStartrailResolve()
@@ -936,8 +933,6 @@ export class GroundObserverRenderer {
         distance: star.distance,
         rightAscension: star.equatorialCoordinate.rightAscension,
         declination: star.equatorialCoordinate.declination,
-        altitude: 0,
-        azimuth: 0,
         screenX,
         screenY,
         originalName: detailedData.name || '',
