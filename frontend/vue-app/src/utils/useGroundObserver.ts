@@ -14,6 +14,7 @@ export type StartrailGenerationOptions = {
 export class GroundObserver {
   private rendererInstance: GroundObserverRenderer | null = null
   public selectedStar = ref<StarClickInfo | null>(null)
+  public isCameraOn = ref(true)
   // Time control
   public enumTimeMode = {
     FIXED: 'FIXED',
@@ -43,6 +44,13 @@ export class GroundObserver {
 
   public disableARMode() {
     this.rendererInstance!.disableARMode()
+  }
+
+  public toggleCamera(): void {
+    if (!this.rendererInstance) return
+    const next = !this.rendererInstance.isCameraOn
+    this.rendererInstance.setCameraVisible(next)
+    this.isCameraOn.value = next
   }
 
   public setTimestamp(timestamp: number) {

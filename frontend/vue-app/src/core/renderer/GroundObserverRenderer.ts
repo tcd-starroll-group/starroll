@@ -228,6 +228,8 @@ export class GroundObserverRenderer {
   // Camera
   private videoElement: HTMLVideoElement | null = null
   private videoStream: MediaStream | null = null
+  private _cameraVisible: boolean = true
+  private frozenFrameCanvas: HTMLCanvasElement | null = null
 
   // Click detection
   private raycaster: THREE.Raycaster = new THREE.Raycaster()
@@ -677,6 +679,8 @@ export class GroundObserverRenderer {
 
     this.renderMode = 'STARTRAIL'
     this.orientationUpdatesEnabled = false
+    absoluteOrientationManager.stopListening()
+    this.freezeVideoFrame()
     this.renderer.autoClear = false
     this.clearSelectedStarIndicator()
     this.startrailTwinkleMultiplier = Math.max(0, options.twinkleMultiplier)
@@ -721,6 +725,7 @@ export class GroundObserverRenderer {
 
   private finishStartrailMode(): void {
     this.clearStartrailLoop()
+    this.unfreezeVideoFrame()
 
     if (this.pendingStartrailResolve) {
       this.pendingStartrailResolve()
@@ -732,8 +737,10 @@ export class GroundObserverRenderer {
     if (this.renderMode !== 'STARTRAIL') return
 
     this.clearStartrailLoop()
+    this.unfreezeVideoFrame()
     this.renderMode = 'AR'
     this.orientationUpdatesEnabled = true
+    absoluteOrientationManager.startListening()
     this.startrailTwinkleMultiplier = 1
     this.renderer.autoClear = this.defaultAutoClear
     this.renderer.clear()
@@ -1042,6 +1049,68 @@ export class GroundObserverRenderer {
       this.videoElement.srcObject = null
       this.videoElement.remove()
       this.videoElement = null
+    }
+  }
+
+  public setCameraVisible(visible: boolean): void {
+    this._cameraVisible = visible
+    if (this.videoElement) {
+      this.videoElement.style.display = visible ? '' : 'none'
+    }
+    if (this.frozenFrameCanvas) {
+      this.frozenFrameCanvas.style.display = visible ? '' : 'none'
+    }
+  }
+
+  public get isCameraOn(): boolean {
+    return this._cameraVisible
+  }
+
+  private freezeVideoFrame(): void {
+    if (!this.videoElement || !this._cameraVisible) return
+
+    const video = this.videoElement
+    const w = video.videoWidth || video.clientWidth || window.innerWidth
+    const h = video.videoHeight || video.clientHeight || window.innerHeight
+
+    if (!this.frozenFrameCanvas) {
+      this.frozenFrameCanvas = document.createElement('canvas')
+      // copy the same positioning style as the video element
+      Object.assign(this.frozenFrameCanvas.style, {
+        position: 'fixed',
+        top: '0',
+        left: '0',
+        zIndex: '-1',
+        pointerEvents: 'none',
+      })
+    }
+
+    this.frozenFrameCanvas.width = w
+    this.frozenFrameCanvas.height = h
+
+    // Copy the video's layout style (width/height/objectFit) to the canvas
+    this.frozenFrameCanvas.style.width = video.style.width || '100%'
+    this.frozenFrameCanvas.style.height = video.style.height || '100%'
+    this.frozenFrameCanvas.style.objectFit = video.style.objectFit || 'cover'
+
+    const ctx = this.frozenFrameCanvas.getContext('2d')
+    if (ctx) {
+      ctx.drawImage(video, 0, 0, w, h)
+    }
+
+    // Show frozen canvas, hide live video
+    this.container.appendChild(this.frozenFrameCanvas)
+    video.style.display = 'none'
+  }
+
+  private unfreezeVideoFrame(): void {
+    if (this.frozenFrameCanvas) {
+      this.frozenFrameCanvas.remove()
+      this.frozenFrameCanvas = null
+    }
+    // Restore live video (only if user hasn't manually turned camera off)
+    if (this.videoElement && this._cameraVisible) {
+      this.videoElement.style.display = ''
     }
   }
 

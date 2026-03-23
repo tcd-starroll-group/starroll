@@ -152,6 +152,7 @@ class AbsoluteOrientationManager {
       this.compassHeadingHandler = null
       this.lastCompassHeading = null
     }
+    this.stopPollLoop()
     this.isListening = false
   }
 
