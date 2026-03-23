@@ -25,6 +25,8 @@ spec:
                   fieldPath: metadata.name
           ports:
             - containerPort: 8000
+              name: backend-port
+              protocol: TCP
           volumeMounts:
             - name: app-env-file
               mountPath: /app/.env

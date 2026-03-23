@@ -5,6 +5,7 @@ from collections import defaultdict
 from datetime import datetime, timedelta, timezone
 
 from fastapi import WebSocket
+from prometheus_client import Counter, Gauge
 from pydantic import ValidationError
 
 from backend.console.dal import get_redis_client
@@ -12,6 +13,24 @@ from backend.console.dal.rds.client import SessionLocal
 from backend.console.dal.cache.client import RedisPubSubListener
 from backend.console.handler_ws.chat_message_formatter import build_chat_messages_action_from_event
 from backend.model.chat import ChatMessageKafkaEvent
+
+# ---------------------------------------------------------------------------
+# WebSocket metrics – registered into the shared default prometheus_client
+# Registry, so they are automatically served at the existing /metrics endpoint
+# (exposed by prometheus_fastapi_instrumentator in app.py).
+# ---------------------------------------------------------------------------
+_WS_ACTIVE_CONNECTIONS = Gauge(
+    "ws_active_connections",
+    "Number of currently active WebSocket connections",
+)
+_WS_ACTIVE_ROOM_MEMBERS = Gauge(
+    "ws_active_room_members",
+    "Number of users currently inside a chat room",
+)
+_WS_MESSAGES_BROADCAST_TOTAL = Counter(
+    "ws_messages_broadcast_total",
+    "Total number of messages broadcast to chat rooms",
+)
 
 
 class ConnectionManager:
@@ -119,23 +138,32 @@ class ConnectionManager:
 
     async def connect(self, user_id: str, websocket: WebSocket) -> None:
         async with self._lock:
+            is_new = user_id not in self._user_connections
             self._user_connections[user_id] = websocket
             self._last_heartbeat[user_id] = self._utcnow()
 
+        if is_new:
+            _WS_ACTIVE_CONNECTIONS.inc()
         self._ensure_heartbeat_checker_started()
 
     async def disconnect(self, user_id: str) -> None:
         channel_to_unsubscribe: str | None = None
         async with self._lock:
             room_id = self._user_room.pop(user_id, None)
+            was_in_room = room_id is not None
             if room_id is not None:
                 self._room_members[room_id].discard(user_id)
                 if not self._room_members[room_id]:
                     del self._room_members[room_id]
                     channel_to_unsubscribe = self._room_channel(room_id)
+            was_connected = user_id in self._user_connections
             self._user_connections.pop(user_id, None)
             self._last_heartbeat.pop(user_id, None)
 
+        if was_connected:
+            _WS_ACTIVE_CONNECTIONS.dec()
+        if was_in_room:
+            _WS_ACTIVE_ROOM_MEMBERS.dec()
         if channel_to_unsubscribe is not None and self._pubsub_listener is not None:
             self._pubsub_listener.unsubscribe([channel_to_unsubscribe])
 
@@ -147,10 +175,14 @@ class ConnectionManager:
     async def join_room(self, user_id: str, room_id: str) -> None:
         channel_to_subscribe: str | None = None
         old_channel_to_unsubscribe: str | None = None
+        joining_first_room = False
         async with self._lock:
             old_room_id = self._user_room.get(user_id)
             if old_room_id == room_id:
                 return
+
+            # User is joining a room for the first time (not a lateral move)
+            joining_first_room = old_room_id is None
 
             if old_room_id is not None:
                 self._room_members[old_room_id].discard(user_id)
@@ -165,6 +197,9 @@ class ConnectionManager:
             if should_subscribe:
                 channel_to_subscribe = self._room_channel(room_id)
 
+        if joining_first_room:
+            _WS_ACTIVE_ROOM_MEMBERS.inc()
+
         if old_channel_to_unsubscribe is not None and self._pubsub_listener is not None:
             self._pubsub_listener.unsubscribe([old_channel_to_unsubscribe])
 
@@ -176,16 +211,20 @@ class ConnectionManager:
 
     async def exit_room(self, user_id: str) -> None:
         channel_to_unsubscribe: str | None = None
+        was_in_room = False
         async with self._lock:
             room_id = self._user_room.pop(user_id, None)
             if room_id is None:
                 return
 
+            was_in_room = True
             self._room_members[room_id].discard(user_id)
             if not self._room_members[room_id]:
                 del self._room_members[room_id]
                 channel_to_unsubscribe = self._room_channel(room_id)
 
+        if was_in_room:
+            _WS_ACTIVE_ROOM_MEMBERS.dec()
         if channel_to_unsubscribe is not None and self._pubsub_listener is not None:
             self._pubsub_listener.unsubscribe([channel_to_unsubscribe])
 
@@ -215,6 +254,8 @@ class ConnectionManager:
 
         for websocket in sockets:
             await websocket.send_json(payload)
+        if sockets:
+            _WS_MESSAGES_BROADCAST_TOTAL.inc(len(sockets))
 
     async def _heartbeat_checker_loop(self) -> None:
         while True:
@@ -234,9 +275,11 @@ class ConnectionManager:
             ]
 
             stale_sockets: list[WebSocket] = []
+            stale_room_count = 0
             for user_id in stale_user_ids:
                 room_id = self._user_room.pop(user_id, None)
                 if room_id is not None:
+                    stale_room_count += 1
                     self._room_members[room_id].discard(user_id)
                     if not self._room_members[room_id]:
                         del self._room_members[room_id]
@@ -251,6 +294,11 @@ class ConnectionManager:
 
         if channels_to_unsubscribe and self._pubsub_listener is not None:
             self._pubsub_listener.unsubscribe(channels_to_unsubscribe)
+
+        if stale_sockets:
+            _WS_ACTIVE_CONNECTIONS.dec(len(stale_sockets))
+        if stale_room_count > 0:
+            _WS_ACTIVE_ROOM_MEMBERS.dec(stale_room_count)
 
         for socket in stale_sockets:
             try:

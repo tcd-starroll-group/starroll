@@ -44,6 +44,8 @@ opentelemetry-semantic-conventions==0.59b0
 packaging==26.0
 pillow==12.1.0
 pluggy==1.6.0
+prometheus-fastapi-instrumentator==7.1.0
+prometheus_client==0.24.1
 protobuf==6.33.1
 pycparser==2.23
 pycryptodome==3.23.0
