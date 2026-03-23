@@ -55,6 +55,8 @@ export * from './ApiTriggerStarfieldRenderPost200Response';
 export * from './ApiTriggerStarfieldRenderPostRequest';
 export * from './ApiTriggerStarfieldRenderPostRequestCorrectedStarCoordinatesInner';
 export * from './ApiTriggerStarfieldRenderPostRequestRenderParams';
+export * from './ApiUploadBlogImagePost200Response';
+export * from './ApiUploadBlogImagePostRequest';
 export * from './ApiUserRegPostRequest';
 export * from './ApiUsernameVerifyPostRequest';
 export * from './ApiVerifyUserTokenPostRequest';

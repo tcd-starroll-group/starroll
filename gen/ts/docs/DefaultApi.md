@@ -47,6 +47,7 @@ All URIs are relative to *http://localhost*
 | [**apiSetUserPost**](DefaultApi.md#apisetuserpost) | **POST** /api/setUser | Set/modify username and password |
 | [**apiTriggerStarfieldRenderPost**](DefaultApi.md#apitriggerstarfieldrenderpostoperation) | **POST** /api/triggerStarfieldRender | Trigger starfield rendering |
 | [**apiUpdateLastGpsPost**](DefaultApi.md#apiupdatelastgpspost) | **POST** /api/updateLastGps | update user last gps |
+| [**apiUploadBlogImagePost**](DefaultApi.md#apiuploadblogimagepostoperation) | **POST** /api/uploadBlogImage | Upload a blog image and get back a URL |
 | [**apiUserLoginPost**](DefaultApi.md#apiuserloginpost) | **POST** /api/userLogin | User login |
 | [**apiUserRegPost**](DefaultApi.md#apiuserregpostoperation) | **POST** /api/userReg | User register |
 | [**apiUsernameVerifyPost**](DefaultApi.md#apiusernameverifypostoperation) | **POST** /api/usernameVerify | Verify the username |
@@ -2842,6 +2843,71 @@ No authorization required
 | **200** | Last GPS updated successfully. |  -  |
 | **401** | Unauthorized: Authentication required. |  -  |
 | **404** | User not found. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## apiUploadBlogImagePost
+
+> ApiUploadBlogImagePost200Response apiUploadBlogImagePost(apiUploadBlogImagePostRequest)
+
+Upload a blog image and get back a URL
+
+### Example
+
+```ts
+import {
+  Configuration,
+  DefaultApi,
+} from '';
+import type { ApiUploadBlogImagePostOperationRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new DefaultApi();
+
+  const body = {
+    // ApiUploadBlogImagePostRequest
+    apiUploadBlogImagePostRequest: ...,
+  } satisfies ApiUploadBlogImagePostOperationRequest;
+
+  try {
+    const data = await api.apiUploadBlogImagePost(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **apiUploadBlogImagePostRequest** | [ApiUploadBlogImagePostRequest](ApiUploadBlogImagePostRequest.md) |  | |
+
+### Return type
+
+[**ApiUploadBlogImagePost200Response**](ApiUploadBlogImagePost200Response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 

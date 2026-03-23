@@ -55,6 +55,8 @@ docs/ApiTriggerStarfieldRenderPost200Response.md
 docs/ApiTriggerStarfieldRenderPostRequest.md
 docs/ApiTriggerStarfieldRenderPostRequestCorrectedStarCoordinatesInner.md
 docs/ApiTriggerStarfieldRenderPostRequestRenderParams.md
+docs/ApiUploadBlogImagePost200Response.md
+docs/ApiUploadBlogImagePostRequest.md
 docs/ApiUserRegPostRequest.md
 docs/ApiUsernameVerifyPostRequest.md
 docs/ApiVerifyUserTokenPostRequest.md
@@ -144,6 +146,8 @@ models/ApiTriggerStarfieldRenderPost200Response.ts
 models/ApiTriggerStarfieldRenderPostRequest.ts
 models/ApiTriggerStarfieldRenderPostRequestCorrectedStarCoordinatesInner.ts
 models/ApiTriggerStarfieldRenderPostRequestRenderParams.ts
+models/ApiUploadBlogImagePost200Response.ts
+models/ApiUploadBlogImagePostRequest.ts
 models/ApiUserRegPostRequest.ts
 models/ApiUsernameVerifyPostRequest.ts
 models/ApiVerifyUserTokenPostRequest.ts
