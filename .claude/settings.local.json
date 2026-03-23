@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(\"D:\\\\software\\\\conda\\\\envs\\\\starroll\\\\python.exe\" -m pytest backend/console/tests/handler/test_create_identify_starts_job.py -v --co)",
+      "Bash(ls *.cfg *.ini *.toml)"
+    ]
+  }
+}

@@ -1,6 +1,9 @@
 import re
+import sys
 from pathlib import Path
 from typing import Generator
+
+sys.path.insert(0, str(Path(__file__).parents[3] / "gen" / "py" / "src"))
 
 import pytest
 from sqlalchemy import create_engine, inspect, text

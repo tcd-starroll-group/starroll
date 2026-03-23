@@ -98,6 +98,22 @@ paths:
                 $ref: "#/components/schemas/_api_createBlog_post_200_response"
           description: OK
       summary: Create a new blog
+  /api/uploadBlogImage:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/_api_uploadBlogImage_post_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/_api_uploadBlogImage_post_200_response"
+          description: OK
+      summary: Upload a blog image and get back a URL
   /api/listSavedBlogs:
     post:
       requestBody:
@@ -1589,6 +1605,26 @@ components:
         messages: messages
         blogID: blogID
       title: _api_createBlog_post_200_response
+    _api_uploadBlogImage_post_request:
+      properties:
+        image:
+          description: "Base64-encoded image data (JPEG, PNG, etc.)"
+          title: image
+          type: string
+      required:
+      - image
+      title: _api_uploadBlogImage_post_request
+      type: object
+    _api_uploadBlogImage_post_200_response:
+      example:
+        imageURL: imageURL
+      properties:
+        imageURL:
+          description: Accessible URL of the uploaded image
+          title: imageURL
+          type: string
+      title: _api_uploadBlogImage_post_200_response
+      type: object
     _api_getCameraData_post_200_response:
       example:
         image: image

@@ -69,6 +69,8 @@ from openapi_server.models.api_send_message_post200_response import ApiSendMessa
 from openapi_server.models.api_send_message_post_request import ApiSendMessagePostRequest
 from openapi_server.models.api_trigger_starfield_render_post200_response import ApiTriggerStarfieldRenderPost200Response
 from openapi_server.models.api_trigger_starfield_render_post_request import ApiTriggerStarfieldRenderPostRequest
+from openapi_server.models.api_upload_blog_image_post200_response import ApiUploadBlogImagePost200Response
+from openapi_server.models.api_upload_blog_image_post_request import ApiUploadBlogImagePostRequest
 from openapi_server.models.api_user_reg_post_request import ApiUserRegPostRequest
 from openapi_server.models.api_username_verify_post_request import ApiUsernameVerifyPostRequest
 from openapi_server.models.api_verify_user_token_post_request import ApiVerifyUserTokenPostRequest
@@ -200,6 +202,23 @@ async def api_create_blog_post(
     if not BaseDefaultApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")
     return await BaseDefaultApi.subclasses[0]().api_create_blog_post(api_create_blog_post_request)
+
+
+@router.post(
+    "/api/uploadBlogImage",
+    responses={
+        200: {"model": ApiUploadBlogImagePost200Response, "description": "OK"},
+    },
+    tags=["default"],
+    summary="Upload a blog image and get back a URL",
+    response_model_by_alias=True,
+)
+async def api_upload_blog_image_post(
+    api_upload_blog_image_post_request: ApiUploadBlogImagePostRequest = Body(None, description=""),
+) -> ApiUploadBlogImagePost200Response:
+    if not BaseDefaultApi.subclasses:
+        raise HTTPException(status_code=500, detail="Not implemented")
+    return await BaseDefaultApi.subclasses[0]().api_upload_blog_image_post(api_upload_blog_image_post_request)
 
 
 @router.post(

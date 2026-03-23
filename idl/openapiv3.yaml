@@ -163,6 +163,33 @@ paths:
                         description: "Post Successful"
                         type: string
 
+  /api/uploadBlogImage:
+    post:
+      summary: "Upload a blog image and get back a URL"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - image
+              properties:
+                image:
+                  type: string
+                  description: Base64-encoded image data (JPEG, PNG, etc.)
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  imageURL:
+                    type: string
+                    description: Accessible URL of the uploaded image
+
   /api/listSavedBlogs:
     post:
       summary: "List all blogs saved by the user"
