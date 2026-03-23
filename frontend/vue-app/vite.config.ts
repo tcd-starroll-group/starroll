@@ -15,7 +15,6 @@ export default defineConfig({
     port: 80,
     allowedHosts: ['starroll.ie'],
     
-    // === 新增以下 proxy 配置 ===
     proxy: {
       '/api': {
         target: 'https://starroll.ie', 

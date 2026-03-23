@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
-// 移除生成的 API 客户端引入，改用原生 fetch
+// Remove generated API client import, use native fetch instead
 import type { BlogPreview } from '@/gen/ts/models/BlogPreview';
 
 const router = useRouter();
@@ -13,7 +13,7 @@ const hipId = Number(route.query.hip);
 const isLoading = ref(true);
 const blogs = ref<BlogPreview[]>([]);
 
-// 🌟 核心修复：原生 fetch 替换法
+
 const fetchStarBlogs = async () => {
   if (!hipId) {
     alert('Missing star identification (HIP number).');
@@ -21,25 +21,25 @@ const fetchStarBlogs = async () => {
     return;
   }
 
-  // 1. 获取本地 Token
+  // 1. Get local Token
   const token = localStorage.getItem('token');
   const userID = localStorage.getItem('userID');
 
   if (!token || !userID) {
     alert('You need to log in to view star logs.');
-    router.push('/login'); // 未登录则踢回登录页
+    router.push('/login'); // Redirect to login page if not logged in
     return;
   }
   
   try {
     isLoading.value = true;
     
-    // 2. 原生 fetch 强力出击，写死正确的单斜杠路径
+    // 2. Use native fetch forcefully, hardcode correct single-slash path
     const response = await fetch('/api/listStarBlogs', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        // 强制注入 Token，突破自动生成代码吞 Token 的 Bug
+        // Force inject Token to fix the bug of auto-generated code swallowing Token
         'Authorization': `Bearer ${token}` 
       },
       body: JSON.stringify({
@@ -48,14 +48,14 @@ const fetchStarBlogs = async () => {
           userID: userID
         },
         HIP: String(hipId), 
-        hIP: String(hipId) // 兼容后端模型大小写
+        hIP: String(hipId) // Compatible with backend model case sensitivity
       })
     });
 
-    // 3. 错误处理与 401 拦截
+    // 3. Error handling and 401 interception
     if (!response.ok) {
       if (response.status === 401) {
-        alert('Your session has expired. Please log in again. (凭证过期，请重新登录)');
+        alert('Your session has expired. Please log in again. (Credentials expired, please log in again)');
         localStorage.removeItem('token');
         router.push('/login');
         return;
@@ -63,7 +63,7 @@ const fetchStarBlogs = async () => {
       throw new Error(`Server error: ${response.status}`);
     }
 
-    // 4. 解析数据并绑定到 Vue 响应式变量
+    // 4. Parse data and bind to Vue reactive variables
     const data = await response.json();
     blogs.value = data.blogsList || [];
     
@@ -128,7 +128,7 @@ onMounted(() => {
 </template>
 
 <style scoped>
-/* 原有样式保持不变 */
+/* Keep original styles unchanged */
 .star-blogs-container {
   display: flex;
   flex-direction: column;

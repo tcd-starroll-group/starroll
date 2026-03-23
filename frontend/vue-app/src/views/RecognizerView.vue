@@ -5,13 +5,13 @@ import StarBackground from '@/components/StarBackground.vue';
 import BottomBar from '@/components/BottomBar.vue';
 import { defaultApi } from '@/api/defaultApi';
 
-// 引入全局通用样式
+// Import global common styles
 import '../assets/styles/common.css';
 import '../assets/styles/main.css';
 
 const router = useRouter();
 
-// 状态管理
+// State management
 const fileInputRef = ref<HTMLInputElement | null>(null);
 const imagePreview = ref<string | null>(null);
 const base64Data = ref<string>('');
@@ -19,12 +19,12 @@ const isAnalyzing = ref(false);
 const jobId = ref<string | null>(null);
 const errorMessage = ref<string>('');
 
-// 触发文件选择
+// Trigger file selection
 const triggerUpload = () => {
   fileInputRef.value?.click();
 };
 
-// 处理图片选择与 Base64 编码
+// Handle image selection and Base64 encoding
 const handleImageSelected = (event: Event) => {
   const target = event.target as HTMLInputElement;
   if (target.files && target.files.length > 0) {
@@ -32,15 +32,15 @@ const handleImageSelected = (event: Event) => {
     errorMessage.value = '';
     jobId.value = null;
     
-    // 生成本地预览 URL
+    // Generate local preview URL
     imagePreview.value = URL.createObjectURL(file);
 
-    // 将图片转换为 Base64
+    // Convert image to Base64
     const reader = new FileReader();
     reader.onload = (e) => {
       if (e.target?.result) {
         const resultString = e.target.result as string;
-        // 去除 "data:image/jpeg;base64," 等前缀，后端只要纯编码
+        // Remove prefix like "data:image/jpeg;base64,", backend only needs pure encoding
         base64Data.value = resultString.split(',')[1]; 
       }
     };
@@ -48,19 +48,19 @@ const handleImageSelected = (event: Event) => {
   }
 };
 
-// 调用 API 提交识别任务
+// Call API to submit recognition task
 const startAnalysis = async () => {
   if (!base64Data.value) {
-    errorMessage.value = '请先上传一张星空图片';
+    errorMessage.value = 'Please upload a starry sky image first';
     return;
   }
 
   const token = localStorage.getItem('token');
-    const userId = localStorage.getItem('userID') || '2';
+  const userId = localStorage.getItem('userID') || '2';
 
   if (!token ) {
-    errorMessage.value = '检测到身份凭证失效，正在前往统一登录页...';
-    // 使用 window.location.href 强制浏览器跳转到线上环境
+    errorMessage.value = 'Identity credentials expired, redirecting to login page...';
+    // Use window.location.href to force browser redirect to online environment
     setTimeout(() => {
       window.location.href = 'https://starroll.ie/userlogin';
     }, 2000);
@@ -71,35 +71,35 @@ const startAnalysis = async () => {
   errorMessage.value = '';
 
   try {
-    // 🚀 使用封装好的 defaultApi 发送请求
+    // 🚀 Use encapsulated defaultApi to send request
     const response = await defaultApi.apiCreateIdentifyStarsJobPost({
       apiCreateIdentifyStarsJobPostRequest: {
         image: base64Data.value,
         userID: userId,
-        // 根据 openapiv3.yaml 定义，即使请求头里带了 token，body 里依然需要传
+        // According to openapiv3.yaml definition, token still needs to be passed in body even if included in request header
         token: token 
       }
     });
 
     console.log('Job created successfully:', response);
     
-    // API 自动解析 JSON 响应，直接读取属性
+    // API automatically parses JSON response, read properties directly
     jobId.value = response.jobID || null;
     
     if (jobId.value) {
-      console.log('准备开始轮询 Job:', jobId.value);
-      // TODO: 下一步将在这里加入轮询逻辑
+      console.log('Preparing to poll Job:', jobId.value);
+      // TODO: Polling logic will be added here in next step
     }
 
   } catch (error: unknown) {
     console.error('Failed to create identify job:', error);
-    errorMessage.value = '星空数据传输失败，请检查网络或重新登录。';
+    errorMessage.value = 'Failed to upload starry sky data, check network or re-login.';
   } finally {
     isAnalyzing.value = false;
   }
 };
 
-// 重新选择图片
+// Reselect image
 const resetUploader = () => {
   imagePreview.value = null;
   base64Data.value = '';
@@ -126,7 +126,7 @@ const resetUploader = () => {
       </header>
 
       <main class="main-content">
-        <p class="subtitle">上传你的星空摄影作品，引擎将为你标记星座与天体。</p>
+        <p class="subtitle">Upload your starry sky photography, and the engine will mark constellations and celestial bodies for you.</p>
 
         <div 
           v-if="!imagePreview" 
@@ -138,8 +138,8 @@ const resetUploader = () => {
               <path fill="currentColor" d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"/>
             </svg>
           </div>
-          <p class="upload-text">点击选择星空照片</p>
-          <p class="upload-hint">支持 JPG, PNG 格式</p>
+          <p class="upload-text">Click to select a starry sky photo</p>
+          <p class="upload-hint">Supports JPG, PNG formats</p>
         </div>
 
         <div v-else class="preview-section">
@@ -157,7 +157,7 @@ const resetUploader = () => {
                 @click="resetUploader" 
                 :disabled="isAnalyzing"
               >
-                重选图片
+                Reselect Image
               </button>
               <button 
                 class="sr-glass-btn primary-btn" 
@@ -165,7 +165,7 @@ const resetUploader = () => {
                 :disabled="isAnalyzing"
               >
                 <span v-if="isAnalyzing" class="spinner"></span>
-                {{ isAnalyzing ? '正在上传至处理中心...' : '开始星空解析' }}
+                {{ isAnalyzing ? 'Uploading to processing center...' : 'Start Starry Sky Analysis' }}
               </button>
             </template>
             
@@ -175,13 +175,13 @@ const resetUploader = () => {
                   <path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
                 </svg>
                 <div class="success-text">
-                  <h3>任务已建立</h3>
+                  <h3>Task Created</h3>
                   <p>Job ID: {{ jobId }}</p>
-                  <p class="small-text">引擎正在处理中，请稍候...</p>
+                  <p class="small-text">Engine is processing, please wait...</p>
                 </div>
               </div>
               <button class="sr-glass-btn secondary-btn w-full mt-4" @click="resetUploader">
-                分析下一张
+                Analyze Next Image
               </button>
             </template>
           </div>
@@ -252,7 +252,7 @@ const resetUploader = () => {
   line-height: 1.5;
 }
 
-/* 上传虚线框 */
+/* Upload dashed box */
 .upload-box {
   border: 2px dashed rgba(88, 166, 255, 0.4);
   display: flex;
@@ -283,7 +283,7 @@ const resetUploader = () => {
   color: var(--color-text-muted);
 }
 
-/* 预览区域 */
+/* Preview area */
 .preview-section {
   display: flex;
   flex-direction: column;
@@ -306,7 +306,7 @@ const resetUploader = () => {
   background: #000;
 }
 
-/* 科幻扫描线动画 */
+/* Sci-fi scan line animation */
 .scan-line {
   position: absolute;
   top: 0;
@@ -325,7 +325,7 @@ const resetUploader = () => {
   100% { top: 0; }
 }
 
-/* 按钮组 */
+/* Button group */
 .action-group {
   display: flex;
   gap: 16px;
@@ -362,7 +362,7 @@ const resetUploader = () => {
   cursor: not-allowed;
 }
 
-/* 成功面板 */
+/* Success panel */
 .success-panel {
   display: flex;
   align-items: center;
@@ -395,14 +395,14 @@ const resetUploader = () => {
 .w-full { width: 100%; }
 .mt-4 { margin-top: 16px; }
 
-/* 错误文本 */
+/* Error text */
 .error-text {
   color: var(--color-error, #ff4444);
   text-align: center;
   font-size: 14px;
 }
 
-/* Loading 旋转动画 */
+/* Loading spin animation */
 .spinner {
   width: 18px;
   height: 18px;
