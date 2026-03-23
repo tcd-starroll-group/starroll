@@ -37,14 +37,37 @@ const pilot = reactive({
 onMounted(async () => {
   try {
     const token = localStorage.getItem('token') || ''
-    const response = await defaultApi.apiVerifyUserTokenPost({
-      apiVerifyUserTokenPostRequest: { token },
-    })
+    
+    if (!token) {
+      console.warn("No token found. Please log in.")
+      // router.push('/login')
+      return
+    }
 
-    pilot.name = response.username || 'Loading...'
-    console.log("档案同步成功:", pilot.name)
+    // 1. Get User Profile (Name)
+    // Looking at your openAPI YAML, verifyUserToken expects the token in the body as well
+    const userResponse = await defaultApi.apiVerifyUserTokenPost({
+      apiVerifyUserTokenPostRequest: { token }
+    })
+    pilot.name = userResponse.username || 'Unknown Pilot'
+
+    // 2. Get Profile Stats (Rank/Scans/Discoveries)
+    // The middleware automatically adds the token header, so we just pass an empty object {}
+    const statsResponse = await defaultApi.apiGetProfileStatsPost({
+      profileStatsRequest: {} 
+    })
+    
+    // Update the UI
+    pilot.stats = {
+      starsDiscovered: statsResponse.starsDiscovered || 0,
+      totalScans: statsResponse.totalScans || 0,
+      rank: statsResponse.rank || 'Novice',
+      joinDate: statsResponse.joinDate || '---'
+    }
+
+    console.log("Telemetry Sync Complete!")
   } catch (err) {
-    console.error("无法获取飞行员档案，请检查 Token 是否有效");
+    console.error("Link Failure: Could not sync pilot profile.", err);
   }
 })
 const router = useRouter()
@@ -94,7 +117,7 @@ const goToDetails = () => {
         </div>
         <div class="stat-card glass-panel">
           <span class="stat-label">Stellar Rank</span>
-          <span class="stat-value">#42</span>
+          <span class="stat-value">{{ pilot.stats.rank }}</span> 
         </div>
       </div>
 
