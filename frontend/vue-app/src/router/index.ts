@@ -15,6 +15,26 @@ const router = createRouter({
       component: () => import('../views/LoginView.vue'),
     },
     {
+      path: '/add-blog',
+      name: 'AddBlog',
+      component: () => import('../views/AddBlogView.vue'), 
+    },
+    {
+      path: '/Navigation',
+      name: 'Navigation',
+      component: () => import('../views/NavigationView.vue'),
+    },
+    {
+      path: '/star-blogs',
+      name: 'StarBlogs',
+      component: () => import('../views/StarBlogsView.vue'),
+    },
+    {
+      path: '/Recognizer',
+      name: 'Recognizer',
+      component: () => import('../views/RecognizerView.vue'),
+    },
+    {
       path: '/userRegister',
       name: 'Register',
       component: () => import('../views/RegisterView.vue'),

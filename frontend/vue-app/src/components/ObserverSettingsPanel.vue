@@ -223,13 +223,13 @@ onUnmounted(() => {
   height: 40px;
   border: none;
   border-radius: 10px;
-  background: var(--sr-bg-glass);
+  background: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  /* backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px); */
 }
 
 .settings-toggle img {

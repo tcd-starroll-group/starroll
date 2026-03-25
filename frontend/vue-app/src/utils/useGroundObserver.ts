@@ -2,9 +2,19 @@ import { GroundObserverRenderer, type StarClickInfo } from '@/core/renderer/Grou
 import * as model from '../../../../gen/ts/models/index'
 import { ref } from 'vue'
 
+export type StartrailGenerationOptions = {
+  shotIntervalSeconds: number
+  startTimestampMs: number
+  durationSeconds: number
+  twinkleMultiplier: number
+  renderStarSizeMultiplier: number
+  renderStarBrightnessMultiplier: number
+}
+
 export class GroundObserver {
   private rendererInstance: GroundObserverRenderer | null = null
   public selectedStar = ref<StarClickInfo | null>(null)
+  public isCameraOn = ref(true)
   // Time control
   public enumTimeMode = {
     FIXED: 'FIXED',
@@ -34,6 +44,13 @@ export class GroundObserver {
 
   public disableARMode() {
     this.rendererInstance!.disableARMode()
+  }
+
+  public toggleCamera(): void {
+    if (!this.rendererInstance) return
+    const next = !this.rendererInstance.isCameraOn
+    this.rendererInstance.setCameraVisible(next)
+    this.isCameraOn.value = next
   }
 
   public setTimestamp(timestamp: number) {
@@ -121,5 +138,27 @@ export class GroundObserver {
       timestamp += incrementMs
       this.rendererInstance.timestamp = timestamp
     }
+  }
+
+  public async generateStartrail(options: StartrailGenerationOptions): Promise<void> {
+    if (!this.rendererInstance) return
+
+    this.stopTimeLoop()
+    this.selectedStar.value = null
+
+    await this.rendererInstance.generateStartrail({
+      shotIntervalSeconds: options.shotIntervalSeconds,
+      startTimestampMs: options.startTimestampMs,
+      durationSeconds: options.durationSeconds,
+      twinkleMultiplier: options.twinkleMultiplier,
+      renderStarSizeMultiplier: options.renderStarSizeMultiplier,
+      renderStarBrightnessMultiplier: options.renderStarBrightnessMultiplier,
+    })
+  }
+
+  public exitStartrailMode(): void {
+    if (!this.rendererInstance) return
+    this.rendererInstance.exitStartrailMode()
+    this.selectedStar.value = null
   }
 }

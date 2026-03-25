@@ -47,6 +47,15 @@ docker run --rm \
  -o /local/gen/ts
 ```
 
+```PS
+docker run --rm `
+ -v "${PWD}:/local" `
+ openapitools/openapi-generator-cli generate `
+ -i /local/idl/openapiv3.yaml `
+ -g typescript-fetch `
+ -o /local/gen/ts
+```
+
 ## Unit Testing
 
 For TypeScript unit testing, refer to frontend/vue-app/src/utils/astronomy.test.ts

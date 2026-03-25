@@ -12,7 +12,7 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
-
+from prometheus_fastapi_instrumentator import Instrumentator
 import backend.console.dal as _dal
 from backend.console.utils.auth import (
     reset_current_token_payload,
@@ -51,6 +51,7 @@ app = FastAPI(
     version="1.0.0",
     lifespan=lifespan,
 )
+Instrumentator().instrument(app).expose(app)
 
 
 @app.middleware("http")
