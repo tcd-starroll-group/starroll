@@ -46,6 +46,17 @@ onMounted(async () => {
   } catch (err) {
     console.error("无法获取飞行员档案，请检查 Token 是否有效");
   }
+
+  try {
+    const statsResponse = await defaultApi.apiGetProfileStatsPost({ body: {} })
+    pilot.stats.starsDiscovered = statsResponse.starsDiscovered ?? 0
+    pilot.stats.totalScans = statsResponse.totalScans ?? 0
+    pilot.stats.rank = statsResponse.rank ?? '---'
+    pilot.stats.joinDate = statsResponse.joinDate ?? ''
+    console.log("Profile stats loaded:", pilot.stats)
+  } catch (err) {
+    console.error("Failed to load profile stats:", err)
+  }
 })
 const router = useRouter()
 const handleLogout = () => {
@@ -94,7 +105,7 @@ const goToDetails = () => {
         </div>
         <div class="stat-card glass-panel">
           <span class="stat-label">Stellar Rank</span>
-          <span class="stat-value">#42</span>
+          <span class="stat-value">{{ pilot.stats.rank }}</span>
         </div>
       </div>
 
