@@ -50,7 +50,6 @@ from openapi_server.models.api_get_chat_room_info_post200_response import ApiGet
 from openapi_server.models.api_get_chat_room_info_post_request import ApiGetChatRoomInfoPostRequest
 from openapi_server.models.api_get_chat_room_post200_response import ApiGetChatRoomPost200Response
 from openapi_server.models.api_get_chat_room_post_request import ApiGetChatRoomPostRequest
-from openapi_server.models.api_get_identify_stars_job_result_post200_response import ApiGetIdentifyStarsJobResultPost200Response
 from openapi_server.models.api_get_identify_stars_job_result_post_request import ApiGetIdentifyStarsJobResultPostRequest
 from openapi_server.models.api_get_message_post200_response import ApiGetMessagePost200Response
 from openapi_server.models.api_get_message_post_request import ApiGetMessagePostRequest
@@ -80,6 +79,7 @@ from openapi_server.models.change_password_request import ChangePasswordRequest
 from openapi_server.models.common_message import CommonMessage
 from openapi_server.models.error_response import ErrorResponse
 from openapi_server.models.gps import GPS
+from openapi_server.models.identify_stars_job_result import IdentifyStarsJobResult
 from openapi_server.models.pagination_query import PaginationQuery
 from openapi_server.models.profile_and_token import ProfileAndToken
 from openapi_server.models.profile_stats_response import ProfileStatsResponse
@@ -462,7 +462,7 @@ async def api_list_identify_stars_jobs_post(
 @router.post(
     "/api/getIdentifyStarsJobResult",
     responses={
-        200: {"model": ApiGetIdentifyStarsJobResultPost200Response, "description": "OK"},
+        200: {"model": IdentifyStarsJobResult, "description": "OK"},
     },
     tags=["default"],
     summary="get identify stars job result.",
@@ -470,7 +470,7 @@ async def api_list_identify_stars_jobs_post(
 )
 async def api_get_identify_stars_job_result_post(
     api_get_identify_stars_job_result_post_request: ApiGetIdentifyStarsJobResultPostRequest = Body(None, description=""),
-) -> ApiGetIdentifyStarsJobResultPost200Response:
+) -> IdentifyStarsJobResult:
     if not BaseDefaultApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")
     return await BaseDefaultApi.subclasses[0]().api_get_identify_stars_job_result_post(api_get_identify_stars_job_result_post_request)
@@ -932,6 +932,22 @@ async def api_get_profile_stats_post(
     if not BaseDefaultApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")
     return await BaseDefaultApi.subclasses[0]().api_get_profile_stats_post(body)
+
+
+@router.post(
+    "/api/checkLoginStatus",
+    responses={
+        200: {"model": CommonMessage, "description": "OK"},
+    },
+    tags=["default"],
+    summary="Get user profile stats",
+    response_model_by_alias=True,
+)
+async def api_check_login_status_post(
+) -> CommonMessage:
+    if not BaseDefaultApi.subclasses:
+        raise HTTPException(status_code=500, detail="Not implemented")
+    return await BaseDefaultApi.subclasses[0]().api_check_login_status_post()
 
 
 @router.get(

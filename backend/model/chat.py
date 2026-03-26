@@ -19,7 +19,7 @@ class ListMessagesAction(BaseModel):
     action: Literal["ListMessages"]
     ChatRoomID: int
     SinceMessageID: int | None = None
-    AfterMessageID: int | None = None
+    Before: int | None = None
 
 
 class ExitChatRoomAction(BaseModel):

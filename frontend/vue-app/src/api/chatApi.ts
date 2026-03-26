@@ -22,7 +22,7 @@ export interface ListMessagesAction {
   /** Return messages newer than this ID */
   SinceMessageID?: number
   /** Return messages older than this ID (pagination) */
-  AfterMessageID?: number
+  Before?: number
 }
 
 export interface ExitChatRoomAction {
@@ -171,11 +171,11 @@ export class ChatWebSocketClient {
   /**
    * Request a list of messages.
    * - `sinceMessageId`: return messages newer than this ID
-   * - `afterMessageId`: return messages older than this ID (pagination)
+   * - `beforeMessageId`: return messages older than this ID (pagination, sent as `Before`)
    */
   listMessages(
     roomId: number,
-    options: { sinceMessageId?: number; afterMessageId?: number } = {},
+    options: { sinceMessageId?: number; beforeMessageId?: number } = {},
   ): void {
     const action: ListMessagesAction = {
       action: 'ListMessages',
@@ -183,8 +183,8 @@ export class ChatWebSocketClient {
       ...(options.sinceMessageId !== undefined && {
         SinceMessageID: options.sinceMessageId,
       }),
-      ...(options.afterMessageId !== undefined && {
-        AfterMessageID: options.afterMessageId,
+      ...(options.beforeMessageId !== undefined && {
+        Before: options.beforeMessageId,
       }),
     }
     this._send(action)

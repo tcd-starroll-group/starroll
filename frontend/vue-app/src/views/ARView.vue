@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import { onMounted, ref, watch } from 'vue';
+import { onMounted, onUnmounted, ref, watch } from 'vue';
 import { GroundObserver } from '../utils/useGroundObserver';
 import type { StartrailGenerationOptions } from '../utils/useGroundObserver';
 import ObserverSettingsPanel from '../components/ObserverSettingsPanel.vue';
 import StartrailSettingsPanel from '../components/StartrailSettingsPanel.vue';
 import StarPopupPanel from '../components/StarPopup.vue';
 import PermissionRequest from '../components/PermissionRequest.vue';
+import FindStarHelper from '../components/FindStarHelper.vue';
 import type { StarClickInfo } from '@/core/renderer/GroundObserverRenderer';
 
 type ObserverSettingsPayload = {
@@ -19,19 +20,55 @@ let groundObserver: GroundObserver | null = null;
 const latestObserverSettings = ref<ObserverSettingsPayload | null>(null);
 const isGeneratingStartrail = ref(false);
 const isCameraOn = ref(true);
+const STAR_HELPER_THRESHOLD_DEG = 10;
+const helperAngleDeg = ref<number | null>(null);
+const helperAbsoluteAngleDeg = ref<number | null>(null);
+let helperAnimationFrameId: number | null = null;
 
 const clickedStarInfo = ref<StarClickInfo | null>(null);
+const showStarPopup = ref(false);
 
 // request permission
 const showPermission = ref(true);
 // click stars
 let selectedStar = ref<StarClickInfo | null>(null);
 const closeStarInfo = () => {
-    // clear the local mirror first so the UI panel hides reliably
-    clickedStarInfo.value = null;
-    // also clear the renderer's selected ref if available
-    if (groundObserver?.selectedStar) groundObserver.selectedStar.value = null;
-    if (selectedStar) selectedStar.value = null;
+    showStarPopup.value = false;
+};
+
+const updateFindStarHelper = () => {
+    if (!groundObserver || !clickedStarInfo.value) {
+        helperAngleDeg.value = null;
+        helperAbsoluteAngleDeg.value = null;
+        return;
+    }
+
+    const guidance = groundObserver.getStarDirectionGuidance(clickedStarInfo.value.hip);
+    if (!guidance) {
+        helperAngleDeg.value = null;
+        helperAbsoluteAngleDeg.value = null;
+        return;
+    }
+
+    helperAngleDeg.value = guidance.angleDeg;
+    helperAbsoluteAngleDeg.value = guidance.absoluteAngleDeg;
+};
+
+const startHelperLoop = () => {
+    if (helperAnimationFrameId !== null) return;
+
+    const tick = () => {
+        updateFindStarHelper();
+        helperAnimationFrameId = requestAnimationFrame(tick);
+    };
+
+    helperAnimationFrameId = requestAnimationFrame(tick);
+};
+
+const stopHelperLoop = () => {
+    if (helperAnimationFrameId === null) return;
+    cancelAnimationFrame(helperAnimationFrameId);
+    helperAnimationFrameId = null;
 };
 
 const applyObserverSettings = (payload: ObserverSettingsPayload) => {
@@ -86,6 +123,13 @@ onMounted(async () => {
         selectedStar = groundObserver.selectedStar;
         watch(selectedStar, (val) => {
             clickedStarInfo.value = val;
+            if (!val) {
+                showStarPopup.value = false;
+                helperAngleDeg.value = null;
+                helperAbsoluteAngleDeg.value = null;
+            } else {
+                showStarPopup.value = true;
+            }
         });
         // sync camera state ref
         isCameraOn.value = groundObserver.isCameraOn.value;
@@ -117,6 +161,20 @@ onMounted(async () => {
     }
 });
 
+onUnmounted(() => {
+    stopHelperLoop();
+});
+
+watch(showPermission, (v) => {
+    if (v) {
+        stopHelperLoop();
+        helperAngleDeg.value = null;
+        helperAbsoluteAngleDeg.value = null;
+    } else {
+        startHelperLoop();
+    }
+});
+
 </script>
 
 <template>
@@ -128,8 +186,13 @@ onMounted(async () => {
         <ObserverSettingsPanel @apply="applyObserverSettings" />
         <StartrailSettingsPanel @start="onStartStartrail" @stop="onStopStartrail" />
         <StarPopupPanel 
-            :starInfo="clickedStarInfo"
+            :starInfo="showStarPopup ? clickedStarInfo : null"
             @close="closeStarInfo"
+        />
+        <FindStarHelper
+            :angleDeg="helperAngleDeg"
+            :absoluteAngleDeg="helperAbsoluteAngleDeg"
+            :thresholdDeg="STAR_HELPER_THRESHOLD_DEG"
         />
         <button
             v-if="!showPermission"

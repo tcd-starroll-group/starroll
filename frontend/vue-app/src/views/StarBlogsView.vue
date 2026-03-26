@@ -2,7 +2,7 @@
 import { ref, onMounted } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 // Remove generated API client import, use native fetch instead
-import type { BlogPreview } from '@/gen/ts/models/BlogPreview';
+import type { BlogPreview } from '../../../../gen/ts/models/BlogPreview';
 
 const router = useRouter();
 const route = useRoute();

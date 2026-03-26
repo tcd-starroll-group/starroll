@@ -6,6 +6,7 @@ All URIs are relative to *http://localhost*
 |------------- | ------------- | -------------|
 | [**apiCalculateStarCoordinatesPost**](DefaultApi.md#apicalculatestarcoordinatespostoperation) | **POST** /api/calculateStarCoordinates | calculate star coordinates |
 | [**apiChangePasswordPost**](DefaultApi.md#apichangepasswordpost) | **POST** /api/changePassword |  |
+| [**apiCheckLoginStatusPost**](DefaultApi.md#apicheckloginstatuspost) | **POST** /api/checkLoginStatus | Get user profile stats |
 | [**apiCheckRoomStatusPost**](DefaultApi.md#apicheckroomstatuspostoperation) | **POST** /api/checkRoomStatus | Check chat room status |
 | [**apiCommentBlogPost**](DefaultApi.md#apicommentblogpostoperation) | **POST** /api/commentBlog | Comment a blog |
 | [**apiCreateBlogPost**](DefaultApi.md#apicreateblogpostoperation) | **POST** /api/createBlog | Create a new blog |
@@ -183,6 +184,63 @@ No authorization required
 | **200** | Password updated successfully |  -  |
 | **401** | Old password incorrect |  -  |
 | **404** | User not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## apiCheckLoginStatusPost
+
+> CommonMessage apiCheckLoginStatusPost()
+
+Get user profile stats
+
+### Example
+
+```ts
+import {
+  Configuration,
+  DefaultApi,
+} from '';
+import type { ApiCheckLoginStatusPostRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new DefaultApi();
+
+  try {
+    const data = await api.apiCheckLoginStatusPost();
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**CommonMessage**](CommonMessage.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
@@ -1358,7 +1416,7 @@ No authorization required
 
 ## apiGetIdentifyStarsJobResultPost
 
-> ApiGetIdentifyStarsJobResultPost200Response apiGetIdentifyStarsJobResultPost(apiGetIdentifyStarsJobResultPostRequest)
+> IdentifyStarsJobResult apiGetIdentifyStarsJobResultPost(apiGetIdentifyStarsJobResultPostRequest)
 
 get identify stars job result.
 
@@ -1401,7 +1459,7 @@ example().catch(console.error);
 
 ### Return type
 
-[**ApiGetIdentifyStarsJobResultPost200Response**](ApiGetIdentifyStarsJobResultPost200Response.md)
+[**IdentifyStarsJobResult**](IdentifyStarsJobResult.md)
 
 ### Authorization
 

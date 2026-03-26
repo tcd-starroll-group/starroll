@@ -1,4 +1,4 @@
-"""Unit tests for action_heartbeat, action_exit_chat_room, action_join_chat_room, action_send_message."""
+"""Unit tests for websocket action handlers."""
 from __future__ import annotations
 
 import asyncio
@@ -10,6 +10,7 @@ from backend.console.handler_ws import (
     action_exit_chat_room,
     action_heartbeat,
     action_join_chat_room,
+    action_list_messages,
     action_send_message,
 )
 
@@ -163,6 +164,83 @@ class TestActionJoinChatRoom:
                 manager, ws,
                 {"action": "JoinChatRoom", "ChatRoomID": 5}
             )
+        sent = ws.send_json.call_args[0][0]
+        assert sent["action"] == "Error"
+        assert "database" in sent["message"].lower()
+
+
+# ===========================================================================
+# action_list_messages
+# ===========================================================================
+
+class TestActionListMessages:
+    def _run(self, manager, ws, payload):
+        asyncio.run(
+            action_list_messages.handle(
+                manager=manager, user_id="u5", websocket=ws, payload=payload
+            )
+        )
+
+    def test_invalid_payload_sends_error(self):
+        manager = _make_manager()
+        ws = _make_ws()
+        self._run(manager, ws, {"action": "ListMessages", "ChatRoomID": "bad"})
+        sent = ws.send_json.call_args[0][0]
+        assert sent["action"] == "Error"
+        assert "invalid ListMessages payload" in sent["message"]
+
+    def test_valid_payload_queries_and_returns_messages(self, db_session):
+        import backend.console.handler_ws.action_list_messages as mod
+
+        manager = _make_manager()
+        ws = _make_ws()
+
+        fake_session_factory = MagicMock(return_value=MagicMock(
+            __enter__=lambda s, *a: db_session,
+            __exit__=lambda s, *a: None,
+        ))
+
+        with patch.object(mod, "SessionLocal", fake_session_factory), \
+                patch.object(mod, "ChatMessages") as mock_cm, \
+                patch.object(mod, "build_chat_messages_action") as mock_fmt:
+            mock_cm.list_by_chatroom.return_value = []
+            from backend.model.chat import ChatMessagesAction
+            mock_fmt.return_value = ChatMessagesAction(
+                action="ChatMessages", messages=[])
+            self._run(
+                manager,
+                ws,
+                {
+                    "action": "ListMessages",
+                    "ChatRoomID": 42,
+                    "SinceMessageID": 100,
+                    "Before": 200,
+                },
+            )
+
+        mock_cm.list_by_chatroom.assert_called_once()
+        call_kwargs = mock_cm.list_by_chatroom.call_args[1]
+        assert call_kwargs["chatroom_id"] == 42
+        assert call_kwargs["since_message_id"] == 100
+        assert call_kwargs["before_message_id"] == 200
+        assert call_kwargs["limit"] == 1000
+
+        ws.send_json.assert_called_once()
+        assert ws.send_json.call_args[0][0]["action"] == "ChatMessages"
+
+    def test_session_local_none_sends_error(self):
+        import backend.console.handler_ws.action_list_messages as mod
+
+        manager = _make_manager()
+        ws = _make_ws()
+
+        with patch.object(mod, "SessionLocal", None):
+            self._run(
+                manager,
+                ws,
+                {"action": "ListMessages", "ChatRoomID": 5},
+            )
+
         sent = ws.send_json.call_args[0][0]
         assert sent["action"] == "Error"
         assert "database" in sent["message"].lower()

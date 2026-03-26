@@ -15,9 +15,13 @@ const router = createRouter({
       component: () => import('../views/LoginView.vue'),
     },
     {
+      path: '/login',
+      redirect: '/userLogin',
+    },
+    {
       path: '/add-blog',
       name: 'AddBlog',
-      component: () => import('../views/AddBlogView.vue'), 
+      component: () => import('../views/AddBlogView.vue'),
     },
     {
       path: '/Navigation',

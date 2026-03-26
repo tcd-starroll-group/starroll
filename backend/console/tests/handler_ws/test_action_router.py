@@ -85,6 +85,15 @@ class TestRouteAction:
             _run(manager, ws, {"action": "ExitChatRoom"})
         mock_handler.assert_awaited_once()
 
+    def test_list_messages_dispatched(self):
+        ws = _make_ws()
+        manager = _make_manager()
+        mock_handler = AsyncMock()
+        payload = {"action": "ListMessages", "ChatRoomID": 1}
+        with patch.dict(router_mod.ACTION_HANDLERS, {"ListMessages": mock_handler}):
+            _run(manager, ws, payload)
+        mock_handler.assert_awaited_once()
+
     def test_send_message_dispatched(self):
         ws = _make_ws()
         manager = _make_manager()
@@ -97,5 +106,6 @@ class TestRouteAction:
     def test_all_registered_actions_exist(self):
         assert "HeartBeat" in router_mod.ACTION_HANDLERS
         assert "JoinChatRoom" in router_mod.ACTION_HANDLERS
+        assert "ListMessages" in router_mod.ACTION_HANDLERS
         assert "ExitChatRoom" in router_mod.ACTION_HANDLERS
         assert "SendMessage" in router_mod.ACTION_HANDLERS

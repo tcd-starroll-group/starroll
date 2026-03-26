@@ -1,4 +1,9 @@
-import { GroundObserverRenderer, type StarClickInfo } from '@/core/renderer/GroundObserverRenderer'
+import {
+  GroundObserverRenderer,
+  type StarClickInfo,
+  type StarDirectionOffset,
+  type StarDirectionGuidance,
+} from '@/core/renderer/GroundObserverRenderer'
 import * as model from '../../../../gen/ts/models/index'
 import { ref } from 'vue'
 
@@ -33,6 +38,9 @@ export class GroundObserver {
     this.rendererInstance = new GroundObserverRenderer(container)
     this.rendererInstance.setOnStarClick((starInfo) => {
       this.selectedStar.value = starInfo
+    })
+    this.rendererInstance.setOnSkyBlankClick(() => {
+      this.clearSelectedStar()
     })
     // default: realtime mode; start time loop applying current UTC timestamp
     this.startTimeLoop()
@@ -121,6 +129,21 @@ export class GroundObserver {
 
   public setLocation(location: model.GPS) {
     this.rendererInstance!.location = location
+  }
+
+  public getStarDirectionOffset(hip: number): StarDirectionOffset | null {
+    if (!this.rendererInstance) return null
+    return this.rendererInstance.getStarDirectionOffset(hip)
+  }
+
+  public getStarDirectionGuidance(hip: number): StarDirectionGuidance | null {
+    if (!this.rendererInstance) return null
+    return this.rendererInstance.getStarDirectionGuidance(hip)
+  }
+
+  public clearSelectedStar(): void {
+    this.selectedStar.value = null
+    this.rendererInstance?.clearSelectedStarSelection()
   }
 
   public async testTimeFlash() {

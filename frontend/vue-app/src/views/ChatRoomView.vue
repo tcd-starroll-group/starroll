@@ -23,6 +23,27 @@ const isLoadingOlder = ref(false)
 // Current user's username, used to distinguish own messages
 const currentUsername = localStorage.getItem('username') ?? ''
 
+function normalizeMessagesOrder(incoming: ChatMessageItem[]): ChatMessageItem[] {
+	return [...incoming].sort((left, right) => {
+		const leftId = left.message_id
+		const rightId = right.message_id
+
+		if (leftId !== undefined && rightId !== undefined && leftId !== rightId) {
+			return leftId - rightId
+		}
+
+		if (left.timestamp !== right.timestamp) {
+			return left.timestamp - right.timestamp
+		}
+
+		if (leftId !== undefined && rightId !== undefined) {
+			return leftId - rightId
+		}
+
+		return 0
+	})
+}
+
 function scrollToBottom(smooth = true) {
 	nextTick(() => {
 		if (messageListRef.value) {
@@ -52,7 +73,7 @@ function sendMessage() {
 function loadOlderMessages() {
 	if (isLoadingOlder.value || oldestMessageId.value === undefined) return
 	isLoadingOlder.value = true
-	chatClient.listMessages(roomId, { afterMessageId: oldestMessageId.value })
+	chatClient.listMessages(roomId, { beforeMessageId: oldestMessageId.value })
 }
 
 function goBack() {
@@ -79,14 +100,16 @@ onMounted(() => {
 				return
 			}
 
-			const minId = incoming.reduce(
+			const orderedIncoming = normalizeMessagesOrder(incoming)
+
+			const minId = orderedIncoming.reduce(
 				(m, msg) => (msg.message_id !== undefined && msg.message_id < m ? msg.message_id : m),
 				Infinity,
 			)
 
 			// If we were paginating, prepend; otherwise append
 			if (isLoadingOlder.value) {
-				messages.value = [...incoming, ...messages.value]
+				messages.value = [...orderedIncoming, ...messages.value]
 				isLoadingOlder.value = false
 				// keep scroll position roughly stable – jump to the top of old content
 				nextTick(() => {
@@ -95,7 +118,7 @@ onMounted(() => {
 					}
 				})
 			} else {
-				messages.value = [...messages.value, ...incoming]
+				messages.value = [...messages.value, ...orderedIncoming]
 				scrollToBottom()
 			}
 
@@ -196,12 +219,21 @@ onUnmounted(() => {
 .chat-container {
 	width: 100%;
 	max-width: 720px;
-	height: 100vh;
+	height: calc(100vh - 40px);
+	max-height: calc(100vh - 40px);
+	min-height: 0;
 	display: flex;
 	flex-direction: column;
 	padding: 16px;
 	gap: 12px;
 	box-sizing: border-box;
+}
+
+@supports (height: 100dvh) {
+	.chat-container {
+		height: calc(100dvh - 40px);
+		max-height: calc(100dvh - 40px);
+	}
 }
 
 /* ── Header ── */
@@ -299,6 +331,7 @@ onUnmounted(() => {
 /* ── Message list ── */
 .message-list {
 	flex: 1;
+	min-height: 0;
 	overflow-y: auto;
 	padding: 16px;
 	border-radius: 16px;

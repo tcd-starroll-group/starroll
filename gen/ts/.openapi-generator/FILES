@@ -30,7 +30,6 @@ docs/ApiGetChatRoomInfoPost200ResponseMembersInner.md
 docs/ApiGetChatRoomInfoPostRequest.md
 docs/ApiGetChatRoomPost200Response.md
 docs/ApiGetChatRoomPostRequest.md
-docs/ApiGetIdentifyStarsJobResultPost200Response.md
 docs/ApiGetIdentifyStarsJobResultPostRequest.md
 docs/ApiGetMessagePost200Response.md
 docs/ApiGetMessagePost200ResponseMessagesInner.md
@@ -119,7 +118,6 @@ models/ApiGetChatRoomInfoPost200ResponseMembersInner.ts
 models/ApiGetChatRoomInfoPostRequest.ts
 models/ApiGetChatRoomPost200Response.ts
 models/ApiGetChatRoomPostRequest.ts
-models/ApiGetIdentifyStarsJobResultPost200Response.ts
 models/ApiGetIdentifyStarsJobResultPostRequest.ts
 models/ApiGetMessagePost200Response.ts
 models/ApiGetMessagePost200ResponseMessagesInner.ts

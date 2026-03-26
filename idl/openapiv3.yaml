@@ -594,11 +594,7 @@ paths:
           content:
             application/json:
               schema:
-                properties:
-                  identifyStarsJobsList:
-                    type: array
-                    items:
-                      $ref: "#/components/schemas/IdentifyStarsJobResult"
+                $ref: "#/components/schemas/IdentifyStarsJobResult"
 
   # Error Elimination Module
   /api/elimilateErrors:
@@ -1322,6 +1318,17 @@ paths:
           description: OK
       summary: Get user profile stats
 
+  /api/checkLoginStatus:
+    post:
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CommonMessage"
+          description: OK
+      summary: Get user profile stats
+
   /api/health:
     get:
       summary: "health check"
@@ -1701,6 +1708,9 @@ components:
               HIP:
                 type: integer
                 description: "Hipparcos catalog ID"
+        oriImageUrl:
+          type: string
+
     ResetPasswordSendCodeRequest:
       type: object
       properties:

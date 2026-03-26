@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { StarClickInfo } from '@/core/renderer/GroundObserverRenderer';
 import { useRouter } from 'vue-router';
+import { defaultApi } from '@/api/defaultApi';
 
 // Define component props to receive star data
 const props = defineProps<{
@@ -14,8 +15,22 @@ const emit = defineEmits<{
 
 const router = useRouter();
 
-const viewStarBlogs = () => {
+async function ensureLoggedIn() {
+    try {
+        await defaultApi.apiCheckLoginStatusPost();
+        return true;
+    } catch {
+        emit('close');
+        await router.push({ name: 'Login' });
+        return false;
+    }
+}
+
+const viewStarBlogs = async () => {
   if (props.starInfo && props.starInfo.hip) {
+        const isLoggedIn = await ensureLoggedIn();
+        if (!isLoggedIn) return;
+
     router.push({
       path: '/star-blogs', 
       query: { 
@@ -27,8 +42,12 @@ const viewStarBlogs = () => {
 };
 function joinChatRoom() {
     if (!props.starInfo) return;
-    emit('close');
-    router.push({ name: 'ChatRoom', params: { roomId: props.starInfo.hip } });
+        ensureLoggedIn().then((isLoggedIn) => {
+            if (!isLoggedIn) return;
+
+            emit('close');
+            router.push({ name: 'ChatRoom', params: { roomId: props.starInfo!.hip } });
+        });
 }
 </script>
 
@@ -61,13 +80,11 @@ function joinChatRoom() {
               <span class="value">{{ starInfo.distance ? starInfo.distance.toFixed(1) + ' ly' : '--' }}</span>
           </div>
 
-<<<<<<< HEAD
           <button class="blog-btn" @click.stop="viewStarBlogs">
-            🔭 Explore Star Logs
+            Explore Star Logs
           </button>
-=======
           <button class="chat-btn" @click.stop="joinChatRoom">
-            💬 Enter Star Chat Room
+            Enter Star Chat Room
           </button>
 
           <div class="separator"></div>
@@ -83,20 +100,15 @@ function joinChatRoom() {
               <span class="label">B-V Color Index:</span>
               <span class="value">{{ starInfo.bvColor.toFixed(2) }}</span>
           </div>
->>>>>>> 5e96b45 (feat: front end chat)
       </div>
   </div>
 </template>
 
 <style scoped>
-/* 原有样式保持不变 */
-@keyframes popupFadeIn {
-    from { opacity: 0; transform: scale(0.8) translateY(10px); }
-    to { opacity: 1; transform: scale(1) translateY(0); }
-}
-
 .star-popup {
-    position: absolute;
+    position: fixed;
+    left: 50%;
+    bottom: 24px;
     background: rgba(15, 20, 30, 0.85);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
@@ -109,10 +121,9 @@ function joinChatRoom() {
     font-family: var(--sr-font-family, 'Inter', sans-serif);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6),
                 inset 0 0 0 1px rgba(255, 255, 255, 0.1);
-    transform: translate(-50%, -100%);
-    margin-top: -15px;
+    transform: translateX(-50%);
+    margin-top: 0;
     pointer-events: auto;
-    animation: popupFadeIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
     z-index: 200;
 }
 
@@ -177,12 +188,10 @@ function joinChatRoom() {
     color: #aaccff;
     margin-bottom: 12px;
     font-style: italic;
-<<<<<<< HEAD
     background: rgba(100, 150, 255, 0.1);
     padding: 6px 10px;
     border-radius: 6px;
     border-left: 3px solid #66ccff;
-=======
     line-height: 1.4;
     max-height: 80px;
     overflow-y: auto;
@@ -223,7 +232,6 @@ function joinChatRoom() {
 .star-link:hover {
     color: #fff;
     border-bottom-style: solid;
->>>>>>> 5e96b45 (feat: front end chat)
 }
 
 .data-row {

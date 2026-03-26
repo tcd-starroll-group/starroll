@@ -9,6 +9,7 @@ Name | Type
 ------------ | -------------
 `center` | [EquatorialCoordinate](EquatorialCoordinate.md)
 `identifiedStars` | [Array&lt;IdentifyStarsJobResultIdentifiedStarsInner&gt;](IdentifyStarsJobResultIdentifiedStarsInner.md)
+`oriImageUrl` | string
 
 ## Example
 
@@ -19,6 +20,7 @@ import type { IdentifyStarsJobResult } from ''
 const example = {
   "center": null,
   "identifiedStars": null,
+  "oriImageUrl": null,
 } satisfies IdentifyStarsJobResult
 
 console.log(example)
