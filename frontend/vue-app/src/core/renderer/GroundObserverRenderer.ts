@@ -153,8 +153,6 @@ export interface StarClickInfo {
   distance?: number
   rightAscension: number
   declination: number
-  altitude: number
-  azimuth: number
   screenX: number
   screenY: number
   originalName: string
@@ -171,6 +169,16 @@ export type StartrailRenderOptions = {
   renderStarSizeMultiplier: number
   renderStarBrightnessMultiplier: number
   frameIntervalSeconds?: number
+}
+
+export interface StarDirectionOffset {
+  signedAngleDeg: number
+  absoluteAngleDeg: number
+}
+
+export interface StarDirectionGuidance {
+  angleDeg: number
+  absoluteAngleDeg: number
 }
 
 /**
@@ -235,6 +243,7 @@ export class GroundObserverRenderer {
   private raycaster: THREE.Raycaster = new THREE.Raycaster()
   private mouse: THREE.Vector2 = new THREE.Vector2()
   private onStarClickCallback: ((starInfo: StarClickInfo) => void) | null = null
+  private onSkyBlankClickCallback: (() => void) | null = null
   private selectedStarIndicator: THREE.Sprite | null = null
 
   constructor(container: HTMLElement) {
@@ -725,7 +734,6 @@ export class GroundObserverRenderer {
 
   private finishStartrailMode(): void {
     this.clearStartrailLoop()
-    this.unfreezeVideoFrame()
 
     if (this.pendingStartrailResolve) {
       this.pendingStartrailResolve()
@@ -795,6 +803,88 @@ export class GroundObserverRenderer {
     this.onStarClickCallback = callback
   }
 
+  public setOnSkyBlankClick(callback: () => void): void {
+    this.onSkyBlankClickCallback = callback
+  }
+
+  public clearSelectedStarSelection(): void {
+    this.clearSelectedStarIndicator()
+  }
+
+  public getStarDirectionOffset(hip: number): StarDirectionOffset | null {
+    const starData = this.starMap.get(hip)
+    if (!starData) return null
+
+    const cameraForward = new THREE.Vector3(0, 0, -1)
+      .applyQuaternion(this.camera.quaternion)
+      .normalize()
+    const cameraUp = new THREE.Vector3(0, 1, 0).applyQuaternion(this.camera.quaternion).normalize()
+    const cameraRight = new THREE.Vector3(1, 0, 0)
+      .applyQuaternion(this.camera.quaternion)
+      .normalize()
+    const targetDir = starData.position.clone().normalize()
+
+    const flattenedTarget = targetDir
+      .clone()
+      .sub(cameraUp.clone().multiplyScalar(targetDir.dot(cameraUp)))
+      .normalize()
+    const flattenedForward = cameraForward
+      .clone()
+      .sub(cameraUp.clone().multiplyScalar(cameraForward.dot(cameraUp)))
+      .normalize()
+
+    if (flattenedTarget.lengthSq() === 0 || flattenedForward.lengthSq() === 0) {
+      return null
+    }
+
+    const signedAngleRad = Math.atan2(
+      flattenedTarget.dot(cameraRight),
+      flattenedTarget.dot(flattenedForward),
+    )
+    const signedAngleDeg = THREE.MathUtils.radToDeg(signedAngleRad)
+
+    return {
+      signedAngleDeg,
+      absoluteAngleDeg: Math.abs(signedAngleDeg),
+    }
+  }
+
+  public getStarDirectionGuidance(hip: number): StarDirectionGuidance | null {
+    const starData = this.starMap.get(hip)
+    if (!starData) return null
+
+    const cameraForward = new THREE.Vector3(0, 0, -1)
+      .applyQuaternion(this.camera.quaternion)
+      .normalize()
+    const cameraUp = new THREE.Vector3(0, 1, 0).applyQuaternion(this.camera.quaternion).normalize()
+    const cameraRight = new THREE.Vector3(1, 0, 0)
+      .applyQuaternion(this.camera.quaternion)
+      .normalize()
+    const targetDir = starData.position.clone().normalize()
+
+    const x = targetDir.dot(cameraRight)
+    const y = targetDir.dot(cameraUp)
+    const z = targetDir.dot(cameraForward)
+
+    const planarLength = Math.hypot(x, y)
+    if (planarLength < 1e-6) {
+      return {
+        angleDeg: 0,
+        absoluteAngleDeg: 0,
+      }
+    }
+
+    const angleDeg = THREE.MathUtils.radToDeg(Math.atan2(-y, x))
+    const absoluteAngleDeg = THREE.MathUtils.radToDeg(
+      Math.atan2(planarLength, Math.max(-1, Math.min(1, z))),
+    )
+
+    return {
+      angleDeg,
+      absoluteAngleDeg,
+    }
+  }
+
   private setupClickDetection(): void {
     this.raycaster.params.Points = { threshold: 20.0 }
     const handleClick = (clientX: number, clientY: number) => {
@@ -829,9 +919,14 @@ export class GroundObserverRenderer {
             if (hipAttribute) {
               const hip = Math.round(hipAttribute.getX(bestHit.index))
               this.handleStarClick(hip)
+              return
             }
           }
         }
+      }
+
+      if (this.onSkyBlankClickCallback) {
+        this.onSkyBlankClickCallback()
       }
     }
 
@@ -936,8 +1031,6 @@ export class GroundObserverRenderer {
         distance: star.distance,
         rightAscension: star.equatorialCoordinate.rightAscension,
         declination: star.equatorialCoordinate.declination,
-        altitude: 0,
-        azimuth: 0,
         screenX,
         screenY,
         originalName: detailedData.name || '',

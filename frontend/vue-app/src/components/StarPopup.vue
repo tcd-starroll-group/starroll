@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { StarClickInfo } from '@/core/renderer/GroundObserverRenderer';
 import { useRouter } from 'vue-router';
+import { defaultApi } from '@/api/defaultApi';
 
 // Define component props to receive star data
 const props = defineProps<{
@@ -14,11 +15,24 @@ const emit = defineEmits<{
 
 const router = useRouter();
 
-// 🌟 修改：跳转到特定星星的博客浏览列表页
-const viewStarBlogs = () => {
+async function ensureLoggedIn() {
+    try {
+        await defaultApi.apiCheckLoginStatusPost();
+        return true;
+    } catch {
+        emit('close');
+        await router.push({ name: 'Login' });
+        return false;
+    }
+}
+
+const viewStarBlogs = async () => {
   if (props.starInfo && props.starInfo.hip) {
+        const isLoggedIn = await ensureLoggedIn();
+        if (!isLoggedIn) return;
+
     router.push({
-      path: '/star-blogs', // ⚠️ 这里填你未来要创建的浏览页面的路由
+      path: '/star-blogs', 
       query: { 
         hip: props.starInfo.hip, 
         name: props.starInfo.originalName || props.starInfo.name // 顺便把名字带过去，方便目标页面渲染标题
@@ -26,6 +40,15 @@ const viewStarBlogs = () => {
     });
   }
 };
+function joinChatRoom() {
+    if (!props.starInfo) return;
+        ensureLoggedIn().then((isLoggedIn) => {
+            if (!isLoggedIn) return;
+
+            emit('close');
+            router.push({ name: 'ChatRoom', params: { roomId: props.starInfo!.hip } });
+        });
+}
 </script>
 
 <template>
@@ -58,21 +81,34 @@ const viewStarBlogs = () => {
           </div>
 
           <button class="blog-btn" @click.stop="viewStarBlogs">
-            🔭 Explore Star Logs
+            Explore Star Logs
           </button>
+          <button class="chat-btn" @click.stop="joinChatRoom">
+            Enter Star Chat Room
+          </button>
+
+          <div class="separator"></div>
+          <div class="data-row">
+              <span class="label">Right ascension:</span>
+              <span class="value">{{ starInfo.rightAscension.toFixed(2) }}°</span>
+          </div>
+          <div class="data-row">
+              <span class="label">Declination:</span>
+              <span class="value">{{ starInfo.declination.toFixed(2) }}°</span>
+          </div>
+           <div class="data-row">
+              <span class="label">B-V Color Index:</span>
+              <span class="value">{{ starInfo.bvColor.toFixed(2) }}</span>
+          </div>
       </div>
   </div>
 </template>
 
 <style scoped>
-/* 原有样式保持不变 */
-@keyframes popupFadeIn {
-    from { opacity: 0; transform: scale(0.8) translateY(10px); }
-    to { opacity: 1; transform: scale(1) translateY(0); }
-}
-
 .star-popup {
-    position: absolute;
+    position: fixed;
+    left: 50%;
+    bottom: 24px;
     background: rgba(15, 20, 30, 0.85);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
@@ -85,10 +121,9 @@ const viewStarBlogs = () => {
     font-family: var(--sr-font-family, 'Inter', sans-serif);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6),
                 inset 0 0 0 1px rgba(255, 255, 255, 0.1);
-    transform: translate(-50%, -100%);
-    margin-top: -15px;
+    transform: translateX(-50%);
+    margin-top: 0;
     pointer-events: auto;
-    animation: popupFadeIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
     z-index: 200;
 }
 
@@ -157,6 +192,46 @@ const viewStarBlogs = () => {
     padding: 6px 10px;
     border-radius: 6px;
     border-left: 3px solid #66ccff;
+    line-height: 1.4;
+    max-height: 80px;
+    overflow-y: auto;
+}
+
+.link-row {
+    margin-top: 8px;
+    justify-content: flex-end;
+}
+
+.chat-btn {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    padding: 7px 0;
+    background: rgba(102, 204, 255, 0.12);
+    border: 1px solid rgba(102, 204, 255, 0.35);
+    border-radius: 8px;
+    color: #66ccff;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    transition: background 0.2s;
+    letter-spacing: 0.3px;
+}
+.chat-btn:hover {
+    background: rgba(102, 204, 255, 0.25);
+}
+
+.star-link {
+    color: #44aaff;
+    text-decoration: none;
+    font-size: 12px;
+    border-bottom: 1px dashed #44aaff;
+}
+
+.star-link:hover {
+    color: #fff;
+    border-bottom-style: solid;
 }
 
 .data-row {

@@ -46,6 +46,12 @@ export interface IdentifyStarsJobResult {
      * @memberof IdentifyStarsJobResult
      */
     identifiedStars?: Array<IdentifyStarsJobResultIdentifiedStarsInner>;
+    /**
+     * 
+     * @type {string}
+     * @memberof IdentifyStarsJobResult
+     */
+    oriImageUrl?: string;
 }
 
 /**
@@ -67,6 +73,7 @@ export function IdentifyStarsJobResultFromJSONTyped(json: any, ignoreDiscriminat
         
         'center': json['center'] == null ? undefined : EquatorialCoordinateFromJSON(json['center']),
         'identifiedStars': json['identifiedStars'] == null ? undefined : ((json['identifiedStars'] as Array<any>).map(IdentifyStarsJobResultIdentifiedStarsInnerFromJSON)),
+        'oriImageUrl': json['oriImageUrl'] == null ? undefined : json['oriImageUrl'],
     };
 }
 
@@ -83,6 +90,7 @@ export function IdentifyStarsJobResultToJSONTyped(value?: IdentifyStarsJobResult
         
         'center': EquatorialCoordinateToJSON(value['center']),
         'identifiedStars': value['identifiedStars'] == null ? undefined : ((value['identifiedStars'] as Array<any>).map(IdentifyStarsJobResultIdentifiedStarsInnerToJSON)),
+        'oriImageUrl': value['oriImageUrl'],
     };
 }
 

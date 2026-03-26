@@ -50,11 +50,13 @@ from openapi_server.models.api_list_identify_stars_jobs_post200_response import 
 from backend.console.handler.list_identify_stars_jobs import api_list_identify_stars_jobs_post
 
 from openapi_server.models.api_get_identify_stars_job_result_post_request import ApiGetIdentifyStarsJobResultPostRequest
-from openapi_server.models.api_get_identify_stars_job_result_post200_response import ApiGetIdentifyStarsJobResultPost200Response
+from openapi_server.models.identify_stars_job_result import IdentifyStarsJobResult
 from backend.console.handler.get_identify_stars_job_result import api_get_identify_stars_job_result_post
 
 from openapi_server.models.profile_stats_response import ProfileStatsResponse
 from backend.console.handler.profile_stats import api_get_profile_stats_post as api_get_profile_stats_post_handler
+from openapi_server.models.common_message import CommonMessage
+from backend.console.handler.check_login_status import api_check_login_status_post
 
 
 class StarrollApiImpl(BaseDefaultApi):
@@ -94,7 +96,7 @@ class StarrollApiImpl(BaseDefaultApi):
     async def api_reset_password_post(self, reset_password_request: ResetPasswordRequest):
         return await api_reset_password_post_handler(reset_password_request)
 
-    async def api_get_identify_stars_job_result_post(self, api_get_identify_stars_job_result_post_request: ApiGetIdentifyStarsJobResultPostRequest) -> ApiGetIdentifyStarsJobResultPost200Response:
+    async def api_get_identify_stars_job_result_post(self, api_get_identify_stars_job_result_post_request: ApiGetIdentifyStarsJobResultPostRequest) -> IdentifyStarsJobResult:
         return await api_get_identify_stars_job_result_post(api_get_identify_stars_job_result_post_request)
 
     async def api_get_profile_stats_post(self, profile_stats_request: any) -> ProfileStatsResponse:
@@ -161,6 +163,9 @@ class StarrollApiImpl(BaseDefaultApi):
         api_comment_blog_post_request: ApiCommentBlogPostRequest,
     ) -> ApiCommentBlogPost200Response:
         return await api_comment_blog_post(api_comment_blog_post_request)
+
+    async def api_check_login_status_post(self) -> CommonMessage:
+        return await api_check_login_status_post()
 
     async def api_health_get(self) -> None:
         return

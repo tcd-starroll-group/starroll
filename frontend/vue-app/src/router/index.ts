@@ -15,9 +15,13 @@ const router = createRouter({
       component: () => import('../views/LoginView.vue'),
     },
     {
+      path: '/login',
+      redirect: '/userLogin',
+    },
+    {
       path: '/add-blog',
       name: 'AddBlog',
-      component: () => import('../views/AddBlogView.vue'), 
+      component: () => import('../views/AddBlogView.vue'),
     },
     {
       path: '/Navigation',
@@ -63,6 +67,11 @@ const router = createRouter({
       path: '/user-details',
       name: 'UserDetails',
       component: () => import('../views/UserDetailsView.vue'),
+    },
+    {
+      path: '/chat/:roomId',
+      name: 'ChatRoom',
+      component: () => import('../views/ChatRoomView.vue'),
     },
   ],
 })

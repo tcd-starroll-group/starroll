@@ -330,7 +330,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/_api_getIdentifyStarsJobResult_post_200_response"
+                $ref: "#/components/schemas/IdentifyStarsJobResult"
           description: OK
       summary: get identify stars job result.
   /api/elimilateErrors:
@@ -851,6 +851,16 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ProfileStatsResponse"
+          description: OK
+      summary: Get user profile stats
+  /api/checkLoginStatus:
+    post:
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CommonMessage"
           description: OK
       summary: Get user profile stats
   /api/health:
@@ -1376,6 +1386,7 @@ components:
         center:
           declination: 5.962133916683182
           rightAscension: 1.4658129805029452
+        oriImageUrl: oriImageUrl
         identifiedStars:
         - names:
           - 108Vir
@@ -1398,6 +1409,9 @@ components:
             $ref: "#/components/schemas/IdentifyStarsJobResult_identifiedStars_inner"
           title: identifiedStars
           type: array
+        oriImageUrl:
+          title: oriImageUrl
+          type: string
       title: IdentifyStarsJobResult
     ResetPasswordSendCodeRequest:
       example:
@@ -2008,48 +2022,6 @@ components:
       - jobID
       title: _api_getIdentifyStarsJobResult_post_request
       type: object
-    _api_getIdentifyStarsJobResult_post_200_response:
-      example:
-        identifyStarsJobsList:
-        - center:
-            declination: 5.962133916683182
-            rightAscension: 1.4658129805029452
-          identifiedStars:
-          - names:
-            - 108Vir
-            vmag: 5.6
-            pixelX: 1676.0093296680352
-            pixelY: 629.9991687682354
-            HIP: 0
-          - names:
-            - 108Vir
-            vmag: 5.6
-            pixelX: 1676.0093296680352
-            pixelY: 629.9991687682354
-            HIP: 0
-        - center:
-            declination: 5.962133916683182
-            rightAscension: 1.4658129805029452
-          identifiedStars:
-          - names:
-            - 108Vir
-            vmag: 5.6
-            pixelX: 1676.0093296680352
-            pixelY: 629.9991687682354
-            HIP: 0
-          - names:
-            - 108Vir
-            vmag: 5.6
-            pixelX: 1676.0093296680352
-            pixelY: 629.9991687682354
-            HIP: 0
-      properties:
-        identifyStarsJobsList:
-          items:
-            $ref: "#/components/schemas/IdentifyStarsJobResult"
-          title: identifyStarsJobsList
-          type: array
-      title: _api_getIdentifyStarsJobResult_post_200_response
     _api_elimilateErrors_post_request:
       properties:
         cameraMeta:

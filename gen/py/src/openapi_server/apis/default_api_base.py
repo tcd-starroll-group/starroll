@@ -29,7 +29,6 @@ from openapi_server.models.api_get_chat_room_info_post200_response import ApiGet
 from openapi_server.models.api_get_chat_room_info_post_request import ApiGetChatRoomInfoPostRequest
 from openapi_server.models.api_get_chat_room_post200_response import ApiGetChatRoomPost200Response
 from openapi_server.models.api_get_chat_room_post_request import ApiGetChatRoomPostRequest
-from openapi_server.models.api_get_identify_stars_job_result_post200_response import ApiGetIdentifyStarsJobResultPost200Response
 from openapi_server.models.api_get_identify_stars_job_result_post_request import ApiGetIdentifyStarsJobResultPostRequest
 from openapi_server.models.api_get_message_post200_response import ApiGetMessagePost200Response
 from openapi_server.models.api_get_message_post_request import ApiGetMessagePostRequest
@@ -59,6 +58,7 @@ from openapi_server.models.change_password_request import ChangePasswordRequest
 from openapi_server.models.common_message import CommonMessage
 from openapi_server.models.error_response import ErrorResponse
 from openapi_server.models.gps import GPS
+from openapi_server.models.identify_stars_job_result import IdentifyStarsJobResult
 from openapi_server.models.pagination_query import PaginationQuery
 from openapi_server.models.profile_and_token import ProfileAndToken
 from openapi_server.models.profile_stats_response import ProfileStatsResponse
@@ -230,7 +230,7 @@ class BaseDefaultApi:
     async def api_get_identify_stars_job_result_post(
         self,
         api_get_identify_stars_job_result_post_request: ApiGetIdentifyStarsJobResultPostRequest,
-    ) -> ApiGetIdentifyStarsJobResultPost200Response:
+    ) -> IdentifyStarsJobResult:
         ...
 
 
@@ -419,6 +419,12 @@ class BaseDefaultApi:
         body: Dict[str, Any],
     ) -> ProfileStatsResponse:
         """Retrieve the user&#39;s scanning statistics, rank, and join date for the profile view."""
+        ...
+
+
+    async def api_check_login_status_post(
+        self,
+    ) -> CommonMessage:
         ...
 
 

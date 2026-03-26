@@ -64,6 +64,11 @@ def test_job_success_maps_result(monkeypatch: pytest.MonkeyPatch):
 
     monkeypatch.setattr(job_module, "db_context", lambda: Ctx())
     monkeypatch.setattr(job_module, "get_current_user_id", lambda: 7)
+    monkeypatch.setattr(
+        job_module,
+        "get_presigned_get_url",
+        lambda object_name, bucket_name: f"https://example.com/{bucket_name}/{object_name}",
+    )
     monkeypatch.setattr(job_module.IdentifyStarsJobDAL,
                         "get_by_id", staticmethod(lambda db, jid: job))
 
@@ -71,3 +76,4 @@ def test_job_success_maps_result(monkeypatch: pytest.MonkeyPatch):
     result = asyncio.run(
         job_module.api_get_identify_stars_job_result_post(payload))
     assert result is not None
+    assert result.ori_image_url == "https://example.com/identify-stars/k"

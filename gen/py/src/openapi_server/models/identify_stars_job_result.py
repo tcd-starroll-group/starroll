@@ -20,7 +20,7 @@ import json
 
 
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from openapi_server.models.equatorial_coordinate import EquatorialCoordinate
 from openapi_server.models.identify_stars_job_result_identified_stars_inner import IdentifyStarsJobResultIdentifiedStarsInner
@@ -35,7 +35,8 @@ class IdentifyStarsJobResult(BaseModel):
     """ # noqa: E501
     center: Optional[EquatorialCoordinate] = None
     identified_stars: Optional[List[IdentifyStarsJobResultIdentifiedStarsInner]] = Field(default=None, description="List of identified stars in the image", alias="identifiedStars")
-    __properties: ClassVar[List[str]] = ["center", "identifiedStars"]
+    ori_image_url: Optional[StrictStr] = Field(default=None, alias="oriImageUrl")
+    __properties: ClassVar[List[str]] = ["center", "identifiedStars", "oriImageUrl"]
 
     model_config = {
         "populate_by_name": True,
@@ -97,7 +98,8 @@ class IdentifyStarsJobResult(BaseModel):
 
         _obj = cls.model_validate({
             "center": EquatorialCoordinate.from_dict(obj.get("center")) if obj.get("center") is not None else None,
-            "identifiedStars": [IdentifyStarsJobResultIdentifiedStarsInner.from_dict(_item) for _item in obj.get("identifiedStars")] if obj.get("identifiedStars") is not None else None
+            "identifiedStars": [IdentifyStarsJobResultIdentifiedStarsInner.from_dict(_item) for _item in obj.get("identifiedStars")] if obj.get("identifiedStars") is not None else None,
+            "oriImageUrl": obj.get("oriImageUrl")
         })
         return _obj
 

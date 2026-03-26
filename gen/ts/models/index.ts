@@ -30,7 +30,6 @@ export * from './ApiGetChatRoomInfoPost200ResponseMembersInner';
 export * from './ApiGetChatRoomInfoPostRequest';
 export * from './ApiGetChatRoomPost200Response';
 export * from './ApiGetChatRoomPostRequest';
-export * from './ApiGetIdentifyStarsJobResultPost200Response';
 export * from './ApiGetIdentifyStarsJobResultPostRequest';
 export * from './ApiGetMessagePost200Response';
 export * from './ApiGetMessagePost200ResponseMessagesInner';

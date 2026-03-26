@@ -60,7 +60,7 @@ const handleLogin = async () => {
     localStorage.setItem('username', form.username);
     console.log("login! success");
 
-    router.push('/profile');
+    router.push('/');
 
   } catch (err: unknown) {
     if (err instanceof ResponseError && (err.response.status === 401 || err.response.status === 404)) {
@@ -118,9 +118,9 @@ const handleLogin = async () => {
       </form>
 
       <div class="footer-links">
-        <a href="/password-reset">Forgot Coordinates?</a>
+        <a href="/password-reset">Forgot password</a>
         <span>|</span>
-        <a href="/register">Join the Fleet</a>
+        <a href="/userRegister">Register</a>
       </div>
     </div>
   

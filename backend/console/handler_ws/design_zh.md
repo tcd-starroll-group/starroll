@@ -38,11 +38,11 @@ websocket 消息均为 json 格式，并且必须有一个 action 字段，actio
   "action": "ListMessages",
   "ChatRoomID": 1,
   "SinceMessageID": 1,
-  "AfterMessageID": 1
+  "Before": 1
 }
 ```
 
-请求返回聊天内容
+请求返回聊天内容，一次最多返回 1000 条
 
 ### ExitChatRoom
 

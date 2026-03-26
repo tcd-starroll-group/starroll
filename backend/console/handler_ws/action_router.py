@@ -10,6 +10,7 @@ from backend.console.handler_ws import (
     action_exit_chat_room,
     action_heartbeat,
     action_join_chat_room,
+    action_list_messages,
     action_send_message,
 )
 from backend.console.handler_ws.connection_manager import ConnectionManager
@@ -19,6 +20,7 @@ ActionHandler = Callable[..., Awaitable[None]]
 ACTION_HANDLERS: dict[str, ActionHandler] = {
     "HeartBeat": action_heartbeat.handle,
     "JoinChatRoom": action_join_chat_room.handle,
+    "ListMessages": action_list_messages.handle,
     "ExitChatRoom": action_exit_chat_room.handle,
     "SendMessage": action_send_message.handle,
 }
