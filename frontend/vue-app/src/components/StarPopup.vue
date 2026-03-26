@@ -105,6 +105,12 @@ function joinChatRoom() {
 </template>
 
 <style scoped>
+/* 原有样式保持不变 */
+@keyframes popupFadeIn {
+    from { opacity: 0; transform: scale(0.8) translateY(10px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
 .star-popup {
     position: fixed;
     left: 50%;
