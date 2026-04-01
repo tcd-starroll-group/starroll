@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref, watch } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
 import { GroundObserver } from '../utils/useGroundObserver';
 import type { StartrailGenerationOptions } from '../utils/useGroundObserver';
 import ObserverSettingsPanel from '../components/ObserverSettingsPanel.vue';
@@ -8,11 +9,18 @@ import StarPopupPanel from '../components/StarPopup.vue';
 import PermissionRequest from '../components/PermissionRequest.vue';
 import FindStarHelper from '../components/FindStarHelper.vue';
 import type { StarClickInfo } from '@/core/renderer/GroundObserverRenderer';
+import { defaultApi } from '@/api/defaultApi';
 
 type ObserverSettingsPayload = {
     utcTimestampMs: number;
     lat: number;
     lon: number;
+};
+
+type StarMessageDisplay = {
+    id: string;
+    from: string;
+    message: string;
 };
 
 const containerRef = ref<HTMLElement | null>(null);
@@ -27,6 +35,12 @@ let helperAnimationFrameId: number | null = null;
 
 const clickedStarInfo = ref<StarClickInfo | null>(null);
 const showStarPopup = ref(false);
+const route = useRoute();
+const router = useRouter();
+const isStarMessageMode = ref(false);
+const starMessageModeTargetHip = ref<number | null>(null);
+const starMessageDisplay = ref<StarMessageDisplay | null>(null);
+const loadingStarMessageMode = ref(false);
 
 // request permission
 const showPermission = ref(true);
@@ -34,16 +48,91 @@ const showPermission = ref(true);
 let selectedStar = ref<StarClickInfo | null>(null);
 const closeStarInfo = () => {
     showStarPopup.value = false;
+    starMessageDisplay.value = null;
+};
+
+const parseStarMessageId = (): string | null => {
+    const raw = route.query.star_message;
+    if (!raw) return null;
+    const value = Array.isArray(raw) ? raw[0] : raw;
+    if (!value) return null;
+    return String(value).trim() || null;
+};
+
+const clearStarMessageQueryParam = async () => {
+    if (!('star_message' in route.query)) return;
+    const nextQuery = { ...route.query };
+    delete nextQuery.star_message;
+    await router.replace({ query: nextQuery });
+};
+
+const exitStarMessageMode = async () => {
+    isStarMessageMode.value = false;
+    starMessageModeTargetHip.value = null;
+    loadingStarMessageMode.value = false;
+    groundObserver?.clearHighlightedStar();
+    await clearStarMessageQueryParam();
+};
+
+const activateStarMessageMode = async (messageId: string) => {
+    if (!groundObserver || loadingStarMessageMode.value) return;
+
+    loadingStarMessageMode.value = true;
+    try {
+        const result = await defaultApi.apiGetStarMessagePost({
+            commonID: { id: messageId },
+        });
+
+        const targetHip = Number(result.hip);
+        if (!Number.isFinite(targetHip)) {
+            console.error('[star_message] invalid hip in payload:', result.hip);
+            await exitStarMessageMode();
+            return;
+        }
+
+        isStarMessageMode.value = true;
+        starMessageModeTargetHip.value = targetHip;
+        starMessageDisplay.value = {
+            id: messageId,
+            from: result.from,
+            message: result.message,
+        };
+        clickedStarInfo.value = null;
+        showStarPopup.value = false;
+        groundObserver.clearSelectedStar();
+        groundObserver.highlightStarByHip(targetHip);
+    } catch (error) {
+        console.error('[star_message] failed to load star message:', error);
+        await exitStarMessageMode();
+    } finally {
+        loadingStarMessageMode.value = false;
+    }
+};
+
+const tryActivateStarMessageModeFromQuery = async () => {
+    const messageId = parseStarMessageId();
+    if (!messageId || !groundObserver) return;
+    await activateStarMessageMode(messageId);
 };
 
 const updateFindStarHelper = () => {
-    if (!groundObserver || !clickedStarInfo.value) {
+    if (!groundObserver) {
         helperAngleDeg.value = null;
         helperAbsoluteAngleDeg.value = null;
         return;
     }
 
-    const guidance = groundObserver.getStarDirectionGuidance(clickedStarInfo.value.hip);
+    const targetHip = isStarMessageMode.value
+        ? starMessageModeTargetHip.value
+        : clickedStarInfo.value?.hip;
+
+    if (!targetHip) {
+        helperAngleDeg.value = null;
+        helperAbsoluteAngleDeg.value = null;
+        return;
+    }
+
+    const guidance = groundObserver.getStarDirectionGuidance(targetHip);
     if (!guidance) {
         helperAngleDeg.value = null;
         helperAbsoluteAngleDeg.value = null;
@@ -121,13 +210,28 @@ onMounted(async () => {
         groundObserver = new GroundObserver(containerRef.value!);
         // bind the selectedStar ref from the GroundObserver instance
         selectedStar = groundObserver.selectedStar;
-        watch(selectedStar, (val) => {
+        watch(selectedStar, async (val) => {
             clickedStarInfo.value = val;
             if (!val) {
                 showStarPopup.value = false;
-                helperAngleDeg.value = null;
-                helperAbsoluteAngleDeg.value = null;
+                if (!isStarMessageMode.value) {
+                    helperAngleDeg.value = null;
+                    helperAbsoluteAngleDeg.value = null;
+                }
             } else {
+                if (isStarMessageMode.value && starMessageModeTargetHip.value !== null) {
+                    if (val.hip !== starMessageModeTargetHip.value) {
+                        showStarPopup.value = false;
+                        groundObserver?.clearSelectedStar();
+                        groundObserver?.highlightStarByHip(starMessageModeTargetHip.value);
+                        return;
+                    }
+
+                    showStarPopup.value = true;
+                    await exitStarMessageMode();
+                    return;
+                }
+
                 showStarPopup.value = true;
             }
         });
@@ -144,6 +248,7 @@ onMounted(async () => {
         try {
             await groundObserver!.enableARMode();
             // groundObserver.testTimeFlash();
+            await tryActivateStarMessageModeFromQuery();
         } catch (error) {
             console.error('Error enabling AR mode:', error);
         }
@@ -175,6 +280,14 @@ watch(showPermission, (v) => {
     }
 });
 
+watch(
+    () => route.query.star_message,
+    async () => {
+        if (!groundObserver || showPermission.value) return;
+        await tryActivateStarMessageModeFromQuery();
+    },
+);
+
 </script>
 
 <template>
@@ -182,11 +295,18 @@ watch(showPermission, (v) => {
     <div ref="containerRef" class="canvas-container" @click.self=""></div>
     
     <div class="ui-layer">        
+        <div v-if="isStarMessageMode && starMessageDisplay" class="star-message-mode-banner">
+            <div class="banner-title">Star Message Mode</div>
+            <div class="banner-text">
+                Find and tap the star to reveal message from {{ starMessageDisplay.from }}.
+            </div>
+        </div>
         <PermissionRequest v-if="showPermission" @granted="() => (showPermission = false)" />
         <ObserverSettingsPanel @apply="applyObserverSettings" />
         <StartrailSettingsPanel @start="onStartStartrail" @stop="onStopStartrail" />
         <StarPopupPanel 
             :starInfo="showStarPopup ? clickedStarInfo : null"
+            :starMessageDisplay="showStarPopup ? starMessageDisplay : null"
             @close="closeStarInfo"
         />
         <FindStarHelper
@@ -231,6 +351,35 @@ watch(showPermission, (v) => {
 .camera-toggle-btn img {
     width: 24px;
     height: 24px;
+}
+
+.star-message-mode-banner {
+    position: absolute;
+    top: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 40;
+    padding: 10px 14px;
+    border-radius: 10px;
+    background: rgba(15, 20, 30, 0.86);
+    border: 1px solid rgba(132, 102, 255, 0.45);
+    color: #ece4ff;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+    pointer-events: none;
+}
+
+.banner-title {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+}
+
+.banner-text {
+    margin-top: 2px;
+    font-size: 11px;
+    color: #c5b9e8;
 }
 
 /* Global Reset for this App */

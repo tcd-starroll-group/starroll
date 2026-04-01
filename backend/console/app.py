@@ -31,6 +31,7 @@ AUTH_ACTION_WHITELIST = {
     "usernameVerify",
     "resetPassword",
     "resetPasswordSendCode",
+    "getStarMessage",
     "health",
 }
 

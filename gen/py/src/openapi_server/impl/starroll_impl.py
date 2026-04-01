@@ -56,7 +56,15 @@ from backend.console.handler.get_identify_stars_job_result import api_get_identi
 from openapi_server.models.profile_stats_response import ProfileStatsResponse
 from backend.console.handler.profile_stats import api_get_profile_stats_post as api_get_profile_stats_post_handler
 from openapi_server.models.common_message import CommonMessage
+from openapi_server.models.common_id import CommonID
+from openapi_server.models.star_message import StarMessage
 from backend.console.handler.check_login_status import api_check_login_status_post
+from backend.console.handler.create_star_message import api_create_star_message_post as api_create_star_message_post_handler
+from backend.console.handler.get_star_message import api_get_star_message_post as api_get_star_message_post_handler
+from openapi_server.models.star_message import StarMessage
+from openapi_server.models.common_id import CommonID
+from backend.console.handler.create_star_message import api_create_star_message_post
+from backend.console.handler.get_star_message import api_get_star_message_post
 
 
 class StarrollApiImpl(BaseDefaultApi):
@@ -167,5 +175,23 @@ class StarrollApiImpl(BaseDefaultApi):
     async def api_check_login_status_post(self) -> CommonMessage:
         return await api_check_login_status_post()
 
+    async def api_create_star_message_post(
+        self,
+        star_message: StarMessage,
+    ) -> CommonID:
+        return await api_create_star_message_post_handler(star_message)
+
+    async def api_get_star_message_post(
+        self,
+        common_id: CommonID,
+    ) -> StarMessage:
+        return await api_get_star_message_post_handler(common_id)
+
     async def api_health_get(self) -> None:
         return
+
+    async def api_create_star_message_post(self, star_message: StarMessage) -> CommonID:
+        return await api_create_star_message_post(star_message)
+
+    async def api_get_star_message_post(self, common_id: CommonID) -> StarMessage:
+        return await api_get_star_message_post(common_id)

@@ -76,6 +76,7 @@ from openapi_server.models.blog import Blog
 from openapi_server.models.blog_id import BlogID
 from openapi_server.models.blogs_list import BlogsList
 from openapi_server.models.change_password_request import ChangePasswordRequest
+from openapi_server.models.common_id import CommonID
 from openapi_server.models.common_message import CommonMessage
 from openapi_server.models.error_response import ErrorResponse
 from openapi_server.models.gps import GPS
@@ -86,6 +87,7 @@ from openapi_server.models.profile_stats_response import ProfileStatsResponse
 from openapi_server.models.reset_password_request import ResetPasswordRequest
 from openapi_server.models.reset_password_send_code_request import ResetPasswordSendCodeRequest
 from openapi_server.models.star_details import StarDetails
+from openapi_server.models.star_message import StarMessage
 from openapi_server.models.token_response import TokenResponse
 from openapi_server.models.update_last_gps_request import UpdateLastGpsRequest
 from openapi_server.models.user_auth import UserAuth
@@ -948,6 +950,38 @@ async def api_check_login_status_post(
     if not BaseDefaultApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")
     return await BaseDefaultApi.subclasses[0]().api_check_login_status_post()
+
+
+@router.post(
+    "/api/createStarMessage",
+    responses={
+        200: {"model": CommonID, "description": "OK"},
+    },
+    tags=["default"],
+    response_model_by_alias=True,
+)
+async def api_create_star_message_post(
+    star_message: StarMessage = Body(None, description=""),
+) -> CommonID:
+    if not BaseDefaultApi.subclasses:
+        raise HTTPException(status_code=500, detail="Not implemented")
+    return await BaseDefaultApi.subclasses[0]().api_create_star_message_post(star_message)
+
+
+@router.post(
+    "/api/getStarMessage",
+    responses={
+        200: {"model": StarMessage, "description": "OK"},
+    },
+    tags=["default"],
+    response_model_by_alias=True,
+)
+async def api_get_star_message_post(
+    common_id: CommonID = Body(None, description=""),
+) -> StarMessage:
+    if not BaseDefaultApi.subclasses:
+        raise HTTPException(status_code=500, detail="Not implemented")
+    return await BaseDefaultApi.subclasses[0]().api_get_star_message_post(common_id)
 
 
 @router.get(

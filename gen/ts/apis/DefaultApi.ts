@@ -67,6 +67,7 @@ import type {
   BlogID,
   BlogsList,
   ChangePasswordRequest,
+  CommonID,
   CommonMessage,
   ErrorResponse,
   GPS,
@@ -77,6 +78,7 @@ import type {
   ResetPasswordRequest,
   ResetPasswordSendCodeRequest,
   StarDetails,
+  StarMessage,
   TokenResponse,
   UpdateLastGpsRequest,
   UserAuth,
@@ -187,6 +189,8 @@ import {
     BlogsListToJSON,
     ChangePasswordRequestFromJSON,
     ChangePasswordRequestToJSON,
+    CommonIDFromJSON,
+    CommonIDToJSON,
     CommonMessageFromJSON,
     CommonMessageToJSON,
     ErrorResponseFromJSON,
@@ -207,6 +211,8 @@ import {
     ResetPasswordSendCodeRequestToJSON,
     StarDetailsFromJSON,
     StarDetailsToJSON,
+    StarMessageFromJSON,
+    StarMessageToJSON,
     TokenResponseFromJSON,
     TokenResponseToJSON,
     UpdateLastGpsRequestFromJSON,
@@ -239,6 +245,10 @@ export interface ApiCreateBlogPostOperationRequest {
 
 export interface ApiCreateIdentifyStarsJobPostOperationRequest {
     apiCreateIdentifyStarsJobPostRequest: ApiCreateIdentifyStarsJobPostRequest;
+}
+
+export interface ApiCreateStarMessagePostRequest {
+    starMessage: StarMessage;
 }
 
 export interface ApiDeleteBlogPostRequest {
@@ -299,6 +309,10 @@ export interface ApiGetProfileStatsPostRequest {
 
 export interface ApiGetStarDetailsPostOperationRequest {
     apiGetStarDetailsPostRequest: ApiGetStarDetailsPostRequest;
+}
+
+export interface ApiGetStarMessagePostRequest {
+    commonID: CommonID;
 }
 
 export interface ApiLikeBlogPostRequest {
@@ -387,9 +401,9 @@ export interface ApiViewBlogPostRequest {
 export class DefaultApi extends runtime.BaseAPI {
 
     /**
-     * Creates request options for apiCalculateStarCoordinatesPost without sending the request
+     * calculate star coordinates
      */
-    async apiCalculateStarCoordinatesPostRequestOpts(requestParameters: ApiCalculateStarCoordinatesPostOperationRequest): Promise<runtime.RequestOpts> {
+    async apiCalculateStarCoordinatesPostRaw(requestParameters: ApiCalculateStarCoordinatesPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiCalculateStarCoordinatesPost200Response>> {
         if (requestParameters['apiCalculateStarCoordinatesPostRequest'] == null) {
             throw new runtime.RequiredError(
                 'apiCalculateStarCoordinatesPostRequest',
@@ -406,21 +420,13 @@ export class DefaultApi extends runtime.BaseAPI {
 
         let urlPath = `/api/calculateStarCoordinates`;
 
-        return {
+        const response = await this.request({
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: ApiCalculateStarCoordinatesPostRequestToJSON(requestParameters['apiCalculateStarCoordinatesPostRequest']),
-        };
-    }
-
-    /**
-     * calculate star coordinates
-     */
-    async apiCalculateStarCoordinatesPostRaw(requestParameters: ApiCalculateStarCoordinatesPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiCalculateStarCoordinatesPost200Response>> {
-        const requestOptions = await this.apiCalculateStarCoordinatesPostRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
+        }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ApiCalculateStarCoordinatesPost200ResponseFromJSON(jsonValue));
     }
@@ -434,9 +440,8 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates request options for apiChangePasswordPost without sending the request
      */
-    async apiChangePasswordPostRequestOpts(requestParameters: ApiChangePasswordPostRequest): Promise<runtime.RequestOpts> {
+    async apiChangePasswordPostRaw(requestParameters: ApiChangePasswordPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommonMessage>> {
         if (requestParameters['changePasswordRequest'] == null) {
             throw new runtime.RequiredError(
                 'changePasswordRequest',
@@ -453,20 +458,13 @@ export class DefaultApi extends runtime.BaseAPI {
 
         let urlPath = `/api/changePassword`;
 
-        return {
+        const response = await this.request({
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: ChangePasswordRequestToJSON(requestParameters['changePasswordRequest']),
-        };
-    }
-
-    /**
-     */
-    async apiChangePasswordPostRaw(requestParameters: ApiChangePasswordPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommonMessage>> {
-        const requestOptions = await this.apiChangePasswordPostRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
+        }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CommonMessageFromJSON(jsonValue));
     }
@@ -479,9 +477,9 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates request options for apiCheckLoginStatusPost without sending the request
+     * Get user profile stats
      */
-    async apiCheckLoginStatusPostRequestOpts(): Promise<runtime.RequestOpts> {
+    async apiCheckLoginStatusPostRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommonMessage>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -489,20 +487,12 @@ export class DefaultApi extends runtime.BaseAPI {
 
         let urlPath = `/api/checkLoginStatus`;
 
-        return {
+        const response = await this.request({
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-        };
-    }
-
-    /**
-     * Get user profile stats
-     */
-    async apiCheckLoginStatusPostRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommonMessage>> {
-        const requestOptions = await this.apiCheckLoginStatusPostRequestOpts();
-        const response = await this.request(requestOptions, initOverrides);
+        }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CommonMessageFromJSON(jsonValue));
     }
@@ -516,9 +506,10 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates request options for apiCheckRoomStatusPost without sending the request
+     * Determines if a user can join the specified chat room
+     * Check chat room status
      */
-    async apiCheckRoomStatusPostRequestOpts(requestParameters: ApiCheckRoomStatusPostOperationRequest): Promise<runtime.RequestOpts> {
+    async apiCheckRoomStatusPostRaw(requestParameters: ApiCheckRoomStatusPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiCheckRoomStatusPost200Response>> {
         if (requestParameters['apiCheckRoomStatusPostRequest'] == null) {
             throw new runtime.RequiredError(
                 'apiCheckRoomStatusPostRequest',
@@ -535,22 +526,13 @@ export class DefaultApi extends runtime.BaseAPI {
 
         let urlPath = `/api/checkRoomStatus`;
 
-        return {
+        const response = await this.request({
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: ApiCheckRoomStatusPostRequestToJSON(requestParameters['apiCheckRoomStatusPostRequest']),
-        };
-    }
-
-    /**
-     * Determines if a user can join the specified chat room
-     * Check chat room status
-     */
-    async apiCheckRoomStatusPostRaw(requestParameters: ApiCheckRoomStatusPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiCheckRoomStatusPost200Response>> {
-        const requestOptions = await this.apiCheckRoomStatusPostRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
+        }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ApiCheckRoomStatusPost200ResponseFromJSON(jsonValue));
     }
@@ -565,9 +547,9 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates request options for apiCommentBlogPost without sending the request
+     * Comment a blog
      */
-    async apiCommentBlogPostRequestOpts(requestParameters: ApiCommentBlogPostOperationRequest): Promise<runtime.RequestOpts> {
+    async apiCommentBlogPostRaw(requestParameters: ApiCommentBlogPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiCommentBlogPost200Response>> {
         if (requestParameters['apiCommentBlogPostRequest'] == null) {
             throw new runtime.RequiredError(
                 'apiCommentBlogPostRequest',
@@ -584,21 +566,13 @@ export class DefaultApi extends runtime.BaseAPI {
 
         let urlPath = `/api/commentBlog`;
 
-        return {
+        const response = await this.request({
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: ApiCommentBlogPostRequestToJSON(requestParameters['apiCommentBlogPostRequest']),
-        };
-    }
-
-    /**
-     * Comment a blog
-     */
-    async apiCommentBlogPostRaw(requestParameters: ApiCommentBlogPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiCommentBlogPost200Response>> {
-        const requestOptions = await this.apiCommentBlogPostRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
+        }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ApiCommentBlogPost200ResponseFromJSON(jsonValue));
     }
@@ -612,9 +586,9 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates request options for apiCreateBlogPost without sending the request
+     * Create a new blog
      */
-    async apiCreateBlogPostRequestOpts(requestParameters: ApiCreateBlogPostOperationRequest): Promise<runtime.RequestOpts> {
+    async apiCreateBlogPostRaw(requestParameters: ApiCreateBlogPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiCreateBlogPost200Response>> {
         if (requestParameters['apiCreateBlogPostRequest'] == null) {
             throw new runtime.RequiredError(
                 'apiCreateBlogPostRequest',
@@ -631,21 +605,13 @@ export class DefaultApi extends runtime.BaseAPI {
 
         let urlPath = `/api/createBlog`;
 
-        return {
+        const response = await this.request({
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: ApiCreateBlogPostRequestToJSON(requestParameters['apiCreateBlogPostRequest']),
-        };
-    }
-
-    /**
-     * Create a new blog
-     */
-    async apiCreateBlogPostRaw(requestParameters: ApiCreateBlogPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiCreateBlogPost200Response>> {
-        const requestOptions = await this.apiCreateBlogPostRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
+        }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ApiCreateBlogPost200ResponseFromJSON(jsonValue));
     }
@@ -659,9 +625,9 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates request options for apiCreateIdentifyStarsJobPost without sending the request
+     * Create a job to identify the stars in the image.
      */
-    async apiCreateIdentifyStarsJobPostRequestOpts(requestParameters: ApiCreateIdentifyStarsJobPostOperationRequest): Promise<runtime.RequestOpts> {
+    async apiCreateIdentifyStarsJobPostRaw(requestParameters: ApiCreateIdentifyStarsJobPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiCreateIdentifyStarsJobPost200Response>> {
         if (requestParameters['apiCreateIdentifyStarsJobPostRequest'] == null) {
             throw new runtime.RequiredError(
                 'apiCreateIdentifyStarsJobPostRequest',
@@ -678,21 +644,13 @@ export class DefaultApi extends runtime.BaseAPI {
 
         let urlPath = `/api/createIdentifyStarsJob`;
 
-        return {
+        const response = await this.request({
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: ApiCreateIdentifyStarsJobPostRequestToJSON(requestParameters['apiCreateIdentifyStarsJobPostRequest']),
-        };
-    }
-
-    /**
-     * Create a job to identify the stars in the image.
-     */
-    async apiCreateIdentifyStarsJobPostRaw(requestParameters: ApiCreateIdentifyStarsJobPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiCreateIdentifyStarsJobPost200Response>> {
-        const requestOptions = await this.apiCreateIdentifyStarsJobPostRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
+        }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ApiCreateIdentifyStarsJobPost200ResponseFromJSON(jsonValue));
     }
@@ -706,9 +664,46 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates request options for apiDeleteBlogPost without sending the request
      */
-    async apiDeleteBlogPostRequestOpts(requestParameters: ApiDeleteBlogPostRequest): Promise<runtime.RequestOpts> {
+    async apiCreateStarMessagePostRaw(requestParameters: ApiCreateStarMessagePostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommonID>> {
+        if (requestParameters['starMessage'] == null) {
+            throw new runtime.RequiredError(
+                'starMessage',
+                'Required parameter "starMessage" was null or undefined when calling apiCreateStarMessagePost().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/createStarMessage`;
+
+        const response = await this.request({
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: StarMessageToJSON(requestParameters['starMessage']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CommonIDFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async apiCreateStarMessagePost(requestParameters: ApiCreateStarMessagePostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommonID> {
+        const response = await this.apiCreateStarMessagePostRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Delete a blog
+     */
+    async apiDeleteBlogPostRaw(requestParameters: ApiDeleteBlogPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BlogID>> {
         if (requestParameters['blogID'] == null) {
             throw new runtime.RequiredError(
                 'blogID',
@@ -725,21 +720,13 @@ export class DefaultApi extends runtime.BaseAPI {
 
         let urlPath = `/api/deleteBlog`;
 
-        return {
+        const response = await this.request({
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: BlogIDToJSON(requestParameters['blogID']),
-        };
-    }
-
-    /**
-     * Delete a blog
-     */
-    async apiDeleteBlogPostRaw(requestParameters: ApiDeleteBlogPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BlogID>> {
-        const requestOptions = await this.apiDeleteBlogPostRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
+        }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => BlogIDFromJSON(jsonValue));
     }
@@ -753,9 +740,9 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates request options for apiDeleteCommentPost without sending the request
+     * Delete a comment
      */
-    async apiDeleteCommentPostRequestOpts(requestParameters: ApiDeleteCommentPostOperationRequest): Promise<runtime.RequestOpts> {
+    async apiDeleteCommentPostRaw(requestParameters: ApiDeleteCommentPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiCommentBlogPost200Response>> {
         if (requestParameters['apiDeleteCommentPostRequest'] == null) {
             throw new runtime.RequiredError(
                 'apiDeleteCommentPostRequest',
@@ -772,21 +759,13 @@ export class DefaultApi extends runtime.BaseAPI {
 
         let urlPath = `/api/deleteComment`;
 
-        return {
+        const response = await this.request({
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: ApiDeleteCommentPostRequestToJSON(requestParameters['apiDeleteCommentPostRequest']),
-        };
-    }
-
-    /**
-     * Delete a comment
-     */
-    async apiDeleteCommentPostRaw(requestParameters: ApiDeleteCommentPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiCommentBlogPost200Response>> {
-        const requestOptions = await this.apiDeleteCommentPostRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
+        }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ApiCommentBlogPost200ResponseFromJSON(jsonValue));
     }
@@ -800,9 +779,9 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates request options for apiDeleteUserPost without sending the request
+     * 注销账号
      */
-    async apiDeleteUserPostRequestOpts(requestParameters: ApiDeleteUserPostRequest): Promise<runtime.RequestOpts> {
+    async apiDeleteUserPostRaw(requestParameters: ApiDeleteUserPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommonMessage>> {
         if (requestParameters['userAuth'] == null) {
             throw new runtime.RequiredError(
                 'userAuth',
@@ -819,21 +798,13 @@ export class DefaultApi extends runtime.BaseAPI {
 
         let urlPath = `/api/deleteUser`;
 
-        return {
+        const response = await this.request({
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: UserAuthToJSON(requestParameters['userAuth']),
-        };
-    }
-
-    /**
-     * 注销账号
-     */
-    async apiDeleteUserPostRaw(requestParameters: ApiDeleteUserPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommonMessage>> {
-        const requestOptions = await this.apiDeleteUserPostRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
+        }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CommonMessageFromJSON(jsonValue));
     }
@@ -847,9 +818,10 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates request options for apiDisplayChatRoomGet without sending the request
+     * Returns data to render chat room entry button in the graphical interface
+     * Display chat room entry button in GUI
      */
-    async apiDisplayChatRoomGetRequestOpts(): Promise<runtime.RequestOpts> {
+    async apiDisplayChatRoomGetRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiDisplayChatRoomGet200Response>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -857,21 +829,12 @@ export class DefaultApi extends runtime.BaseAPI {
 
         let urlPath = `/api/displayChatRoom`;
 
-        return {
+        const response = await this.request({
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        };
-    }
-
-    /**
-     * Returns data to render chat room entry button in the graphical interface
-     * Display chat room entry button in GUI
-     */
-    async apiDisplayChatRoomGetRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiDisplayChatRoomGet200Response>> {
-        const requestOptions = await this.apiDisplayChatRoomGetRequestOpts();
-        const response = await this.request(requestOptions, initOverrides);
+        }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ApiDisplayChatRoomGet200ResponseFromJSON(jsonValue));
     }
@@ -886,9 +849,10 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates request options for apiDisplaySaveSuccessPost without sending the request
+     * Return save result and metadata after starfield is saved
+     * Display save success confirmation
      */
-    async apiDisplaySaveSuccessPostRequestOpts(requestParameters: ApiDisplaySaveSuccessPostOperationRequest): Promise<runtime.RequestOpts> {
+    async apiDisplaySaveSuccessPostRaw(requestParameters: ApiDisplaySaveSuccessPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiDisplaySaveSuccessPost200Response>> {
         if (requestParameters['apiDisplaySaveSuccessPostRequest'] == null) {
             throw new runtime.RequiredError(
                 'apiDisplaySaveSuccessPostRequest',
@@ -905,22 +869,13 @@ export class DefaultApi extends runtime.BaseAPI {
 
         let urlPath = `/api/displaySaveSuccess`;
 
-        return {
+        const response = await this.request({
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: ApiDisplaySaveSuccessPostRequestToJSON(requestParameters['apiDisplaySaveSuccessPostRequest']),
-        };
-    }
-
-    /**
-     * Return save result and metadata after starfield is saved
-     * Display save success confirmation
-     */
-    async apiDisplaySaveSuccessPostRaw(requestParameters: ApiDisplaySaveSuccessPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiDisplaySaveSuccessPost200Response>> {
-        const requestOptions = await this.apiDisplaySaveSuccessPostRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
+        }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ApiDisplaySaveSuccessPost200ResponseFromJSON(jsonValue));
     }
@@ -935,9 +890,10 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates request options for apiDisplayStarDetailsPost without sending the request
+     * Retrieve detailed astronomical information of a specific star
+     * Display star details
      */
-    async apiDisplayStarDetailsPostRequestOpts(requestParameters: ApiDisplayStarDetailsPostOperationRequest): Promise<runtime.RequestOpts> {
+    async apiDisplayStarDetailsPostRaw(requestParameters: ApiDisplayStarDetailsPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<StarDetails>> {
         if (requestParameters['apiDisplayStarDetailsPostRequest'] == null) {
             throw new runtime.RequiredError(
                 'apiDisplayStarDetailsPostRequest',
@@ -954,22 +910,13 @@ export class DefaultApi extends runtime.BaseAPI {
 
         let urlPath = `/api/displayStarDetails`;
 
-        return {
+        const response = await this.request({
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: ApiDisplayStarDetailsPostRequestToJSON(requestParameters['apiDisplayStarDetailsPostRequest']),
-        };
-    }
-
-    /**
-     * Retrieve detailed astronomical information of a specific star
-     * Display star details
-     */
-    async apiDisplayStarDetailsPostRaw(requestParameters: ApiDisplayStarDetailsPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<StarDetails>> {
-        const requestOptions = await this.apiDisplayStarDetailsPostRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
+        }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => StarDetailsFromJSON(jsonValue));
     }
@@ -984,9 +931,10 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates request options for apiDisplayStarfieldPost without sending the request
+     * Retrieve rendered starfield data for GUI display
+     * Display starfield
      */
-    async apiDisplayStarfieldPostRequestOpts(requestParameters: ApiDisplayStarfieldPostOperationRequest): Promise<runtime.RequestOpts> {
+    async apiDisplayStarfieldPostRaw(requestParameters: ApiDisplayStarfieldPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiDisplayStarfieldPost200Response>> {
         if (requestParameters['apiDisplayStarfieldPostRequest'] == null) {
             throw new runtime.RequiredError(
                 'apiDisplayStarfieldPostRequest',
@@ -1003,22 +951,13 @@ export class DefaultApi extends runtime.BaseAPI {
 
         let urlPath = `/api/displayStarfield`;
 
-        return {
+        const response = await this.request({
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: ApiDisplayStarfieldPostRequestToJSON(requestParameters['apiDisplayStarfieldPostRequest']),
-        };
-    }
-
-    /**
-     * Retrieve rendered starfield data for GUI display
-     * Display starfield
-     */
-    async apiDisplayStarfieldPostRaw(requestParameters: ApiDisplayStarfieldPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiDisplayStarfieldPost200Response>> {
-        const requestOptions = await this.apiDisplayStarfieldPostRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
+        }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ApiDisplayStarfieldPost200ResponseFromJSON(jsonValue));
     }
@@ -1033,9 +972,10 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates request options for apiEditProfilePost without sending the request
+     * update the user\'s profile information stored as JSON.
+     *  update user profile
      */
-    async apiEditProfilePostRequestOpts(requestParameters: ApiEditProfilePostRequest): Promise<runtime.RequestOpts> {
+    async apiEditProfilePostRaw(requestParameters: ApiEditProfilePostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserResponse>> {
         if (requestParameters['profileAndToken'] == null) {
             throw new runtime.RequiredError(
                 'profileAndToken',
@@ -1052,22 +992,13 @@ export class DefaultApi extends runtime.BaseAPI {
 
         let urlPath = `/api/editProfile`;
 
-        return {
+        const response = await this.request({
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: ProfileAndTokenToJSON(requestParameters['profileAndToken']),
-        };
-    }
-
-    /**
-     * update the user\'s profile information stored as JSON.
-     *  update user profile
-     */
-    async apiEditProfilePostRaw(requestParameters: ApiEditProfilePostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserResponse>> {
-        const requestOptions = await this.apiEditProfilePostRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
+        }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UserResponseFromJSON(jsonValue));
     }
@@ -1082,9 +1013,9 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates request options for apiElimilateErrorsPost without sending the request
+     * Eliminating the errors between the stars\' positions that we calculated and the stars\' positions captured by the camera. These errors are generally caused by the limited accuracy of the sensor.
      */
-    async apiElimilateErrorsPostRequestOpts(requestParameters: ApiElimilateErrorsPostOperationRequest): Promise<runtime.RequestOpts> {
+    async apiElimilateErrorsPostRaw(requestParameters: ApiElimilateErrorsPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiElimilateErrorsPost200Response>> {
         if (requestParameters['apiElimilateErrorsPostRequest'] == null) {
             throw new runtime.RequiredError(
                 'apiElimilateErrorsPostRequest',
@@ -1101,21 +1032,13 @@ export class DefaultApi extends runtime.BaseAPI {
 
         let urlPath = `/api/elimilateErrors`;
 
-        return {
+        const response = await this.request({
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: ApiElimilateErrorsPostRequestToJSON(requestParameters['apiElimilateErrorsPostRequest']),
-        };
-    }
-
-    /**
-     * Eliminating the errors between the stars\' positions that we calculated and the stars\' positions captured by the camera. These errors are generally caused by the limited accuracy of the sensor.
-     */
-    async apiElimilateErrorsPostRaw(requestParameters: ApiElimilateErrorsPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiElimilateErrorsPost200Response>> {
-        const requestOptions = await this.apiElimilateErrorsPostRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
+        }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ApiElimilateErrorsPost200ResponseFromJSON(jsonValue));
     }
@@ -1129,9 +1052,10 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates request options for apiExitChatRoomPost without sending the request
+     * Updates user\'s participation status and triggers related notifications
+     * Exit chat room
      */
-    async apiExitChatRoomPostRequestOpts(requestParameters: ApiExitChatRoomPostOperationRequest): Promise<runtime.RequestOpts> {
+    async apiExitChatRoomPostRaw(requestParameters: ApiExitChatRoomPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiExitChatRoomPost200Response>> {
         if (requestParameters['apiExitChatRoomPostRequest'] == null) {
             throw new runtime.RequiredError(
                 'apiExitChatRoomPostRequest',
@@ -1148,22 +1072,13 @@ export class DefaultApi extends runtime.BaseAPI {
 
         let urlPath = `/api/exitChatRoom`;
 
-        return {
+        const response = await this.request({
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: ApiExitChatRoomPostRequestToJSON(requestParameters['apiExitChatRoomPostRequest']),
-        };
-    }
-
-    /**
-     * Updates user\'s participation status and triggers related notifications
-     * Exit chat room
-     */
-    async apiExitChatRoomPostRaw(requestParameters: ApiExitChatRoomPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiExitChatRoomPost200Response>> {
-        const requestOptions = await this.apiExitChatRoomPostRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
+        }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ApiExitChatRoomPost200ResponseFromJSON(jsonValue));
     }
@@ -1178,9 +1093,9 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates request options for apiGetAttitudePost without sending the request
+     * Get attitude of the mobile device
      */
-    async apiGetAttitudePostRequestOpts(): Promise<runtime.RequestOpts> {
+    async apiGetAttitudePostRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Attitude>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -1188,20 +1103,12 @@ export class DefaultApi extends runtime.BaseAPI {
 
         let urlPath = `/api/getAttitude`;
 
-        return {
+        const response = await this.request({
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-        };
-    }
-
-    /**
-     * Get attitude of the mobile device
-     */
-    async apiGetAttitudePostRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Attitude>> {
-        const requestOptions = await this.apiGetAttitudePostRequestOpts();
-        const response = await this.request(requestOptions, initOverrides);
+        }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => AttitudeFromJSON(jsonValue));
     }
@@ -1215,9 +1122,9 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates request options for apiGetCameraDataPost without sending the request
+     * Get camera data
      */
-    async apiGetCameraDataPostRequestOpts(): Promise<runtime.RequestOpts> {
+    async apiGetCameraDataPostRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiGetCameraDataPost200Response>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -1225,20 +1132,12 @@ export class DefaultApi extends runtime.BaseAPI {
 
         let urlPath = `/api/getCameraData`;
 
-        return {
+        const response = await this.request({
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-        };
-    }
-
-    /**
-     * Get camera data
-     */
-    async apiGetCameraDataPostRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiGetCameraDataPost200Response>> {
-        const requestOptions = await this.apiGetCameraDataPostRequestOpts();
-        const response = await this.request(requestOptions, initOverrides);
+        }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ApiGetCameraDataPost200ResponseFromJSON(jsonValue));
     }
@@ -1252,9 +1151,10 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates request options for apiGetChatRoomInfoPost without sending the request
+     * Gets specified chat room information from the social system
+     * Retrieve chat room from social system
      */
-    async apiGetChatRoomInfoPostRequestOpts(requestParameters: ApiGetChatRoomInfoPostOperationRequest): Promise<runtime.RequestOpts> {
+    async apiGetChatRoomInfoPostRaw(requestParameters: ApiGetChatRoomInfoPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiGetChatRoomInfoPost200Response>> {
         if (requestParameters['apiGetChatRoomInfoPostRequest'] == null) {
             throw new runtime.RequiredError(
                 'apiGetChatRoomInfoPostRequest',
@@ -1271,22 +1171,13 @@ export class DefaultApi extends runtime.BaseAPI {
 
         let urlPath = `/api/getChatRoomInfo`;
 
-        return {
+        const response = await this.request({
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: ApiGetChatRoomInfoPostRequestToJSON(requestParameters['apiGetChatRoomInfoPostRequest']),
-        };
-    }
-
-    /**
-     * Gets specified chat room information from the social system
-     * Retrieve chat room from social system
-     */
-    async apiGetChatRoomInfoPostRaw(requestParameters: ApiGetChatRoomInfoPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiGetChatRoomInfoPost200Response>> {
-        const requestOptions = await this.apiGetChatRoomInfoPostRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
+        }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ApiGetChatRoomInfoPost200ResponseFromJSON(jsonValue));
     }
@@ -1301,9 +1192,10 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates request options for apiGetChatRoomPost without sending the request
+     * Join the chat room
+     * Join the chat room
      */
-    async apiGetChatRoomPostRequestOpts(requestParameters: ApiGetChatRoomPostOperationRequest): Promise<runtime.RequestOpts> {
+    async apiGetChatRoomPostRaw(requestParameters: ApiGetChatRoomPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiGetChatRoomPost200Response>> {
         if (requestParameters['apiGetChatRoomPostRequest'] == null) {
             throw new runtime.RequiredError(
                 'apiGetChatRoomPostRequest',
@@ -1320,22 +1212,13 @@ export class DefaultApi extends runtime.BaseAPI {
 
         let urlPath = `/api/getChatRoom`;
 
-        return {
+        const response = await this.request({
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: ApiGetChatRoomPostRequestToJSON(requestParameters['apiGetChatRoomPostRequest']),
-        };
-    }
-
-    /**
-     * Join the chat room
-     * Join the chat room
-     */
-    async apiGetChatRoomPostRaw(requestParameters: ApiGetChatRoomPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiGetChatRoomPost200Response>> {
-        const requestOptions = await this.apiGetChatRoomPostRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
+        }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ApiGetChatRoomPost200ResponseFromJSON(jsonValue));
     }
@@ -1350,9 +1233,9 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates request options for apiGetIdentifyStarsJobResultPost without sending the request
+     * get identify stars job result.
      */
-    async apiGetIdentifyStarsJobResultPostRequestOpts(requestParameters: ApiGetIdentifyStarsJobResultPostOperationRequest): Promise<runtime.RequestOpts> {
+    async apiGetIdentifyStarsJobResultPostRaw(requestParameters: ApiGetIdentifyStarsJobResultPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IdentifyStarsJobResult>> {
         if (requestParameters['apiGetIdentifyStarsJobResultPostRequest'] == null) {
             throw new runtime.RequiredError(
                 'apiGetIdentifyStarsJobResultPostRequest',
@@ -1369,21 +1252,13 @@ export class DefaultApi extends runtime.BaseAPI {
 
         let urlPath = `/api/getIdentifyStarsJobResult`;
 
-        return {
+        const response = await this.request({
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: ApiGetIdentifyStarsJobResultPostRequestToJSON(requestParameters['apiGetIdentifyStarsJobResultPostRequest']),
-        };
-    }
-
-    /**
-     * get identify stars job result.
-     */
-    async apiGetIdentifyStarsJobResultPostRaw(requestParameters: ApiGetIdentifyStarsJobResultPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IdentifyStarsJobResult>> {
-        const requestOptions = await this.apiGetIdentifyStarsJobResultPostRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
+        }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => IdentifyStarsJobResultFromJSON(jsonValue));
     }
@@ -1397,9 +1272,9 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates request options for apiGetLocationPost without sending the request
+     * Get current location
      */
-    async apiGetLocationPostRequestOpts(): Promise<runtime.RequestOpts> {
+    async apiGetLocationPostRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GPS>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -1407,20 +1282,12 @@ export class DefaultApi extends runtime.BaseAPI {
 
         let urlPath = `/api/getLocation`;
 
-        return {
+        const response = await this.request({
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-        };
-    }
-
-    /**
-     * Get current location
-     */
-    async apiGetLocationPostRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GPS>> {
-        const requestOptions = await this.apiGetLocationPostRequestOpts();
-        const response = await this.request(requestOptions, initOverrides);
+        }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => GPSFromJSON(jsonValue));
     }
@@ -1434,9 +1301,10 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates request options for apiGetMessagePost without sending the request
+     * Gets historical and real-time messages from the chat room
+     * Retrieve chat room messages
      */
-    async apiGetMessagePostRequestOpts(requestParameters: ApiGetMessagePostOperationRequest): Promise<runtime.RequestOpts> {
+    async apiGetMessagePostRaw(requestParameters: ApiGetMessagePostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiGetMessagePost200Response>> {
         if (requestParameters['apiGetMessagePostRequest'] == null) {
             throw new runtime.RequiredError(
                 'apiGetMessagePostRequest',
@@ -1453,22 +1321,13 @@ export class DefaultApi extends runtime.BaseAPI {
 
         let urlPath = `/api/getMessage`;
 
-        return {
+        const response = await this.request({
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: ApiGetMessagePostRequestToJSON(requestParameters['apiGetMessagePostRequest']),
-        };
-    }
-
-    /**
-     * Gets historical and real-time messages from the chat room
-     * Retrieve chat room messages
-     */
-    async apiGetMessagePostRaw(requestParameters: ApiGetMessagePostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiGetMessagePost200Response>> {
-        const requestOptions = await this.apiGetMessagePostRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
+        }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ApiGetMessagePost200ResponseFromJSON(jsonValue));
     }
@@ -1483,9 +1342,10 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates request options for apiGetProfileStatsPost without sending the request
+     * Retrieve the user\'s scanning statistics, rank, and join date for the profile view.
+     * Get user profile stats
      */
-    async apiGetProfileStatsPostRequestOpts(requestParameters: ApiGetProfileStatsPostRequest): Promise<runtime.RequestOpts> {
+    async apiGetProfileStatsPostRaw(requestParameters: ApiGetProfileStatsPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProfileStatsResponse>> {
         if (requestParameters['body'] == null) {
             throw new runtime.RequiredError(
                 'body',
@@ -1502,22 +1362,13 @@ export class DefaultApi extends runtime.BaseAPI {
 
         let urlPath = `/api/getProfileStats`;
 
-        return {
+        const response = await this.request({
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: requestParameters['body'] as any,
-        };
-    }
-
-    /**
-     * Retrieve the user\'s scanning statistics, rank, and join date for the profile view.
-     * Get user profile stats
-     */
-    async apiGetProfileStatsPostRaw(requestParameters: ApiGetProfileStatsPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProfileStatsResponse>> {
-        const requestOptions = await this.apiGetProfileStatsPostRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
+        }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ProfileStatsResponseFromJSON(jsonValue));
     }
@@ -1532,9 +1383,9 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates request options for apiGetStarCatalogPost without sending the request
+     * Get star catalog
      */
-    async apiGetStarCatalogPostRequestOpts(): Promise<runtime.RequestOpts> {
+    async apiGetStarCatalogPostRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiGetStarCatalogPost200Response>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -1542,20 +1393,12 @@ export class DefaultApi extends runtime.BaseAPI {
 
         let urlPath = `/api/getStarCatalog`;
 
-        return {
+        const response = await this.request({
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-        };
-    }
-
-    /**
-     * Get star catalog
-     */
-    async apiGetStarCatalogPostRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiGetStarCatalogPost200Response>> {
-        const requestOptions = await this.apiGetStarCatalogPostRequestOpts();
-        const response = await this.request(requestOptions, initOverrides);
+        }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ApiGetStarCatalogPost200ResponseFromJSON(jsonValue));
     }
@@ -1569,9 +1412,9 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates request options for apiGetStarDetailsPost without sending the request
+     * calculate star details
      */
-    async apiGetStarDetailsPostRequestOpts(requestParameters: ApiGetStarDetailsPostOperationRequest): Promise<runtime.RequestOpts> {
+    async apiGetStarDetailsPostRaw(requestParameters: ApiGetStarDetailsPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<StarDetails>> {
         if (requestParameters['apiGetStarDetailsPostRequest'] == null) {
             throw new runtime.RequiredError(
                 'apiGetStarDetailsPostRequest',
@@ -1588,21 +1431,13 @@ export class DefaultApi extends runtime.BaseAPI {
 
         let urlPath = `/api/getStarDetails`;
 
-        return {
+        const response = await this.request({
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: ApiGetStarDetailsPostRequestToJSON(requestParameters['apiGetStarDetailsPostRequest']),
-        };
-    }
-
-    /**
-     * calculate star details
-     */
-    async apiGetStarDetailsPostRaw(requestParameters: ApiGetStarDetailsPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<StarDetails>> {
-        const requestOptions = await this.apiGetStarDetailsPostRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
+        }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => StarDetailsFromJSON(jsonValue));
     }
@@ -1616,9 +1451,46 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates request options for apiHealthGet without sending the request
      */
-    async apiHealthGetRequestOpts(): Promise<runtime.RequestOpts> {
+    async apiGetStarMessagePostRaw(requestParameters: ApiGetStarMessagePostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<StarMessage>> {
+        if (requestParameters['commonID'] == null) {
+            throw new runtime.RequiredError(
+                'commonID',
+                'Required parameter "commonID" was null or undefined when calling apiGetStarMessagePost().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/getStarMessage`;
+
+        const response = await this.request({
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: CommonIDToJSON(requestParameters['commonID']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => StarMessageFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async apiGetStarMessagePost(requestParameters: ApiGetStarMessagePostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<StarMessage> {
+        const response = await this.apiGetStarMessagePostRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * health check
+     */
+    async apiHealthGetRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -1626,20 +1498,12 @@ export class DefaultApi extends runtime.BaseAPI {
 
         let urlPath = `/api/health`;
 
-        return {
+        const response = await this.request({
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        };
-    }
-
-    /**
-     * health check
-     */
-    async apiHealthGetRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        const requestOptions = await this.apiHealthGetRequestOpts();
-        const response = await this.request(requestOptions, initOverrides);
+        }, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -1652,9 +1516,9 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates request options for apiLikeBlogPost without sending the request
+     * Like a blog
      */
-    async apiLikeBlogPostRequestOpts(requestParameters: ApiLikeBlogPostRequest): Promise<runtime.RequestOpts> {
+    async apiLikeBlogPostRaw(requestParameters: ApiLikeBlogPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiLikeBlogPost200Response>> {
         if (requestParameters['blogID'] == null) {
             throw new runtime.RequiredError(
                 'blogID',
@@ -1671,21 +1535,13 @@ export class DefaultApi extends runtime.BaseAPI {
 
         let urlPath = `/api/likeBlog`;
 
-        return {
+        const response = await this.request({
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: BlogIDToJSON(requestParameters['blogID']),
-        };
-    }
-
-    /**
-     * Like a blog
-     */
-    async apiLikeBlogPostRaw(requestParameters: ApiLikeBlogPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiLikeBlogPost200Response>> {
-        const requestOptions = await this.apiLikeBlogPostRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
+        }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ApiLikeBlogPost200ResponseFromJSON(jsonValue));
     }
@@ -1699,9 +1555,9 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates request options for apiListIdentifyStarsJobsPost without sending the request
+     * List identify stars jobs.
      */
-    async apiListIdentifyStarsJobsPostRequestOpts(requestParameters: ApiListIdentifyStarsJobsPostRequest): Promise<runtime.RequestOpts> {
+    async apiListIdentifyStarsJobsPostRaw(requestParameters: ApiListIdentifyStarsJobsPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiListIdentifyStarsJobsPost200Response>> {
         if (requestParameters['paginationQuery'] == null) {
             throw new runtime.RequiredError(
                 'paginationQuery',
@@ -1718,21 +1574,13 @@ export class DefaultApi extends runtime.BaseAPI {
 
         let urlPath = `/api/listIdentifyStarsJobs`;
 
-        return {
+        const response = await this.request({
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: PaginationQueryToJSON(requestParameters['paginationQuery']),
-        };
-    }
-
-    /**
-     * List identify stars jobs.
-     */
-    async apiListIdentifyStarsJobsPostRaw(requestParameters: ApiListIdentifyStarsJobsPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiListIdentifyStarsJobsPost200Response>> {
-        const requestOptions = await this.apiListIdentifyStarsJobsPostRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
+        }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ApiListIdentifyStarsJobsPost200ResponseFromJSON(jsonValue));
     }
@@ -1746,9 +1594,9 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates request options for apiListSavedBlogsPost without sending the request
+     * List all blogs saved by the user
      */
-    async apiListSavedBlogsPostRequestOpts(requestParameters: ApiListSavedBlogsPostRequest): Promise<runtime.RequestOpts> {
+    async apiListSavedBlogsPostRaw(requestParameters: ApiListSavedBlogsPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BlogsList>> {
         if (requestParameters['paginationQuery'] == null) {
             throw new runtime.RequiredError(
                 'paginationQuery',
@@ -1765,21 +1613,13 @@ export class DefaultApi extends runtime.BaseAPI {
 
         let urlPath = `/api/listSavedBlogs`;
 
-        return {
+        const response = await this.request({
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: PaginationQueryToJSON(requestParameters['paginationQuery']),
-        };
-    }
-
-    /**
-     * List all blogs saved by the user
-     */
-    async apiListSavedBlogsPostRaw(requestParameters: ApiListSavedBlogsPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BlogsList>> {
-        const requestOptions = await this.apiListSavedBlogsPostRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
+        }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => BlogsListFromJSON(jsonValue));
     }
@@ -1793,9 +1633,9 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates request options for apiListStarBlogsPost without sending the request
+     * List all blogs under the certain star
      */
-    async apiListStarBlogsPostRequestOpts(requestParameters: ApiListStarBlogsPostOperationRequest): Promise<runtime.RequestOpts> {
+    async apiListStarBlogsPostRaw(requestParameters: ApiListStarBlogsPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BlogsList>> {
         if (requestParameters['apiListStarBlogsPostRequest'] == null) {
             throw new runtime.RequiredError(
                 'apiListStarBlogsPostRequest',
@@ -1812,21 +1652,13 @@ export class DefaultApi extends runtime.BaseAPI {
 
         let urlPath = `/api/listStarBlogs`;
 
-        return {
+        const response = await this.request({
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: ApiListStarBlogsPostRequestToJSON(requestParameters['apiListStarBlogsPostRequest']),
-        };
-    }
-
-    /**
-     * List all blogs under the certain star
-     */
-    async apiListStarBlogsPostRaw(requestParameters: ApiListStarBlogsPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BlogsList>> {
-        const requestOptions = await this.apiListStarBlogsPostRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
+        }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => BlogsListFromJSON(jsonValue));
     }
@@ -1840,9 +1672,9 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates request options for apiListUserBlogsPost without sending the request
+     * List all blogs posted by a specific user
      */
-    async apiListUserBlogsPostRequestOpts(requestParameters: ApiListUserBlogsPostRequest): Promise<runtime.RequestOpts> {
+    async apiListUserBlogsPostRaw(requestParameters: ApiListUserBlogsPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BlogsList>> {
         if (requestParameters['paginationQuery'] == null) {
             throw new runtime.RequiredError(
                 'paginationQuery',
@@ -1859,21 +1691,13 @@ export class DefaultApi extends runtime.BaseAPI {
 
         let urlPath = `/api/listUserBlogs`;
 
-        return {
+        const response = await this.request({
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: PaginationQueryToJSON(requestParameters['paginationQuery']),
-        };
-    }
-
-    /**
-     * List all blogs posted by a specific user
-     */
-    async apiListUserBlogsPostRaw(requestParameters: ApiListUserBlogsPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BlogsList>> {
-        const requestOptions = await this.apiListUserBlogsPostRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
+        }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => BlogsListFromJSON(jsonValue));
     }
@@ -1887,9 +1711,9 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates request options for apiReportBlogPost without sending the request
+     * Report a blog
      */
-    async apiReportBlogPostRequestOpts(requestParameters: ApiReportBlogPostOperationRequest): Promise<runtime.RequestOpts> {
+    async apiReportBlogPostRaw(requestParameters: ApiReportBlogPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BlogID>> {
         if (requestParameters['apiReportBlogPostRequest'] == null) {
             throw new runtime.RequiredError(
                 'apiReportBlogPostRequest',
@@ -1906,21 +1730,13 @@ export class DefaultApi extends runtime.BaseAPI {
 
         let urlPath = `/api/reportBlog`;
 
-        return {
+        const response = await this.request({
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: ApiReportBlogPostRequestToJSON(requestParameters['apiReportBlogPostRequest']),
-        };
-    }
-
-    /**
-     * Report a blog
-     */
-    async apiReportBlogPostRaw(requestParameters: ApiReportBlogPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BlogID>> {
-        const requestOptions = await this.apiReportBlogPostRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
+        }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => BlogIDFromJSON(jsonValue));
     }
@@ -1934,9 +1750,10 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates request options for apiRequestAccuracyAdjustPost without sending the request
+     * Adjust calculation accuracy for star coordinates based on sensor precision
+     * Request accuracy adjustment
      */
-    async apiRequestAccuracyAdjustPostRequestOpts(requestParameters: ApiRequestAccuracyAdjustPostOperationRequest): Promise<runtime.RequestOpts> {
+    async apiRequestAccuracyAdjustPostRaw(requestParameters: ApiRequestAccuracyAdjustPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiRequestAccuracyAdjustPost200Response>> {
         if (requestParameters['apiRequestAccuracyAdjustPostRequest'] == null) {
             throw new runtime.RequiredError(
                 'apiRequestAccuracyAdjustPostRequest',
@@ -1953,22 +1770,13 @@ export class DefaultApi extends runtime.BaseAPI {
 
         let urlPath = `/api/requestAccuracyAdjust`;
 
-        return {
+        const response = await this.request({
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: ApiRequestAccuracyAdjustPostRequestToJSON(requestParameters['apiRequestAccuracyAdjustPostRequest']),
-        };
-    }
-
-    /**
-     * Adjust calculation accuracy for star coordinates based on sensor precision
-     * Request accuracy adjustment
-     */
-    async apiRequestAccuracyAdjustPostRaw(requestParameters: ApiRequestAccuracyAdjustPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiRequestAccuracyAdjustPost200Response>> {
-        const requestOptions = await this.apiRequestAccuracyAdjustPostRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
+        }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ApiRequestAccuracyAdjustPost200ResponseFromJSON(jsonValue));
     }
@@ -1983,9 +1791,10 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates request options for apiRequestSaveTypePost without sending the request
+     * Get available save types for rendered starfield
+     * Request save type options
      */
-    async apiRequestSaveTypePostRequestOpts(): Promise<runtime.RequestOpts> {
+    async apiRequestSaveTypePostRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiRequestSaveTypePost200Response>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -1993,21 +1802,12 @@ export class DefaultApi extends runtime.BaseAPI {
 
         let urlPath = `/api/requestSaveType`;
 
-        return {
+        const response = await this.request({
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-        };
-    }
-
-    /**
-     * Get available save types for rendered starfield
-     * Request save type options
-     */
-    async apiRequestSaveTypePostRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiRequestSaveTypePost200Response>> {
-        const requestOptions = await this.apiRequestSaveTypePostRequestOpts();
-        const response = await this.request(requestOptions, initOverrides);
+        }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ApiRequestSaveTypePost200ResponseFromJSON(jsonValue));
     }
@@ -2022,9 +1822,10 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates request options for apiRequestStargazingTimePost without sending the request
+     * Get recommended stargazing time range based on GPS location
+     * Request optimal stargazing time
      */
-    async apiRequestStargazingTimePostRequestOpts(requestParameters: ApiRequestStargazingTimePostOperationRequest): Promise<runtime.RequestOpts> {
+    async apiRequestStargazingTimePostRaw(requestParameters: ApiRequestStargazingTimePostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiRequestStargazingTimePost200Response>> {
         if (requestParameters['apiRequestStargazingTimePostRequest'] == null) {
             throw new runtime.RequiredError(
                 'apiRequestStargazingTimePostRequest',
@@ -2041,22 +1842,13 @@ export class DefaultApi extends runtime.BaseAPI {
 
         let urlPath = `/api/requestStargazingTime`;
 
-        return {
+        const response = await this.request({
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: ApiRequestStargazingTimePostRequestToJSON(requestParameters['apiRequestStargazingTimePostRequest']),
-        };
-    }
-
-    /**
-     * Get recommended stargazing time range based on GPS location
-     * Request optimal stargazing time
-     */
-    async apiRequestStargazingTimePostRaw(requestParameters: ApiRequestStargazingTimePostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiRequestStargazingTimePost200Response>> {
-        const requestOptions = await this.apiRequestStargazingTimePostRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
+        }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ApiRequestStargazingTimePost200ResponseFromJSON(jsonValue));
     }
@@ -2071,9 +1863,9 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates request options for apiResetPasswordPost without sending the request
+     * Use code to reset password
      */
-    async apiResetPasswordPostRequestOpts(requestParameters: ApiResetPasswordPostRequest): Promise<runtime.RequestOpts> {
+    async apiResetPasswordPostRaw(requestParameters: ApiResetPasswordPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommonMessage>> {
         if (requestParameters['resetPasswordRequest'] == null) {
             throw new runtime.RequiredError(
                 'resetPasswordRequest',
@@ -2090,21 +1882,13 @@ export class DefaultApi extends runtime.BaseAPI {
 
         let urlPath = `/api/resetPassword`;
 
-        return {
+        const response = await this.request({
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: ResetPasswordRequestToJSON(requestParameters['resetPasswordRequest']),
-        };
-    }
-
-    /**
-     * Use code to reset password
-     */
-    async apiResetPasswordPostRaw(requestParameters: ApiResetPasswordPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommonMessage>> {
-        const requestOptions = await this.apiResetPasswordPostRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
+        }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CommonMessageFromJSON(jsonValue));
     }
@@ -2118,9 +1902,9 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates request options for apiResetPasswordSendCodePost without sending the request
+     * send code to email
      */
-    async apiResetPasswordSendCodePostRequestOpts(requestParameters: ApiResetPasswordSendCodePostRequest): Promise<runtime.RequestOpts> {
+    async apiResetPasswordSendCodePostRaw(requestParameters: ApiResetPasswordSendCodePostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommonMessage>> {
         if (requestParameters['resetPasswordSendCodeRequest'] == null) {
             throw new runtime.RequiredError(
                 'resetPasswordSendCodeRequest',
@@ -2137,21 +1921,13 @@ export class DefaultApi extends runtime.BaseAPI {
 
         let urlPath = `/api/resetPasswordSendCode`;
 
-        return {
+        const response = await this.request({
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: ResetPasswordSendCodeRequestToJSON(requestParameters['resetPasswordSendCodeRequest']),
-        };
-    }
-
-    /**
-     * send code to email
-     */
-    async apiResetPasswordSendCodePostRaw(requestParameters: ApiResetPasswordSendCodePostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommonMessage>> {
-        const requestOptions = await this.apiResetPasswordSendCodePostRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
+        }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CommonMessageFromJSON(jsonValue));
     }
@@ -2165,9 +1941,9 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates request options for apiSaveBlogPost without sending the request
+     * Save a blog
      */
-    async apiSaveBlogPostRequestOpts(requestParameters: ApiSaveBlogPostRequest): Promise<runtime.RequestOpts> {
+    async apiSaveBlogPostRaw(requestParameters: ApiSaveBlogPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BlogID>> {
         if (requestParameters['blogID'] == null) {
             throw new runtime.RequiredError(
                 'blogID',
@@ -2184,21 +1960,13 @@ export class DefaultApi extends runtime.BaseAPI {
 
         let urlPath = `/api/saveBlog`;
 
-        return {
+        const response = await this.request({
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: BlogIDToJSON(requestParameters['blogID']),
-        };
-    }
-
-    /**
-     * Save a blog
-     */
-    async apiSaveBlogPostRaw(requestParameters: ApiSaveBlogPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BlogID>> {
-        const requestOptions = await this.apiSaveBlogPostRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
+        }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => BlogIDFromJSON(jsonValue));
     }
@@ -2212,9 +1980,10 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates request options for apiSendMessagePost without sending the request
+     * Sends a message to the specified chat room for real-time communication
+     * Send message to chat room
      */
-    async apiSendMessagePostRequestOpts(requestParameters: ApiSendMessagePostOperationRequest): Promise<runtime.RequestOpts> {
+    async apiSendMessagePostRaw(requestParameters: ApiSendMessagePostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiSendMessagePost200Response>> {
         if (requestParameters['apiSendMessagePostRequest'] == null) {
             throw new runtime.RequiredError(
                 'apiSendMessagePostRequest',
@@ -2231,22 +2000,13 @@ export class DefaultApi extends runtime.BaseAPI {
 
         let urlPath = `/api/sendMessage`;
 
-        return {
+        const response = await this.request({
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: ApiSendMessagePostRequestToJSON(requestParameters['apiSendMessagePostRequest']),
-        };
-    }
-
-    /**
-     * Sends a message to the specified chat room for real-time communication
-     * Send message to chat room
-     */
-    async apiSendMessagePostRaw(requestParameters: ApiSendMessagePostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiSendMessagePost200Response>> {
-        const requestOptions = await this.apiSendMessagePostRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
+        }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ApiSendMessagePost200ResponseFromJSON(jsonValue));
     }
@@ -2261,9 +2021,10 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates request options for apiSetUserPost without sending the request
+     * Modify the username and password by the username, current password(password0)and new password(password1) user provided.
+     * Set/modify username and password
      */
-    async apiSetUserPostRequestOpts(requestParameters: ApiSetUserPostRequest): Promise<runtime.RequestOpts> {
+    async apiSetUserPostRaw(requestParameters: ApiSetUserPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommonMessage>> {
         if (requestParameters['changePasswordRequest'] == null) {
             throw new runtime.RequiredError(
                 'changePasswordRequest',
@@ -2280,22 +2041,13 @@ export class DefaultApi extends runtime.BaseAPI {
 
         let urlPath = `/api/setUser`;
 
-        return {
+        const response = await this.request({
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: ChangePasswordRequestToJSON(requestParameters['changePasswordRequest']),
-        };
-    }
-
-    /**
-     * Modify the username and password by the username, current password(password0)and new password(password1) user provided.
-     * Set/modify username and password
-     */
-    async apiSetUserPostRaw(requestParameters: ApiSetUserPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommonMessage>> {
-        const requestOptions = await this.apiSetUserPostRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
+        }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CommonMessageFromJSON(jsonValue));
     }
@@ -2310,9 +2062,10 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates request options for apiTriggerStarfieldRenderPost without sending the request
+     * Initiate starfield rendering process using corrected star coordinates and camera parameters
+     * Trigger starfield rendering
      */
-    async apiTriggerStarfieldRenderPostRequestOpts(requestParameters: ApiTriggerStarfieldRenderPostOperationRequest): Promise<runtime.RequestOpts> {
+    async apiTriggerStarfieldRenderPostRaw(requestParameters: ApiTriggerStarfieldRenderPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiTriggerStarfieldRenderPost200Response>> {
         if (requestParameters['apiTriggerStarfieldRenderPostRequest'] == null) {
             throw new runtime.RequiredError(
                 'apiTriggerStarfieldRenderPostRequest',
@@ -2329,22 +2082,13 @@ export class DefaultApi extends runtime.BaseAPI {
 
         let urlPath = `/api/triggerStarfieldRender`;
 
-        return {
+        const response = await this.request({
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: ApiTriggerStarfieldRenderPostRequestToJSON(requestParameters['apiTriggerStarfieldRenderPostRequest']),
-        };
-    }
-
-    /**
-     * Initiate starfield rendering process using corrected star coordinates and camera parameters
-     * Trigger starfield rendering
-     */
-    async apiTriggerStarfieldRenderPostRaw(requestParameters: ApiTriggerStarfieldRenderPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiTriggerStarfieldRenderPost200Response>> {
-        const requestOptions = await this.apiTriggerStarfieldRenderPostRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
+        }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ApiTriggerStarfieldRenderPost200ResponseFromJSON(jsonValue));
     }
@@ -2359,9 +2103,10 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates request options for apiUpdateLastGpsPost without sending the request
+     * update the user\'s latest GPS location used by recommendation emails.
+     * update user last gps
      */
-    async apiUpdateLastGpsPostRequestOpts(requestParameters: ApiUpdateLastGpsPostRequest): Promise<runtime.RequestOpts> {
+    async apiUpdateLastGpsPostRaw(requestParameters: ApiUpdateLastGpsPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommonMessage>> {
         if (requestParameters['updateLastGpsRequest'] == null) {
             throw new runtime.RequiredError(
                 'updateLastGpsRequest',
@@ -2378,22 +2123,13 @@ export class DefaultApi extends runtime.BaseAPI {
 
         let urlPath = `/api/updateLastGps`;
 
-        return {
+        const response = await this.request({
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: UpdateLastGpsRequestToJSON(requestParameters['updateLastGpsRequest']),
-        };
-    }
-
-    /**
-     * update the user\'s latest GPS location used by recommendation emails.
-     * update user last gps
-     */
-    async apiUpdateLastGpsPostRaw(requestParameters: ApiUpdateLastGpsPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommonMessage>> {
-        const requestOptions = await this.apiUpdateLastGpsPostRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
+        }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CommonMessageFromJSON(jsonValue));
     }
@@ -2408,9 +2144,10 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates request options for apiUserLoginPost without sending the request
+     * Use username and password to authentication, return a token if success.
+     * User login
      */
-    async apiUserLoginPostRequestOpts(requestParameters: ApiUserLoginPostRequest): Promise<runtime.RequestOpts> {
+    async apiUserLoginPostRaw(requestParameters: ApiUserLoginPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TokenResponse>> {
         if (requestParameters['userAuth'] == null) {
             throw new runtime.RequiredError(
                 'userAuth',
@@ -2427,22 +2164,13 @@ export class DefaultApi extends runtime.BaseAPI {
 
         let urlPath = `/api/userLogin`;
 
-        return {
+        const response = await this.request({
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: UserAuthToJSON(requestParameters['userAuth']),
-        };
-    }
-
-    /**
-     * Use username and password to authentication, return a token if success.
-     * User login
-     */
-    async apiUserLoginPostRaw(requestParameters: ApiUserLoginPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TokenResponse>> {
-        const requestOptions = await this.apiUserLoginPostRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
+        }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => TokenResponseFromJSON(jsonValue));
     }
@@ -2457,9 +2185,10 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates request options for apiUserRegPost without sending the request
+     * Create an account with a new username and password.
+     * User register
      */
-    async apiUserRegPostRequestOpts(requestParameters: ApiUserRegPostOperationRequest): Promise<runtime.RequestOpts> {
+    async apiUserRegPostRaw(requestParameters: ApiUserRegPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserResponse>> {
         if (requestParameters['apiUserRegPostRequest'] == null) {
             throw new runtime.RequiredError(
                 'apiUserRegPostRequest',
@@ -2476,22 +2205,13 @@ export class DefaultApi extends runtime.BaseAPI {
 
         let urlPath = `/api/userReg`;
 
-        return {
+        const response = await this.request({
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: ApiUserRegPostRequestToJSON(requestParameters['apiUserRegPostRequest']),
-        };
-    }
-
-    /**
-     * Create an account with a new username and password.
-     * User register
-     */
-    async apiUserRegPostRaw(requestParameters: ApiUserRegPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserResponse>> {
-        const requestOptions = await this.apiUserRegPostRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
+        }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UserResponseFromJSON(jsonValue));
     }
@@ -2506,9 +2226,10 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates request options for apiUsernameVerifyPost without sending the request
+     * Check whether the username is available.
+     * Verify the username
      */
-    async apiUsernameVerifyPostRequestOpts(requestParameters: ApiUsernameVerifyPostOperationRequest): Promise<runtime.RequestOpts> {
+    async apiUsernameVerifyPostRaw(requestParameters: ApiUsernameVerifyPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommonMessage>> {
         if (requestParameters['apiUsernameVerifyPostRequest'] == null) {
             throw new runtime.RequiredError(
                 'apiUsernameVerifyPostRequest',
@@ -2525,22 +2246,13 @@ export class DefaultApi extends runtime.BaseAPI {
 
         let urlPath = `/api/usernameVerify`;
 
-        return {
+        const response = await this.request({
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: ApiUsernameVerifyPostRequestToJSON(requestParameters['apiUsernameVerifyPostRequest']),
-        };
-    }
-
-    /**
-     * Check whether the username is available.
-     * Verify the username
-     */
-    async apiUsernameVerifyPostRaw(requestParameters: ApiUsernameVerifyPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommonMessage>> {
-        const requestOptions = await this.apiUsernameVerifyPostRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
+        }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CommonMessageFromJSON(jsonValue));
     }
@@ -2555,9 +2267,10 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates request options for apiVerifyUserTokenPost without sending the request
+     * Check whether the provided Token is valid. If it is valid, return the corresponding user information.
+     * Verify the user\'s Token
      */
-    async apiVerifyUserTokenPostRequestOpts(requestParameters: ApiVerifyUserTokenPostOperationRequest): Promise<runtime.RequestOpts> {
+    async apiVerifyUserTokenPostRaw(requestParameters: ApiVerifyUserTokenPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserResponse>> {
         if (requestParameters['apiVerifyUserTokenPostRequest'] == null) {
             throw new runtime.RequiredError(
                 'apiVerifyUserTokenPostRequest',
@@ -2574,22 +2287,13 @@ export class DefaultApi extends runtime.BaseAPI {
 
         let urlPath = `/api/verifyUserToken`;
 
-        return {
+        const response = await this.request({
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: ApiVerifyUserTokenPostRequestToJSON(requestParameters['apiVerifyUserTokenPostRequest']),
-        };
-    }
-
-    /**
-     * Check whether the provided Token is valid. If it is valid, return the corresponding user information.
-     * Verify the user\'s Token
-     */
-    async apiVerifyUserTokenPostRaw(requestParameters: ApiVerifyUserTokenPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserResponse>> {
-        const requestOptions = await this.apiVerifyUserTokenPostRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
+        }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UserResponseFromJSON(jsonValue));
     }
@@ -2604,9 +2308,9 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates request options for apiViewBlogPost without sending the request
+     * Details of one blog
      */
-    async apiViewBlogPostRequestOpts(requestParameters: ApiViewBlogPostRequest): Promise<runtime.RequestOpts> {
+    async apiViewBlogPostRaw(requestParameters: ApiViewBlogPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Blog>> {
         if (requestParameters['blogID'] == null) {
             throw new runtime.RequiredError(
                 'blogID',
@@ -2623,21 +2327,13 @@ export class DefaultApi extends runtime.BaseAPI {
 
         let urlPath = `/api/viewBlog`;
 
-        return {
+        const response = await this.request({
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: BlogIDToJSON(requestParameters['blogID']),
-        };
-    }
-
-    /**
-     * Details of one blog
-     */
-    async apiViewBlogPostRaw(requestParameters: ApiViewBlogPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Blog>> {
-        const requestOptions = await this.apiViewBlogPostRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
+        }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => BlogFromJSON(jsonValue));
     }

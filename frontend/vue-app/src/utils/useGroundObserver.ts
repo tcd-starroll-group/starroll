@@ -141,6 +141,15 @@ export class GroundObserver {
     return this.rendererInstance.getStarDirectionGuidance(hip)
   }
 
+  public highlightStarByHip(hip: number): boolean {
+    if (!this.rendererInstance) return false
+    return this.rendererInstance.highlightStarByHip(hip)
+  }
+
+  public clearHighlightedStar(): void {
+    this.rendererInstance?.clearSelectedStarSelection()
+  }
+
   public clearSelectedStar(): void {
     this.selectedStar.value = null
     this.rendererInstance?.clearSelectedStarSelection()
