@@ -11,6 +11,7 @@ All URIs are relative to *http://localhost*
 | [**apiCommentBlogPost**](DefaultApi.md#apicommentblogpostoperation) | **POST** /api/commentBlog | Comment a blog |
 | [**apiCreateBlogPost**](DefaultApi.md#apicreateblogpostoperation) | **POST** /api/createBlog | Create a new blog |
 | [**apiCreateIdentifyStarsJobPost**](DefaultApi.md#apicreateidentifystarsjobpostoperation) | **POST** /api/createIdentifyStarsJob | Create a job to identify the stars in the image. |
+| [**apiCreateStarMessagePost**](DefaultApi.md#apicreatestarmessagepost) | **POST** /api/createStarMessage |  |
 | [**apiDeleteBlogPost**](DefaultApi.md#apideleteblogpost) | **POST** /api/deleteBlog | Delete a blog |
 | [**apiDeleteCommentPost**](DefaultApi.md#apideletecommentpostoperation) | **POST** /api/deleteComment | Delete a comment |
 | [**apiDeleteUserPost**](DefaultApi.md#apideleteuserpost) | **POST** /api/deleteUser | 注销账号 |
@@ -31,6 +32,7 @@ All URIs are relative to *http://localhost*
 | [**apiGetProfileStatsPost**](DefaultApi.md#apigetprofilestatspost) | **POST** /api/getProfileStats | Get user profile stats |
 | [**apiGetStarCatalogPost**](DefaultApi.md#apigetstarcatalogpost) | **POST** /api/getStarCatalog | Get star catalog |
 | [**apiGetStarDetailsPost**](DefaultApi.md#apigetstardetailspostoperation) | **POST** /api/getStarDetails | calculate star details |
+| [**apiGetStarMessagePost**](DefaultApi.md#apigetstarmessagepost) | **POST** /api/getStarMessage |  |
 | [**apiHealthGet**](DefaultApi.md#apihealthget) | **GET** /api/health | health check |
 | [**apiLikeBlogPost**](DefaultApi.md#apilikeblogpost) | **POST** /api/likeBlog | Like a blog |
 | [**apiListIdentifyStarsJobsPost**](DefaultApi.md#apilistidentifystarsjobspost) | **POST** /api/listIdentifyStarsJobs | List identify stars jobs. |
@@ -488,6 +490,71 @@ example().catch(console.error);
 ### Return type
 
 [**ApiCreateIdentifyStarsJobPost200Response**](ApiCreateIdentifyStarsJobPost200Response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## apiCreateStarMessagePost
+
+> CommonID apiCreateStarMessagePost(starMessage)
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  DefaultApi,
+} from '';
+import type { ApiCreateStarMessagePostRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new DefaultApi();
+
+  const body = {
+    // StarMessage
+    starMessage: ...,
+  } satisfies ApiCreateStarMessagePostRequest;
+
+  try {
+    const data = await api.apiCreateStarMessagePost(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **starMessage** | [StarMessage](StarMessage.md) |  | |
+
+### Return type
+
+[**CommonID**](CommonID.md)
 
 ### Authorization
 
@@ -1773,6 +1840,71 @@ example().catch(console.error);
 ### Return type
 
 [**StarDetails**](StarDetails.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## apiGetStarMessagePost
+
+> StarMessage apiGetStarMessagePost(commonID)
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  DefaultApi,
+} from '';
+import type { ApiGetStarMessagePostRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new DefaultApi();
+
+  const body = {
+    // CommonID
+    commonID: ...,
+  } satisfies ApiGetStarMessagePostRequest;
+
+  try {
+    const data = await api.apiGetStarMessagePost(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **commonID** | [CommonID](CommonID.md) |  | |
+
+### Return type
+
+[**StarMessage**](StarMessage.md)
 
 ### Authorization
 

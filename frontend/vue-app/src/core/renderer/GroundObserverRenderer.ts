@@ -811,6 +811,13 @@ export class GroundObserverRenderer {
     this.clearSelectedStarIndicator()
   }
 
+  public highlightStarByHip(hip: number): boolean {
+    const starData = this.starMap.get(hip)
+    if (!starData) return false
+    this.updateSelectedStarIndicator(starData.position)
+    return true
+  }
+
   public getStarDirectionOffset(hip: number): StarDirectionOffset | null {
     const starData = this.starMap.get(hip)
     if (!starData) return null

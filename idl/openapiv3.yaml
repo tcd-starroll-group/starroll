@@ -1329,6 +1329,38 @@ paths:
           description: OK
       summary: Get user profile stats
 
+  /api/createStarMessage:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/StarMessage"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CommonID"
+          description: OK
+
+  /api/getStarMessage:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommonID"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StarMessage"
+          description: OK
+
   /api/health:
     get:
       summary: "health check"
@@ -1565,6 +1597,14 @@ components:
           type: string
           example: "Operation successful"
 
+    CommonID:
+      description: "Reusable response ID."
+      type: object
+      properties:
+        id:
+          type: string
+          example: "1"
+
     ErrorResponse:
       description: "General error response"
       allOf:
@@ -1767,3 +1807,17 @@ components:
         joinDate:
           type: string
           description: Formatted string of the user's registration date
+
+    StarMessage:
+      type: object
+      properties:
+        hip:
+          type: string
+        from:
+          type: string
+        message:
+          type: string
+      required:
+        - hip
+        - from
+        - message

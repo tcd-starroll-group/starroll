@@ -863,6 +863,36 @@ paths:
                 $ref: "#/components/schemas/CommonMessage"
           description: OK
       summary: Get user profile stats
+  /api/createStarMessage:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/StarMessage"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CommonID"
+          description: OK
+  /api/getStarMessage:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommonID"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StarMessage"
+          description: OK
   /api/health:
     get:
       responses:
@@ -1194,6 +1224,17 @@ components:
           type: string
       title: CommonMessage
       type: object
+    CommonID:
+      description: Reusable response ID.
+      example:
+        id: "1"
+      properties:
+        id:
+          example: "1"
+          title: id
+          type: string
+      title: CommonID
+      type: object
     ErrorResponse:
       allOf:
       - properties:
@@ -1485,6 +1526,27 @@ components:
           title: joinDate
           type: string
       title: ProfileStatsResponse
+      type: object
+    StarMessage:
+      example:
+        from: from
+        message: message
+        hip: hip
+      properties:
+        hip:
+          title: hip
+          type: string
+        from:
+          title: from
+          type: string
+        message:
+          title: message
+          type: string
+      required:
+      - from
+      - hip
+      - message
+      title: StarMessage
       type: object
     _api_displayChatRoom_get_200_response_style:
       description: GUI styling properties

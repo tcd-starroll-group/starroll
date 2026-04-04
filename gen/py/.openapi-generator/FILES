@@ -78,6 +78,7 @@ src/openapi_server/models/blogs_list.py
 src/openapi_server/models/camera_meta.py
 src/openapi_server/models/change_password_request.py
 src/openapi_server/models/comment_item.py
+src/openapi_server/models/common_id.py
 src/openapi_server/models/common_message.py
 src/openapi_server/models/equatorial_coordinate.py
 src/openapi_server/models/error_response.py
@@ -93,6 +94,7 @@ src/openapi_server/models/profile_stats_response.py
 src/openapi_server/models/reset_password_request.py
 src/openapi_server/models/reset_password_send_code_request.py
 src/openapi_server/models/star_details.py
+src/openapi_server/models/star_message.py
 src/openapi_server/models/star_meta.py
 src/openapi_server/models/token_response.py
 src/openapi_server/models/update_last_gps_request.py

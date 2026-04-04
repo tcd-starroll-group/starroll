@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, watch, nextTick } from 'vue';
+import { computed, ref, onMounted, onUnmounted, watch, nextTick } from 'vue';
 import { useRouter } from 'vue-router';
 import StarBackground from '@/components/StarBackground.vue';
 import BottomBar from '@/components/BottomBar.vue';
@@ -52,6 +52,10 @@ const pollingTimer = ref<ReturnType<typeof setInterval> | null>(null);
 
 const historyList = ref<HistoryJob[]>([]);
 const isFetchingHistory = ref(false);
+
+const recognitionImageKey = computed(() => recognitionResult.value?.imageKey ?? '');
+const previewImageSrc = computed(() => imagePreview.value || getImageUrl(recognitionImageKey.value));
+const shouldShowPreviewImage = computed(() => !recognitionResult.value && Boolean(previewImageSrc.value));
 
 // 🌟 新增：用于在图片上绘制星星的 Canvas 引用
 const resultCanvasRef = ref<HTMLCanvasElement | null>(null);
@@ -174,9 +178,7 @@ const fetchJobDetailsData = async (currentJobId: string) => {
 
     const rawResponse = await defaultApi.apiGetIdentifyStarsJobResultPostRaw({
       apiGetIdentifyStarsJobResultPostRequest: {
-        jobID: currentJobId,
-        job_id: currentJobId,
-        token: token
+        jobID: currentJobId
       }
     });
 
@@ -356,11 +358,11 @@ const formatDate = (dateString?: string) => {
               
               <canvas v-show="recognitionResult" ref="resultCanvasRef" class="preview-img result-img"></canvas>
               
-              <img v-show="!recognitionResult && (imagePreview || recognitionResult?.imageKey)" 
-                   :src="imagePreview || getImageUrl(recognitionResult?.imageKey)" 
+                  <img v-show="shouldShowPreviewImage" 
+                    :src="previewImageSrc" 
                    alt="Star map preview" class="preview-img" />
 
-              <div v-if="!imagePreview && !recognitionResult?.imageKey && !recognitionResult" class="preview-img no-img-fallback">
+                  <div v-if="!imagePreview && !recognitionImageKey && !recognitionResult" class="preview-img no-img-fallback">
                 <p>No Image Available</p>
               </div>
 

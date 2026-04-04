@@ -1,11 +1,17 @@
 <script setup lang="ts">
 import type { StarClickInfo } from '@/core/renderer/GroundObserverRenderer';
+import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { defaultApi } from '@/api/defaultApi';
 
 // Define component props to receive star data
 const props = defineProps<{
   starInfo: StarClickInfo | null;
+    starMessageDisplay?: {
+        id: string;
+        from: string;
+        message: string;
+    } | null;
 }>();
 
 // Define component events to emit close signal to parent component
@@ -14,6 +20,13 @@ const emit = defineEmits<{
 }>();
 
 const router = useRouter();
+const showCreateMessageModal = ref(false);
+const messageFrom = ref('');
+const messageContent = ref('');
+const creatingMessage = ref(false);
+const createMessageError = ref('');
+const createdMessageId = ref('');
+const copySuccess = ref(false);
 
 async function ensureLoggedIn() {
     try {
@@ -40,6 +53,74 @@ const viewStarBlogs = async () => {
     });
   }
 };
+
+function resetCreateMessageState() {
+    messageFrom.value = '';
+    messageContent.value = '';
+    creatingMessage.value = false;
+    createMessageError.value = '';
+    createdMessageId.value = '';
+    copySuccess.value = false;
+}
+
+async function openCreateMessageModal() {
+    if (!props.starInfo?.hip) return;
+    const isLoggedIn = await ensureLoggedIn();
+    if (!isLoggedIn) return;
+    resetCreateMessageState();
+    showCreateMessageModal.value = true;
+}
+
+function closeCreateMessageModal() {
+    showCreateMessageModal.value = false;
+}
+
+async function submitCreateMessage() {
+    if (!props.starInfo?.hip || creatingMessage.value) return;
+
+    const fromValue = messageFrom.value.trim();
+    const messageValue = messageContent.value.trim();
+
+    if (!fromValue || !messageValue) {
+        createMessageError.value = 'Please fill in both "from" and "message".';
+        return;
+    }
+
+    createMessageError.value = '';
+    copySuccess.value = false;
+    creatingMessage.value = true;
+
+    try {
+        const result = await defaultApi.apiCreateStarMessagePost({
+            starMessage: {
+                hip: String(props.starInfo.hip),
+                from: fromValue,
+                message: messageValue,
+            },
+        });
+        if (!result.id) {
+            createMessageError.value = 'Star message created, but no ID was returned.';
+            return;
+        }
+        createdMessageId.value = result.id;
+    } catch {
+        createMessageError.value = 'Failed to create star message. Please try again.';
+    } finally {
+        creatingMessage.value = false;
+    }
+}
+
+async function copyCreatedId() {
+    if (!createdMessageId.value) return;
+    try {
+        const shareUrl = `https://starroll.ie?star_message=${encodeURIComponent(createdMessageId.value)}`;
+        await navigator.clipboard.writeText(shareUrl);
+        copySuccess.value = true;
+    } catch {
+        copySuccess.value = false;
+    }
+}
+
 function joinChatRoom() {
     if (!props.starInfo) return;
         ensureLoggedIn().then((isLoggedIn) => {
@@ -63,6 +144,12 @@ function joinChatRoom() {
       </div>
       
       <div class="star-content">
+          <div v-if="starMessageDisplay" class="star-message-panel">
+              <div class="star-message-title">Star Message</div>
+              <div class="star-message-row"><span class="label">From:</span><span class="value">{{ starMessageDisplay.from }}</span></div>
+              <div class="star-message-text">{{ starMessageDisplay.message }}</div>
+          </div>
+
           <div v-if="starInfo.description" class="star-desc">
               {{ starInfo.description }}
           </div>
@@ -86,6 +173,9 @@ function joinChatRoom() {
           <button class="chat-btn" @click.stop="joinChatRoom">
             Enter Star Chat Room
           </button>
+                    <button class="message-btn" @click.stop="openCreateMessageModal">
+                        Create Star Message
+                    </button>
 
           <div class="separator"></div>
           <div class="data-row">
@@ -102,6 +192,47 @@ function joinChatRoom() {
           </div>
       </div>
   </div>
+
+    <div v-if="showCreateMessageModal" class="create-message-overlay" @click.self="closeCreateMessageModal">
+        <div class="create-message-modal" @click.stop>
+            <button class="close-btn create-message-close" @click="closeCreateMessageModal">×</button>
+            <div class="create-message-title">Create Star Message</div>
+            <div class="create-message-subtitle">HIP {{ starInfo?.hip }}</div>
+
+            <label class="form-label" for="from-input">from</label>
+            <input
+                id="from-input"
+                v-model="messageFrom"
+                class="form-input"
+                type="text"
+                maxlength="64"
+                placeholder="Your name"
+            />
+
+            <label class="form-label" for="message-input">message</label>
+            <textarea
+                id="message-input"
+                v-model="messageContent"
+                class="form-textarea"
+                rows="4"
+                maxlength="300"
+                placeholder="Write your message to the stars"
+            />
+
+            <div v-if="createMessageError" class="form-error">{{ createMessageError }}</div>
+
+            <button class="submit-btn" :disabled="creatingMessage" @click="submitCreateMessage">
+                {{ creatingMessage ? 'Creating...' : 'Create' }}
+            </button>
+
+            <div v-if="createdMessageId" class="created-id-box">
+                <div class="created-id-label">Generated ID</div>
+                <div class="created-id-value">{{ createdMessageId }}</div>
+                <button class="copy-btn" @click="copyCreatedId">Copy Share Link</button>
+                <div v-if="copySuccess" class="copy-success">Copied</div>
+            </div>
+        </div>
+    </div>
 </template>
 
 <style scoped>
@@ -203,6 +334,37 @@ function joinChatRoom() {
     overflow-y: auto;
 }
 
+.star-message-panel {
+    margin-bottom: 12px;
+    padding: 8px 10px;
+    border-radius: 8px;
+    border: 1px solid rgba(179, 146, 255, 0.42);
+    background: rgba(132, 102, 255, 0.14);
+}
+
+.star-message-title {
+    color: #dbcfff;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.star-message-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4px;
+    font-size: 12px;
+}
+
+.star-message-text {
+    margin-top: 6px;
+    font-size: 12px;
+    line-height: 1.45;
+    color: #f3eeff;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
 .link-row {
     margin-top: 8px;
     justify-content: flex-end;
@@ -226,6 +388,27 @@ function joinChatRoom() {
 }
 .chat-btn:hover {
     background: rgba(102, 204, 255, 0.25);
+}
+
+.message-btn {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    padding: 7px 0;
+    background: rgba(132, 102, 255, 0.16);
+    border: 1px solid rgba(132, 102, 255, 0.38);
+    border-radius: 8px;
+    color: #c8b8ff;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    transition: background 0.2s;
+    letter-spacing: 0.3px;
+}
+
+.message-btn:hover {
+    background: rgba(132, 102, 255, 0.28);
 }
 
 .star-link {
@@ -293,5 +476,138 @@ function joinChatRoom() {
 
 .blog-btn:active {
     transform: translateY(0);
+}
+
+.create-message-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 400;
+}
+
+.create-message-modal {
+    position: relative;
+    width: min(92vw, 420px);
+    background: rgba(15, 20, 30, 0.96);
+    border: 1px solid rgba(132, 102, 255, 0.4);
+    border-radius: 12px;
+    padding: 18px 16px 16px;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+}
+
+.create-message-close {
+    top: 6px;
+    right: 10px;
+}
+
+.create-message-title {
+    color: #d8ccff;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.create-message-subtitle {
+    color: #9fb1c4;
+    font-size: 12px;
+    margin-top: 2px;
+    margin-bottom: 12px;
+}
+
+.form-label {
+    display: block;
+    color: #aebcd1;
+    font-size: 12px;
+    margin-bottom: 6px;
+}
+
+.form-input,
+.form-textarea {
+    width: 100%;
+    box-sizing: border-box;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    color: #ffffff;
+    border-radius: 8px;
+    padding: 8px 10px;
+    margin-bottom: 10px;
+    font-size: 13px;
+    font-family: var(--sr-font-family, 'Inter', sans-serif);
+}
+
+.form-textarea {
+    resize: vertical;
+    min-height: 90px;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+    outline: none;
+    border-color: rgba(132, 102, 255, 0.72);
+}
+
+.form-error {
+    color: #ff8e9b;
+    font-size: 12px;
+    margin-bottom: 8px;
+}
+
+.submit-btn {
+    width: 100%;
+    border: 1px solid rgba(132, 102, 255, 0.42);
+    background: rgba(132, 102, 255, 0.2);
+    color: #e5dcff;
+    border-radius: 8px;
+    padding: 8px 0;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.submit-btn:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+.created-id-box {
+    margin-top: 12px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px dashed rgba(102, 204, 255, 0.42);
+    background: rgba(102, 204, 255, 0.08);
+}
+
+.created-id-label {
+    color: #9fb1c4;
+    font-size: 12px;
+    margin-bottom: 4px;
+}
+
+.created-id-value {
+    color: #fff;
+    font-size: 13px;
+    word-break: break-all;
+    margin-bottom: 8px;
+}
+
+.copy-btn {
+    width: 100%;
+    border: 1px solid rgba(102, 204, 255, 0.5);
+    background: rgba(102, 204, 255, 0.18);
+    color: #d9f4ff;
+    border-radius: 8px;
+    padding: 7px 0;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.copy-success {
+    margin-top: 6px;
+    color: #9fffba;
+    font-size: 12px;
+    text-align: center;
 }
 </style>

@@ -65,6 +65,7 @@ docs/BlogsList.md
 docs/CameraMeta.md
 docs/ChangePasswordRequest.md
 docs/CommentItem.md
+docs/CommonID.md
 docs/CommonMessage.md
 docs/DefaultApi.md
 docs/EquatorialCoordinate.md
@@ -80,6 +81,7 @@ docs/ProfileStatsResponse.md
 docs/ResetPasswordRequest.md
 docs/ResetPasswordSendCodeRequest.md
 docs/StarDetails.md
+docs/StarMessage.md
 docs/StarMeta.md
 docs/TokenResponse.md
 docs/UpdateLastGpsRequest.md
@@ -153,6 +155,7 @@ models/BlogsList.ts
 models/CameraMeta.ts
 models/ChangePasswordRequest.ts
 models/CommentItem.ts
+models/CommonID.ts
 models/CommonMessage.ts
 models/EquatorialCoordinate.ts
 models/ErrorResponse.ts
@@ -167,6 +170,7 @@ models/ProfileStatsResponse.ts
 models/ResetPasswordRequest.ts
 models/ResetPasswordSendCodeRequest.ts
 models/StarDetails.ts
+models/StarMessage.ts
 models/StarMeta.ts
 models/TokenResponse.ts
 models/UpdateLastGpsRequest.ts

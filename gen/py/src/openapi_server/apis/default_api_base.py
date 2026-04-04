@@ -55,6 +55,7 @@ from openapi_server.models.blog import Blog
 from openapi_server.models.blog_id import BlogID
 from openapi_server.models.blogs_list import BlogsList
 from openapi_server.models.change_password_request import ChangePasswordRequest
+from openapi_server.models.common_id import CommonID
 from openapi_server.models.common_message import CommonMessage
 from openapi_server.models.error_response import ErrorResponse
 from openapi_server.models.gps import GPS
@@ -65,6 +66,7 @@ from openapi_server.models.profile_stats_response import ProfileStatsResponse
 from openapi_server.models.reset_password_request import ResetPasswordRequest
 from openapi_server.models.reset_password_send_code_request import ResetPasswordSendCodeRequest
 from openapi_server.models.star_details import StarDetails
+from openapi_server.models.star_message import StarMessage
 from openapi_server.models.token_response import TokenResponse
 from openapi_server.models.update_last_gps_request import UpdateLastGpsRequest
 from openapi_server.models.user_auth import UserAuth
@@ -425,6 +427,20 @@ class BaseDefaultApi:
     async def api_check_login_status_post(
         self,
     ) -> CommonMessage:
+        ...
+
+
+    async def api_create_star_message_post(
+        self,
+        star_message: StarMessage,
+    ) -> CommonID:
+        ...
+
+
+    async def api_get_star_message_post(
+        self,
+        common_id: CommonID,
+    ) -> StarMessage:
         ...
 
 
