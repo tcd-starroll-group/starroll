@@ -34,23 +34,23 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  overflow-x: hidden; /* allow vertical growth/scroll; only clip horizontal */
   background-color: var(--color-bg-deep); /* Fallback color */
 }
 
 .bg-video {
-  position: absolute;
-  top: 50%;
-  left: 50%;
+  position: fixed; /* keep video anchored to viewport even when page scrolls */
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover; /* This ensures the video fills the screen without stretching */
-  transform: translate(-50%, -50%);
+  transform: none;
   z-index: 1;
 }
 
 .video-overlay {
-  position: absolute;
+  position: fixed; /* keep overlay anchored together with video */
   top: 0;
   left: 0;
   width: 100%;

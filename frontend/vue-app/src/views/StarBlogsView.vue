@@ -109,7 +109,7 @@ onMounted(() => {
           
           <div class="blog-footer">
             <div class="stats">
-              <span class="stat-item">Log ID: {{ blog.blogID }}</span>
+              <span class="stat-item">Blog ID: {{ blog.blogID }}</span>
             </div>
             <button class="sr-glass-btn text-btn read-more-btn">Read Details →</button>
           </div>

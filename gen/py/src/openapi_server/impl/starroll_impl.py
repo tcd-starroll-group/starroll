@@ -59,6 +59,7 @@ from openapi_server.models.common_message import CommonMessage
 from openapi_server.models.common_id import CommonID
 from openapi_server.models.star_message import StarMessage
 from backend.console.handler.check_login_status import api_check_login_status_post
+from backend.console.handler.verify_user_token import api_verify_user_token_post
 from backend.console.handler.create_star_message import api_create_star_message_post as api_create_star_message_post_handler
 from backend.console.handler.get_star_message import api_get_star_message_post as api_get_star_message_post_handler
 from openapi_server.models.star_message import StarMessage
@@ -174,6 +175,9 @@ class StarrollApiImpl(BaseDefaultApi):
 
     async def api_check_login_status_post(self) -> CommonMessage:
         return await api_check_login_status_post()
+
+    async def api_verify_user_token_post(self) -> UserResponse:
+        return await api_verify_user_token_post()
 
     async def api_create_star_message_post(
         self,

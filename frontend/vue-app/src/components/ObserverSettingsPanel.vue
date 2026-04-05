@@ -206,7 +206,7 @@ onUnmounted(() => {
 .settings-panel {
   position: absolute;
   top: 68px;
-  right: 24px;
+  right: 76px;
   z-index: 20;
   padding: 12px;
   display: grid;
@@ -217,7 +217,7 @@ onUnmounted(() => {
 .settings-toggle {
   position: absolute;
   top: 20px;
-  right: 24px;
+  right: 76px;
   z-index: 21;
   width: 40px;
   height: 40px;

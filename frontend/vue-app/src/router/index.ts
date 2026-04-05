@@ -21,7 +21,7 @@ const router = createRouter({
     {
       path: '/blog-detail',
       name: 'BlogDetail',
-      component: () => import('../views/BlogDetailView.vue')
+      component: () => import('../views/BlogDetailView.vue'),
     },
     {
       path: '/add-blog',
@@ -29,8 +29,8 @@ const router = createRouter({
       component: () => import('../views/AddBlogView.vue'),
     },
     {
-      path: '/Navigation',
-      name: 'Navigation',
+      path: '/navigation',
+      name: 'navigation',
       component: () => import('../views/NavigationView.vue'),
     },
     {
@@ -64,11 +64,6 @@ const router = createRouter({
       component: () => import('../views/ProfileView.vue'),
     },
     {
-      path: '/star-detail',
-      name: 'StarDetail',
-      component: () => import('../views/StarDetailView.vue'),
-    },
-    {
       path: '/user-details',
       name: 'UserDetails',
       component: () => import('../views/UserDetailsView.vue'),
@@ -78,6 +73,25 @@ const router = createRouter({
       name: 'ChatRoom',
       component: () => import('../views/ChatRoomView.vue'),
     },
+    {
+      path: '/search',
+      name: 'Search',
+      component: () => import('../views/SearchView.vue'),
+    },
   ],
 })
+
+// ARView needs body overflow:hidden (100vh canvas, no scroll).
+// Every other page should be scrollable.
+router.afterEach((to) => {
+  document.body.style.overflow = to.path === '/' ? 'hidden' : 'auto'
+})
+
+// When entering ARView, reset any scroll offset that could misalign the canvas.
+router.beforeEach((to) => {
+  if (to.path === '/') {
+    window.scrollTo(0, 0)
+  }
+})
+
 export default router

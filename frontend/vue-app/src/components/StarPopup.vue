@@ -168,7 +168,7 @@ function joinChatRoom() {
           </div>
 
           <button class="blog-btn" @click.stop="viewStarBlogs">
-            Explore Star Logs
+            Explore Star Blogs
           </button>
           <button class="chat-btn" @click.stop="joinChatRoom">
             Enter Star Chat Room

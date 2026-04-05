@@ -719,12 +719,6 @@ paths:
     post:
       description: "Check whether the provided Token is valid. If it is valid, return\
         \ the corresponding user information."
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/_api_verifyUserToken_post_request"
-        required: true
       responses:
         "200":
           content:
@@ -2377,13 +2371,6 @@ components:
           title: username
           type: string
       title: _api_usernameVerify_post_request
-    _api_verifyUserToken_post_request:
-      properties:
-        token:
-          description: The verified access token.
-          title: token
-          type: string
-      title: _api_verifyUserToken_post_request
     _api_likeBlog_post_200_response:
       allOf:
       - $ref: "#/components/schemas/BlogID"

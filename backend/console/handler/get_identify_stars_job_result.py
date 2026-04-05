@@ -8,6 +8,9 @@ from backend.console.dal.tos import get_presigned_get_url
 from backend.console.utils.auth import get_current_user_id
 from backend.constant import tos as tos_const
 
+from backend.model.identify_stars import AstronomyNetResult
+from backend.console.utils.star_name import get_hip_by_name
+
 from openapi_server.models.api_get_identify_stars_job_result_post_request import ApiGetIdentifyStarsJobResultPostRequest
 from openapi_server.models.identify_stars_job_result import IdentifyStarsJobResult
 from openapi_server.models.identify_stars_job_result_identified_stars_inner import IdentifyStarsJobResultIdentifiedStarsInner
@@ -39,28 +42,35 @@ async def api_get_identify_stars_job_result_post(
 
         if job.result:
             try:
-                # Load JSON (Handle string or dict)
-                data = json.loads(job.result) if isinstance(
+                # Load JSON and parse with AstronomyNetResult
+                raw = json.loads(job.result) if isinstance(
                     job.result, str) else job.result
+                result = AstronomyNetResult.model_validate(raw)
 
                 # 1. Map Calibration -> Center
-                cal = data.get("calibration", {})
-                if cal:
-                    center_info = EquatorialCoordinate(
-                        rightAscension=float(cal.get("ra", 0.0)),
-                        declination=float(cal.get("dec", 0.0)),
-                    )
+                center_info = EquatorialCoordinate(
+                    rightAscension=result.calibration.ra,
+                    declination=result.calibration.dec,
+                )
 
                 # 2. Map Stars -> identifiedStars
-                raw_stars = data.get("stars", [])
-                for s in raw_stars:
+                seen_hips: set[int] = set()
+                for s in result.stars:
+                    hip = next(
+                        (h for n in s.names if (h := get_hip_by_name(n)) is not None),
+                        None,
+                    )
+                    if hip is not None:
+                        if hip in seen_hips:
+                            continue
+                        seen_hips.add(hip)
                     stars_list.append(
                         IdentifyStarsJobResultIdentifiedStarsInner(
-                            names=s.get("names", []),
-                            pixelX=float(s.get("pixelx", 0.0)),
-                            pixelY=float(s.get("pixely", 0.0)),
-                            vmag=float(s.get("vmag", 0.0)),
-                            HIP=s.get("HIP"),
+                            names=s.names,
+                            pixelX=s.pixelx,
+                            pixelY=s.pixely,
+                            vmag=s.vmag,
+                            hip=hip,
                         ))
             except Exception as e:
                 logger.error(f"Mapping error for job {job.id}: {e}")

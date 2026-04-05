@@ -53,7 +53,7 @@ All URIs are relative to *http://localhost*
 | [**apiUserLoginPost**](DefaultApi.md#apiuserloginpost) | **POST** /api/userLogin | User login |
 | [**apiUserRegPost**](DefaultApi.md#apiuserregpostoperation) | **POST** /api/userReg | User register |
 | [**apiUsernameVerifyPost**](DefaultApi.md#apiusernameverifypostoperation) | **POST** /api/usernameVerify | Verify the username |
-| [**apiVerifyUserTokenPost**](DefaultApi.md#apiverifyusertokenpostoperation) | **POST** /api/verifyUserToken | Verify the user\&#39;s Token |
+| [**apiVerifyUserTokenPost**](DefaultApi.md#apiverifyusertokenpost) | **POST** /api/verifyUserToken | Verify the user\&#39;s Token |
 | [**apiViewBlogPost**](DefaultApi.md#apiviewblogpost) | **POST** /api/viewBlog | Details of one blog |
 
 
@@ -3243,7 +3243,7 @@ No authorization required
 
 ## apiVerifyUserTokenPost
 
-> UserResponse apiVerifyUserTokenPost(apiVerifyUserTokenPostRequest)
+> UserResponse apiVerifyUserTokenPost()
 
 Verify the user\&#39;s Token
 
@@ -3256,19 +3256,14 @@ import {
   Configuration,
   DefaultApi,
 } from '';
-import type { ApiVerifyUserTokenPostOperationRequest } from '';
+import type { ApiVerifyUserTokenPostRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
   const api = new DefaultApi();
 
-  const body = {
-    // ApiVerifyUserTokenPostRequest
-    apiVerifyUserTokenPostRequest: ...,
-  } satisfies ApiVerifyUserTokenPostOperationRequest;
-
   try {
-    const data = await api.apiVerifyUserTokenPost(body);
+    const data = await api.apiVerifyUserTokenPost();
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -3281,10 +3276,7 @@ example().catch(console.error);
 
 ### Parameters
 
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **apiVerifyUserTokenPostRequest** | [ApiVerifyUserTokenPostRequest](ApiVerifyUserTokenPostRequest.md) |  | |
+This endpoint does not need any parameter.
 
 ### Return type
 
@@ -3296,7 +3288,7 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: `application/json`
+- **Content-Type**: Not defined
 - **Accept**: `application/json`
 
 

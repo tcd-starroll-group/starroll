@@ -61,7 +61,6 @@ import type {
   ApiTriggerStarfieldRenderPostRequest,
   ApiUserRegPostRequest,
   ApiUsernameVerifyPostRequest,
-  ApiVerifyUserTokenPostRequest,
   Attitude,
   Blog,
   BlogID,
@@ -177,8 +176,6 @@ import {
     ApiUserRegPostRequestToJSON,
     ApiUsernameVerifyPostRequestFromJSON,
     ApiUsernameVerifyPostRequestToJSON,
-    ApiVerifyUserTokenPostRequestFromJSON,
-    ApiVerifyUserTokenPostRequestToJSON,
     AttitudeFromJSON,
     AttitudeToJSON,
     BlogFromJSON,
@@ -385,10 +382,6 @@ export interface ApiUserRegPostOperationRequest {
 
 export interface ApiUsernameVerifyPostOperationRequest {
     apiUsernameVerifyPostRequest: ApiUsernameVerifyPostRequest;
-}
-
-export interface ApiVerifyUserTokenPostOperationRequest {
-    apiVerifyUserTokenPostRequest: ApiVerifyUserTokenPostRequest;
 }
 
 export interface ApiViewBlogPostRequest {
@@ -2270,19 +2263,10 @@ export class DefaultApi extends runtime.BaseAPI {
      * Check whether the provided Token is valid. If it is valid, return the corresponding user information.
      * Verify the user\'s Token
      */
-    async apiVerifyUserTokenPostRaw(requestParameters: ApiVerifyUserTokenPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserResponse>> {
-        if (requestParameters['apiVerifyUserTokenPostRequest'] == null) {
-            throw new runtime.RequiredError(
-                'apiVerifyUserTokenPostRequest',
-                'Required parameter "apiVerifyUserTokenPostRequest" was null or undefined when calling apiVerifyUserTokenPost().'
-            );
-        }
-
+    async apiVerifyUserTokenPostRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserResponse>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
 
 
         let urlPath = `/api/verifyUserToken`;
@@ -2292,7 +2276,6 @@ export class DefaultApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: ApiVerifyUserTokenPostRequestToJSON(requestParameters['apiVerifyUserTokenPostRequest']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UserResponseFromJSON(jsonValue));
@@ -2302,8 +2285,8 @@ export class DefaultApi extends runtime.BaseAPI {
      * Check whether the provided Token is valid. If it is valid, return the corresponding user information.
      * Verify the user\'s Token
      */
-    async apiVerifyUserTokenPost(requestParameters: ApiVerifyUserTokenPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserResponse> {
-        const response = await this.apiVerifyUserTokenPostRaw(requestParameters, initOverrides);
+    async apiVerifyUserTokenPost(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserResponse> {
+        const response = await this.apiVerifyUserTokenPostRaw(initOverrides);
         return await response.value();
     }
 

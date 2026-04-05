@@ -12,7 +12,7 @@ from backend.config import settings
 class TestCreateAccessToken:
     def test_create_access_token_success(self):
         """Test successful token creation with valid data."""
-        data = {"sub": "alice", "user_id": 123}
+        data = {"user_name": "alice", "user_id": 123}
         token = create_access_token(data)
 
         assert isinstance(token, str)
@@ -20,18 +20,18 @@ class TestCreateAccessToken:
 
     def test_create_access_token_contains_payload(self):
         """Test that the created token contains the provided data."""
-        data = {"sub": "bob", "user_id": 456}
+        data = {"user_name": "bob", "user_id": 456}
         token = create_access_token(data)
 
         # Decode without verification to check payload
         payload = jwt.decode(token, options={"verify_signature": False})
-        assert payload["sub"] == "bob"
+        assert payload["user_name"] == "bob"
         assert payload["user_id"] == 456
         assert "exp" in payload
 
     def test_create_access_token_has_expiration(self):
         """Test that the created token has proper expiration time."""
-        data = {"sub": "carol"}
+        data = {"user_name": "carol"}
         before_creation = datetime.datetime.now(datetime.timezone.utc)
         token = create_access_token(data)
         after_creation = datetime.datetime.now(datetime.timezone.utc)
@@ -54,13 +54,13 @@ class TestCreateAccessToken:
 class TestVerifyAccessToken:
     def test_verify_access_token_success(self):
         """Test successful token verification."""
-        data = {"sub": "dave", "user_id": 789}
+        data = {"user_name": "dave", "user_id": 789}
         token = create_access_token(data)
 
         payload, is_valid = verify_access_token(token)
         assert is_valid is True
         assert payload is not None
-        assert payload["sub"] == "dave"
+        assert payload["user_name"] == "dave"
         assert payload["user_id"] == 789
 
     def test_verify_access_token_invalid_token(self):
@@ -71,7 +71,7 @@ class TestVerifyAccessToken:
 
     def test_verify_access_token_corrupted_signature(self):
         """Test verification with corrupted token signature."""
-        data = {"sub": "eve"}
+        data = {"user_name": "eve"}
         token = create_access_token(data)
         # Tamper with the token
         corrupted_token = token[:-10] + "aaaaaaaaaa"
@@ -83,7 +83,7 @@ class TestVerifyAccessToken:
     def test_verify_access_token_expired(self):
         """Test verification with expired token."""
         # Create a token with very short expiration
-        data = {"sub": "frank"}
+        data = {"user_name": "frank"}
         to_encode = data.copy()
         expire = datetime.datetime.now(
             datetime.timezone.utc
@@ -99,7 +99,7 @@ class TestVerifyAccessToken:
 
     def test_verify_access_token_wrong_secret(self, monkeypatch: pytest.MonkeyPatch):
         """Test verification fails when secret key is changed."""
-        data = {"sub": "grace"}
+        data = {"user_name": "grace"}
         token = create_access_token(data)
 
         # Temporarily change the secret (32+ bytes to avoid warnings)
@@ -120,7 +120,7 @@ class TestVerifyUserIdAndToken:
 
     def test_verify_user_id_and_token_success(self):
         """Test successful verification with matching user_id."""
-        data = {"sub": "alice", "user_id": 123}
+        data = {"user_name": "alice", "user_id": 123}
         token = create_access_token(data)
 
         # Should not raise any exception
@@ -128,7 +128,7 @@ class TestVerifyUserIdAndToken:
 
     def test_verify_user_id_and_token_success_int_user_id(self):
         """Test successful verification with integer user_id in request."""
-        data = {"sub": "bob", "user_id": 456}
+        data = {"user_name": "bob", "user_id": 456}
         token = create_access_token(data)
 
         # Should not raise any exception (both int and str should work)
@@ -136,7 +136,7 @@ class TestVerifyUserIdAndToken:
 
     def test_verify_user_id_and_token_success_str_user_id_in_token(self):
         """Test successful verification with string user_id in token."""
-        data = {"sub": "carol", "user_id": "789"}
+        data = {"user_name": "carol", "user_id": "789"}
         token = create_access_token(data)
 
         # Should not raise any exception
@@ -152,7 +152,7 @@ class TestVerifyUserIdAndToken:
 
     def test_verify_user_id_and_token_expired_token(self):
         """Test verification with expired token raises 401."""
-        data = {"sub": "dave", "user_id": 999}
+        data = {"user_name": "dave", "user_id": 999}
         to_encode = data.copy()
         expire = datetime.datetime.now(
             datetime.timezone.utc
@@ -170,7 +170,7 @@ class TestVerifyUserIdAndToken:
 
     def test_verify_user_id_and_token_mismatched_user_id(self):
         """Test verification with mismatched user_id raises 403."""
-        data = {"sub": "eve", "user_id": 111}
+        data = {"user_name": "eve", "user_id": 111}
         token = create_access_token(data)
 
         with pytest.raises(HTTPException) as exc_info:
@@ -181,7 +181,7 @@ class TestVerifyUserIdAndToken:
 
     def test_verify_user_id_and_token_missing_user_id_in_token(self):
         """Test verification with token missing user_id raises 403."""
-        data = {"sub": "frank"}  # No user_id in payload
+        data = {"user_name": "frank"}  # No user_id in payload
         token = create_access_token(data)
 
         with pytest.raises(HTTPException) as exc_info:
@@ -192,7 +192,7 @@ class TestVerifyUserIdAndToken:
 
     def test_verify_user_id_and_token_none_user_id_in_token(self):
         """Test verification with None user_id in token raises 403."""
-        data = {"sub": "grace", "user_id": None}
+        data = {"user_name": "grace", "user_id": None}
         token = create_access_token(data)
 
         with pytest.raises(HTTPException) as exc_info:
@@ -204,13 +204,13 @@ class TestVerifyUserIdAndToken:
     def test_verify_user_id_and_token_type_conversion(self):
         """Test that the function properly handles type conversion for comparison."""
         # Token has integer user_id
-        data = {"sub": "henry", "user_id": 555}
+        data = {"user_name": "henry", "user_id": 555}
         token = create_access_token(data)
 
         # Request has string user_id - should match due to str() conversion
         verify_user_id_and_token(token, "555")
 
         # This should also work
-        data2 = {"sub": "iris", "user_id": "666"}
+        data2 = {"user_name": "iris", "user_id": "666"}
         token2 = create_access_token(data2)
         verify_user_id_and_token(token2, "666")

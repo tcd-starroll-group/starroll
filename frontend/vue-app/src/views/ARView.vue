@@ -38,6 +38,7 @@ const showStarPopup = ref(false);
 const route = useRoute();
 const router = useRouter();
 const isStarMessageMode = ref(false);
+const isFindHipMode = ref(false);          // true when entered via "Find in AR" (no star message)
 const starMessageModeTargetHip = ref<number | null>(null);
 const starMessageDisplay = ref<StarMessageDisplay | null>(null);
 const loadingStarMessageMode = ref(false);
@@ -66,12 +67,43 @@ const clearStarMessageQueryParam = async () => {
     await router.replace({ query: nextQuery });
 };
 
+const clearFindHipQueryParam = async () => {
+    if (!('find_hip' in route.query)) return;
+    const nextQuery = { ...route.query };
+    delete nextQuery.find_hip;
+    await router.replace({ query: nextQuery });
+};
+
 const exitStarMessageMode = async () => {
     isStarMessageMode.value = false;
+    isFindHipMode.value = false;
     starMessageModeTargetHip.value = null;
     loadingStarMessageMode.value = false;
     groundObserver?.clearHighlightedStar();
     await clearStarMessageQueryParam();
+    await clearFindHipQueryParam();
+};
+
+/** Highlight a star directly by HIP number — no network call needed. */
+const activateFindHipMode = (hip: number) => {
+    if (!groundObserver) return;
+    isStarMessageMode.value = true;
+    isFindHipMode.value = true;
+    starMessageModeTargetHip.value = hip;
+    starMessageDisplay.value = null;
+    clickedStarInfo.value = null;
+    showStarPopup.value = false;
+    groundObserver.clearSelectedStar();
+    groundObserver.highlightStarByHip(hip);
+};
+
+const tryActivateFindHipModeFromQuery = () => {
+    const raw = route.query.find_hip;
+    if (!raw || !groundObserver) return;
+    const value = Array.isArray(raw) ? raw[0] : raw;
+    const hip = parseInt(String(value), 10);
+    if (!Number.isFinite(hip) || hip <= 0) return;
+    activateFindHipMode(hip);
 };
 
 const activateStarMessageMode = async (messageId: string) => {
@@ -249,6 +281,9 @@ onMounted(async () => {
             await groundObserver!.enableARMode();
             // groundObserver.testTimeFlash();
             await tryActivateStarMessageModeFromQuery();
+            if (!isStarMessageMode.value) {
+                tryActivateFindHipModeFromQuery();
+            }
         } catch (error) {
             console.error('Error enabling AR mode:', error);
         }
@@ -288,6 +323,14 @@ watch(
     },
 );
 
+watch(
+    () => route.query.find_hip,
+    () => {
+        if (!groundObserver || showPermission.value) return;
+        tryActivateFindHipModeFromQuery();
+    },
+);
+
 </script>
 
 <template>
@@ -295,9 +338,13 @@ watch(
     <div ref="containerRef" class="canvas-container" @click.self=""></div>
     
     <div class="ui-layer">        
-        <div v-if="isStarMessageMode && starMessageDisplay" class="star-message-mode-banner">
-            <div class="banner-title">Star Message Mode</div>
-            <div class="banner-text">
+        <div v-if="isStarMessageMode" class="star-message-mode-banner">
+            <div class="banner-title">{{ isFindHipMode ? 'Find in Sky' : 'Star Message Mode' }}</div>
+            <div class="banner-text" v-if="isFindHipMode">
+                Point your camera at the sky and tap
+                <strong>HIP&nbsp;{{ starMessageModeTargetHip }}</strong> when the arrow leads you there.
+            </div>
+            <div class="banner-text" v-else-if="starMessageDisplay">
                 Find and tap the star to reveal message from {{ starMessageDisplay.from }}.
             </div>
         </div>
@@ -325,6 +372,14 @@ watch(
                 :alt="isCameraOn ? 'Camera on' : 'Camera off'"
             />
         </button>
+        <button
+            v-if="!showPermission"
+            class="home-btn"
+            @click="router.push('/navigation')"
+            title="Go to navigation"
+        >
+            <img src="/images/home.png" alt="Home" />
+        </button>
     </div>
   </div>
 </template>
@@ -349,6 +404,28 @@ watch(
 }
 
 .camera-toggle-btn img {
+    width: 24px;
+    height: 24px;
+}
+
+.home-btn {
+    position: absolute;
+    top: 20px;
+    right: 24px;
+    z-index: 21;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+.home-btn img {
     width: 24px;
     height: 24px;
 }

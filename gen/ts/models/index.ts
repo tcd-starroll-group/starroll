@@ -56,7 +56,6 @@ export * from './ApiTriggerStarfieldRenderPostRequestCorrectedStarCoordinatesInn
 export * from './ApiTriggerStarfieldRenderPostRequestRenderParams';
 export * from './ApiUserRegPostRequest';
 export * from './ApiUsernameVerifyPostRequest';
-export * from './ApiVerifyUserTokenPostRequest';
 export * from './Attitude';
 export * from './Blog';
 export * from './BlogID';

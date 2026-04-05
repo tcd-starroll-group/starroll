@@ -69,7 +69,6 @@ src/openapi_server/models/api_trigger_starfield_render_post_request_corrected_st
 src/openapi_server/models/api_trigger_starfield_render_post_request_render_params.py
 src/openapi_server/models/api_user_reg_post_request.py
 src/openapi_server/models/api_username_verify_post_request.py
-src/openapi_server/models/api_verify_user_token_post_request.py
 src/openapi_server/models/attitude.py
 src/openapi_server/models/blog.py
 src/openapi_server/models/blog_id.py
