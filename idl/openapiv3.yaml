@@ -568,6 +568,8 @@ paths:
             application/json:
               schema:
                 properties:
+                  total:
+                    type: number
                   identifyStarsJobsList:
                     type: array
                     items:

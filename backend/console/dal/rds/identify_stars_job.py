@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, BigInteger, String, JSON, TIMESTAMP, SmallInteger, text
+from sqlalchemy import Column, Integer, BigInteger, String, JSON, TIMESTAMP, SmallInteger, text, func
 from sqlalchemy.orm import declarative_base, Session
 from backend.constant.sort import SORT_ORDER_ASC, SORT_ORDER_DESC
 from backend.constant.star_identify import STAR_IDENTIFY_JOB_STATUS_PENDING
@@ -47,6 +47,14 @@ class IdentifyStarsJob(Base):
             query = query.order_by(cls.created_at.desc(), cls.id.desc())
 
         return query.offset(offset).limit(limit).all()
+
+    @classmethod
+    def count_by_user_id(cls, db: Session, user_id: int) -> int:
+        """Count total jobs for a specific user"""
+        return db.query(func.count(cls.id)).filter(
+            cls.user_id == user_id,
+            cls.is_deleted == 0
+        ).scalar()
 
     @classmethod
     def list_by_job_status(cls, db: Session, statuses: list, limit: int = 20, offset: int = 0, order: str = SORT_ORDER_DESC):
@@ -120,7 +128,7 @@ class IdentifyStarsJob(Base):
             db.commit()
             return True
         return False
-    
+
     @classmethod
     def count_all_time_scans(cls, db_session, user_id: int) -> int:
         """Counts every scan a user has ever submitted (excluding deleted ones)."""

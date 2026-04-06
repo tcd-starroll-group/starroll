@@ -38,6 +38,11 @@ async def api_list_identify_stars_jobs_post(
 
     # Query database
     with db_context() as db_session:
+        total = IdentifyStarsJob.count_by_user_id(
+            db=db_session,
+            user_id=int(user_id)
+        )
+
         db_jobs = IdentifyStarsJob.list_by_user_id(
             db=db_session,
             user_id=int(user_id),
@@ -47,7 +52,7 @@ async def api_list_identify_stars_jobs_post(
         )
 
         logger.info(
-            f"Found {len(db_jobs)} jobs for user {user_id}")
+            f"Found {len(db_jobs)} jobs for user {user_id}, total: {total}")
 
         # Convert database models to API models
         api_jobs = []
@@ -61,5 +66,6 @@ async def api_list_identify_stars_jobs_post(
             api_jobs.append(api_job)
 
         return ApiListIdentifyStarsJobsPost200Response(
+            total=total,
             identify_stars_jobs_list=api_jobs
         )

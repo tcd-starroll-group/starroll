@@ -20,8 +20,8 @@ import json
 
 
 
-from pydantic import BaseModel, ConfigDict, Field
-from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from openapi_server.models.identify_stars_job import IdentifyStarsJob
 try:
     from typing import Self
@@ -32,8 +32,9 @@ class ApiListIdentifyStarsJobsPost200Response(BaseModel):
     """
     ApiListIdentifyStarsJobsPost200Response
     """ # noqa: E501
+    total: Optional[Union[StrictFloat, StrictInt]] = None
     identify_stars_jobs_list: Optional[List[IdentifyStarsJob]] = Field(default=None, alias="identifyStarsJobsList")
-    __properties: ClassVar[List[str]] = ["identifyStarsJobsList"]
+    __properties: ClassVar[List[str]] = ["total", "identifyStarsJobsList"]
 
     model_config = {
         "populate_by_name": True,
@@ -91,6 +92,7 @@ class ApiListIdentifyStarsJobsPost200Response(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "total": obj.get("total"),
             "identifyStarsJobsList": [IdentifyStarsJob.from_dict(_item) for _item in obj.get("identifyStarsJobsList")] if obj.get("identifyStarsJobsList") is not None else None
         })
         return _obj
