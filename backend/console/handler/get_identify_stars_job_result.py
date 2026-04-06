@@ -39,6 +39,7 @@ async def api_get_identify_stars_job_result_post(
         # Default empty structures to satisfy the OpenAPI model
         stars_list = []
         ori_image_url = None
+        center_info = None
 
         if job.result:
             try:

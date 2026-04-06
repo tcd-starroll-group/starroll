@@ -29,6 +29,12 @@ import {
 export interface ApiListIdentifyStarsJobsPost200Response {
     /**
      * 
+     * @type {number}
+     * @memberof ApiListIdentifyStarsJobsPost200Response
+     */
+    total?: number;
+    /**
+     * 
      * @type {Array<IdentifyStarsJob>}
      * @memberof ApiListIdentifyStarsJobsPost200Response
      */
@@ -52,6 +58,7 @@ export function ApiListIdentifyStarsJobsPost200ResponseFromJSONTyped(json: any, 
     }
     return {
         
+        'total': json['total'] == null ? undefined : json['total'],
         'identifyStarsJobsList': json['identifyStarsJobsList'] == null ? undefined : ((json['identifyStarsJobsList'] as Array<any>).map(IdentifyStarsJobFromJSON)),
     };
 }
@@ -67,6 +74,7 @@ export function ApiListIdentifyStarsJobsPost200ResponseToJSONTyped(value?: ApiLi
 
     return {
         
+        'total': value['total'],
         'identifyStarsJobsList': value['identifyStarsJobsList'] == null ? undefined : ((value['identifyStarsJobsList'] as Array<any>).map(IdentifyStarsJobToJSON)),
     };
 }

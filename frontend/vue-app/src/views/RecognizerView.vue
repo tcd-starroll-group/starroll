@@ -3,7 +3,7 @@ import { computed, ref, onMounted, onUnmounted, watch, nextTick } from 'vue';
 import { useRouter } from 'vue-router';
 import StarBackground from '@/components/StarBackground.vue';
 import { defaultApi } from '@/api/defaultApi';
-import type { IdentifyStarsJob, IdentifyStarsJobResult } from '../../../../gen/ts';
+import type { IdentifyStarsJob, IdentifyStarsJobResult, ApiListIdentifyStarsJobsPost200Response } from '../../../../gen/ts';
 
 import '../assets/styles/common.css';
 import '../assets/styles/main.css';
@@ -20,23 +20,28 @@ const errorMessage = ref<string>('');
 const recognitionResult = ref<IdentifyStarsJobResult | null>(null);
 const pollingTimer = ref<ReturnType<typeof setInterval> | null>(null);
 
+const PAGE_SIZE = 10;
 const historyList = ref<IdentifyStarsJob[]>([]);
+const historyTotal = ref(0);
+const historyPage = ref(0);
 const isFetchingHistory = ref(false);
+
+const totalHistoryPages = computed(() => Math.max(1, Math.ceil(historyTotal.value / PAGE_SIZE)));
 
 const recognitionImageKey = computed(() => recognitionResult.value?.oriImageUrl ?? '');
 const previewImageSrc = computed(() => imagePreview.value || recognitionImageKey.value);
 const shouldShowPreviewImage = computed(() => !recognitionResult.value && Boolean(previewImageSrc.value));
 
-// 🌟 新增：用于在图片上绘制星星的 Canvas 引用
+// New: canvas reference for drawing stars on the image
 const resultCanvasRef = ref<HTMLCanvasElement | null>(null);
 
-// 🌟 标记开关：控制是否显示绘制标记
+// Toggle: controls whether markers are displayed
 const showMarkers = ref(true);
 
-// 🌟 选中的星星索引（null 表示未选中任何星星）
+// Selected star index (null = none selected)
 const selectedStarIndex = ref<number | null>(null);
 
-// 🌟 星星列表容器 ref，用于自动滚动
+// Reference to star list container for auto-scrolling
 const starsListRef = ref<HTMLElement | null>(null);
 const starItemRefs = ref<HTMLElement[]>([]);
 
@@ -47,7 +52,7 @@ const stopPolling = () => {
   }
 };
 
-// 🌟 核心绘图引擎：在图片上绘制标记
+// Core drawing engine: render markers on the image
 const drawStarsOnCanvas = () => {
   if (!resultCanvasRef.value || !recognitionResult.value) return;
 
@@ -55,28 +60,28 @@ const drawStarsOnCanvas = () => {
   const ctx = canvas.getContext('2d');
   if (!ctx) return;
 
-  // 决定图片来源（本地预览 或 云端历史图片）
+  // Determine image source (local preview or historical image URL)
   const imgSrc = imagePreview.value || recognitionResult.value.oriImageUrl;
   if (!imgSrc) return;
 
   const img = new Image();
   img.onload = () => {
-    // 1. 将画布尺寸严格对齐图片的原始像素尺寸
+    // 1. Align canvas size to image's natural pixel dimensions
     canvas.width = img.width;
     canvas.height = img.height;
 
-    // 2. 绘制原始底图
+    // 2. Draw original background image
     ctx.drawImage(img, 0, 0);
 
-    // 3. 若标记开关关闭，仅显示原图
+    // 3. If markers are disabled, only show original image
     if (!showMarkers.value) return;
 
-    // 4. 遍历星星数据，绘制瞄准圈和文字
+    // 4. Iterate stars and draw target rings and labels
     const stars = recognitionResult.value?.identifiedStars || [];
     const hasSelection = selectedStarIndex.value !== null;
 
     stars.forEach((star, index) => {
-      // 必须有有效的 x, y 坐标才绘制
+      // Skip if star lacks valid x/y pixel coordinates
       if (star.pixelX == null || star.pixelY == null) return;
 
       const x = star.pixelX;
@@ -84,12 +89,12 @@ const drawStarsOnCanvas = () => {
       const isSelected = selectedStarIndex.value === index;
       const isDimmed = hasSelection && !isSelected;
 
-      // 根据状态设置颜色和尺寸
+      // Set color and size based on state
       const color = isDimmed ? 'rgba(46, 204, 113, 0.12)' : '#2ecc71';
       const outerRadius = isSelected ? 26 : 20;
       const lineWidth = isSelected ? 4 : (isDimmed ? 1.5 : 2.5);
 
-      // 选中状态绘制双圈
+      // Draw double ring for selected state
       if (isSelected) {
         ctx.beginPath();
         ctx.arc(x, y, 36, 0, 2 * Math.PI);
@@ -100,14 +105,14 @@ const drawStarsOnCanvas = () => {
         ctx.setLineDash([]);
       }
 
-      // 绘制锁定外圈
+      // Draw outer ring
       ctx.beginPath();
       ctx.arc(x, y, outerRadius, 0, 2 * Math.PI);
       ctx.strokeStyle = color;
       ctx.lineWidth = lineWidth;
       ctx.stroke();
 
-      // 获取最好的显示名称
+      // Determine best display name
       let label = 'Unknown';
       if (star.names && star.names.length > 0) {
         label = star.names[0];
@@ -115,7 +120,7 @@ const drawStarsOnCanvas = () => {
         label = `HIP ${star.hIP}`;
       }
 
-      // 绘制文字
+      // Draw text label
       ctx.font = isSelected ? 'bold 26px monospace' : '22px monospace';
       ctx.fillStyle = color;
       ctx.shadowColor = isDimmed ? 'transparent' : 'black';
@@ -127,13 +132,13 @@ const drawStarsOnCanvas = () => {
   img.src = imgSrc;
 };
 
-// 🌟 Canvas 点击处理：检测点击位置最近的星星
+// Canvas click handler: find nearest star to click
 const handleCanvasClick = (event: MouseEvent) => {
   if (!recognitionResult.value || !resultCanvasRef.value || !showMarkers.value) return;
 
   const canvas = resultCanvasRef.value;
   const rect = canvas.getBoundingClientRect();
-  // 将屏幕坐标映射回 Canvas 原始像素坐标
+  // Map screen coords back to canvas pixel coordinates
   const scaleX = canvas.width / rect.width;
   const scaleY = canvas.height / rect.height;
   const clickX = (event.clientX - rect.left) * scaleX;
@@ -142,7 +147,7 @@ const handleCanvasClick = (event: MouseEvent) => {
   const stars = recognitionResult.value.identifiedStars || [];
   let closestIndex: number | null = null;
   let closestDist = Infinity;
-  const HIT_RADIUS = 40; // 点击容忍半径（原始像素）
+  const HIT_RADIUS = 40; // Hit tolerance radius (in canvas pixels)
 
   stars.forEach((star, index) => {
     if (star.pixelX == null || star.pixelY == null) return;
@@ -155,26 +160,26 @@ const handleCanvasClick = (event: MouseEvent) => {
     }
   });
 
-  // 再次点击同一颗星则取消选中
+  // Clicking the same star again toggles selection off
   selectedStarIndex.value = closestIndex === selectedStarIndex.value ? null : closestIndex;
 };
 
-// 🌟 监听器：一旦识别结果被赋值，立刻触发 Canvas 绘图
+// Watcher: draw on canvas when recognitionResult is populated
 watch(recognitionResult, async (newVal) => {
   if (newVal && newVal.identifiedStars && newVal.identifiedStars.length > 0) {
-    selectedStarIndex.value = null; // 重置选中状态
-    starItemRefs.value = [];        // 清空列表 ref 缓存
-    await nextTick(); // 等待 <canvas> 元素挂载到 DOM
+    selectedStarIndex.value = null; // Reset selection state
+    starItemRefs.value = [];        // Clear star item ref cache
+    await nextTick(); // Wait for <canvas> to mount in DOM
     drawStarsOnCanvas();
   }
 });
 
-// 🌟 监听标记开关：切换时立刻重绘
+// Watch marker toggle: redraw when changed
 watch(showMarkers, () => {
   drawStarsOnCanvas();
 });
 
-// 🌟 监听选中星星：重绘 Canvas，并将列表滚到对应项
+// Watch selected star: redraw canvas and scroll the list to the item
 watch(selectedStarIndex, async (newIndex) => {
   drawStarsOnCanvas();
   if (newIndex !== null) {
@@ -186,15 +191,15 @@ watch(selectedStarIndex, async (newIndex) => {
   }
 });
 
-const fetchHistoryJobs = async () => {
+const fetchHistoryJobs = async (page: number = historyPage.value) => {
   isFetchingHistory.value = true;
   try {
-    // 修复 Unexpected any: 使用 @ts-ignore 直接忽略类型检查，避免任何警告
-    const rawResponse = await defaultApi.apiListIdentifyStarsJobsPostRaw({
-      paginationQuery: { limit: 20, offset: 0, order: 'desc' }
+    const response: ApiListIdentifyStarsJobsPost200Response = await defaultApi.apiListIdentifyStarsJobsPost({
+      paginationQuery: { limit: PAGE_SIZE, offset: page * PAGE_SIZE, order: 'desc' }
     });
-    const responseData = await rawResponse.raw.clone().json();
-    historyList.value = responseData.identifyStarsJobsList || [];
+    historyList.value = response.identifyStarsJobsList ?? [];
+    historyTotal.value = response.total ?? 0;
+    historyPage.value = page;
   } catch (error) {
     console.error('Failed to fetch history:', error);
   } finally {
@@ -220,7 +225,7 @@ const fetchJobDetailsData = async (currentJobId: string) => {
 
     if (jobResult) {
       isAnalyzing.value = false;
-      recognitionResult.value = jobResult; // 这会触发上面的 watch 并执行画图！
+      recognitionResult.value = jobResult; 
     } else {
       isAnalyzing.value = false;
       errorMessage.value = 'Failed to parse astronomical data from backend.';
@@ -233,7 +238,7 @@ const fetchJobDetailsData = async (currentJobId: string) => {
 };
 
 const pollJobStatusViaHistory = async () => {
-  await fetchHistoryJobs();
+  await fetchHistoryJobs(historyPage.value);
   if (!jobId.value) return;
 
   const currentJob = historyList.value.find(j =>
@@ -397,7 +402,7 @@ const navigateToAR = (hip: number) => {
             
             <div v-if="imagePreview || recognitionResult" class="image-wrapper glass-panel" :class="{ 'has-result': recognitionResult }">
 
-              <!-- 标记开关浮层 -->
+              <!-- Marker toggle overlay -->
               <div v-if="recognitionResult" class="canvas-controls">
                 <button
                   class="marker-toggle-btn"
@@ -505,8 +510,8 @@ const navigateToAR = (hip: number) => {
 
         <div class="history-section glass-panel">
           <div class="history-header">
-            <h3>History</h3>
-            <button class="refresh-btn" @click="fetchHistoryJobs" :disabled="isFetchingHistory">
+            <h3>History <span v-if="historyTotal > 0" class="history-total">({{ historyTotal }})</span></h3>
+            <button class="refresh-btn" @click="fetchHistoryJobs(0)" :disabled="isFetchingHistory">
               <svg :class="{'rotating': isFetchingHistory}" viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
             </button>
           </div>
@@ -536,6 +541,16 @@ const navigateToAR = (hip: number) => {
                 </span>
               </div>
             </div>
+          </div>
+
+          <div v-if="totalHistoryPages > 1" class="history-pagination">
+            <button class="page-btn" @click="fetchHistoryJobs(historyPage - 1)" :disabled="historyPage === 0 || isFetchingHistory">
+              <svg viewBox="0 0 24 24" width="14" height="14"><path fill="currentColor" d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
+            </button>
+            <span class="page-indicator">{{ historyPage + 1 }} / {{ totalHistoryPages }}</span>
+            <button class="page-btn" @click="fetchHistoryJobs(historyPage + 1)" :disabled="historyPage >= totalHistoryPages - 1 || isFetchingHistory">
+              <svg viewBox="0 0 24 24" width="14" height="14"><path fill="currentColor" d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+            </button>
           </div>
         </div>
 
@@ -645,6 +660,12 @@ const navigateToAR = (hip: number) => {
 .history-id { font-size: 13px; font-weight: 600; color: rgba(255, 255, 255, 0.9); }
 .history-time { font-size: 11px; color: rgba(255, 255, 255, 0.5); }
 .history-actions { display: flex; flex-direction: column; align-items: flex-end; }
+.history-total { font-size: 12px; color: rgba(255,255,255,0.4); font-weight: 400; }
+.history-pagination { display: flex; justify-content: center; align-items: center; gap: 12px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.08); margin-top: 8px; }
+.page-btn { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; color: white; width: 28px; height: 28px; display: flex; justify-content: center; align-items: center; cursor: pointer; transition: background 0.2s; }
+.page-btn:hover:not(:disabled) { background: rgba(88,166,255,0.15); border-color: var(--color-star-primary); }
+.page-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+.page-indicator { font-size: 12px; color: rgba(255,255,255,0.6); font-family: monospace; min-width: 48px; text-align: center; }
 .status-badge { font-size: 10px; padding: 2px 6px; border-radius: 4px; font-weight: bold; text-transform: uppercase; }
 .status-success, .status-completed, .status-succeeded { background: rgba(46, 204, 113, 0.2); color: #2ecc71; border: 1px solid rgba(46, 204, 113, 0.4); }
 .status-failed, .status-error { background: rgba(231, 76, 60, 0.2); color: #e74c3c; border: 1px solid rgba(231, 76, 60, 0.4); }
@@ -667,7 +688,7 @@ const navigateToAR = (hip: number) => {
 .spinner-blue { width: 24px; height: 24px; border: 3px solid rgba(88, 166, 255, 0.2); border-top-color: var(--color-star-primary); border-radius: 50%; animation: spin 1s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
 
-/* ---- Canvas 控制浮层 ---- */
+/* ---- Canvas control overlay ---- */
 .canvas-controls {
   position: absolute;
   top: 10px;
@@ -700,7 +721,6 @@ const navigateToAR = (hip: number) => {
 }
 .marker-toggle-btn:hover { opacity: 0.9; transform: scale(1.03); }
 
-/* ---- 星星列表高亮 ---- */
 .star-item { cursor: pointer; transition: all 0.2s ease; }
 .star-item:hover { background: rgba(255, 255, 255, 0.08); }
 .star-item-selected {

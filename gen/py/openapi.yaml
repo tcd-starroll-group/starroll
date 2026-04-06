@@ -2052,6 +2052,7 @@ components:
       title: _api_createIdentifyStarsJob_post_200_response
     _api_listIdentifyStarsJobs_post_200_response:
       example:
+        total: 0.8008281904610115
         identifyStarsJobsList:
         - jobID: jobID
           createTime: createTime
@@ -2062,6 +2063,9 @@ components:
           updateTime: updateTime
           status: status
       properties:
+        total:
+          title: total
+          type: number
         identifyStarsJobsList:
           items:
             $ref: "#/components/schemas/identifyStarsJob"

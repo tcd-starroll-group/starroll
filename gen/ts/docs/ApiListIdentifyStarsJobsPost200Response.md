@@ -6,6 +6,7 @@
 
 Name | Type
 ------------ | -------------
+`total` | number
 `identifyStarsJobsList` | [Array&lt;IdentifyStarsJob&gt;](IdentifyStarsJob.md)
 
 ## Example
@@ -15,6 +16,7 @@ import type { ApiListIdentifyStarsJobsPost200Response } from ''
 
 // TODO: Update the object below with actual values
 const example = {
+  "total": null,
   "identifyStarsJobsList": null,
 } satisfies ApiListIdentifyStarsJobsPost200Response
 
