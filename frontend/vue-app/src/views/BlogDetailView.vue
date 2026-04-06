@@ -203,7 +203,7 @@ onMounted(() => {
         </div>
 
         <div class="comments-section sr-glass-panel">
-          <h3 class="section-title">Log Communications</h3>
+          <h3 class="section-title">Comments</h3>
           
           <div class="comment-input-area">
             <textarea 

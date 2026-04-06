@@ -6,7 +6,7 @@ import BaseButton from '@/components/BaseButton.vue'
 import { defaultApi } from '@/api/defaultApi'
 
 // 1. TypeScript Interfaces for the Pilot
-interface PilotStats {
+interface UserStats {
   starsDiscovered: number;
   totalScans: number;
   rank: string;
@@ -21,7 +21,7 @@ interface Discovery {
 }
 
 // 2. Mock Data (This would eventually come from your Pinia store or API)
-const pilot = reactive({
+const user = reactive({
   name: 'Loading...',
   email: '',
   avatar: '',
@@ -30,24 +30,30 @@ const pilot = reactive({
     totalScans: 0,
     rank: '---',
     joinDate: ''
-  } as PilotStats,
+  } as UserStats,
   recentDiscoveries: [] as Discovery[]
 })
 
-onMounted(async () => {
-  try {
-    const token = localStorage.getItem('token') || ''
-    const response = await defaultApi.apiVerifyUserTokenPost({
-      apiVerifyUserTokenPostRequest: { token },
-    })
+const router = useRouter()
 
-    pilot.name = response.username || 'Loading...'
-    console.log("档案同步成功:", pilot.name)
+onMounted(async () => {
+  const token = localStorage.getItem('token')
+  if (!token) {
+    router.replace('/userLogin')
+    return
+  }
+
+  try {
+    const response = await defaultApi.apiVerifyUserTokenPost()
+
+    user.name = response.username || 'Loading...'
+    console.log("档案同步成功:", user.name)
   } catch (err) {
     console.error("无法获取飞行员档案，请检查 Token 是否有效");
+    localStorage.removeItem('token')
+    router.replace('/userLogin')
   }
 })
-const router = useRouter()
 const handleLogout = () => {
   console.log("Logging out pilot...")
   localStorage.removeItem('token')
@@ -64,12 +70,12 @@ const goToDetails = () => {
       
       <section class="profile-header glass-panel">
         <div class="avatar-wrapper">
-          <img :src="pilot.avatar" alt="Pilot Avatar" class="avatar" />
+          <img :src="user.avatar" alt="Pilot Avatar" class="avatar" />
           <div class="status-indicator"></div>
         </div>
         <div class="pilot-info">
-          <h1 class="pilot-name">{{ pilot.name }}</h1>
-          <p class="pilot-rank">{{ pilot.stats.rank }}</p>
+          <h1 class="pilot-name">{{ user.name }}</h1>
+          <p class="pilot-rank">{{ user.stats.rank }}</p>
           <div class="badge-row">
             <span class="badge">Fleet Member</span>
             <span class="badge">Vanguard</span>
@@ -86,22 +92,22 @@ const goToDetails = () => {
       <div class="stats-grid">
         <div class="stat-card glass-panel">
           <span class="stat-label">Stars Discovered</span>
-          <span class="stat-value">{{ pilot.stats.starsDiscovered }}</span>
+          <span class="stat-value">{{ user.stats.starsDiscovered }}</span>
         </div>
         <div class="stat-card glass-panel">
           <span class="stat-label">Total Scans</span>
-          <span class="stat-value">{{ pilot.stats.totalScans }}</span>
+          <span class="stat-value">{{ user.stats.totalScans }}</span>
         </div>
         <div class="stat-card glass-panel">
-          <span class="stat-label">Stellar Rank</span>
-          <span class="stat-value">#42</span>
+          <span class="stat-label">Rank</span>
+          <span class="stat-value">NA</span>
         </div>
       </div>
 
       <section class="discoveries-section glass-panel">
         <h2 class="section-title">Recent Transmissions</h2>
         <div class="discovery-list">
-          <div v-for="item in pilot.recentDiscoveries" :key="item.id" class="discovery-item">
+          <div v-for="item in user.recentDiscoveries" :key="item.id" class="discovery-item">
             <div class="discovery-info">
               <span class="discovery-name">{{ item.name }}</span>
               <span class="discovery-type">{{ item.type }}</span>

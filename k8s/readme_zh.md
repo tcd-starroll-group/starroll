@@ -8,15 +8,14 @@
    创建 database 名为 starroll，创建用户 starroll-prod ，创建表。
    修改 cloud sql 实例的设置，在安全设置里允许非ssl访问，在链接设置里开启私网访问，等几分钟，拿到内网地址。
 
-````
 4. 创建 cloud storage bucket `identify-stars`
-Google Cloud 允许你生成一套兼容 S3 协议的密钥：
-进入 GCP 控制台 -> Cloud Storage -> 设置 (Settings)。
-点击 互操作性 (Interoperability) 标签页。
-点击 创建我的密钥 (Create a key)。
+   Google Cloud 允许你生成一套兼容 S3 协议的密钥：
+   进入 GCP 控制台 -> Cloud Storage -> 设置 (Settings)。
+   点击 互操作性 (Interoperability) 标签页。
+   点击 创建我的密钥 (Create a key)。
 5. 创建 artifact regisregistry，名称为 starroll
-在 setup instruction 的指导下执行类似 `gcloud auth configure-docker europe-west1-docker.pkg.dev` 的命令，之后就可以推送镜像到谷歌的 artifact regisregistry 了
-为各个组件分别创建 console，frontend
+   在 setup instruction 的指导下执行类似 `gcloud auth configure-docker europe-west1-docker.pkg.dev` 的命令，之后就可以推送镜像到谷歌的 artifact regisregistry 了
+   为各个组件分别创建 console，frontend
 
 ## 打包镜像
 
@@ -27,7 +26,7 @@ Google Cloud 允许你生成一套兼容 S3 协议的密钥：
 ```bash
 docker build --platform linux/amd64 -f backend/console/Dockerfile . -t europe-west1-docker.pkg.dev/starroll/console/console:0.1
 docker push europe-west1-docker.pkg.dev/starroll/console/console:0.1
-````
+```
 
 ### backend astronomy.net
 
@@ -126,5 +125,4 @@ kubectl apply -f k8s/prod/grafana/pvc.yaml
 kubectl apply -f k8s/prod/grafana/service.yaml
 # 需要先修改 cronjob.yaml 中的 --datasource-uids
 kubectl apply -f k8s/prod/grafana/cronjob.yaml
-
 ```

@@ -60,7 +60,7 @@ const handleLogin = async () => {
     localStorage.setItem('username', form.username);
     console.log("login! success");
 
-    router.push('/');
+    router.push('/navigation');
 
   } catch (err: unknown) {
     if (err instanceof ResponseError && (err.response.status === 401 || err.response.status === 404)) {
@@ -82,12 +82,12 @@ const handleLogin = async () => {
     <div class="login-card glass-panel">
       <div class="header">
         <h1 class="title">STARROLL</h1>
-        <p class="subtitle">Enter the cosmic gateway</p>
+        <p class="subtitle">AR stargazing</p>
       </div>
 
       <form @submit.prevent="handleLogin" class="form">
         <div class="input-group">
-          <label>Star ID / username</label>
+          <label>username</label>
           <input 
             v-model="form.username" 
             type="username" 
@@ -97,7 +97,7 @@ const handleLogin = async () => {
         </div>
 
         <div class="input-group">
-          <label>Access Key</label>
+          <label>passowrd</label>
           <input 
             v-model="form.password" 
             type="password" 
@@ -113,7 +113,7 @@ const handleLogin = async () => {
           :is-loading="isLoading"
           variant="primary"
         >
-          Initiate Roll
+          Login
         </BaseButton>
       </form>
 

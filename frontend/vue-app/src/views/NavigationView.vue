@@ -10,45 +10,52 @@ const router = useRouter();
 const features = [
   {
     id: 'ar',
-    title: 'AR Stargaze',
+    title: 'AR Stargazing',
     desc: 'Turn on your camera to explore and identify the vast starry sky and constellations above your head in real time through augmented reality technology.',
     path: '/',
     icon: 'M12 4C7 4 2.73 7.11 1 11.5 2.73 15.89 7 19 12 19s9.27-3.11 11-7.5C21.27 7.11 17 4 12 4zm0 12.5c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z'
   },
   {
-    id: 'startrail',
-    title: 'Star Trail',
-    desc: 'Simulate or record the movement trajectories of stars over time to generate stunning star trail visual experiences.',
-    path: '/star-trail',
-    icon: 'M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z'
+    id: 'search',
+    title: 'Search',
+    desc: 'Look up a star by its Hipparcos catalogue number.',
+    path: '/search',
+    icon: 'M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'
   },
   {
     id: 'recognizer',
     title: 'Recognizer',
-    desc: 'Upload the starry sky photos you took, and the intelligent engine will analyze and match the corresponding celestial body and constellation information for you.',
+    desc: 'Upload the starry sky photos you took, and we will analyze and match the corresponding celestial body and constellation information for you.',
     path: '/recognizer',
     icon: 'M3 5v4h2V5h4V3H5c-1.1 0-2 .9-2 2zm2 10H3v4c0 1.1.9 2 2 2h4v-2H5v-4zm14 4h-4v2h4c1.1 0 2-.9 2-2v-4h-2v4zm0-16h-4v2h4v4h2V5c0-1.1-.9-2-2-2z'
   },
   {
+    id: 'startrail',
+    title: 'Star Trail',
+    desc: 'In AR mode, clicking the star trail icon will allow you to preview the star trails. This feature is most helpful for those who want to capture star trails.',
+    path: '/',
+    icon: 'M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z'
+  },
+  {
     id: 'chats',
     title: 'Chats',
-    desc: 'Access the interstellar communication channel to communicate with astronomy enthusiasts from all over the world in real time about observation experiences.',
-    path: '/chats',
+    desc: 'In AR mode, after selecting a star, you can enter a chat room to chat with other people who have selected the same star.',
+    path: '/',
     icon: 'M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z'
   },
   {
     id: 'blog',
     title: 'Blog',
-    desc: 'Write your personal starry sky journal, record every moment of looking up at the starry sky, and share the romance of the universe.',
-    path: '/add-blog',
+    desc: 'In AR mode, selecting a star allows you to publish a blog post related to that star.',
+    path: '/',
     icon: 'M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z'
   },
   {
-    id: 'search',
-    title: 'Search',
-    desc: 'Search the massive celestial database, enter a name or coordinates to accurately locate any star you want to find.',
-    path: '/search',
-    icon: 'M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'
+    id: 'profile',
+    title: 'Profile',
+    desc: 'View and edit your personal profile.',
+    path: '/profile',
+    icon: 'M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z'
   }
 ];
 
@@ -62,7 +69,7 @@ const navigateTo = (path: string) => {
     <div class="navigation-container">
       
       <header class="header">
-        <h1 class="title">Explore</h1>
+        <h1 class="title">Star Roll</h1>
         <p class="subtitle">Select a module to begin</p>
       </header>
 
@@ -101,16 +108,9 @@ const navigateTo = (path: string) => {
 .navigation-container {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  min-height: 100vh;
   padding: 40px 24px;
   color: var(--color-text-main);
-  overflow-y: auto;
-  /* Hide scrollbar */
-  scrollbar-width: none; 
-}
-
-.navigation-container::-webkit-scrollbar {
-  display: none;
 }
 
 /* Header section */

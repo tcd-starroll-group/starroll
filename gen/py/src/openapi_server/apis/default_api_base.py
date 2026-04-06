@@ -49,7 +49,6 @@ from openapi_server.models.api_trigger_starfield_render_post200_response import 
 from openapi_server.models.api_trigger_starfield_render_post_request import ApiTriggerStarfieldRenderPostRequest
 from openapi_server.models.api_user_reg_post_request import ApiUserRegPostRequest
 from openapi_server.models.api_username_verify_post_request import ApiUsernameVerifyPostRequest
-from openapi_server.models.api_verify_user_token_post_request import ApiVerifyUserTokenPostRequest
 from openapi_server.models.attitude import Attitude
 from openapi_server.models.blog import Blog
 from openapi_server.models.blog_id import BlogID
@@ -368,7 +367,6 @@ class BaseDefaultApi:
 
     async def api_verify_user_token_post(
         self,
-        api_verify_user_token_post_request: ApiVerifyUserTokenPostRequest,
     ) -> UserResponse:
         """Check whether the provided Token is valid. If it is valid, return the corresponding user information."""
         ...

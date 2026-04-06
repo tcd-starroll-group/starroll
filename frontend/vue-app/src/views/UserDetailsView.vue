@@ -20,9 +20,7 @@ const pilotForm = reactive({
 onMounted(async () => {
   try {
     const token = localStorage.getItem('token') || ''
-    const response = await defaultApi.apiVerifyUserTokenPost({
-      apiVerifyUserTokenPostRequest: { token },
-    })
+    const response = await defaultApi.apiVerifyUserTokenPost()
     pilotForm.name = response.username || ''
   } catch (err) {
     console.error("Transmission Interrupted: Could not fetch detailed logs.");

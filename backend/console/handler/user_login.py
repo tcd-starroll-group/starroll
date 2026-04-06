@@ -4,7 +4,7 @@ from openapi_server.models.user_auth import UserAuth
 from backend.console.dal.rds.client import get_db
 from backend.console.dal.rds.user import User
 from backend.console.utils.auth import create_access_token
-from fastapi.responses import JSONResponse
+from backend.model.auth import TokenData
 
 
 async def api_user_login_post(user_auth: UserAuth):
@@ -29,11 +29,8 @@ async def api_user_login_post(user_auth: UserAuth):
         raise HTTPException(status_code=401, detail="Password incorrect")
 
     # 3. Generate JWT Token
-    token_data = {
-        "sub": user.username,
-        "user_id": user.id
-    }
-    access_token = create_access_token(token_data)
+    token_data = TokenData.from_user(user.username, user.id)
+    access_token = create_access_token(token_data.model_dump())
 
     print(f"Login successful for user: {user.username}")
     return {"message": "Login successful", "token": access_token, "userID": str(user.id)}

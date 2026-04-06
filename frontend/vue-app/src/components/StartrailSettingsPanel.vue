@@ -93,39 +93,39 @@ const stopGenerate = () => {
 		</div>
 
 		<label>
-			拍摄间隔（秒）
+			interval seconds
 			<input v-model.number="shotIntervalSeconds" type="number" min="1" step="1" />
 		</label>
 
 		<label>
-			开始时间
+			start time
 			<input v-model="localDateTimeInput" type="datetime-local" step="1" />
 		</label>
 
-		<button class="sr-glass-btn" @click="useCurrentTime">使用当前时间</button>
+		<button class="sr-glass-btn" @click="useCurrentTime">use current time</button>
 
 		<label>
-			拍摄时长（分钟）
+			duration minutes
 			<input v-model.number="durationMinutes" type="number" min="1" step="1" />
 		</label>
 
 		<label>
-			twinkleMultiplier
+			twinkle multiplier
 			<input v-model.number="twinkleMultiplier" type="number" min="0" step="0.1" />
 		</label>
 
 		<label>
-			renderStarSizeMultiplier
+			render star size multiplier
 			<input v-model.number="renderStarSizeMultiplier" type="number" min="0.01" step="0.1" />
 		</label>
 
 		<label>
-			renderStarBrightnessMultiplier
+			render star brightness multiplier
 			<input v-model.number="renderStarBrightnessMultiplier" type="number" min="0.01" step="0.1" />
 		</label>
 
-		<button class="sr-glass-btn" @click="startGenerate">开始生成</button>
-		<button class="sr-glass-btn" @click="stopGenerate">退出星轨模式</button>
+		<button class="sr-glass-btn" @click="startGenerate">generate star trail</button>
+		<button class="sr-glass-btn" @click="stopGenerate">quit star trail mode</button>
 	</div>
 </template>
 
@@ -133,7 +133,7 @@ const stopGenerate = () => {
 .startrail-toggle {
 	position: absolute;
 	top: 20px;
-	right: 76px;
+	right: 128px;
 	z-index: 21;
 	width: 40px;
 	height: 40px;
@@ -154,7 +154,7 @@ const stopGenerate = () => {
 .startrail-panel {
 	position: absolute;
 	top: 68px;
-	right: 76px;
+	right: 128px;
 	z-index: 20;
 	padding: 12px;
 	display: grid;

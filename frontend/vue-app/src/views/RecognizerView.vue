@@ -2,41 +2,11 @@
 import { computed, ref, onMounted, onUnmounted, watch, nextTick } from 'vue';
 import { useRouter } from 'vue-router';
 import StarBackground from '@/components/StarBackground.vue';
-import BottomBar from '@/components/BottomBar.vue';
 import { defaultApi } from '@/api/defaultApi';
+import type { IdentifyStarsJob, IdentifyStarsJobResult } from '../../../../gen/ts';
 
 import '../assets/styles/common.css';
 import '../assets/styles/main.css';
-
-interface IdentifiedStar {
-  names?: string | string[];
-  pixelX?: number;
-  pixelY?: number;
-  vmag?: number;
-  hIP?: number | string;
-}
-
-interface CenterInfo {
-  rightAscension?: number;
-  declination?: number;
-  radius?: number;
-  orientation?: number;
-}
-
-interface StarrySkyResult {
-  center?: CenterInfo;
-  identifiedStars?: IdentifiedStar[];
-  imageKey?: string;
-  createTime?: string;
-}
-
-interface HistoryJob {
-  jobID?: string;
-  jobId?: string;
-  job_id?: string;
-  status?: string;
-  createTime?: string;
-}
 
 const router = useRouter();
 
@@ -47,31 +17,34 @@ const isAnalyzing = ref(false);
 const jobId = ref<string | null>(null);
 const errorMessage = ref<string>('');
 
-const recognitionResult = ref<StarrySkyResult | null>(null); 
+const recognitionResult = ref<IdentifyStarsJobResult | null>(null);
 const pollingTimer = ref<ReturnType<typeof setInterval> | null>(null);
 
-const historyList = ref<HistoryJob[]>([]);
+const historyList = ref<IdentifyStarsJob[]>([]);
 const isFetchingHistory = ref(false);
 
-const recognitionImageKey = computed(() => recognitionResult.value?.imageKey ?? '');
-const previewImageSrc = computed(() => imagePreview.value || getImageUrl(recognitionImageKey.value));
+const recognitionImageKey = computed(() => recognitionResult.value?.oriImageUrl ?? '');
+const previewImageSrc = computed(() => imagePreview.value || recognitionImageKey.value);
 const shouldShowPreviewImage = computed(() => !recognitionResult.value && Boolean(previewImageSrc.value));
 
 // 🌟 新增：用于在图片上绘制星星的 Canvas 引用
 const resultCanvasRef = ref<HTMLCanvasElement | null>(null);
+
+// 🌟 标记开关：控制是否显示绘制标记
+const showMarkers = ref(true);
+
+// 🌟 选中的星星索引（null 表示未选中任何星星）
+const selectedStarIndex = ref<number | null>(null);
+
+// 🌟 星星列表容器 ref，用于自动滚动
+const starsListRef = ref<HTMLElement | null>(null);
+const starItemRefs = ref<HTMLElement[]>([]);
 
 const stopPolling = () => {
   if (pollingTimer.value) {
     clearInterval(pollingTimer.value);
     pollingTimer.value = null;
   }
-};
-
-const getImageUrl = (key?: string) => {
-  if (!key) return '';
-  if (key.startsWith('http')) return key;
-  const cleanKey = key.startsWith('/') ? key.substring(1) : key;
-  return `https://starroll.ie/api/file/${cleanKey}`; 
 };
 
 // 🌟 核心绘图引擎：在图片上绘制标记
@@ -83,11 +56,10 @@ const drawStarsOnCanvas = () => {
   if (!ctx) return;
 
   // 决定图片来源（本地预览 或 云端历史图片）
-  const imgSrc = imagePreview.value || getImageUrl(recognitionResult.value.imageKey);
+  const imgSrc = imagePreview.value || recognitionResult.value.oriImageUrl;
   if (!imgSrc) return;
 
   const img = new Image();
-  img.crossOrigin = "Anonymous"; // 允许跨域图片绘制
   img.onload = () => {
     // 1. 将画布尺寸严格对齐图片的原始像素尺寸
     canvas.width = img.width;
@@ -96,55 +68,121 @@ const drawStarsOnCanvas = () => {
     // 2. 绘制原始底图
     ctx.drawImage(img, 0, 0);
 
-    // 3. 遍历星星数据，绘制瞄准圈和文字
+    // 3. 若标记开关关闭，仅显示原图
+    if (!showMarkers.value) return;
+
+    // 4. 遍历星星数据，绘制瞄准圈和文字
     const stars = recognitionResult.value?.identifiedStars || [];
-    stars.forEach(star => {
+    const hasSelection = selectedStarIndex.value !== null;
+
+    stars.forEach((star, index) => {
       // 必须有有效的 x, y 坐标才绘制
       if (star.pixelX == null || star.pixelY == null) return;
 
       const x = star.pixelX;
       const y = star.pixelY;
+      const isSelected = selectedStarIndex.value === index;
+      const isDimmed = hasSelection && !isSelected;
 
-      // 绘制绿色锁定外圈
+      // 根据状态设置颜色和尺寸
+      const color = isDimmed ? 'rgba(46, 204, 113, 0.12)' : '#2ecc71';
+      const outerRadius = isSelected ? 26 : 20;
+      const lineWidth = isSelected ? 4 : (isDimmed ? 1.5 : 2.5);
+
+      // 选中状态绘制双圈
+      if (isSelected) {
+        ctx.beginPath();
+        ctx.arc(x, y, 36, 0, 2 * Math.PI);
+        ctx.strokeStyle = 'rgba(46, 204, 113, 0.4)';
+        ctx.lineWidth = 1.5;
+        ctx.setLineDash([4, 4]);
+        ctx.stroke();
+        ctx.setLineDash([]);
+      }
+
+      // 绘制锁定外圈
       ctx.beginPath();
-      ctx.arc(x, y, 20, 0, 2 * Math.PI);
-      ctx.strokeStyle = '#2ecc71';
-      ctx.lineWidth = 3;
+      ctx.arc(x, y, outerRadius, 0, 2 * Math.PI);
+      ctx.strokeStyle = color;
+      ctx.lineWidth = lineWidth;
       ctx.stroke();
-
-      // 绘制中心准星点
-      ctx.beginPath();
-      ctx.arc(x, y, 3, 0, 2 * Math.PI);
-      ctx.fillStyle = '#2ecc71';
-      ctx.fill();
 
       // 获取最好的显示名称
       let label = 'Unknown';
       if (star.names && star.names.length > 0) {
-        label = Array.isArray(star.names) ? star.names[0] : star.names;
+        label = star.names[0];
       } else if (star.hIP) {
         label = `HIP ${star.hIP}`;
       }
 
-      // 绘制文字阴影以增强背景对比度
-      ctx.font = '24px monospace';
-      ctx.fillStyle = '#2ecc71';
-      ctx.shadowColor = 'black';
-      ctx.shadowBlur = 6;
-      ctx.fillText(label, x + 25, y - 10);
-      
-      // 恢复阴影设置
+      // 绘制文字
+      ctx.font = isSelected ? 'bold 26px monospace' : '22px monospace';
+      ctx.fillStyle = color;
+      ctx.shadowColor = isDimmed ? 'transparent' : 'black';
+      ctx.shadowBlur = isDimmed ? 0 : 6;
+      ctx.fillText(label, x + outerRadius + 6, y - 8);
       ctx.shadowBlur = 0;
     });
   };
   img.src = imgSrc;
 };
 
+// 🌟 Canvas 点击处理：检测点击位置最近的星星
+const handleCanvasClick = (event: MouseEvent) => {
+  if (!recognitionResult.value || !resultCanvasRef.value || !showMarkers.value) return;
+
+  const canvas = resultCanvasRef.value;
+  const rect = canvas.getBoundingClientRect();
+  // 将屏幕坐标映射回 Canvas 原始像素坐标
+  const scaleX = canvas.width / rect.width;
+  const scaleY = canvas.height / rect.height;
+  const clickX = (event.clientX - rect.left) * scaleX;
+  const clickY = (event.clientY - rect.top) * scaleY;
+
+  const stars = recognitionResult.value.identifiedStars || [];
+  let closestIndex: number | null = null;
+  let closestDist = Infinity;
+  const HIT_RADIUS = 40; // 点击容忍半径（原始像素）
+
+  stars.forEach((star, index) => {
+    if (star.pixelX == null || star.pixelY == null) return;
+    const dx = clickX - star.pixelX;
+    const dy = clickY - star.pixelY;
+    const dist = Math.sqrt(dx * dx + dy * dy);
+    if (dist <= HIT_RADIUS && dist < closestDist) {
+      closestDist = dist;
+      closestIndex = index;
+    }
+  });
+
+  // 再次点击同一颗星则取消选中
+  selectedStarIndex.value = closestIndex === selectedStarIndex.value ? null : closestIndex;
+};
+
 // 🌟 监听器：一旦识别结果被赋值，立刻触发 Canvas 绘图
 watch(recognitionResult, async (newVal) => {
   if (newVal && newVal.identifiedStars && newVal.identifiedStars.length > 0) {
+    selectedStarIndex.value = null; // 重置选中状态
+    starItemRefs.value = [];        // 清空列表 ref 缓存
     await nextTick(); // 等待 <canvas> 元素挂载到 DOM
     drawStarsOnCanvas();
+  }
+});
+
+// 🌟 监听标记开关：切换时立刻重绘
+watch(showMarkers, () => {
+  drawStarsOnCanvas();
+});
+
+// 🌟 监听选中星星：重绘 Canvas，并将列表滚到对应项
+watch(selectedStarIndex, async (newIndex) => {
+  drawStarsOnCanvas();
+  if (newIndex !== null) {
+    await nextTick();
+    const el = starItemRefs.value[newIndex];
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
   }
 });
 
@@ -156,7 +194,7 @@ const fetchHistoryJobs = async () => {
       paginationQuery: { limit: 20, offset: 0, order: 'desc' }
     });
     const responseData = await rawResponse.raw.clone().json();
-    historyList.value = responseData.identify_stars_jobs_list || responseData.identifyStarsJobsList || [];
+    historyList.value = responseData.identifyStarsJobsList || [];
   } catch (error) {
     console.error('Failed to fetch history:', error);
   } finally {
@@ -174,17 +212,11 @@ onUnmounted(() => {
 
 const fetchJobDetailsData = async (currentJobId: string) => {
   try {
-    const token = localStorage.getItem('token') || '';
-
-    const rawResponse = await defaultApi.apiGetIdentifyStarsJobResultPostRaw({
+    const jobResult = await defaultApi.apiGetIdentifyStarsJobResultPost({
       apiGetIdentifyStarsJobResultPostRequest: {
         jobID: currentJobId
       }
     });
-
-    const responseData = await rawResponse.raw.clone().json();
-    const jobList = responseData.identifyStarsJobsList || responseData.identify_stars_jobs_list || [];
-    const jobResult = jobList.length > 0 ? (jobList[0] as StarrySkyResult) : null;
 
     if (jobResult) {
       isAnalyzing.value = false;
@@ -204,8 +236,8 @@ const pollJobStatusViaHistory = async () => {
   await fetchHistoryJobs();
   if (!jobId.value) return;
 
-  const currentJob = historyList.value.find(j => 
-    String(j.jobID || j.jobId || j.job_id) === String(jobId.value)
+  const currentJob = historyList.value.find(j =>
+    String(j.jobID) === String(jobId.value)
   );
 
   if (currentJob) {
@@ -224,10 +256,10 @@ const pollJobStatusViaHistory = async () => {
   }
 };
 
-const handleHistoryClick = (job: HistoryJob) => {
+const handleHistoryClick = (job: IdentifyStarsJob) => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 
-  const rawId = job.jobID || job.jobId || job.job_id;
+  const rawId = job.jobID;
   if (!rawId) return;
   const id = String(rawId);
   const s = (job.status || '').toUpperCase();
@@ -237,6 +269,8 @@ const handleHistoryClick = (job: HistoryJob) => {
   base64Data.value = '';
   recognitionResult.value = null;
   errorMessage.value = '';
+  selectedStarIndex.value = null;
+  starItemRefs.value = [];
 
   if (s === 'SUCCESS' || s === 'COMPLETED' || s === 'SUCCEEDED') {
     jobId.value = id;
@@ -315,6 +349,8 @@ const resetUploader = () => {
   recognitionResult.value = null;
   errorMessage.value = '';
   isAnalyzing.value = false;
+  selectedStarIndex.value = null;
+  starItemRefs.value = [];
   if (fileInputRef.value) fileInputRef.value.value = '';
 };
 
@@ -323,6 +359,11 @@ const formatDate = (dateString?: string) => {
   return new Date(dateString).toLocaleString(undefined, {
     month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit'
   });
+};
+
+const navigateToAR = (hip: number) => {
+  const base = import.meta.env.BASE_URL?.replace(/\/$/, '') ?? '';
+  window.location.href = `${base}/?find_hip=${hip}`;
 };
 </script>
 
@@ -355,8 +396,29 @@ const formatDate = (dateString?: string) => {
           <div v-else class="preview-section">
             
             <div v-if="imagePreview || recognitionResult" class="image-wrapper glass-panel" :class="{ 'has-result': recognitionResult }">
-              
-              <canvas v-show="recognitionResult" ref="resultCanvasRef" class="preview-img result-img"></canvas>
+
+              <!-- 标记开关浮层 -->
+              <div v-if="recognitionResult" class="canvas-controls">
+                <button
+                  class="marker-toggle-btn"
+                  :class="{ active: showMarkers }"
+                  @click.stop="showMarkers = !showMarkers"
+                  :title="showMarkers ? 'Hide markers' : 'Show markers'"
+                >
+                  <svg viewBox="0 0 24 24" width="14" height="14">
+                    <path fill="currentColor" d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
+                  </svg>
+                  {{ showMarkers ? 'Markers ON' : 'Markers OFF' }}
+                </button>
+              </div>
+
+              <canvas
+                v-show="recognitionResult"
+                ref="resultCanvasRef"
+                class="preview-img result-img"
+                :style="{ cursor: showMarkers && recognitionResult ? 'crosshair' : 'default' }"
+                @click="handleCanvasClick"
+              ></canvas>
               
                   <img v-show="shouldShowPreviewImage" 
                     :src="previewImageSrc" 
@@ -382,12 +444,19 @@ const formatDate = (dateString?: string) => {
                 </p>
               </div>
               
-              <div v-if="recognitionResult.identifiedStars?.length" class="stars-list sr-scroll">
-                <div v-for="(star, index) in recognitionResult.identifiedStars" :key="index" class="star-item">
+              <div v-if="recognitionResult.identifiedStars?.length" class="stars-list sr-scroll" ref="starsListRef">
+                <div
+                  v-for="(star, index) in recognitionResult.identifiedStars"
+                  :key="index"
+                  class="star-item"
+                  :class="{ 'star-item-selected': selectedStarIndex === index }"
+                  :ref="(el: any) => { if (el) starItemRefs[index] = el as HTMLElement }"
+                  @click="selectedStarIndex = selectedStarIndex === index ? null : index"
+                >
                   <div class="star-icon">✨</div>
                   <div class="star-info">
                     <span class="star-name">
-                      {{ star.names ? (Array.isArray(star.names) ? star.names.join(' / ') : star.names) : 'Unnamed Star' }}
+                      {{ star.names?.length ? star.names.join(' / ') : 'Unnamed Star' }}
                     </span>
                     <span class="star-details" v-if="star.hIP || star.vmag">
                       <span v-if="star.hIP">HIP: {{ star.hIP }}</span>
@@ -395,6 +464,12 @@ const formatDate = (dateString?: string) => {
                       <span v-if="star.vmag">Mag: {{ star.vmag }}</span>
                     </span>
                   </div>
+                  <button v-if="star.hIP" class="find-ar-btn-inline" @click.stop="navigateToAR(star.hIP)">
+                    <svg viewBox="0 0 24 24" width="12" height="12">
+                      <path fill="currentColor" d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
+                    </svg>
+                    Find in AR
+                  </button>
                 </div>
               </div>
               <p v-else class="no-stars-found">No specific stars were clearly identified in this image.</p>
@@ -405,7 +480,7 @@ const formatDate = (dateString?: string) => {
             <div class="action-group">
               <template v-if="!jobId && !recognitionResult && !errorMessage">
                 <button class="sr-glass-btn secondary-btn" @click="resetUploader" :disabled="isAnalyzing">Reselect</button>
-                <button class="sr-glass-btn primary-btn" @click="startAnalysis" :disabled="isAnalyzing">Start Starry Sky Analysis</button>
+                <button class="sr-glass-btn primary-btn" @click="startAnalysis" :disabled="isAnalyzing">Start</button>
               </template>
               
               <template v-else-if="isAnalyzing && !recognitionResult">
@@ -430,7 +505,7 @@ const formatDate = (dateString?: string) => {
 
         <div class="history-section glass-panel">
           <div class="history-header">
-            <h3>History Logs</h3>
+            <h3>History</h3>
             <button class="refresh-btn" @click="fetchHistoryJobs" :disabled="isFetchingHistory">
               <svg :class="{'rotating': isFetchingHistory}" viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
             </button>
@@ -443,13 +518,13 @@ const formatDate = (dateString?: string) => {
             
             <div 
               v-else 
-              v-for="job in historyList" 
-              :key="job.jobID || job.job_id" 
+              v-for="job in historyList"
+              :key="job.jobID"
               class="history-item clickable-item"
               @click="handleHistoryClick(job)"
             >
               <div class="history-info">
-                <div class="history-id">Task #{{ String(job.jobID || job.jobId || job.job_id || '').substring(0, 5) }}...</div>
+                <div class="history-id">Task #{{ String(job.jobID || '').substring(0, 5) }}...</div>
                 <div class="history-time">{{ formatDate(job.createTime) }}</div>
               </div>
               <div class="history-actions">
@@ -468,8 +543,6 @@ const formatDate = (dateString?: string) => {
 
       <input type="file" ref="fileInputRef" accept="image/*" style="display: none;" @change="handleImageSelected" />
     </div>
-
-    <BottomBar />
   </StarBackground>
 </template>
 
@@ -534,6 +607,9 @@ const formatDate = (dateString?: string) => {
 .star-name { font-size: 14px; font-weight: 500; color: white; }
 .star-details { font-size: 12px; color: rgba(255, 255, 255, 0.5); font-family: monospace; margin-top: 2px; }
 .no-stars-found { font-size: 14px; color: rgba(255, 255, 255, 0.5); text-align: center; padding: 10px 0; }
+.find-ar-btn-inline { flex-shrink: 0; display: flex; align-items: center; gap: 4px; padding: 5px 10px; border-radius: 8px; border: 1px solid rgba(88, 166, 255, 0.4); background: rgba(88, 166, 255, 0.1); color: var(--color-star-primary); font-size: 11px; font-weight: 600; font-family: inherit; cursor: pointer; transition: background 0.2s, transform 0.15s; white-space: nowrap; }
+.find-ar-btn-inline:hover { background: rgba(88, 166, 255, 0.25); transform: translateY(-1px); }
+.find-ar-btn-inline:active { transform: translateY(0); }
 
 .history-section { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 16px; display: flex; flex-direction: column; max-height: 600px; }
 .history-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 12px; margin-bottom: 12px; }
@@ -590,4 +666,47 @@ const formatDate = (dateString?: string) => {
 .error-text { color: var(--color-error, #ff4444); text-align: center; font-size: 14px; }
 .spinner-blue { width: 24px; height: 24px; border: 3px solid rgba(88, 166, 255, 0.2); border-top-color: var(--color-star-primary); border-radius: 50%; animation: spin 1s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
+
+/* ---- Canvas 控制浮层 ---- */
+.canvas-controls {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 10;
+  display: flex;
+  gap: 8px;
+}
+
+.marker-toggle-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.55);
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 11px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  transition: all 0.2s ease;
+}
+.marker-toggle-btn.active {
+  border-color: #2ecc71;
+  color: #2ecc71;
+  background: rgba(46, 204, 113, 0.15);
+}
+.marker-toggle-btn:hover { opacity: 0.9; transform: scale(1.03); }
+
+/* ---- 星星列表高亮 ---- */
+.star-item { cursor: pointer; transition: all 0.2s ease; }
+.star-item:hover { background: rgba(255, 255, 255, 0.08); }
+.star-item-selected {
+  background: rgba(46, 204, 113, 0.15) !important;
+  border-color: rgba(46, 204, 113, 0.5) !important;
+  box-shadow: 0 0 12px rgba(46, 204, 113, 0.2);
+}
+.star-item-selected .star-name { color: #2ecc71; }
 </style>

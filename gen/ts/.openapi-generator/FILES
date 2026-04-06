@@ -56,7 +56,6 @@ docs/ApiTriggerStarfieldRenderPostRequestCorrectedStarCoordinatesInner.md
 docs/ApiTriggerStarfieldRenderPostRequestRenderParams.md
 docs/ApiUserRegPostRequest.md
 docs/ApiUsernameVerifyPostRequest.md
-docs/ApiVerifyUserTokenPostRequest.md
 docs/Attitude.md
 docs/Blog.md
 docs/BlogID.md
@@ -146,7 +145,6 @@ models/ApiTriggerStarfieldRenderPostRequestCorrectedStarCoordinatesInner.ts
 models/ApiTriggerStarfieldRenderPostRequestRenderParams.ts
 models/ApiUserRegPostRequest.ts
 models/ApiUsernameVerifyPostRequest.ts
-models/ApiVerifyUserTokenPostRequest.ts
 models/Attitude.ts
 models/Blog.ts
 models/BlogID.ts
