@@ -1354,6 +1354,25 @@ paths:
                 $ref: "#/components/schemas/StarMessage"
           description: OK
 
+  /api/discoverStar:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                hip:
+                  type: integer
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CommonMessage"
+          description: OK
+
   /api/health:
     get:
       summary: "health check"

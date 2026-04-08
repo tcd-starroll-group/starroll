@@ -66,6 +66,8 @@ from openapi_server.models.star_message import StarMessage
 from openapi_server.models.common_id import CommonID
 from backend.console.handler.create_star_message import api_create_star_message_post
 from backend.console.handler.get_star_message import api_get_star_message_post
+from openapi_server.models.api_discover_star_post_request import ApiDiscoverStarPostRequest
+from backend.console.handler.discover_star import api_discover_star_post
 
 
 class StarrollApiImpl(BaseDefaultApi):
@@ -190,6 +192,12 @@ class StarrollApiImpl(BaseDefaultApi):
         common_id: CommonID,
     ) -> StarMessage:
         return await api_get_star_message_post_handler(common_id)
+
+    async def api_discover_star_post(
+        self,
+        api_discover_star_post_request: ApiDiscoverStarPostRequest,
+    ) -> CommonMessage:
+        return await api_discover_star_post(api_discover_star_post_request)
 
     async def api_health_get(self) -> None:
         return

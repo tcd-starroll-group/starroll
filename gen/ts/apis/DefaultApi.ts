@@ -26,6 +26,7 @@ import type {
   ApiCreateIdentifyStarsJobPost200Response,
   ApiCreateIdentifyStarsJobPostRequest,
   ApiDeleteCommentPostRequest,
+  ApiDiscoverStarPostRequest,
   ApiDisplayChatRoomGet200Response,
   ApiDisplaySaveSuccessPost200Response,
   ApiDisplaySaveSuccessPostRequest,
@@ -106,6 +107,8 @@ import {
     ApiCreateIdentifyStarsJobPostRequestToJSON,
     ApiDeleteCommentPostRequestFromJSON,
     ApiDeleteCommentPostRequestToJSON,
+    ApiDiscoverStarPostRequestFromJSON,
+    ApiDiscoverStarPostRequestToJSON,
     ApiDisplayChatRoomGet200ResponseFromJSON,
     ApiDisplayChatRoomGet200ResponseToJSON,
     ApiDisplaySaveSuccessPost200ResponseFromJSON,
@@ -258,6 +261,10 @@ export interface ApiDeleteCommentPostOperationRequest {
 
 export interface ApiDeleteUserPostRequest {
     userAuth: UserAuth;
+}
+
+export interface ApiDiscoverStarPostOperationRequest {
+    apiDiscoverStarPostRequest: ApiDiscoverStarPostRequest;
 }
 
 export interface ApiDisplaySaveSuccessPostOperationRequest {
@@ -807,6 +814,43 @@ export class DefaultApi extends runtime.BaseAPI {
      */
     async apiDeleteUserPost(requestParameters: ApiDeleteUserPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommonMessage> {
         const response = await this.apiDeleteUserPostRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     */
+    async apiDiscoverStarPostRaw(requestParameters: ApiDiscoverStarPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommonMessage>> {
+        if (requestParameters['apiDiscoverStarPostRequest'] == null) {
+            throw new runtime.RequiredError(
+                'apiDiscoverStarPostRequest',
+                'Required parameter "apiDiscoverStarPostRequest" was null or undefined when calling apiDiscoverStarPost().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/discoverStar`;
+
+        const response = await this.request({
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ApiDiscoverStarPostRequestToJSON(requestParameters['apiDiscoverStarPostRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CommonMessageFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async apiDiscoverStarPost(requestParameters: ApiDiscoverStarPostOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommonMessage> {
+        const response = await this.apiDiscoverStarPostRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

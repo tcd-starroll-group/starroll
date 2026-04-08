@@ -12,6 +12,7 @@ export * from './ApiCreateBlogPostRequest';
 export * from './ApiCreateIdentifyStarsJobPost200Response';
 export * from './ApiCreateIdentifyStarsJobPostRequest';
 export * from './ApiDeleteCommentPostRequest';
+export * from './ApiDiscoverStarPostRequest';
 export * from './ApiDisplayChatRoomGet200Response';
 export * from './ApiDisplayChatRoomGet200ResponseStyle';
 export * from './ApiDisplaySaveSuccessPost200Response';
