@@ -35,6 +35,7 @@ from openapi_server.models.api_create_blog_post_request import ApiCreateBlogPost
 from openapi_server.models.api_create_identify_stars_job_post200_response import ApiCreateIdentifyStarsJobPost200Response
 from openapi_server.models.api_create_identify_stars_job_post_request import ApiCreateIdentifyStarsJobPostRequest
 from openapi_server.models.api_delete_comment_post_request import ApiDeleteCommentPostRequest
+from openapi_server.models.api_discover_star_post_request import ApiDiscoverStarPostRequest
 from openapi_server.models.api_display_chat_room_get200_response import ApiDisplayChatRoomGet200Response
 from openapi_server.models.api_display_save_success_post200_response import ApiDisplaySaveSuccessPost200Response
 from openapi_server.models.api_display_save_success_post_request import ApiDisplaySaveSuccessPostRequest
@@ -980,6 +981,22 @@ async def api_get_star_message_post(
     if not BaseDefaultApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")
     return await BaseDefaultApi.subclasses[0]().api_get_star_message_post(common_id)
+
+
+@router.post(
+    "/api/discoverStar",
+    responses={
+        200: {"model": CommonMessage, "description": "OK"},
+    },
+    tags=["default"],
+    response_model_by_alias=True,
+)
+async def api_discover_star_post(
+    api_discover_star_post_request: ApiDiscoverStarPostRequest = Body(None, description=""),
+) -> CommonMessage:
+    if not BaseDefaultApi.subclasses:
+        raise HTTPException(status_code=500, detail="Not implemented")
+    return await BaseDefaultApi.subclasses[0]().api_discover_star_post(api_discover_star_post_request)
 
 
 @router.get(

@@ -14,6 +14,7 @@ from openapi_server.models.api_create_blog_post_request import ApiCreateBlogPost
 from openapi_server.models.api_create_identify_stars_job_post200_response import ApiCreateIdentifyStarsJobPost200Response
 from openapi_server.models.api_create_identify_stars_job_post_request import ApiCreateIdentifyStarsJobPostRequest
 from openapi_server.models.api_delete_comment_post_request import ApiDeleteCommentPostRequest
+from openapi_server.models.api_discover_star_post_request import ApiDiscoverStarPostRequest
 from openapi_server.models.api_display_chat_room_get200_response import ApiDisplayChatRoomGet200Response
 from openapi_server.models.api_display_save_success_post200_response import ApiDisplaySaveSuccessPost200Response
 from openapi_server.models.api_display_save_success_post_request import ApiDisplaySaveSuccessPostRequest
@@ -439,6 +440,13 @@ class BaseDefaultApi:
         self,
         common_id: CommonID,
     ) -> StarMessage:
+        ...
+
+
+    async def api_discover_star_post(
+        self,
+        api_discover_star_post_request: ApiDiscoverStarPostRequest,
+    ) -> CommonMessage:
         ...
 
 

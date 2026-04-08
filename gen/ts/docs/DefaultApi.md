@@ -15,6 +15,7 @@ All URIs are relative to *http://localhost*
 | [**apiDeleteBlogPost**](DefaultApi.md#apideleteblogpost) | **POST** /api/deleteBlog | Delete a blog |
 | [**apiDeleteCommentPost**](DefaultApi.md#apideletecommentpostoperation) | **POST** /api/deleteComment | Delete a comment |
 | [**apiDeleteUserPost**](DefaultApi.md#apideleteuserpost) | **POST** /api/deleteUser | 注销账号 |
+| [**apiDiscoverStarPost**](DefaultApi.md#apidiscoverstarpostoperation) | **POST** /api/discoverStar |  |
 | [**apiDisplayChatRoomGet**](DefaultApi.md#apidisplaychatroomget) | **GET** /api/displayChatRoom | Display chat room entry button in GUI |
 | [**apiDisplaySaveSuccessPost**](DefaultApi.md#apidisplaysavesuccesspostoperation) | **POST** /api/displaySaveSuccess | Display save success confirmation |
 | [**apiDisplayStarDetailsPost**](DefaultApi.md#apidisplaystardetailspostoperation) | **POST** /api/displayStarDetails | Display star details |
@@ -767,6 +768,71 @@ No authorization required
 | **200** | Deletion successful |  -  |
 | **401** | Password incorrect |  -  |
 | **404** | User not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## apiDiscoverStarPost
+
+> CommonMessage apiDiscoverStarPost(apiDiscoverStarPostRequest)
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  DefaultApi,
+} from '';
+import type { ApiDiscoverStarPostOperationRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new DefaultApi();
+
+  const body = {
+    // ApiDiscoverStarPostRequest
+    apiDiscoverStarPostRequest: ...,
+  } satisfies ApiDiscoverStarPostOperationRequest;
+
+  try {
+    const data = await api.apiDiscoverStarPost(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **apiDiscoverStarPostRequest** | [ApiDiscoverStarPostRequest](ApiDiscoverStarPostRequest.md) |  | |
+
+### Return type
+
+[**CommonMessage**](CommonMessage.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 

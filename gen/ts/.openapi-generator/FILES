@@ -12,6 +12,7 @@ docs/ApiCreateBlogPostRequest.md
 docs/ApiCreateIdentifyStarsJobPost200Response.md
 docs/ApiCreateIdentifyStarsJobPostRequest.md
 docs/ApiDeleteCommentPostRequest.md
+docs/ApiDiscoverStarPostRequest.md
 docs/ApiDisplayChatRoomGet200Response.md
 docs/ApiDisplayChatRoomGet200ResponseStyle.md
 docs/ApiDisplaySaveSuccessPost200Response.md
@@ -101,6 +102,7 @@ models/ApiCreateBlogPostRequest.ts
 models/ApiCreateIdentifyStarsJobPost200Response.ts
 models/ApiCreateIdentifyStarsJobPostRequest.ts
 models/ApiDeleteCommentPostRequest.ts
+models/ApiDiscoverStarPostRequest.ts
 models/ApiDisplayChatRoomGet200Response.ts
 models/ApiDisplayChatRoomGet200ResponseStyle.ts
 models/ApiDisplaySaveSuccessPost200Response.ts

@@ -887,6 +887,21 @@ paths:
               schema:
                 $ref: "#/components/schemas/StarMessage"
           description: OK
+  /api/discoverStar:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/_api_discoverStar_post_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CommonMessage"
+          description: OK
   /api/health:
     get:
       responses:
@@ -2419,6 +2434,13 @@ components:
             type: string
         type: object
       title: _api_reportBlog_post_request
+    _api_discoverStar_post_request:
+      properties:
+        hip:
+          title: hip
+          type: integer
+      title: _api_discoverStar_post_request
+      type: object
     IdentifyStarsJobResult_identifiedStars_inner:
       example:
         names:

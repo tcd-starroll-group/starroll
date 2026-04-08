@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { StarClickInfo } from '@/core/renderer/GroundObserverRenderer';
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
 import { defaultApi } from '@/api/defaultApi';
 
@@ -20,6 +20,17 @@ const emit = defineEmits<{
 }>();
 
 const router = useRouter();
+
+watch(() => props.starInfo, async (newInfo) => {
+    if (!newInfo?.hip) return;
+    if (!localStorage.getItem('token')) return; // not logged in, do nothing
+    try {
+        await defaultApi.apiDiscoverStarPost({ apiDiscoverStarPostRequest: { hip: newInfo.hip } });
+    } catch (e) {
+        console.warn('Failed to record star discovery:', e);
+    }
+});
+
 const showCreateMessageModal = ref(false);
 const messageFrom = ref('');
 const messageContent = ref('');
