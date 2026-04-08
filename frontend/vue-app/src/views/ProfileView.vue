@@ -127,6 +127,17 @@ onMounted(async () => {
   } catch (err) {
     console.error("Could not fetch persisted profile:", err)
   }
+
+  try {
+    const statsResponse = await defaultApi.apiGetProfileStatsPost({ body: {} })
+    pilot.stats.starsDiscovered = statsResponse.starsDiscovered ?? 0
+    pilot.stats.totalScans = statsResponse.totalScans ?? 0
+    pilot.stats.rank = statsResponse.rank ?? '---'
+    pilot.stats.joinDate = statsResponse.joinDate ?? ''
+    console.log("Profile stats loaded:", pilot.stats)
+  } catch (err) {
+    console.error("Failed to load profile stats:", err)
+  }
 })
 
 const router = useRouter()
