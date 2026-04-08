@@ -5,13 +5,8 @@ import StarBackground from '@/components/StarBackground.vue'
 import BaseButton from '@/components/BaseButton.vue'
 import { defaultApi } from '@/api/defaultApi'
 
-<<<<<<< HEAD
-// 1. TypeScript Interfaces for the Pilot
-interface UserStats {
-=======
 // 1. TypeScript Interfaces
 interface PilotStats {
->>>>>>> bb4e51d (wip)
   starsDiscovered: number;
   totalScans: number;
   rank: string;
@@ -25,27 +20,22 @@ interface Discovery {
   date: string;
 }
 
-<<<<<<< HEAD
-// 2. Mock Data (This would eventually come from your Pinia store or API)
-const user = reactive({
-  name: 'Loading...',
-  email: '',
-=======
 // 2. Reactive State
 const newAvatarUrl = ref('')
 const pilot = reactive({
   name: localStorage.getItem('username') || 'Pilot Loading...',
-  email: '', // Added email tracking
->>>>>>> bb4e51d (wip)
+  email: '', 
   avatar: '',
   stats: {
     starsDiscovered: 0,
     totalScans: 0,
     rank: '---',
-    joinDate: ''
-  } as UserStats,
+    joinDate: '---'
+  } as PilotStats,
   recentDiscoveries: [] as Discovery[]
 })
+
+
 
 // 3. Logic Functions (Unified Save)
 const saveProfileChanges = async () => {
@@ -67,27 +57,6 @@ const saveProfileChanges = async () => {
         }
       }
     })
-<<<<<<< HEAD
-    pilot.name = userResponse.username || 'Unknown Pilot'
-
-    // 2. Get Profile Stats (Rank/Scans/Discoveries)
-    // The middleware automatically adds the token header, so we just pass an empty object {}
-    const statsResponse = await defaultApi.apiGetProfileStatsPost({
-      profileStatsRequest: {} 
-    })
-    
-    // Update the UI
-    pilot.stats = {
-      starsDiscovered: statsResponse.starsDiscovered || 0,
-      totalScans: statsResponse.totalScans || 0,
-      rank: statsResponse.rank || 'Novice',
-      joinDate: statsResponse.joinDate || '---'
-    }
-
-    console.log("Telemetry Sync Complete!")
-  } catch (err) {
-    console.error("Link Failure: Could not sync pilot profile.", err);
-=======
     
     // Update local UI
     pilot.avatar = avatarToSave
@@ -103,7 +72,6 @@ const saveProfileChanges = async () => {
   } catch (err) {
     console.error("Database sync failed:", err)
     alert("Failed to save to database. Check if your session is still valid.")
->>>>>>> bb4e51d (wip)
   }
 }
 
@@ -111,6 +79,12 @@ onMounted(async () => {
   const token = localStorage.getItem('token') || ''
   const username = localStorage.getItem('username') || 'Pilot'
   
+  if (!token) {
+    console.warn("No token found. Please log in.")
+    
+    return
+  }
+
   // PRE-LOAD from localStorage for instant UI
   pilot.name = username
   pilot.email = localStorage.getItem('pilot_email') || ''
@@ -118,25 +92,38 @@ onMounted(async () => {
                  `https://api.dicebear.com/7.x/avataaars/svg?seed=${username}`
 
   try {
-    // Fetch persisted data from the Backend
-    const statsResponse = await defaultApi.apiGetProfileStatsPost({ body: {} }) as any
     
-    if (statsResponse.profile) {
-      // Sync Avatar
-      if (statsResponse.profile.avatar) {
+    const statsResponse = await defaultApi.apiGetProfileStatsPost({ 
+      body: {} 
+    }) as any
+    console.log("Data from backend:", statsResponse);
+    const jobsResponse = await defaultApi.apiListIdentifyStarsJobsPost({
+      paginationQuery: { 
+        limit: 1, 
+        offset: 0 
+      }
+    });
+
+
+    if (statsResponse) {
+      // Sync Avatar from the nested JSON profile block
+      if (statsResponse.profile && statsResponse.profile.avatar) {
         pilot.avatar = statsResponse.profile.avatar
         localStorage.setItem('pilot_avatar', statsResponse.profile.avatar)
       }
-      // Sync Email (if backend returns it inside the profile JSON)
-      if (statsResponse.profile.email) {
-        pilot.email = statsResponse.profile.email
-        localStorage.setItem('pilot_email', statsResponse.profile.email)
+      // Sync Email from the explicit root field
+      if (statsResponse.email) {
+        pilot.email = statsResponse.email
+        localStorage.setItem('pilot_email', statsResponse.email)
       }
     }
     
+    pilot.stats.totalScans = jobsResponse.total ?? 0;
     pilot.stats.starsDiscovered = statsResponse.starsDiscovered ?? 0
-    pilot.stats.totalScans = statsResponse.totalScans ?? 0
     pilot.stats.rank = statsResponse.rank ?? '---'
+    pilot.stats.joinDate = statsResponse.joinDate ?? '---'
+    
+    console.log("Telemetry Sync Complete!")
   } catch (err) {
     console.error("Could not fetch persisted profile:", err)
   }
@@ -161,11 +148,6 @@ const goToDetails = () => {
     <div class="profile-container">
       
       <section class="profile-header glass-panel">
-<<<<<<< HEAD
-        <div class="avatar-wrapper">
-          <img :src="user.avatar" alt="Pilot Avatar" class="avatar" />
-          <div class="status-indicator"></div>
-=======
         
         <div class="avatar-section">
           <div class="avatar-wrapper">
@@ -180,25 +162,14 @@ const goToDetails = () => {
               class="url-input"
             />
           </div>
->>>>>>> bb4e51d (wip)
         </div>
 
         <div class="pilot-info">
-<<<<<<< HEAD
-          <h1 class="pilot-name">{{ user.name }}</h1>
-          <p class="pilot-rank">{{ user.stats.rank }}</p>
-=======
           <h1 class="pilot-name">{{ pilot.name }}</h1>
           
-          <input 
-            v-model="pilot.email" 
-            placeholder="pilot@starroll.com" 
-            class="email-input"
-            type="email"
-          />
+          <p class="pilot-email">{{ pilot.email || 'pilot@starroll.com' }}</p>
 
-          <p class="pilot-rank">{{ pilot.stats.rank }}</p>
->>>>>>> bb4e51d (wip)
+          <p class="pilot-rank">{{ pilot.stats.rank }} • Joined {{ pilot.stats.joinDate }}</p>
           <div class="badge-row">
             <span class="badge">Fleet Member</span>
             <span class="badge">Vanguard</span>
@@ -221,11 +192,11 @@ const goToDetails = () => {
       <div class="stats-grid">
         <div class="stat-card glass-panel">
           <span class="stat-label">Stars Discovered</span>
-          <span class="stat-value">{{ user.stats.starsDiscovered }}</span>
+          <span class="stat-value">{{ pilot.stats.starsDiscovered }}</span>
         </div>
         <div class="stat-card glass-panel">
           <span class="stat-label">Total Scans</span>
-          <span class="stat-value">{{ user.stats.totalScans }}</span>
+          <span class="stat-value">{{ pilot.stats.totalScans }}</span>
         </div>
         <div class="stat-card glass-panel">
           <span class="stat-label">Stellar Rank</span>
@@ -236,7 +207,7 @@ const goToDetails = () => {
       <section class="discoveries-section glass-panel">
         <h2 class="section-title">Recent Transmissions</h2>
         <div class="discovery-list">
-          <div v-for="item in user.recentDiscoveries" :key="item.id" class="discovery-item">
+          <div v-for="item in pilot.recentDiscoveries" :key="item.id" class="discovery-item">
             <div class="discovery-info">
               <span class="discovery-name">{{ item.name }}</span>
               <span class="discovery-type">{{ item.type }}</span>

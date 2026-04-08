@@ -1501,7 +1501,10 @@ components:
         starsDiscovered: 0
         totalScans: 6
         joinDate: joinDate
+        profile:
+          key: ""
         rank: rank
+        email: email
       properties:
         starsDiscovered:
           description: Count of stars found
@@ -1519,6 +1522,15 @@ components:
           description: Formatted string of the user's registration date
           title: joinDate
           type: string
+        email:
+          description: The user's explicit email address
+          title: email
+          type: string
+        profile:
+          additionalProperties: true
+          description: User profile data including avatar URL
+          title: profile
+          type: object
       title: ProfileStatsResponse
       type: object
     StarMessage:

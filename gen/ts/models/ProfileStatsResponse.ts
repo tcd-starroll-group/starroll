@@ -43,6 +43,18 @@ export interface ProfileStatsResponse {
      * @memberof ProfileStatsResponse
      */
     joinDate?: string;
+    /**
+     * The user's explicit email address
+     * @type {string}
+     * @memberof ProfileStatsResponse
+     */
+    email?: string;
+    /**
+     * User profile data including avatar URL
+     * @type {{ [key: string]: any; }}
+     * @memberof ProfileStatsResponse
+     */
+    profile?: { [key: string]: any; };
 }
 
 /**
@@ -66,6 +78,8 @@ export function ProfileStatsResponseFromJSONTyped(json: any, ignoreDiscriminator
         'totalScans': json['totalScans'] == null ? undefined : json['totalScans'],
         'rank': json['rank'] == null ? undefined : json['rank'],
         'joinDate': json['joinDate'] == null ? undefined : json['joinDate'],
+        'email': json['email'] == null ? undefined : json['email'],
+        'profile': json['profile'] == null ? undefined : json['profile'],
     };
 }
 
@@ -84,6 +98,8 @@ export function ProfileStatsResponseToJSONTyped(value?: ProfileStatsResponse | n
         'totalScans': value['totalScans'],
         'rank': value['rank'],
         'joinDate': value['joinDate'],
+        'email': value['email'],
+        'profile': value['profile'],
     };
 }
 

@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from sqlalchemy import Boolean, DateTime,  Column, Integer, String
+from sqlalchemy import Boolean, DateTime, Column, Integer, String
 from sqlalchemy.orm import declarative_base, Session
 from sqlalchemy import JSON  # 或 from sqlalchemy.types import JSON
 from sqlalchemy.exc import SQLAlchemyError
@@ -14,9 +14,13 @@ class User(Base):
     __tablename__ = "user"
 
     id = Column(Integer, primary_key=True, autoincrement=True)
-    username = Column(String(50), unique=True, nullable=False)
-    password = Column(String(255), nullable=False)
-    email = Column(String(100), unique=True, nullable=True)
+    username = Column(String(64), unique=True, nullable=False)
+    password = Column(String(128), nullable=False)
+    email = Column(String(128), unique=True, nullable=False)
+    
+    # NEW: Added avatar_url to match the SQL table
+    avatar_url = Column(String(512), default='', comment='User avatar URL')
+    
     last_gps = Column(JSON, nullable=True, default=None,
                       comment='User last GPS location')
     profile = Column(JSON, nullable=True, default=None,

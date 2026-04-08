@@ -10,6 +10,8 @@ Name | Type
 `totalScans` | number
 `rank` | string
 `joinDate` | string
+`email` | string
+`profile` | { [key: string]: any; }
 
 ## Example
 
@@ -22,6 +24,8 @@ const example = {
   "totalScans": null,
   "rank": null,
   "joinDate": null,
+  "email": null,
+  "profile": null,
 } satisfies ProfileStatsResponse
 
 console.log(example)

@@ -35,7 +35,9 @@ class ProfileStatsResponse(BaseModel):
     total_scans: Optional[StrictInt] = Field(default=None, description="Total count of all scan entries for the user", alias="totalScans")
     rank: Optional[StrictStr] = Field(default=None, description="Calculated title based on discoveries")
     join_date: Optional[StrictStr] = Field(default=None, description="Formatted string of the user's registration date", alias="joinDate")
-    __properties: ClassVar[List[str]] = ["starsDiscovered", "totalScans", "rank", "joinDate"]
+    email: Optional[StrictStr] = Field(default=None, description="The user's explicit email address")
+    profile: Optional[Dict[str, Any]] = Field(default=None, description="User profile data including avatar URL")
+    __properties: ClassVar[List[str]] = ["starsDiscovered", "totalScans", "rank", "joinDate", "email", "profile"]
 
     model_config = {
         "populate_by_name": True,
@@ -89,7 +91,9 @@ class ProfileStatsResponse(BaseModel):
             "starsDiscovered": obj.get("starsDiscovered"),
             "totalScans": obj.get("totalScans"),
             "rank": obj.get("rank"),
-            "joinDate": obj.get("joinDate")
+            "joinDate": obj.get("joinDate"),
+            "email": obj.get("email"),
+            "profile": obj.get("profile")
         })
         return _obj
 

@@ -15,29 +15,44 @@ async def api_edit_profile_post(profile_and_token: ProfileAndToken):
     valid_payload, is_valid = verify_access_token(valid_token)
     
     if is_valid:
-        print(f"有效 Payload: {valid_payload}")
+        print(f"Payload Valid: {valid_payload}")
     else:
-        print("Token 无效")
         raise HTTPException(status_code=401, detail="token invalid")
 
     with db_context() as db:
-        # 1. Query user securely using the token's payload, not the request body
+        # 1. Query user securely
         token_username = valid_payload.get("sub")
-        
-        user_by_name = db.query(User).filter(
-            User.username == token_username).first()
-            
+        user_by_name = db.query(User).filter(User.username == token_username).first()
         user = User.get_by_id(db, user_by_name.id) if user_by_name else None
         
         if not user:
             raise HTTPException(status_code=404, detail="User not found")
 
-        # 2. Prevent JSON overwrite by merging the old profile with the new data
-        current_profile = user.profile or {}
-        new_data = profile_and_token.profile or {}
-        updated_profile = {**current_profile, **new_data}
+        # 2. BULLETPROOF EXTRACTION: Convert the incoming profile payload to a real dictionary
+        raw_profile = profile_and_token.profile or {}
+        if isinstance(raw_profile, dict):
+            new_data = dict(raw_profile)
+        elif hasattr(raw_profile, "to_dict"):
+            new_data = raw_profile.to_dict()
+        elif hasattr(raw_profile, "dict"):
+            new_data = raw_profile.dict(exclude_unset=True)
+        else:
+            new_data = vars(raw_profile) if hasattr(raw_profile, "__dict__") else {}
 
-        # 3. Save the merged profile
+        # 3. Save Email to the explicit column and remove it from the dict
+        if "email" in new_data:
+            user.email = new_data.pop("email")
+
+        # 4. Save Avatar to the explicit column and remove it from the dict
+        if "avatar" in new_data:
+            user.avatar_url = new_data.pop("avatar")
+
+        # 5. Merge remaining data. Using dict() prevents SQLAlchemy JSON mutation bugs
+        current_profile = dict(user.profile) if user.profile else {}
+        updated_profile = {**current_profile, **new_data}
+        
+        # Save the JSON and commit the explicit column changes
         User.edit_profile(db, user.id, updated_profile)
+        db.commit()
 
         return {"message": "profile updated successfully"}
