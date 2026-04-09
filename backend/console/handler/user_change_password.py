@@ -1,16 +1,14 @@
 import hashlib
 from fastapi import HTTPException
 from openapi_server.models.change_password_request import ChangePasswordRequest
-from backend.console.dal.rds.client import get_db
+from backend.console.dal.rds.client import db_context
 from backend.console.dal.rds.user import User
 
 
 async def api_change_password_post(request: ChangePasswordRequest):
     print(f"Received change password request: {request.username}")
 
-    db = next(get_db())
-    try:
-        # 1. Query user
+    with db_context() as db:
         user_by_name = db.query(User).filter(
             User.username == request.username).first()
         user = User.get_by_id(db, user_by_name.id) if user_by_name else None
@@ -38,9 +36,3 @@ async def api_change_password_post(request: ChangePasswordRequest):
 
         print(f"User {request.username} password changed successfully")
         return {"message": "Password updated successfully"}
-    except Exception as e:
-        db.rollback()
-        if isinstance(e, HTTPException):
-            raise e
-        print(f"Change password failed: {e}")
-        raise HTTPException(status_code=500, detail="Internal Server Error")

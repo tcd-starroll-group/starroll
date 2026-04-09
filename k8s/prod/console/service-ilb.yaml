@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: console-ilb
+  namespace: starroll
+  annotations:
+    networking.gke.io/load-balancer-type: "Internal"
+    cloud.google.com/neg: '{"ingress": false}'
+spec:
+  selector:
+    app: console
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8000
+  type: LoadBalancer

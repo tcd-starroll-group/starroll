@@ -126,3 +126,15 @@ kubectl apply -f k8s/prod/grafana/service.yaml
 # 需要先修改 cronjob.yaml 中的 --datasource-uids
 kubectl apply -f k8s/prod/grafana/cronjob.yaml
 ```
+
+## 日志
+
+查询 console 日志
+
+```text
+resource.type="k8s_container"
+resource.labels.namespace_name="starroll"
+resource.labels.cluster_name="starroll-cluster"
+resource.labels.container_name="main"
+resource.labels.pod_name:"console-0"
+```

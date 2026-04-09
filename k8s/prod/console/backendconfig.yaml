@@ -12,5 +12,4 @@ spec:
     timeoutSec: 5
   timeoutSec: 3600
   sessionAffinity:
-    affinityType: GENERATED_COOKIE
-    affinityCookieTtlSec: 86400
+    affinityType: NONE

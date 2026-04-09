@@ -1,7 +1,7 @@
 import logging
 import requests
 import json
-from backend.console.dal.rds.client import get_db
+from backend.console.dal.rds.client import db_context
 from backend.console.dal.rds.identify_stars_job import IdentifyStarsJob
 from backend.constant.sort import SORT_ORDER_ASC
 from backend.constant.star_identify import *
@@ -14,8 +14,7 @@ logger = logging.getLogger(__name__)
 
 
 def identify_stars_handler():
-    db_session = next(get_db())
-    try:
+    with db_context() as db_session:
         db_jobs = IdentifyStarsJob.list_by_job_status(
             db=db_session,
             statuses=[STAR_IDENTIFY_JOB_STATUS_PENDING,
@@ -39,9 +38,6 @@ def identify_stars_handler():
                 except Exception as update_error:
                     logger.error(
                         f"Failed to update job status to FAILED, job id {job.id}, err: {update_error}")
-
-    finally:
-        db_session.close()
 
 
 def handle_one_identify_star_job(db_session, job: IdentifyStarsJob):
