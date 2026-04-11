@@ -1819,6 +1819,13 @@ components:
         joinDate:
           type: string
           description: Formatted string of the user's registration date
+        email:
+          type: string
+          description: The user's explicit email address
+        profile:
+          type: object
+          description: "User profile data including avatar URL"
+          additionalProperties: true
 
     StarMessage:
       type: object

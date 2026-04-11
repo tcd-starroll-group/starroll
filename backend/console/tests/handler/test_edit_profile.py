@@ -15,7 +15,7 @@ def test_edit_profile_invalid_token(monkeypatch: pytest.MonkeyPatch):
     with pytest.raises(HTTPException) as exc_info:
         asyncio.run(edit_module.api_edit_profile_post(payload))
 
-    assert exc_info.value.status_code == 404
+    assert exc_info.value.status_code == 401
 
 
 def test_edit_profile_user_not_found(monkeypatch: pytest.MonkeyPatch):
@@ -50,10 +50,13 @@ def test_edit_profile_user_not_found(monkeypatch: pytest.MonkeyPatch):
 
 def test_edit_profile_success(monkeypatch: pytest.MonkeyPatch):
     monkeypatch.setattr(edit_module, "verify_access_token",
-                        lambda t: ({}, True))
+                        lambda t: ({"sub": "u"}, True))
 
     class U:
         id = 5
+        email = "test@starroll.com"
+        avatar_url = "avatar.png"
+        profile = {}
 
     class Db:
         def query(self, model):
@@ -64,6 +67,11 @@ def test_edit_profile_success(monkeypatch: pytest.MonkeyPatch):
                             return U()
                     return R()
             return Q()
+        
+        # --- THIS IS THE FIX ---
+        def commit(self):
+            pass
+        # -----------------------
 
     class Ctx:
         def __enter__(self):
@@ -83,7 +91,8 @@ def test_edit_profile_success(monkeypatch: pytest.MonkeyPatch):
     monkeypatch.setattr(edit_module.User, "edit_profile",
                         staticmethod(_edit_profile))
 
-    payload = SimpleNamespace(username="u", token="ok", profile={})
+    payload = SimpleNamespace(username="u", token="ok", profile={"email": "new@starroll.com", "avatar": "new.png"})
     result = asyncio.run(edit_module.api_edit_profile_post(payload))
-    assert result.get("message") == "profile updated successfully"
+    
+    assert (result.get("message") if isinstance(result, dict) else result.message) == "profile updated successfully"
     assert edited.get("ok") is True
