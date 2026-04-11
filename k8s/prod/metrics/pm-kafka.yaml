@@ -1,0 +1,13 @@
+apiVersion: monitoring.googleapis.com/v1
+kind: PodMonitoring
+metadata:
+  name: kafka-metrics
+  namespace: starroll
+spec:
+  selector:
+    matchLabels:
+      app: kafka
+  endpoints:
+    - port: kafka-metrics
+      interval: 30s
+      path: /metrics

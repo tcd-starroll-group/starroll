@@ -9,6 +9,8 @@ import sys
 from types import FrameType
 from typing import Optional
 
+from confluent_kafka.admin import NewTopic
+
 from backend.config import settings
 from backend.console.dal import get_kafka_client
 from backend.console.dal.rds.chat_messages import ChatMessages
@@ -32,6 +34,28 @@ def _handle_shutdown(sig: int, frame: Optional[FrameType]) -> None:
     global _running
     print("Shutdown signal received, stopping consumer...")
     _running = False
+
+
+def _ensure_topic_exists(
+    topic: str,
+    num_partitions: int = 3,
+    replication_factor: int = 1,
+) -> None:
+    """Create the Kafka topic if it does not already exist."""
+    admin = get_kafka_client(settings)._admin
+    fs = admin.create_topics(
+        [NewTopic(topic, num_partitions=num_partitions,
+                  replication_factor=replication_factor)]
+    )
+    for t, f in fs.items():
+        try:
+            f.result()
+            print(f"Kafka topic created: {t}")
+        except Exception as exc:
+            if "TOPIC_ALREADY_EXISTS" in str(exc):
+                print(f"Kafka topic already exists: {t}")
+            else:
+                raise
 
 
 def _wait_for_topic(consumer, topic: str) -> None:
@@ -90,6 +114,8 @@ def _process_message(event: dict) -> None:
 def run() -> None:
     signal.signal(signal.SIGINT, _handle_shutdown)
     signal.signal(signal.SIGTERM, _handle_shutdown)
+
+    _ensure_topic_exists(TOPIC_CHAT_MESSAGE)
 
     consumer = get_kafka_client(settings).get_consumer("chat_message_to_rds")
 

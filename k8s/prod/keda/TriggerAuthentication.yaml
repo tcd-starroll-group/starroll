@@ -1,0 +1,8 @@
+apiVersion: keda.sh/v1alpha1
+kind: TriggerAuthentication
+metadata:
+  name: keda-gcp-auth
+  namespace: starroll
+spec:
+  podIdentity:
+    provider: gcp

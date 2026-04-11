@@ -5,7 +5,7 @@ metadata:
   namespace: starroll
 spec:
   serviceName: console-headless-service
-  replicas: 5
+  replicas: 1
   selector:
     matchLabels:
       app: console
@@ -36,9 +36,11 @@ spec:
             requests:
               cpu: "1"
               memory: "1Gi"
+              ephemeral-storage: "100Mi"
             limits:
               cpu: "1"
               memory: "1Gi"
+              ephemeral-storage: "100Mi"
           readinessProbe:
             httpGet:
               path: /api/health
@@ -59,3 +61,12 @@ spec:
             items:
               - key: .env
                 path: .env
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: topology.kubernetes.io/zone
+                    operator: In
+                    values:
+                      - europe-west1-d

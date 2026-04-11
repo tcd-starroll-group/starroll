@@ -56,3 +56,12 @@ spec:
         - name: grafana-data
           persistentVolumeClaim:
             claimName: grafana-pvc
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: topology.kubernetes.io/zone
+                    operator: In
+                    values:
+                      - europe-west1-d

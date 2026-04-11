@@ -1,0 +1,23 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: console-ws-scaler
+  namespace: starroll
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: StatefulSet
+    name: console
+  minReplicaCount: 1
+  maxReplicaCount: 20
+  pollingInterval: 15
+  cooldownPeriod: 300
+  triggers:
+    - type: prometheus
+      metadata:
+        serverAddress: https://monitoring.googleapis.com/v1/projects/starroll/location/global/prometheus
+        query: 'sum(ws_active_connections{job="console-metrics"})'
+        threshold: "400"
+        activationThreshold: "0"
+      authenticationRef:
+        name: keda-gcp-auth

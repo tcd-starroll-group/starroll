@@ -140,4 +140,5 @@ class Settings:
                 raise ValueError(f"Invalid POD_NAME ordinal: {pod_name}")
 
             self.worker_id = int(ordinal_str)
+            self.kafka_client_id = f"{self.kafka_client_id}-{ordinal_str}"
             print(f"get worker id from pod name, {self.worker_id}")
