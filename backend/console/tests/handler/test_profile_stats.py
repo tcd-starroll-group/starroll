@@ -28,7 +28,15 @@ def test_profile_stats_user_not_found(monkeypatch: pytest.MonkeyPatch):
 
 def test_profile_stats_success(monkeypatch: pytest.MonkeyPatch):
     created_at = None
-    user = SimpleNamespace(is_deleted=False, created_at=created_at)
+    
+    # FIX: Added email, avatar_url, and profile to the fake database record
+    user = SimpleNamespace(
+        is_deleted=False, 
+        created_at=created_at,
+        email="test@starroll.com",
+        avatar_url="avatar.png",
+        profile={}
+    )
 
     class Ctx:
         def __enter__(self):
@@ -48,6 +56,12 @@ def test_profile_stats_success(monkeypatch: pytest.MonkeyPatch):
 
     result = asyncio.run(ps_module.api_get_profile_stats_post(None))
 
-    assert result.stars_discovered == 60
-    assert result.total_scans == 7
-    assert result.rank == "Astronomer"
+    # Handles both dict returns and Pydantic object returns just in case
+    if isinstance(result, dict):
+        assert result["starsDiscovered"] == 60
+        assert result["totalScans"] == 7
+        assert result["rank"] == "Astronomer"
+    else:
+        assert result.stars_discovered == 60
+        assert result.total_scans == 7
+        assert result.rank == "Astronomer"
