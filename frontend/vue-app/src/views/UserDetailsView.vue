@@ -13,25 +13,74 @@ const pilotForm = reactive({
   name: '',
   email: '',
   dob: '',
-  place: '',
-  avatar: ''
+  place: ''
 })
 
 onMounted(async () => {
   try {
     const token = localStorage.getItem('token') || ''
-    const response = await defaultApi.apiVerifyUserTokenPost()
-    pilotForm.name = response.username || ''
+    const username = localStorage.getItem('username') || ''
+    
+    if (!token) {
+      router.push('/login')
+      return
+    }
+
+    // Lock the name to the strict login username
+    pilotForm.name = username
+
+    // Fetch the rest of the profile data
+    const statsResponse = await defaultApi.apiGetProfileStatsPost({ 
+      body: {} 
+    }) as any
+    
+    if (statsResponse) {
+      pilotForm.email = statsResponse.email || ''
+      if (statsResponse.profile) {
+        pilotForm.dob = statsResponse.profile.dob || ''
+        pilotForm.place = statsResponse.profile.place || ''
+      }
+    }
   } catch (err) {
-    console.error("Transmission Interrupted: Could not fetch detailed logs.");
+    console.error("Transmission Interrupted: Could not fetch detailed logs.", err);
   }
 })
 
-const handleToggleEdit = () => {
+const handleToggleEdit = async () => {
   if (isEditing.value) {
-    // Here you would call your update API: await updateProfileApi(pilotForm)
     console.log("Saving updated pilot data...", pilotForm)
+    
+    try {
+      const username = localStorage.getItem('username') || ''
+      const token = localStorage.getItem('token') || ''
+
+      // Call the edit profile API - sending ONLY what we want to update
+      await defaultApi.apiEditProfilePost({
+        profileAndToken: {
+          username: username,
+          token: token,
+          profile: { 
+            email: pilotForm.email,
+            dob: pilotForm.dob,
+            place: pilotForm.place
+          }
+        }
+      })
+      
+      // Update local storage email
+      if (pilotForm.email) {
+        localStorage.setItem('pilot_email', pilotForm.email)
+      }
+      
+      alert("Credentials Synced Successfully!")
+    } catch (err) {
+      console.error("Failed to sync credentials:", err)
+      alert("Failed to sync changes. Please check your connection.")
+      return // Stop here so it doesn't exit edit mode if it failed
+    }
   }
+  
+  // Toggle the edit mode state
   isEditing.value = !isEditing.value
 }
 </script>
@@ -52,7 +101,7 @@ const handleToggleEdit = () => {
           <div class="field">
             <label>Full Name / Callsign</label>
             <div v-if="!isEditing" class="view-mode">{{ pilotForm.name }}</div>
-            <input v-else v-model="pilotForm.name" type="text" class="edit-input" />
+            <input v-else v-model="pilotForm.name" type="text" class="edit-input disabled-input" disabled title="Callsigns cannot be altered" />
           </div>
 
           <div class="field">
@@ -70,7 +119,7 @@ const handleToggleEdit = () => {
           <div class="field">
             <label>Home Base (Location)</label>
             <div v-if="!isEditing" class="view-mode">{{ pilotForm.place || 'Deep Space' }}</div>
-            <input v-else v-model="pilotForm.place" type="text" class="edit-input" />
+            <input v-else v-model="pilotForm.place" type="text" class="edit-input" placeholder="e.g., Earth, Mars Colony 4" />
           </div>
         </div>
 
@@ -153,6 +202,11 @@ const handleToggleEdit = () => {
   outline: none;
   border-color: var(--color-star-primary);
   background: rgba(255, 255, 255, 0.08);
+}
+
+.disabled-input {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .details-actions {
