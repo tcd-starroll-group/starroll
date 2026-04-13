@@ -1,5 +1,6 @@
 import asyncio
 import hashlib
+from contextlib import contextmanager
 
 import pytest
 from fastapi import HTTPException
@@ -12,10 +13,12 @@ from openapi_server.models.api_user_reg_post_request import ApiUserRegPostReques
 
 
 def test_api_user_reg_post_success(db_session: Session, monkeypatch: pytest.MonkeyPatch):
-    def _get_db_override():
+    @contextmanager
+    def _db_context_override():
         yield db_session
 
-    monkeypatch.setattr(user_register_module, "get_db", _get_db_override)
+    monkeypatch.setattr(user_register_module,
+                        "db_context", _db_context_override)
 
     payload = ApiUserRegPostRequest(
         username="newuser",
@@ -44,10 +47,12 @@ def test_api_user_reg_post_duplicate_username(db_session: Session, monkeypatch: 
     User.create(db_session, "duplicate_user",
                 existing_password, "u1@example.com")
 
-    def _get_db_override():
+    @contextmanager
+    def _db_context_override():
         yield db_session
 
-    monkeypatch.setattr(user_register_module, "get_db", _get_db_override)
+    monkeypatch.setattr(user_register_module,
+                        "db_context", _db_context_override)
 
     payload = ApiUserRegPostRequest(
         username="duplicate_user",
