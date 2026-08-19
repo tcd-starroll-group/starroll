@@ -22,5 +22,11 @@ ENV PYTHONPATH="/app/gen/py/src:/app"
 # Expose the typical HTTP port; adjust if your app uses a different one
 EXPOSE 8000
 
-CMD ["python", "-m", "uvicorn", "backend.console.app:app", "--host", "0.0.0.0", "--port", "8000", "--log-level", "warning", "--no-access-log"]
-
+CMD ["python", "-m", "uvicorn", "backend.console.app:app", \
+     "--host", "0.0.0.0", \
+     "--port", "8000", \
+     "--log-level", "warning", \
+     "--no-access-log", \
+     "--backlog", "2048", \
+     "--timeout-keep-alive", "5", \
+     "--workers", "1"]

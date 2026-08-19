@@ -85,7 +85,37 @@ spec:
           volumeMounts:
             - name: kafka-data
               mountPath: /var/lib/kafka/data
+        - name: kafka-exporter
+          image: danielqsj/kafka-exporter:v1.7.0
+          imagePullPolicy: IfNotPresent
+          command:
+            - /bin/sh
+            - -c
+            - |
+              until nc -z localhost 9092 2>/dev/null; do
+                echo "Waiting for Kafka to be ready..."; sleep 5
+              done
+              exec /bin/kafka_exporter --kafka.server=localhost:9092
+          ports:
+            - containerPort: 9308
+              name: kafka-metrics
+          resources:
+            requests:
+              cpu: "50m"
+              memory: "64Mi"
+            limits:
+              cpu: "50m"
+              memory: "64Mi"
       volumes:
         - name: kafka-data
           persistentVolumeClaim:
             claimName: kafka-pvc
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: topology.kubernetes.io/zone
+                    operator: In
+                    values:
+                      - europe-west1-d

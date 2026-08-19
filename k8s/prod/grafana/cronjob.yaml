@@ -24,7 +24,7 @@ spec:
                 - "--project-id=starroll"
                 - "--grafana-api-endpoint=http://grafana-service:3000"
                 - "--grafana-api-token=$(GRAFANA_API_KEY)"
-                - "--datasource-uids=dfglkvm16t9mod"
+                - "--datasource-uids=ffior0pj9wa2of"
               env:
                 - name: GRAFANA_API_KEY
                   valueFrom:

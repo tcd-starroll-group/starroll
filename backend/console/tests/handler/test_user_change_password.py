@@ -1,5 +1,6 @@
 import asyncio
 import hashlib
+from contextlib import contextmanager
 
 import pytest
 from fastapi import HTTPException
@@ -20,11 +21,12 @@ def test_api_change_password_post_success(db_session: Session, monkeypatch: pyte
 
     created = User.create(db_session, username, old_hashed, "cp@example.com")
 
-    def _get_db_override():
+    @contextmanager
+    def _db_context_override():
         yield db_session
 
     monkeypatch.setattr(user_change_password_module,
-                        "get_db", _get_db_override)
+                        "db_context", _db_context_override)
 
     payload = ChangePasswordRequest(
         username=username,
@@ -47,11 +49,12 @@ def test_api_change_password_post_wrong_old_password(db_session: Session, monkey
     real_hashed = hashlib.sha256(real_pass.encode()).hexdigest()
     User.create(db_session, username, real_hashed, "wrong@example.com")
 
-    def _get_db_override():
+    @contextmanager
+    def _db_context_override():
         yield db_session
 
     monkeypatch.setattr(user_change_password_module,
-                        "get_db", _get_db_override)
+                        "db_context", _db_context_override)
 
     payload = ChangePasswordRequest(
         username=username,
@@ -67,11 +70,12 @@ def test_api_change_password_post_wrong_old_password(db_session: Session, monkey
 
 
 def test_api_change_password_post_user_not_found(db_session: Session, monkeypatch: pytest.MonkeyPatch):
-    def _get_db_override():
+    @contextmanager
+    def _db_context_override():
         yield db_session
 
     monkeypatch.setattr(user_change_password_module,
-                        "get_db", _get_db_override)
+                        "db_context", _db_context_override)
 
     payload = ChangePasswordRequest(
         username="ghost",

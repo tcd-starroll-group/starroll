@@ -74,8 +74,7 @@ kubectl annotate serviceaccount grafana-sa \
     iam.gke.io/gcp-service-account=$GSA_NAME@$PROJECT_ID.iam.gserviceaccount.com
 ```
 
-在完成grafana的部署之后，添加 connections，选择 google cloud monitoring
-Authentication type 选择 GCE Default Service Account ，禁用 Service account impersonation
+在完成grafana的部署之后，添加 connections，选择普罗米修斯
 
 ```bash
 kubectl create secret generic grafana-api-credentials \
@@ -84,6 +83,39 @@ kubectl create secret generic grafana-api-credentials \
 ```
 
 > 参考 https://github.com/GoogleCloudPlatform/prometheus-engine/tree/main/cmd/datasource-syncer
+
+## keda
+
+安装
+
+```bash
+helm repo add kedacore https://kedacore.github.io/charts
+helm repo update
+
+helm install keda kedacore/keda --namespace keda --create-namespace
+```
+
+配置读取 google monitor 的权限
+
+```bash
+export PROJECT_ID=$(gcloud config get-value project)
+export GSA_NAME="grafana-monitoring-reader"
+
+# 在 metrics 部分已经创建了 GSA ，这里复用
+
+gcloud iam service-accounts add-iam-policy-binding \
+    $GSA_NAME@$PROJECT_ID.iam.gserviceaccount.com \
+    --role="roles/iam.workloadIdentityUser" \
+    --member="serviceAccount:$PROJECT_ID.svc.id.goog[keda/keda-operator]"
+
+kubectl annotate serviceaccount keda-operator \
+    --namespace keda \
+    iam.gke.io/gcp-service-account=$GSA_NAME@$PROJECT_ID.iam.gserviceaccount.com
+
+# 之后需要重启 keda operator
+
+kubectl rollout restart deployment keda-operator -n keda
+```
 
 ## 部署
 
@@ -125,4 +157,8 @@ kubectl apply -f k8s/prod/grafana/pvc.yaml
 kubectl apply -f k8s/prod/grafana/service.yaml
 # 需要先修改 cronjob.yaml 中的 --datasource-uids
 kubectl apply -f k8s/prod/grafana/cronjob.yaml
+
+# keda
+kubectl apply -f k8s/prod/keda/ScaledObject.yaml
+kubectl apply -f k8s/prod/keda/TriggerAuthentication.yaml
 ```

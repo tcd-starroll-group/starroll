@@ -9,5 +9,5 @@ spec:
       app: console
   endpoints:
     - port: backend-port
-      interval: 30s
+      interval: 10s
       path: /metrics

@@ -1,6 +1,6 @@
 import logging
 
-from backend.console.dal.rds.client import get_db
+from backend.console.dal.rds.client import db_context
 from backend.console.dal.rds.user import User
 from backend.console.handler.generate_email_recommendation import generate_recommendation_for_user
 from backend.console.utils.email_sender import send_recommendation_email
@@ -10,11 +10,8 @@ logger = logging.getLogger(__name__)
 
 def email_recommendation_handler():
     """Send recommendation emails to all users that have email and GPS data."""
-    db_session = next(get_db())
-    try:
+    with db_context() as db_session:
         return _send_recommendations(db_session)
-    finally:
-        db_session.close()
 
 
 def _send_recommendations(db_session):

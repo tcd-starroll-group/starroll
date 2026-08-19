@@ -2,16 +2,14 @@ import hashlib
 from fastapi import HTTPException
 from openapi_server.models.api_user_reg_post_request import ApiUserRegPostRequest
 from openapi_server.models.user_response import UserResponse
-from backend.console.dal.rds.client import get_db
+from backend.console.dal.rds.client import db_context
 from backend.console.dal.rds.user import User
 
 
 async def api_user_reg_post(user_auth: ApiUserRegPostRequest) -> UserResponse:
     print(f"Received registration request: {user_auth.username}")
 
-    db = next(get_db())
-    try:
-        # 1. Check if username exists
+    with db_context() as db:
         existing_by_name = db.query(User).filter(
             User.username == user_auth.username).first()
         if existing_by_name and User.get_by_id(db, existing_by_name.id):
@@ -25,16 +23,8 @@ async def api_user_reg_post(user_auth: ApiUserRegPostRequest) -> UserResponse:
         # 3. Create user
         new_user = User.create(db, user_auth.username,
                                pwd_hash, user_auth.email)
-
-        print(f"User registered successfully, ID: {new_user.id}")
         return UserResponse(
             userID=str(new_user.id),
             username=new_user.username,
             email=new_user.email
         )
-    except Exception as e:
-        db.rollback()
-        if isinstance(e, HTTPException):
-            raise e
-        print(f"Database error: {e}")
-        raise HTTPException(status_code=500, detail="Internal Server Error")

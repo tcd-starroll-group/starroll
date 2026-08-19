@@ -1,4 +1,5 @@
 from unittest.mock import patch, MagicMock
+from contextlib import contextmanager
 from backend.cronjob.identify_stars import (
     identify_stars_handler,
     handle_one_identify_star_job,
@@ -27,10 +28,12 @@ def test_identify_stars_handler(monkeypatch):
     monkeypatch.setattr(
         "backend.cronjob.identify_stars.handle_one_identify_star_job", mock_handle_job)
 
-    def mock_get_db():
+    @contextmanager
+    def mock_db_context():
         yield mock_db_session
 
-    monkeypatch.setattr("backend.cronjob.identify_stars.get_db", mock_get_db)
+    monkeypatch.setattr(
+        "backend.cronjob.identify_stars.db_context", mock_db_context)
 
     identify_stars_handler()
 
